@@ -12,3 +12,17 @@
      - an entity representation module which computes entity embeddings that model seeks to extract
 
 
+
+#### BANER (Boundary-Aware LLMs for Few-Shot Named Entity Recongnition)
+- https://aclanthology.org/2025.coling-main.691.pdf
+- it introduces a novel few-shot NER approach which employs boundary-aware contrastive learning to enhance an LLM's ability to perceive entity boundaries
+- uses LoRAHub
+- comprises:
+    - entity span detection
+        - prompt representation 
+            - BANER fine-tunes LLM using LoRA (updates only small parameters) and prompts
+            - prompt is fed into the LLM to perform entity span detection
+        - boundary-aware contrastive learning (Khosla et al., 2020)
+            - teaches the model to distinguish correct entity boundaries
+    - entity type classification
+        - a specific entity class is assiged to each span identified during entity span detection
