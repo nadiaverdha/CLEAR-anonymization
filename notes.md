@@ -92,7 +92,36 @@
 - dataset NERetriver (Katz et al., 2023), Few-NERD (supervised) (Ding et al., 2021), MultiCoNER 2 (Fetahu et al., 2023)
 
 
+#### EL4NER
+- https://arxiv.org/pdf/2505.23038
+- 
 
+
+
+#### RUIE
+- https://www.arxiv.org/pdf/2409.11673
+- https://github.com/OStars/RUIE
+- Unified information extraction (UIE) -> aims to extract diverse structured information from unstructured text
+- a framework that leverages in-context learning for efficient task generation
+- introduces a novel demostration selection mechanism combining LLM preferences with a keyword-enhanced reward model, and employs a bi-encoder retriever training through contrastive learning & knowledge distilation
+- In-context Learning   -> ability of LLMs to perform new tasks with only a few examples or demostrations
+                        -> fine-tuning can be circumvented
+- IE - a) NER , b) RE (relation extraction) , c) EE (event extraction)
+- sample format: 1)task name, 2) schema - task ontology represented in form of python list 3) input context to be extracted 4) structured output linearized by NL
+-  older IE check text similarity btw the input text and examples, RUIE lets LLM decide which examples are more helpful
+    - use BM25 to narrow down relevant examples
+    - calculate scores for those examples based on how well LLM performs with them
+- Keyword enhanced reward
+    - improves the scoring and ranking of example pairs
+    - to make the fine-grained info btw the input query & the candidate examples fully interactive 
+    - <keyword> tags are added around each important span in the input
+    - train cross-encoder using cross entropy loss (to make the CE score the positive examples higher)
+        - to score how well a candidate matches the query
+        - output real-value scores
+- UIE retriever training
+    - bi-encoder architecture that approximates the cross-encoder reward model
+    - computes similarity using dot product btw vector embeddings
+- 31 datasets 
 
 
 
