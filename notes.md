@@ -4,15 +4,13 @@
 
 #### GLiNER 
 - https://arxiv.org/pdf/2311.08526
+- https://github.com/urchade/GLiNER
 - utilizes smaller scale Bidirectional Language Models (BiLM), e.g. BERT or deBERTa.
 - treates the task of Open (identification of any type) NER as matching entity type embeddings to textual span representations in latent space
 - has three main components:
      - pre-trained textual encoder (e.g. deBERTa)
      - a span representation module which computes span embeddings from token embeddings
      - an entity representation module which computes entity embeddings that model seeks to extract
-
-
-
 
 
 #### BANER (Boundary-Aware LLMs for Few-Shot Named Entity Recongnition)
@@ -62,6 +60,42 @@
     - after identifying the top k most relevant contextual examples, the language of the input sequence is inferred by calculating the most frequent language label from the set
     -  the designed LoRA module is then integrated with the LLM parameters
 - dataset MultiCONER, PAN-X
+
+
+#### NER Retriever
+- https://arxiv.org/pdf/2509.04011
+- https://github.com/ShacharOr100/ner_retriever
+- a variant of NER where the types of interest are not provided in advance, & a user-friendly type description is used to retrieve documents mentioning entities of that type
+- leverages the internal structure of LLMS to obtain type-aware representations of entity mentions
+- task: NER is defined as retrieving texts that mention entities belonging to a given entity type (coming from a query) 
+- embedding-based approach in which both entity mentions & type queries are embedded into a shared semantic space using a mid-layer od LLaMA 2.1 8B & then followed by a lightweight multi-layer perceptron (MLP) that maps the embeddings into a compact, type-aware vector space
+- MPL is trained with contrastive objective to align entities of the same type and separate those of different types
+- at indexing, the computed & transformed embeddings are stored; at query time, we embed the user-specific type and retrieve the most similar entity vector via nearest-neighbor search
+- this approach relies on extracting entity mention embeddings from intermediate layers of a pre-trained LLM (not all layers capture type semantics equally well)
+- since the embeddings are high-dimensional, MLP is used to transform them into a more compact form, using a triplet contrastive loss:
+    - each training tripplet includes three components
+        - an anchor: natural language description e.g. politician
+        - a set of positives: entity mentions of the same type (angela merkel)
+        - a set of negatives: mentions from different types (Danube river)
+    - the contrastive objective encourages embeddings of the same-type entities to be close together and dissimal types to be well separated
+- implementative of NER Retriever 
+    - entity detection
+        - important: identify spans of all entities in a text, independent of their semantic meaning
+        - LLM is employed
+    - indexing
+        - for each docu, all entity mentions are identified and the docu is passed through a frozen LLM encoder -> MLP -> the resulting entity vectors are stored in a cector index linked to their corresponding document
+        - optimized for cosine search
+    - retrieval 
+        - at query time the user provides a type description in natural language
+        - query is embedded the same way as above in the same embedding space as indexed entries
+        - the k most similar entity embeddings are retrieved
+- dataset NERetriver (Katz et al., 2023), Few-NERD (supervised) (Ding et al., 2021), MultiCoNER 2 (Fetahu et al., 2023)
+
+
+
+
+
+
 
 
 
