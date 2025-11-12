@@ -17,13 +17,13 @@
 - https://aclanthology.org/2025.coling-main.691.pdf
 - https://github.com/UESTC-GQJ/BANER
 - recently few shot NER have gathered a lot of attention
-    - prompt-based methods: leverage the knowledge of LLMs by utilizing templates, prompts, etct to effectively harness the internal knowledge of LLMs
-    - metric-based methods: aim to learn the future space w/ robust generalizability and classify test samples using nearest class protorypes / or neighboring samples; may fail to fully utilize entity type knowledge from the source domain during type classification stage..
-    - recently the focus -> two stage architecture,task is decomposed into entity span detection and entitiy typing subtasks. Challeng! -> over/underdetection of false entity spans during span detection
-- it introduces a novel few-shot NER approach which employs boundary-aware contrastive learning to enhance an LLM's ability to perceive entity boundaries
+    - prompt-based methods: leverage the knowledge of LLMs by utilizing templates, prompts, etc to effectively harness the internal knowledge of LLMs
+    - metric-based methods: aim to learn the future space w/ robust generalizability and classify test samples using nearest class prototypes / or neighboring samples; may fail to fully utilize entity type knowledge from the source domain during type classification stage..
+    - recently the focus -> two stage architecture,task is decomposed into entity span detection and entitiy typing subtasks. Challenge! -> over/underdetection of false entity spans during span detection
+- introduces a novel few-shot NER approach which employs boundary-aware contrastive learning to enhance an LLM's ability to perceive entity boundaries
 - uses LoRAHub
 - task
-    - given a sequence Y with L tokens, NER aims to assign each token xi to its corresponding label y from Y U O (Y - predefined labels, O - other labesls)
+    - given a sequence of tokens X NER aims to assign each token xi to its corresponding label y from Y U O (Y - predefined labels, O - other labesls)
     - NER is first pretrained on data-sufficient source domain and then fine-tuned in target domain w/ only few labeled samples
     - task is to recognize entities in the target Set after learning from the Domain set (support set)
 - comprises:
@@ -33,7 +33,7 @@
             - prompt is fed into the LLM to perform entity span detection
         - boundary-aware contrastive learning (Khosla et al., 2020)
             - teaches the model to distinguish correct entity boundaries
-        - LLM is fine-tuned using LoRA - freezing pretrained parameters and introducing trainable rank decomposition matrices ionto each layer of the transformer architecture
+        - LLM is fine-tuned using LoRA - freezing pretrained parameters and introducing trainable rank decomposition matrices into each layer of the transformer architecture
     - entity type classification
         - a specific entity class is assiged to each span identified during entity span detection
         - using a prompt, the model constructs a prototype for each given entity type
