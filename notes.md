@@ -13,8 +13,11 @@
 
 
 
+
+
 #### BANER (Boundary-Aware LLMs for Few-Shot Named Entity Recongnition)
 - https://aclanthology.org/2025.coling-main.691.pdf
+- https://github.com/UESTC-GQJ/BANER
 - recently few shot NER have gathered a lot of attention
     - prompt-based methods: leverage the knowledge of LLMs by utilizing templates, prompts, etct to effectively harness the internal knowledge of LLMs
     - metric-based methods: aim to learn the future space w/ robust generalizability and classify test samples using nearest class protorypes / or neighboring samples; may fail to fully utilize entity type knowledge from the source domain during type classification stage..
@@ -38,5 +41,34 @@
         - using a prompt, the model constructs a prototype for each given entity type
         - for each span in a query the distance between its representation and prototype is calculated
 - outperforms previous sota methods
+
+
+#### RetrieveAll
+- https://arxiv.org/pdf/2505.19128
+- a universal multilingual NER based on dynamic LoRA
+- this framework constructs an input-aware LoRA retrieval mechanism, enabling hybrid multilingual recognition and reasoning accross multiple languages
+- LoRA:
+    - adds decomposable training matrices that are combined in parallel with the pre-trained parameters
+    - enables fine-tuning only a small number of low-rank parameters
+- multilingual NER
+    - is decomposed into several sub-tasks of NER for different languages
+    - each LoRA parameter injected into LLM is trained on the NER task for each language 
+        -> model's focus is enhanced for each language-specific task, surpressing interference and conflict btw languages
+        -> the lightweight parameter update mechanism on LoRA allows the model to quickly converge even in environments with limited data resources
+        -> when adding a new language, only LoRA parameters need to be adjusted and not the LLM parameters 
+        -> model can dynamically select suitable LoRAs based on input language
+    - input to multilingual NER comes from any of the predefined languages or from a combination
+    - for each training sample, the LLM generates entitiy-level and context-level representations, the most appropriate contextual and entity examples for each sample are computed using cosine similarity & a dynamic threshold 
+    - after identifying the top k most relevant contextual examples, the language of the input sequence is inferred by calculating the most frequent language label from the set
+    -  the designed LoRA module is then integrated with the LLM parameters
+- dataset MultiCONER, PAN-X
+
+
+
+
+
+
+
+
 
 
