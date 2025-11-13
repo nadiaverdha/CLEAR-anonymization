@@ -59,7 +59,7 @@
     - for each training sample, the LLM generates entitiy-level and context-level representations, the most appropriate contextual and entity examples for each sample are computed using cosine similarity & a dynamic threshold 
     - after identifying the top k most relevant contextual examples, the language of the input sequence is inferred by calculating the most frequent language label from the set
     -  the designed LoRA module is then integrated with the LLM parameters
-- dataset MultiCONER, PAN-X
+- dataset MultiCONER (sota  RetrieveAll), PAN-X (CascadeNer)
 
 
 #### NER Retriever
@@ -89,7 +89,8 @@
         - at query time the user provides a type description in natural language
         - query is embedded the same way as above in the same embedding space as indexed entries
         - the k most similar entity embeddings are retrieved
-- dataset NERetriver (Katz et al., 2023), Few-NERD (supervised) (Ding et al., 2021), MultiCoNER 2 (Fetahu et al., 2023)
+- authors and dataset NERetriver (Katz et al., 2023), Few-NERD (supervised) (Ding et al., 2021), MultiCoNER 2 (Fetahu et al., 2023)
+
 
 #### RUIE
 - https://www.arxiv.org/pdf/2409.11673
@@ -115,6 +116,9 @@
     - bi-encoder architecture that approximates the cross-encoder reward model
     - computes similarity using dot product btw vector embeddings
 - 31 datasets 
+    - ACE 2004 (sota  (Lu et al., 2022))
+    - ACE 2005 (sota  (Wang et al., 2023b) )
+
 
 
 ##### GPT-NER
