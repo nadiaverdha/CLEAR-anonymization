@@ -1,5 +1,19 @@
 ### NER Methods
 
+#### Some datasets & their SOTA
+
+| Dataset  | SOTA    |
+| -------- | -------                            |
+| ACE2004  |  BINDER (Zhang et al., 2022)      |
+|          |         |
+|          |         |
+
+
+
+
+
+
+
 
 
 #### GLiNER 
