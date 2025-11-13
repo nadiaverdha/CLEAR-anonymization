@@ -91,13 +91,6 @@
         - the k most similar entity embeddings are retrieved
 - dataset NERetriver (Katz et al., 2023), Few-NERD (supervised) (Ding et al., 2021), MultiCoNER 2 (Fetahu et al., 2023)
 
-
-#### EL4NER
-- https://arxiv.org/pdf/2505.23038
-- 
-
-
-
 #### RUIE
 - https://www.arxiv.org/pdf/2409.11673
 - https://github.com/OStars/RUIE
@@ -124,11 +117,35 @@
 - 31 datasets 
 
 
-
-
-
-
-
+##### GPT-NER
+- https://aclanthology.org/2025.findings-naacl.239.pdf
+- https://github.com/ShuheWang1998/GPT-NER
+- performance of LLMs in NER task is significantly low compared to supervised methods due to the difference in nature btw sequence labelling task and generation task
+- this method bridges the gap by transforming a NER task  (sequence labeling) to a generation task
+- uses the general paradigm of in-context learning and is decomposed into three steps:
+    - prompt construction 
+        - few shots appended to the prompt 
+        - model is guided to output relevant entries within special characters like @@example##
+    - feeding the constructured prompt to LLMs to obtain the generated text sequence W
+    - transforming the text sequence W to a sequence of entity labels to obtain to final results
+- strategies to retrieve demostration examples
+    - random retrieval from training set
+    - kNN-based retrieval  by using text similarity methods
+        - compute sentence-level representations for training examples and input sequence and use coside similarity
+        - shortcoming: NER is token-level task
+    - entity level embedding 
+        - extract entity-level representations for all tokens of all training examples as the datastore using a fine-tuned NER tagging model
+        - for a given input sequence, iterate over all tokens to find kNNs for each token
+        - select top KXN retriverd tokens and use their associated sentences as demostrations
+- self-verification strategy
+    - given the extracted entitiy by LLM, LLM is instructed to verify whether this is correct or not with yes/no question
+    - again here for demostration selection for these verification questions, we use the KNN method 
+        - first construct datastore by extracting entitiy-level representations using a fine-tuned NER model
+        - use the same fine-tuned NER to extract representation for the queried word
+        - finally we use the representation for the queried word to select k examples from the datastore as few-shot demostrations whose answer is yes if the retrieved entity belongs to the query entitiy type or no otherwise
+- flat ner datasets English CoNLL2003 and OntoNotes5.0
+- nested ner datasets ACE2004 (sota BINDER (Zhang et al., 2022), ACE2005(sota BINDER (Zhang et al., 2022) ), GENIA (sota BERT-MRC (Li et al., 2019a))
+- GPT-NER great abilities in low-resource scenarios
 
 
 
