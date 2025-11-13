@@ -1,12 +1,50 @@
+*work in progress document*
+
 ### NER Methods
 
 #### Some datasets & their SOTA
 
-| Dataset  | SOTA    |
-| -------- | -------                            |
-| ACE2004  |  BINDER (Zhang et al., 2022)       |
-| ACE2005  |  BINDER (Zhang et al., 2022)     |
-| CoNLL2003|YAYI-UIE Xiao et al., 2024b         |
+| Dataset  | SOTA   |
+| -------- | -------  |
+| ACE2004  | BINDER (Zhang et al., 2022)  |
+| ACE2005  | BINDER (Zhang et al., 2022) |
+| CoNLL2003| YAYI-UIE Xiao et al., 2024b /   Wang et al. (2020)  |
+| Few-NERD| BANER (Guo, Q., et al. (2025))   |
+| MultiCONER| CascadeNER (Luo et al., 2024) / GEMNET Meng et al. (2021); Fetahu et al. (2022)   |
+
+
+#### CascadeNER (Luo et al., 2024)
+- https://arxiv.org/pdf/2409.11022v3
+- introduce the task of generation-based extraction and in-context classification (GEIC)
+- CascadeNER: a multilingual and universal GEIC framework
+    - employs model cascading, assigning each subtasks to corresponding finetuned small-parameter LLMs, referred to as SLM
+    - can complete NER tasks in both fewshot and zero shot scenarios
+    - sota performance on low-resource and fine-grained datasets
+    - uses AnythingNER also introduced in this paper 
+- Small Language Models (SMLs) - offer advantages like easier fine-tuning and lower computational resources 
+- GEIC divides NER task into two sequential, independently executed generation-based sub-tasks:
+    - 1st subtask: extraction
+        - model generate a sentence where all named entities are marked with identifiers and individually re-embeds each entity back into its context -> resulting in sentences w/ identigfier at the number of entities
+    - 2nd subtask: classification
+        - the model receives sentences with identifiers and a list of entity types, and label one entity at a time
+- CascadeNER
+    - employs model cascading where the extraction and classification sub-tasks are handled separately by two specialized fine-tuned LLMs typically SLMs 
+    - each model focuses on its subtask
+    - extraction: 
+        - generation based extraction method  where specialized tokens ## are used to surround any entities identified in a sentence 
+        - to increase recall the authors run multiple rounds of extraction for the same sentence and take the union ( combine all unique entities accross multiple rounds)
+        - they use length first strategy, keeping longer spans 
+    - classification: generation-based in-context classification method
+        - input to the model: a list of possible categories and the sentence with one entity surrounded by ##, the model is asked to pick the correct category
+        - by re-embedding the entity in the sentence we leverage the self-attention in LLM
+        - hierarchical classification- some entities have multi-level categories
+            - first assigne coarse-grained label
+            - then based on that look for fine-grained classification
+            - continue until no further subcategory exists  
+- FewNERD and CrossNER meet requirements for evaluating CascadeNER in few-shot scenarios
+- constructed AnythingNER, the first NER dataset specifically designed for LLM-based NER, particularly GEIC tasks
+- experiments on CoNLL2003, PAN-X, MultiCONER as well
+    
 
 
 
@@ -82,7 +120,7 @@
     - for each training sample, the LLM generates entitiy-level and context-level representations, the most appropriate contextual and entity examples for each sample are computed using cosine similarity & a dynamic threshold 
     - after identifying the top k most relevant contextual examples, the language of the input sequence is inferred by calculating the most frequent language label from the set
     -  the designed LoRA module is then integrated with the LLM parameters
-- dataset MultiCONER (sota  RetrieveAll), PAN-X (CascadeNer)
+- dataset MultiCONER (sota  CascadeNer), PAN-X ( MultiCONER)
 
 
 #### NER Retriever (Shachar, O., et al. (2025))
