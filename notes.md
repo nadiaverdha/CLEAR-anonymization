@@ -4,12 +4,14 @@
 
 | Dataset  | SOTA    |
 | -------- | -------                            |
-| ACE2004  |  BINDER (Zhang et al., 2022)      |
-|          |         |
-|          |         |
+| ACE2004  |  BINDER (Zhang et al., 2022)       |
+| ACE2005  |    BINDER (Zhang et al., 2022)     |
+| CoNLL2003|  Xiao et al., 2024b         |
 
 
 
+#### YAYI-UIE
+- https://arxiv.org/pdf/2312.15548
 
 
 
