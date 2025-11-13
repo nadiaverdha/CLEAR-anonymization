@@ -5,20 +5,27 @@
 | Dataset  | SOTA    |
 | -------- | -------                            |
 | ACE2004  |  BINDER (Zhang et al., 2022)       |
-| ACE2005  |    BINDER (Zhang et al., 2022)     |
-| CoNLL2003|  Xiao et al., 2024b         |
+| ACE2005  |  BINDER (Zhang et al., 2022)     |
+| CoNLL2003|YAYI-UIE Xiao et al., 2024b         |
 
 
 
-#### YAYI-UIE
+#### YAYI-UIE (Xiao et al., 2024b )
 - https://arxiv.org/pdf/2312.15548
+- https://github.com/wenge-research/YAYI-UIE/blob/main/README_EN.md
+- end-to-end chat-enhanced instruction tuning framework for universal information extraction, supports both English and German
+- instruction -> includes task type, task option, and output format
+    - 2 step instruction tuning
+        - 1st step: use open-source dialogue data w/ instructions and a self-constructed corpus to train a chat-enhanced language model to facilitate instruction tuning for multiple IE tasks -> chat LLM
+        - 2nd step: the model is adapted to IE task via IE instruction datasets and the output of the model is standardized
+        - due to lack of chinese datasets, existing chinese data is combined with english datasets
+- input -> a textual instance of the IE tasks that is fed into the LLM along with the instruction
+- output -> a sentence that represents the structured info extracted from the input text
+- LLM -- Supervised Instruction Fine tuning --> Chat Model -- Supervised Instruction Fine tuning --> YAYI-UIE
 
 
 
-
-
-
-#### GLiNER 
+#### GLiNER (Zaratiana et al., 2024)
 - https://arxiv.org/pdf/2311.08526
 - https://github.com/urchade/GLiNER
 - utilizes smaller scale Bidirectional Language Models (BiLM), e.g. BERT or deBERTa.
@@ -29,7 +36,7 @@
      - an entity representation module which computes entity embeddings that model seeks to extract
 
 
-#### BANER (Boundary-Aware LLMs for Few-Shot Named Entity Recongnition)
+#### BANER (Boundary-Aware LLMs for Few-Shot Named Entity Recongnition) (Guo, Q., et al. (2025))
 - https://aclanthology.org/2025.coling-main.691.pdf
 - https://github.com/UESTC-GQJ/BANER
 - recently few shot NER have gathered a lot of attention
@@ -57,7 +64,7 @@
 - outperforms previous sota methods
 
 
-#### RetrieveAll
+#### RetrieveAll (Zhang, J., et al.(2025))
 - https://arxiv.org/pdf/2505.19128
 - a universal multilingual NER based on dynamic LoRA
 - this framework constructs an input-aware LoRA retrieval mechanism, enabling hybrid multilingual recognition and reasoning accross multiple languages
@@ -78,7 +85,7 @@
 - dataset MultiCONER (sota  RetrieveAll), PAN-X (CascadeNer)
 
 
-#### NER Retriever
+#### NER Retriever (Shachar, O., et al. (2025))
 - https://arxiv.org/pdf/2509.04011
 - https://github.com/ShacharOr100/ner_retriever
 - a variant of NER where the types of interest are not provided in advance, & a user-friendly type description is used to retrieve documents mentioning entities of that type
@@ -108,7 +115,7 @@
 - authors and dataset NERetriver (Katz et al., 2023), Few-NERD (supervised) (Ding et al., 2021), MultiCoNER 2 (Fetahu et al., 2023)
 
 
-#### RUIE
+#### RUIE (Liao, X., et al. (2025))
 - https://www.arxiv.org/pdf/2409.11673
 - https://github.com/OStars/RUIE
 - Unified information extraction (UIE) -> aims to extract diverse structured information from unstructured text
@@ -137,7 +144,7 @@
 
 
 
-##### GPT-NER
+##### GPT-NER (Wang,S., et al. (2023))
 - https://aclanthology.org/2025.findings-naacl.239.pdf
 - https://github.com/ShuheWang1998/GPT-NER
 - performance of LLMs in NER task is significantly low compared to supervised methods due to the difference in nature btw sequence labelling task and generation task
