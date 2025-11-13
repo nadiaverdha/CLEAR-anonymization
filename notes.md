@@ -20,7 +20,7 @@
     - employs model cascading, assigning each subtasks to corresponding finetuned small-parameter LLMs, referred to as SLM
     - can complete NER tasks in both fewshot and zero shot scenarios
     - sota performance on low-resource and fine-grained datasets
-    - uses AnythingNER also introduced in this paper 
+    - uses AnythingNER ( introduced in this paper )
 - Small Language Models (SMLs) - offer advantages like easier fine-tuning and lower computational resources 
 - GEIC divides NER task into two sequential, independently executed generation-based sub-tasks:
     - 1st subtask: extraction
@@ -213,6 +213,11 @@
 - GPT-NER great abilities in low-resource scenarios
 
 
+#### SCANNER 
+- https://arxiv.org/pdf/2404.01914
+
+#### Large Language Models for Simultaneous Named Entity Extraction and Spelling Correction
+- https://arxiv.org/pdf/2403.00528
 
 
 
