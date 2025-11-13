@@ -143,7 +143,7 @@
         - first construct datastore by extracting entitiy-level representations using a fine-tuned NER model
         - use the same fine-tuned NER to extract representation for the queried word
         - finally we use the representation for the queried word to select k examples from the datastore as few-shot demostrations whose answer is yes if the retrieved entity belongs to the query entitiy type or no otherwise
-- flat ner datasets English CoNLL2003 and OntoNotes5.0
+- flat ner datasets English CoNLL2003 (sota ACE+document-context (Wang et al., 2020)) and OntoNotes5.0 (BERT-MRC+DSC (Li et al., 2019b))
 - nested ner datasets ACE2004 (sota BINDER (Zhang et al., 2022), ACE2005(sota BINDER (Zhang et al., 2022) ), GENIA (sota BERT-MRC (Li et al., 2019a))
 - GPT-NER great abilities in low-resource scenarios
 
