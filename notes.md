@@ -38,7 +38,17 @@
             genAI opt, genAI pess, gold standar IOB
 - deep discriminative Models show the best performance 
 
-
+#### Extracting Legal Norm Analysis Categories from German Law Texts with Large Language Models (Bachinger et al., 2024)
+- https://dl.acm.org/doi/pdf/10.1145/3657054.3657277
+- legal norm analysis-> aims to identify relevant elements such as actors and actions in legal texts 
+- 5 models :  Bloom-6b4-clp-german,  Open-Assistant Falcon 7B SFT MIX Model, mT0, PolyLM, LeoLM
+- prompt engineering:
+    - prompt for one category in one sentence at a time -> create 10 prompts per sentence to look for annotations of each category
+    - output of the model -> 10 predictions for one sentence
+    - in case of conflicting labels , 2 strategies used:
+        -  optimistic
+        - pessimistic
+- LeoLM produces the highest number of usable predictions and the most balanced performance across categories
 
 
 #### CascadeNER (Luo et al., 2024)
