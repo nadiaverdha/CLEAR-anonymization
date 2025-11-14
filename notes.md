@@ -72,6 +72,11 @@
      - pre-trained textual encoder (e.g. deBERTa)
      - a span representation module which computes span embeddings from token embeddings
      - an entity representation module which computes entity embeddings that model seeks to extract
+- to evaluate whether a span corresponds to an entity type, a matching score is calculated 
+- decoding strategy
+    - greedy span section that selects entity spans based on matching sores, to ensure task/dataset specific constraints 
+    - threshold 0.5 
+- trained on Pile-NER
 
 
 #### BANER (Boundary-Aware LLMs for Few-Shot Named Entity Recongnition) (Guo, Q., et al. (2025))
