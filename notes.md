@@ -51,6 +51,12 @@
 - LeoLM produces the highest number of usable predictions and the most balanced performance across categories
 
 
+##### German BERT Model for Legal Named Entity Recongnition (Darji et al. (2023))
+- https://ca-roll.github.io/downloads/German_BERT_Legal_NER.pdf
+- used the LER dataset
+- uses German BERT model fined-tuned on the dataset
+- model compared to the BiLSTM-CRF+ 
+
 #### CascadeNER (Luo et al., 2024)
 - https://arxiv.org/pdf/2409.11022v3
 - introduce the task of generation-based extraction and in-context classification (GEIC)
@@ -253,10 +259,6 @@
 - nested ner datasets ACE2004 (sota BINDER (Zhang et al., 2022), ACE2005(sota BINDER (Zhang et al., 2022) ), GENIA (sota BERT-MRC (Li et al., 2019a))
 - GPT-NER great abilities in low-resource scenarios
 
-
-##### German BERT Model for Legal Named Entity Recongnition (Darji et al. (2023))
-- https://ca-roll.github.io/downloads/German_BERT_Legal_NER.pdf
-- 
 
 
 #### some other papers
