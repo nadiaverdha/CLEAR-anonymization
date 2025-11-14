@@ -13,6 +13,33 @@
 | MultiCONER| CascadeNER (Luo et al., 2024) / GEMNET Meng et al. (2021); Fetahu et al. (2022)   |
 
 
+#### GerPS-Compare (Bachinger et al., 2024)
+- https://arxiv.org/pdf/2412.02427
+- https://zenodo.org/records/13734643
+- compares three different NER methods for legal norm analysis
+- involves identifying streches of text that instantiate one of the 10 classes identified by administration professionals 
+- GerPSNER dataset
+- use three different approaches for annotating data
+    - rule-based
+        - implemented using token patterns and phrase patterns within Spacys EntityRuler
+    - deep discriminative Models
+        - BiLSTM-CRF 
+        - XLM-R 
+        - for both models a grid search was performed to select the best parameters
+    - deep generation models 
+        - for every sentence from the dataset, 10 prompts are created, they contain class definitions 
+        - prompts are given to LeoLM and the completion is saved to a text file
+        - completions are checked based on length and token-matching checks
+        - because there might be different preds for a token (10 prompts) - consolidation
+            - optimistic: if any of the predictions matches the gold standard -> pick that one
+            - pessimistic: if a token receives conflicting preds across different prompts -> token is assigned a special case X 
+        - three separate files for each test sentence:
+            genAI opt, genAI pess, gold standar IOB
+- deep discriminative Models show the best performance 
+
+
+
+
 #### CascadeNER (Luo et al., 2024)
 - https://arxiv.org/pdf/2409.11022v3
 - introduce the task of generation-based extraction and in-context classification (GEIC)
@@ -226,4 +253,8 @@
 
 
 
+#### German BERT Model for Legal Named Entity Recongnition
+- https://ca-roll.github.io/downloads/German_BERT_Legal_NER.pdf
 
+#### https://aclanthology.org/2024.eacl-long.130.pdf
+#### https://dl.acm.org/doi/10.1145/3657054.3657277
