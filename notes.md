@@ -13,6 +13,7 @@
 | MultiCONER| CascadeNER (Luo et al., 2024) / GEMNET Meng et al. (2021); Fetahu et al. (2022)   |
 
 
+
 #### GerPS-Compare (Bachinger et al., 2024)
 - https://arxiv.org/pdf/2412.02427
 - https://zenodo.org/records/13734643
@@ -72,8 +73,6 @@
 - constructed AnythingNER, the first NER dataset specifically designed for LLM-based NER, particularly GEIC tasks
 - experiments on CoNLL2003, PAN-X, MultiCONER as well
     
-
-
 
 #### YAYI-UIE (Xiao et al., 2024b )
 - https://arxiv.org/pdf/2312.15548
@@ -245,16 +244,18 @@
 - GPT-NER great abilities in low-resource scenarios
 
 
-#### SCANNER 
+##### German BERT Model for Legal Named Entity Recongnition (Darji et al. (2023))
+- https://ca-roll.github.io/downloads/German_BERT_Legal_NER.pdf
+- 
+
+
+#### some other papers
+##### SCANNER 
 - https://arxiv.org/pdf/2404.01914
 
-#### Large Language Models for Simultaneous Named Entity Extraction and Spelling Correction
+##### Large Language Models for Simultaneous Named Entity Extraction and Spelling Correction
 - https://arxiv.org/pdf/2403.00528
 
 
-
-#### German BERT Model for Legal Named Entity Recongnition
-- https://ca-roll.github.io/downloads/German_BERT_Legal_NER.pdf
-
-#### https://aclanthology.org/2024.eacl-long.130.pdf
-#### https://dl.acm.org/doi/10.1145/3657054.3657277
+##### https://aclanthology.org/2024.eacl-long.130.pdf
+##### https://dl.acm.org/doi/10.1145/3657054.3657277
