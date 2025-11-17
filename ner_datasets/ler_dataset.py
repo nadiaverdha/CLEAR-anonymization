@@ -15,18 +15,19 @@ class LERSample:
 
     @classmethod
     def from_json(cls, json_dict: dict) -> "LERSample":
+        print(json_dict["coarse_ner_labels"])
         return cls(
             tokens=json_dict["tokens"],
             sentences=json_dict["sentences"],
             ner_labels=json_dict["ner_labels"],
-            coarse_labels=json_dict["coarse_ner_labels"],
+            coarse_ner_labels=json_dict["coarse_ner_labels"],
             split=json_dict["split"],
         )
 
 
 @dataclass
 class LERData:
-    samples = list[LERSample]
+    samples: list[LERSample]
 
     @classmethod
     def from_json(cls, json_dict: list[dict]) -> "LERData":
