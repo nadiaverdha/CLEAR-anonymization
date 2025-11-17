@@ -6,6 +6,8 @@ from pathlib import Path
 from string import Template
 from scripts.cache import CacheManager
 
+from concurrent.futures import ThreadPoolExecutor
+
 
 class LLMNER:
     """LLM-powered Named Entity Recognition"""
@@ -96,7 +98,7 @@ class LLMNER:
             tokens=tokens, fewshot_block=self._fewshot_block()
         )
 
-    def _predict(self, tokens: str) -> list[dict]:
+    def _predict(self, tokens: list[str]) -> list[dict]:
         """Single tokens → labels.
 
         :param tokens: The tokens string.
@@ -134,7 +136,7 @@ class LLMNER:
             print(f"Raw response: {cached}")
             return []
 
-    def predict(self, tokens: str) -> list:
+    def predict(self, tokens: list[str]) -> list:
         """Recognize Named Entities for the provided tokens.
         :param tokens: tokens of a passage.
         :returns: List of labels.
@@ -142,3 +144,13 @@ class LLMNER:
         """
 
         return self._predict(tokens)
+
+    def predict_batch(self, tokens_list: list[list]) -> list:
+        """Predict named entities  from the provided tokens.
+
+        :param prompts: List of tokens.
+        :returns: List of spans.
+        """
+        with ThreadPoolExecutor(max_workers=30) as pool:
+            futs = [pool.submit(self._predict, t) for t in tokens_list]
+            return [f.result() for f in futs]
