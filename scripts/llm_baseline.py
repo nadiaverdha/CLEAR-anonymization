@@ -82,7 +82,6 @@ class LLMNER:
         for i, ex in enumerate(self.fewshot, 1):
             lines.append(
                 f"""<example{i}>
-                <sentences>{ex["sentences"]}</sentences>
                 <tokens>{ex["tokens"]}</tokens>
                 <target>{{"labels": {json.dumps(ex["labels"], ensure_ascii=False)} }}</target>
                 </example{i}>"""
@@ -91,22 +90,22 @@ class LLMNER:
 
     def _build_prompt(
         self,
-        sentences,
+        tokens,
     ) -> str:
         return self.template.substitute(
-            sentences=sentences, fewshot_block=self._fewshot_block()
+            tokens=tokens, fewshot_block=self._fewshot_block()
         )
 
-    def _predict(self, sentences: str) -> list[dict]:
-        """Single sentences → labels.
+    def _predict(self, tokens: str) -> list[dict]:
+        """Single tokens → labels.
 
-        :param sentences: The sentences string.
+        :param tokens: The tokens string.
         :returns: List of labels.
         """
 
         # Build the full LLM prompt using the template
 
-        llm_prompt = self._build_prompt(sentences)
+        llm_prompt = self._build_prompt(tokens)
 
         # Use the full LLM prompt for cache key calculation
 
@@ -118,14 +117,13 @@ class LLMNER:
                 messages=[
                     {
                         "role": "system",
-                        "content": "You are an excellent linguistic for labelling named entities in given sentences.",
+                        "content": "You are an excellent linguistic for labelling named entities in given tokens.",
                     },
                     # Use the full LLM prompt here, not the raw context
                     {"role": "user", "content": llm_prompt},
                 ],
                 temperature=self.temperature,
             )
-            print(resp)
             cached = resp.choices[0].message.content
             self.cache.set(cache_key, cached)
         try:
@@ -136,11 +134,11 @@ class LLMNER:
             print(f"Raw response: {cached}")
             return []
 
-    def predict(self, sentences: str) -> list:
-        """Recognize Named Entities for the provided sentences.
-        :param sentences: Sentences of a passage.
+    def predict(self, tokens: str) -> list:
+        """Recognize Named Entities for the provided tokens.
+        :param tokens: tokens of a passage.
         :returns: List of labels.
 
         """
 
-        return self._predict(sentences)
+        return self._predict(tokens)
