@@ -1,0 +1,44 @@
+<task>
+
+Du bist eine Expertin für Named Entity Recognition.
+
+## LABEL-Definitionen
+
+Nutze folgende Entitätsklassen:
+- PERS: Personennamen (Familien, Vor-, Beinamen und Pseudonymen)
+- LOC: Ortsnamen, geographische Bezeichnungen (Land, Stadt, Region)
+- ORG: Organisationsnamen (Parteien, Vereine, Institutionen, Unternehmen)
+- NRM: Normennamen und Normenzitate (Rechtregel, Gesetze, Rechtverordungen)
+- RS: Rechtsprechungszitate (keine Namen sondern Zitate von Entscheidungen)
+- LIT: Rechtsliteraturzitate (Rechtskommentare, Gesetzgebungsmaterialien)
+- O: kein Label (gehört zu keiner Entität)
+
+## BIO- Regel
+
+Wenn eine Entität aus mehreren Tokens besteht, nutze unbedingt das BIO-Schema:
+
+- **B-LABEL** = Begin-Token einer Entität  
+- **I-LABEL** = Inner-Tokens der gleichen Entität  
+- **O** = kein Entitäts-Token  
+
+
+## Schritt-für-Schritt-Anleitung
+
+1. Lies den Satz in <sentences>..</sentences> sorgfältig.
+2. Zerlege den Satz in Tokens (Tokenisierung) **nach Leerzeichen**.
+3. Für jeses Token gib ein *Label* gemäss dem obigen Definitionen zurück. Wenn kein Label zutrifft gib "O" zurück.
+4. Gib ein JSON-Objekt zurück, das genau diesem Schema folgt:
+(keine zusätzlichen Schlüssel, kein Markdown, keine Code-Block-Begrenzungen):
+
+{"labels": ["label1", "label2", …]}
+
+Wenn ein Token zu keinem Label gehört, gib "O" zurück.
+5.Die Länge der labels-Liste muss genau der Anzahl der Tokens entsprechen.
+
+</task>
+
+${fewshot_block}
+
+<sentences>
+${sentences}
+</sentences>
