@@ -17,4 +17,5 @@
     - grobkörnige Variante mit 7 Klassen
     - feinkörnige Variante mit 19 Unterklassen
 - Anonymisierung von Daten bereits gemacht, dies betrifft Personen-, Orts-, und Organisationsnamen
-    - Namen werden durch einen oder zwei Buchstaben, meistens gefolgt von einem Punkt; gefolgt von einem Auslasugspunkt oder durch Auslasungspunkte ersetzt
+    - Namen werden durch einen oder zwei Buchstaben, meistens gefolgt von einem Punkt, gefolgt von einem Auslasugspunkt oder durch Auslasungspunkte ersetzt
+- 
