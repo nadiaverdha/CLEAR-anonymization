@@ -18,4 +18,32 @@
     - feinkörnige Variante mit 19 Unterklassen
 - Anonymisierung von Daten bereits gemacht, dies betrifft Personen-, Orts-, und Organisationsnamen
     - Namen werden durch einen oder zwei Buchstaben, meistens gefolgt von einem Punkt, gefolgt von einem Auslasugspunkt oder durch Auslasungspunkte ersetzt
+
 ![Alt text](assets/ler_data.png)
+
+- PER: 
+    1) PER - Kläger, Beklagten, Zeugen, Gutachter
+    2) RR - Richter
+    3) AN - Anwälte
+- LOC:
+    1) LD - Länder, Staaten, Gliedstaaten
+    2) ST - Städte, Dörfer, Gemeinden
+    3) STR - Strassen, Plätze, Alleen, Stadtbezirke, Sehenswürdigkeiten
+    4) LDS - Landschaften, Kontinente, Berge, Seen, Flüsse & weitere geographische Objekte
+- ORG:
+    1) ORG - gesellschaftliche & öffentliche Einrichtungen wie Parteien, Vereine, Verbände, Zentren, Gemeinschaften, Unionen, Bildungsstätten oder auch Forschungseinrichtungen
+    2) INN - Institutionen, staatliche Einrichtungen, Bundesministerien- & - behörden, Landesministerien & - behörden, sonstige Anstalten und Dienststellen, Bundestag, Bundesregierung...
+    3) UN - Unternehmen, private wirtschaftliche Einrichtungen
+    4) GRT - Gerichtsbezeichungen, Bezeichungen der Bundes-, Oberlands-, Lands- und Amstgerichte,
+    5) MRK - Marken, Ergonymen (von Menschen geschaffen)
+- NRM: Rechtsnormen
+    1) GS: Gesetze, die vom Gesetzgeber (Bundestag, Bundesrat) beschlossene Gesetze
+    2) VO: Rechtsverordungen, vom Bundes- oder Landesregierung, Ministerium anhand einer Ermächtigung beschlossen
+    3) EUN: Normen des Europäischen Primärrechts, Europäischen Sekundärrechts, Europäischen Organisationen, & weitere Übereinkommen und Abkommen,  
+- REG: Einzelfallregelungen, verbindliche Rechtsakte die unterhalb jeder Rechtsnorm stehen
+    1) VS: Vorschriften,  Anweisungen von einer übergeordneten Behörde an eine nachgeordnete
+    2) VT: Verträge, öffentlich-rechtliche Verträge, Staatsverträge, Tarifverträge
+- RS: Rechtsprechungen
+    - spiegel Verweise auf Entscheidungen wider, in welchen stets der Name der amtlichen Entscheidungssammlung, des Bandes und die nummerierte Textstelle zu einer zitierten Aussage genannt werden
+- LIT: Rechtsliteratur 
+    - Zitate der Rechtskommentare, Gesetzgebungsmaterilien, Rechtslehrbücher, und - monographien
