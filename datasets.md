@@ -51,3 +51,15 @@
     - spiegel Verweise auf Entscheidungen wider, in welchen stets der Name der amtlichen Entscheidungssammlung, des Bandes und die nummerierte Textstelle zu einer zitierten Aussage genannt werden
 - LIT: Rechtsliteratur 
     - Zitate der Rechtskommentare, Gesetzgebungsmaterilien, Rechtslehrbücher, und - monographien
+
+
+
+
+### MULTI-EURLEX
+- mehrsprachiger Datensatz zur Themenklassifizierung von Rechtsdokumente
+- umfasst 65000 Gesetzte der Europäische Union die offiziell in 23 Sprachen übersetzt wurden
+- Jedes EU-Gesetz wurde vom Publikationsamt der EU EUROVOC-Labels annotiert
+- wenn ein Dokument einem Konzept zugeordnet wird, werden normalerweise die Vorfahren & Nachfahren dieses Konzepts nicht demselben Dokument zugewiesen
+- 4 sets von Gold-Labels für ein Dokument bereitgestellt 
+
+
