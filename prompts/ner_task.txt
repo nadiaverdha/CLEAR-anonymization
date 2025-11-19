@@ -14,7 +14,7 @@ Nutze folgende Entitätsklassen:
 - REG: Einzelfallregelungen (Vorschriften, Verträge)
 - O: kein Label (gehört zu keiner Entität)
 
-## BIO-Regel
+## IOB-Regel
 
 Wenn eine Entität aus mehreren Tokens besteht, nutze unbedingt das BIO-Schema:
 
