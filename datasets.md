@@ -59,6 +59,9 @@
 - mehrsprachiger Datensatz zur Themenklassifizierung von Rechtsdokumente
 - umfasst 65000 Gesetzte der Europäische Union die offiziell in 23 Sprachen übersetzt wurden
 - Jedes EU-Gesetz wurde vom Publikationsamt der EU EUROVOC-Labels annotiert
+- EUROVOC hat 8 Konzeptebene
+- Jedem Dokument ist ein oder mehrere Labels zugewiesen
+
 - wenn ein Dokument einem Konzept zugeordnet wird, werden normalerweise die Vorfahren & Nachfahren dieses Konzepts nicht demselben Dokument zugewiesen
 - 4 sets von Gold-Labels für ein Dokument bereitgestellt 
 
