@@ -20,7 +20,10 @@
     - Namen werden durch einen oder zwei Buchstaben, meistens gefolgt von einem Punkt, gefolgt von einem Auslasugspunkt oder durch Auslasungspunkte ersetzt
 
 ![Alt text](assets/ler_data.png)
-
+- manuell in WebAnno annotiert
+- insgesamt gibt es 56.632 annotierte Entitäten die aus 413.082 Token bestehen
+    - PER, LOC, ORG -> bilten mit 25.66% ein Viertel aller Entitäten (Hälfte davon sind Organisationsnamen)
+    - Anteil an juristischen Entitäten, welche zu Namen und Zitate gehören 3fach grösser - 74.34%
 - PER: 
     1) PER - Kläger, Beklagten, Zeugen, Gutachter
     2) RR - Richter
@@ -40,10 +43,11 @@
     1) GS: Gesetze, die vom Gesetzgeber (Bundestag, Bundesrat) beschlossene Gesetze
     2) VO: Rechtsverordungen, vom Bundes- oder Landesregierung, Ministerium anhand einer Ermächtigung beschlossen
     3) EUN: Normen des Europäischen Primärrechts, Europäischen Sekundärrechts, Europäischen Organisationen, & weitere Übereinkommen und Abkommen,  
-- REG: Einzelfallregelungen, verbindliche Rechtsakte die unterhalb jeder Rechtsnorm stehen
-    1) VS: Vorschriften,  Anweisungen von einer übergeordneten Behörde an eine nachgeordnete
-    2) VT: Verträge, öffentlich-rechtliche Verträge, Staatsverträge, Tarifverträge
+- REG: Einzelfallregelungen, verbindliche Rechtsakte die unterhalb jeder Rechtsnorm stehen 
+    1) VS: Vorschriften,  Anweisungen von einer übergeordneten Behörde an eine nachgeordnete die deren Tätigkeit regelt
+    2) VT: Verträge, eine Einigung zwischen Subjekten zu verstehen,  öffentlich-rechtliche Verträge, Staatsverträge, Tarifverträge
 - RS: Rechtsprechungen
+    - Zitate von Entscheidungen
     - spiegel Verweise auf Entscheidungen wider, in welchen stets der Name der amtlichen Entscheidungssammlung, des Bandes und die nummerierte Textstelle zu einer zitierten Aussage genannt werden
 - LIT: Rechtsliteratur 
     - Zitate der Rechtskommentare, Gesetzgebungsmaterilien, Rechtslehrbücher, und - monographien
