@@ -4,7 +4,7 @@ import os
 from openai import OpenAI
 from pathlib import Path
 from string import Template
-from extractors.cache import CacheManager
+from clear_anonymization.extractors.cache import CacheManager
 
 from concurrent.futures import ThreadPoolExecutor
 
@@ -53,7 +53,7 @@ class LLMExtractor:
         # Load NER template
         if prompt_path is None:
             print(Path(__file__).parent.parent)
-            prompt_path = Path(__file__).parent / "prompts" / "ner_task.txt"
+            prompt_path = Path(__file__).parent.parent / "prompts" / "ner_task.txt"
         template_path = Path(prompt_path)
         if not template_path.exists():
             raise FileNotFoundError(f"Prompt template not found at {template_path}")
