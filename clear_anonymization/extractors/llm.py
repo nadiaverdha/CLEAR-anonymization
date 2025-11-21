@@ -74,7 +74,7 @@ class LLMExtractor:
 
     def _openai(self) -> OpenAI:
         return OpenAI(
-            api_key=os.getenv("OPENAI_API_KEY") or "EMPTY"
+            api_key=os.getenv("OPENAI_API_KEY") or "EMPTY",
             base_url=os.getenv("OPENAI_API_BASE") or "https://api.openai.com/v1",
         )
 

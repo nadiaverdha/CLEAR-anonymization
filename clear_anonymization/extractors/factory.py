@@ -6,7 +6,8 @@ from clear_anonymization.extractors.base import BaseExtractor
 
 __all__ = ["make_extractor"]
 
-def make_extractor(method:str, **kwargs) -> BaseExtractor:
+
+def make_extractor(method: str, **kwargs) -> BaseExtractor:
     """Create an extractor of the requested type with the given parameters.
 
     :param method: llm for now
@@ -15,13 +16,9 @@ def make_extractor(method:str, **kwargs) -> BaseExtractor:
     :raises ValueError: If method is not "llm".
     """
     if method == "llm":
-      
-      from clear_anonymization.extractors.llm import LLMExtractor
-      return LLMExtractor(**kwargs)
+        from clear_anonymization.extractors.llm import LLMExtractor
+
+        return LLMExtractor(**kwargs)
 
     else:
         raise ValueError(f"Unknown detector method: {method}. Use llm")
-
-      
-
-
