@@ -1,12 +1,19 @@
 import json
 import os
-
-from openai import OpenAI
+import re
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from string import Template
-from clear_anonymization.extractors.cache import CacheManager
 
-from concurrent.futures import ThreadPoolExecutor
+from mistral_common.protocol.instruct.messages import UserMessage
+from mistral_common.protocol.instruct.request import ChatCompletionRequest
+from mistral_common.tokens.tokenizers.mistral import MistralTokenizer
+from mistral_inference.generate import generate
+from mistral_inference.transformer import Transformer
+from openai import OpenAI
+from transformers import AutoModelForCausalLM, AutoTokenizer
+
+from clear_anonymization.extractors.cache import CacheManager
 
 
 class LLMExtractor:
@@ -14,7 +21,8 @@ class LLMExtractor:
 
     def __init__(
         self,
-        model: str = "gpt-4.1-mini",
+        model: Transformer,  # "gpt-4.1-mini"
+        tokenizer: MistralTokenizer,
         temperature: float = 0.0,
         lang: str = "de",
         zero_shot: bool = False,
@@ -25,6 +33,7 @@ class LLMExtractor:
         """Initialize the LLMNER.
 
         :param model: The model to use for NER.
+        :param tokenizer: The model tokenizer to use for NER.
         :param temperature: The temperature to use for NER.
         :param lang: The language to use for NER.
         :param zero_shot: Whether to use zero-shot NER.
@@ -34,6 +43,7 @@ class LLMExtractor:
         """
 
         self.model = model
+        self.tokenizer = tokenizer
         self.temperature = temperature
         self.lang = lang
         self.zero_short = zero_shot
@@ -52,8 +62,8 @@ class LLMExtractor:
 
         # Load NER template
         if prompt_path is None:
-            print(Path(__file__).parent.parent)
             prompt_path = Path(__file__).parent.parent / "prompts" / "ner_task.txt"
+
         template_path = Path(prompt_path)
         if not template_path.exists():
             raise FileNotFoundError(f"Prompt template not found at {template_path}")
@@ -61,22 +71,12 @@ class LLMExtractor:
 
         # Set up cache
         if cache_file is None:
-            cache_file = (
-                Path(__file__).parent.parent
-                / "cache"
-                / f"cache_{model.replace(':', '_')}.json"
-            )
+            cache_file = Path(__file__).parent.parent / "cache" / f"cache_mistral.json"
             print(f"Using default cache file: {cache_file}")
         else:
             print(f"Using provided cache file: {cache_file}")
 
         self.cache = CacheManager(cache_file)
-
-    def _openai(self) -> OpenAI:
-        return OpenAI(
-            api_key=os.getenv("OPENAI_API_KEY") or "EMPTY",
-            base_url=os.getenv("OPENAI_API_BASE") or "https://api.openai.com/v1",
-        )
 
     def _fewshot_block(self) -> str:
         if self.zero_short or not self.fewshot:
@@ -99,6 +99,23 @@ class LLMExtractor:
             tokens=tokens, fewshot_block=self._fewshot_block()
         )
 
+    def _to_spans(self, substrs: dict, sentence: str):
+        spans = []
+        for sub in substrs:
+            if not sub:
+                continue
+            match = re.search(re.escape(sub["token"]), sentence)
+            if match:
+                spans.append(
+                    {
+                        "start": match.start(),
+                        "end": match.end(),
+                        "text": sub["token"],
+                        "entity": sub["label"],
+                    }
+                )
+        return spans
+
     def _predict(self, tokens: list[str]) -> list[dict]:
         """Single tokens → labels.
 
@@ -112,26 +129,28 @@ class LLMExtractor:
 
         # Use the full LLM prompt for cache key calculation
 
-        cache_key = self.cache._hash(llm_prompt, self.model, str(self.temperature))
+        cache_key = self.cache._hash(llm_prompt, "mistral", str(self.temperature))
         cached = self.cache.get(cache_key)
         if cached is None:
-            resp = self._openai().chat.completions.create(
-                model=self.model,
-                messages=[
-                    {
-                        "role": "system",
-                        "content": "You are an excellent linguistic for labelling named entities in given tokens.",
-                    },
-                    # Use the full LLM prompt here, not the raw context
-                    {"role": "user", "content": llm_prompt},
-                ],
-                temperature=self.temperature,
+            completion_request = ChatCompletionRequest(
+                messages=[UserMessage(content=llm_prompt)]
             )
-            cached = resp.choices[0].message.content
+            token_ids = self.tokenizer.encode_chat_completion(completion_request).tokens
+
+            out_tokens, _ = generate(
+                [token_ids],
+                self.model,
+                max_tokens=4500,
+                temperature=self.temperature,
+                eos_id=self.tokenizer.instruct_tokenizer.tokenizer.eos_id,
+            )
+            cached = self.tokenizer.instruct_tokenizer.tokenizer.decode(out_tokens[0])
+
             self.cache.set(cache_key, cached)
         try:
             payload = json.loads(cached)
-            return payload
+            return self._to_spans(payload["labels"], tokens)
+        # return payload
         except (json.JSONDecodeError, KeyError) as e:
             print(f"Error parsing LLM response: {e}")
             print(f"Raw response: {cached}")
@@ -155,3 +174,17 @@ class LLMExtractor:
         with ThreadPoolExecutor(max_workers=30) as pool:
             futs = [pool.submit(self._predict, t) for t in tokens_list]
             return [f.result() for f in futs]
+
+
+if __name__ == "__main__":
+    mistral_models_path = (
+        Path(__file__).parent.parent.parent / "mistral_models" / "7B-Instruct-v0.3"
+    )
+    print(Path(__file__).parent.parent.parent)
+    tokenizer = MistralTokenizer.from_file(f"{mistral_models_path}/tokenizer.model.v3")
+    model = Transformer.from_folder(mistral_models_path)
+    prompt_path = Path(__file__).parent.parent / "prompts" / "ner_task_2.txt"
+    extractor = LLMExtractor(model=model, tokenizer=tokenizer, prompt_path=prompt_path)
+    sentence = "In diesem machte er im Wege der Stufenklage Pflichtteils- und Pflichtteilsergänzungsansprüche gegen die Restitutionsbeklagte ( im Folgenden : Beklagte ) aus dem Erbfall nach dem am 26. Juni 2006 verstorbenen Erblasser geltend ."
+
+    print(extractor.predict(sentence))
