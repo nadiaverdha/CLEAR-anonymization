@@ -1,4 +1,6 @@
+import argparse
 import json
+import logging
 import os
 import re
 from concurrent.futures import ThreadPoolExecutor
@@ -14,6 +16,17 @@ from openai import OpenAI
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 from clear_anonymization.extractors.cache import CacheManager
+from clear_anonymization.ner_datasets import ler_dataset
+from clear_anonymization.ner_datasets.ler_dataset import *
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    handlers=[
+        logging.StreamHandler(),
+    ],
+)
+logger = logging.getLogger("LLM NER")
 
 
 class LLMExtractor:
@@ -46,7 +59,7 @@ class LLMExtractor:
         self.tokenizer = tokenizer
         self.temperature = temperature
         self.lang = lang
-        self.zero_short = zero_shot
+        self.zero_shot = zero_shot
 
         # Load few-shot examples
 
@@ -79,7 +92,7 @@ class LLMExtractor:
         self.cache = CacheManager(cache_file)
 
     def _fewshot_block(self) -> str:
-        if self.zero_short or not self.fewshot:
+        if self.zero_shot or not self.fewshot:
             return ""
         lines = []
         for i, ex in enumerate(self.fewshot, 1):
@@ -99,11 +112,14 @@ class LLMExtractor:
             tokens=tokens, fewshot_block=self._fewshot_block()
         )
 
-    def _to_spans(self, substrs: dict, sentence: str):
+    @staticmethod
+    def _to_spans(substrs: dict, sentence: str):
         spans = []
         for sub in substrs:
+            print(sub)
             if not sub:
                 continue
+            print(sub)
             match = re.search(re.escape(sub["token"]), sentence)
             if match:
                 spans.append(
@@ -128,7 +144,6 @@ class LLMExtractor:
         llm_prompt = self._build_prompt(tokens)
 
         # Use the full LLM prompt for cache key calculation
-
         cache_key = self.cache._hash(llm_prompt, "mistral", str(self.temperature))
         cached = self.cache.get(cache_key)
         if cached is None:
@@ -153,7 +168,7 @@ class LLMExtractor:
         # return payload
         except (json.JSONDecodeError, KeyError) as e:
             print(f"Error parsing LLM response: {e}")
-            print(f"Raw response: {cached}")
+           # print(f"Raw response: {cached}")
             return []
 
     def predict(self, tokens: list[str]) -> list:
@@ -171,20 +186,69 @@ class LLMExtractor:
         :param prompts: List of tokens.
         :returns: List of spans.
         """
-        with ThreadPoolExecutor(max_workers=30) as pool:
+
+        with ThreadPoolExecutor(max_workers=3) as pool:
             futs = [pool.submit(self._predict, t) for t in tokens_list]
+            for f in futs:
+                print("FFF",f.result())
             return [f.result() for f in futs]
 
 
-if __name__ == "__main__":
-    mistral_models_path = (
-        Path(__file__).parent.parent.parent / "mistral_models" / "7B-Instruct-v0.3"
-    )
-    print(Path(__file__).parent.parent.parent)
-    tokenizer = MistralTokenizer.from_file(f"{mistral_models_path}/tokenizer.model.v3")
-    model = Transformer.from_folder(mistral_models_path)
+def main(
+    input_dir: Path,
+    model_path: Path,
+    lang: str = "de",
+    dataset: str = "ler",
+):
+    input_dir = Path(input_dir)
+    model_path = Path(model_path)
     prompt_path = Path(__file__).parent.parent / "prompts" / "ner_task_2.txt"
-    extractor = LLMExtractor(model=model, tokenizer=tokenizer, prompt_path=prompt_path)
-    sentence = "In diesem machte er im Wege der Stufenklage Pflichtteils- und Pflichtteilsergänzungsansprüche gegen die Restitutionsbeklagte ( im Folgenden : Beklagte ) aus dem Erbfall nach dem am 26. Juni 2006 verstorbenen Erblasser geltend ."
 
-    print(extractor.predict(sentence))
+    input_file = input_dir / f"{dataset}_data.json"
+
+    if not input_file.exists():
+        logger.error(f"Input file not found: {input_file}")
+        raise FileNotFoundError(f"Input file not found: {input_file}")
+
+    try:
+        data = LERData.from_json(json.loads(input_file.read_text()))
+    except Exception as e:
+        logger.error(f"Error loading input data: {e!s}")
+        raise
+
+    tokenizer = MistralTokenizer.from_file(f"{model_path}/tokenizer.model.v3")
+    model = Transformer.from_folder(model_path)
+    model.to(torch.device("cuda"))
+
+
+    extractor = LLMExtractor(model=model, tokenizer=tokenizer, prompt_path=prompt_path)
+    extractor.predict_batch(data.samples[:1])
+
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(
+        description="User the LLM for a named entitiy recognition task"
+    )
+    parser.add_argument(
+        "--input_dir", type=str, required=True, help="Path to the input data files"
+    )
+
+    parser.add_argument(
+        "--model_path", type=str, required=True, help="Path to the input data files"
+    )
+
+    parser.add_argument(
+        "--lang", type=str,default="de", help="Language of the documents"
+    )
+    parser.add_argument(
+        "--dataset", type=str, default= "ler",help="Name of the dataset"
+    )
+    args = parser.parse_args()
+
+    main(
+        Path(args.input_dir),
+        Path(args.model_path),
+        args.lang,
+        args.dataset,
+    )
