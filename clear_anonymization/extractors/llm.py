@@ -7,17 +7,30 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from string import Template
 
-from mistral_common.protocol.instruct.messages import UserMessage
-from mistral_common.protocol.instruct.request import ChatCompletionRequest
-from mistral_common.tokens.tokenizers.mistral import MistralTokenizer
-from mistral_inference.generate import generate
-from mistral_inference.transformer import Transformer
+from clear_anonymization.extractors import factory
+
 from openai import OpenAI
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 from clear_anonymization.extractors.cache import CacheManager
 from clear_anonymization.ner_datasets import ler_dataset
 from clear_anonymization.ner_datasets.ler_dataset import *
+
+NER_SCHEMA = {
+    "type": "json_schema",
+    "json_schema": {
+        "name": "NER",
+        "schema": {
+            "type": "object",
+            "properties": {
+                "labels": {"type": "object", "additionalProperties": {"type": "string"}}
+            },
+            "additionalProperties": False,
+        },
+        "strict": True,
+    },
+}
+
 
 logging.basicConfig(
     level=logging.INFO,
@@ -34,8 +47,7 @@ class LLMExtractor:
 
     def __init__(
         self,
-        model: Transformer,  # "gpt-4.1-mini"
-        tokenizer: MistralTokenizer,
+        model: str = "google/gemma-3-27b-it",
         temperature: float = 0.0,
         lang: str = "de",
         zero_shot: bool = False,
@@ -43,10 +55,9 @@ class LLMExtractor:
         prompt_path: str | None = None,
         cache_file: str | None = None,
     ):
-        """Initialize the LLMNER.
+        """Initialize the LLMExtractor.
 
         :param model: The model to use for NER.
-        :param tokenizer: The model tokenizer to use for NER.
         :param temperature: The temperature to use for NER.
         :param lang: The language to use for NER.
         :param zero_shot: Whether to use zero-shot NER.
@@ -56,7 +67,6 @@ class LLMExtractor:
         """
 
         self.model = model
-        self.tokenizer = tokenizer
         self.temperature = temperature
         self.lang = lang
         self.zero_shot = zero_shot
@@ -84,7 +94,7 @@ class LLMExtractor:
 
         # Set up cache
         if cache_file is None:
-            cache_file = Path(__file__).parent.parent / "cache" / f"cache_mistral.json"
+            cache_file = Path(__file__).parent.parent / "cache" / f"cache_{model}.json"
             print(f"Using default cache file: {cache_file}")
         else:
             print(f"Using provided cache file: {cache_file}")
@@ -103,6 +113,22 @@ class LLMExtractor:
                 </example{i}>"""
             )
         return "\n".join(lines)
+
+    def _get_openai_client(self) -> OpenAI:
+        """Get OpenAI client configured from environment variables.
+
+        :return: Configured OpenAI client
+        :raises ValueError: If API key is not set
+        """
+        api_key = os.getenv("OPENAI_API_KEY") or "EMPTY"
+        base_url = (
+            os.getenv("OPENAI_BASE_URL") or "http://localhost:8000/v1"
+        )  # "https://api.openai.com/v1"
+
+        return OpenAI(
+            api_key=api_key,
+            base_url=base_url,
+        )
 
     def _build_prompt(
         self,
@@ -142,33 +168,34 @@ class LLMExtractor:
         # Build the full LLM prompt using the template
 
         llm_prompt = self._build_prompt(tokens)
-
+        client = self._get_openai_client()
         # Use the full LLM prompt for cache key calculation
         cache_key = self.cache._hash(llm_prompt, "mistral", str(self.temperature))
         cached = self.cache.get(cache_key)
         if cached is None:
-            completion_request = ChatCompletionRequest(
-                messages=[UserMessage(content=llm_prompt)]
-            )
-            token_ids = self.tokenizer.encode_chat_completion(completion_request).tokens
-
-            out_tokens, _ = generate(
-                [token_ids],
-                self.model,
-                max_tokens=4500,
+            resp = client.chat.completions.create(
+                model=self.model,
+                messages=[
+                    {
+                        "role": "system",
+                        "content": "You are an excellent linguistic for labelling named entities in given tokens.",
+                    },
+                    # Use the full LLM prompt here, not the raw context
+                    {"role": "user", "content": llm_prompt},
+                ],
+                response_format=NER_SCHEMA,
                 temperature=self.temperature,
-                eos_id=self.tokenizer.instruct_tokenizer.tokenizer.eos_id,
             )
-            cached = self.tokenizer.instruct_tokenizer.tokenizer.decode(out_tokens[0])
+            cached = resp.choices[0].message.content
 
             self.cache.set(cache_key, cached)
         try:
             payload = json.loads(cached)
-            return self._to_spans(payload["labels"], tokens)
-        # return payload
+            #return self._to_spans(payload["labels"], tokens)
+            return payload
         except (json.JSONDecodeError, KeyError) as e:
             print(f"Error parsing LLM response: {e}")
-           # print(f"Raw response: {cached}")
+            print(f"Raw response: {cached}")
             return []
 
     def predict(self, tokens: list[str]) -> list:
@@ -190,7 +217,7 @@ class LLMExtractor:
         with ThreadPoolExecutor(max_workers=3) as pool:
             futs = [pool.submit(self._predict, t) for t in tokens_list]
             for f in futs:
-                print("FFF",f.result())
+                print("FFF", f.result())
             return [f.result() for f in futs]
 
 
@@ -201,29 +228,13 @@ def main(
     dataset: str = "ler",
 ):
     input_dir = Path(input_dir)
-    model_path = Path(model_path)
     prompt_path = Path(__file__).parent.parent / "prompts" / "ner_task_2.txt"
-
-    input_file = input_dir / f"{dataset}_data.json"
-
-    if not input_file.exists():
-        logger.error(f"Input file not found: {input_file}")
-        raise FileNotFoundError(f"Input file not found: {input_file}")
-
-    try:
-        data = LERData.from_json(json.loads(input_file.read_text()))
-    except Exception as e:
-        logger.error(f"Error loading input data: {e!s}")
-        raise
-
-    tokenizer = MistralTokenizer.from_file(f"{model_path}/tokenizer.model.v3")
-    model = Transformer.from_folder(model_path)
-    model.to(torch.device("cuda"))
-
-
-    extractor = LLMExtractor(model=model, tokenizer=tokenizer, prompt_path=prompt_path)
-    extractor.predict_batch(data.samples[:1])
-
+    sentence = "In diesem machte er im Wege der Stufenklage Pflichtteils- und Pflichtteilsergänzungsansprüche gegen die Restitutionsbeklagte ( im Folgenden : Beklagte ) aus dem Erbfall nach dem am 26. Juni 2006 verstorbenen Erblasser geltend ."
+    # sentence = "dd ) Art. 33 Abs. 5 GG würde demnach die Möglichkeit nicht ausschließen , unter den vorgenannten Bedingungen in Ausnahmefällen andere als Lebenszeitrichterverhältnisse zu begründen ."
+    # tokens = sentence.split(" ")
+    LLMExtractor = factory.make_extractor("llm", prompt_path=prompt_path)
+    predicted = LLMExtractor.predict(sentence)
+    print(predicted)
 
 
 if __name__ == "__main__":
@@ -234,21 +245,19 @@ if __name__ == "__main__":
         "--input_dir", type=str, required=True, help="Path to the input data files"
     )
 
-    parser.add_argument(
-        "--model_path", type=str, required=True, help="Path to the input data files"
-    )
+    parser.add_argument("--model", type=str, required=True, help="Model used for NER")
 
     parser.add_argument(
-        "--lang", type=str,default="de", help="Language of the documents"
+        "--lang", type=str, default="de", help="Language of the documents"
     )
     parser.add_argument(
-        "--dataset", type=str, default= "ler",help="Name of the dataset"
+        "--dataset", type=str, default="ler", help="Name of the dataset"
     )
     args = parser.parse_args()
 
     main(
         Path(args.input_dir),
-        Path(args.model_path),
+        args.model,
         args.lang,
         args.dataset,
     )
