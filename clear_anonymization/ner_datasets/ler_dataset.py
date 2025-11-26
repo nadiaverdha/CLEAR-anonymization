@@ -1,7 +1,6 @@
+import re
 from dataclasses import dataclass
-from typing import Literal
 
-import torch
 from torch.utils.data import Dataset
 
 
@@ -16,7 +15,7 @@ def tokens_to_substrs(tokens, labels):
                 substrs[substr] = current_label
             current_tokens = [token]
             current_label = label[2:]
-        elif label.startswith("I-") and current_label == label[2:]:
+         elif label.startswith("I-") and current_label == label[2:]:
             current_tokens.append(token)
         else:
             if current_tokens:
@@ -34,7 +33,7 @@ def tokens_to_substrs(tokens, labels):
 
 def _to_spans(substrs: dict, sentence: str):
     spans = []
-    for sub, l in substrs.items():
+    for sub, label in substrs.items():
         if not sub:
             continue
         match = re.search(re.escape(sub), sentence)
@@ -44,7 +43,7 @@ def _to_spans(substrs: dict, sentence: str):
                     "start": match.start(),
                     "end": match.end(),
                     "text": sub,
-                    "entity": l,
+                    "entity": label,
                 }
             )
     return spans

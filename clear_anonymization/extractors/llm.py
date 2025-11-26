@@ -8,12 +8,10 @@ from pathlib import Path
 from string import Template
 
 from openai import OpenAI
-from transformers import AutoModelForCausalLM, AutoTokenizer
 
 from clear_anonymization.extractors import factory
 from clear_anonymization.extractors.cache import CacheManager
-from clear_anonymization.ner_datasets import ler_dataset
-from clear_anonymization.ner_datasets.ler_dataset import *
+from clear_anonymization.ner_datasets.ler_dataset import LERSample, LERData
 
 NER_SCHEMA = {
     "type": "json_schema",
@@ -141,7 +139,7 @@ class LLMExtractor:
     @staticmethod
     def _to_spans(substrs: dict, sentence: str):
         spans = []
-        for sub,l in substrs.items():
+        for sub, label in substrs.items():
             if not sub:
                 continue
             match = re.search(re.escape(sub), sentence)
@@ -151,7 +149,7 @@ class LLMExtractor:
                         "start": match.start(),
                         "end": match.end(),
                         "text": sub,
-                        "entity":l,
+                        "entity": label,
                     }
                 )
         return spans
@@ -216,7 +214,6 @@ class LLMExtractor:
         futs = []
         with ThreadPoolExecutor(max_workers=30) as pool:
             for s in samples:
-                print(s.sentences)
                 futs.append(pool.submit(self._predict, s.sentences))
             results = [f.result() for f in futs]
         return results
@@ -233,7 +230,7 @@ def main(
     prompt_path = Path(prompt_path)
     data = LERData.from_json(json.loads(input_dir.read_text()))
     LLMExtractor = factory.make_extractor("llm", model=model, prompt_path=prompt_path)
-    predicted = LLMExtractor.predict_batch(data.samples)
+    LLMExtractor.predict_batch(data.samples[:10])
 
 
 if __name__ == "__main__":
