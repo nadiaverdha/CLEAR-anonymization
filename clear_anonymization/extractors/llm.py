@@ -7,11 +7,10 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from string import Template
 
-from clear_anonymization.extractors import factory
-
 from openai import OpenAI
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
+from clear_anonymization.extractors import factory
 from clear_anonymization.extractors.cache import CacheManager
 from clear_anonymization.ner_datasets import ler_dataset
 from clear_anonymization.ner_datasets.ler_dataset import *
@@ -47,7 +46,7 @@ class LLMExtractor:
 
     def __init__(
         self,
-        model: str = "google/gemma-3-27b-it",
+        model: str,
         temperature: float = 0.0,
         lang: str = "de",
         zero_shot: bool = False,
@@ -70,6 +69,8 @@ class LLMExtractor:
         self.temperature = temperature
         self.lang = lang
         self.zero_shot = zero_shot
+
+        self.client = self._get_openai_client()
 
         # Load few-shot examples
 
@@ -100,6 +101,7 @@ class LLMExtractor:
             print(f"Using provided cache file: {cache_file}")
 
         self.cache = CacheManager(cache_file)
+        # print(self.cache)
 
     def _fewshot_block(self) -> str:
         if self.zero_shot or not self.fewshot:
@@ -108,7 +110,7 @@ class LLMExtractor:
         for i, ex in enumerate(self.fewshot, 1):
             lines.append(
                 f"""<example{i}>
-                <tokens>{ex["tokens"]}</tokens>
+                <text>{ex["text"]}</text>
                 <target>{{"labels": {json.dumps(ex["labels"], ensure_ascii=False)} }}</target>
                 </example{i}>"""
             )
@@ -132,53 +134,49 @@ class LLMExtractor:
 
     def _build_prompt(
         self,
-        tokens,
+        text,
     ) -> str:
-        return self.template.substitute(
-            tokens=tokens, fewshot_block=self._fewshot_block()
-        )
+        return self.template.substitute(text=text, fewshot_block=self._fewshot_block())
 
     @staticmethod
     def _to_spans(substrs: dict, sentence: str):
         spans = []
-        for sub in substrs:
-            print(sub)
+        for sub,l in substrs.items():
             if not sub:
                 continue
-            print(sub)
-            match = re.search(re.escape(sub["token"]), sentence)
+            match = re.search(re.escape(sub), sentence)
             if match:
                 spans.append(
                     {
                         "start": match.start(),
                         "end": match.end(),
-                        "text": sub["token"],
-                        "entity": sub["label"],
+                        "text": sub,
+                        "entity":l,
                     }
                 )
         return spans
 
-    def _predict(self, tokens: list[str]) -> list[dict]:
-        """Single tokens → labels.
+    def _predict(self, text: str) -> list[dict]:
+        """
 
-        :param tokens: The tokens string.
+        :param text: The text where model needs to find named entities.
         :returns: List of labels.
         """
 
         # Build the full LLM prompt using the template
 
-        llm_prompt = self._build_prompt(tokens)
-        client = self._get_openai_client()
+        llm_prompt = self._build_prompt(text)
         # Use the full LLM prompt for cache key calculation
-        cache_key = self.cache._hash(llm_prompt, "mistral", str(self.temperature))
+        cache_key = self.cache._hash(llm_prompt, self.model, str(self.temperature))
         cached = self.cache.get(cache_key)
         if cached is None:
-            resp = client.chat.completions.create(
+            print("calculation again")
+            resp = self.client.chat.completions.create(
                 model=self.model,
                 messages=[
                     {
                         "role": "system",
-                        "content": "You are an excellent linguistic for labelling named entities in given tokens.",
+                        "content": "You are an excellent linguistic for labelling named entities in given text.",
                     },
                     # Use the full LLM prompt here, not the raw context
                     {"role": "user", "content": llm_prompt},
@@ -187,54 +185,55 @@ class LLMExtractor:
                 temperature=self.temperature,
             )
             cached = resp.choices[0].message.content
-
             self.cache.set(cache_key, cached)
         try:
             payload = json.loads(cached)
-            #return self._to_spans(payload["labels"], tokens)
+            return self._to_spans(payload["labels"], text)
             return payload
         except (json.JSONDecodeError, KeyError) as e:
             print(f"Error parsing LLM response: {e}")
             print(f"Raw response: {cached}")
             return []
 
-    def predict(self, tokens: list[str]) -> list:
-        """Recognize Named Entities for the provided tokens.
-        :param tokens: tokens of a passage.
+    def predict(self, text: str) -> list:
+        """Recognize Named Entities for the provided text.
+        :param text: The text where model needs to find named entities.
         :returns: List of labels.
 
         """
 
-        return self._predict(tokens)
+        return self._predict(text)
 
-    def predict_batch(self, tokens_list: list[list]) -> list:
-        """Predict named entities  from the provided tokens.
+    def predict_batch(
+        self,
+        samples: list[LERSample],
+    ) -> list:
+        """Predict named entities  from the provided text.
 
-        :param prompts: List of tokens.
+        :param samples: .
         :returns: List of spans.
         """
-
-        with ThreadPoolExecutor(max_workers=3) as pool:
-            futs = [pool.submit(self._predict, t) for t in tokens_list]
-            for f in futs:
-                print("FFF", f.result())
-            return [f.result() for f in futs]
+        futs = []
+        with ThreadPoolExecutor(max_workers=1) as pool:
+            for s in samples:
+                print(s.sentences)
+                futs.append(pool.submit(self._predict, s.sentences))
+            results = [f.result() for f in futs]
+        return results
 
 
 def main(
-    input_dir: Path,
-    model_path: Path,
+    input_dir: str,
+    model: str,
+    prompt_path: str,
     lang: str = "de",
     dataset: str = "ler",
 ):
     input_dir = Path(input_dir)
-    prompt_path = Path(__file__).parent.parent / "prompts" / "ner_task_2.txt"
-    sentence = "In diesem machte er im Wege der Stufenklage Pflichtteils- und Pflichtteilsergänzungsansprüche gegen die Restitutionsbeklagte ( im Folgenden : Beklagte ) aus dem Erbfall nach dem am 26. Juni 2006 verstorbenen Erblasser geltend ."
-    # sentence = "dd ) Art. 33 Abs. 5 GG würde demnach die Möglichkeit nicht ausschließen , unter den vorgenannten Bedingungen in Ausnahmefällen andere als Lebenszeitrichterverhältnisse zu begründen ."
-    # tokens = sentence.split(" ")
-    LLMExtractor = factory.make_extractor("llm", prompt_path=prompt_path)
-    predicted = LLMExtractor.predict(sentence)
-    print(predicted)
+    prompt_path = Path(prompt_path)
+    data = LERData.from_json(json.loads(input_dir.read_text()))
+    LLMExtractor = factory.make_extractor("llm", model=model, prompt_path=prompt_path)
+    predicted = LLMExtractor.predict_batch(data.samples[:2])
 
 
 if __name__ == "__main__":
@@ -248,6 +247,10 @@ if __name__ == "__main__":
     parser.add_argument("--model", type=str, required=True, help="Model used for NER")
 
     parser.add_argument(
+        "--prompt_path", type=str, required=True, help="Path to the prompt file"
+    )
+
+    parser.add_argument(
         "--lang", type=str, default="de", help="Language of the documents"
     )
     parser.add_argument(
@@ -258,6 +261,7 @@ if __name__ == "__main__":
     main(
         Path(args.input_dir),
         args.model,
+        args.prompt_path,
         args.lang,
         args.dataset,
     )
