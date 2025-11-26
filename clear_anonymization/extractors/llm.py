@@ -214,7 +214,7 @@ class LLMExtractor:
         :returns: List of spans.
         """
         futs = []
-        with ThreadPoolExecutor(max_workers=1) as pool:
+        with ThreadPoolExecutor(max_workers=30) as pool:
             for s in samples:
                 print(s.sentences)
                 futs.append(pool.submit(self._predict, s.sentences))
@@ -233,7 +233,7 @@ def main(
     prompt_path = Path(prompt_path)
     data = LERData.from_json(json.loads(input_dir.read_text()))
     LLMExtractor = factory.make_extractor("llm", model=model, prompt_path=prompt_path)
-    predicted = LLMExtractor.predict_batch(data.samples[:2])
+    predicted = LLMExtractor.predict_batch(data.samples)
 
 
 if __name__ == "__main__":
