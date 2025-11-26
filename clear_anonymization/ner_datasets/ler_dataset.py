@@ -1,4 +1,5 @@
 import re
+import json
 from dataclasses import dataclass
 
 from torch.utils.data import Dataset
@@ -15,7 +16,7 @@ def tokens_to_substrs(tokens, labels):
                 substrs[substr] = current_label
             current_tokens = [token]
             current_label = label[2:]
-         elif label.startswith("I-") and current_label == label[2:]:
+        elif label.startswith("I-") and current_label == label[2:]:
             current_tokens.append(token)
         else:
             if current_tokens:

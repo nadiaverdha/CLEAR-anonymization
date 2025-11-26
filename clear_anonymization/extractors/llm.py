@@ -11,7 +11,12 @@ from openai import OpenAI
 
 from clear_anonymization.extractors import factory
 from clear_anonymization.extractors.cache import CacheManager
+from clear_anonymization.extractors.base import BaseExtractor
 from clear_anonymization.ner_datasets.ler_dataset import LERSample, LERData
+
+
+__all__ = ["LLMExtractor"]
+
 
 NER_SCHEMA = {
     "type": "json_schema",
@@ -39,7 +44,7 @@ logging.basicConfig(
 logger = logging.getLogger("LLM NER")
 
 
-class LLMExtractor:
+class LLMExtractor(BaseExtractor):
     """LLM-powered Named Entity Recognition"""
 
     def __init__(
@@ -230,7 +235,7 @@ def main(
     prompt_path = Path(prompt_path)
     data = LERData.from_json(json.loads(input_dir.read_text()))
     LLMExtractor = factory.make_extractor("llm", model=model, prompt_path=prompt_path)
-    LLMExtractor.predict_batch(data.samples[:10])
+    LLMExtractor.predict_batch(data.samples)
 
 
 if __name__ == "__main__":
