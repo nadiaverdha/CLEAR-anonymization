@@ -2,7 +2,7 @@ from tqdm.auto import tqdm
 import json
 from pathlib import Path
 from clear_anonymization.extractors.llm import LLMExtractor
-from clear_anonymization.ner_datasets.ler_dataset import LERData
+from clear_anonymization.ner_datasets.ler_dataset import LERData, LERSample
 from clear_anonymization.extractors import factory
 
 
@@ -25,13 +25,15 @@ def evaluate_char_level(extractor: LLMExtractor, samples) -> dict[str, float]:
         # Compute total gold span length once for this sample.
         sample_gold_length = sum(gold["end"] - gold["start"] for gold in gold_spans)
         total_gold += sample_gold_length
-
         # Now, compute the overlap between each predicted span and each gold span if the label was correctly predicted
         sample_overlap = 0
         for pred in predicted_spans:
+            print("PRED",pred["text"])
             for gold in gold_spans:
-                if pred["entity"] == gold["entity"]:
-                    print(pred["entity"], gold["entity"])
+                    
+                    print("GOLD", gold["text"])
+                #if pred["entity"] == gold["entity"]:
+                    #print(pred["entity"], gold["entity"])
                     overlap_start = max(pred["start"], gold["start"])
                     overlap_end = min(pred["end"], gold["end"])
                     if overlap_end > overlap_start:
@@ -47,11 +49,17 @@ def evaluate_char_level(extractor: LLMExtractor, samples) -> dict[str, float]:
     return {"precision": precision, "recall": recall, "f1": f1}
 
 
-if __name__ == "__main__":
-    input_dir = Path("data/ler/ler_data.json")
-    prompt_path = Path("clear_anonymization/prompts/ner_task_2.txt")
-    data = LERData.from_json(json.loads(input_dir.read_text()))
-    LLMExtractor = factory.make_extractor(
-        "llm", model="google/gemma-3-27b-it", prompt_path=prompt_path
-    )
-    evaluate_char_level(LLMExtractor, data.samples[:100])
+
+                    
+                
+                
+
+                    
+                
+        
+        
+
+    
+    
+
+

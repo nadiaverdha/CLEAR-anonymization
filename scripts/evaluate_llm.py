@@ -4,18 +4,14 @@ from pathlib import Path
 
 from clear_anonymization.ner_datasets.ler_dataset import LERData, LERSample
 from clear_anonymization.extractors import factory
-from clear_anonymization.models.evaluator import evaluate_char_level
+from clear_anonymization.models.evaluator import evaluate_char_level,evaluate_detector_example_level
 
 
 def evaluate_samples_llm(samples: list[LERSample], evaluation_type: str, extractor):
     print(f"\nEvaluating model on {len(samples)} samples")
 
-    if evaluation_type == "example_level":
-        print("\n---- Example-Level Span Evaluation ----")
-        # TODO: implement example-level evaluation
-        return {}
 
-    elif evaluation_type == "char_level":
+    if evaluation_type == "char_level":
         print("\n---- Character-Level Evaluation ----")
         metrics = evaluate_char_level(extractor, samples)
         print(f"  Precision: {metrics['precision']:.4f}")
@@ -24,7 +20,7 @@ def evaluate_samples_llm(samples: list[LERSample], evaluation_type: str, extract
         return metrics
 
     else:
-        raise ValueError("Use either 'example_level' or 'char_level'")
+        raise ValueError("Use 'char_level'")
 
 
 def main():
@@ -33,21 +29,21 @@ def main():
     )
 
     parser.add_argument(
-        "model",
+        "--model",
         type=str,
         help="Model name, e.g. google/gemma-3-27b-it",
     )
 
     parser.add_argument(
-        "input_dir",
+        "--input_dir",
         type=str,
         help="Path to the evaluation data (JSON format)",
     )
 
     parser.add_argument(
-        "evaluation_type",
+        "--evaluation_type",
         type=str,
-        help="Evaluation type (example_level or char_level)",
+        help="Evaluation type (char_level)",
     )
 
     parser.add_argument("--prompt_path", type=str, default=None)
