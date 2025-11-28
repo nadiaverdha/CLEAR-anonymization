@@ -1,0 +1,57 @@
+[
+  {
+    "text": "Bender",
+    "labels": [
+      {
+        "start": 0,
+        "end": 6,
+        "text": "Bender",
+        "entity": "PER"
+      }
+    ]
+  },
+  {
+    "text": "Demzufolge war der Kläger zwar nicht als Gesamtrechtsnachfolger , aber als ehemaliger Gesellschafter der KG befugt ( BFH-Urteil in BFHE 241 , 132 , BStBl II 2013 , 705 , Rz 19 ) , Klage gegen den Gewinnfeststellungsbescheid 2008 zu erheben .",
+    "labels": [
+      {
+        "start": 117,
+        "end": 175,
+        "text": "BFH-Urteil in BFHE 241 , 132 , BStBl II 2013 , 705 , Rz 19",
+        "entity": "RS"
+      }
+    ]
+  },
+  {
+    "text": "Wäre eine Entlassung des Richters auf Zeit aus dem Amt als Beamter unter - im Vergleich zu den für Richter geltenden Regelungen - erleichterten Voraussetzungen möglich , und zöge diese sodann die automatische Beendigung des Amtes als Richter nach sich , so würden die strengen Voraussetzungen des Art. 97 Abs. 2 Satz 1 GG verfehlt .",
+    "labels": [
+      {
+        "start": 297,
+        "end": 321,
+        "text": "Art. 97 Abs. 2 Satz 1 GG",
+        "entity": "NRM"
+      }
+    ]
+  },
+  {
+    "text": "den angefochtenen Beschluss der Patentabteilung 25 des Deutschen Patent- und Markenamtes vom 15. Juli 2015 aufzuheben und das Patent zu widerrufen .",
+    "labels": [
+      {
+        "start": 32,
+        "end": 88,
+        "text": "Patentabteilung 25 des Deutschen Patent- und Markenamtes",
+        "entity": "ORG"
+      }
+    ]
+  },
+  {
+    "text": "Sost-Scheible",
+    "labels": [
+      {
+        "start": 0,
+        "end": 13,
+        "text": "Sost-Scheible",
+        "entity": "PER"
+      }
+    ]
+  }
+]
