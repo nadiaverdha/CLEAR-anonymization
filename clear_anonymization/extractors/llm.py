@@ -80,6 +80,7 @@ class LLMExtractor(BaseExtractor):
         if fewshot_path is None:
             fewshot_path = Path(__file__).parent.parent / "prompts" / "examples.json"
         path = Path(fewshot_path)
+        print(path)
 
         if not path.exists():
             print(f"Warning: Few-shot examples file not found at {path}")
@@ -105,6 +106,8 @@ class LLMExtractor(BaseExtractor):
 
         self.cache = CacheManager(cache_file)
         # print(self.cache)
+        self.fewshot_block = self._fewshot_block()
+
 
     def _get_openai_client(self) -> OpenAI:
         """Get OpenAI client configured from environment variables.
@@ -172,10 +175,10 @@ class LLMExtractor(BaseExtractor):
         llm_prompt = self._build_prompt(text)
         # print(llm_prompt)
         # Use the full LLM prompt for cache key calculation
-        cache_key = self.cache._hash(llm_prompt, self.model, str(self.temperature))
+        cache_key = self.cache._hash(text, self.model, str(self.temperature))
 
         cached = self.cache.get(cache_key)
-        print(cached)
+        #print(cached)
         if cached is None:
             print("cache is none")
             
@@ -233,6 +236,7 @@ def main(
     lang: str = "de",
     dataset: str = "ler",
 ):
+
     input_dir = Path(input_dir)
     prompt_path = Path(prompt_path)
     data = LERData.from_json(json.loads(input_dir.read_text()))
