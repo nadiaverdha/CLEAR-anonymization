@@ -14,7 +14,9 @@ def gen_fewshot_samples(train_samples, fewshots_path, k=5, seed=123):
     selected = random.sample(candidates, k)
     fewshots = []
     for s in selected:
-        fewshots.append({"text": s.sentences, "labels": s.labels})
+        print(s.labels)
+        print([s.labels[0]["text"]])
+        fewshots.append({"text": s.sentences, "labels": [s.labels[0]]})
 
     Path(fewshots_path).write_text(json.dumps(fewshots, ensure_ascii=False, indent=2))
 
