@@ -6,8 +6,5 @@
 
 
 
-#### Getting the data
-You need to download the German LER Dataset from [https://huggingface.co/datasets/elenanereiss/german-ler]
-
 
 
