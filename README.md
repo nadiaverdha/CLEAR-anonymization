@@ -3,8 +3,4 @@
 ![Alt text](assets/logo.png)
 
 
-
-
-
-
-
+https://huggingface.co/datasets/elenanereiss/german-ler
