@@ -2,7 +2,6 @@
 ## CLEAR: Comprehensible Learning for Entity Anonymization and Recognition 
 ![Alt text](assets/logo.png)
 
-CLEAR is a tool and method using for the Named Entity Recognition.
 
 
 ### Getting the data 
