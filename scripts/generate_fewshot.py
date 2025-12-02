@@ -1,29 +1,29 @@
-import random
 import argparse
 import json
+import random
 from pathlib import Path
-from clear_anonymization.ner_datasets.ler_dataset import LERSample, LERData
+
+from clear_anonymization.ner_datasets.ler_dataset import LERData, LERSample
 
 
 def gen_fewshot_samples(train_samples, fewshots_path, k=5, seed=12):
     random.seed(seed)
-    
+
     # Filter samples with labels
     candidates = [s for s in train_samples if s.labels]
-    
+
     selected = random.sample(candidates, k)
 
     fewshots = []
     for s in selected:
         labels_dict = {}
         labels_dict = {label["text"]: label["entity"] for label in s.labels}
-        
-        fewshots.append({
-            "text": s.sentences,
-            "labels": labels_dict
-        })
-    
-    Path(fewshots_path+"_"+dataset).write_text(json.dumps(fewshots, ensure_ascii=False, indent=2))
+
+        fewshots.append({"text": s.sentences, "labels": labels_dict})
+
+    Path(fewshots_path + "_" + dataset).write_text(
+        json.dumps(fewshots, ensure_ascii=False, indent=2)
+    )
     return fewshots
 
 

@@ -10,10 +10,9 @@ from string import Template
 from openai import OpenAI
 
 from clear_anonymization.extractors import factory
-from clear_anonymization.extractors.cache import CacheManager
 from clear_anonymization.extractors.base import BaseExtractor
-from clear_anonymization.ner_datasets.ler_dataset import LERSample, LERData
-
+from clear_anonymization.extractors.cache import CacheManager
+from clear_anonymization.ner_datasets.ler_dataset import LERData, LERSample
 
 __all__ = ["LLMExtractor"]
 
@@ -77,16 +76,18 @@ class LLMExtractor(BaseExtractor):
 
         # Load few-shot examples
 
-        if fewshot_path is None:
-            fewshot_path = Path(__file__).parent.parent / "prompts" / "examples.json"
-        path = Path(fewshot_path)
-        print(path)
+        if not self.zero_shot:
+            if fewshot_path is None:
+                fewshot_path = (
+                    Path(__file__).parent.parent / "prompts" / "examples.json"
+                )
+            path = Path(fewshot_path)
 
-        if not path.exists():
-            print(f"Warning: Few-shot examples file not found at {path}")
-        self.fewshot = (
-            json.loads(path.read_text(encoding="utf-8")) if path.exists() else []
-        )
+            if not path.exists():
+                print(f"Warning: Few-shot examples file not found at {path}")
+            self.fewshot = (
+                json.loads(path.read_text(encoding="utf-8")) if path.exists() else []
+            )
 
         # Load NER template
         if prompt_path is None:
@@ -99,7 +100,16 @@ class LLMExtractor(BaseExtractor):
 
         # Set up cache
         if cache_file is None:
-            cache_file = Path(__file__).parent.parent / "shots_cache" / f"cache_{model}.json"
+            if not self.zero_shot:
+                cache_file = (
+                    Path(__file__).parent.parent
+                    / f"cache"
+                    / f"{model}_cache_fewshots.json"
+                )
+            else:
+                cache_file = (
+                    Path(__file__).parent.parent / f"cache" / f"{model}_cache.json"
+                )
             print(f"Using default cache file: {cache_file}")
         else:
             print(f"Using provided cache file: {cache_file}")
@@ -107,7 +117,6 @@ class LLMExtractor(BaseExtractor):
         self.cache = CacheManager(cache_file)
         # print(self.cache)
         self.fewshot_block = self._fewshot_block()
-
 
     def _get_openai_client(self) -> OpenAI:
         """Get OpenAI client configured from environment variables.
@@ -178,10 +187,8 @@ class LLMExtractor(BaseExtractor):
         cache_key = self.cache._hash(text, self.model, str(self.temperature))
 
         cached = self.cache.get(cache_key)
-        #print(cached)
+        # print(cached)
         if cached is None:
-            print("cache is none")
-            
             resp = self._get_openai_client().chat.completions.create(
                 model=self.model,
                 messages=[
@@ -235,14 +242,19 @@ def main(
     cache_file: str,
     lang: str = "de",
     dataset: str = "ler",
+    zero_shot: bool = False,
 ):
-
     input_dir = Path(input_dir)
     prompt_path = Path(prompt_path)
     data = LERData.from_json(json.loads(input_dir.read_text()))
     LLMExtractor = factory.make_extractor(
-        "llm", model=model, prompt_path=prompt_path, cache_file=cache_file
+        "llm",
+        model=model,
+        zero_shot=zero_shot,
+        prompt_path=prompt_path,
+        cache_file=cache_file,
     )
+    print(zero_shot)
     test_samples = [s for s in data.samples if s.split == "test"]
     print(len(test_samples))
     LLMExtractor.predict_batch(test_samples)
@@ -269,6 +281,9 @@ if __name__ == "__main__":
     parser.add_argument(
         "--dataset", type=str, default="ler", help="Name of the dataset"
     )
+    parser.add_argument(
+        "--zero_shot", action="store_true", help="Whether to use zero-shot NER."
+    )
     args = parser.parse_args()
 
     main(
@@ -278,4 +293,5 @@ if __name__ == "__main__":
         args.cache_file,
         args.lang,
         args.dataset,
+        args.zero_shot,
     )
