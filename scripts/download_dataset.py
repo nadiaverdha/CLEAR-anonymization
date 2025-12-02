@@ -8,9 +8,8 @@ from pathlib import Path
 from datasets import load_dataset
 
 
-def download_dataset(repository_id: str, output_path: Path, token: str = None) -> None:
-    # Load the dataset from Hugging Face Hub
-    dataset_dict = load_dataset(repository_id, token=token)
+def download_dataset(repository_id: str, output_path: Path) -> None:
+    dataset_dict = load_dataset(repository_id)
 
     samples = []
 
@@ -37,19 +36,16 @@ def main():
         description="Download a dataset from the Hugging Face Hub"
     )
     parser.add_argument(
-        "--repository-id",
+        "--repository_id",
         type=str,
         required=True,
         help="Repository ID on Hugging Face (e.g., 'username/dataset-name')",
     )
     parser.add_argument(
-        "--output-path",
+        "--output_path",
         type=str,
         required=True,
         help="Path where to save the JSON file",
-    )
-    parser.add_argument(
-        "--token", type=str, help="Authentication token for Hugging Face"
     )
 
     args = parser.parse_args()
@@ -57,7 +53,6 @@ def main():
     download_dataset(
         repository_id=args.repository_id,
         output_path=Path(args.output_path),
-        token=args.token,
     )
 
 
