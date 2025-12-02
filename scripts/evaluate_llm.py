@@ -3,14 +3,25 @@ import json
 from pathlib import Path
 
 from clear_anonymization.extractors import factory
-from clear_anonymization.models.evaluator import evaluate_char_level
+from clear_anonymization.models.evaluator import (
+    evaluate_char_level,
+    evaluate_span_level,
+)
 from clear_anonymization.ner_datasets.ler_dataset import LERData, LERSample
 
 
-def evaluate_samples_llm(samples: list[LERSample], evaluation_type: str, extractor):
+def evaluate_samples_llm(
+    samples: list[LERSample], evaluation_type: str, extractor, threshold: float
+):
     print(f"\nEvaluating model on {len(samples)} samples")
 
-    if evaluation_type == "char_level":
+    if evaluation_type == "span_level":
+        print("\n---- Span-Level Evaluation ----")
+        metrics = evaluate_span_level(extractor, samples, threshold)
+
+        return metrics
+
+    elif evaluation_type == "char_level":
         print("\n---- Character-Level Evaluation ----")
         metrics = evaluate_char_level(extractor, samples)
         print(f"  Precision: {metrics['precision']:.4f}")
@@ -19,7 +30,7 @@ def evaluate_samples_llm(samples: list[LERSample], evaluation_type: str, extract
         return metrics
 
     else:
-        raise ValueError("Use 'char_level'")
+        raise ValueError("Use 'span_level' or 'char_level'.")
 
 
 def main():
@@ -42,7 +53,13 @@ def main():
     parser.add_argument(
         "--evaluation_type",
         type=str,
-        help="Evaluation type (char_level)",
+        help="Evaluation type (span_level or char_level)",
+    )
+
+    parser.add_argument(
+        "--threshold",
+        type=float,
+        help="Pick threshold if you want to perform span_level evaluation",
     )
 
     parser.add_argument("--prompt_path", type=str, default=None)
@@ -51,9 +68,9 @@ def main():
     args = parser.parse_args()
 
     data = LERData.from_json(json.loads(Path(args.input_dir).read_text()))
-    test_samples = [s for s in data.samples if s.split == "test"]
+    samples = [s for s in data.samples if s.split == "validation"]
 
-    print(f"\nEvaluating model on test samples: {len(test_samples)}")
+    print(f"\nEvaluating model on test samples: {len(samples)}")
 
     LLMExtractor = factory.make_extractor(
         "llm",
@@ -62,7 +79,7 @@ def main():
         cache_file=args.cache_file,
     )
 
-    evaluate_samples_llm(test_samples, args.evaluation_type, LLMExtractor)
+    evaluate_samples_llm(samples, args.evaluation_type, LLMExtractor, args.threshold)
 
 
 if __name__ == "__main__":

@@ -17,7 +17,7 @@ def gen_fewshot_samples(train_samples, fewshots_path, k=5, seed=12):
     fewshots = []
     for s in selected:
         labels_dict = {}
-        labels_dict = {label["text"]: label["entity"] for label in s.labels}
+        labels_dict = {label["text"]: label["class"] for label in s.labels}
 
         fewshots.append({"text": s.sentences, "labels": labels_dict})
 

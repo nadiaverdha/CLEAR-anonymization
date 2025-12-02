@@ -167,7 +167,7 @@ class LLMExtractor(BaseExtractor):
                         "start": match.start(),
                         "end": match.end(),
                         "text": sub,
-                        "entity": label,
+                        "class": label,
                     }
                 )
         return spans
@@ -189,6 +189,7 @@ class LLMExtractor(BaseExtractor):
         cached = self.cache.get(cache_key)
         # print(cached)
         if cached is None:
+            print("cache is nonee")
             resp = self._get_openai_client().chat.completions.create(
                 model=self.model,
                 messages=[
@@ -202,9 +203,11 @@ class LLMExtractor(BaseExtractor):
                 temperature=self.temperature,
             )
             cached = resp.choices[0].message.content
+            # print(cached)
             self.cache.set(cache_key, cached)
         try:
             payload = json.loads(cached)
+            # print("Payload",payload)
             return self._to_spans(payload["labels"], text)
         except (json.JSONDecodeError, KeyError) as e:
             print(f"Error parsing LLM response: {e}")
@@ -255,9 +258,9 @@ def main(
         cache_file=cache_file,
     )
     print(zero_shot)
-    test_samples = [s for s in data.samples if s.split == "test"]
-    print(len(test_samples))
-    LLMExtractor.predict_batch(test_samples)
+    samples = [s for s in data.samples if s.split == "validation"]
+    print(len(samples))
+    LLMExtractor.predict_batch(samples)
 
 
 if __name__ == "__main__":

@@ -43,7 +43,7 @@ def _to_spans(substrs: dict, sentence: str):
                     "start": match.start(),
                     "end": match.end(),
                     "text": sub,
-                    "entity": label,
+                    "class": label,
                 }
             )
     return spans
