@@ -1,57 +1,33 @@
 [
   {
-    "text": "Bender",
-    "labels": [
-      {
-        "start": 0,
-        "end": 6,
-        "text": "Bender",
-        "entity": "PER"
-      }
-    ]
+    "text": "Der Verbreiter werde dadurch auch nicht rechtlos gestellt , zumal er nach dem Hamburger Pressegesetz berechtigt sei , sich zu der Gegendarstellung mit Tatsachen zu äußern .",
+    "labels": {
+      "Hamburger Pressegesetz": "NRM"
+    }
   },
   {
-    "text": "Demzufolge war der Kläger zwar nicht als Gesamtrechtsnachfolger , aber als ehemaliger Gesellschafter der KG befugt ( BFH-Urteil in BFHE 241 , 132 , BStBl II 2013 , 705 , Rz 19 ) , Klage gegen den Gewinnfeststellungsbescheid 2008 zu erheben .",
-    "labels": [
-      {
-        "start": 117,
-        "end": 175,
-        "text": "BFH-Urteil in BFHE 241 , 132 , BStBl II 2013 , 705 , Rz 19",
-        "entity": "RS"
-      }
-    ]
+    "text": "Eine Beitragspflicht besteht mithin nach dem ausdrücklichen Wortlaut des zum Zeitpunkt der etwaigen Gesamtschuldnerauswahl bei Erlass des Bescheids vom 18. 4. 2011 in der Gestalt des Widerspruchsbescheids vom 8. 6. 2011 anwendbaren § 123 Abs 2 SGB VII also nur dann , wenn die Haus- und Ziergärten regelmäßig oder in besonderem Umfang mit besonderen Arbeitskräften bewirtschaftet werden oder ihre Erzeugnisse nicht hauptsächlich dem eigenen Haushalt dienen .",
+    "labels": {
+      "§ 123 Abs 2 SGB VII": "NRM"
+    }
   },
   {
-    "text": "Wäre eine Entlassung des Richters auf Zeit aus dem Amt als Beamter unter - im Vergleich zu den für Richter geltenden Regelungen - erleichterten Voraussetzungen möglich , und zöge diese sodann die automatische Beendigung des Amtes als Richter nach sich , so würden die strengen Voraussetzungen des Art. 97 Abs. 2 Satz 1 GG verfehlt .",
-    "labels": [
-      {
-        "start": 297,
-        "end": 321,
-        "text": "Art. 97 Abs. 2 Satz 1 GG",
-        "entity": "NRM"
-      }
-    ]
+    "text": "P bzw. ihr Mitarbeiter hat Akteneinsicht genommen und dabei gesehen , ob das FA Kommentare , interne Vermerke , Glossen oder Markierungen angebracht hat .",
+    "labels": {
+      "P": "PER"
+    }
   },
   {
-    "text": "den angefochtenen Beschluss der Patentabteilung 25 des Deutschen Patent- und Markenamtes vom 15. Juli 2015 aufzuheben und das Patent zu widerrufen .",
-    "labels": [
-      {
-        "start": 32,
-        "end": 88,
-        "text": "Patentabteilung 25 des Deutschen Patent- und Markenamtes",
-        "entity": "ORG"
-      }
-    ]
+    "text": "( 1 ) Das FG bemängelt , der Kläger habe keine Einzeltatsachen vorgetragen , die die Zahlungsunfähigkeit oder – unwilligkeit der C- B. V. zum 31. Dezember 2004 belegten , sondern nur pauschale Behauptungen ohne Substanz und rein subjektive Einschätzungen abgegeben .",
+    "labels": {
+      "C- B. V.": "ORG"
+    }
   },
   {
-    "text": "Sost-Scheible",
-    "labels": [
-      {
-        "start": 0,
-        "end": 13,
-        "text": "Sost-Scheible",
-        "entity": "PER"
-      }
-    ]
+    "text": "7. Die Kostenentscheidung beruht auf § 197a Abs 1 Teils 3 SGG iVm § 154 Abs 2 VwGO .",
+    "labels": {
+      "§ 197a Abs 1 Teils 3 SGG": "NRM",
+      "§ 154 Abs 2 VwGO": "NRM"
+    }
   }
 ]
