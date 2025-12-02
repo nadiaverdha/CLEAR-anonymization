@@ -27,6 +27,8 @@ python -m vllm.entrypoints.openai.api_server   --model google/gemma-3-27b-it  --
 from clear_anonymization.extractors import factory
 LLMExtractor = factory.make_extractor("llm", model="google/gemma-3-27b-it", prompt_path=clear_anonymization/prompts/ner_task_2.txt)
 LLMExtractor.predict("Frau Müller arbeitet beim Bundesgericht.")
-*Output: [{'start': 0, 'end': 11, 'text': 'Frau Müller', 'entity': 'PERS'}, {'start': 26, 'end': 39, 'text': 'Bundesgericht', 'entity': 'ORG'}]*
+
+
+[{'start': 0, 'end': 11, 'text': 'Frau Müller', 'entity': 'PERS'}, {'start': 26, 'end': 39, 'text': 'Bundesgericht', 'entity': 'ORG'}]
 ```
 
