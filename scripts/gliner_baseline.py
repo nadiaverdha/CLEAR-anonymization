@@ -24,8 +24,15 @@ def predict(text, extractor,definitions):
 
 def to_spans(entities):
     print(entities)
-    for entity_type, values in entities['entities'].items():
-        print(entity_type, values)
+    keys = entities['entities'].keys()
+    
+    for key in keys:
+        print(entities['entities'][key])
+    spans = []
+    #print(entities['entities'].keys())
+    print("________________")
+    #for entity_type, values in entities['entities'].items():
+     #   print(entity_type, values)
 
     
 def main():
@@ -59,7 +66,7 @@ def main():
     results = []
 
     samples = [s for s in data.samples if s.split == "validation"]
-    for i in samples:
+    for i in samples[:2]:
         predict(i.sentences, extractor,definitions)
 
 
