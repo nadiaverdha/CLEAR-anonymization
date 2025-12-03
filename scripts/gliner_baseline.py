@@ -14,22 +14,20 @@ __all__ = ["GlinerExtractor"]
 
 
 def predict(text, extractor,definitions):
-    print(extractor.extract_entities(
+    entities = extractor.extract_entities(
             text,
             definitions,
         )
-    )
-    return extractor.extract_entities(
-            text,
-            definitions,
-        )
+    to_spans(entities)
+    return entities
     
 
-def to_spans():
-    pass
+def to_spans(entities):
+    print(entities)
+    for entity_type, values in entities['entities'].items():
+        print(entity_type, values)
 
     
-
 def main():
     parser = argparse.ArgumentParser(
         description="Evaluate a named entity recognition model based on LLM"
