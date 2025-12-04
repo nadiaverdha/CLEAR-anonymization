@@ -59,9 +59,8 @@ def main():
     texts = [s.sentences for s in samples]
     extractor = GLiNER2.from_pretrained(args.model).to("cuda")
     results = extractor.batch_extract_entities(texts, definitions, batch_size=8)
-    print(results)
-    formatted_results = []
 
+    formatted_results = []
     with ThreadPoolExecutor() as ex:
         formatted_results = list(
             ex.map(
