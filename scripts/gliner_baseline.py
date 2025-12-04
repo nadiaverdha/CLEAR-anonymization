@@ -55,7 +55,6 @@ def main():
 
     data = LERData.from_json(json.loads(Path(args.input_dir).read_text()))
     samples = [s for s in data.samples if s.split == "validation"]
-    print(f"\nEvaluating model on test samples: {len(samples)}")
     texts = [s.sentences for s in samples]
     extractor = GLiNER2.from_pretrained(args.model).to("cuda")
     results = extractor.batch_extract_entities(texts, definitions, batch_size=8)
