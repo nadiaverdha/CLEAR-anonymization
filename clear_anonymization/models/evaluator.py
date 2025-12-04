@@ -15,11 +15,6 @@ from clear_anonymization.ner_datasets.ler_dataset import LERData, LERSample
 
 
 def check_overlap(pred, gold, threshold=1):
-    """
-    Check if two spans have exact match.
-    Returns 1 if exact match, 0 otherwise.
-    """
-
     if threshold == 1:
         return pred["start"] == gold["start"] and pred["end"] == gold["end"]
     else:
@@ -44,7 +39,7 @@ def evaluate_span_level(
     tp = 0
     fp = 0
     fn = 0
-    for sample in tqdm(samples[:50], desc="Evaluation", leave=False):
+    for sample in tqdm(samples, desc="Evaluation", leave=False):
         text = sample.sentences
         gold_spans = sample.labels
         predicted_spans = extractor.predict(text)

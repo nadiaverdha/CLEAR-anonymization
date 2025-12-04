@@ -68,8 +68,10 @@ def main():
             )
         )
 
-    if not output_file:
-        output_file = Path("gliner_results.json")
+    if not args.output_file:
+        output_file = Path(f"results_{args.model}.json")
+    else:
+        output_file = Path(args.output_file)
 
     output_file.write_text(json.dumps(formatted_results, indent=2, ensure_ascii=False))
 
