@@ -158,6 +158,7 @@ class LLMExtractor(BaseExtractor):
     def _to_spans(substrs: dict, sentence: str):
         spans = []
         for sub, label in substrs.items():
+            print(sub, label)
             if not sub:
                 continue
             match = re.search(re.escape(sub), sentence)
@@ -170,6 +171,7 @@ class LLMExtractor(BaseExtractor):
                         "class": label,
                     }
                 )
+        print(spans)
         return spans
 
     def _predict(self, text: str) -> list[dict]:
@@ -184,7 +186,7 @@ class LLMExtractor(BaseExtractor):
         llm_prompt = self._build_prompt(text)
         # print(llm_prompt)
         # Use the full LLM prompt for cache key calculation
-        cache_key = self.cache._hash(text, self.model, str(self.temperature))
+        cache_key = self.cache._hash(llm_prompt, self.model, str(self.temperature))
 
         cached = self.cache.get(cache_key)
         # print(cached)
