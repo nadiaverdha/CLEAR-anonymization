@@ -189,6 +189,7 @@ class LLMExtractor(BaseExtractor):
         cache_key = self.cache._hash(llm_prompt, self.model, str(self.temperature))
 
         cached = self.cache.get(cache_key)
+        print("Casheddddd", cached)
         # print(cached)
         if cached is None:
             print("cache is nonee")
@@ -209,7 +210,7 @@ class LLMExtractor(BaseExtractor):
             self.cache.set(cache_key, cached)
         try:
             payload = json.loads(cached)
-            # print("Payload",payload)
+            print("Payload", payload)
             return self._to_spans(payload["labels"], text)
         except (json.JSONDecodeError, KeyError) as e:
             print(f"Error parsing LLM response: {e}")
@@ -247,6 +248,7 @@ def main(
     cache_file: str,
     lang: str = "de",
     dataset: str = "ler",
+    fewshot_path = None,
     zero_shot: bool = False,
 ):
     input_dir = Path(input_dir)
@@ -258,11 +260,12 @@ def main(
         zero_shot=zero_shot,
         prompt_path=prompt_path,
         cache_file=cache_file,
+        fewshot_path = fewshot_path,
     )
     print(zero_shot)
     samples = [s for s in data.samples if s.split == "validation"]
     print(len(samples))
-    LLMExtractor.predict_batch(samples)
+    LLMExtractor.predict_batch(samples[:20])
 
 
 if __name__ == "__main__":
@@ -278,6 +281,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--prompt_path", type=str, required=True, help="Path to the prompt file"
     )
+    
     parser.add_argument("--cache_file", type=str, help="Path to the cache file")
 
     parser.add_argument(
@@ -287,8 +291,13 @@ if __name__ == "__main__":
         "--dataset", type=str, default="ler", help="Name of the dataset"
     )
     parser.add_argument(
+        "--fewshot_path", type=str, required=True, help="Path to the fewshot file"
+    )
+    parser.add_argument(
         "--zero_shot", action="store_true", help="Whether to use zero-shot NER."
     )
+
+    
     args = parser.parse_args()
 
     main(
@@ -298,5 +307,6 @@ if __name__ == "__main__":
         args.cache_file,
         args.lang,
         args.dataset,
+        args.fewshot_path,
         args.zero_shot,
     )

@@ -79,7 +79,6 @@ def main():
     ground_truth = [s for s in data.samples if s.split == "validation"]
     gliner_data = LERData.from_json(json.loads(Path(args.model_file).read_text()))
     gliner_data = LERData.from_json(json.loads(Path("results_gliner.json").read_text()))
-
     evaluate_gliner(ground_truth, gliner_data, args.threshold)
 
 
