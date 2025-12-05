@@ -60,14 +60,24 @@ class LERSample:
 
     @classmethod
     def from_json(cls, json_dict: dict) -> "LERSample":
-        substrs = tokens_to_substrs(json_dict["tokens"], json_dict["coarse_ner_labels"])
+        tokens = json_dict.get("tokens", [])
+        coarse = json_dict.get("coarse_ner_labels", [])
+
+        if tokens and coarse:
+            substrs = tokens_to_substrs(
+                json_dict["tokens"], json_dict["coarse_ner_labels"]
+            )
+            labels = _to_spans(substrs, json_dict.get("sentences", ""))
+
+        else:
+            labels = json_dict.get("labels")
         return cls(
-            tokens=json_dict["tokens"],
-            sentences=json_dict["sentences"],
-            ner_labels=json_dict["ner_labels"],
-            coarse_ner_labels=json_dict["coarse_ner_labels"],
-            split=json_dict["split"],
-            labels=_to_spans(substrs, json_dict["sentences"]),
+            tokens=tokens,
+            sentences=json_dict.get("sentences"),
+            ner_labels=json_dict.get("ner_labels", []),
+            coarse_ner_labels=coarse,
+            split=json_dict.get("split", "unknown"),
+            labels=labels,
         )
 
 
