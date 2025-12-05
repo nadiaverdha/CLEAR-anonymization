@@ -12,7 +12,6 @@ from clear_anonymization.ner_datasets.ler_dataset import LERData, LERSample
 def to_spans(predicted, text):
     spans = []
     entities = predicted["entities"]
-
     if entities:
         for label, subs in entities.items():
             for sub in subs:
@@ -63,13 +62,15 @@ def main():
     with ThreadPoolExecutor() as ex:
         formatted_results = list(
             ex.map(
-                lambda pair: {"text": pair[0], "labels": to_spans(pair[1], pair[0])},
+                lambda pair: {
+                    "sentences": pair[0],
+                    "labels": to_spans(pair[1], pair[0]),
+                },
                 zip(texts, results),
             )
         )
-
     if not args.output_file:
-        output_file = Path(f"results_{args.model}.json")
+        output_file = Path("results_gliner.json")
     else:
         output_file = Path(args.output_file)
 

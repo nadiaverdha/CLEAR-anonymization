@@ -29,7 +29,6 @@ def check_overlap(pred, gold, threshold=1):
 
         gold_length = gold["end"] - gold["start"]
         overlap_ratio = sample_overlap / gold_length
-
         return overlap_ratio >= threshold
 
 
@@ -42,6 +41,7 @@ def evaluate_span_level(
     for sample in tqdm(samples, desc="Evaluation", leave=False):
         text = sample.sentences
         gold_spans = sample.labels
+
         predicted_spans = extractor.predict(text)
 
         matched_gold = set()
@@ -100,8 +100,6 @@ def evaluate_char_level(extractor: LLMExtractor, samples) -> dict[str, float]:
         sample_overlap = 0
         for pred in predicted_spans:
             for gold in gold_spans:
-                # if pred["entity"] == gold["entity"]:
-                # print(pred["entity"], gold["entity"])
                 overlap_start = max(pred["start"], gold["start"])
                 overlap_end = min(pred["end"], gold["end"])
                 if overlap_end > overlap_start:
