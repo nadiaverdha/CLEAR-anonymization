@@ -63,7 +63,7 @@ def main():
     )
 
     parser.add_argument("--prompt_path", type=str, default=None)
-    parser.add_argument("--method_file", type=str, default=None)
+    parser.add_argument("--cache_file", type=str, default=None)
 
     args = parser.parse_args()
 
