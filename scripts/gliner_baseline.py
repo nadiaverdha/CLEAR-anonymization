@@ -4,27 +4,22 @@ import re
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
-from gliner2 import GLiNER2
+from gliner import GLiNER
 
 from clear_anonymization.ner_datasets.ler_dataset import LERData, LERSample
 
 
 def to_spans(predicted, text):
     spans = []
-    entities = predicted["entities"]
-    if entities:
-        for label, subs in entities.items():
-            for sub in subs:
-                match = re.search(re.escape(sub), text)
-                if match:
-                    spans.append(
-                        {
-                            "start": match.start(),
-                            "end": match.end(),
-                            "text": sub,
-                            "class": label,
-                        }
-                    )
+    for entity in predicted:
+        spans.append(
+            {
+                "start": entity["start"],
+                "end": entity["end"],
+                "text": entity["text"],
+                "class": entity["label"],
+            }
+        )
     return spans
 
 
@@ -42,22 +37,17 @@ def main():
 
     args = parser.parse_args()
 
-    definitions = {
-        "PERS": "Personen (Familien, Vor-, Beinamen und Pseudonymen)",
-        "LOC": "Ortsnamen, geographische Bezeichnungen (Land, Stadt, Region)",
-        "ORG": "Organisationsnamen (Parteien, Vereine, Institutionen, Unternehmen)",
-        "NRM": "Rechtsnormen(Europäische Normen, Gesetze, Rechtsverordungen)",
-        "RS": "Rechtsprechungen (keine Namen sondern Zitate von Entscheidungen)",
-        "LIT": "Rechtsliteratur (Rechtsliteratur, Gesetzgebungsmaterialien)",
-        "REG": "Einzelfallregelungen (Vorschriften, Verträge)",
-    }
+    definitions = ["PERS", "LOC", "ORG", "NRM", "RS", "LIT", "REG"]
 
     data = LERData.from_json(json.loads(Path(args.input_dir).read_text()))
     samples = [s for s in data.samples if s.split == "validation"]
     texts = [s.sentences for s in samples]
-    extractor = GLiNER2.from_pretrained(args.model).to("cuda")
-    results = extractor.batch_extract_entities(texts, definitions, batch_size=8)
-
+    extractor = GLiNER.from_pretrained(args.model, max_length=1024).to("cuda")
+    results = extractor.inference(
+        texts,
+        definitions,
+    )
+    print("Arrived here")
     formatted_results = []
     with ThreadPoolExecutor() as ex:
         formatted_results = list(
@@ -70,7 +60,7 @@ def main():
             )
         )
     if not args.output_file:
-        output_file = Path("results_gliner.json")
+        output_file = Path("results_gliner_.json")
     else:
         output_file = Path(args.output_file)
 
