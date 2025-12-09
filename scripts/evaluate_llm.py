@@ -64,6 +64,10 @@ def main():
 
     parser.add_argument("--prompt_path", type=str, default=None)
     parser.add_argument("--cache_file", type=str, default=None)
+    parser.add_argument(
+    "--zero_shot", action="store_true", help="Whether to use zero-shot NER."
+)
+
 
     args = parser.parse_args()
 
@@ -77,6 +81,7 @@ def main():
         model=args.model,
         prompt_path=args.prompt_path,
         cache_file=args.cache_file,
+        zero_shot = args.zero_shot,
     )
 
     evaluate_samples_llm(samples, args.evaluation_type, LLMExtractor, args.threshold)

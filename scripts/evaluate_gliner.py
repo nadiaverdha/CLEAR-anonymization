@@ -16,7 +16,7 @@ from clear_anonymization.models.evaluator import check_overlap
 from clear_anonymization.ner_datasets.ler_dataset import LERData, LERSample
 
 
-def evaluate_gliner(ground_truth, gliner_baseline, threshold):
+def evaluate_gliner(ground_truth, gliner_baseline, threshold=1):
     tp = 0
     fp = 0
     fn = 0
@@ -78,8 +78,9 @@ def main():
     data = LERData.from_json(json.loads(Path(args.input_dir).read_text()))
     ground_truth = [s for s in data.samples if s.split == "validation"]
     gliner_data = LERData.from_json(json.loads(Path(args.model_file).read_text()))
-    gliner_data = LERData.from_json(json.loads(Path("results_gliner.json").read_text()))
-    evaluate_gliner(ground_truth, gliner_data, args.threshold)
+    threshold = args.threshold if args.threshold is not None else 1.0
+
+    evaluate_gliner(ground_truth, gliner_data, threshold)
 
 
 if __name__ == "__main__":

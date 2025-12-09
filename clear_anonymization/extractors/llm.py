@@ -139,7 +139,6 @@ class LLMExtractor(BaseExtractor):
             return ""
         lines = []
         for i, ex in enumerate(self.fewshot, 1):
-            # print(ex["labels"][0])
             lines.append(
                 f"""<example{i}>
                 <text>{ex["text"]}</text>
@@ -158,7 +157,6 @@ class LLMExtractor(BaseExtractor):
     def _to_spans(substrs: dict, sentence: str):
         spans = []
         for sub, label in substrs.items():
-            print(sub, label)
             if not sub:
                 continue
             match = re.search(re.escape(sub), sentence)
@@ -171,7 +169,6 @@ class LLMExtractor(BaseExtractor):
                         "class": label,
                     }
                 )
-        print(spans)
         return spans
 
     def _predict(self, text: str) -> list[dict]:
@@ -189,7 +186,6 @@ class LLMExtractor(BaseExtractor):
         cache_key = self.cache._hash(llm_prompt, self.model, str(self.temperature))
 
         cached = self.cache.get(cache_key)
-        print("Casheddddd", cached)
         # print(cached)
         if cached is None:
             print("cache is nonee")
@@ -205,12 +201,13 @@ class LLMExtractor(BaseExtractor):
                 response_format=NER_SCHEMA,
                 temperature=self.temperature,
             )
+            print(resp)
             cached = resp.choices[0].message.content
             # print(cached)
             self.cache.set(cache_key, cached)
         try:
             payload = json.loads(cached)
-            print("Payload", payload)
+            print("PAYLOAD",payload)
             return self._to_spans(payload["labels"], text)
         except (json.JSONDecodeError, KeyError) as e:
             print(f"Error parsing LLM response: {e}")
@@ -248,7 +245,7 @@ def main(
     cache_file: str,
     lang: str = "de",
     dataset: str = "ler",
-    fewshot_path = None,
+    fewshot_path=None,
     zero_shot: bool = False,
 ):
     input_dir = Path(input_dir)
@@ -260,12 +257,12 @@ def main(
         zero_shot=zero_shot,
         prompt_path=prompt_path,
         cache_file=cache_file,
-        fewshot_path = fewshot_path,
+        fewshot_path=fewshot_path,
     )
     print(zero_shot)
     samples = [s for s in data.samples if s.split == "validation"]
     print(len(samples))
-    LLMExtractor.predict_batch(samples[:20])
+    LLMExtractor.predict_batch(samples)
 
 
 if __name__ == "__main__":
@@ -281,7 +278,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--prompt_path", type=str, required=True, help="Path to the prompt file"
     )
-    
+
     parser.add_argument("--cache_file", type=str, help="Path to the cache file")
 
     parser.add_argument(
@@ -291,13 +288,12 @@ if __name__ == "__main__":
         "--dataset", type=str, default="ler", help="Name of the dataset"
     )
     parser.add_argument(
-        "--fewshot_path", type=str, required=True, help="Path to the fewshot file"
+        "--fewshot_path", type=str, help="Path to the fewshot file"
     )
     parser.add_argument(
         "--zero_shot", action="store_true", help="Whether to use zero-shot NER."
     )
 
-    
     args = parser.parse_args()
 
     main(

@@ -15,21 +15,24 @@ from clear_anonymization.ner_datasets.ler_dataset import LERData, LERSample
 
 
 def check_overlap(pred, gold, threshold=1):
+    pred_start, pred_end = pred["start"], pred["end"]
+    gold_start, gold_end = gold["start"], gold["end"]
+
     if threshold == 1:
-        return pred["start"] == gold["start"] and pred["end"] == gold["end"]
-    else:
-        overlap_start = max(pred["start"], gold["start"])
-        overlap_end = min(pred["end"], gold["end"])
+        return pred["text"] == gold["text"]
 
-        if overlap_end > overlap_start:
-            sample_overlap = overlap_end - overlap_start
+    overlap_start = max(pred_start, gold_start)
+    overlap_end = min(pred_end, gold_end)
 
-        else:
-            return False
+    # no overlap
+    if overlap_end <= overlap_start:
+        return False
 
-        gold_length = gold["end"] - gold["start"]
-        overlap_ratio = sample_overlap / gold_length
-        return overlap_ratio >= threshold
+    overlap = overlap_end - overlap_start
+
+    union = max(pred_end, gold_end) - min(pred_start, gold_start)
+    iou = overlap / union
+    return iou >= threshold
 
 
 def evaluate_span_level(
