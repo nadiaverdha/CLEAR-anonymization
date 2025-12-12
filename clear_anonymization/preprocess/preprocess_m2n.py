@@ -5,15 +5,13 @@ import re
 import unicodedata
 import zipfile
 from pathlib import Path
+import string
 
 from datasets import load_dataset
 
 
 def check_mismatch(idx, dataset):
-    l = []
-
     print(f"==== Document {idx} ====")
-    # if idx == 7:
     sample = dataset[idx]
     text = sample["text"]
     labels = sample["labels"]
@@ -22,42 +20,48 @@ def check_mismatch(idx, dataset):
         start = ann["start"]
         end = ann["end"]
 
-        extracted = text[start:end]
-        label_text = ann["text"]
+        actual = text[start:end]
+        expected = ann["text"]
 
-        print(f"{start}:{end}   '{extracted}'  ---->  '{label_text}'")
-
-        # optional mismatch check
-        if extracted != label_text:
-            print("⚠️ OFFSET MISMATCH!")
+        print(f"{start}:{end}   '{actual}'  ---->  '{expected}'")
+        if actual != expected:
+            print("❌ Mismatch in offsets")
+            # print(text)
+            #inspect_string(actual)
+            #print("-----------")
+            #inspect_string(expected)
+        else:
+            print("✓ Correct ")
     print("--------------------------------\n")
+
+def inspect_string(s, start=0, end=None):
+    if end is None:
+        end = len(s)
+    for i, c in enumerate(s[start:end], start=start):
+        print(f"{i}: {repr(c)} | ord: {ord(c)}")
 
 
 def validate_annotations_per_page(pages, annotations):
-    """
-    For each page, check if all annotations that belong to it
-    match the text exactly at their specified page-relative offsets.
-    """
-
     for page_idx, page_text in enumerate(pages):
         print(f"\n=== VALIDATING PAGE {page_idx} ===")
-
-        print(page_text)
 
         for ann in annotations:
             sp = ann["startPage"]
             ep = ann["endPage"]
+
             rs = ann["pageRelativeStart"]
             re = ann["pageRelativeEnd"]
-            expected = ann["text"]
 
+            if sp != page_idx:
+                continue
             actual = page_text[rs:re]
-            print("ACTUAAAAL", actual)
-            print("EXPECTEDDD", expected)
+            expected = ann["text"]
+            print("ACTUAAAAL", repr(actual))
+            print("EXPECTEDDD", repr(expected))
             if actual == expected:
                 print(f"✓ '{expected}' matches exactly at [{rs}:{re}]")
             else:
-                print(f"❌ MISMATCH '{expected}' at [{rs}:{re}]")
+                print(f"❌ Mismatch '{expected}' at [{rs}:{re}]")
                 found_pos = page_text.find(expected)
                 if found_pos != -1:
                     print(
@@ -66,64 +70,84 @@ def validate_annotations_per_page(pages, annotations):
                 else:
                     print(" → Text not found on this page")
 
+
 def load_data(input_dir):
     dataset = []
 
     with zipfile.ZipFile(input_dir, "r") as archive:
         folders = {}
+
         # grouping files by folder
         for name in archive.namelist():
             if name.endswith(".txt"):
                 folder = "/".join(name.split("/")[:-1])
                 folders.setdefault(folder, []).append(name)
 
+        # sorting the files inside a folder
         for folder, txt_files in folders.items():
-            print(folder)
             txt_files_sorted = sorted(txt_files, key=lambda p: int(Path(p).stem))
+            print(folder)
 
-            if folder == "export_20251127_1826/9e8040b797939101bef412cbafeeb8f2":
-                pages = []
-                for txt_path in txt_files_sorted:
-                    with archive.open(txt_path) as f:
-                        pages.append(f.read().decode("utf-8"))
+            # opening each of the file
+            pages = []
+            for txt_path in txt_files_sorted:
+                with archive.open(txt_path) as f:
+                    content = f.read().decode("utf-8-sig")
+                    content = content.replace("\r\n", "\n").replace("\r", "\n")
+                    content = content.replace("\xa0", " ")
+                    pages.append(content)
 
-                full_text = "".join(pages)
+            # removing the extra character introduced in all pages except for page 0
+            #  for i in range(1, len(pages)):
+            #     pages[i] = pages[i][1:]
 
-                page_offsets = []
-                current_offset = 0
-                for i, p in enumerate(pages):
-                    page_offsets.append(current_offset)
-                    print(f"Page {i} offset: {current_offset}")
-                    current_offset += len(p)
+            full_text = "".join(pages)
+            page_offsets = []
 
-                # annotations file
-                ann_path = f"{folder}/annotations.json"
-                annotations = None
-                if ann_path in archive.namelist():
-                    with archive.open(ann_path) as f:
-                        annotations = json.loads(f.read().decode("utf-8"))
+            # calculating the offset of each page depending on the previous page length
+            current_offset = 0
+            for i, p in enumerate(pages):
+                page_offsets.append(current_offset)
+                print(f" Folder {folder} Page {i} offset: {current_offset}")
+                current_offset += len(p)
 
-                annotations = sorted(annotations, key=lambda x: (x["startPage"]))
-                spans = []
-                validate_annotations_per_page(pages, annotations)
-                if annotations:
-                    for ann in annotations:
-                        startpage = ann["startPage"]
-                        endpage = ann["endPage"]
+            # the annotations file
+            ann_path = f"{folder}/annotations.json"
+            annotations = None
+            if ann_path in archive.namelist():
+                with archive.open(ann_path) as f:
+                    annotations = json.loads(f.read().decode("utf-8"))
 
-                        start = page_offsets[startpage] + ann["pageRelativeStart"]
-                        end = page_offsets[endpage] + ann["pageRelativeEnd"]
+            annotations = sorted(annotations, key=lambda x: (x["startPage"]))
+            labels = []
 
-                        spans.append(
-                            {
-                                "text": ann["text"],
-                                "start": start,
-                                "end": end,
-                                "class": ann["label"],
-                            }
-                        )
+            # function for validating whether the annotations per page are correct
 
-                dataset.append({"text": full_text, "labels": spans})
+            # validate_annotations_per_page(pages, annotations)
+            if annotations:
+                for ann in annotations:
+                    startpage = ann["startPage"]
+                    endpage = ann["endPage"]
+
+                    start = page_offsets[startpage] + ann["pageRelativeStart"]
+                    end = page_offsets[endpage] + ann["pageRelativeEnd"]
+                    actual = full_text[start:end]
+                    
+                    if startpage > 0:
+                        start += 1
+                        end += 1
+            
+
+                    labels.append(
+                        {
+                            "text": ann["text"],
+                            "start": start,
+                            "end": end,
+                            "class": ann["label"],
+                        }
+                    )
+
+            dataset.append({"text": full_text, "labels": labels})
 
     return dataset
 
@@ -144,8 +168,8 @@ def main():
 
     args = parser.parse_args()
     dataset = load_data(args.input_path)
-    set_ = set()
-    labels = []
+    for i, data in enumerate(dataset):
+        check_mismatch(i, dataset)
 
 
 if __name__ == "__main__":
