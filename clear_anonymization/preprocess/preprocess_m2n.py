@@ -27,12 +27,13 @@ def check_mismatch(idx, dataset):
         if actual != expected:
             print("❌ Mismatch in offsets")
             # print(text)
-            #inspect_string(actual)
-            #print("-----------")
-            #inspect_string(expected)
+            # inspect_string(actual)
+            # print("-----------")
+            # inspect_string(expected)
         else:
             print("✓ Correct ")
     print("--------------------------------\n")
+
 
 def inspect_string(s, start=0, end=None):
     if end is None:
@@ -132,11 +133,10 @@ def load_data(input_dir):
                     start = page_offsets[startpage] + ann["pageRelativeStart"]
                     end = page_offsets[endpage] + ann["pageRelativeEnd"]
                     actual = full_text[start:end]
-                    
+
                     if startpage > 0:
                         start += 1
                         end += 1
-            
 
                     labels.append(
                         {
