@@ -110,7 +110,7 @@ def create_sample(pages, annotations):
                     "class": ann["label"],
                 }
             )
-    return NERSample(full_text, "val", labels)
+    return NERSample(full_text, "validation", labels)
 
 
 def main():

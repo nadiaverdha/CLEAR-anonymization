@@ -7,11 +7,11 @@ from clear_anonymization.models.evaluator import (
     evaluate_char_level,
     evaluate_span_level,
 )
-from clear_anonymization.ner_datasets.ler_dataset import LERData, LERSample
+from clear_anonymization.ner_datasets.ner_dataset import NERData, NERSample
 
 
 def evaluate_samples_llm(
-    samples: list[LERSample], evaluation_type: str, extractor, threshold: float
+    samples: list[NERSample], evaluation_type: str, extractor, threshold: float
 ):
     print(f"\nEvaluating model on {len(samples)} samples")
 
@@ -20,17 +20,8 @@ def evaluate_samples_llm(
         metrics = evaluate_span_level(extractor, samples, threshold)
 
         return metrics
-
-    elif evaluation_type == "char_level":
-        print("\n---- Character-Level Evaluation ----")
-        metrics = evaluate_char_level(extractor, samples)
-        print(f"  Precision: {metrics['precision']:.4f}")
-        print(f"  Recall:    {metrics['recall']:.4f}")
-        print(f"  F1:        {metrics['f1']:.4f}")
-        return metrics
-
     else:
-        raise ValueError("Use 'span_level' or 'char_level'.")
+        raise ValueError("Use 'span_level'.")
 
 
 def main():
@@ -56,22 +47,20 @@ def main():
         help="Evaluation type (span_level or char_level)",
     )
 
+    parser.add_argument("--prompt_path", type=str, default=None)
+    parser.add_argument("--cache_file", type=str, default=None)
     parser.add_argument(
         "--threshold",
         type=float,
         help="Pick threshold if you want to perform span_level evaluation",
     )
-
-    parser.add_argument("--prompt_path", type=str, default=None)
-    parser.add_argument("--cache_file", type=str, default=None)
     parser.add_argument(
-    "--zero_shot", action="store_true", help="Whether to use zero-shot NER."
-)
-
+        "--zero_shot", action="store_true", help="Whether to use zero-shot NER."
+    )
 
     args = parser.parse_args()
 
-    data = LERData.from_json(json.loads(Path(args.input_dir).read_text()))
+    data = NERData.from_json(json.loads(Path(args.input_dir).read_text()))
     samples = [s for s in data.samples if s.split == "validation"]
 
     print(f"\nEvaluating model on test samples: {len(samples)}")
@@ -81,7 +70,7 @@ def main():
         model=args.model,
         prompt_path=args.prompt_path,
         cache_file=args.cache_file,
-        zero_shot = args.zero_shot,
+        zero_shot=args.zero_shot,
     )
 
     evaluate_samples_llm(samples, args.evaluation_type, LLMExtractor, args.threshold)

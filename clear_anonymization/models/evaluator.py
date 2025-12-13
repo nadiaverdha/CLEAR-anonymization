@@ -1,6 +1,7 @@
 import json
 from pathlib import Path
 
+from clear_anonymization.ner_datasets.ner_dataset import NERData, NERSample
 from sklearn.metrics import (
     auc,
     classification_report,
@@ -11,7 +12,6 @@ from tqdm.auto import tqdm
 
 from clear_anonymization.extractors import factory
 from clear_anonymization.extractors.llm import LLMExtractor
-from clear_anonymization.ner_datasets.ler_dataset import LERData, LERSample
 
 
 def check_overlap(pred, gold, threshold=1):
@@ -42,7 +42,7 @@ def evaluate_span_level(
     fp = 0
     fn = 0
     for sample in tqdm(samples, desc="Evaluation", leave=False):
-        text = sample.sentences
+        text = sample.text
         gold_spans = sample.labels
 
         predicted_spans = extractor.predict(text)
@@ -87,7 +87,7 @@ def evaluate_char_level(extractor: LLMExtractor, samples) -> dict[str, float]:
     total_gold = 0
 
     for sample in tqdm(samples, desc="Evaluation", leave=False):
-        text = sample.sentences
+        text = sample.text
         gold_spans = sample.labels
         predicted_spans = extractor.predict(text)
 

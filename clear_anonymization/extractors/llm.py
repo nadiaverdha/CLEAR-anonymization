@@ -7,12 +7,12 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from string import Template
 
+from clear_anonymization.ner_datasets.ner_dataset import NERData, NERSample
 from openai import OpenAI
 
 from clear_anonymization.extractors import factory
 from clear_anonymization.extractors.base import BaseExtractor
 from clear_anonymization.extractors.cache import CacheManager
-from clear_anonymization.ner_datasets.ler_dataset import LERData, LERSample
 
 __all__ = ["LLMExtractor"]
 
@@ -51,6 +51,7 @@ class LLMExtractor(BaseExtractor):
         model: str,
         temperature: float = 0.0,
         lang: str = "de",
+        dataset: str = "ler",
         zero_shot: bool = False,
         fewshot_path: str | None = None,
         prompt_path: str | None = None,
@@ -71,6 +72,7 @@ class LLMExtractor(BaseExtractor):
         self.temperature = temperature
         self.lang = lang
         self.zero_shot = zero_shot
+        self.dataset = dataset
 
         # self.client = self._get_openai_client()
 
@@ -104,11 +106,13 @@ class LLMExtractor(BaseExtractor):
                 cache_file = (
                     Path(__file__).parent.parent
                     / f"cache"
-                    / f"{model}_cache_fewshots.json"
+                    / f"{model}_{self.dataset}_cache_fewshots.json"
                 )
             else:
                 cache_file = (
-                    Path(__file__).parent.parent / f"cache" / f"{model}_cache.json"
+                    Path(__file__).parent.parent
+                    / f"cache"
+                    / f"{model}_{self.dataset}_cache.json"
                 )
             print(f"Using default cache file: {cache_file}")
         else:
@@ -201,13 +205,12 @@ class LLMExtractor(BaseExtractor):
                 response_format=NER_SCHEMA,
                 temperature=self.temperature,
             )
-            print(resp)
+
             cached = resp.choices[0].message.content
-            # print(cached)
+
             self.cache.set(cache_key, cached)
         try:
             payload = json.loads(cached)
-            print("PAYLOAD",payload)
             return self._to_spans(payload["labels"], text)
         except (json.JSONDecodeError, KeyError) as e:
             print(f"Error parsing LLM response: {e}")
@@ -225,7 +228,7 @@ class LLMExtractor(BaseExtractor):
 
     def predict_batch(
         self,
-        samples: list[LERSample],
+        samples: list[NERSample],
     ) -> list:
         """Predict named entities  from the provided text.
 
@@ -234,7 +237,7 @@ class LLMExtractor(BaseExtractor):
         """
         futs = []
         with ThreadPoolExecutor(max_workers=30) as pool:
-            futs = [pool.submit(self._predict, s.sentences) for s in samples]
+            futs = [pool.submit(self._predict, s.text) for s in samples]
             return [f.result() for f in futs]
 
 
@@ -250,18 +253,18 @@ def main(
 ):
     input_dir = Path(input_dir)
     prompt_path = Path(prompt_path)
-    data = LERData.from_json(json.loads(input_dir.read_text()))
+    data = NERData.from_json(json.loads(input_dir.read_text()))
     LLMExtractor = factory.make_extractor(
         "llm",
         model=model,
+        dataset=dataset,
         zero_shot=zero_shot,
         prompt_path=prompt_path,
         cache_file=cache_file,
         fewshot_path=fewshot_path,
     )
-    print(zero_shot)
     samples = [s for s in data.samples if s.split == "validation"]
-    print(len(samples))
+
     LLMExtractor.predict_batch(samples)
 
 
@@ -287,9 +290,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--dataset", type=str, default="ler", help="Name of the dataset"
     )
-    parser.add_argument(
-        "--fewshot_path", type=str, help="Path to the fewshot file"
-    )
+    parser.add_argument("--fewshot_path", type=str, help="Path to the fewshot file")
     parser.add_argument(
         "--zero_shot", action="store_true", help="Whether to use zero-shot NER."
     )

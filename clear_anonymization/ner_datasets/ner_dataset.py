@@ -33,7 +33,7 @@ class NERData:
     @classmethod
     def from_json(cls, json_dict: list[dict]) -> "NERData":
         return cls(
-            samples=[LERSample.from_json(sample) for sample in json_dict],
+            samples=[NERSample.from_json(sample) for sample in json_dict],
         )
 
     def to_json(self) -> list[dict]:
