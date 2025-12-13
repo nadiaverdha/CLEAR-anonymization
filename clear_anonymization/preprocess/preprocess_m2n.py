@@ -2,154 +2,115 @@ import argparse
 import json
 import logging
 import re
+import string
 import unicodedata
 import zipfile
 from pathlib import Path
-import string
 
 from datasets import load_dataset
 
+from clear_anonymization.ner_datasets.ner_dataset import NERData, NERDataset, NERSample
 
-def check_mismatch(idx, dataset):
-    print(f"==== Document {idx} ====")
-    sample = dataset[idx]
-    text = sample["text"]
-    labels = sample["labels"]
 
+def preprocess_text(text):
+    text = text.replace("\xa0", " ")
+    return text
+
+
+def list_folders(zip_path):
+    with zipfile.ZipFile(zip_path, "r") as archive:
+        folders = set()
+        for file_name in archive.namelist():
+            if "/" in file_name:
+                folder = "/".join(file_name.split("/")[:-1])
+                folders.add(folder)
+        return sorted(folders)
+
+
+def validate_docu_annotations(folder, sample, verbose=False):
+    text = sample.text
+    labels = sample.labels
+    all_ok = True
     for ann in labels:
         start = ann["start"]
         end = ann["end"]
-
         actual = text[start:end]
         expected = ann["text"]
-
-        print(f"{start}:{end}   '{actual}'  ---->  '{expected}'")
         if actual != expected:
-            print("❌ Mismatch in offsets")
-            # print(text)
-            # inspect_string(actual)
-            # print("-----------")
-            # inspect_string(expected)
-        else:
-            print("✓ Correct ")
-    print("--------------------------------\n")
+            all_ok = False
 
-
-def inspect_string(s, start=0, end=None):
-    if end is None:
-        end = len(s)
-    for i, c in enumerate(s[start:end], start=start):
-        print(f"{i}: {repr(c)} | ord: {ord(c)}")
-
-
-def validate_annotations_per_page(pages, annotations):
-    for page_idx, page_text in enumerate(pages):
-        print(f"\n=== VALIDATING PAGE {page_idx} ===")
-
-        for ann in annotations:
-            sp = ann["startPage"]
-            ep = ann["endPage"]
-
-            rs = ann["pageRelativeStart"]
-            re = ann["pageRelativeEnd"]
-
-            if sp != page_idx:
-                continue
-            actual = page_text[rs:re]
-            expected = ann["text"]
-            print("ACTUAAAAL", repr(actual))
-            print("EXPECTEDDD", repr(expected))
-            if actual == expected:
-                print(f"✓ '{expected}' matches exactly at [{rs}:{re}]")
+        if verbose:
+            print(f"{start}:{end}  '{actual}'  ---->  '{expected}'")
+            if actual != expected:
+                print("❌ incorrect")
             else:
-                print(f"❌ Mismatch '{expected}' at [{rs}:{re}]")
-                found_pos = page_text.find(expected)
-                if found_pos != -1:
-                    print(
-                        f" → Text found at position {found_pos} (offset diff: {found_pos - rs})"
-                    )
-                else:
-                    print(" → Text not found on this page")
+                print("✅ correct ")
+
+    if not verbose:
+        if all_ok:
+            print("✅ Annotation check ok! ")
+        else:
+            print("❌ Annotation check failed!")
 
 
-def load_data(input_dir):
-    dataset = []
+def process_folder(zip_path, folder_name, verbose):
+    pages = []
+    annotations = None
+    with zipfile.ZipFile(zip_path, "r") as archive:
+        folder_files = [f for f in archive.namelist() if folder_name in f]
+        txt_files = sorted(
+            [f for f in folder_files if f.endswith(".txt")],
+            key=lambda p: int(Path(p).stem),
+        )
 
-    with zipfile.ZipFile(input_dir, "r") as archive:
-        folders = {}
+        for txt_file in txt_files:
+            with archive.open(txt_file) as f:
+                content = f.read().decode("utf-8-sig")
 
-        # grouping files by folder
-        for name in archive.namelist():
-            if name.endswith(".txt"):
-                folder = "/".join(name.split("/")[:-1])
-                folders.setdefault(folder, []).append(name)
+                pages.append(preprocess_text(content))
 
-        # sorting the files inside a folder
-        for folder, txt_files in folders.items():
-            txt_files_sorted = sorted(txt_files, key=lambda p: int(Path(p).stem))
-            print(folder)
+        ann_file = [f for f in folder_files if f.endswith(".json")][0]
+        if ann_file:
+            with archive.open(ann_file) as f:
+                annotations = json.loads(f.read().decode("utf-8"))
+    annotations = sorted(annotations, key=lambda x: (x["startPage"]))
+    sample = create_sample(pages, annotations)
+    validate_docu_annotations(folder_name, sample, verbose)
+    return sample
 
-            # opening each of the file
-            pages = []
-            for txt_path in txt_files_sorted:
-                with archive.open(txt_path) as f:
-                    content = f.read().decode("utf-8-sig")
-                    content = content.replace("\r\n", "\n").replace("\r", "\n")
-                    content = content.replace("\xa0", " ")
-                    pages.append(content)
 
-            # removing the extra character introduced in all pages except for page 0
-            #  for i in range(1, len(pages)):
-            #     pages[i] = pages[i][1:]
+def create_sample(pages, annotations):
+    full_text = "".join(pages)
+    page_offsets = []
 
-            full_text = "".join(pages)
-            page_offsets = []
+    current_offset = 0
+    for i, p in enumerate(pages):
+        page_offsets.append(current_offset)
+        current_offset += len(p)
 
-            # calculating the offset of each page depending on the previous page length
-            current_offset = 0
-            for i, p in enumerate(pages):
-                page_offsets.append(current_offset)
-                print(f" Folder {folder} Page {i} offset: {current_offset}")
-                current_offset += len(p)
+    labels = []
+    if annotations:
+        for ann in annotations:
+            startpage = ann["startPage"]
+            endpage = ann["endPage"]
 
-            # the annotations file
-            ann_path = f"{folder}/annotations.json"
-            annotations = None
-            if ann_path in archive.namelist():
-                with archive.open(ann_path) as f:
-                    annotations = json.loads(f.read().decode("utf-8"))
+            start = page_offsets[startpage] + ann["pageRelativeStart"]
+            end = page_offsets[endpage] + ann["pageRelativeEnd"]
+            actual = full_text[start:end]
 
-            annotations = sorted(annotations, key=lambda x: (x["startPage"]))
-            labels = []
+            if startpage > 0:
+                start += 1
+                end += 1
 
-            # function for validating whether the annotations per page are correct
-
-            # validate_annotations_per_page(pages, annotations)
-            if annotations:
-                for ann in annotations:
-                    startpage = ann["startPage"]
-                    endpage = ann["endPage"]
-
-                    start = page_offsets[startpage] + ann["pageRelativeStart"]
-                    end = page_offsets[endpage] + ann["pageRelativeEnd"]
-                    actual = full_text[start:end]
-
-                    if startpage > 0:
-                        start += 1
-                        end += 1
-
-                    labels.append(
-                        {
-                            "text": ann["text"],
-                            "start": start,
-                            "end": end,
-                            "class": ann["label"],
-                        }
-                    )
-
-            dataset.append({"text": full_text, "labels": labels})
-
-    return dataset
+            labels.append(
+                {
+                    "text": ann["text"],
+                    "start": start,
+                    "end": end,
+                    "class": ann["label"],
+                }
+            )
+    return NERSample(full_text, "val", labels)
 
 
 def main():
@@ -166,10 +127,23 @@ def main():
         help="Path where to save the JSON file",
     )
 
+    parser.add_argument(
+        "--verbose",
+        action="store_true",
+        help="Whether to show detailed annotations check.",
+    )
+
     args = parser.parse_args()
-    dataset = load_data(args.input_path)
-    for i, data in enumerate(dataset):
-        check_mismatch(i, dataset)
+
+    ner_data = NERData(samples=[])
+    folders = list_folders(args.input_path)
+    for folder in folders:
+        print(f"==== Document {folder} ====")
+        sample = process_folder(args.input_path, folder, args.verbose)
+        ner_data.samples.append(sample)
+        print("-----------------")
+    output_path = Path(args.output_path)
+    output_path.write_text(json.dumps(ner_data.to_json(), indent=4))
 
 
 if __name__ == "__main__":
