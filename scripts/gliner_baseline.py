@@ -6,7 +6,7 @@ from pathlib import Path
 
 from gliner import GLiNER
 
-from clear_anonymization.ner_datasets.ler_dataset import LERData, LERSample
+from clear_anonymization.ner_datasets.ner_dataset import NERData, NERSample
 
 
 def to_spans(predicted, text):
@@ -39,7 +39,7 @@ def main():
 
     definitions = ["PERS", "LOC", "ORG", "NRM", "RS", "LIT", "REG"]
 
-    data = LERData.from_json(json.loads(Path(args.input_dir).read_text()))
+    data = NERData.from_json(json.loads(Path(args.input_dir).read_text()))
     samples = [s for s in data.samples if s.split == "validation"]
     texts = [s.sentences for s in samples]
     extractor = GLiNER.from_pretrained(args.model, max_length=1024).to("cuda")
