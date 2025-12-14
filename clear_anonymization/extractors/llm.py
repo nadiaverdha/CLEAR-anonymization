@@ -4,15 +4,16 @@ import logging
 import os
 import re
 from concurrent.futures import ThreadPoolExecutor
+from enum import Enum
 from pathlib import Path
 from string import Template
 
-from clear_anonymization.ner_datasets.ner_dataset import NERData, NERSample
 from openai import OpenAI
 
 from clear_anonymization.extractors import factory
 from clear_anonymization.extractors.base import BaseExtractor
 from clear_anonymization.extractors.cache import CacheManager
+from clear_anonymization.ner_datasets.ner_dataset import NERData, NERSample
 
 __all__ = ["LLMExtractor"]
 
@@ -33,6 +34,37 @@ NER_SCHEMA = {
 }
 
 
+SPAN_SCHEMA = {
+    "type": "json_schema",
+    "json_schema": {
+        "name": "SpanExtraction",
+        "schema": {
+            "type": "object",
+            "properties": {"spans": {"type": "array", "items": {"type": "string"}}},
+            "required": ["spans"],
+            "additionalProperties": False,
+        },
+        "strict": True,
+    },
+}
+
+LABEL_SCHEMA = {
+    "type": "json_schema",
+    "json_schema": {
+        "name": "NER",
+        "schema": {
+            "type": "object",
+            "properties": {
+                "labels": {"type": "object", "additionalProperties": {"type": "string"}}
+            },
+            "required": ["labels"],
+            "additionalProperties": False,
+        },
+        "strict": True,
+    },
+}
+
+
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
@@ -41,6 +73,11 @@ logging.basicConfig(
     ],
 )
 logger = logging.getLogger("LLM NER")
+
+
+class NERMode(str, Enum):
+    ONE_STEP = "one_step"
+    TWO_STEP = "two_step"
 
 
 class LLMExtractor(BaseExtractor):
@@ -53,6 +90,7 @@ class LLMExtractor(BaseExtractor):
         lang: str = "de",
         dataset: str = "ler",
         zero_shot: bool = False,
+        mode: NERMode = NERMode.ONE_STEP,
         fewshot_path: str | None = None,
         prompt_path: str | None = None,
         cache_file: str | None = None,
@@ -73,6 +111,7 @@ class LLMExtractor(BaseExtractor):
         self.lang = lang
         self.zero_shot = zero_shot
         self.dataset = dataset
+        self.mode = mode
 
         # self.client = self._get_openai_client()
 
@@ -92,10 +131,23 @@ class LLMExtractor(BaseExtractor):
             )
 
         # Load NER template
-        if prompt_path is None:
-            prompt_path = Path(__file__).parent.parent / "prompts" / "ner_task.txt"
 
-        template_path = Path(prompt_path)
+        if prompt_path is None:
+            prompts_dir = Path(__file__).parent.parent / "prompts"
+            self.one_step_template = Template(
+                (prompts_path / "ner_task.txt").read_text(encoding="utf-8")
+            )
+            self.span_template = None
+            self.label_template = None
+
+            if self.mode == NERMode.TWO_STEP:
+                self.span_template = Template(
+                    (prompts_dir / "ner_extract_spans.txt").read_text(encoding="utf-8")
+                )
+                self.label_template = Template(
+                    (prompts_dir / "ner_label_spans.txt").read_text(encoding="utf-8")
+                )
+
         if not template_path.exists():
             raise FileNotFoundError(f"Prompt template not found at {template_path}")
         self.template = Template(template_path.read_text(encoding="utf-8"))
@@ -154,13 +206,27 @@ class LLMExtractor(BaseExtractor):
     def _build_prompt(
         self,
         text,
+        spans=None,
     ) -> str:
-        return self.template.substitute(text=text, fewshot_block=self._fewshot_block())
+        # one step process
+        if self.mode == NERMode.ONE_STEP:
+            return self.template.substitute(
+                text=text, fewshot_block=self._fewshot_block()
+            )
+
+        # two step process
+        spans_block = "\n".join(f"- {s}" for s in spans)
+        return self.template.substitute(
+            text=text,
+            spans=spans_block,
+            fewshot_block=self._fewshot_block(),
+        )
 
     @staticmethod
-    def _to_spans(substrs: dict, sentence: str):
+    def _to_labels(substrs: dict, sentence: str):
         spans = []
         for sub, label in substrs.items():
+            print(label)
             if not sub:
                 continue
             match = re.search(re.escape(sub), sentence)
@@ -175,6 +241,44 @@ class LLMExtractor(BaseExtractor):
                 )
         return spans
 
+    def _predict_spans(self, text: str) -> list[str]:
+        prompt = self.template.substitute(
+            text=text,
+            fewshot_block="",
+        )
+        resp = self._get_openai_client().chat.completions.create(
+            model=self.model,
+            messages=[
+                {
+                    "role": "system",
+                    "content": "You are an excellent linguistic for finding named entities spans in given text.",
+                },
+                {"role": "user", "content": prompt},
+            ],
+            respose_format=SPAN_SCHEMA,
+            temperature=self.temperature,
+        )
+        payload = json.loads(resp.choices[0].message.content)
+        return payload["spans"]
+
+    def _label_spans(self, text: str, spans: list[str]) -> dict:
+        llm_prompt = self._build_prompt(text, spans)
+        resp = self._get_openai_client().chat.completions.create(
+            model=self.model,
+            messages=[
+                {
+                    "role": "system",
+                    "content": "Du bist eine Expertin für Named Entity Recognition.",
+                },
+                {"role": "user", "content": llm_prompt},
+            ],
+            response_format=LABEL_SCHEMA,
+            temperature=self.temperature,
+        )
+
+        payload = json.loads(resp.choices[0].message.content)
+        return payload["labels"]
+
     def _predict(self, text: str) -> list[dict]:
         """
 
@@ -183,39 +287,42 @@ class LLMExtractor(BaseExtractor):
         """
 
         # Build the full LLM prompt using the template
-
         llm_prompt = self._build_prompt(text)
-        # print(llm_prompt)
-        # Use the full LLM prompt for cache key calculation
-        cache_key = self.cache._hash(llm_prompt, self.model, str(self.temperature))
+        if self.mode == NERMode.ONE_STEP:
+            # Use the full LLM prompt for cache key calculation
+            cache_key = self.cache._hash(llm_prompt, self.model, str(self.temperature))
 
-        cached = self.cache.get(cache_key)
-        # print(cached)
-        if cached is None:
-            print("cache is nonee")
-            resp = self._get_openai_client().chat.completions.create(
-                model=self.model,
-                messages=[
-                    {
-                        "role": "system",
-                        "content": "You are an excellent linguistic for labelling named entities in given text.",
-                    },
-                    {"role": "user", "content": llm_prompt},
-                ],
-                response_format=NER_SCHEMA,
-                temperature=self.temperature,
-            )
+            cached = self.cache.get(cache_key)
+            # print(cached)
+            if cached is None:
+                print("cache is nonee")
+                resp = self._get_openai_client().chat.completions.create(
+                    model=self.model,
+                    messages=[
+                        {
+                            "role": "system",
+                            "content": "You are an excellent linguistic for labelling named entities in given text.",
+                        },
+                        {"role": "user", "content": llm_prompt},
+                    ],
+                    response_format=NER_SCHEMA,
+                    temperature=self.temperature,
+                )
 
-            cached = resp.choices[0].message.content
-
-            self.cache.set(cache_key, cached)
-        try:
-            payload = json.loads(cached)
-            return self._to_spans(payload["labels"], text)
-        except (json.JSONDecodeError, KeyError) as e:
-            print(f"Error parsing LLM response: {e}")
-            print(f"Raw response: {cached}")
-            return []
+                cached = resp.choices[0].message.content
+                print(cached)
+                self.cache.set(cache_key, cached)
+            try:
+                payload = json.loads(cached)
+                return self._to_labels(payload["labels"], text)
+            except (json.JSONDecodeError, KeyError) as e:
+                print(f"Error parsing LLM response: {e}")
+                print(f"Raw response: {cached}")
+                return []
+        else:
+            spans = self._predict_spans(text)
+            labels = self._label_spans(text, spans)
+            return self._to_labels(labels, text)
 
     def predict(self, text: str) -> list:
         """Recognize Named Entities for the provided text.
@@ -277,7 +384,7 @@ if __name__ == "__main__":
     )
 
     parser.add_argument("--model", type=str, required=True, help="Model used for NER")
-
+    parser.add_argument("--mode", type=str, required=True, help="ONE_STEP or TWO_STEP")
     parser.add_argument(
         "--prompt_path", type=str, required=True, help="Path to the prompt file"
     )
@@ -300,6 +407,7 @@ if __name__ == "__main__":
     main(
         Path(args.input_dir),
         args.model,
+        args.mode,
         args.prompt_path,
         args.cache_file,
         args.lang,
