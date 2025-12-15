@@ -20,7 +20,7 @@ To store the M2N dataset in a json format inside the `data` folder:
 python clear_anonymization/preprocess/preprocess_m2n.py --input_dir data/m2n/testexport_musterfall_20251127.zip
 ```
 
-#### LLM Baseline
+### LLM Baseline
 
 First, start running the LLM model, e.g. google/gemma-3-27b-it locally using a VLLM:
 
