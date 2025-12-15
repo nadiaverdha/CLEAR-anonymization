@@ -8,11 +8,17 @@
 
 #### LER Dataset
 
-First you need to download the LER dataset using the following script inside the `data` folder:
+To download the LER dataset from HuggingFace in a json format inside the `data` folder:
 ```bash
-python scripts/download_dataset.py --repository_id elenanereiss/german-ler --output_path data/ler/ler_data.json 
+python clear_anonymization/preprocess/preprocess_ler.py --repository_id elenanereiss/german-ler --output_dir data/ler/ler_data.json 
 ```
 
+#### M2N Dataset
+
+To store the M2N dataset in a json format inside the `data` folder:
+```bash
+python clear_anonymization/preprocess/preprocess_m2n.py --input_dir data/m2n/testexport_musterfall_20251127.zip
+```
 
 #### LLM Baseline
 
