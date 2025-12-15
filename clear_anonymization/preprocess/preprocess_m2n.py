@@ -116,13 +116,13 @@ def create_sample(pages, annotations):
 def main():
     parser = argparse.ArgumentParser(description="Load a dataset from M2N zip file ")
     parser.add_argument(
-        "--input_path",
+        "--input_dir",
         type=str,
         help="Path where to load the zip file from",
     )
 
     parser.add_argument(
-        "--output_path",
+        "--output_dir",
         type=str,
         help="Path where to save the JSON file",
     )
@@ -136,13 +136,13 @@ def main():
     args = parser.parse_args()
 
     ner_data = NERData(samples=[])
-    folders = list_folders(args.input_path)
+    folders = list_folders(args.input_dir)
     for folder in folders:
         print(f"==== Document {folder} ====")
-        sample = process_folder(args.input_path, folder, args.verbose)
+        sample = process_folder(args.input_dir, folder, args.verbose)
         ner_data.samples.append(sample)
         print("-----------------")
-    output_path = Path(args.output_path)
+    output_path = Path(args.output_dir)
     output_path.write_text(json.dumps(ner_data.to_json(), indent=4))
 
 

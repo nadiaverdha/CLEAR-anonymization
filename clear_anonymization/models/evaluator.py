@@ -1,7 +1,6 @@
 import json
 from pathlib import Path
 
-from clear_anonymization.ner_datasets.ner_dataset import NERData, NERSample
 from sklearn.metrics import (
     auc,
     classification_report,
@@ -12,6 +11,7 @@ from tqdm.auto import tqdm
 
 from clear_anonymization.extractors import factory
 from clear_anonymization.extractors.llm import LLMExtractor
+from clear_anonymization.ner_datasets.ner_dataset import NERData, NERSample
 
 
 def check_overlap(pred, gold, threshold=1):
@@ -48,7 +48,6 @@ def evaluate_span_level(
         predicted_spans = extractor.predict(text)
 
         matched_gold = set()
-
         for pred in predicted_spans:
             found_match = False
 
