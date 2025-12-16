@@ -7,8 +7,8 @@ Generated on: 2025-12-16T15:41:42.331290
 Each model is evaluated on different thresholds.The threshold represents the minimum confidence score required for a predicted entity span to be considered correct.
 **Examples:**
 
-- A threshold of **1.0** means that each predicted span is considered correct only if it has **100% overlap** with the gold span.
-- A threshold of **0.5** means that each predicted span is considered correct if it has at least **50% overlap** with the gold span.
+- A threshold of **1.0** means that each predicted span is considered correct only if it has a **100% overlap** with the gold span.
+- A threshold of **0.5** means that each predicted span is considered correct if it has at least a **50% overlap** with the gold span.
 
 Before evaluating the models, the prediction result files must be generated. First, start the local vLLM server using this example command:
 ```bash
