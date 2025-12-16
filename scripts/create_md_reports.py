@@ -24,9 +24,9 @@ def create_md_eval_report(file_path: str | Path, title: str = "Evaluation Result
         "Before evaluating the models, the prediction result files must be generated. "
         "First, start the local vLLM server using this example command:\n"
         "```bash\n"
-        "python -m vllm.entrypoints.openai.api_server"
-        "--model google/gemma-3-27b-it"
-        "--host 0.0.0.0"   
+        "python -m vllm.entrypoints.openai.api_server "
+        "--model google/gemma-3-27b-it "
+        "--host 0.0.0.0 "   
         "--port 8000 \n\n"
         "```\n\n"
         
@@ -38,29 +38,21 @@ def create_md_eval_report(file_path: str | Path, title: str = "Evaluation Result
         "--model {MODEL_NAME} "
         "--mode {one_step or two_step} "
         "--dataset m2n "
-        "--zero_shot"
+        "--zero_shot \n\n"
         "```\n\n"
-      
-        "```bash\n"
-        "python clear_anonymization/extractors/llm.py "
-        "--input_dir data/m2n/m2n_data.json "
-        "--model {MODEL_NAME} "
-        "--mode {one_step or two_step} "
-        "--dataset m2n "
-        "--zero_shot"
-        "```\n\n"
+
     )
 
     eval_command = (
         "Evaluating of the model results can be done by running the following example bash command:\n\n"
         "```bash\n"
-        "python scripts/evaluate_llm.py"
-        "--model {MODEL_NAME}"
-        "--input_dir data/m2n/m2n_data.json"
-        "--evaluation_type span_level"
-        "--dataset m2n"
-        "--mode {one_step or two_step}"
-        "--zero_shot"
+        "python scripts/evaluate_llm.py "
+        "--model {MODEL_NAME} "
+        "--input_dir data/m2n/m2n_data.json "
+        "--evaluation_type span_level "
+        "--dataset m2n "
+        "--mode {one_step or two_step} "
+        "--zero_shot \n\n"
         "```\n\n"
     )
 
