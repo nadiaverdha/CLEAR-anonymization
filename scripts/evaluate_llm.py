@@ -21,7 +21,14 @@ def evaluate_samples_llm(samples: list[NERSample], evaluation_type: str, extract
         for threshold in thresholds:
             print(f"\nThreshold {threshold}")
             metrics = evaluate_span_level(extractor, samples, threshold)
-            results.append([threshold, f"{metrics['precision']:.4f}", f"{metrics['recall']:.4f}", f"{metrics['f1']:.4f}"])
+            results.append(
+                [
+                    threshold,
+                    f"{metrics['precision']:.4f}",
+                    f"{metrics['recall']:.4f}",
+                    f"{metrics['f1']:.4f}",
+                ]
+            )
 
         return results
     else:
@@ -97,16 +104,12 @@ def main():
     )
 
     output_md = Path(f"reports/{args.dataset}_eval_results.md")
-    create_md_eval_report(
-        output_md,
-        "Evaluation Results",
-        args.dataset,
-    )
+    create_md_eval_report(output_md, f"Evaluation Results - {args.dataset}")
     headers = ["Threshold", "Precision", "Recall", "F1"]
     results = evaluate_samples_llm(samples, args.evaluation_type, LLMExtractor)
     append_eval_table(
         output_md,
-        f"Evaluation Results of {args.model} on {args.dataset} - {mode}",
+        f"Evaluation Results of {args.model} - {mode}",
         headers,
         results,
     )
