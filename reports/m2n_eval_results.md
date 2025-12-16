@@ -23,7 +23,7 @@ python clear_anonymization/extractors/llm.py --input_dir data/m2n/m2n_data.json 
 
 ```
 
-Evaluating of the model results can be done by running the following example bash command:
+Evaluation of the model results can be done by running the following example bash command:
 
 ```bash
 python scripts/evaluate_llm.py --model {MODEL_NAME} --input_dir data/m2n/m2n_data.json --evaluation_type span_level --dataset m2n --mode {one_step or two_step} --zero_shot 

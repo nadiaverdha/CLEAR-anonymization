@@ -44,7 +44,7 @@ def create_md_eval_report(file_path: str | Path, title: str = "Evaluation Result
     )
 
     eval_command = (
-        "Evaluating of the model results can be done by running the following example bash command:\n\n"
+        "Evaluation of the model results can be done by running the following example bash command:\n\n"
         "```bash\n"
         "python scripts/evaluate_llm.py "
         "--model {MODEL_NAME} "
