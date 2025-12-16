@@ -91,8 +91,8 @@ def main():
                 "f1": metrics["f1"],
             }
         )
-    md_results = markdown_table(results).get_markdown()
-    append_eval_table(output_md, md_results)
+    
+    append_eval_table(output_md, results)
 
     print(f"\nResults saved to {output_md}")
 
