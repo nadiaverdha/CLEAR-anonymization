@@ -8,8 +8,6 @@ from clear_anonymization.models.evaluator import (
     evaluate_span_level,
 )
 
-from py_markdown_table.markdown_table import markdown_table
-
 from clear_anonymization.ner_datasets.ner_dataset import NERData, NERSample
 
 from scripts.create_md_reports import create_md_eval_report, append_eval_table
@@ -78,21 +76,17 @@ def main():
     test_extractor = TestExtractor()
     thresholds = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
     headers = ["Threshold", "Precision", "Recall", "F1"]
-    print("\n---- Span-Level Evaluation ----")
+    print("\n---- Span-Level Evaluation Test ----")
+
     results = []
     for threshold in thresholds:
         print(f"\nThreshold {threshold}")
         metrics = evaluate_span_level(test_extractor, ground_truth, threshold)
         results.append(
-            {
-                "threshold": threshold,
-                "precision": metrics["precision"],
-                "recall": metrics["recall"],
-                "f1": metrics["f1"],
-            }
+           [ threshold, metrics["precision"], metrics["recall"], metrics["f1"]]
         )
-    
-    append_eval_table(output_md, results)
+
+    append_eval_table(output_md, headers, results)
 
     print(f"\nResults saved to {output_md}")
 
