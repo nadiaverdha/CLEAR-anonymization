@@ -97,11 +97,6 @@ def create_sample(pages, annotations):
             start = page_offsets[startpage] + ann["pageRelativeStart"]
             end = page_offsets[endpage] + ann["pageRelativeEnd"]
             actual = full_text[start:end]
-
-            if startpage > 0:
-                start += 1
-                end += 1
-
             labels.append(
                 {
                     "text": ann["text"],
