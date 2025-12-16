@@ -1,6 +1,6 @@
 # Evaluation Results - m2n
 
-Generated on: 2025-12-16T15:34:57.513642
+Generated on: 2025-12-16T15:36:41.643531
 
 **Thresholds explanation:**
 
@@ -11,14 +11,17 @@ Each model is evaluated on different thresholds.The threshold represents the min
 - A threshold of **0.5** means that each predicted span is considered correct if it has at least **50% overlap** with the gold span.
 
 Before evaluating the models, the prediction result files must be generated. First, start the local vLLM server using this example command:
-```bashpython -m vllm.entrypoints.openai.api_server--model google/gemma-3-27b-it--host 0.0.0.0--port 8000 
+```bash
+python -m vllm.entrypoints.openai.api_server--model google/gemma-3-27b-it--host 0.0.0.0--port 8000 
 
 ```
 
 Next, run the following command on a another terminal:
 
 ```bash
-python clear_anonymization/extractors/llm.py --input_dir data/m2n/m2n_data.json --model {MODEL_NAME} --mode {one_step or two_step} --dataset m2n --zero_shot``````bash
+python clear_anonymization/extractors/llm.py --input_dir data/m2n/m2n_data.json --model {MODEL_NAME} --mode {one_step or two_step} --dataset m2n --zero_shot```
+
+```bash
 python clear_anonymization/extractors/llm.py --input_dir data/m2n/m2n_data.json --model {MODEL_NAME} --mode {one_step or two_step} --dataset m2n --zero_shot```
 
 Evaluating of the model results can be done by running the following example bash command:

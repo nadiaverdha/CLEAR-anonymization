@@ -23,7 +23,7 @@ def create_md_eval_report(file_path: str | Path, title: str = "Evaluation Result
     model_command = (
         "Before evaluating the models, the prediction result files must be generated. "
         "First, start the local vLLM server using this example command:\n"
-        "```bash"
+        "```bash\n"
         "python -m vllm.entrypoints.openai.api_server"
         "--model google/gemma-3-27b-it"
         "--host 0.0.0.0"   
@@ -39,7 +39,7 @@ def create_md_eval_report(file_path: str | Path, title: str = "Evaluation Result
         "--mode {one_step or two_step} "
         "--dataset m2n "
         "--zero_shot"
-        "```"
+        "```\n\n"
       
         "```bash\n"
         "python clear_anonymization/extractors/llm.py "
