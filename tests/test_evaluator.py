@@ -7,10 +7,8 @@ from clear_anonymization.models.evaluator import (
     evaluate_char_level,
     evaluate_span_level,
 )
-
 from clear_anonymization.ner_datasets.ner_dataset import NERData, NERSample
-
-from scripts.create_md_reports import create_md_eval_report, append_eval_table
+from scripts.create_md_reports import append_eval_table, create_md_eval_report
 
 
 class TestExtractor:
@@ -83,10 +81,10 @@ def main():
         print(f"\nThreshold {threshold}")
         metrics = evaluate_span_level(test_extractor, ground_truth, threshold)
         results.append(
-           [ threshold, metrics["precision"], metrics["recall"], metrics["f1"]]
+            [threshold, metrics["precision"], metrics["recall"], metrics["f1"]]
         )
 
-    append_eval_table(output_md, headers, results)
+    append_eval_table(output_md, "results on test data", headers, results)
 
     print(f"\nResults saved to {output_md}")
 

@@ -3,24 +3,27 @@ import json
 from pathlib import Path
 
 from clear_anonymization.extractors import factory
+from clear_anonymization.extractors.llm import NERMode, PromptConfig
 from clear_anonymization.models.evaluator import (
     evaluate_char_level,
     evaluate_span_level,
 )
 from clear_anonymization.ner_datasets.ner_dataset import NERData, NERSample
-
-from clear_anonymization.extractors.llm import PromptConfig, NERMode
+from scripts.create_md_reports import append_eval_table, create_md_eval_report
 
 
 def evaluate_samples_llm(samples: list[NERSample], evaluation_type: str, extractor):
     print(f"\nEvaluating model on {len(samples)} samples")
     thresholds = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
+    results = []
     if evaluation_type == "span_level":
         print("\n---- Span-Level Evaluation ----")
         for threshold in thresholds:
             print(f"\nThreshold {threshold}")
             metrics = evaluate_span_level(extractor, samples, threshold)
+            results.append([threshold, f"{metrics['precision']:.4f}", f"{metrics['recall']:.4f}", f"{metrics['f1']:.4f}"])
 
+        return results
     else:
         raise ValueError("Use 'span_level'.")
 
@@ -93,7 +96,21 @@ def main():
         mode=mode,
     )
 
-    evaluate_samples_llm(samples, args.evaluation_type, LLMExtractor)
+    output_md = Path(f"reports/{args.dataset}_eval_results.md")
+    create_md_eval_report(
+        output_md,
+        "Evaluation Results",
+        args.dataset,
+    )
+    headers = ["Threshold", "Precision", "Recall", "F1"]
+    results = evaluate_samples_llm(samples, args.evaluation_type, LLMExtractor)
+    append_eval_table(
+        output_md,
+        f"Evaluation Results of {args.model} on {args.dataset} - {mode}",
+        headers,
+        results,
+    )
+    print(f"\nResults saved to {output_md}")
 
 
 if __name__ == "__main__":
