@@ -9,11 +9,11 @@ def create_md_eval_report(file_path: str | Path, title: str = "Evaluation Result
     if file_path.exists():
         return
     threshold_explanation = (
-        "**Thresholds explanation:**\n"
+        "**Thresholds explanation:**\n\n"
         "Each model is evaluated on different thresholds."
         "The threshold represents the minimum confidence score required for a "
         "predicted entity span to be considered correct.\n"
-        "**Examples:**\n"
+        "**Examples:**\n\n"
         "- A threshold of **1.0** means that each predicted span is considered correct "
         "only if it has **100% overlap** with the gold span.\n"
         "- A threshold of **0.5** means that each predicted span is considered correct "
@@ -23,11 +23,12 @@ def create_md_eval_report(file_path: str | Path, title: str = "Evaluation Result
     model_command = (
         "Before evaluating the models, the prediction result files must be generated. "
         "First, start the local vLLM server using this example command:\n"
-        "```bashg \n"
+        "```bash"
         "python -m vllm.entrypoints.openai.api_server"
         "--model google/gemma-3-27b-it"
         "--host 0.0.0.0"   
         "--port 8000 \n\n"
+        "```\n\n"
         
         "Next, run the following command on a another terminal:\n\n"
         
@@ -37,7 +38,7 @@ def create_md_eval_report(file_path: str | Path, title: str = "Evaluation Result
         "--model {MODEL_NAME} "
         "--mode {one_step or two_step} "
         "--dataset m2n "
-        "--zero_shot\n"
+        "--zero_shot"
         "```"
       
         "```bash\n"
