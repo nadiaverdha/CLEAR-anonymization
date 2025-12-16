@@ -30,7 +30,7 @@ def create_md_eval_report(file_path: str | Path, title: str = "Evaluation Result
         "--port 8000 \n\n"
         "```\n\n"
         
-        "Next, run the following command on a another terminal:\n\n"
+        "Next, run the following command on another terminal:\n\n"
         
         "```bash\n"
         "python clear_anonymization/extractors/llm.py "

@@ -16,7 +16,7 @@ python -m vllm.entrypoints.openai.api_server --model google/gemma-3-27b-it --hos
 
 ```
 
-Next, run the following command on a another terminal:
+Next, run the following command on another terminal:
 
 ```bash
 python clear_anonymization/extractors/llm.py --input_dir data/m2n/m2n_data.json --model {MODEL_NAME} --mode {one_step or two_step} --dataset m2n --zero_shot 
