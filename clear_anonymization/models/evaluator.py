@@ -22,6 +22,7 @@ def check_overlap(pred, gold, threshold=1):
         return pred["text"] == gold["text"]
 
     overlap_start = max(pred_start, gold_start)
+
     overlap_end = min(pred_end, gold_end)
 
     # no overlap
@@ -29,9 +30,11 @@ def check_overlap(pred, gold, threshold=1):
         return False
 
     overlap = overlap_end - overlap_start
-
+    # print(pred["text"], gold["text"],overlap)
     union = max(pred_end, gold_end) - min(pred_start, gold_start)
     iou = overlap / union
+    # print(iou,"->>>>",threshold,iou >= threshold)
+
     return iou >= threshold
 
 
