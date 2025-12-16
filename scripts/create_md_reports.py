@@ -27,4 +27,3 @@ def append_eval_table(file_path, table_title, headers, results):
             f.write("| " + " | ".join(map(str, result)) + " |\n")
         f.write("\n")
 
-    return append_eval_table
