@@ -1,0 +1,80 @@
+import argparse
+import json
+from pathlib import Path
+
+from clear_anonymization.extractors import factory
+from clear_anonymization.models.evaluator import (
+    evaluate_char_level,
+    evaluate_span_level,
+)
+
+from clear_anonymization.ner_datasets.ner_dataset import NERData, NERSample
+
+
+class TestExtractor:
+    def predict(self, text):
+        if text == "Nadia lives in Vienna.":
+            return [
+                {"start": 0, "end": 6, "text": "Nadia", "class": "person"},
+                {"start": 14, "end": 18, "text": "Vienna", "class": "location"},
+            ]
+        elif text == "Max Musterman emailed students@tuwien.com yesterday.":
+            return [
+                {"start": 0, "end": 12, "text": "Alice", "class": "person"},
+                {
+                    "start": 21,
+                    "end": 39,
+                    "text": "students@tuwien.com",
+                    "class": "email",
+                },
+            ]
+        return []
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Evaluate a named entity recognition model based on LLM"
+    )
+    parser.add_argument(
+        "--threshold",
+        type=float,
+        help="Pick threshold if you want to perform span_level evaluation",
+    )
+
+    args = parser.parse_args()
+
+    ground_truth = [
+        NERSample(
+            text="Nadia lives in Vienna.",
+            split="test",
+            labels=[
+                {"start": 0, "end": 5, "text": "Nadia", "class": "person"},
+                {"start": 14, "end": 20, "text": "Vienna", "class": "location"},
+            ],
+        ),
+        NERSample(
+            text="Max Musterman emailed students@tuwien.com yesterday.",
+            split="test",
+            labels=[
+                {"start": 0, "end": 12, "text": "Alice", "class": "person"},
+                {
+                    "start": 21,
+                    "end": 39,
+                    "text": "students@tuwien.com",
+                    "class": "email",
+                },
+            ],
+        ),
+    ]
+
+    test_extractor = TestExtractor()
+    thresholds = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
+
+    print("\n---- Span-Level Evaluation ----")
+    for threshold in thresholds:
+        print(f"\nThreshold {threshold}")
+        metrics = evaluate_span_level(test_extractor, ground_truth, threshold)
+
+
+if __name__ == "__main__":
+    main()
