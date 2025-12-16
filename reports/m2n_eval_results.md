@@ -1,51 +1,15 @@
 # m2n - Evaluation Results data
 
-Generated on: 2025-12-16T14:20:43.424712
+Generated on: 2025-12-16T15:10:09.285530
 
-## Evaluation Results of mistralai/Ministral-3-8B-Instruct-2512 on m2n - NERMode.ONE_STEP
+**Threshold explanation:**
 
-| Threshold | Precision | Recall | F1 |
-|---------|---------|------|--|
-| 0.1 | 0.5141 | 0.6390 | 0.5698 |
-| 0.2 | 0.5141 | 0.6390 | 0.5698 |
-| 0.3 | 0.5039 | 0.6302 | 0.5600 |
-| 0.4 | 0.4679 | 0.6047 | 0.5275 |
-| 0.5 | 0.4447 | 0.5864 | 0.5058 |
-| 0.6 | 0.4113 | 0.5424 | 0.4678 |
-| 0.7 | 0.3882 | 0.5119 | 0.4415 |
-| 0.8 | 0.3522 | 0.4644 | 0.4006 |
-| 0.9 | 0.3445 | 0.4542 | 0.3918 |
-| 1 | 0.3445 | 0.4542 | 0.3918 |
+The threshold represents the minimum confidence score required for a predicted entity span to be considered valid.
 
-## Evaluation Results of mistralai/Ministral-3-8B-Instruct-2512 on m2n - NERMode.TWO_STEP
+**Examples:**
 
-| Threshold | Precision | Recall | F1 |
-|---------|---------|------|--|
-| 0.1 | 0.4919 | 0.6719 | 0.5680 |
-| 0.2 | 0.4873 | 0.6698 | 0.5642 |
-| 0.3 | 0.4734 | 0.6592 | 0.5511 |
-| 0.4 | 0.4434 | 0.6379 | 0.5232 |
-| 0.5 | 0.4180 | 0.6136 | 0.4973 |
-| 0.6 | 0.3857 | 0.5661 | 0.4588 |
-| 0.7 | 0.3580 | 0.5254 | 0.4258 |
-| 0.8 | 0.3256 | 0.4780 | 0.3874 |
-| 0.9 | 0.3210 | 0.4712 | 0.3819 |
-| 1 | 0.3233 | 0.4746 | 0.3846 |
-
-## Evaluation Results of google/gemma-3-27b-it on m2n - NERMode.ONE_STEP
-
-| Threshold | Precision | Recall | F1 |
-|---------|---------|------|--|
-| 0.1 | 0.6959 | 0.6581 | 0.6765 |
-| 0.2 | 0.6926 | 0.6571 | 0.6743 |
-| 0.3 | 0.6824 | 0.6516 | 0.6667 |
-| 0.4 | 0.6351 | 0.6246 | 0.6298 |
-| 0.5 | 0.6081 | 0.6081 | 0.6081 |
-| 0.6 | 0.5709 | 0.5709 | 0.5709 |
-| 0.7 | 0.5405 | 0.5405 | 0.5405 |
-| 0.8 | 0.5034 | 0.5034 | 0.5034 |
-| 0.9 | 0.4899 | 0.4915 | 0.4907 |
-| 1 | 0.4797 | 0.4814 | 0.4805 |
+- A threshold of **1.0** means that a predicted span is considered correct only if it has **100% overlap** with the gold span.
+- A threshold of **0.5** means that a predicted span is considered correct if it has at least **50% overlap** with the gold span.
 
 ## Evaluation Results of google/gemma-3-27b-it on m2n - NERMode.TWO_STEP
 
