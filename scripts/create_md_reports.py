@@ -11,7 +11,7 @@ def create_md_eval_report(file_path: str | Path, title: str = "Evaluation Result
     threshold_explanation = (
         "**Thresholds explanation:**\n\n"
         "Each model is evaluated on different thresholds."
-        "The threshold represents the minimum confidence score required for a "
+        "The threshold represents the minimum overlap required for a "
         "predicted entity span to be considered correct.\n"
         "**Examples:**\n\n"
         "- A threshold of **1.0** means that each predicted span is considered correct "

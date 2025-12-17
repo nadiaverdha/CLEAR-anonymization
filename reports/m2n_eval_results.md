@@ -4,7 +4,7 @@ Generated on: 2025-12-16T15:41:42.331290
 
 **Thresholds explanation:**
 
-Each model is evaluated on different thresholds.The threshold represents the minimum confidence score required for a predicted entity span to be considered correct.
+Each model is evaluated on different thresholds.The threshold represents the minimum overlap required for a predicted entity span to be considered correct.
 **Examples:**
 
 - A threshold of **1.0** means that each predicted span is considered correct only if it has a **100% overlap** with the gold span.
