@@ -154,6 +154,7 @@ class LLMExtractor(BaseExtractor):
 
         if allowed_classes:
             self.allowed_classes = [c.strip() for c in allowed_classes.split(",")]
+            classes_str = "_".join(self.allowed_classes)
             unknown_class = set(self.allowed_classes) - set(all_classes)
             if unknown_class:
                 raise ValueError(
@@ -162,13 +163,11 @@ class LLMExtractor(BaseExtractor):
 
         else:
             self.allowed_classes = all_classes
+            classes_str = "all_classes"
 
         model_name = model.replace("/", "_")
-        classes_str = "_".join(self.allowed_classes)
         date_str = datetime.now().strftime("%Y-%m-%d")
-        cache_folder = (
-            Path(__file__).parent.parent / "cache" / model_name / date_str
-        )
+        cache_folder = Path(__file__).parent.parent / "cache" / model_name / date_str
         cache_folder.mkdir(parents=True, exist_ok=True)
 
         if cache_file:

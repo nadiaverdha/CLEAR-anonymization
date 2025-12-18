@@ -26,12 +26,10 @@ def create_md_eval_report(file_path: str | Path, title: str = "Evaluation Result
         "```bash\n"
         "python -m vllm.entrypoints.openai.api_server "
         "--model google/gemma-3-27b-it "
-        "--host 0.0.0.0 "   
+        "--host 0.0.0.0 "
         "--port 8000 \n\n"
         "```\n\n"
-        
         "Next, run the following command on another terminal:\n\n"
-        
         "```bash\n"
         "python clear_anonymization/extractors/llm.py "
         "--input_dir data/m2n/m2n_data.json "
@@ -40,7 +38,6 @@ def create_md_eval_report(file_path: str | Path, title: str = "Evaluation Result
         "--dataset m2n "
         "--zero_shot \n\n"
         "```\n\n"
-
     )
 
     eval_command = (
@@ -56,14 +53,13 @@ def create_md_eval_report(file_path: str | Path, title: str = "Evaluation Result
         "```\n\n"
     )
 
-
     with file_path.open("w") as f:
         f.write(f"# {title}\n\n")
         f.write(f"Generated on: {datetime.now().isoformat()}\n\n")
         f.write(threshold_explanation)
         f.write(model_command)
         f.write(eval_command)
-        
+
 
 def append_eval_table(file_path, table_title, headers, results):
     with file_path.open("a") as f:
