@@ -5,6 +5,7 @@ import os
 import re
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
+from datetime import datetime
 from enum import Enum
 from pathlib import Path
 from string import Template
@@ -148,30 +149,6 @@ class LLMExtractor(BaseExtractor):
             self.span_template = Template(prompts.span.read_text("utf-8"))
             self.label_template = Template(prompts.label.read_text("utf-8"))
 
-        # Set up cache
-        cache_file = Path(
-            cache_file
-            or (
-                Path(__file__).parent.parent
-                / "cache"
-                / f"{model}_{dataset}_{mode}_cache{'_fewshots' if not zero_shot else ''}.json"
-            )
-        )
-
-        # Set up cache
-        if self.mode == NERMode.TWO_STEP:
-            cache_spans = Path(
-                cache_spans
-                or (
-                    Path(__file__).parent.parent
-                    / "cache"
-                    / f"{model}_{dataset}_{mode}_cache_spans{'_fewshots' if not zero_shot else ''}.json"
-                )
-            )
-            self.cache_spans = CacheManager(cache_spans)
-        print(f"Using cache file: {cache_file}")
-        self.cache = CacheManager(cache_file)
-
         # Allowed classes
         all_classes = list(get_dataset_class_definitions(self.dataset).keys())
 
@@ -185,6 +162,37 @@ class LLMExtractor(BaseExtractor):
 
         else:
             self.allowed_classes = all_classes
+
+        model_name = model.replace("/", "_")
+        classes_str = "_".join(self.allowed_classes)
+        date_str = datetime.now().strftime("%Y-%m-%d")
+        cache_folder = (
+            Path(__file__).parent.parent / "cache" / model_name / date_str
+        )
+        cache_folder.mkdir(parents=True, exist_ok=True)
+
+        if cache_file:
+            cache_file = Path(cache_file)
+            cache_file = cache_folder / cache_file.name
+        else:
+            cache_file = (
+                cache_folder
+                / f"{dataset}_{mode}_{classes_str}_cache{'_fewshots' if not zero_shot else ''}.json"
+            )
+
+        if self.mode == NERMode.TWO_STEP:
+            if cache_spans:
+                cache_spans = Path(cache_spans)
+                cache_spans = cache_folder / cache_spans.name
+            else:
+                cache_spans = (
+                    cache_folder
+                    / f"{dataset}_{mode}_{classes_str}_cache_spans{'_fewshots' if not zero_shot else ''}.json"
+                )
+            self.cache_spans = CacheManager(cache_spans)
+
+        print(f"Using cache file: {cache_file}")
+        self.cache = CacheManager(cache_file)
 
     def _get_openai_client(self) -> OpenAI:
         """Get OpenAI client configured from environment variables.
