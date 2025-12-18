@@ -14,6 +14,7 @@ from openai import OpenAI
 from clear_anonymization.extractors import factory
 from clear_anonymization.extractors.base import BaseExtractor
 from clear_anonymization.extractors.cache import CacheManager
+from clear_anonymization.ner_datasets import get_dataset_class_definitions
 from clear_anonymization.ner_datasets.ner_dataset import NERData, NERSample
 
 __all__ = ["LLMExtractor"]
@@ -102,6 +103,7 @@ class LLMExtractor(BaseExtractor):
         prompts: PromptConfig | None = None,
         cache_file: str | None = None,
         cache_spans: str | None = None,
+        allowed_classes: str | None = None,
     ):
         """Initialize the LLMExtractor.
 
@@ -116,7 +118,6 @@ class LLMExtractor(BaseExtractor):
 
         self.model = model
         self.temperature = temperature
-
         self.zero_shot = zero_shot
         self.dataset = dataset
         self.mode = mode
@@ -138,6 +139,9 @@ class LLMExtractor(BaseExtractor):
                 json.loads(path.read_text(encoding="utf-8")) if path.exists() else []
             )
 
+        self._fewshot_block_str = self._fewshot_block()
+
+        # Loading templates based on mode
         if self.mode == NERMode.ONE_STEP:
             self.one_step_template = Template(prompts.one_step.read_text("utf-8"))
         else:
@@ -165,11 +169,22 @@ class LLMExtractor(BaseExtractor):
                 )
             )
             self.cache_spans = CacheManager(cache_spans)
-
         print(f"Using cache file: {cache_file}")
         self.cache = CacheManager(cache_file)
 
-        self._fewshot_block_str = self._fewshot_block()
+        # Allowed classes
+        all_classes = list(get_dataset_class_definitions(self.dataset).keys())
+
+        if allowed_classes:
+            self.allowed_classes = [c.strip() for c in allowed_classes.split(",")]
+            unknown_class = set(self.allowed_classes) - set(all_classes)
+            if unknown_class:
+                raise ValueError(
+                    f"Unknown entity classes for dataset '{dataset}': {unknown}"
+                )
+
+        else:
+            self.allowed_classes = all_classes
 
     def _get_openai_client(self) -> OpenAI:
         """Get OpenAI client configured from environment variables.
@@ -208,17 +223,24 @@ class LLMExtractor(BaseExtractor):
         # one step task
         if self.mode == NERMode.ONE_STEP:
             return self.one_step_template.substitute(
-                text=text, fewshot_block=self._fewshot_block()
+                allowed_classes=self.allowed_classes,
+                text=text,
+                fewshot_block=self._fewshot_block(),
             )
         # two step task
         if spans is None:
             return self.span_template.substitute(
-                text=text, fewshot_block=self._fewshot_block()
+                allowed_classes=self.allowed_classes,
+                text=text,
+                fewshot_block=self._fewshot_block(),
             )
 
         spans_block = "\n".join(f"- {s}" for s in spans)
         return self.label_template.substitute(
-            text=text, spans=spans_block, fewshot_block=self._fewshot_block()
+            allowed_classes=self.allowed_classes,
+            text=text,
+            spans=spans_block,
+            fewshot_block=self._fewshot_block(),
         )
 
     def _cache_or_call(
@@ -293,8 +315,8 @@ class LLMExtractor(BaseExtractor):
 
         # Build the full LLM prompt using the template
         llm_prompt = self._build_prompt(text)
+
         if self.mode == NERMode.ONE_STEP:
-            # Use the full LLM prompt for cache key calculation
             return self._cache_or_call(
                 self.cache,
                 text,
@@ -359,10 +381,12 @@ def main(
     cache_file: str,
     dataset: str = "ler",
     fewshot_path=None,
+    allowed_classes: str | None = None,
     zero_shot: bool = False,
 ):
     input_dir = Path(input_dir)
     data = NERData.from_json(json.loads(input_dir.read_text()))
+
     mode = NERMode(args.mode)
 
     prompts_dir = Path(__file__).parent.parent / "prompts"
@@ -383,10 +407,11 @@ def main(
         model=model,
         dataset=dataset,
         zero_shot=zero_shot,
+        mode=mode,
         prompts=prompts,
         cache_file=cache_file,
-        mode=mode,
         fewshot_path=fewshot_path,
+        allowed_classes=allowed_classes,
     )
     samples = [s for s in data.samples if s.split == "validation"]
 
@@ -418,6 +443,14 @@ if __name__ == "__main__":
     parser.add_argument(
         "--fewshot_path", required=False, type=str, help="Path to the fewshot file"
     )
+
+    parser.add_argument(
+        "--allowed_classes",
+        type=str,
+        required=False,
+        help="Comma-separated list of entity classes to extract (e.g. person,email_address)",
+    )
+
     parser.add_argument(
         "--zero_shot",
         action="store_true",
@@ -437,5 +470,6 @@ if __name__ == "__main__":
         args.cache_file,
         args.dataset,
         args.fewshot_path,
+        args.allowed_classes,
         args.zero_shot,
     )
