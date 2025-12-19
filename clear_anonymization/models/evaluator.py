@@ -8,6 +8,7 @@ from sklearn.metrics import (
     roc_curve,
 )
 from tqdm.auto import tqdm
+from collections import defaultdict
 
 from clear_anonymization.extractors import factory
 from clear_anonymization.extractors.llm import LLMExtractor
@@ -39,11 +40,16 @@ def check_overlap(pred, gold, threshold=1):
 
 
 def evaluate_span_level(
-    extractor: LLMExtractor, samples, threshold
+    extractor: LLMExtractor,
+    samples,
+    threshold,
+    classes,
 ) -> dict[str, float]:
-    tp = 0
-    fp = 0
-    fn = 0
+    tp = defaultdict(int)
+    fp = defaultdict(int)
+    fn = defaultdict(int)
+
+    labels = set()
     for sample in tqdm(samples, desc="Evaluation", leave=False):
         text = sample.text
         gold_spans = sample.labels
@@ -51,23 +57,57 @@ def evaluate_span_level(
         predicted_spans = extractor.predict(text)
 
         matched_gold = set()
+
+        for g in gold_spans:
+            labels.add(g["class"])
+        for p in predicted_spans:
+            labels.add(p["class"])
+
         for pred in predicted_spans:
             found_match = False
+            pred_class = pred["class"]
 
             for j, gold in enumerate(gold_spans):
+                if j in matched_gold:
+                    continue
                 if check_overlap(pred, gold, threshold):
-                    tp += 1
+                    tp[gold["class"]] += 1
                     matched_gold.add(j)
                     found_match = True
                     break
 
             if not found_match:
-                fp += 1
+                fp[pred_class] += 1
 
-        fn += len(gold_spans) - len(matched_gold)
+        for j, gold in enumerate(gold_spans):
+            if j not in matched_gold:
+                fn[gold["class"]] += 1
 
-    precision = tp / (tp + fp) if (tp + fp) > 0 else 0.0
-    recall = tp / (tp + fn) if (tp + fn) > 0 else 0.0
+    per_class= {}
+    for label in sorted(labels):
+        p = tp[label] / (tp[label] + fp[label]) if tp[label] + fp[label] else 0.0
+        r = tp[label] / (tp[label] + fn[label]) if tp[label] + fn[label] else 0.0
+        f1 = 2 * p * r / (p + r) if p + r else 0.0
+
+        per_class[label] = {
+            "precision": p,
+            "recall": r,
+            "f1": f1,
+            "tp": tp[label],
+            "fp": fp[label],
+            "fn": fn[label],
+        }
+
+
+    print(per_class)
+        
+
+    TP = sum(tp.values())
+    FP = sum(fp.values())
+    FN = sum(fn.values())
+    
+    precision = TP / (TP + FP) if (TP + FP) > 0 else 0.0
+    recall = TP / (TP + FN) if (TP + FN) > 0 else 0.0
     f1 = (
         2 * precision * recall / (precision + recall)
         if (precision + recall) > 0
@@ -83,7 +123,11 @@ def evaluate_span_level(
     }
 
 
-def evaluate_char_level(extractor: LLMExtractor, samples) -> dict[str, float]:
+def evaluate_char_level(
+    extractor: LLMExtractor,
+    samples,
+    allowed_classes: list[str] | None = None,
+) -> dict[str, float]:
     total_overlap = 0
     total_predicted = 0
     total_gold = 0
