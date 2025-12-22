@@ -165,25 +165,23 @@ class LLMExtractor(BaseExtractor):
             self.allowed_classes = all_classes
             classes_str = "all_classes"
 
-        model_name = model.replace("/", "_")
-        date_str = datetime.now().strftime("%Y-%m-%d")
-        cache_folder = Path(__file__).parent.parent / "cache" / model_name / date_str
-        cache_folder.mkdir(parents=True, exist_ok=True)
-
         if cache_file:
             cache_file = Path(cache_file)
-            cache_file = cache_folder / cache_file.name
+            print(cache_file)
         else:
+            model_name = model.replace("/", "_")
+            date_str = datetime.now().strftime("%Y-%m-%d")
+            cache_folder = (
+                Path(__file__).parent.parent / "cache" / model_name / date_str
+            )
+            cache_folder.mkdir(parents=True, exist_ok=True)
             cache_file = (
                 cache_folder
                 / f"{dataset}_{mode}_{classes_str}_cache{'_fewshots' if not zero_shot else ''}.json"
             )
 
         if self.mode == NERMode.TWO_STEP:
-            if cache_spans:
-                cache_spans = Path(cache_spans)
-                cache_spans = cache_folder / cache_spans.name
-            else:
+            if not cache_spans:
                 cache_spans = (
                     cache_folder
                     / f"{dataset}_{mode}_{classes_str}_cache_spans{'_fewshots' if not zero_shot else ''}.json"
@@ -275,6 +273,7 @@ class LLMExtractor(BaseExtractor):
                 temperature=self.temperature,
             )
             cached = resp.choices[0].message.content
+            # print(cached)
             cache.set(cache_key, cached)
         try:
             payload = json.loads(cached)
