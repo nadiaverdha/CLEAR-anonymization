@@ -39,11 +39,18 @@ def check_overlap(pred, gold, threshold=1):
     return iou >= threshold
 
 
+def filter_spans_by_class(spans, allowed_classes):
+    if allowed_classes:
+        return [s for s in spans if s["class"] in allowed_classes]
+    else:
+        return spans
+
+
 def evaluate_span_level(
     extractor: LLMExtractor,
     samples,
     threshold,
-    classes,
+    allowed_classes: list[str] | None = None,
 ) -> dict[str, float]:
     tp = defaultdict(int)
     fp = defaultdict(int)
@@ -53,9 +60,10 @@ def evaluate_span_level(
     for sample in tqdm(samples, desc="Evaluation", leave=False):
         text = sample.text
         gold_spans = sample.labels
-
+        #print(gold_spans)
+        gold_spans = filter_spans_by_class(gold_spans, allowed_classes)
+        #print(gold_spans)
         predicted_spans = extractor.predict(text)
-
         matched_gold = set()
 
         for g in gold_spans:
@@ -83,7 +91,7 @@ def evaluate_span_level(
             if j not in matched_gold:
                 fn[gold["class"]] += 1
 
-    per_class= {}
+    per_class = {}
     for label in sorted(labels):
         p = tp[label] / (tp[label] + fp[label]) if tp[label] + fp[label] else 0.0
         r = tp[label] / (tp[label] + fn[label]) if tp[label] + fn[label] else 0.0
@@ -98,14 +106,14 @@ def evaluate_span_level(
             "fn": fn[label],
         }
 
-
-    print(per_class)
+        print(label)
+        print(f"Precision: {p:.4f}, Recall: {r:.4f}, F1: {f1:.4f}")
         
 
     TP = sum(tp.values())
     FP = sum(fp.values())
     FN = sum(fn.values())
-    
+
     precision = TP / (TP + FP) if (TP + FP) > 0 else 0.0
     recall = TP / (TP + FN) if (TP + FN) > 0 else 0.0
     f1 = (
@@ -114,13 +122,17 @@ def evaluate_span_level(
         else 0.0
     )
 
+    print("-----------")
+    print("Overall Metrics")
     print(f"Precision: {precision:.4f}, Recall: {recall:.4f}, F1: {f1:.4f}")
 
-    return {
+    overall = {
         "precision": precision,
         "recall": recall,
         "f1": f1,
     }
+
+    return overall, per_class
 
 
 def evaluate_char_level(
