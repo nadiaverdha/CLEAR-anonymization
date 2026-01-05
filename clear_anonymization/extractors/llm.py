@@ -177,14 +177,14 @@ class LLMExtractor(BaseExtractor):
             cache_folder.mkdir(parents=True, exist_ok=True)
             cache_file = (
                 cache_folder
-                / f"{dataset}_{mode}_{classes_str}_cache{'_fewshots' if not zero_shot else ''}.json"
+                / f"{dataset}_{mode.value}_{classes_str}_cache{'_fewshots' if not zero_shot else ''}.json"
             )
 
         if self.mode == NERMode.TWO_STEP:
             if not cache_spans:
                 cache_spans = (
                     cache_folder
-                    / f"{dataset}_{mode}_{classes_str}_cache_spans{'_fewshots' if not zero_shot else ''}.json"
+                    / f"{dataset}_{mode.value}_{classes_str}_cache_spans{'_fewshots' if not zero_shot else ''}.json"
                 )
             self.cache_spans = CacheManager(cache_spans)
 
