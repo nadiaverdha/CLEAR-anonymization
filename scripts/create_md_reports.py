@@ -107,6 +107,7 @@ def append_eval_table(file_path, meta_data, thresholds_data):
             ]
             f.write("| " + " | ".join(row) + " |")
             f.write("\n")
+            f.write("\n")
 
 
 def main():
