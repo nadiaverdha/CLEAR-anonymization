@@ -61,7 +61,7 @@ def evaluate_samples_llm(
 def save_eval_results(results: dict, output_folder) -> None:
     model_name = results["metadata"]["model"].replace("/", "_")
     date_str = datetime.now().strftime("%Y-%m-%d")
-    classes_str = "_".join(results['metadata']['allowed_classes'])
+    classes_str = "_".join(results['metadata']['allowed_classes']) if results['metadata']['allowed_classes']!= "all_classes" else "all_classes"
     output_path = (
         output_folder
         / f"{results['metadata']['dataset']}_{results['metadata']['mode']}_{classes_str}_{results['metadata']['shot']}.json"

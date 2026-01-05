@@ -324,3 +324,461 @@ python scripts/evaluate_llm.py --model {MODEL_NAME} --input_dir data/m2n/m2n_dat
 | person | 0.612 | 0.588 | 0.600 |
 | Overall | 0.571 | 0.539 | 0.555 |
 
+## Evaluation Results of google/gemma-3-27b-it - one_step -  ['person']
+
+
+### Threshold 0.1
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| person | 0.574 | 0.529 | 0.551 |
+| Overall | 0.574 | 0.529 | 0.551 |
+
+
+### Threshold 0.2
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| person | 0.574 | 0.529 | 0.551 |
+| Overall | 0.574 | 0.529 | 0.551 |
+
+
+### Threshold 0.3
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| person | 0.574 | 0.529 | 0.551 |
+| Overall | 0.574 | 0.529 | 0.551 |
+
+
+### Threshold 0.4
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| person | 0.574 | 0.529 | 0.551 |
+| Overall | 0.574 | 0.529 | 0.551 |
+
+
+### Threshold 0.5
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| person | 0.574 | 0.529 | 0.551 |
+| Overall | 0.574 | 0.529 | 0.551 |
+
+
+### Threshold 0.6
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| person | 0.532 | 0.490 | 0.510 |
+| Overall | 0.532 | 0.490 | 0.510 |
+
+
+### Threshold 0.7
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| person | 0.489 | 0.451 | 0.469 |
+| Overall | 0.489 | 0.451 | 0.469 |
+
+
+### Threshold 0.8
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| person | 0.468 | 0.431 | 0.449 |
+| Overall | 0.468 | 0.431 | 0.449 |
+
+
+### Threshold 0.9
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| person | 0.468 | 0.431 | 0.449 |
+| Overall | 0.468 | 0.431 | 0.449 |
+
+
+### Threshold 1
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| person | 0.574 | 0.529 | 0.551 |
+| Overall | 0.574 | 0.529 | 0.551 |
+
+## Evaluation Results of google/gemma-3-27b-it - two_step -  all_classes
+
+
+### Threshold 0.1
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| account | 0.237 | 0.900 | 0.375 |
+| address | 0.159 | 0.733 | 0.262 |
+| business_register_number | 0.714 | 0.714 | 0.714 |
+| date | 0.835 | 0.635 | 0.721 |
+| email_address | 0.824 | 0.583 | 0.683 |
+| organisation | 0.545 | 0.632 | 0.585 |
+| person | 0.659 | 0.569 | 0.611 |
+| phone_number | 0.733 | 0.611 | 0.667 |
+| tax_number | 0.667 | 1.000 | 0.800 |
+| vat_reg_no | 0.643 | 1.000 | 0.783 |
+| vehicle_identification_number | 1.000 | 1.000 | 1.000 |
+| vehicle_license | 0.500 | 0.333 | 0.400 |
+| website | 0.800 | 0.667 | 0.727 |
+| Overall | 0.555 | 0.647 | 0.598 |
+
+
+### Threshold 0.2
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| account | 0.243 | 0.900 | 0.383 |
+| address | 0.159 | 0.733 | 0.262 |
+| business_register_number | 0.625 | 0.714 | 0.667 |
+| date | 0.835 | 0.635 | 0.721 |
+| email_address | 0.824 | 0.583 | 0.683 |
+| organisation | 0.545 | 0.632 | 0.585 |
+| person | 0.659 | 0.569 | 0.611 |
+| phone_number | 0.733 | 0.611 | 0.667 |
+| tax_number | 0.667 | 1.000 | 0.800 |
+| vat_reg_no | 0.643 | 1.000 | 0.783 |
+| vehicle_identification_number | 1.000 | 1.000 | 1.000 |
+| vehicle_license | 0.500 | 0.333 | 0.400 |
+| website | 0.800 | 0.667 | 0.727 |
+| Overall | 0.555 | 0.647 | 0.598 |
+
+
+### Threshold 0.3
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| account | 0.167 | 0.600 | 0.261 |
+| address | 0.145 | 0.667 | 0.238 |
+| business_register_number | 0.556 | 0.714 | 0.625 |
+| date | 0.835 | 0.635 | 0.721 |
+| email_address | 0.824 | 0.583 | 0.683 |
+| organisation | 0.523 | 0.605 | 0.561 |
+| person | 0.659 | 0.569 | 0.611 |
+| phone_number | 0.733 | 0.611 | 0.667 |
+| tax_number | 0.667 | 1.000 | 0.800 |
+| vat_reg_no | 0.643 | 1.000 | 0.783 |
+| vehicle_identification_number | 1.000 | 1.000 | 1.000 |
+| vehicle_license | 0.500 | 0.333 | 0.400 |
+| website | 0.800 | 0.667 | 0.727 |
+| Overall | 0.541 | 0.631 | 0.582 |
+
+
+### Threshold 0.4
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| account | 0.083 | 0.300 | 0.130 |
+| address | 0.145 | 0.667 | 0.238 |
+| business_register_number | 0.556 | 0.714 | 0.625 |
+| date | 0.835 | 0.635 | 0.721 |
+| email_address | 0.824 | 0.583 | 0.683 |
+| organisation | 0.500 | 0.605 | 0.548 |
+| person | 0.643 | 0.529 | 0.581 |
+| phone_number | 0.733 | 0.611 | 0.667 |
+| tax_number | 0.667 | 1.000 | 0.800 |
+| vat_reg_no | 0.643 | 1.000 | 0.783 |
+| vehicle_identification_number | 1.000 | 1.000 | 1.000 |
+| vehicle_license | 0.500 | 0.333 | 0.400 |
+| website | 0.700 | 0.583 | 0.636 |
+| Overall | 0.523 | 0.610 | 0.563 |
+
+
+### Threshold 0.5
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| account | 0.083 | 0.300 | 0.130 |
+| address | 0.130 | 0.600 | 0.214 |
+| business_register_number | 0.556 | 0.714 | 0.625 |
+| date | 0.835 | 0.635 | 0.721 |
+| email_address | 0.824 | 0.583 | 0.683 |
+| organisation | 0.500 | 0.605 | 0.548 |
+| person | 0.643 | 0.529 | 0.581 |
+| phone_number | 0.733 | 0.611 | 0.667 |
+| tax_number | 0.000 | 0.000 | 0.000 |
+| vat_reg_no | 0.600 | 1.000 | 0.750 |
+| vehicle_identification_number | 1.000 | 1.000 | 1.000 |
+| vehicle_license | 0.500 | 0.333 | 0.400 |
+| website | 0.700 | 0.583 | 0.636 |
+| Overall | 0.515 | 0.600 | 0.554 |
+
+
+### Threshold 0.6
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| account | 0.083 | 0.300 | 0.130 |
+| address | 0.029 | 0.133 | 0.048 |
+| business_register_number | 0.556 | 0.714 | 0.625 |
+| date | 0.823 | 0.625 | 0.710 |
+| email_address | 0.824 | 0.583 | 0.683 |
+| organisation | 0.489 | 0.579 | 0.530 |
+| person | 0.628 | 0.529 | 0.574 |
+| phone_number | 0.733 | 0.611 | 0.667 |
+| tax_number | 0.000 | 0.000 | 0.000 |
+| vat_reg_no | 0.600 | 1.000 | 0.750 |
+| vehicle_identification_number | 1.000 | 1.000 | 1.000 |
+| vehicle_license | 0.500 | 0.333 | 0.400 |
+| website | 0.700 | 0.583 | 0.636 |
+| Overall | 0.488 | 0.569 | 0.526 |
+
+
+### Threshold 0.7
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| account | 0.083 | 0.300 | 0.130 |
+| address | 0.000 | 0.000 | 0.000 |
+| business_register_number | 0.556 | 0.714 | 0.625 |
+| date | 0.810 | 0.615 | 0.699 |
+| email_address | 0.824 | 0.583 | 0.683 |
+| organisation | 0.489 | 0.579 | 0.530 |
+| person | 0.581 | 0.490 | 0.532 |
+| phone_number | 0.533 | 0.444 | 0.485 |
+| tax_number | 0.000 | 0.000 | 0.000 |
+| vat_reg_no | 0.600 | 1.000 | 0.750 |
+| vehicle_identification_number | 1.000 | 1.000 | 1.000 |
+| vehicle_license | 0.500 | 0.333 | 0.400 |
+| website | 0.700 | 0.583 | 0.636 |
+| Overall | 0.465 | 0.542 | 0.501 |
+
+
+### Threshold 0.8
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| account | 0.056 | 0.200 | 0.087 |
+| address | 0.000 | 0.000 | 0.000 |
+| business_register_number | 0.000 | 0.000 | 0.000 |
+| date | 0.810 | 0.615 | 0.699 |
+| email_address | 0.824 | 0.583 | 0.683 |
+| organisation | 0.489 | 0.579 | 0.530 |
+| person | 0.558 | 0.471 | 0.511 |
+| phone_number | 0.267 | 0.222 | 0.242 |
+| tax_number | 0.000 | 0.000 | 0.000 |
+| vat_reg_no | 0.600 | 1.000 | 0.750 |
+| vehicle_identification_number | 1.000 | 1.000 | 1.000 |
+| vehicle_license | 0.500 | 0.333 | 0.400 |
+| website | 0.700 | 0.583 | 0.636 |
+| Overall | 0.433 | 0.505 | 0.466 |
+
+
+### Threshold 0.9
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| account | 0.056 | 0.200 | 0.087 |
+| address | 0.000 | 0.000 | 0.000 |
+| business_register_number | 0.000 | 0.000 | 0.000 |
+| date | 0.810 | 0.615 | 0.699 |
+| email_address | 0.824 | 0.583 | 0.683 |
+| organisation | 0.489 | 0.579 | 0.530 |
+| person | 0.558 | 0.471 | 0.511 |
+| phone_number | 0.067 | 0.056 | 0.061 |
+| tax_number | 0.000 | 0.000 | 0.000 |
+| vat_reg_no | 0.600 | 1.000 | 0.750 |
+| vehicle_identification_number | 1.000 | 1.000 | 1.000 |
+| vehicle_license | 0.500 | 0.333 | 0.400 |
+| website | 0.700 | 0.583 | 0.636 |
+| Overall | 0.424 | 0.495 | 0.457 |
+
+
+### Threshold 1
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| account | 0.056 | 0.200 | 0.087 |
+| address | 0.000 | 0.000 | 0.000 |
+| business_register_number | 0.000 | 0.000 | 0.000 |
+| date | 0.810 | 0.615 | 0.699 |
+| email_address | 0.824 | 0.583 | 0.683 |
+| organisation | 0.444 | 0.526 | 0.482 |
+| person | 0.651 | 0.549 | 0.596 |
+| phone_number | 0.000 | 0.000 | 0.000 |
+| tax_number | 0.000 | 0.000 | 0.000 |
+| vat_reg_no | 0.600 | 1.000 | 0.750 |
+| vehicle_identification_number | 1.000 | 1.000 | 1.000 |
+| vehicle_license | 0.500 | 0.333 | 0.400 |
+| website | 0.700 | 0.583 | 0.636 |
+| Overall | 0.427 | 0.498 | 0.460 |
+
+## Evaluation Results of google/gemma-3-27b-it - two_step -  ['person', 'organisation']
+
+
+### Threshold 0.1
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| organisation | 0.469 | 0.605 | 0.529 |
+| person | 0.588 | 0.588 | 0.588 |
+| Overall | 0.530 | 0.596 | 0.561 |
+
+
+### Threshold 0.2
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| organisation | 0.469 | 0.605 | 0.529 |
+| person | 0.588 | 0.588 | 0.588 |
+| Overall | 0.530 | 0.596 | 0.561 |
+
+
+### Threshold 0.3
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| organisation | 0.469 | 0.605 | 0.529 |
+| person | 0.588 | 0.588 | 0.588 |
+| Overall | 0.530 | 0.596 | 0.561 |
+
+
+### Threshold 0.4
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| organisation | 0.429 | 0.553 | 0.483 |
+| person | 0.588 | 0.588 | 0.588 |
+| Overall | 0.510 | 0.573 | 0.540 |
+
+
+### Threshold 0.5
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| organisation | 0.429 | 0.553 | 0.483 |
+| person | 0.588 | 0.588 | 0.588 |
+| Overall | 0.510 | 0.573 | 0.540 |
+
+
+### Threshold 0.6
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| organisation | 0.429 | 0.553 | 0.483 |
+| person | 0.549 | 0.549 | 0.549 |
+| Overall | 0.490 | 0.551 | 0.519 |
+
+
+### Threshold 0.7
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| organisation | 0.429 | 0.553 | 0.483 |
+| person | 0.510 | 0.510 | 0.510 |
+| Overall | 0.470 | 0.528 | 0.497 |
+
+
+### Threshold 0.8
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| organisation | 0.429 | 0.553 | 0.483 |
+| person | 0.471 | 0.471 | 0.471 |
+| Overall | 0.450 | 0.506 | 0.476 |
+
+
+### Threshold 0.9
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| organisation | 0.429 | 0.553 | 0.483 |
+| person | 0.471 | 0.471 | 0.471 |
+| Overall | 0.450 | 0.506 | 0.476 |
+
+
+### Threshold 1
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| organisation | 0.388 | 0.500 | 0.437 |
+| person | 0.549 | 0.549 | 0.549 |
+| Overall | 0.470 | 0.528 | 0.497 |
+
+## Evaluation Results of google/gemma-3-27b-it - two_step -  ['person']
+
+
+### Threshold 0.1
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| person | 0.622 | 0.549 | 0.583 |
+| Overall | 0.622 | 0.549 | 0.583 |
+
+
+### Threshold 0.2
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| person | 0.622 | 0.549 | 0.583 |
+| Overall | 0.622 | 0.549 | 0.583 |
+
+
+### Threshold 0.3
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| person | 0.622 | 0.549 | 0.583 |
+| Overall | 0.622 | 0.549 | 0.583 |
+
+
+### Threshold 0.4
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| person | 0.622 | 0.549 | 0.583 |
+| Overall | 0.622 | 0.549 | 0.583 |
+
+
+### Threshold 0.5
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| person | 0.622 | 0.549 | 0.583 |
+| Overall | 0.622 | 0.549 | 0.583 |
+
+
+### Threshold 0.6
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| person | 0.600 | 0.529 | 0.562 |
+| Overall | 0.600 | 0.529 | 0.562 |
+
+
+### Threshold 0.7
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| person | 0.556 | 0.490 | 0.521 |
+| Overall | 0.556 | 0.490 | 0.521 |
+
+
+### Threshold 0.8
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| person | 0.511 | 0.451 | 0.479 |
+| Overall | 0.511 | 0.451 | 0.479 |
+
+
+### Threshold 0.9
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| person | 0.511 | 0.451 | 0.479 |
+| Overall | 0.511 | 0.451 | 0.479 |
+
+
+### Threshold 1
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| person | 0.622 | 0.549 | 0.583 |
+| Overall | 0.622 | 0.549 | 0.583 |
+
