@@ -150,19 +150,25 @@ class LLMExtractor(BaseExtractor):
             self.label_template = Template(prompts.label.read_text("utf-8"))
 
         # Allowed classes
-        all_classes = list(get_dataset_class_definitions(self.dataset).keys())
+        class_definitions = get_dataset_class_definitions(self.dataset)
+        all_classes = list(class_definitions.keys())
 
         if allowed_classes:
-            self.allowed_classes = [c.strip() for c in allowed_classes.split(",")]
-            classes_str = "_".join(self.allowed_classes)
-            unknown_class = set(self.allowed_classes) - set(all_classes)
+            allowed_classes_list = [c.strip() for c in allowed_classes.split(",")]
+            unknown_class = set(allowed_classes_list) - set(all_classes)
             if unknown_class:
                 raise ValueError(
                     f"Unknown entity classes for dataset '{dataset}': {unknown}"
                 )
 
+            self.allowed_classes = {
+                c: class_definitions[c] for c in allowed_classes_list
+            }
+
+            classes_str = "_".join(allowed_classes_list)
+
         else:
-            self.allowed_classes = all_classes
+            self.allowed_classes = class_definitions
             classes_str = "all_classes"
 
         if cache_file:
@@ -303,7 +309,6 @@ class LLMExtractor(BaseExtractor):
 
     def _label_spans(self, text: str, spans: list[str]) -> dict:
         llm_prompt = self._build_prompt(text, spans)
-
         return self._cache_or_call(
             self.cache,
             text,
@@ -321,7 +326,6 @@ class LLMExtractor(BaseExtractor):
 
         # Build the full LLM prompt using the template
         llm_prompt = self._build_prompt(text)
-
         if self.mode == NERMode.ONE_STEP:
             return self._cache_or_call(
                 self.cache,
