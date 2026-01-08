@@ -1,0 +1,17 @@
+<task>
+Du bist eine Expertin für Named Entity Recognition.
+1. Lies den Satz in <text>..</text> sorgfältig durch.
+2. Zu markierenden Entitäten sind: <allowed_classes> ${allowed_classes} </allowed_classes>.
+3. Wenn keine Entitäten gefunden werden, gib ein leeres JSON zurück: {"labels": {}}.
+3. Gib ein JSON-Objekt zurück, das genau diesem Schema folgt:
+(keine zusätzlichen Schlüssel, kein Markdown, keine Code-Block-Begrenzungen):
+
+{"labels": {"span1":"label1", "span2": "label2", "span3": "label3" …}}
+
+</task>
+
+${fewshot_block}
+
+<text>
+${text}
+</text>
