@@ -3,7 +3,8 @@ import json
 import logging
 import os
 import re
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor, as_completed
+
 from dataclasses import dataclass
 from datetime import datetime
 from enum import Enum
@@ -152,7 +153,7 @@ class LLMExtractor(BaseExtractor):
         # Allowed classes
         class_definitions = get_dataset_class_definitions(self.dataset)
         all_classes = list(class_definitions.keys())
-
+        self.allowed_classes = ""
         if allowed_classes:
             allowed_classes_list = [c.strip() for c in allowed_classes.split(",")]
             unknown_class = set(allowed_classes_list) - set(all_classes)
@@ -161,16 +162,19 @@ class LLMExtractor(BaseExtractor):
                     f"Unknown entity classes for dataset '{dataset}': {unknown}"
                 )
 
-            self.allowed_classes = {
-                c: class_definitions[c] for c in allowed_classes_list
-            }
+            self.allowed_classes = ", ".join(
+                f"{c}: {class_definitions[c]}" for c in allowed_classes_list
+            )
 
             classes_str = "_".join(allowed_classes_list)
 
         else:
-            self.allowed_classes = class_definitions
-            classes_str = "all_classes"
+            self.allowed_classes = ", ".join(
+                f"{c}: {class_definitions[c]}" for c in class_definitions
+            )
 
+            classes_str = "all_classes"
+        print(self.allowed_classes)
         if cache_file:
             cache_file = Path(cache_file)
             print(cache_file)
@@ -264,30 +268,35 @@ class LLMExtractor(BaseExtractor):
     ):
         cache_key = cache._hash(llm_prompt, self.model, str(self.temperature))
         cached = cache.get(cache_key)
+        print(cached)
         if cached is None:
             print("cache is none")
-            resp = self._get_openai_client().chat.completions.create(
-                model=self.model,
-                messages=[
-                    {
-                        "role": "system",
-                        "content": content,
-                    },
-                    {"role": "user", "content": llm_prompt},
-                ],
-                response_format=schema,
-                temperature=self.temperature,
-            )
-            cached = resp.choices[0].message.content
-            # print(cached)
-            cache.set(cache_key, cached)
+            try:
+                resp = self._get_openai_client().chat.completions.create(
+                    model=self.model,
+                    messages=[
+                        {
+                            "role": "system",
+                            "content": content,
+                        },
+                        {"role": "user", "content": llm_prompt},
+                    ],
+                    response_format=schema,
+                    temperature=self.temperature,
+                    timeout=60,
+                )
+                cached = resp.choices[0].message.content
+                cache.set(cache_key, cached)
+
+            except Exception as e:
+                logger.warning(f"⏭️ Skipping sample (len={len(text)}): {e}")
+                return []
+
         try:
             payload = json.loads(cached)
-
             if schema is SPAN_SCHEMA:
                 # print(payload["spans"])
                 return payload["spans"]
-
             else:
                 # print(self._to_labels(payload["labels"], text))
                 return self._to_labels(payload["labels"], text)
@@ -309,6 +318,7 @@ class LLMExtractor(BaseExtractor):
 
     def _label_spans(self, text: str, spans: list[str]) -> dict:
         llm_prompt = self._build_prompt(text, spans)
+
         return self._cache_or_call(
             self.cache,
             text,
@@ -326,6 +336,7 @@ class LLMExtractor(BaseExtractor):
 
         # Build the full LLM prompt using the template
         llm_prompt = self._build_prompt(text)
+
         if self.mode == NERMode.ONE_STEP:
             return self._cache_or_call(
                 self.cache,
@@ -366,19 +377,23 @@ class LLMExtractor(BaseExtractor):
 
         return self._predict(text)
 
-    def predict_batch(
-        self,
-        samples: list[NERSample],
-    ) -> list:
-        """Predict named entities  from the provided text.
+    def predict_batch(self, samples: list[NERSample]) -> list:
+        def safe_predict(text):
+            try:
+                return self._predict(text)
+            except Exception as e:
+                logger.warning(f"⏭️ Skipping sample (len={len(text)}): {e}")
+                return []
 
-        :param samples: .
-        :returns: List of spans.
-        """
         futs = []
+        results = []
         with ThreadPoolExecutor(max_workers=30) as pool:
-            futs = [pool.submit(self._predict, s.text) for s in samples]
-            return [f.result() for f in futs]
+            futs = [pool.submit(safe_predict, s.text) for s in samples]
+
+            for fut in as_completed(futs):
+                results.append(fut.result())
+
+        return results
 
 
 def main(
@@ -403,13 +418,13 @@ def main(
     prompts = PromptConfig(
         one_step=Path(args.prompt_one_step)
         if args.prompt_one_step
-        else prompts_dir / f"{dataset}_task.txt",
+        else prompts_dir / "ner_task.txt",
         span=Path(args.prompt_span)
         if args.prompt_span
-        else prompts_dir / f"{dataset}_ner_extract_spans.txt",
+        else prompts_dir / "ner_extract_spans.txt",
         label=Path(args.prompt_label)
         if args.prompt_label
-        else prompts_dir / f"{dataset}_ner_label_spans.txt",
+        else prompts_dir / "ner_label_spans.txt",
     )
 
     LLMExtractor = factory.make_extractor(

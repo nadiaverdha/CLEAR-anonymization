@@ -25,7 +25,7 @@ def evaluate_samples_llm(
     allowed_classes = (
         [c.strip() for c in allowed_classes.split(",")] if allowed_classes else None
     )
-
+    print(allowed_classes)
     print(f"\nEvaluating model on {len(samples)} samples")
     thresholds = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
     results = {
@@ -142,13 +142,13 @@ def main():
     prompts = PromptConfig(
         one_step=Path(args.prompt_one_step)
         if args.prompt_one_step
-        else prompts_dir / f"{args.dataset}_task.txt",
+        else prompts_dir / "ner_task.txt",
         span=Path(args.prompt_span)
         if args.prompt_span
-        else prompts_dir / f"{args.dataset}_ner_extract_spans.txt",
+        else prompts_dir / "ner_extract_spans.txt",
         label=Path(args.prompt_label)
         if args.prompt_label
-        else prompts_dir / f"{args.dataset}_ner_label_spans.txt",
+        else prompts_dir / "ner_label_spans.txt",
     )
     mode = NERMode(args.mode)
     LLMExtractor = factory.make_extractor(
