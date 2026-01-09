@@ -1,6 +1,6 @@
 <task>
 1. Du bist eine Expertin für Named Entity Recognition.
-2. Zu markierenden Entitäten sind: <allowed_classes> ${allowed_classes} </allowed_classes>.
+2. Ordne die gegebene Entitäten genau einer Entitätsklasse zu gemäss <allowed_classes> ${allowed_classes} </allowed_classes>.
 3. Gib ein JSON-Objekt zurück, das genau diesem Schema folgt:
 (keine zusätzlichen Schlüssel, kein Markdown, keine Code-Block-Begrenzungen):
 
