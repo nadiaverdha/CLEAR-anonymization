@@ -232,3 +232,167 @@ python scripts/evaluate_llm.py --model {MODEL_NAME} --input_dir data/m2n/m2n_dat
 | website | 0.700 | 0.583 | 0.636 |
 | Overall | 0.489 | 0.451 | 0.469 |
 
+## Evaluation Results of gpt-5-mini-2025-08-07 - one_step -  ['person']
+
+
+### Threshold 0.1
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| person | 0.636 | 0.686 | 0.660 |
+| Overall | 0.636 | 0.686 | 0.660 |
+
+
+### Threshold 0.2
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| person | 0.636 | 0.686 | 0.660 |
+| Overall | 0.636 | 0.686 | 0.660 |
+
+
+### Threshold 0.3
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| person | 0.636 | 0.686 | 0.660 |
+| Overall | 0.636 | 0.686 | 0.660 |
+
+
+### Threshold 0.4
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| person | 0.636 | 0.686 | 0.660 |
+| Overall | 0.636 | 0.686 | 0.660 |
+
+
+### Threshold 0.5
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| person | 0.636 | 0.686 | 0.660 |
+| Overall | 0.636 | 0.686 | 0.660 |
+
+
+### Threshold 0.6
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| person | 0.564 | 0.608 | 0.585 |
+| Overall | 0.564 | 0.608 | 0.585 |
+
+
+### Threshold 0.7
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| person | 0.473 | 0.510 | 0.491 |
+| Overall | 0.473 | 0.510 | 0.491 |
+
+
+### Threshold 0.8
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| person | 0.436 | 0.471 | 0.453 |
+| Overall | 0.436 | 0.471 | 0.453 |
+
+
+### Threshold 0.9
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| person | 0.436 | 0.471 | 0.453 |
+| Overall | 0.436 | 0.471 | 0.453 |
+
+
+### Threshold 1
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| person | 0.491 | 0.529 | 0.509 |
+| Overall | 0.491 | 0.529 | 0.509 |
+
+## Evaluation Results of gpt-5-mini-2025-08-07 - one_step -  ['organisation']
+
+
+### Threshold 0.1
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| organisation | 0.414 | 0.632 | 0.500 |
+| Overall | 0.414 | 0.632 | 0.500 |
+
+
+### Threshold 0.2
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| organisation | 0.414 | 0.632 | 0.500 |
+| Overall | 0.414 | 0.632 | 0.500 |
+
+
+### Threshold 0.3
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| organisation | 0.397 | 0.605 | 0.479 |
+| Overall | 0.397 | 0.605 | 0.479 |
+
+
+### Threshold 0.4
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| organisation | 0.397 | 0.605 | 0.479 |
+| Overall | 0.397 | 0.605 | 0.479 |
+
+
+### Threshold 0.5
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| organisation | 0.397 | 0.605 | 0.479 |
+| Overall | 0.397 | 0.605 | 0.479 |
+
+
+### Threshold 0.6
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| organisation | 0.397 | 0.605 | 0.479 |
+| Overall | 0.397 | 0.605 | 0.479 |
+
+
+### Threshold 0.7
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| organisation | 0.397 | 0.605 | 0.479 |
+| Overall | 0.397 | 0.605 | 0.479 |
+
+
+### Threshold 0.8
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| organisation | 0.397 | 0.605 | 0.479 |
+| Overall | 0.397 | 0.605 | 0.479 |
+
+
+### Threshold 0.9
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| organisation | 0.397 | 0.605 | 0.479 |
+| Overall | 0.397 | 0.605 | 0.479 |
+
+
+### Threshold 1
+
+| Class | Precision | Recall | F1 |
+|-----|---------|------|--|
+| organisation | 0.362 | 0.553 | 0.438 |
+| Overall | 0.362 | 0.553 | 0.438 |
+
