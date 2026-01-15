@@ -163,7 +163,7 @@ def main():
     input_dir = Path(args.input_dir)
     data = NERData.from_json(json.loads(input_dir.read_text()))
 
-    LLMExtractor = factory.make_extractor(
+    RuleChefExtractor = factory.make_extractor(
         "rulechef",
         model=args.model,
         dataset=args.dataset,
@@ -172,7 +172,7 @@ def main():
     )
 
     samples = [s for s in data.samples if s.split == "validation"]
-    LLMExtractor.fit(samples)
+    RuleChefExtractor.fit(samples)
 
 
 if __name__ == "__main__":
