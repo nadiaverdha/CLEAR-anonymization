@@ -1,6 +1,4 @@
 import argparse
-
-
 import json
 import os
 from datetime import datetime
@@ -13,13 +11,11 @@ from pydantic import BaseModel, Field
 from rulechef import RuleChef, Task, TaskType
 from rulechef.core import RuleFormat
 
-from clear_anonymization.ner_datasets.ner_dataset import NERData, NERSample
 from clear_anonymization.extractors import factory
 from clear_anonymization.extractors.base import BaseExtractor
 from clear_anonymization.extractors.cache import CacheManager
 from clear_anonymization.ner_datasets import get_dataset_class_definitions
 from clear_anonymization.ner_datasets.ner_dataset import NERData, NERSample
-
 
 __all__ = ["RuleChefExtractor"]
 
@@ -35,7 +31,7 @@ class RuleChefExtractor(BaseExtractor):
         allowed_classes: str | None = None,
     ):
         self.model = model
-      #  self.rule_format = rule_format
+        #  self.rule_format = rule_format
 
         self.client = self._get_openai_client()
         self.dataset = dataset
@@ -110,9 +106,16 @@ class RuleChefExtractor(BaseExtractor):
 
     def fit(self, samples):
         for sample in samples:
-            spans = [label for label in sample.labels if label["class"] in self.allowed_classes]
+            spans = [
+                label
+                for label in sample.labels
+                if label["class"] in self.allowed_classes
+            ]
             self.chef.add_example(
-                {"question": f"Extract {self.classes_str} entities", "context": sample.text},
+                {
+                    "question": f"Extract {self.classes_str} entities",
+                    "context": sample.text,
+                },
                 {"spans": spans},
             )
         self.chef.learn_rules()
@@ -155,7 +158,6 @@ def main():
         help="Comma-separated list of entity classes to extract (e.g. person,email_address)",
     )
 
-
     args = parser.parse_args()
 
     input_dir = Path(args.input_dir)
@@ -171,8 +173,6 @@ def main():
 
     samples = [s for s in data.samples if s.split == "validation"]
     LLMExtractor.fit(samples)
-
-    
 
 
 if __name__ == "__main__":
