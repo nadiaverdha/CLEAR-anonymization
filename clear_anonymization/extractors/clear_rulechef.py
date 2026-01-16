@@ -26,7 +26,6 @@ class RuleChefExtractor(BaseExtractor):
     def __init__(
         self,
         model: str,
-        cache_file: str,
         dataset: str = "ler",
         allowed_classes: str | None = None,
     ):
@@ -34,10 +33,12 @@ class RuleChefExtractor(BaseExtractor):
         #  self.rule_format = rule_format
 
         self.client = self._get_openai_client()
+        print(self.client)
         self.dataset = dataset
         # Allowed classes
         class_definitions = get_dataset_class_definitions(self.dataset)
         all_classes = list(class_definitions.keys())
+
         self.allowed_classes = ""
         if allowed_classes:
             allowed_classes_list = [c.strip() for c in allowed_classes.split(",")]
@@ -60,24 +61,6 @@ class RuleChefExtractor(BaseExtractor):
 
             self.classes_str = "all_classes"
 
-        if cache_file:
-            cache_file = Path(cache_file)
-            print(cache_file)
-        else:
-            model_name = model.replace("/", "_")
-            date_str = datetime.now().strftime("%Y-%m-%d")
-            cache_folder = (
-                Path(__file__).parent.parent
-                / "cache"
-                / "rulechef"
-                / model_name
-                / date_str
-            )
-            cache_folder.mkdir(parents=True, exist_ok=True)
-            cache_file = cache_folder / f"{dataset}_{self.classes_str}_cache.json"
-        print(f"Using cache file: {cache_file}")
-        self.cache = CacheManager(cache_file)
-        print(self.classes_str)
         task = Task(
             name="Named Entity Recognition",
             description=f"Extract {self.classes_str} entities from text",
@@ -85,7 +68,12 @@ class RuleChefExtractor(BaseExtractor):
             output_schema={"spans": "List[Span]"},
         )
         self.chef = RuleChef(
-            task, self.client, allowed_formats=[RuleFormat.SPACY], model=self.model
+            task,
+            self.client,
+            dataset_name=self.dataset,
+            allowed_formats=[RuleFormat.SPACY],
+            model=self.model,
+            use_spacy_ner=False,
         )
 
     def _get_openai_client(self) -> OpenAI:
@@ -95,6 +83,7 @@ class RuleChefExtractor(BaseExtractor):
         :raises ValueError: If API key is not set
         """
         api_key = os.getenv("OPENAI_API_KEY") or "EMPTY"
+        print(api_key)
         base_url = (
             os.getenv("OPENAI_BASE_URL") or "http://localhost:8000/v1"
         )  # "https://api.openai.com/v1"
@@ -105,12 +94,13 @@ class RuleChefExtractor(BaseExtractor):
         )
 
     def fit(self, samples):
-        for sample in samples:
-            spans = [
-                label
-                for label in sample.labels
-                if label["class"] in self.allowed_classes
-            ]
+        spans = []
+        for i, sample in enumerate(samples):
+            for label in sample.labels:
+                if label["class"] in self.classes_str:
+                    spans.append(label)
+            print(spans)
+            print("adding example  ", i)
             self.chef.add_example(
                 {
                     "question": f"Extract {self.classes_str} entities",
@@ -119,6 +109,7 @@ class RuleChefExtractor(BaseExtractor):
                 {"spans": spans},
             )
         self.chef.learn_rules()
+        print(self.chef.dataset.rules)
 
     def _predict(self, text):
         return self.chef.extract(
@@ -144,9 +135,8 @@ def main():
     )
 
     parser.add_argument("--model", type=str, required=True, help="Model used for NER")
-    parser.add_argument(
-        "--cache_file", type=str, required=False, help="Path to the cache file"
-    )
+    ##  parser.add_argument(
+    ##      "--cache_file", type=str, required=False, help="Path to the cache file" )
 
     parser.add_argument(
         "--dataset", type=str, default="ler", help="Name of the dataset"
@@ -159,7 +149,7 @@ def main():
     )
 
     args = parser.parse_args()
-
+    print(args.model)
     input_dir = Path(args.input_dir)
     data = NERData.from_json(json.loads(input_dir.read_text()))
 
@@ -167,12 +157,16 @@ def main():
         "rulechef",
         model=args.model,
         dataset=args.dataset,
-        cache_file=args.cache_file,
         allowed_classes=args.allowed_classes,
     )
 
-    samples = [s for s in data.samples if s.split == "validation"]
-    RuleChefExtractor.fit(samples)
+    samples = [s for s in data.samples if s.split == "train"]
+    RuleChefExtractor.fit(samples[10:30])
+    test_samples = [s for s in data.samples if s.split == "validation"]
+
+    for test in test_samples:
+        result = RuleChefExtractor.predict(test)
+        print(f"Output: {result}")
 
 
 if __name__ == "__main__":
