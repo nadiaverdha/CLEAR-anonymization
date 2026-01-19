@@ -7,7 +7,7 @@ from typing import List, Literal
 
 import rulechef
 from openai import OpenAI
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 from rulechef import RuleChef, Task, TaskType
 from rulechef.core import RuleFormat
 
@@ -20,6 +20,17 @@ from clear_anonymization.ner_datasets.ner_dataset import NERData, NERSample
 __all__ = ["RuleChefExtractor"]
 
 
+class Entity(BaseModel):
+    text: str = Field(description="The matched text span")
+    start: int = Field(description="Start character offset")
+    end: int = Field(description="End character offset")
+    type: str = Field(description="Entity label")
+
+
+class NEROutput(BaseModel):
+    entities: List[Entity]
+
+
 class RuleChefExtractor(BaseExtractor):
     """RuleChef-powered Named Entity Recognition"""
 
@@ -30,42 +41,35 @@ class RuleChefExtractor(BaseExtractor):
         allowed_classes: str | None = None,
     ):
         self.model = model
-        #  self.rule_format = rule_format
-
         self.client = self._get_openai_client()
-        print(self.client)
         self.dataset = dataset
-        # Allowed classes
-        class_definitions = get_dataset_class_definitions(self.dataset)
-        all_classes = list(class_definitions.keys())
 
         self.allowed_classes = ""
+        class_definitions = get_dataset_class_definitions(self.dataset)
+        all_classes = set(class_definitions.keys())
+        print(all_classes)
+
         if allowed_classes:
-            allowed_classes_list = [c.strip() for c in allowed_classes.split(",")]
-            unknown_class = set(allowed_classes_list) - set(all_classes)
-            if unknown_class:
-                raise ValueError(
-                    f"Unknown entity classes for dataset '{dataset}': {unknown}"
-                )
-
-            self.allowed_classes = ", ".join(
-                f"{c}: {class_definitions[c]}" for c in allowed_classes_list
+            allowed_list = [c.strip() for c in allowed_classes.split(",")]
+            unknown = set(allowed_list) - all_classes
+            if unknown:
+                raise ValueError(f"Unknown entity classes: {unknown}")
+            self.allowed_classes = set(allowed_list)
+            self.allowed_classes_def = ", ".join(
+                f"{c}: {class_definitions[c]}" for c in allowed_list
             )
-
-            self.classes_str = "_".join(allowed_classes_list)
 
         else:
-            self.allowed_classes = ", ".join(
+            self.allowed_classes_def = ", ".join(
                 f"{c}: {class_definitions[c]}" for c in class_definitions
             )
-
-            self.classes_str = "all_classes"
-
+            self.allowed_classes = all_classes
         task = Task(
             name="Named Entity Recognition",
-            description=f"Extract {self.classes_str} entities from text",
-            input_schema={"question": "str", "context": "str"},
-            output_schema={"spans": "List[Span]"},
+            description=f"Extract {self.allowed_classes_def} from text",
+            input_schema={"text": "str"},
+            output_schema=NEROutput,
+            type=TaskType.NER,
         )
         self.chef = RuleChef(
             task,
@@ -84,9 +88,7 @@ class RuleChefExtractor(BaseExtractor):
         """
         api_key = os.getenv("OPENAI_API_KEY") or "EMPTY"
         print(api_key)
-        base_url = (
-            os.getenv("OPENAI_BASE_URL") or "http://localhost:8000/v1"
-        )  # "https://api.openai.com/v1"
+        base_url = os.getenv("OPENAI_BASE_URL") or "http://localhost:8000/v1"
 
         return OpenAI(
             api_key=api_key,
@@ -94,27 +96,25 @@ class RuleChefExtractor(BaseExtractor):
         )
 
     def fit(self, samples):
-        spans = []
         for i, sample in enumerate(samples):
+            spans = []
             for label in sample.labels:
-                if label["class"] in self.classes_str:
-                    spans.append(label)
-            print(spans)
-            print("adding example  ", i)
-            self.chef.add_example(
-                {
-                    "question": f"Extract {self.classes_str} entities",
-                    "context": sample.text,
-                },
-                {"spans": spans},
-            )
+                if label["class"] in self.allowed_classes:
+                    spans.append(
+                        {
+                            "text": label["text"],
+                            "start": label["start"],
+                            "end": label["end"],
+                            "type": label["class"],
+                        }
+                    )
+            if spans:
+                self.chef.add_example({"context": sample.text}, {"entities": spans})
         self.chef.learn_rules()
         print(self.chef.dataset.rules)
 
     def _predict(self, text):
-        return self.chef.extract(
-            {"question": f"Detect {self.classes_str} mentions", "context": text}
-        )["spans"]
+        return self.chef.extract(text)
 
     def predict(self, text):
         return self._predict(text)
@@ -149,7 +149,6 @@ def main():
     )
 
     args = parser.parse_args()
-    print(args.model)
     input_dir = Path(args.input_dir)
     data = NERData.from_json(json.loads(input_dir.read_text()))
 
@@ -161,7 +160,7 @@ def main():
     )
 
     samples = [s for s in data.samples if s.split == "train"]
-    RuleChefExtractor.fit(samples[10:30])
+    RuleChefExtractor.fit(samples)
     test_samples = [s for s in data.samples if s.split == "validation"]
 
     for test in test_samples:
