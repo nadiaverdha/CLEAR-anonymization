@@ -21,8 +21,8 @@ def make_extractor(method: str, **kwargs) -> BaseExtractor:
         return LLMExtractor(**kwargs)
 
     if method == "rulechef":
-        from clear_anonymization.extractors.clear_rulechef import RuleChefExtractor
+        from clear_anonymization.extractors.ruleextractor import RuleExtractor
 
-        return RuleChefExtractor(**kwargs)
+        return RuleExtractor(**kwargs)
     else:
         raise ValueError(f"Unknown detector method: {method}. Use llm")
