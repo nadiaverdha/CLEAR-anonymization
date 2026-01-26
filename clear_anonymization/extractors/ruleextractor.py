@@ -83,7 +83,7 @@ def main():
     rules_data = json.loads(rules_file.read_text())
 
     rules = [Rule.from_dict(r) for r in rules_data.get("rules")]
-    print(rules)
+    # print(rules)
 
     RuleChefExtractor = factory.make_extractor(
         "rulechef",
@@ -92,10 +92,12 @@ def main():
     )
 
     test_samples = [s for s in data.samples if s.split == "validation"]
-
-    for test in test_samples:
-        result = RuleChefExtractor.predict({"text": test.text})
-        print(f"Output: {result}")
+    print(RuleChefExtractor.predict({"text": "Nadia arbeitet beim Finanzgericht."}))
+    pred = False
+    if pred:
+        for test in test_samples:
+            result = RuleChefExtractor.predict({"text": test.text})
+            print(f"Output: {result}")
 
 
 if __name__ == "__main__":

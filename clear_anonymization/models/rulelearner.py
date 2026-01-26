@@ -27,7 +27,7 @@ class NEROutput(BaseModel):
     entities: List[Entity]
 
 
-class RuleLearner:
+class RuleChefLearner:
     def __init__(
         self,
         model: str,
@@ -57,7 +57,8 @@ class RuleLearner:
             self.allowed_classes_def = ", ".join(
                 f"{c}: {class_definitions[c]}" for c in class_definitions
             )
-
+        print(os.getenv("OPENAI_API_KEY"))
+        print(os.getenv("OPENAI_BASE_URL"))
         print(self.allowed_classes)
         print(f"Extract {self.allowed_classes_def} from text")
 
@@ -72,7 +73,7 @@ class RuleLearner:
         self.chef = RuleChef(
             task,
             self.client,
-            dataset_name=self.dataset + "_ORG_spacy",
+            dataset_name=self.dataset + "_" + self.model + "2",
             allowed_formats=[RuleFormat.SPACY],
             model=self.model,
             use_spacy_ner=False,
@@ -81,15 +82,19 @@ class RuleLearner:
     def _get_openai_client(self) -> OpenAI:
         """Get OpenAI client configured from environment variables."""
         api_key = os.getenv("OPENAI_API_KEY") or "EMPTY"
-        base_url = os.getenv("OPENAI_BASE_URL") or "http://localhost:8000/v1"
+        base_url = (
+            os.getenv("OPENAI_BASE_URL") or "https://api.openai.com/v1"
+        )  # "http://localhost:8000/v1"
         return OpenAI(api_key=api_key, base_url=base_url)
 
     def fit(self, samples):
         for sample in samples:
-            spans = []
+            positive_spans = []
+            negative_spans = []
             for label in sample.labels:
                 if label["class"] in self.allowed_classes:
-                    spans.append(
+                    # positive spans
+                    positive_spans.append(
                         {
                             "text": label["text"],
                             "start": label["start"],
@@ -97,13 +102,33 @@ class RuleLearner:
                             "type": label["class"],
                         }
                     )
-            if spans:
-                print("adding example")
+                else:
+                    # negative spans
+                    negative_spans.append(
+                        {
+                            "text": label["text"],
+                            "start": label["start"],
+                            "end": label["end"],
+                            "type": label["class"],
+                        }
+                    )
+            if positive_spans:
+                # positive example
+                self.chef.add_example(
+                    {"text": sample.text}, {"entities": positive_spans}
+                )
+            if negative_spans:
+                # negative example
+                self.chef.add_negative_example(
+                    {"text": sample.text}, {"entities": negative_spans}
+                )
 
-                self.chef.add_example({"text": sample.text}, {"entities": spans})
+            if not sample.labels:
+                self.chef.add_negative_example(
+                    {"text": sample.text}, {"entities": []}, source="human_negative"
+                )
 
-        if samples:
-            self.chef.learn_rules()
+        self.chef.learn_rules()
 
 
 def main():
@@ -131,14 +156,14 @@ def main():
     input_dir = Path(args.input_dir)
     data = NERData.from_json(json.loads(input_dir.read_text()))
 
-    rule_learner = RuleLearner(
+    rule_learner = RuleChefLearner(
         model=args.model,
         dataset=args.dataset,
         allowed_classes=args.allowed_classes,
     )
 
     train_samples = [s for s in data.samples if s.split == "train"]
-    rule_learner.fit(train_samples)
+    rule_learner.fit(train_samples[:100])
 
 
 if __name__ == "__main__":
