@@ -53,7 +53,7 @@ def validate_docu_annotations(folder, sample, verbose=False):
             print("❌ Annotation check failed!")
 
 
-def process_folder(zip_path, folder_name, verbose):
+def process_folder(zip_path, folder_name, split, verbose):
     pages = []
     annotations = None
     with zipfile.ZipFile(zip_path, "r") as archive:
@@ -69,17 +69,25 @@ def process_folder(zip_path, folder_name, verbose):
 
                 pages.append(preprocess_text(content))
 
-        ann_file = [f for f in folder_files if f.endswith(".json")][0]
-        if ann_file:
-            with archive.open(ann_file) as f:
-                annotations = json.loads(f.read().decode("utf-8"))
-    annotations = sorted(annotations, key=lambda x: (x["startPage"]))
-    sample = create_sample(pages, annotations)
+        try:
+            ann_file = [f for f in folder_files if f.endswith(".json")][0]
+            if ann_file:
+                with archive.open(ann_file) as f:
+                    annotations = json.loads(f.read().decode("utf-8"))
+            else:
+                print("empty", folder_name)
+            annotations = sorted(annotations, key=lambda x: (x["startPage"]))
+        except:
+            annotations = None
+
+    sample = create_sample(pages, annotations, split)
+
     validate_docu_annotations(folder_name, sample, verbose)
+
     return sample
 
 
-def create_sample(pages, annotations):
+def create_sample(pages, annotations, split):
     full_text = "".join(pages)
     page_offsets = []
 
@@ -105,7 +113,7 @@ def create_sample(pages, annotations):
                     "class": ann["label"],
                 }
             )
-    return NERSample(full_text, "validation", labels)
+    return NERSample(full_text, split, labels)
 
 
 def main():
@@ -123,18 +131,25 @@ def main():
     )
 
     parser.add_argument(
+        "--split",
+        type=str,
+        help="Give information whether data is from train/validation/test split",
+    )
+
+    parser.add_argument(
         "--verbose",
         action="store_true",
         help="Whether to show detailed annotations check.",
     )
 
     args = parser.parse_args()
-
     ner_data = NERData(samples=[])
     folders = list_folders(args.input_dir)
     for folder in folders:
         print(f"==== Document {folder} ====")
-        sample = process_folder(args.input_dir, folder, args.verbose)
+
+        sample = process_folder(args.input_dir, folder, args.split, args.verbose)
+
         ner_data.samples.append(sample)
         print("-----------------")
     output_path = Path(args.output_dir)
