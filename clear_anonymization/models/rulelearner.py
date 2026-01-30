@@ -1,8 +1,8 @@
+import os
 import random
 import argparse
 import json
-import os
-import random
+
 from datetime import datetime
 from pathlib import Path
 from typing import List, Literal
@@ -88,7 +88,7 @@ class RuleChefLearner:
         api_key = os.getenv("OPENAI_API_KEY") or "EMPTY"
         base_url = (
             os.getenv("OPENAI_BASE_URL") or "https://api.openai.com/v1"
-        )  # "http://localhost:8000/v1"
+        ) 
         return OpenAI(api_key=api_key, base_url=base_url)
 
     def fit(self, samples, negative_samples):
