@@ -1,4 +1,6 @@
 
+import argparse
+import json
 import os
 import random
 from datetime import datetime
@@ -11,8 +13,7 @@ from pydantic import BaseModel, Field, field_validator
 from rulechef import RuleChef, Task, TaskType
 from rulechef.core import RuleFormat
 from rulechef.prompts import LANG_TO_FULL_NAME, Lang
-import argparse
-import json
+
 from clear_anonymization.extractors.cache import CacheManager
 from clear_anonymization.ner_datasets import get_dataset_class_definitions
 from clear_anonymization.ner_datasets.ner_dataset import NERData, NERSample
