@@ -1,6 +1,8 @@
+import random
 import argparse
 import json
 import os
+import random
 from datetime import datetime
 from pathlib import Path
 from typing import List, Literal
@@ -10,6 +12,7 @@ from openai import OpenAI
 from pydantic import BaseModel, Field, field_validator
 from rulechef import RuleChef, Task, TaskType
 from rulechef.core import RuleFormat
+from rulechef.prompts import LANG_TO_FULL_NAME, Lang
 
 from clear_anonymization.extractors.cache import CacheManager
 from clear_anonymization.ner_datasets import get_dataset_class_definitions
@@ -33,16 +36,20 @@ class RuleChefLearner:
         model: str,
         dataset: str = "ler",
         allowed_classes: str | None = None,
+        rule_file: str = "default",
+        lang: Lang = "en",
     ):
         self.model = model
         self.client = self._get_openai_client()
         self.dataset = dataset
+        self.lang = lang
 
         self.allowed_classes: set[str] = set()
         class_definitions = get_dataset_class_definitions(self.dataset)
         all_classes = set(class_definitions.keys())
         print(all_classes)
-
+        date_str = datetime.now().strftime("%Y-%m-%d")
+        self.rule_file = rule_file
         if allowed_classes:
             allowed_list = [c.strip() for c in allowed_classes.split(",")]
             unknown = set(allowed_list) - all_classes
@@ -57,14 +64,10 @@ class RuleChefLearner:
             self.allowed_classes_def = ", ".join(
                 f"{c}: {class_definitions[c]}" for c in class_definitions
             )
-        print(os.getenv("OPENAI_API_KEY"))
-        print(os.getenv("OPENAI_BASE_URL"))
-        print(self.allowed_classes)
-        print(f"Extract {self.allowed_classes_def} from text")
 
         task = Task(
             name="Named Entity Recognition",
-            description=f"Extract {self.allowed_classes_def} from text",
+            description=f"Extract {self.allowed_classes_def} from {LANG_TO_FULL_NAME.get(self.lang)} text ",
             input_schema={"text": "str"},
             output_schema=NEROutput,
             type=TaskType.NER,
@@ -73,10 +76,11 @@ class RuleChefLearner:
         self.chef = RuleChef(
             task,
             self.client,
-            dataset_name=self.dataset + "_" + self.model + "2",
-            allowed_formats=[RuleFormat.SPACY],
+            dataset_name=self.rule_file,
+            allowed_formats=[RuleFormat.REGEX],
             model=self.model,
             use_spacy_ner=False,
+            lang=self.lang,
         )
 
     def _get_openai_client(self) -> OpenAI:
@@ -87,54 +91,69 @@ class RuleChefLearner:
         )  # "http://localhost:8000/v1"
         return OpenAI(api_key=api_key, base_url=base_url)
 
-    def fit(self, samples):
+    def fit(self, samples, negative_samples):
         for sample in samples:
-            positive_spans = []
-            negative_spans = []
-            for label in sample.labels:
-                if label["class"] in self.allowed_classes:
-                    # positive spans
-                    positive_spans.append(
-                        {
-                            "text": label["text"],
-                            "start": label["start"],
-                            "end": label["end"],
-                            "type": label["class"],
-                        }
-                    )
-                else:
-                    # negative spans
-                    negative_spans.append(
-                        {
-                            "text": label["text"],
-                            "start": label["start"],
-                            "end": label["end"],
-                            "type": label["class"],
-                        }
-                    )
-            if positive_spans:
-                # positive example
-                self.chef.add_example(
-                    {"text": sample.text}, {"entities": positive_spans}
-                )
-            if negative_spans:
-                # negative example
+            self.chef.add_example(
+                {"text": sample["text"]}, {"entities": sample["entities"]}
+            )
+        if negative_samples:
+            for negative_sample in negative_samples:
                 self.chef.add_negative_example(
-                    {"text": sample.text}, {"entities": negative_spans}
-                )
-
-            if not sample.labels:
-                self.chef.add_negative_example(
-                    {"text": sample.text}, {"entities": []}, source="human_negative"
+                    {"text": negative_sample["text"]},
+                    {"entities": negative_sample["entities"]},
                 )
 
         self.chef.learn_rules()
 
 
+def sample_data(samples, allowed_classes, k=6, seed=12):
+    random.seed(seed)
+    positive_samples = []
+    negative_samples = []
+    for sample in samples:
+        positive_spans = []
+        negative_spans = []
+
+        for label in sample.labels:
+            if label["class"] in allowed_classes:
+                positive_spans.append(
+                    {
+                        "text": label["text"],
+                        "start": label["start"],
+                        "end": label["end"],
+                        "type": label["class"],
+                    }
+                )
+            else:
+                negative_spans.append(
+                    {
+                        "text": label["text"],
+                        "start": label["start"],
+                        "end": label["end"],
+                        "type": label["class"],
+                    }
+                )
+
+        if positive_spans:
+            positive_samples.append(
+                {
+                    "text": sample.text,
+                    "entities": list(positive_spans),
+                }
+            )
+        if negative_spans:
+            negative_samples.append(
+                {
+                    "text": sample.text,
+                    "entities": list(negative_spans),
+                }
+            )
+
+    return positive_samples, random.sample(negative_samples, 10)
+
+
 def main():
-    parser = argparse.ArgumentParser(
-        description="Evaluate a named entity recognition model based on LLM"
-    )
+    parser = argparse.ArgumentParser(description="Learn NER rules using a LLM")
 
     parser.add_argument(
         "--input_dir",
@@ -144,6 +163,14 @@ def main():
     parser.add_argument("--model", type=str, required=True, help="Model used for NER")
     parser.add_argument(
         "--dataset", type=str, default="ler", help="Name of the dataset"
+    )
+
+    parser.add_argument(
+        "--lang", type=str, default="en", help="Language of the text (e.g. 'en','de')"
+    )
+
+    parser.add_argument(
+        "--rule_file", type=str, default="ler", help="Name of the rule file"
     )
     parser.add_argument(
         "--allowed_classes",
@@ -159,11 +186,16 @@ def main():
     rule_learner = RuleChefLearner(
         model=args.model,
         dataset=args.dataset,
+        rule_file=args.rule_file,
         allowed_classes=args.allowed_classes,
+        lang=args.lang,
     )
 
     train_samples = [s for s in data.samples if s.split == "train"]
-    rule_learner.fit(train_samples[:100])
+    positive_samples, negative_samples = sample_data(
+        train_samples, args.allowed_classes
+    )
+    rule_learner.fit(positive_samples, negative_samples)
 
 
 if __name__ == "__main__":
