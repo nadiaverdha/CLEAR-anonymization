@@ -4,6 +4,11 @@
 
 
 
+### Installation
+```bash
+pip install -e .
+```
+
 ### Getting the data 
 
 #### LER Dataset
