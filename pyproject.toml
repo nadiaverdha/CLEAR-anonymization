@@ -26,10 +26,6 @@ classifiers = [
     "Topic :: Software Development :: Libraries",
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
 ]
-dependencies = [
-    "openai>=1.0.0",
-    "pydantic>=2.0.0",
-]
 
 Homepage = "https://github.com/nadiaverdha/CLEAR-anonymization"
 Repository = "https://github.com/nadiaverdha/CLEAR-anonymization"
