@@ -1,6 +1,5 @@
-from clear_anonymization.ner_datasets import NERSample, NERData
-
+from .ner_datasets.ner_dataset import NERSample, NERData
 
 __version__ = "0.1.0"
 
-__all__ = ["clear_anonymization", "NERSample", "NERData"]
+__all__ = ["NERSample", "NERData"]
