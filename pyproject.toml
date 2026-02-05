@@ -27,6 +27,8 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
 ]
 
+
+[project.urls]
 Homepage = "https://github.com/nadiaverdha/CLEAR-anonymization"
 Repository = "https://github.com/nadiaverdha/CLEAR-anonymization"
 
