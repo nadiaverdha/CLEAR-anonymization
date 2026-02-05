@@ -31,4 +31,4 @@ Homepage = "https://github.com/nadiaverdha/CLEAR-anonymization"
 Repository = "https://github.com/nadiaverdha/CLEAR-anonymization"
 
 [tool.hatch.build.targets.wheel]
-packages = ["clear-anonymization"]
+packages = ["clear_anonymization"]
