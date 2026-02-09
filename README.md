@@ -18,11 +18,12 @@ To download the LER dataset from HuggingFace in a json format inside the `data` 
 python clear_anonymization/preprocess/preprocess_ler.py --repository_id elenanereiss/german-ler --output_dir data/ler/ler_data.json 
 ```
 
-#### M2N Dataset
+#### Other Datasets (Musterfall, BFG)
 
-To store the M2N dataset in a json format inside the `data` folder:
+To store the dataset in a json format inside the `data` folder:
 ```bash
-python clear_anonymization/preprocess/preprocess_m2n.py --input_dir data/m2n/testexport_musterfall_20251127.zip
+python clear_anonymization/preprocess/preprocess_m2n.py --input_dir {datasetname}_TRAIN.zip --output_dir data/bfg/{datasetname}_train.json --split train 
+
 ```
 
 ### LLM Baseline
