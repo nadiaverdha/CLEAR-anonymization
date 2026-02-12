@@ -49,7 +49,7 @@ def create_labels(substrs: dict, sentence: str):
                     "start": match.start(),
                     "end": match.end(),
                     "text": sub,
-                    "class": label,
+                    "type": label,
                 }
             )
     return labels

@@ -110,7 +110,7 @@ def create_sample(pages, annotations, split):
                     "text": ann["text"],
                     "start": start,
                     "end": end,
-                    "class": ann["label"],
+                    "type": ann["label"],
                 }
             )
     return NERSample(full_text, split, labels)
