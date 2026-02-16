@@ -67,7 +67,7 @@ class RuleChefLearner:
                 f"{c}: {class_definitions[c]}" for c in class_definitions
             )
             classes_str = "all_classes"
-        
+
         task = Task(
             name="Named Entity Recognition",
             description=f"Extract {self.allowed_classes_def} from {LANG_TO_FULL_NAME.get(self.lang)} text ",
@@ -80,23 +80,24 @@ class RuleChefLearner:
         self.chef = RuleChef(
             task,
             self.client,
-            dataset_name= f"{date_str}_{model}_{self.dataset}_{classes_str}",
+            dataset_name=f"{date_str}_{model}_{self.dataset}_{classes_str}",
             allowed_formats=[RuleFormat.REGEX],
             model=self.model,
-            use_spacy_ner=False, use_grex = True )
+            use_spacy_ner=False,
+            use_grex=True,
+        )
 
     def _get_openai_client(self) -> OpenAI:
         """Get OpenAI client configured from environment variables."""
         api_key = os.getenv("OPENAI_API_KEY") or "EMPTY"
-        base_url = os.getenv("OPENAI_BASE_URL") or "http://localhost:8000/v1" 
+        base_url = os.getenv("OPENAI_BASE_URL") or "http://localhost:8000/v1"
 
-        #"https://api.openai.com/v1"
-    
+        # "https://api.openai.com/v1"
+
         return OpenAI(api_key=api_key, base_url=base_url)
 
     def fit(self, samples, negative_samples):
         for sample in samples:
-            
             self.chef.add_example(
                 {"text": sample["text"]}, {"entities": sample["entities"]}
             )
@@ -107,17 +108,20 @@ class RuleChefLearner:
                     {"entities": negative_sample["entities"]},
                 )
 
-        self.chef.learn_rules(incremental_only = True)
+        self.chef.learn_rules(incremental_only=True)
 
 
 def sample_data(samples, allowed_classes, k=50, seed=123, window_size=100):
     random.seed(seed)
-    
+
     positive_samples = []
     for sample in samples:
         text = sample.text
-        entities = sorted([l for l in sample.labels if l["type"] in allowed_classes], key=lambda x: x["start"])
-        
+        entities = sorted(
+            [l for l in sample.labels if l["type"] in allowed_classes],
+            key=lambda x: x["start"],
+        )
+
         if not entities:
             continue
         merged_windows = []
@@ -129,31 +133,27 @@ def sample_data(samples, allowed_classes, k=50, seed=123, window_size=100):
                 merged_windows[-1][2].append(ent)
             else:
                 merged_windows.append([start, end, [ent]])
-        
+
         for start, end, window_entities in merged_windows:
             snippet = text[start:end]
             adjusted_entities = []
             for e in window_entities:
-                adjusted_entities.append({
-                    "text": e["text"],
-                    "start": e["start"] - start,
-                    "end": e["end"] - start,
-                    "type": e["type"]
-                })
-            
-            positive_samples.append({
-                "text": snippet,
-                "entities": adjusted_entities
-            })
-         
-           
+                adjusted_entities.append(
+                    {
+                        "text": e["text"],
+                        "start": e["start"] - start,
+                        "end": e["end"] - start,
+                        "type": e["type"],
+                    }
+                )
+
+            positive_samples.append({"text": snippet, "entities": adjusted_entities})
 
     # Shuffle and limit number of examples
     if len(positive_samples) > k:
         positive_samples = random.sample(positive_samples, k)
-    
-    return positive_samples
 
+    return positive_samples
 
 
 def main():
@@ -186,11 +186,10 @@ def main():
     args = parser.parse_args()
     input_dir = Path(args.input_dir)
 
-    #input_dir = Path(args.input_dir)
-    #data = NERData.from_json(json.loads(input_dir.read_text(encoding="utf-8")))
+    # input_dir = Path(args.input_dir)
+    # data = NERData.from_json(json.loads(input_dir.read_text(encoding="utf-8")))
     data = NERData.from_json(json.loads(input_dir.read_text()))
 
-    
     rule_learner = RuleChefLearner(
         model=args.model,
         dataset=args.dataset,
@@ -198,10 +197,10 @@ def main():
         allowed_classes=args.allowed_classes,
         lang=args.lang,
     )
-        
-    #train_samples = [s for s in data.samples if s.split == "train"]
+
+    # train_samples = [s for s in data.samples if s.split == "train"]
     sampled = sample_data(data.samples, rule_learner.allowed_classes)
-    #print(sampled)
+    # print(sampled)
     rule_learner.fit(sampled, None)
 
 
