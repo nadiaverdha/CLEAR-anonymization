@@ -43,12 +43,12 @@ def validate_docu_annotations(folder, sample, verbose=False):
             print(f"{start}:{end}  '{actual}'  ---->  '{expected}'")
             if actual != expected:
                 print("❌ incorrect")
-           # else:
-              #  print("✅ correct ")
+        # else:
+        #  print("✅ correct ")
 
     if not verbose:
-       # if all_ok:
-           # print("✅ Annotation check ok! ")
+        # if all_ok:
+        # print("✅ Annotation check ok! ")
         if not all_ok:
             print("❌ Annotation check failed!")
 
