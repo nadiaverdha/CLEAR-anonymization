@@ -115,12 +115,14 @@ def sample_data(samples, allowed_classes, k=50, seed=123, window_size=100):
     random.seed(seed)
 
     positive_samples = []
+
     for sample in samples:
         text = sample.text
         entities = sorted(
             [l for l in sample.labels if l["type"] in allowed_classes],
             key=lambda x: x["start"],
         )
+        print(entities)
 
         if not entities:
             continue
@@ -149,10 +151,10 @@ def sample_data(samples, allowed_classes, k=50, seed=123, window_size=100):
 
             positive_samples.append({"text": snippet, "entities": adjusted_entities})
 
-    # Shuffle and limit number of examples
     if len(positive_samples) > k:
         positive_samples = random.sample(positive_samples, k)
 
+    print(positive_samples)
     return positive_samples
 
 
@@ -185,9 +187,6 @@ def main():
 
     args = parser.parse_args()
     input_dir = Path(args.input_dir)
-
-    # input_dir = Path(args.input_dir)
-    # data = NERData.from_json(json.loads(input_dir.read_text(encoding="utf-8")))
     data = NERData.from_json(json.loads(input_dir.read_text()))
 
     rule_learner = RuleChefLearner(
@@ -198,9 +197,9 @@ def main():
         lang=args.lang,
     )
 
-    # train_samples = [s for s in data.samples if s.split == "train"]
-    sampled = sample_data(data.samples, rule_learner.allowed_classes)
-    # print(sampled)
+    train_samples = [s for s in data.samples if s.split == "train"]
+    sampled = sample_data(train_samples, rule_learner.allowed_classes)
+
     rule_learner.fit(sampled, None)
 
 

@@ -76,7 +76,7 @@ def process_folder(zip_path, folder_name, split, verbose):
                     annotations = json.loads(f.read().decode("utf-8"))
             else:
                 print("empty", folder_name)
-            annotations = sorted(annotations, key=lambda x: (x["startPage"]))
+            annotations = sorted(annotations, key=lambda x: x["startPage"])
         except:
             annotations = None
 

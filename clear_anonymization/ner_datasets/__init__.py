@@ -22,6 +22,22 @@ DATASET_CLASS_DEFINITIONS = {
         "address": "Postadressen",
         "tax_number": "Steuernummern",
     },
+    "bfg": {
+        "person": "Personennamen",
+        "organisation": "Organisationsnamen",
+        "account": "Konten",
+        "address": "Postadressen",
+        "business_register_number": "Handelsregister- oder Unternehmensnummern",
+        "city": "Stadt",
+        "country": "Staat",
+        "date": "Datumsangaben",
+        "email_address": "E-Mail-Adressen",
+        "property_number": "Grundstücksnummer",
+        "social_security_number": "Sozialversicherungsnummer",
+        "tax_number": "Steuernummern",
+        "vehicle_license": "Kfz-Kennzeichen",
+        "website": "website",
+    },
 }
 
 
