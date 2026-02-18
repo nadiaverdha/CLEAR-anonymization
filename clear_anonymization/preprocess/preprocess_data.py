@@ -6,16 +6,28 @@ import string
 import unicodedata
 import zipfile
 from pathlib import Path
+from typing import List
+import spacy
+from dataclasses import dataclass
 
 from datasets import load_dataset
 
 from clear_anonymization.ner_datasets.ner_dataset import NERData, NERDataset, NERSample
 
+MAX_CHUNK_SIZE = 1000000
+
+nlp = spacy.blank("de")
+nlp.add_pipe("sentencizer")
+
+@dataclass
+class Sent:
+    start_char: int
+    end_char: int
+    text: str
 
 def preprocess_text(text):
     text = text.replace("\xa0", " ")
     return text
-
 
 def list_folders(zip_path):
     with zipfile.ZipFile(zip_path, "r") as archive:
@@ -26,34 +38,61 @@ def list_folders(zip_path):
                 folders.add(folder)
         return sorted(folders)
 
+def collect_annos_in_sentence(annos, sent):
+    collected = []
+    for anno in annos:
+        if anno["start"] >= sent.start_char and anno["end"] <= sent.end_char:
+            anno["start"] = anno["start"] - sent.start_char
+            anno["end"] = anno["end"] - sent.start_char
+            collected.append(anno)
+    return collected
 
-def validate_docu_annotations(folder, sample, verbose=False):
-    text = sample.text
-    labels = sample.labels
-    all_ok = True
-    for ann in labels:
-        start = ann["start"]
-        end = ann["end"]
-        actual = text[start:end]
-        expected = ann["text"]
-        if actual != expected:
-            all_ok = False
+def iter_sentences(full_text: str):
+    start = 0
+    while start < len(full_text):
+        end = min(start + MAX_CHUNK_SIZE, len(full_text))
+        if end < len(full_text):
+            snap = full_text.rfind("\n", start, end)
+            if snap == -1:
+                snap = full_text.rfind(".", start, end)
+            if snap == -1:
+                snap = full_text.rfind(" ", start, end)
+            if snap != -1 and snap > start + MAX_CHUNK_SIZE * 0.8:
+                end = snap
+        chunk = full_text[start:end]
 
-        if verbose:
-            print(f"{start}:{end}  '{actual}'  ---->  '{expected}'")
+        doc = nlp(chunk)
+        for sent in doc.sents:
+            yield Sent(sent.start_char + start, sent.end_char + start, sent.text)
+        start = end
+
+def validate_docu_annotations(folder, samples:List[NERSample], verbose=False):
+    for sample in samples:
+        text = sample.text
+        labels = sample.labels
+        all_ok = True
+        for ann in labels:
+            start = ann["start"]
+            end = ann["end"]
+            actual = text[start:end]
+            expected = ann["text"]
             if actual != expected:
-                print("❌ incorrect")
-        # else:
-        #  print("✅ correct ")
+                all_ok = False
 
-    if not verbose:
-        # if all_ok:
-        # print("✅ Annotation check ok! ")
-        if not all_ok:
-            print("❌ Annotation check failed!")
+            if verbose:
+                print(f"{start}:{end}  '{actual}'  ---->  '{expected}'")
+                if actual != expected:
+                    print("❌ incorrect")
+               # else:
+                  #  print("✅ correct ")
 
+        if not verbose:
+           # if all_ok:
+               # print("✅ Annotation check ok! ")
+            if not all_ok:
+                print("❌ Annotation check failed!")
 
-def process_folder(zip_path, folder_name, split, verbose):
+def process_folder(zip_path, folder_name, split, verbose, sentences: bool) -> List[NERSample]:
     pages = []
     annotations = None
     with zipfile.ZipFile(zip_path, "r") as archive:
@@ -80,14 +119,14 @@ def process_folder(zip_path, folder_name, split, verbose):
         except:
             annotations = None
 
-    sample = create_sample(pages, annotations, split)
+    samples = create_sample(pages, annotations, split, sentences)
 
-    validate_docu_annotations(folder_name, sample, verbose)
+    validate_docu_annotations(folder_name, samples, verbose)
 
-    return sample
+    return samples
 
 
-def create_sample(pages, annotations, split):
+def create_sample(pages, annotations, split, sentences:bool) -> List[NERSample]:
     full_text = "".join(pages)
     page_offsets = []
 
@@ -97,7 +136,9 @@ def create_sample(pages, annotations, split):
         current_offset += len(p)
 
     labels = []
-    if annotations:
+    if not annotations:
+        return [NERSample(full_text, split, labels)]
+    if not sentences:
         for ann in annotations:
             startpage = ann["startPage"]
             endpage = ann["endPage"]
@@ -113,8 +154,27 @@ def create_sample(pages, annotations, split):
                     "type": ann["label"],
                 }
             )
-    return NERSample(full_text, split, labels)
+        return [NERSample(full_text, split, labels)]
+    else:
+        # multiple annotations: [(start, end, type), ...]
+        # collect annotations per sentence and combine to NERSample
+        # remove sentence offset from start/end
+        converted_annos = []
+        for ann in annotations:
+            startpage = ann["startPage"]
+            endpage = ann["endPage"]
 
+            start = page_offsets[startpage] + ann["pageRelativeStart"]
+            end = page_offsets[endpage] + ann["pageRelativeEnd"]
+            actual = full_text[start:end]
+            converted_annos.append({"text": ann["text"], "start": start, "end": end, "class": ann["label"]})
+
+        ner_samples = []
+        for sent in iter_sentences(full_text):
+            relevant_annos = collect_annos_in_sentence(converted_annos, sent)
+            if len(relevant_annos) != 0:
+                ner_samples.append(NERSample(sent.text, split, relevant_annos))
+        return ner_samples
 
 def main():
     parser = argparse.ArgumentParser(description="Load a dataset from M2N zip file ")
@@ -141,15 +201,22 @@ def main():
         action="store_true",
         help="Whether to show detailed annotations check.",
     )
+
+    parser.add_argument(
+        "--sentences",
+        action="store_true",
+        default=False,
+        help="Whether to split the document text into sentences."
+    )
     args = parser.parse_args()
     ner_data = NERData(samples=[])
     folders = list_folders(args.input_dir)
     for folder in folders:
         print(f"==== Document {folder} ====")
 
-        sample = process_folder(args.input_dir, folder, args.split, args.verbose)
+        sample = process_folder(args.input_dir, folder, args.split, args.verbose, args.sentences)
 
-        ner_data.samples.append(sample)
+        ner_data.samples.extend(sample)
         print("-----------------")
     output_path = Path(args.output_dir)
     output_path.write_text(json.dumps(ner_data.to_json(), indent=4))
