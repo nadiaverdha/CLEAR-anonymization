@@ -17,8 +17,8 @@ def append_rule_metrics(file_path: Path, rule_metrics: dict, threshold: float, t
     with file_path.open("a", encoding="utf-8") as f:
         
         for rule_name, info in rule_metrics.items():
-            f.write(f"### Rule: {rule_name}\n\n")  
-            f.write(f"## Threshold: {threshold}\n\n")  
+            f.write(f"## Rule: {rule_name}\n\n")  
+            f.write(f"### Threshold: {threshold}\n\n")  
             f.write(f"**Pattern:** `{info['pattern']}`\n\n")
             metrics = info["metrics"]
             f.write("| Precision | Recall | F1 |\n")
@@ -44,7 +44,7 @@ def main():
     parser.add_argument("--output_md", type=str, default=None, help="Path to save Markdown report")
     args = parser.parse_args()
     rules_data = json.loads(Path(args.rules_file).read_text(encoding="utf-8"))
-    rules_ = [Rule.from_dict(r) for r in rules_data.get("rules", [])][:1]
+    rules_ = [Rule.from_dict(r) for r in rules_data.get("rules", [])]
     data_file = Path(args.data_file)
     all_data = NERData.from_json(json.loads(data_file.read_text()))
     train_samples = [s for s in all_data.samples if s.split == "train"]
