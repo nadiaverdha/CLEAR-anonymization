@@ -8,16 +8,25 @@ import zipfile
 from pathlib import Path
 from typing import List
 import spacy
+from tuw_nlp.text.pipeline import CustomStanzaPipeline
+from tuw_nlp.text.patterns.de import ABBREV
 from dataclasses import dataclass
+from os.path import commonprefix
 
 from datasets import load_dataset
 
 from clear_anonymization.ner_datasets.ner_dataset import NERData, NERDataset, NERSample
+from clear_anonymization.preprocess.util import TITLES
+
+ABBREV.extend(TITLES)
 
 MAX_CHUNK_SIZE = 1000000
 
-nlp = spacy.blank("de")
-nlp.add_pipe("sentencizer")
+TUW_NLP = True
+
+nlp = spacy.blank("de") if not TUW_NLP else CustomStanzaPipeline()
+if not TUW_NLP:
+    nlp.add_pipe("sentencizer")
 
 @dataclass
 class Sent:
@@ -36,6 +45,10 @@ def list_folders(zip_path):
             if "/" in file_name:
                 folder = "/".join(file_name.split("/")[:-1])
                 folders.add(folder)
+        prefix = commonprefix(list(folders))
+        # filter out root folder
+        if prefix in folders:
+            folders.remove(prefix)
         return sorted(folders)
 
 def collect_annos_in_sentence(annos, sent):
@@ -47,7 +60,12 @@ def collect_annos_in_sentence(annos, sent):
             collected.append(anno)
     return collected
 
-def iter_sentences(full_text: str):
+def iter_sentences_stanza(full_text: str):
+    sents = nlp.tokenizer(full_text).sentences
+    for sent in sents:
+        yield Sent(sent.tokens[0].start_char, sent.tokens[-1].end_char, sent.text)
+
+def iter_sentences_spacy(full_text: str):
     start = 0
     while start < len(full_text):
         end = min(start + MAX_CHUNK_SIZE, len(full_text))
@@ -170,7 +188,8 @@ def create_sample(pages, annotations, split, sentences:bool) -> List[NERSample]:
             converted_annos.append({"text": ann["text"], "start": start, "end": end, "class": ann["label"]})
 
         ner_samples = []
-        for sent in iter_sentences(full_text):
+        iter_func = iter_sentences_spacy(full_text) if not TUW_NLP else iter_sentences_stanza(full_text)
+        for sent in iter_func:
             relevant_annos = collect_annos_in_sentence(converted_annos, sent)
             if len(relevant_annos) != 0:
                 ner_samples.append(NERSample(sent.text, split, relevant_annos))
