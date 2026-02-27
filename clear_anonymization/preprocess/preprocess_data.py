@@ -1,9 +1,5 @@
 import argparse
 import json
-import logging
-import re
-import string
-import unicodedata
 import zipfile
 from pathlib import Path
 from typing import List
@@ -13,12 +9,24 @@ from tuw_nlp.text.patterns.de import ABBREV
 from dataclasses import dataclass
 from os.path import commonprefix
 
-from datasets import load_dataset
+from tuw_nlp.text.segmentation import SsplitFixer
 
-from clear_anonymization.ner_datasets.ner_dataset import NERData, NERDataset, NERSample
-from clear_anonymization.preprocess.util import TITLES
+from clear_anonymization.ner_datasets.ner_dataset import NERData, NERSample
+from clear_anonymization.preprocess.util import (
+    TITLES,
+    TOB,
+    MISC,
+    ROMAN_NUMBERING,
+    _is_err_patch,
+)
 
 ABBREV.extend(TITLES)
+ABBREV.extend(TOB)
+ABBREV.extend(MISC)
+ABBREV.extend(ROMAN_NUMBERING)
+
+# monkey patch for is_err
+SsplitFixer.is_err = _is_err_patch
 
 MAX_CHUNK_SIZE = 1000000
 
@@ -28,15 +36,18 @@ nlp = spacy.blank("de") if not TUW_NLP else CustomStanzaPipeline()
 if not TUW_NLP:
     nlp.add_pipe("sentencizer")
 
+
 @dataclass
 class Sent:
     start_char: int
     end_char: int
     text: str
 
+
 def preprocess_text(text):
     text = text.replace("\xa0", " ")
     return text
+
 
 def list_folders(zip_path):
     with zipfile.ZipFile(zip_path, "r") as archive:
@@ -51,6 +62,7 @@ def list_folders(zip_path):
             folders.remove(prefix)
         return sorted(folders)
 
+
 def collect_annos_in_sentence(annos, sent):
     collected = []
     for anno in annos:
@@ -60,10 +72,12 @@ def collect_annos_in_sentence(annos, sent):
             collected.append(anno)
     return collected
 
+
 def iter_sentences_stanza(full_text: str):
     sents = nlp.tokenizer(full_text).sentences
     for sent in sents:
         yield Sent(sent.tokens[0].start_char, sent.tokens[-1].end_char, sent.text)
+
 
 def iter_sentences_spacy(full_text: str):
     start = 0
@@ -84,7 +98,8 @@ def iter_sentences_spacy(full_text: str):
             yield Sent(sent.start_char + start, sent.end_char + start, sent.text)
         start = end
 
-def validate_docu_annotations(folder, samples:List[NERSample], verbose=False):
+
+def validate_docu_annotations(folder, samples: List[NERSample], verbose=False):
     for sample in samples:
         text = sample.text
         labels = sample.labels
@@ -101,16 +116,19 @@ def validate_docu_annotations(folder, samples:List[NERSample], verbose=False):
                 print(f"{start}:{end}  '{actual}'  ---->  '{expected}'")
                 if actual != expected:
                     print("❌ incorrect")
-               # else:
-                  #  print("✅ correct ")
+            # else:
+            #  print("✅ correct ")
 
         if not verbose:
-           # if all_ok:
-               # print("✅ Annotation check ok! ")
+            # if all_ok:
+            # print("✅ Annotation check ok! ")
             if not all_ok:
                 print("❌ Annotation check failed!")
 
-def process_folder(zip_path, folder_name, split, verbose, sentences: bool) -> List[NERSample]:
+
+def process_folder(
+    zip_path, folder_name, split, verbose, sentences: bool
+) -> List[NERSample]:
     pages = []
     annotations = None
     with zipfile.ZipFile(zip_path, "r") as archive:
@@ -144,7 +162,7 @@ def process_folder(zip_path, folder_name, split, verbose, sentences: bool) -> Li
     return samples
 
 
-def create_sample(pages, annotations, split, sentences:bool) -> List[NERSample]:
+def create_sample(pages, annotations, split, sentences: bool) -> List[NERSample]:
     full_text = "".join(pages)
     page_offsets = []
 
@@ -185,15 +203,22 @@ def create_sample(pages, annotations, split, sentences:bool) -> List[NERSample]:
             start = page_offsets[startpage] + ann["pageRelativeStart"]
             end = page_offsets[endpage] + ann["pageRelativeEnd"]
             actual = full_text[start:end]
-            converted_annos.append({"text": ann["text"], "start": start, "end": end, "class": ann["label"]})
+            converted_annos.append(
+                {"text": ann["text"], "start": start, "end": end, "class": ann["label"]}
+            )
 
         ner_samples = []
-        iter_func = iter_sentences_spacy(full_text) if not TUW_NLP else iter_sentences_stanza(full_text)
+        iter_func = (
+            iter_sentences_spacy(full_text)
+            if not TUW_NLP
+            else iter_sentences_stanza(full_text)
+        )
         for sent in iter_func:
             relevant_annos = collect_annos_in_sentence(converted_annos, sent)
             if len(relevant_annos) != 0:
                 ner_samples.append(NERSample(sent.text, split, relevant_annos))
         return ner_samples
+
 
 def main():
     parser = argparse.ArgumentParser(description="Load a dataset from M2N zip file ")
@@ -225,7 +250,7 @@ def main():
         "--sentences",
         action="store_true",
         default=False,
-        help="Whether to split the document text into sentences."
+        help="Whether to split the document text into sentences.",
     )
     args = parser.parse_args()
     ner_data = NERData(samples=[])
@@ -233,7 +258,9 @@ def main():
     for folder in folders:
         print(f"==== Document {folder} ====")
 
-        sample = process_folder(args.input_dir, folder, args.split, args.verbose, args.sentences)
+        sample = process_folder(
+            args.input_dir, folder, args.split, args.verbose, args.sentences
+        )
 
         ner_data.samples.extend(sample)
         print("-----------------")

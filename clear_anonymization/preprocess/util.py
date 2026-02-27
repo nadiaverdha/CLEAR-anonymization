@@ -1,3 +1,150 @@
+from tuw_nlp.text.patterns.de import ABBREV
+from tuw_nlp.text.segmentation import SsplitFixer
 
-TITLES = {'Bakk. techn.', 'B. Sc.', 'Hon. Prof.in', 'Priv. Doz.in', 'Techn.R.', 'B. A.', 'LL.M.', 'Univ. Prof.', 'Bakk.iur.', 'B. Ed.', 'Priv. Doz.', 'M.Sc.', 'Dr.', 'Mag.a', 'Priv.-Doz.', 'Bakk. art.', 'OSR.', 'KmzlR.', 'Univ Prof.in', 'VetR.', 'LL.B.', 'Techn.R', 'Ing.', 'Univ.-Prof.in', 'Dr.in', 'ÖkR.', 'Dipl. Kfm.', 'KommR.', 'Bakk. rer. nat.', 'Bakk. iur.', 'Hon. Prof.', 'LL. M.', 'Bakk.rer.nat.', 'Univ. Prof.in', 'Univ.-Prof.', 'Dipl.-Ing.', 'OStR.', 'B.Sc.', 'RegR.', 'KzlR.', 'MedR.', 'Prof.in', 'Mag.', 'Bakk.art.', 'B.Ed.', 'Hon Prof.in', 'Bakk.phil.', 'Dipl. Kff.', 'Bakk. phil.', 'Bakk.techn.', 'Hon.-Prof.in', 'M. Sc.', 'M.A.', 'M. A.', 'StR.', 'B.A.', ' LL. B.', 'DDr.in', 'Prof.', 'Priv.-Doz.in', 'OmedR.', 'DDr.', 'Hon.-Prof.', 'Dipl. Ing.'}
-TOB = {'e.U.', 'e.U', 'e.G.', 'e.G'}
+TITLES = {
+    "Bakk. techn.",
+    "B. Sc.",
+    "Hon. Prof.in",
+    "Priv. Doz.in",
+    "Techn.R.",
+    "B. A.",
+    "LL.M.",
+    "Univ. Prof.",
+    "Bakk.iur.",
+    "B. Ed.",
+    "Priv. Doz.",
+    "M.Sc.",
+    "Dr.",
+    "Mag.a",
+    "Priv.-Doz.",
+    "Bakk. art.",
+    "OSR.",
+    "KmzlR.",
+    "Univ Prof.in",
+    "VetR.",
+    "LL.B.",
+    "Techn.R",
+    "Ing.",
+    "Univ.-Prof.in",
+    "Dr.in",
+    "ÖkR.",
+    "Dipl. Kfm.",
+    "KommR.",
+    "Bakk. rer. nat.",
+    "Bakk. iur.",
+    "Hon. Prof.",
+    "LL. M.",
+    "Bakk.rer.nat.",
+    "Univ. Prof.in",
+    "Univ.-Prof.",
+    "Dipl.-Ing.",
+    "OStR.",
+    "B.Sc.",
+    "RegR.",
+    "KzlR.",
+    "MedR.",
+    "Prof.in",
+    "Mag.",
+    "Bakk.art.",
+    "B.Ed.",
+    "Hon Prof.in",
+    "Bakk.phil.",
+    "Dipl. Kff.",
+    "Bakk. phil.",
+    "Bakk.techn.",
+    "Hon.-Prof.in",
+    "M. Sc.",
+    "M.A.",
+    "M. A.",
+    "StR.",
+    "B.A.",
+    " LL. B.",
+    "DDr.in",
+    "Prof.",
+    "Priv.-Doz.in",
+    "OmedR.",
+    "DDr.",
+    "Hon.-Prof.",
+    "Dipl. Ing.",
+}
+
+TOB = {"e.U.", "e.U", "e.G.", "e.G"}
+ROMAN_NUMBERING = {
+    "I.",
+    "II.",
+    "III.",
+    "IV.",
+    "V.",
+}
+
+MISC = {
+    "lfd.",
+    "u.",
+    "St.Nr.",
+    "Nr.",
+    "nr.",
+    "Tel.",
+    "abz.",
+    "Bmst.",
+    "UID-Nr.",
+    "Uid-Nr.",
+    "UlD-Nr.",
+    "DVR-Nr.",
+    "abzugi.",
+    "Kunden-Nr.",
+    "Kunden:Nr.",
+    "Kunden-nr.",
+    "Rechnung-Nr.",
+    "Telefon-Nr.",
+    "Dot.",
+    "Pos.",
+    "Bel.",
+    "Bundesstr.",
+    "Zuschl.",
+    "Abg.",
+    "gem.",
+    "SV-NR.",
+    "SV-Nr.",
+    "Wr.",
+    "elektr.",
+    "GZ.",
+    "exkl.",
+    "inkl.",
+    "Erl.",
+    "bez.",
+    "ca.",
+    "lt.",
+    "Einh.",
+    "Inc.",
+    "Art.",
+    "BGBl.",
+    "geb.",
+    "Geb.",
+    "Pos.",
+    "Pos.Nr.",
+    "Kto-Nr.",
+    "Art.-nr.",
+    "Angebots-Nr.",
+    "zzgl.",
+    "HR.",
+    "Hr.",
+    "z.Hd.",
+    "Arb.",
+    "Art.Nr.",
+    "Eht.",
+}
+
+_original_is_err = SsplitFixer.is_err
+
+
+def _is_err_patch(self, sen1, sen2):
+    res1, res2 = _original_is_err(self, sen1, sen2)
+
+    if res1 and res2:
+        return res1, res2
+
+    for abr in ABBREV:
+        if abr == sen1.text or sen1.text.endswith(f"\n{abr}"):
+            return True, True
+
+    return False, None
