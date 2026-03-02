@@ -147,7 +147,7 @@ def main():
     parser.add_argument("--dataset_name", default="FinD", type=str, required=True)
     parser.add_argument("--data_file", type=str, required=False)
     parser.add_argument("--output_md", type=str, default=None)
-    parser.add_argument("--max_samples", type=int, default=5)
+    parser.add_argument("--max_samples", type=int, default=10)
     parser.add_argument("--mode", type=str, default="text", choices=["text", "exact"])
 
     args = parser.parse_args()
