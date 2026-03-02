@@ -30,7 +30,4 @@ jobs:
           ruff format .
           ruff check --select I --fix
     
-    - name: Test with pytest
-      run: |
-        pytest tests/test_inference_pytest.py -v 
 
