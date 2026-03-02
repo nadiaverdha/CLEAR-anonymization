@@ -27,10 +27,16 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
 ]
 
-
 [project.urls]
 Homepage = "https://github.com/nadiaverdha/CLEAR-anonymization"
 Repository = "https://github.com/nadiaverdha/CLEAR-anonymization"
+
+[project.optional-dependencies]
+dev = [
+    "ruff",
+    "pytest",
+    "black"
+]
 
 [tool.hatch.build.targets.wheel]
 packages = ["clear_anonymization"]
