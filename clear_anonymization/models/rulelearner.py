@@ -1,34 +1,19 @@
 import argparse
 import json
-from datetime import datetime
-import re
 import os
-import random
+import re
 from datetime import datetime
 from pathlib import Path
-from typing import List, Literal
 
 import rulechef
 from openai import OpenAI
-from pydantic import BaseModel, Field, field_validator
 from rulechef import RuleChef, Task, TaskType
-from rulechef.core import RuleFormat
-from rulechef.prompts import LANG_TO_FULL_NAME, Lang
+from rulechef.core import RuleFormat, Dataset
 
-from clear_anonymization.extractors.cache import CacheManager
+from rulechef.evaluation import evaluate_rules_individually, print_rule_metrics
 from clear_anonymization.ner_datasets import get_dataset_class_definitions
 from clear_anonymization.ner_datasets.ner_dataset import NERData, NERSample
-
-
-class Entity(BaseModel):
-    text: str = Field(description="The matched text span")
-    start: int = Field(description="Start character offset")
-    end: int = Field(description="End character offset")
-    type: str = Field(description="Entity label")
-
-
-class NEROutput(BaseModel):
-    entities: List[Entity]
+from clear_anonymization.utils.utils import *
 
 
 class RuleChefLearner:
@@ -38,61 +23,35 @@ class RuleChefLearner:
         dataset: str = "ler",
         allowed_classes: str | None = None,
         rule_file: str = "default",
-        lang: Lang = "en",
     ):
         self.model = model
         self.client = self._get_openai_client()
         self.dataset = dataset
-        self.lang = lang
 
-        self.allowed_classes: set[str] = set()
-        class_definitions = get_dataset_class_definitions(self.dataset)
-        all_classes = set(class_definitions.keys())
         date_str = datetime.now().strftime("%Y-%m-%d")
-        self.rule_file = rule_file
-        if allowed_classes:
-            allowed_list = [c.strip() for c in allowed_classes.split(",")]
-            unknown = set(allowed_list) - all_classes
-            if unknown:
-                raise ValueError(f"Unknown entity classes: {unknown}")
-            self.allowed_classes = set(allowed_list)
-            self.allowed_classes_def = ", ".join(
-                f"{c}: {class_definitions[c]}" for c in allowed_list
-            )
-
-            classes_str = "_".join(allowed_list)
-        else:
-            self.allowed_classes = all_classes
-            self.allowed_classes_def = ", ".join(
-                f"{c}: {class_definitions[c]}" for c in class_definitions
-            )
-            classes_str = "all_classes"
-
+        classes_str, allowed_classes_def = get_class_def("bfg", [allowed_classes])
         task = Task(
             name="Named Entity Recognition",
-            description=f"Extract {self.allowed_classes_def} from {LANG_TO_FULL_NAME.get(self.lang)} text ",
+            description=f"Extract {allowed_classes_def} from text ",
             input_schema={"text": "str"},
             output_schema=NEROutput,
             type=TaskType.NER,
+            text_field="text",
         )
-        model = self.model.replace("/", "_")
-
         self.chef = RuleChef(
             task,
             self.client,
-            dataset_name=f"{date_str}_{model}_{self.dataset}_{classes_str}",
-            allowed_formats=[RuleFormat.REGEX],
+            dataset_name=f"{date_str}_findok_{classes_str}",
+            storage_path=".",
             model=self.model,
-            use_spacy_ner=False,
-            use_grex=True,
+            allowed_formats=[RuleFormat.REGEX],  # regex-only for transparency
+            use_grex=True,  # use grex to suggest regex patterns from examples
         )
 
     def _get_openai_client(self) -> OpenAI:
         """Get OpenAI client configured from environment variables."""
         api_key = os.getenv("OPENAI_API_KEY") or "EMPTY"
         base_url = os.getenv("OPENAI_BASE_URL") or "http://localhost:8000/v1"
-
-        # "https://api.openai.com/v1"
 
         return OpenAI(api_key=api_key, base_url=base_url)
 
@@ -109,53 +68,6 @@ class RuleChefLearner:
                 )
 
         self.chef.learn_rules(incremental_only=True)
-
-
-def sample_data(samples, allowed_classes, k=50, seed=123, window_size=100):
-    random.seed(seed)
-
-    positive_samples = []
-
-    for sample in samples:
-        text = sample.text
-        entities = sorted(
-            [l for l in sample.labels if l["type"] in allowed_classes],
-            key=lambda x: x["start"],
-        )
-        print(entities)
-
-        if not entities:
-            continue
-        merged_windows = []
-        for ent in entities:
-            start = max(0, ent["start"] - window_size)
-            end = min(len(text), ent["end"] + window_size)
-            if merged_windows and start <= merged_windows[-1][1]:
-                merged_windows[-1][1] = max(end, merged_windows[-1][1])
-                merged_windows[-1][2].append(ent)
-            else:
-                merged_windows.append([start, end, [ent]])
-
-        for start, end, window_entities in merged_windows:
-            snippet = text[start:end]
-            adjusted_entities = []
-            for e in window_entities:
-                adjusted_entities.append(
-                    {
-                        "text": e["text"],
-                        "start": e["start"] - start,
-                        "end": e["end"] - start,
-                        "type": e["type"],
-                    }
-                )
-
-            positive_samples.append({"text": snippet, "entities": adjusted_entities})
-
-    if len(positive_samples) > k:
-        positive_samples = random.sample(positive_samples, k)
-
-    print(positive_samples)
-    return positive_samples
 
 
 def main():
@@ -180,7 +92,7 @@ def main():
     )
     parser.add_argument(
         "--allowed_classes",
-        type=str,
+        type=lambda s: s.split(",") if s else None,
         required=False,
         help="Comma-separated list of entity classes to extract (e.g. person,email_address)",
     )
@@ -194,11 +106,9 @@ def main():
         dataset=args.dataset,
         rule_file=args.rule_file,
         allowed_classes=args.allowed_classes,
-        lang=args.lang,
     )
 
-    train_samples = [s for s in data.samples if s.split == "train"]
-    sampled = sample_data(train_samples, rule_learner.allowed_classes)
+    sampled = sample_data(data.samples, rule_learner.allowed_classes)
 
     rule_learner.fit(sampled, None)
 
