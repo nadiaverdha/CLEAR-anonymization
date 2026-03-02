@@ -11,7 +11,7 @@ import random
 from clear_anonymization.ner_datasets.ner_dataset import NERData, NERDataset, NERSample
 
 
-def sample_data(samples,split, window_size=200,allowed_classes = None):
+def sample_data(samples, split, window_size=100, allowed_classes=None):
     ner_data = NERData(samples=[])
     positive_samples = []
     for sample in samples:
@@ -50,12 +50,18 @@ def sample_data(samples,split, window_size=200,allowed_classes = None):
                     }
                 )
 
-               
             sample = NERSample(snippet, split, adjusted_entities)
             positive_samples.append(sample)
-    ner_data.samples= positive_samples[:30] 
+    ner_data.samples = positive_samples[:30]
     return ner_data
-    
+
+def to_jsonl(ner_data: NERData) -> str:
+    lines = []
+    for sample in ner_data.samples:
+        record = {"input": {"text": sample.text}, "output": {"entities": sample.labels}}
+        lines.append(json.dumps(record))
+    return "\n".join(lines)
+
 
 def main():
     parser = argparse.ArgumentParser(description="Load a dataset from M2N zip file ")
@@ -81,16 +87,25 @@ def main():
         required=False,
         help="Comma-separated list of entity classes to extract (e.g. person,email_address)",
     )
-    
 
     args = parser.parse_args()
 
     input_dir = Path(args.input_dir)
-    data = NERData.from_json(json.loads(input_dir.read_text())) 
-    sampled = sample_data(data.samples,split = args.split, allowed_classes = args.allowed_classes, window_size=1000, )
+    data = NERData.from_json(json.loads(input_dir.read_text()))
+    sampled = sample_data(
+        data.samples,
+        split=args.split,
+        allowed_classes=args.allowed_classes,
+        window_size=300,
+    )
 
     output_path = Path(args.output_dir)
-    output_path.write_text(json.dumps(sampled.to_json(), indent=4))
+
+    demo_app = True
+    if demo_app:
+        output_path.write_text(to_jsonl(sampled))
+    else:
+        output_path.write_text(json.dumps(sampled.to_json(), indent=4))
 
 
 if __name__ == "__main__":
