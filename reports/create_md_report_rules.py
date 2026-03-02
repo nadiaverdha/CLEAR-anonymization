@@ -94,7 +94,7 @@ def append_rule_metrics(file_path: Path, metrics_list, top_n_examples: int = 5):
             if metric.sample_matches:
                 hits = [s for s in metric.sample_matches if s.tp > 0]
                 misses = [s for s in metric.sample_matches if s.fn > 0]
-                overfired = [s for s in metric.sample_matches if s.fp > 0]
+                f_p = [s for s in metric.sample_matches if s.fp > 0]
 
                 def write_block(title, samples, render_fn):
                     if not samples:
@@ -124,7 +124,7 @@ def append_rule_metrics(file_path: Path, metrics_list, top_n_examples: int = 5):
                         f.write(f"- Missed: `{miss['text']}`\n\n")
                     f.write("\n")
 
-                def render_overfire(f, i, sample):
+                def render_f_p(f, i, sample):
                     f.write(f"```\n{sample.input['text']}\n```\n\n")
                     for false_p in sample.false_positives:
                         f.write(f"- FP: `{false_p['text']}`\n\n")
@@ -132,7 +132,7 @@ def append_rule_metrics(file_path: Path, metrics_list, top_n_examples: int = 5):
 
                 write_block("✅ Worked", hits, render_hit)
                 write_block("❌ Missed", misses, render_miss)
-                write_block("⚠️ False Positives", overfired, render_overfire)
+                write_block("⚠️ False Positives", f_p, render_f_p)
 
             f.write("---\n\n")
 
