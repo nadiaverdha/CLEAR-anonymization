@@ -1,6 +1,6 @@
 # Rule Evaluation Report — FinDok
 
-Generated on: 2026-03-02T12:15:37.482340
+Generated on: 2026-03-02T12:26:20.132912
 
 ### Legend
 🟢 Strong (F1 ≥ 0.8)  
@@ -546,7 +546,7 @@ Der Beschwerde wird gemäß § 279 BAO im Umfang der Beschwerdevorentscheidu
 </details>
 
 <details>
-<summary>⚠️ Over-fired (4)</summary>
+<summary>⚠️ False Positives (4)</summary>
 
 ```
   
@@ -683,7 +683,7 @@ gegenständlichen Verfahren beant
 </details>
 
 <details>
-<summary>⚠️ Over-fired (3)</summary>
+<summary>⚠️ False Positives (3)</summary>
 
 ```
 liche Revision an den Verwaltungsgerichtshof ist nach Art 133 Abs 4 iVm 
