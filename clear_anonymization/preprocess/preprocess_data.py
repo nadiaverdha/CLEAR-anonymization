@@ -1,22 +1,22 @@
 import argparse
 import json
 import zipfile
-from pathlib import Path
-from typing import List
-import spacy
-from tuw_nlp.text.pipeline import CustomStanzaPipeline
-from tuw_nlp.text.patterns.de import ABBREV
 from dataclasses import dataclass
 from os.path import commonprefix
+from pathlib import Path
+from typing import List
 
+import spacy
+from tuw_nlp.text.patterns.de import ABBREV
+from tuw_nlp.text.pipeline import CustomStanzaPipeline
 from tuw_nlp.text.segmentation import SsplitFixer
 
 from clear_anonymization.ner_datasets.ner_dataset import NERData, NERSample
 from clear_anonymization.preprocess.util import (
-    TITLES,
-    TOB,
     MISC,
     ROMAN_NUMBERING,
+    TITLES,
+    TOB,
     _is_err_patch,
 )
 
