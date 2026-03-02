@@ -1,12 +1,12 @@
 import argparse
 import json
 import logging
+import random
 import re
 import string
 import unicodedata
 import zipfile
 from pathlib import Path
-import random
 
 from clear_anonymization.ner_datasets.ner_dataset import NERData, NERDataset, NERSample
 
@@ -54,6 +54,7 @@ def sample_data(samples, split, window_size=100, allowed_classes=None):
             positive_samples.append(sample)
     ner_data.samples = positive_samples[:30]
     return ner_data
+
 
 def to_jsonl(ner_data: NERData) -> str:
     lines = []
