@@ -120,11 +120,16 @@ def append_rule_metrics(file_path: Path, metrics_list, top_n_examples: int = 5):
 
                 def render_miss(f, i, sample):
                     f.write(f"```\n{sample.input['text']}\n```\n\n")
-                    f.write(f"- Missed: `{sample.missed}`\n\n")
+                    for miss in sample.missed:
+                       f.write(f"- Missed: `{miss['text']}`\n\n")
+                    f.write("\n")
 
                 def render_overfire(f, i, sample):
                     f.write(f"```\n{sample.input['text']}\n```\n\n")
-                    f.write(f"- Spurious: `{sample.false_positives}`\n\n")
+                    for false_p in sample.false_positives:
+                       f.write(f"- FP: `{false_p['text']}`\n\n")
+                    f.write("\n")
+                    
 
                 write_block("✅ Worked", hits, render_hit)
                 write_block("❌ Missed", misses, render_miss)

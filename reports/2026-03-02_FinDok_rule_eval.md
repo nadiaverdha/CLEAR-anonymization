@@ -1,6 +1,6 @@
 # Rule Evaluation Report — FinDok
 
-Generated on: 2026-03-02T12:12:18.928757
+Generated on: 2026-03-02T12:15:37.482340
 
 ### Legend
 🟢 Strong (F1 ≥ 0.8)  
@@ -159,7 +159,8 @@ Lohnsteuer  06/2017 17.07.2017 2261,07 7,47 168,90 2.092,17
 Lohnsteuer  07/2017 16.08.2017 1,735
 ```
 
-- Missed: `[{'text': 'FA Freistadt Rohrbach Urfahr', 'start': 200, 'end': 228, 'type': 'organisation'}]`
+- Missed: `FA Freistadt Rohrbach Urfahr`
+
 
 </details>
 
@@ -409,7 +410,8 @@ betreffend Einkommensteuer (Arbeitnehmerveranlagung) 2017 (Steuernummer
 Der Beschwerde wird gemäß § 279 BAO im Umfang der Beschwerdevorentscheidu
 ```
 
-- Missed: `[{'text': 'Süd-Landwirtschaft', 'start': 165, 'end': 183, 'type': 'organisation'}]`
+- Missed: `Süd-Landwirtschaft`
+
 
 </details>
 
@@ -484,7 +486,8 @@ Fritz Radel-Gasse 1, 6767 Hochkrumbach, Österreich, über die Beschwerde vom 30
 Finanzamtes vom 2. August 2018 betreffend Einkommensteuer (Arbeitnehmerveranlagun
 ```
 
-- Missed: `[{'text': 'Butkus Metall', 'start': 134, 'end': 147, 'type': 'organisation'}]`
+- Missed: `Butkus Metall`
+
 
 ```
 ogene Beträge (Familienbeihilfe, Kinderabsetzbetrag) in Höhe von € 5.523,20 für das Kind 
@@ -495,7 +498,8 @@ angeblich beschränkt pfändbare Forderungen aus einem Arbeitsverhältnis oder s
 Bezüge im Sinne de
 ```
 
-- Missed: `[{'text': 'Gökdemir Landwirtschaft AG', 'start': 200, 'end': 226, 'type': 'organisation'}]`
+- Missed: `Gökdemir Landwirtschaft AG`
+
 
 ```
 ichterin Mag.a Konstanze Rudolph  in der Beschwerdesache Kordelia Schormayer, 
@@ -506,7 +510,8 @@ Die Beschwerde wird gemäß § 279 BAO als unbegründet abgewiesen.
 Gegen dieses Erkenntnis i
 ```
 
-- Missed: `[{'text': 'Finanzamt Deutschlandsberg Leibnitz Voitsberg', 'start': 200, 'end': 245, 'type': 'organisation'}]`
+- Missed: `Finanzamt Deutschlandsberg Leibnitz Voitsberg`
+
 
 ```
 se 20, 8253 Schmiedviertel, Österreich, vertreten durch Hademar Mittelmann, Siegmar-Bergelt-Weg 4, 3340 St. Leonhard am Wald, Österreich, über die Beschwerde vom 14. März 
@@ -516,7 +521,8 @@ Die Beschwerde wird gemäß § 279 BAO als unbegründet abgewiesen.
 Gegen dieses Erkenntnis ist eine Revision an den Verwaltung
 ```
 
-- Missed: `[{'text': 'Finanzamt Baden Mödling', 'start': 200, 'end': 223, 'type': 'organisation'}]`
+- Missed: `Finanzamt Baden Mödling`
+
 
 ```
   
@@ -534,7 +540,8 @@ betreffend Einkommensteuer (Arbeitnehmerveranlagung) 2017 (Steuernummer
 Der Beschwerde wird gemäß § 279 BAO im Umfang der Beschwerdevorentscheidu
 ```
 
-- Missed: `[{'text': 'Finanzamt Vorarlberg', 'start': 346, 'end': 366, 'type': 'organisation'}]`
+- Missed: `Finanzamt Vorarlberg`
+
 
 </details>
 
@@ -554,7 +561,8 @@ Fritz Radel-Gasse 1, 6767 Hochkrumbach, Österreich, über die Beschwerde vom 30
 Finanzamtes vom 2. August 2018 betreffend Einkommensteuer (Arbeitnehmerveranlagun
 ```
 
-- Spurious: `[{'text': 'Radel-Gasse', 'start': 156, 'end': 167, 'type': 'organisation', 'rule_id': '3860cd66', 'rule_name': 'Hyphenated_name'}]`
+- FP: `Radel-Gasse`
+
 
 ```
 ogene Beträge (Familienbeihilfe, Kinderabsetzbetrag) in Höhe von € 5.523,20 für das Kind 
@@ -565,7 +573,8 @@ angeblich beschränkt pfändbare Forderungen aus einem Arbeitsverhältnis oder s
 Bezüge im Sinne de
 ```
 
-- Spurious: `[{'text': 'Salzburg-Stadt', 'start': 175, 'end': 189, 'type': 'organisation', 'rule_id': '3860cd66', 'rule_name': 'Hyphenated_name'}]`
+- FP: `Salzburg-Stadt`
+
 
 ```
 ichterin Mag.a Konstanze Rudolph  in der Beschwerdesache Kordelia Schormayer, 
@@ -576,7 +585,8 @@ Die Beschwerde wird gemäß § 279 BAO als unbegründet abgewiesen.
 Gegen dieses Erkenntnis i
 ```
 
-- Spurious: `[{'text': 'Josef-Ressmann-Straße', 'start': 79, 'end': 100, 'type': 'organisation', 'rule_id': '3860cd66', 'rule_name': 'Hyphenated_name'}]`
+- FP: `Josef-Ressmann-Straße`
+
 
 ```
 se 20, 8253 Schmiedviertel, Österreich, vertreten durch Hademar Mittelmann, Siegmar-Bergelt-Weg 4, 3340 St. Leonhard am Wald, Österreich, über die Beschwerde vom 14. März 
@@ -586,7 +596,8 @@ Die Beschwerde wird gemäß § 279 BAO als unbegründet abgewiesen.
 Gegen dieses Erkenntnis ist eine Revision an den Verwaltung
 ```
 
-- Spurious: `[{'text': 'Siegmar-Bergelt-Weg', 'start': 76, 'end': 95, 'type': 'organisation', 'rule_id': '3860cd66', 'rule_name': 'Hyphenated_name'}]`
+- FP: `Siegmar-Bergelt-Weg`
+
 
 </details>
 
@@ -631,7 +642,8 @@ das Jahr 2017 gemäß § 295 Abs 1 BAO abgeändert. Die Änderung gemäß § 295
 aufgrund der bescheidmäßigen Feststellungen des Fi
 ```
 
-- Missed: `[{'text': 'Finanzamt Niederösterreich Mitte', 'start': 200, 'end': 232, 'type': 'organisation'}]`
+- Missed: `Finanzamt Niederösterreich Mitte`
+
 
 ```
 Frieda Quasebarth  in der Beschwerdesache Zoltan Klaussner, 
@@ -650,7 +662,10 @@ Lohnsteuer  06/2017 17.07.2017 2261,07 7,47 168,90 2.092,17
 Lohnsteuer  07/2017 16.08.2017 1,735
 ```
 
-- Missed: `[{'text': 'FA Freistadt Rohrbach Urfahr', 'start': 200, 'end': 228, 'type': 'organisation'}, {'text': 'SüdGarten GMBH', 'start': 548, 'end': 562, 'type': 'organisation'}]`
+- Missed: `FA Freistadt Rohrbach Urfahr`
+
+- Missed: `SüdGarten GMBH`
+
 
 ```
  
@@ -662,7 +677,8 @@ Ausgeführt wurde wie folgt:
 gegenständlichen Verfahren beant
 ```
 
-- Missed: `[{'text': 'Trafenfen Automotive', 'start': 200, 'end': 220, 'type': 'organisation'}]`
+- Missed: `Trafenfen Automotive`
+
 
 </details>
 
@@ -679,7 +695,9 @@ das Jahr 2017 gemäß § 295 Abs 1 BAO abgeändert. Die Änderung gemäß § 295
 aufgrund der bescheidmäßigen Feststellungen des Fi
 ```
 
-- Spurious: `[{'text': 'Begründung \nDas Verfahren', 'start': 129, 'end': 154, 'type': 'organisation', 'rule_id': 'e4107676', 'rule_name': 'MultiWord_name'}]`
+- FP: `Begründung 
+Das Verfahren`
+
 
 ```
 Frieda Quasebarth  in der Beschwerdesache Zoltan Klaussner, 
@@ -698,7 +716,8 @@ Lohnsteuer  06/2017 17.07.2017 2261,07 7,47 168,90 2.092,17
 Lohnsteuer  07/2017 16.08.2017 1,735
 ```
 
-- Spurious: `[{'text': 'Fälligkeitstag Betrag Quote Quotenbetrag', 'start': 615, 'end': 655, 'type': 'organisation', 'rule_id': 'e4107676', 'rule_name': 'MultiWord_name'}]`
+- FP: `Fälligkeitstag Betrag Quote Quotenbetrag`
+
 
 ```
  
@@ -710,7 +729,8 @@ Ausgeführt wurde wie folgt:
 gegenständlichen Verfahren beant
 ```
 
-- Spurious: `[{'text': 'Beschwerdeführer Ihre Einvernahme', 'start': 340, 'end': 373, 'type': 'organisation', 'rule_id': 'e4107676', 'rule_name': 'MultiWord_name'}]`
+- FP: `Beschwerdeführer Ihre Einvernahme`
+
 
 </details>
 
