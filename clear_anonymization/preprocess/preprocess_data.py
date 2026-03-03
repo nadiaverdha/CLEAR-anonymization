@@ -36,7 +36,6 @@ nlp = spacy.blank("de") if not TUW_NLP else CustomStanzaPipeline()
 if not TUW_NLP:
     nlp.add_pipe("sentencizer")
 
-
 @dataclass
 class Sent:
     start_char: int

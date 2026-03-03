@@ -1,0 +1,1021 @@
+# Rule Evaluation Report — FinDok
+
+Generated on: 2026-03-02T13:57:34.435200
+
+### Legend
+🟢 Strong (F1 ≥ 0.8)  
+🟡 Medium (0.5 ≤ F1 < 0.8)  
+🔴 Weak (F1 < 0.5)
+
+---
+
+## 📊 Summary
+
+| Rule | Score | F1 | Precision | Recall | Matches |
+|------|-------|----|----------|--------|--------|
+| `Corporate_suffix` | 🔴 Weak | 0.400 | 1.000 | 0.250 | 9 |
+| `FA_abbrev` | 🔴 Weak | 0.364 | 1.000 | 0.222 | 8 |
+| `Finanzamt_full` | 🔴 Weak | 0.326 | 1.000 | 0.194 | 7 |
+| `Hyphenated_name` | 🔴 Weak | 0.041 | 0.077 | 0.028 | 13 |
+| `MultiWord_name` | 🔴 Weak | 0.000 | 0.000 | 0.000 | 3 |
+
+---
+
+## `Corporate_suffix`
+
+🔴 Weak rule
+
+> Matches names ending with GMBH or AG, but excludes generic leading nouns (Finanzamt, FA, Arbeitgeber).
+
+**F1:** 0.400 | **Precision:** 1.000 | **Recall:** 0.250  
+
+**Format:** `RuleFormat.REGEX`  
+**Content:** `\b(?!Arbeitgeber\b|Finanzamt\b|FA\b)(?:[A-ZÄÖÜ][\w&\-']*\s){0,2}[A-ZÄÖÜ][\w&\-']*\s(?:GMBH|AG)\b`
+
+<details>
+<summary>📊 Detailed Metrics</summary>
+
+| Precision | Recall | F1 | Matches | TP | FP | Coverage |
+|-----------|--------|----|---------|----|----|----------|
+| 1.000 | 0.250 | 0.400 | 9 | 9 | 0 | 9/36 |
+
+**Per-Class Breakdown**
+
+| Class | TP | FP | FN |
+|-------|----|----|----|
+| `organisation` | 9 | 0 | 27 |
+
+</details>
+
+<details>
+<summary>✅ Worked (7)</summary>
+
+**Example 1**
+
+```
+rtragsparteien eine der Bestandvertragsgebühr unterliegende Option oder ein
+gebührenrechtlich nicht steuerbarer Vorvertrag vereinbart wurde:
+Die Beschwerdeführerin schloss als Bestandnehmerin mit der Vianden Robotik GMBH  als
+Bestandgeberin den mit 14.9.2019 datieren schriftlichen Pachtvertrag über eine
+Geschäftsräumlichkeit (Betrieb einer Apotheke) ab. Der Vertrag wurde am 4.10.2019
+gegenüber der belangten Behörde z
+```
+
+| Prediction | Gold |
+|------------|------|
+| `Vianden Robotik GMBH` | `Vianden Robotik GMBH` |
+
+**Example 2**
+
+```
+ogene Beträge (Familienbeihilfe, Kinderabsetzbetrag) in Höhe von € 5.523,20 für das Kind 
+Gisbert Umstetter  rückgefordert. 
+Mit Bescheid vom 25. April 2019 hat das Finanzamt Salzburg-Stadt gegenüber Gökdemir Landwirtschaft AG  eine 
+Geldforderung in Höhe von insgesamt € 4.225,30 gemäß § 65 AbgEO gepfändet, weil der Bf 
+angeblich beschränkt pfändbare Forderungen aus einem Arbeitsverhältnis oder sonstige 
+Bezüge im Sinne de
+```
+
+| Prediction | Gold |
+|------------|------|
+| `Gökdemir Landwirtschaft AG` | `Gökdemir Landwirtschaft AG` |
+
+**Example 3**
+
+```
+gen der Bf und laufende Pfändungen an die 
+Arbeitgeber beglichen worden. 
+Verjährung sei nicht eingetreten, weil es am 16. Oktober 2014 zu einer erfolglosen 
+Lohnpfändung an den damaligen Arbeitgeber Talkel-Versand AG  und am 5. April 2016 zu einer 
+Lohnpfändung an den damaligen Arbeitgeber Hebebrand Recycling AG  gekommen sei. Diese 
+Lohnpfändungen würden Unterbrechungshandlungen im Sinne des § 238 Abs 2 BAO darstellen. 
+Mit Ablauf des Jahres, in welchem die Unterbrechung eingetreten ist, beginnt die 
+Verjäh
+```
+
+| Prediction | Gold |
+|------------|------|
+| `Talkel-Versand AG` | `Talkel-Versand AG` |
+| `Hebebrand Recycling AG` | `Hebebrand Recycling AG` |
+
+**Example 4**
+
+```
+Frieda Quasebarth  in der Beschwerdesache Zoltan Klaussner, 
+Atschenbach 65, 2564 Neuhaus, Österreich, vertreten durch Judith Gregoschek, über die Beschwerde vom 19. Juli 2019 
+gegen den Bescheid des FA Freistadt Rohrbach Urfahr  vom 19. Juni 2019 betreffend Haftung gemäß § 9 iVm §§ 80 
+ff BAO zu Steuernummer 59-967/4806  zu Recht erkannt:  
+Der Beschwerde wird gemäß § 279 BAO teilweise Folge gegeben. 
+Der angefochtene Bescheid wird abgeändert. 
+ 
+Der Beschwerdeführer wird gemäß § 9 iVm §§ 80ff BAO für nachstehende 
+Angabenschuldigkeiten der SüdGarten GMBH  zur Haftung herangezogen: 
+ 
+ 
+Abgabenart Zeitraum Fälligkeitstag Betrag Quote Quotenbetrag Betrag  
+Lohnsteuer  06/2017 17.07.2017 2261,07 7,47 168,90 2.092,17 
+Lohnsteuer  07/2017 16.08.2017 1,735
+```
+
+| Prediction | Gold |
+|------------|------|
+| `SüdGarten GMBH` | `SüdGarten GMBH` |
+
+**Example 5**
+
+```
+m 1. Juni 2016 gegen den 
+Bescheid des Finanzamtes für Gebühren, Verkehrsteuern und Glücksspiel vom 27. April 2016 
+betreffend Festsetzung Gebühr gemäß § 33 TP 7 GebG  1957 für Hotel-Pachtvertrag mit Verdonlex Automotive GMBH  vom 30. November 2015 zu Recht: 
+I. Der Beschwerde wird gemäß § 279 BAO Folge gegeben. Der angefochtene Bescheid wird 
+ersatzlos aufgehoben. 
+ 
+II. Gegen dieses Erkenntnis ist eine Revision an den V
+```
+
+| Prediction | Gold |
+|------------|------|
+| `Verdonlex Automotive GMBH` | `Verdonlex Automotive GMBH` |
+
+**Example 6**
+
+```
+ensgang 
+Mit Bescheid vom 27. April 2016, der Beschwerdeführerin per Post zugegangen am 4. Mai 2016, 
+setzte die belangte Behörde für den am 30. November 2015 zwischen der Beschwerdeführerin 
+und der Verdonlex Automotive GMBH  unter Beitritt der Schiwick Finanzen AG  schriftlich geschlossenen Pachtvertrag 
+gemäß § 33 TP 7 Abs 1 GebG  eine Gebühr im Betrag von 43.480, - Euro fest. Aufgrund von im 
+Zeitpunkt der Bescheiderlassung noch nicht feststehenden Nebenkost
+```
+
+| Prediction | Gold |
+|------------|------|
+| `Verdonlex Automotive GMBH` | `Verdonlex Automotive GMBH` |
+| `Schiwick Finanzen AG` | `Schiwick Finanzen AG` |
+
+**Example 7**
+
+```
+eid ersatzlos aufzuheben. Begründend wurde dazu 
+zusammengefasst vorgebracht, dass die in Punkt 4.6. des dem angefochtenen Bescheid 
+zugrundeliegenden Pachtvertrages enthaltene Haftungserklärung  der Schiwick Finanzen AG  aufgrund 
+der aus der Vere inbarung abzuleitenden Selbständigkeit der Haftungsverpflichtung vom 
+1 von 7
+Seite 2 von 7 
+ 
+ 
+Grundgeschäft (Pachtvertrag) als nicht gebührenpflichte Garantieerklärung 
+```
+
+| Prediction | Gold |
+|------------|------|
+| `Schiwick Finanzen AG` | `Schiwick Finanzen AG` |
+
+</details>
+
+<details>
+<summary>❌ Missed (1)</summary>
+
+```
+Frieda Quasebarth  in der Beschwerdesache Zoltan Klaussner, 
+Atschenbach 65, 2564 Neuhaus, Österreich, vertreten durch Judith Gregoschek, über die Beschwerde vom 19. Juli 2019 
+gegen den Bescheid des FA Freistadt Rohrbach Urfahr  vom 19. Juni 2019 betreffend Haftung gemäß § 9 iVm §§ 80 
+ff BAO zu Steuernummer 59-967/4806  zu Recht erkannt:  
+Der Beschwerde wird gemäß § 279 BAO teilweise Folge gegeben. 
+Der angefochtene Bescheid wird abgeändert. 
+ 
+Der Beschwerdeführer wird gemäß § 9 iVm §§ 80ff BAO für nachstehende 
+Angabenschuldigkeiten der SüdGarten GMBH  zur Haftung herangezogen: 
+ 
+ 
+Abgabenart Zeitraum Fälligkeitstag Betrag Quote Quotenbetrag Betrag  
+Lohnsteuer  06/2017 17.07.2017 2261,07 7,47 168,90 2.092,17 
+Lohnsteuer  07/2017 16.08.2017 1,735
+```
+
+- Missed: `FA Freistadt Rohrbach Urfahr`
+
+
+</details>
+
+---
+
+## `FA_abbrev`
+
+🔴 Weak rule
+
+> Matches abbreviated Finanzamt names (FA) and allows hyphenated or numeric/date‑like tokens after the abbreviation.
+
+**F1:** 0.364 | **Precision:** 1.000 | **Recall:** 0.222  
+
+**Format:** `RuleFormat.REGEX`  
+**Content:** `\bFA\s+(?:[A-ZÄÖÜ][\w&\-/]*|\d[\d/]*)(?:\s+(?:[A-ZÄÖÜ][\w&\-/]*|\d[\d/]*))*\b`
+
+<details>
+<summary>📊 Detailed Metrics</summary>
+
+| Precision | Recall | F1 | Matches | TP | FP | Coverage |
+|-----------|--------|----|---------|----|----|----------|
+| 1.000 | 0.222 | 0.364 | 8 | 8 | 0 | 8/36 |
+
+**Per-Class Breakdown**
+
+| Class | TP | FP | FN |
+|-------|----|----|----|
+| `organisation` | 8 | 0 | 28 |
+
+</details>
+
+<details>
+<summary>✅ Worked (8)</summary>
+
+**Example 1**
+
+```
+ch die Richterin Univ.-Prof.in Klara Vondenhoff 
+in der Beschwerdesache 
+Vitus Hepprich, Singerweg 36, 9581 Unterferlach, Österreich  über die Beschwerde vom 28. Februar 2019 gegen die Bescheide 
+des FA Vorarlberg  vom 30. Jänner 2019, 20-231/9124, betreffend Umsatz- und 
+Einkommensteuer 2017 
+zu Recht erkannt:  
+Der Beschwerde wird Folge gegeben. 
+1. Der angefochtene Umsatzsteuerbescheid wird – ersatzlos – au
+```
+
+| Prediction | Gold |
+|------------|------|
+| `FA Vorarlberg` | `FA Vorarlberg` |
+
+**Example 2**
+
+```
+rin Univ.-Prof.in Tanja Oberhauser  in der Beschwerdesache des 
+Lara Löckle, Sportplatz Slovan HAC 19, 5232 Eglsee, Österreich, über die Beschwerde vom 26. August 2015 gegen den 
+Haftungsbescheid des FA Linz  vom 3. August 2016 zu Recht erkannt:  
+ 
+I. Die Beschwerde wird als unbegründet abgewiesen. 
+II. Gegen dieses Erkenntnis ist eine Revision an den Verwaltungsgerichtshof nach Art. 
+133 Abs. 4 Bundes-
+```
+
+| Prediction | Gold |
+|------------|------|
+| `FA Linz` | `FA Linz` |
+
+**Example 3**
+
+```
+874 Rottal, Österreich, vertreten durch Halbwachs Schmitt & Partner Steuerberatung GmbH, 
+Mariahilfer Straße 126 Tür 24, 1070 Wien, betreffend Beschwerde vom 10. Dezember 2019 
+gegen den Bescheid des FA Niederösterreich Mitte  vom 27. November 2019 betreffend Einkommensteuer 
+2017 Steuernummer 42-024/4695  beschlossen:  
+I. Die Beschwerde vom 10. Dezember 2019 wird gemäß § 256 Abs 3 
+Bundesabgabenordnung (BAO) als gegenst
+```
+
+| Prediction | Gold |
+|------------|------|
+| `FA Niederösterreich Mitte` | `FA Niederösterreich Mitte` |
+
+**Example 4**
+
+```
+urch den Richter Univ.-Prof. Jaroslaw Kasperska  in der Beschwerdesache Hagen Achilles, 
+Lengauerstraße 26, 5724 Pirtendorf, Österreich, über die Beschwerde vom 22. Jänner 2018 gegen den Bescheid des FA Purkersdorf 
+vom 21. Dezember 2017 betreffend Haftung, Steuernummer 08-493/3352, zu Recht 
+erkannt:  
+Der Beschwerde wird gemäß § 279 BAO teilweise Folge gegeben. 
+Der angefochtene Bescheid wird abgeändert. 
+Die
+```
+
+| Prediction | Gold |
+|------------|------|
+| `FA Purkersdorf` | `FA Purkersdorf` |
+
+**Example 5**
+
+```
+. Tristan Frommholz, 
+Am Vierkanthof 7, 2115 Ernstbrunn, Österreich, vertreten durch Halbwachs Schmitt & Partner STB, Mariahilfer Straße 126/24, 
+1070 Wien, über die Beschwerde gegen den Bescheid des FA Salzburg-Stadt  vom 12. März 2013, 
+betreffend Körperschaftsteuer 2011 zu Recht erkannt:  
+Der Beschwerde wird gemäß § 279 BAO teilweise Folge gegeben. 
+Der angefochtene Bescheid wird abgeändert. 
+Die festgesetzte 
+```
+
+| Prediction | Gold |
+|------------|------|
+| `FA Salzburg-Stadt` | `FA Salzburg-Stadt` |
+
+**Example 6**
+
+```
+Frieda Quasebarth  in der Beschwerdesache Zoltan Klaussner, 
+Atschenbach 65, 2564 Neuhaus, Österreich, vertreten durch Judith Gregoschek, über die Beschwerde vom 19. Juli 2019 
+gegen den Bescheid des FA Freistadt Rohrbach Urfahr  vom 19. Juni 2019 betreffend Haftung gemäß § 9 iVm §§ 80 
+ff BAO zu Steuernummer 59-967/4806  zu Recht erkannt:  
+Der Beschwerde wird gemäß § 279 BAO teilweise Folge gegeben. 
+Der angefochtene Bescheid wird abgeändert. 
+ 
+Der Beschwerdeführer wird gemäß § 9 iVm §§ 80ff BAO für nachstehende 
+Angabenschuldigkeiten der SüdGarten GMBH  zur Haftung herangezogen: 
+ 
+ 
+Abgabenart Zeitraum Fälligkeitstag Betrag Quote Quotenbetrag Betrag  
+Lohnsteuer  06/2017 17.07.2017 2261,07 7,47 168,90 2.092,17 
+Lohnsteuer  07/2017 16.08.2017 1,735
+```
+
+| Prediction | Gold |
+|------------|------|
+| `FA Freistadt Rohrbach Urfahr` | `FA Freistadt Rohrbach Urfahr` |
+
+**Example 7**
+
+```
+sfinanzgericht hat durch die Richterin Hon.-Prof.in Angelina von Ackern  in der Beschwerdesache des 
+OSR Luna Grathwohl Bf1-Adr***StB über die Beschwerde vom 13. November 2017 gegen den 
+Bescheid des FA Spittal Villach  vom 11. Oktober 2017 betreffend Einkommensteuer 2015 zu Recht 
+erkannt:  
+ 
+I. Die Beschwerde wird als unbegründet abgewiesen. Der Bescheid wird abgeändert. 
+Die Bemessungsgrundlagen und die Höhe de
+```
+
+| Prediction | Gold |
+|------------|------|
+| `FA Spittal Villach` | `FA Spittal Villach` |
+
+**Example 8**
+
+```
+Bundesfinanzgericht hat durch die Richterin Univ.-Prof.in Mag.a Verona Flueck  in der Beschwerdesache des 
+Denise Luboschik Bf1-Adr***StB über die Beschwerde vom 20. März 2020 gegen den Bescheid des 
+FA Wien 2/20/21/22  vom 17. Februar 2020 betreffend Aufhebung gemäß § 299 BAO des Bescheides, mit 
+dem die Wiederaufnahme des Verfahrens hinsichtlich Umsatzsteuer 2016 verfügt wurde, zu 
+Recht erkannt:  
+ 
+Die Beschwer
+```
+
+| Prediction | Gold |
+|------------|------|
+| `FA Wien 2/20/21/22` | `FA Wien 2/20/21/22` |
+
+</details>
+
+<details>
+<summary>❌ Missed (1)</summary>
+
+```
+Frieda Quasebarth  in der Beschwerdesache Zoltan Klaussner, 
+Atschenbach 65, 2564 Neuhaus, Österreich, vertreten durch Judith Gregoschek, über die Beschwerde vom 19. Juli 2019 
+gegen den Bescheid des FA Freistadt Rohrbach Urfahr  vom 19. Juni 2019 betreffend Haftung gemäß § 9 iVm §§ 80 
+ff BAO zu Steuernummer 59-967/4806  zu Recht erkannt:  
+Der Beschwerde wird gemäß § 279 BAO teilweise Folge gegeben. 
+Der angefochtene Bescheid wird abgeändert. 
+ 
+Der Beschwerdeführer wird gemäß § 9 iVm §§ 80ff BAO für nachstehende 
+Angabenschuldigkeiten der SüdGarten GMBH  zur Haftung herangezogen: 
+ 
+ 
+Abgabenart Zeitraum Fälligkeitstag Betrag Quote Quotenbetrag Betrag  
+Lohnsteuer  06/2017 17.07.2017 2261,07 7,47 168,90 2.092,17 
+Lohnsteuer  07/2017 16.08.2017 1,735
+```
+
+- Missed: `SüdGarten GMBH`
+
+
+</details>
+
+---
+
+## `Finanzamt_full`
+
+🔴 Weak rule
+
+> Matches full Finanzamt names that contain at least one capitalised location word after "Finanzamt".
+
+**F1:** 0.326 | **Precision:** 1.000 | **Recall:** 0.194  
+
+**Format:** `RuleFormat.REGEX`  
+**Content:** `\bFinanzamt\s+(?:[A-ZÄÖÜ][a-zäöüß]+(?:\s+[A-ZÄÖÜ][a-zäöüß]+)*)\b(?=[,.\s]|\s+vom|\s+von|\s+des|\s+der|\s+die|\s*$)`
+
+<details>
+<summary>📊 Detailed Metrics</summary>
+
+| Precision | Recall | F1 | Matches | TP | FP | Coverage |
+|-----------|--------|----|---------|----|----|----------|
+| 1.000 | 0.194 | 0.326 | 7 | 7 | 0 | 7/36 |
+
+**Per-Class Breakdown**
+
+| Class | TP | FP | FN |
+|-------|----|----|----|
+| `organisation` | 7 | 0 | 29 |
+
+</details>
+
+<details>
+<summary>✅ Worked (7)</summary>
+
+**Example 1**
+
+```
+rch die Richterin Priv.-Doz.in Roswitha Cofala  in der Beschwerdesache Waldemar Harmann, 
+Hoheneggerstraße 17, 4870 Mörasing, Österreich, über die Beschwerde vom 24. April 2017 gegen den Bescheid des Finanzamt Amstetten Melk Scheibbs 
+vom 28. März 2017 betreffend Einkommensteuer (Arbeitnehmerveranlagung) 2011 
+Steuernummer zu Recht erkannt:  
+Der Beschwerde wird gemäß § 279 BAO teilweise Folge gegeben. 
+Der angefochtene Bescheid 
+```
+
+| Prediction | Gold |
+|------------|------|
+| `Finanzamt Amstetten Melk Scheibbs` | `Finanzamt Amstetten Melk Scheibbs` |
+
+**Example 2**
+
+```
+durch die Richterin Dr. Gabriele Grossgut-Palotás in der 
+Beschwerdesache Alvin Luczak, Kudlichstraße 14, 5282 Brunn im Gries, Österreich, über die Beschwerde vom 27. Mai 2019 gegen 
+den Bescheid des Finanzamt Bruck Eisenstadt Oberwart  vom 14. Mai 2019 betreffend Einkommensteuer 
+(Arbeitnehmerveranlagung) 2018 Steuernummer 67-340/8452  zu Recht erkannt:  
+Die Beschwerde wird gemäß § 279 BAO als unbegründet abgewiesen. 
+Gegen diese
+```
+
+| Prediction | Gold |
+|------------|------|
+| `Finanzamt Bruck Eisenstadt Oberwart` | `Finanzamt Bruck Eisenstadt Oberwart` |
+
+**Example 3**
+
+```
+ichterin Mag.a Konstanze Rudolph  in der Beschwerdesache Kordelia Schormayer, 
+Josef-Ressmann-Straße 45, 8152 Muggauberg, Österreich, über die Beschwerde vom 28. Oktober 2013 gegen die Bescheide des 
+Finanzamt Deutschlandsberg Leibnitz Voitsberg  vom 9. Oktober 2013 betreffend Einkommensteuer (Arbeitnehmerveranlagung) 
+2011 und 2012 zu Recht erkannt:  
+Die Beschwerde wird gemäß § 279 BAO als unbegründet abgewiesen. 
+Gegen dieses Erkenntnis i
+```
+
+| Prediction | Gold |
+|------------|------|
+| `Finanzamt Deutschlandsberg Leibnitz Voitsberg` | `Finanzamt Deutschlandsberg Leibnitz Voitsberg` |
+
+**Example 4**
+
+```
+se 20, 8253 Schmiedviertel, Österreich, vertreten durch Hademar Mittelmann, Siegmar-Bergelt-Weg 4, 3340 St. Leonhard am Wald, Österreich, über die Beschwerde vom 14. März 
+2018 gegen den Bescheid des Finanzamt Baden Mödling  vom 13. Februar 2018 betreffend Einkommensteuer 
+2016 zu Recht erkannt:  
+Die Beschwerde wird gemäß § 279 BAO als unbegründet abgewiesen. 
+Gegen dieses Erkenntnis ist eine Revision an den Verwaltung
+```
+
+| Prediction | Gold |
+|------------|------|
+| `Finanzamt Baden Mödling` | `Finanzamt Baden Mödling` |
+
+**Example 5**
+
+```
+  
+GZ. RV/7102948/2020 
+  
+ 
+ 
+ 
+IM NAMEN DER REPUBLI K 
+Das Bundesfinanzgericht hat durch die Richterin Univ.-Prof.in Nancy Brandlmayr  in der Beschwerdesache der 
+Süd-Landwirtschaft, Freundling 10, 4190 Amesschlag, Österreich, über die Beschwerde vom 5. Juni 2019, beim zuständigen 
+Finanzamt eingelangt am 6. Juni 2019, gegen den Bescheid des Finanzamt Vorarlberg  vom 24. Mai 2019 
+betreffend Einkommensteuer (Arbeitnehmerveranlagung) 2017 (Steuernummer 
+82-615/9369 ) zu Recht erkannt:  
+Der Beschwerde wird gemäß § 279 BAO im Umfang der Beschwerdevorentscheidu
+```
+
+| Prediction | Gold |
+|------------|------|
+| `Finanzamt Vorarlberg` | `Finanzamt Vorarlberg` |
+
+**Example 6**
+
+```
+ Richterin Dr.in Sascha Bonn  in der Beschwerdesache Ilona Kleine-Börger, 
+Kreuzergegend-Ost 48, 8074 Lamberg, Österreich, Liechtenstein, über die Beschwerde vom 17. Juni 2019 gegen den Bescheid des 
+Finanzamt Niederösterreich Mitte  vom 29. Mai 2019 betreffend Einkommensteuer (Arbeitnehmerveranlagung) 2017 
+zu Recht erkannt:  
+Die Beschwerde wird gemäß § 279 BAO als unbegründet abgewiesen. 
+Gegen dieses Erkenntnis ist eine Revi
+```
+
+| Prediction | Gold |
+|------------|------|
+| `Finanzamt Niederösterreich Mitte` | `Finanzamt Niederösterreich Mitte` |
+
+**Example 7**
+
+```
+liche Revision an den Verwaltungsgerichtshof ist nach Art 133 Abs 4 iVm 
+Abs 9 Bundes-Verfassungsgesetz (B-VG) nicht zulässig.  
+Begründung 
+Das Verfahren stellt sich wie folgt dar: 
+Mit Bescheid des Finanzamt Niederösterreich Mitte  vom 27. November 2019 wurde der Einkommensteuerbescheid für 
+das Jahr 2017 gemäß § 295 Abs 1 BAO abgeändert. Die Änderung gemäß § 295 BAO erfolgte 
+aufgrund der bescheidmäßigen Feststellungen des Fi
+```
+
+| Prediction | Gold |
+|------------|------|
+| `Finanzamt Niederösterreich Mitte` | `Finanzamt Niederösterreich Mitte` |
+
+</details>
+
+<details>
+<summary>❌ Missed (1)</summary>
+
+```
+  
+GZ. RV/7102948/2020 
+  
+ 
+ 
+ 
+IM NAMEN DER REPUBLI K 
+Das Bundesfinanzgericht hat durch die Richterin Univ.-Prof.in Nancy Brandlmayr  in der Beschwerdesache der 
+Süd-Landwirtschaft, Freundling 10, 4190 Amesschlag, Österreich, über die Beschwerde vom 5. Juni 2019, beim zuständigen 
+Finanzamt eingelangt am 6. Juni 2019, gegen den Bescheid des Finanzamt Vorarlberg  vom 24. Mai 2019 
+betreffend Einkommensteuer (Arbeitnehmerveranlagung) 2017 (Steuernummer 
+82-615/9369 ) zu Recht erkannt:  
+Der Beschwerde wird gemäß § 279 BAO im Umfang der Beschwerdevorentscheidu
+```
+
+- Missed: `Süd-Landwirtschaft`
+
+
+</details>
+
+---
+
+## `Hyphenated_name`
+
+🔴 Weak rule
+
+> Matches hyphenated organisation names but skips the hyphenated part when it is immediately followed by AG or GMBH (the full name is captured by Corporate_suffix).
+
+**F1:** 0.041 | **Precision:** 0.077 | **Recall:** 0.028  
+
+**Format:** `RuleFormat.REGEX`  
+**Content:** `\b(?!Gasse\b|Stra\u00dfe\b|Weg\b|Platz\b|Ring\b|Allee\b)([A-ZÄÖÜ][a-zäöüß]+(?:-[A-ZÄÖÜ][a-zäöüß]+)+)\b(?!\s+(?:AG|GMBH)\b)`
+
+<details>
+<summary>📊 Detailed Metrics</summary>
+
+| Precision | Recall | F1 | Matches | TP | FP | Coverage |
+|-----------|--------|----|---------|----|----|----------|
+| 0.077 | 0.028 | 0.041 | 13 | 1 | 12 | 1/36 |
+
+**Per-Class Breakdown**
+
+| Class | TP | FP | FN |
+|-------|----|----|----|
+| `organisation` | 1 | 12 | 35 |
+
+</details>
+
+<details>
+<summary>✅ Worked (1)</summary>
+
+**Example 1**
+
+```
+  
+GZ. RV/7102948/2020 
+  
+ 
+ 
+ 
+IM NAMEN DER REPUBLI K 
+Das Bundesfinanzgericht hat durch die Richterin Univ.-Prof.in Nancy Brandlmayr  in der Beschwerdesache der 
+Süd-Landwirtschaft, Freundling 10, 4190 Amesschlag, Österreich, über die Beschwerde vom 5. Juni 2019, beim zuständigen 
+Finanzamt eingelangt am 6. Juni 2019, gegen den Bescheid des Finanzamt Vorarlberg  vom 24. Mai 2019 
+betreffend Einkommensteuer (Arbeitnehmerveranlagung) 2017 (Steuernummer 
+82-615/9369 ) zu Recht erkannt:  
+Der Beschwerde wird gemäß § 279 BAO im Umfang der Beschwerdevorentscheidu
+```
+
+| Prediction | Gold |
+|------------|------|
+| `Süd-Landwirtschaft` | `Süd-Landwirtschaft` |
+
+</details>
+
+<details>
+<summary>❌ Missed (10)</summary>
+
+```
+  
+GZ. RV/1100535/2018 
+  
+ 
+ 
+ 
+IM NAMEN DER REPUBLI K 
+Das Bundesfinanzgericht hat durch die Richterin R in der Beschwerdesache der Butkus Metall, 
+Fritz Radel-Gasse 1, 6767 Hochkrumbach, Österreich, über die Beschwerde vom 30. August 2018 gegen den Bescheid des 
+Finanzamtes vom 2. August 2018 betreffend Einkommensteuer (Arbeitnehmerveranlagun
+```
+
+- Missed: `Butkus Metall`
+
+
+```
+ogene Beträge (Familienbeihilfe, Kinderabsetzbetrag) in Höhe von € 5.523,20 für das Kind 
+Gisbert Umstetter  rückgefordert. 
+Mit Bescheid vom 25. April 2019 hat das Finanzamt Salzburg-Stadt gegenüber Gökdemir Landwirtschaft AG  eine 
+Geldforderung in Höhe von insgesamt € 4.225,30 gemäß § 65 AbgEO gepfändet, weil der Bf 
+angeblich beschränkt pfändbare Forderungen aus einem Arbeitsverhältnis oder sonstige 
+Bezüge im Sinne de
+```
+
+- Missed: `Gökdemir Landwirtschaft AG`
+
+
+```
+ichterin Mag.a Konstanze Rudolph  in der Beschwerdesache Kordelia Schormayer, 
+Josef-Ressmann-Straße 45, 8152 Muggauberg, Österreich, über die Beschwerde vom 28. Oktober 2013 gegen die Bescheide des 
+Finanzamt Deutschlandsberg Leibnitz Voitsberg  vom 9. Oktober 2013 betreffend Einkommensteuer (Arbeitnehmerveranlagung) 
+2011 und 2012 zu Recht erkannt:  
+Die Beschwerde wird gemäß § 279 BAO als unbegründet abgewiesen. 
+Gegen dieses Erkenntnis i
+```
+
+- Missed: `Finanzamt Deutschlandsberg Leibnitz Voitsberg`
+
+
+```
+se 20, 8253 Schmiedviertel, Österreich, vertreten durch Hademar Mittelmann, Siegmar-Bergelt-Weg 4, 3340 St. Leonhard am Wald, Österreich, über die Beschwerde vom 14. März 
+2018 gegen den Bescheid des Finanzamt Baden Mödling  vom 13. Februar 2018 betreffend Einkommensteuer 
+2016 zu Recht erkannt:  
+Die Beschwerde wird gemäß § 279 BAO als unbegründet abgewiesen. 
+Gegen dieses Erkenntnis ist eine Revision an den Verwaltung
+```
+
+- Missed: `Finanzamt Baden Mödling`
+
+
+```
+  
+GZ. RV/7102948/2020 
+  
+ 
+ 
+ 
+IM NAMEN DER REPUBLI K 
+Das Bundesfinanzgericht hat durch die Richterin Univ.-Prof.in Nancy Brandlmayr  in der Beschwerdesache der 
+Süd-Landwirtschaft, Freundling 10, 4190 Amesschlag, Österreich, über die Beschwerde vom 5. Juni 2019, beim zuständigen 
+Finanzamt eingelangt am 6. Juni 2019, gegen den Bescheid des Finanzamt Vorarlberg  vom 24. Mai 2019 
+betreffend Einkommensteuer (Arbeitnehmerveranlagung) 2017 (Steuernummer 
+82-615/9369 ) zu Recht erkannt:  
+Der Beschwerde wird gemäß § 279 BAO im Umfang der Beschwerdevorentscheidu
+```
+
+- Missed: `Finanzamt Vorarlberg`
+
+
+```
+ Richterin Dr.in Sascha Bonn  in der Beschwerdesache Ilona Kleine-Börger, 
+Kreuzergegend-Ost 48, 8074 Lamberg, Österreich, Liechtenstein, über die Beschwerde vom 17. Juni 2019 gegen den Bescheid des 
+Finanzamt Niederösterreich Mitte  vom 29. Mai 2019 betreffend Einkommensteuer (Arbeitnehmerveranlagung) 2017 
+zu Recht erkannt:  
+Die Beschwerde wird gemäß § 279 BAO als unbegründet abgewiesen. 
+Gegen dieses Erkenntnis ist eine Revi
+```
+
+- Missed: `Finanzamt Niederösterreich Mitte`
+
+
+```
+liche Revision an den Verwaltungsgerichtshof ist nach Art 133 Abs 4 iVm 
+Abs 9 Bundes-Verfassungsgesetz (B-VG) nicht zulässig.  
+Begründung 
+Das Verfahren stellt sich wie folgt dar: 
+Mit Bescheid des Finanzamt Niederösterreich Mitte  vom 27. November 2019 wurde der Einkommensteuerbescheid für 
+das Jahr 2017 gemäß § 295 Abs 1 BAO abgeändert. Die Änderung gemäß § 295 BAO erfolgte 
+aufgrund der bescheidmäßigen Feststellungen des Fi
+```
+
+- Missed: `Finanzamt Niederösterreich Mitte`
+
+
+```
+  
+GZ. RV/2101411/2019 
+  
+ 
+ 
+ 
+IM NAMEN DER REPUBLI K 
+Das Bundesfinanzgericht hat durch den Richter Hon.-Prof. Jean Enull  in der Beschwerdesache der 
+TalPflege, Stainacherweg 8, 2120 Obersdorf, Österreich, über die Beschwerde vom 14. November 2019 gegen den Bescheid 
+des Finanzamtes Graz-Stadt vom 7. November 2019 betreffend die Festsetzung einer 
+Zwangsstr
+```
+
+- Missed: `TalPflege`
+
+
+```
+ REPUBLI K 
+Das Bundesfinanzgericht hat durch den Richter Priv.-Doz. Paul Homma  in der Beschwerdesache 
+Sandra Biberacher Bf1-Adr***RA über die Beschwerde vom 22. Jänner 2018 gegen den Bescheid 
+des Finanzamt Graz-Stadt  vom 21. Dezember 2017 betreffend Haftung uRecht erkannt:  
+Der Beschwerde wird gemäß § 279 BAO teilweise Folge gegeben. 
+Der angefochtene Bescheid wird abgeändert. 
+Die Haftung wird für folgende Abg
+```
+
+- Missed: `Finanzamt Graz-Stadt`
+
+
+```
+. Tristan Frommholz, 
+Am Vierkanthof 7, 2115 Ernstbrunn, Österreich, vertreten durch Halbwachs Schmitt & Partner STB, Mariahilfer Straße 126/24, 
+1070 Wien, über die Beschwerde gegen den Bescheid des FA Salzburg-Stadt  vom 12. März 2013, 
+betreffend Körperschaftsteuer 2011 zu Recht erkannt:  
+Der Beschwerde wird gemäß § 279 BAO teilweise Folge gegeben. 
+Der angefochtene Bescheid wird abgeändert. 
+Die festgesetzte 
+```
+
+- Missed: `FA Salzburg-Stadt`
+
+
+</details>
+
+<details>
+<summary>⚠️ False Positives (9)</summary>
+
+```
+  
+GZ. RV/1100535/2018 
+  
+ 
+ 
+ 
+IM NAMEN DER REPUBLI K 
+Das Bundesfinanzgericht hat durch die Richterin R in der Beschwerdesache der Butkus Metall, 
+Fritz Radel-Gasse 1, 6767 Hochkrumbach, Österreich, über die Beschwerde vom 30. August 2018 gegen den Bescheid des 
+Finanzamtes vom 2. August 2018 betreffend Einkommensteuer (Arbeitnehmerveranlagun
+```
+
+- FP: `Radel-Gasse`
+
+
+```
+ogene Beträge (Familienbeihilfe, Kinderabsetzbetrag) in Höhe von € 5.523,20 für das Kind 
+Gisbert Umstetter  rückgefordert. 
+Mit Bescheid vom 25. April 2019 hat das Finanzamt Salzburg-Stadt gegenüber Gökdemir Landwirtschaft AG  eine 
+Geldforderung in Höhe von insgesamt € 4.225,30 gemäß § 65 AbgEO gepfändet, weil der Bf 
+angeblich beschränkt pfändbare Forderungen aus einem Arbeitsverhältnis oder sonstige 
+Bezüge im Sinne de
+```
+
+- FP: `Salzburg-Stadt`
+
+
+```
+ichterin Mag.a Konstanze Rudolph  in der Beschwerdesache Kordelia Schormayer, 
+Josef-Ressmann-Straße 45, 8152 Muggauberg, Österreich, über die Beschwerde vom 28. Oktober 2013 gegen die Bescheide des 
+Finanzamt Deutschlandsberg Leibnitz Voitsberg  vom 9. Oktober 2013 betreffend Einkommensteuer (Arbeitnehmerveranlagung) 
+2011 und 2012 zu Recht erkannt:  
+Die Beschwerde wird gemäß § 279 BAO als unbegründet abgewiesen. 
+Gegen dieses Erkenntnis i
+```
+
+- FP: `Josef-Ressmann-Straße`
+
+
+```
+se 20, 8253 Schmiedviertel, Österreich, vertreten durch Hademar Mittelmann, Siegmar-Bergelt-Weg 4, 3340 St. Leonhard am Wald, Österreich, über die Beschwerde vom 14. März 
+2018 gegen den Bescheid des Finanzamt Baden Mödling  vom 13. Februar 2018 betreffend Einkommensteuer 
+2016 zu Recht erkannt:  
+Die Beschwerde wird gemäß § 279 BAO als unbegründet abgewiesen. 
+Gegen dieses Erkenntnis ist eine Revision an den Verwaltung
+```
+
+- FP: `Siegmar-Bergelt-Weg`
+
+
+```
+ Richterin Dr.in Sascha Bonn  in der Beschwerdesache Ilona Kleine-Börger, 
+Kreuzergegend-Ost 48, 8074 Lamberg, Österreich, Liechtenstein, über die Beschwerde vom 17. Juni 2019 gegen den Bescheid des 
+Finanzamt Niederösterreich Mitte  vom 29. Mai 2019 betreffend Einkommensteuer (Arbeitnehmerveranlagung) 2017 
+zu Recht erkannt:  
+Die Beschwerde wird gemäß § 279 BAO als unbegründet abgewiesen. 
+Gegen dieses Erkenntnis ist eine Revi
+```
+
+- FP: `Kleine-Börger`
+
+- FP: `Kreuzergegend-Ost`
+
+
+```
+liche Revision an den Verwaltungsgerichtshof ist nach Art 133 Abs 4 iVm 
+Abs 9 Bundes-Verfassungsgesetz (B-VG) nicht zulässig.  
+Begründung 
+Das Verfahren stellt sich wie folgt dar: 
+Mit Bescheid des Finanzamt Niederösterreich Mitte  vom 27. November 2019 wurde der Einkommensteuerbescheid für 
+das Jahr 2017 gemäß § 295 Abs 1 BAO abgeändert. Die Änderung gemäß § 295 BAO erfolgte 
+aufgrund der bescheidmäßigen Feststellungen des Fi
+```
+
+- FP: `Bundes-Verfassungsgesetz`
+
+
+```
+  
+GZ. RV/2101411/2019 
+  
+ 
+ 
+ 
+IM NAMEN DER REPUBLI K 
+Das Bundesfinanzgericht hat durch den Richter Hon.-Prof. Jean Enull  in der Beschwerdesache der 
+TalPflege, Stainacherweg 8, 2120 Obersdorf, Österreich, über die Beschwerde vom 14. November 2019 gegen den Bescheid 
+des Finanzamtes Graz-Stadt vom 7. November 2019 betreffend die Festsetzung einer 
+Zwangsstr
+```
+
+- FP: `Graz-Stadt`
+
+
+```
+ REPUBLI K 
+Das Bundesfinanzgericht hat durch den Richter Priv.-Doz. Paul Homma  in der Beschwerdesache 
+Sandra Biberacher Bf1-Adr***RA über die Beschwerde vom 22. Jänner 2018 gegen den Bescheid 
+des Finanzamt Graz-Stadt  vom 21. Dezember 2017 betreffend Haftung uRecht erkannt:  
+Der Beschwerde wird gemäß § 279 BAO teilweise Folge gegeben. 
+Der angefochtene Bescheid wird abgeändert. 
+Die Haftung wird für folgende Abg
+```
+
+- FP: `Graz-Stadt`
+
+
+```
+. Tristan Frommholz, 
+Am Vierkanthof 7, 2115 Ernstbrunn, Österreich, vertreten durch Halbwachs Schmitt & Partner STB, Mariahilfer Straße 126/24, 
+1070 Wien, über die Beschwerde gegen den Bescheid des FA Salzburg-Stadt  vom 12. März 2013, 
+betreffend Körperschaftsteuer 2011 zu Recht erkannt:  
+Der Beschwerde wird gemäß § 279 BAO teilweise Folge gegeben. 
+Der angefochtene Bescheid wird abgeändert. 
+Die festgesetzte 
+```
+
+- FP: `Salzburg-Stadt`
+
+
+</details>
+
+---
+
+## `MultiWord_name`
+
+🔴 Weak rule
+
+> Fallback for longer (3–4 word) capitalised names that are not person titles, with extra guards to avoid headings and phrases starting with "Beschwerdesache" or "Finanzamtes".
+
+**F1:** 0.000 | **Precision:** 0.000 | **Recall:** 0.000  
+
+**Format:** `RuleFormat.REGEX`  
+**Content:** `(?<!\bBeschwerdesache\s)(?<!\bFinanzamtes\s)\b(?!Entscheidungsgründe\b)(?!Zum\b)(?!Beschwerdesache\b)(?!Finanzamtes\b)(?![A-Z][a-z]+(?:\s+[A-Z][a-z]+){0,2}\b)(?!Richterin\b|Richter\b|Herrn\b|Frau\b|Dr\b|Prof\b|Mag\b|Univ\b|Priv\b|Priv\.\b|Dr\.\b|Prof\.\b|Mag\.\b|Univ\.\b|Herr\b|Die\b|Der\b|Das\b|Dipl\b)\b[A-ZÄÖÜ][a-zäöüß]+(?:\s+[A-ZÄÖÜ][a-zäöüß]+){2,3}\b`
+
+<details>
+<summary>📊 Detailed Metrics</summary>
+
+| Precision | Recall | F1 | Matches | TP | FP | Coverage |
+|-----------|--------|----|---------|----|----|----------|
+| 0.000 | 0.000 | 0.000 | 3 | 0 | 3 | 0/36 |
+
+**Per-Class Breakdown**
+
+| Class | TP | FP | FN |
+|-------|----|----|----|
+| `organisation` | 0 | 3 | 36 |
+
+</details>
+
+<details>
+<summary>❌ Missed (3)</summary>
+
+```
+liche Revision an den Verwaltungsgerichtshof ist nach Art 133 Abs 4 iVm 
+Abs 9 Bundes-Verfassungsgesetz (B-VG) nicht zulässig.  
+Begründung 
+Das Verfahren stellt sich wie folgt dar: 
+Mit Bescheid des Finanzamt Niederösterreich Mitte  vom 27. November 2019 wurde der Einkommensteuerbescheid für 
+das Jahr 2017 gemäß § 295 Abs 1 BAO abgeändert. Die Änderung gemäß § 295 BAO erfolgte 
+aufgrund der bescheidmäßigen Feststellungen des Fi
+```
+
+- Missed: `Finanzamt Niederösterreich Mitte`
+
+
+```
+Frieda Quasebarth  in der Beschwerdesache Zoltan Klaussner, 
+Atschenbach 65, 2564 Neuhaus, Österreich, vertreten durch Judith Gregoschek, über die Beschwerde vom 19. Juli 2019 
+gegen den Bescheid des FA Freistadt Rohrbach Urfahr  vom 19. Juni 2019 betreffend Haftung gemäß § 9 iVm §§ 80 
+ff BAO zu Steuernummer 59-967/4806  zu Recht erkannt:  
+Der Beschwerde wird gemäß § 279 BAO teilweise Folge gegeben. 
+Der angefochtene Bescheid wird abgeändert. 
+ 
+Der Beschwerdeführer wird gemäß § 9 iVm §§ 80ff BAO für nachstehende 
+Angabenschuldigkeiten der SüdGarten GMBH  zur Haftung herangezogen: 
+ 
+ 
+Abgabenart Zeitraum Fälligkeitstag Betrag Quote Quotenbetrag Betrag  
+Lohnsteuer  06/2017 17.07.2017 2261,07 7,47 168,90 2.092,17 
+Lohnsteuer  07/2017 16.08.2017 1,735
+```
+
+- Missed: `FA Freistadt Rohrbach Urfahr`
+
+- Missed: `SüdGarten GMBH`
+
+
+```
+ 
+Mit Schreiben vom 25.2.2020 wurde an DI Zeuge2 eine schriftliche Zeugeneinvernahme zum 
+Beweisthema AfA-Satz von 3% für die auf der Liegenschaft EZGST bestehenden Gebäude laut 
+den Schreiben an die Trafenfen Automotive  GmbH vom 14.11.2011 und vom 29.2.2012 versendet. 
+Ausgeführt wurde wie folgt: 
+„Mit Schreiben vom 21.2.2020 wurde vom Beschwerdeführer Ihre Einvernahme als Zeuge im 
+gegenständlichen Verfahren beant
+```
+
+- Missed: `Trafenfen Automotive`
+
+
+</details>
+
+<details>
+<summary>⚠️ False Positives (3)</summary>
+
+```
+liche Revision an den Verwaltungsgerichtshof ist nach Art 133 Abs 4 iVm 
+Abs 9 Bundes-Verfassungsgesetz (B-VG) nicht zulässig.  
+Begründung 
+Das Verfahren stellt sich wie folgt dar: 
+Mit Bescheid des Finanzamt Niederösterreich Mitte  vom 27. November 2019 wurde der Einkommensteuerbescheid für 
+das Jahr 2017 gemäß § 295 Abs 1 BAO abgeändert. Die Änderung gemäß § 295 BAO erfolgte 
+aufgrund der bescheidmäßigen Feststellungen des Fi
+```
+
+- FP: `Begründung 
+Das Verfahren`
+
+
+```
+Frieda Quasebarth  in der Beschwerdesache Zoltan Klaussner, 
+Atschenbach 65, 2564 Neuhaus, Österreich, vertreten durch Judith Gregoschek, über die Beschwerde vom 19. Juli 2019 
+gegen den Bescheid des FA Freistadt Rohrbach Urfahr  vom 19. Juni 2019 betreffend Haftung gemäß § 9 iVm §§ 80 
+ff BAO zu Steuernummer 59-967/4806  zu Recht erkannt:  
+Der Beschwerde wird gemäß § 279 BAO teilweise Folge gegeben. 
+Der angefochtene Bescheid wird abgeändert. 
+ 
+Der Beschwerdeführer wird gemäß § 9 iVm §§ 80ff BAO für nachstehende 
+Angabenschuldigkeiten der SüdGarten GMBH  zur Haftung herangezogen: 
+ 
+ 
+Abgabenart Zeitraum Fälligkeitstag Betrag Quote Quotenbetrag Betrag  
+Lohnsteuer  06/2017 17.07.2017 2261,07 7,47 168,90 2.092,17 
+Lohnsteuer  07/2017 16.08.2017 1,735
+```
+
+- FP: `Fälligkeitstag Betrag Quote Quotenbetrag`
+
+
+```
+ 
+Mit Schreiben vom 25.2.2020 wurde an DI Zeuge2 eine schriftliche Zeugeneinvernahme zum 
+Beweisthema AfA-Satz von 3% für die auf der Liegenschaft EZGST bestehenden Gebäude laut 
+den Schreiben an die Trafenfen Automotive  GmbH vom 14.11.2011 und vom 29.2.2012 versendet. 
+Ausgeführt wurde wie folgt: 
+„Mit Schreiben vom 21.2.2020 wurde vom Beschwerdeführer Ihre Einvernahme als Zeuge im 
+gegenständlichen Verfahren beant
+```
+
+- FP: `Beschwerdeführer Ihre Einvernahme`
+
+
+</details>
+
+---
+
