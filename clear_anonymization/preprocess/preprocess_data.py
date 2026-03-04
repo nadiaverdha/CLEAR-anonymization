@@ -1,9 +1,5 @@
 import argparse
 import json
-import logging
-import re
-import string
-import unicodedata
 import zipfile
 from dataclasses import dataclass
 from os.path import commonprefix
@@ -11,14 +7,26 @@ from pathlib import Path
 from typing import List
 
 import spacy
-from datasets import load_dataset
 from tuw_nlp.text.patterns.de import ABBREV
 from tuw_nlp.text.pipeline import CustomStanzaPipeline
+from tuw_nlp.text.segmentation import SsplitFixer
 
-from clear_anonymization.ner_datasets.ner_dataset import NERData, NERDataset, NERSample
-from clear_anonymization.preprocess.util import TITLES
+from clear_anonymization.ner_datasets.ner_dataset import NERData, NERSample
+from clear_anonymization.preprocess.util import (
+    MISC,
+    ROMAN_NUMBERING,
+    TITLES,
+    TOB,
+    _is_err_patch,
+)
 
 ABBREV.extend(TITLES)
+ABBREV.extend(TOB)
+ABBREV.extend(MISC)
+ABBREV.extend(ROMAN_NUMBERING)
+
+# monkey patch for is_err
+SsplitFixer.is_err = _is_err_patch
 
 MAX_CHUNK_SIZE = 1000000
 

@@ -1,3 +1,6 @@
+from tuw_nlp.text.patterns.de import ABBREV
+from tuw_nlp.text.segmentation import SsplitFixer
+
 TITLES = {
     "Bakk. techn.",
     "B. Sc.",
@@ -64,4 +67,84 @@ TITLES = {
     "Hon.-Prof.",
     "Dipl. Ing.",
 }
+
 TOB = {"e.U.", "e.U", "e.G.", "e.G"}
+ROMAN_NUMBERING = {
+    "I.",
+    "II.",
+    "III.",
+    "IV.",
+    "V.",
+}
+
+MISC = {
+    "lfd.",
+    "u.",
+    "St.Nr.",
+    "Nr.",
+    "nr.",
+    "Tel.",
+    "abz.",
+    "Bmst.",
+    "UID-Nr.",
+    "Uid-Nr.",
+    "UlD-Nr.",
+    "DVR-Nr.",
+    "abzugi.",
+    "Kunden-Nr.",
+    "Kunden:Nr.",
+    "Kunden-nr.",
+    "Rechnung-Nr.",
+    "Telefon-Nr.",
+    "Dot.",
+    "Pos.",
+    "Bel.",
+    "Bundesstr.",
+    "Zuschl.",
+    "Abg.",
+    "gem.",
+    "SV-NR.",
+    "SV-Nr.",
+    "Wr.",
+    "elektr.",
+    "GZ.",
+    "exkl.",
+    "inkl.",
+    "Erl.",
+    "bez.",
+    "ca.",
+    "lt.",
+    "Einh.",
+    "Inc.",
+    "Art.",
+    "BGBl.",
+    "geb.",
+    "Geb.",
+    "Pos.",
+    "Pos.Nr.",
+    "Kto-Nr.",
+    "Art.-nr.",
+    "Angebots-Nr.",
+    "zzgl.",
+    "HR.",
+    "Hr.",
+    "z.Hd.",
+    "Arb.",
+    "Art.Nr.",
+    "Eht.",
+}
+
+_original_is_err = SsplitFixer.is_err
+
+
+def _is_err_patch(self, sen1, sen2):
+    res1, res2 = _original_is_err(self, sen1, sen2)
+
+    if res1 and res2:
+        return res1, res2
+
+    for abr in ABBREV:
+        if abr == sen1.text or sen1.text.endswith(f"\n{abr}"):
+            return True, True
+
+    return False, None
