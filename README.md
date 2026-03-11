@@ -18,23 +18,27 @@ To download the LER dataset from HuggingFace in a json format inside the `data` 
 python clear_anonymization/preprocess/preprocess_ler.py --repository_id elenanereiss/german-ler --output_dir data/ler/ler_data.json 
 ```
 
-#### Other Datasets (Musterfall, BFG)
+#### Other Datasets (Musterfall, FinDok)
 
 To store the dataset in a json format inside the `data` folder:
+Sentences parameter helps split the file into sentences and keeping those sentences where annotations are present
 ```bash
-python clear_anonymization/preprocess/preprocess_m2n.py --input_dir {datasetname}_TRAIN.zip --output_dir data/bfg/{datasetname}_train.json --split train 
+python clear_anonymization/preprocess/preprocess_data.py --input_dir {datasetname}_TRAIN.zip --output_dir data/{datasetname}/{datasetname}_train.json --split train --sentences 
 
 ```
 
-### LLM Baseline
+### LLM Extractor
 
-First, start running the LLM model, e.g. google/gemma-3-27b-it locally using a VLLM:
-
+First, serve a model locally using [vLLM] ((https://docs.vllm.ai/):
 ```bash
 python -m vllm.entrypoints.openai.api_server   --model google/gemma-3-27b-it  --host 0.0.0.0   --port 8000
 ```
 
+Then run extraction:
+
 ```python
+
+
 
 from clear_anonymization.extractors import factory
 
