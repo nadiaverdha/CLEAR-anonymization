@@ -20,8 +20,8 @@ python clear_anonymization/preprocess/preprocess_ler.py --repository_id elenaner
 
 #### Other Datasets (Musterfall, FinDok)
 
-To store the dataset in a json format inside the `data` folder:
-Sentences parameter helps split the file into sentences and keeping those sentences where annotations are present
+To store the dataset in a json format inside the `data` folder. Add argument `--sentences´ if you want to keep only those sentences that contain annotations. 
+
 ```bash
 python clear_anonymization/preprocess/preprocess_data.py --input_dir {datasetname}_TRAIN.zip --output_dir data/{datasetname}/{datasetname}_train.json --split train --sentences 
 
