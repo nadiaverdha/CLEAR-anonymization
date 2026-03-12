@@ -65,12 +65,13 @@ def build_examples(text, merged_windows):
 def sample_few_shot(
     train_data,
     shots_per_class,
+    windows,
     seed=42,
     num_classes=None,
     classes=None,
     window_size=200,
-    use_windows=True,
 ):
+    print("USE WINDOWSSSSSS", windows)
     rng = random.Random(seed)
     if not classes:
         all_labels = sorted({l["type"] for sample in train_data for l in sample.labels})
@@ -91,11 +92,12 @@ def sample_few_shot(
         )
         if not entities:
             continue
-        if use_windows:
+        if windows:
             all_examples.extend(
                 build_examples(text, select_windows(text, entities, window_size))
             )
         else:
+            print(text)
             all_examples.append({"text": text, "entities": entities})
 
     by_label = defaultdict(list)
@@ -170,7 +172,7 @@ def run_benchmark(args):
         seed=args.seed,
         num_classes=args.num_classes,
         classes=classes,
-        use_windows=not args.no_windows,
+        windows=args.windows,
     )
 
     num_classes = len(selected_classes)
@@ -507,7 +509,7 @@ def run_benchmark(args):
         )
         rule_metrics = evaluate_rules_individually(
             rules=rules,
-            dataset=test_dataset,
+            dataset=eval_dataset,
             apply_rules_fn=chef.learner._apply_rules,
             mode="text",
             max_samples=10,
@@ -619,9 +621,9 @@ def main():
         help="Disable grex regex pattern suggestions (for ablation)",
     )
     parser.add_argument(
-        "--no-windows",
+        "--windows",
         action="store_true",
-        help="Use full sentence text as-is instead of cropping windows around entities",
+        help="Crop windows around entities instead of using full text",
     )
 
     parser.add_argument(
