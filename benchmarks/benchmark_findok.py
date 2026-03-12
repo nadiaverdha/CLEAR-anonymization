@@ -7,8 +7,9 @@ import time
 import uuid
 from collections import defaultdict
 from pathlib import Path
-from pydantic import BaseModel, Field, field_validator
 from typing import List, Optional
+
+from pydantic import BaseModel, Field, field_validator
 
 from clear_anonymization.ner_datasets import get_dataset_class_definitions
 from clear_anonymization.ner_datasets.ner_dataset import NERData, NERDataset, NERSample
@@ -16,15 +17,11 @@ from clear_anonymization.ner_datasets.ner_dataset import NERData, NERDataset, NE
 # ── Dataset loading ─────────────────────────────────────────
 
 
-def load_findok(input_dir):
+def load_findok(train_dir, val_dir):
     """Load Findok dataset(train, test, label_names)."""
 
-    train_data = NERData.from_json(
-        json.loads(Path(f"{input_dir}/findok_train.json").read_text())
-    )
-    val_data = NERData.from_json(
-        json.loads(Path(f"{input_dir}/findok_val.json").read_text())
-    )
+    train_data = NERData.from_json(json.loads(Path(train_dir).read_text()))
+    val_data = NERData.from_json(json.loads(Path(val_dir).read_text()))
 
     train = [sample for sample in train_data.samples]
     val = [sample for sample in val_data.samples]
@@ -72,6 +69,7 @@ def sample_few_shot(
     num_classes=None,
     classes=None,
     window_size=200,
+    use_windows=True,
 ):
     rng = random.Random(seed)
     if not classes:
@@ -93,9 +91,12 @@ def sample_few_shot(
         )
         if not entities:
             continue
-        all_examples.extend(
-            build_examples(text, select_windows(text, entities, window_size))
-        )
+        if use_windows:
+            all_examples.extend(
+                build_examples(text, select_windows(text, entities, window_size))
+            )
+        else:
+            all_examples.append({"text": text, "entities": entities})
 
     by_label = defaultdict(list)
     for ex in all_examples:
@@ -143,7 +144,6 @@ class NEROutput(BaseModel):
 
 def run_benchmark(args):
     from openai import OpenAI
-
     from rulechef import RuleChef
     from rulechef.core import (
         Dataset,
@@ -156,7 +156,7 @@ def run_benchmark(args):
 
     # 1. Load data
     print("Loading FinDok dataset...")
-    train_all, test_all, entity_names = load_findok(args.input_dir)
+    train_all, test_all, entity_names = load_findok(args.train_dir, args.val_dir)
     print(
         f"  Train: {len(train_all)}, Test: {len(test_all)}, Classes: {len(entity_names)}"
     )
@@ -170,6 +170,7 @@ def run_benchmark(args):
         seed=args.seed,
         num_classes=args.num_classes,
         classes=classes,
+        use_windows=not args.no_windows,
     )
 
     num_classes = len(selected_classes)
@@ -496,6 +497,7 @@ def run_benchmark(args):
     # 12. Generate per-rule Markdown report
     if not args.no_mdreport:
         from rulechef.evaluation import evaluate_rules_individually
+
         from reports.create_md_report_rules import append_rule_metrics, create_md_report
 
         md_path = output_path.with_suffix(".rules_report.md")
@@ -527,9 +529,14 @@ def main():
         description="findok Named Entity Recognition Benchmark for RuleChef"
     )
     parser.add_argument(
-        "--input_dir",
+        "--train_dir",
         type=str,
-        help="Path to the train and test data (JSON format)",
+        help="Path to the train data (JSON format)",
+    )
+    parser.add_argument(
+        "--val_dir",
+        type=str,
+        help="Path to the test data (JSON format)",
     )
     parser.add_argument(
         "--shots",
@@ -610,6 +617,11 @@ def main():
         "--no-grex",
         action="store_true",
         help="Disable grex regex pattern suggestions (for ablation)",
+    )
+    parser.add_argument(
+        "--no-windows",
+        action="store_true",
+        help="Use full sentence text as-is instead of cropping windows around entities",
     )
 
     parser.add_argument(
