@@ -22,7 +22,7 @@ DATASET_CLASS_DEFINITIONS = {
         "address": "Postadressen",
         "tax_number": "Steuernummern",
     },
-    "bfg": {
+    "findok": {
         "person": "Personennamen",
         "organisation": "Organisationsnamen",
         "account": "Konten",
