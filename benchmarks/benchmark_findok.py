@@ -2,7 +2,6 @@ import argparse
 import json
 import os
 import random
-import sys
 import time
 import uuid
 from collections import defaultdict
@@ -13,7 +12,7 @@ from pydantic import BaseModel, Field, field_validator
 
 from clear_anonymization.ner_datasets import get_dataset_class_definitions
 from clear_anonymization.ner_datasets.ner_dataset import NERData, NERDataset, NERSample
-
+from clear_anonymization.utils.utils import *
 # ── Dataset loading ─────────────────────────────────────────
 
 
@@ -97,7 +96,6 @@ def sample_few_shot(
                 build_examples(text, select_windows(text, entities, window_size))
             )
         else:
-            print(text)
             all_examples.append({"text": text, "entities": entities})
 
     by_label = defaultdict(list)
@@ -125,20 +123,6 @@ def sample_few_shot(
         remaining.extend(unique[shots_per_class:])
 
     return sampled, remaining, classes
-
-
-# ──Entity Output Schema ────────────────────────────────────────
-
-
-class Entity(BaseModel):
-    text: str = Field(description="The matched text span")
-    start: int = Field(description="Start character offset")
-    end: int = Field(description="End character offset")
-    type: str = Field(description="Entity label")
-
-
-class NEROutput(BaseModel):
-    entities: List[Entity]
 
 
 # ── Benchmark runner ────────────────────────────────────────
@@ -440,61 +424,61 @@ def run_benchmark(args):
         )
         print(f"  Uncovered intents: {zero_recall}/{len(sorted_classes)}")
 
-    # 11. Save results
-    output_path = Path(args.output)
-    results = {
-        "config": {
-            "shots": args.shots,
-            "model": args.model,
-            "format": args.format,
-            "max_rules": args.max_rules,
-            "max_samples": args.max_samples,
-            "max_iterations": args.max_iterations,
-            "seed": args.seed,
-            "train_size": len(train_sample),
-            "test_size": len(test_data),
-            "use_grex": not args.no_grex,
-            "agentic": args.agentic,
-        },
-        "results": {
-            "accuracy": test_eval.exact_match,
-            "coverage": coverage,
-            "micro_precision": test_eval.micro_precision,
-            "micro_recall": test_eval.micro_recall,
-            "micro_f1": test_eval.micro_f1,
-            "macro_f1": test_eval.macro_f1,
-            "num_rules": len(rules),
-            "learning_time_s": round(t_learn, 1),
-            "eval_time_s": round(t_eval, 3),
-            "per_query_ms": round(t_eval / len(test_data) * 1000, 2),
-        },
-        "per_class": [
-            {
-                "label": cm.label,
-                "precision": cm.precision,
-                "recall": cm.recall,
-                "f1": cm.f1,
-                "tp": cm.tp,
-                "fp": cm.fp,
-                "fn": cm.fn,
-            }
-            for cm in (test_eval.per_class or [])
-        ],
-        "iteration_metrics": iteration_metrics,
-        "rules": [
-            {
-                "name": r.name,
-                "format": r.format.value,
-                "content": r.content,
-                "priority": r.priority,
-                "output_template": r.output_template,
-                "output_key": r.output_key,
-            }
-            for r in rules
-        ],
-    }
-    output_path.write_text(json.dumps(results, indent=2))
-    print(f"\nResults saved to {output_path}")
+        # 11. Save results
+        output_path = Path(args.output)
+        results = {
+            "config": {
+                "shots": args.shots,
+                "model": args.model,
+                "format": args.format,
+                "max_rules": args.max_rules,
+                "max_samples": args.max_samples,
+                "max_iterations": args.max_iterations,
+                "seed": args.seed,
+                "train_size": len(train_sample),
+                "test_size": len(test_data),
+                "use_grex": not args.no_grex,
+                "agentic": args.agentic,
+            },
+            "results": {
+                "accuracy": test_eval.exact_match,
+                "coverage": coverage,
+                "micro_precision": test_eval.micro_precision,
+                "micro_recall": test_eval.micro_recall,
+                "micro_f1": test_eval.micro_f1,
+                "macro_f1": test_eval.macro_f1,
+                "num_rules": len(rules),
+                "learning_time_s": round(t_learn, 1),
+                "eval_time_s": round(t_eval, 3),
+                "per_query_ms": round(t_eval / len(test_data) * 1000, 2),
+            },
+            "per_class": [
+                {
+                    "label": cm.label,
+                    "precision": cm.precision,
+                    "recall": cm.recall,
+                    "f1": cm.f1,
+                    "tp": cm.tp,
+                    "fp": cm.fp,
+                    "fn": cm.fn,
+                }
+                for cm in (test_eval.per_class or [])
+            ],
+            "iteration_metrics": iteration_metrics,
+            "rules": [
+                {
+                    "name": r.name,
+                    "format": r.format.value,
+                    "content": r.content,
+                    "priority": r.priority,
+                    "output_template": r.output_template,
+                    "output_key": r.output_key,
+                }
+                for r in rules
+            ],
+        }
+        output_path.write_text(json.dumps(results, indent=2))
+        print(f"\nResults saved to {output_path}")
 
     # 12. Generate per-rule Markdown report
     if not args.no_mdreport:
@@ -549,7 +533,7 @@ def main():
     parser.add_argument(
         "--model",
         type=str,
-        default="openai/gpt-oss-120b",
+        default="openai/gpt-oss-120b",  # "google/gemma-3-27b-it",
         help="LLM model for rule synthesis (default: openai/gpt-oss-120b)",
     )
     parser.add_argument(
