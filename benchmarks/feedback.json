@@ -1,0 +1,39 @@
+[
+  {
+    "level": "task",
+    "text": "This is Austrian German legal/tax text. Organisations are companies with legal suffixes (GmbH, AG, KG, OG, e.V.), named banks (Raiffeisenbank X, Sparkasse X), tax offices (Finanzamt X, FA X), courts (Landesgericht X, Bezirksgericht X), and named government agencies. NOT every capitalized noun is an organisation."
+  },
+  {
+    "level": "task",
+    "text": "Precision is critical. Currently 504 false positives vs 145 true positives. Rules must be specific. It is better to miss an entity than to match a wrong one."
+  },
+  {
+    "level": "task",
+    "text": "German articles (die, der, das, den, dem, des) before a capitalized word do NOT indicate an organisation. They are just grammar and must not be used as positive signals."
+  },
+  {
+    "level": "rule",
+    "rule_name": "CamelCase single word names",
+    "text": "This rule has extremely low precision. Single CamelCase words in German legal text are usually law references, abbreviations, or normal words, not organisations. Remove this rule or restrict it to known organisation-specific CamelCase patterns only."
+  },
+  {
+    "level": "rule",
+    "rule_name": "Multi-word capitalised names (fallback)",
+    "text": "This rule is too broad because it matches any multi-word capitalised sequence. This causes many false positives. Restrict it to require a known legal suffix (GmbH, AG, KG, OG) or a known domain prefix such as Finanzamt, Raiffeisenbank, or Gericht. Remove the generic fallback branch."
+  },
+  {
+    "level": "rule",
+    "rule_name": "Organisation ending with indicator noun",
+    "text": "This rule is too broad. Austrian legal text contains many institutional words ending with Amt, Stelle, Behörde, or Kammer that are not named entities. Require at least two preceding capitalized tokens before the indicator noun."
+  },
+  {
+    "level": "rule",
+    "rule_name": "Two-word organisations with industry noun",
+    "text": "The industry noun list is too generic and causes false positives on normal German compound words. Either remove this rule or restrict it to a very small whitelist of industry nouns that appear only in organisation names."
+  },
+  {
+    "level": "rule",
+    "rule_name": "Bank suffix compound",
+    "text": "The rule matches any word ending in 'Bank'. Restrict it to require at least one preceding capitalized proper noun token such as Raiffeisen or Sparkasse. Words like Postbank are valid but the pattern should not fire on arbitrary XBank compounds."
+  }
+]
