@@ -78,6 +78,7 @@ def build_examples(text, merged_windows):
 def sample_few_shot(
     train_data,
     shots_per_class,
+    test_shots,
     windows,
     seed=42,
     num_classes=None,
@@ -122,6 +123,7 @@ def sample_few_shot(
 
     sampled = []
     remaining = []
+    test = []
 
     for label in labels:
         examples = by_label[label]
@@ -132,10 +134,15 @@ def sample_few_shot(
                 seen.add(ex["text"])
                 unique.append(ex)
         rng.shuffle(unique)
-        sampled.extend(unique[:shots_per_class])
-        remaining.extend(unique[shots_per_class:])
 
-    return sampled, remaining, classes
+        sampled.extend(unique[:shots_per_class])
+        rest = unique[shots_per_class:]
+
+        test_size = min(test_shots, len(rest))
+        test.extend(rest[:test_size])
+        remaining.extend(rest[test_size:])
+
+    return sampled, remaining, test, classes
 
 
 # ── Iteration callback ─────────────────────────────────────────
@@ -194,8 +201,8 @@ def evaluate_test(test_data, rules, chef, task):
         test_dataset.examples.append(
             Example(
                 id=str(uuid.uuid4())[:8],
-                input={"text": ex.text},
-                expected_output={"entities": ex.labels},
+                input={"text": ex["text"]},
+                expected_output={"entities": ex["entities"]},
                 source="benchmark",
             )
         )

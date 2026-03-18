@@ -7,6 +7,7 @@ import uuid
 from collections import defaultdict
 from pathlib import Path
 from typing import List, Optional
+from datetime import datetime
 
 from openai import OpenAI
 from pydantic import BaseModel, Field, field_validator
@@ -52,9 +53,10 @@ def run_benchmark(args):
     # 2. Few-shot sample (optionally limited to N classes)
 
     classes = [c.strip() for c in args.classes.split(",")] if args.classes else None
-    train_sample, train_remaining, selected_classes = sample_few_shot(
+    train_sample, train_remaining, test_data, selected_classes = sample_few_shot(
         train_all,
         shots_per_class=args.shots,
+        test_shots=50,
         seed=args.seed,
         num_classes=args.num_classes,
         classes=classes,
@@ -69,28 +71,12 @@ def run_benchmark(args):
     if args.num_classes:
         print(f"  Selected classes: {', '.join(sorted(selected_classes))}")
 
-    # Filter test set to only selected classes (held out — never seen during learning)
-    filtered = []
-    for ex in test_all:
-        kept_labels = [
-            label for label in ex.labels if label["type"] in selected_classes
-        ]
-        if kept_labels:
-            filtered.append(NERSample(text=ex.text, split=ex.split, labels=kept_labels))
-    test_data = filtered
-    if args.test_limit:
-        rng = random.Random(args.seed)
-        test_data = list(test_data)
-        rng.shuffle(test_data)
-        test_data = test_data[: args.test_limit]
-        print(f"  Test subset: {len(test_data)} (limited, held out)")
-    else:
-        print(f"  Test: {len(test_data)} (filtered to selected classes, held out)")
+    print(f"  Test: {len(test_data)} (filtered to selected classes, held out)")
 
     # 3. Configure rulechef
     active_labels = sorted(selected_classes)
     task = Task(
-        name="German LER Named Entity Recognition",
+        name="German Legal Named Entity Recognition",
         description=f"Recognize named entities in German legal text. Entities to look for: {', '.join(active_labels)}.",
         input_schema={"text": "str"},
         output_schema=NEROutput,
@@ -111,7 +97,10 @@ def run_benchmark(args):
 
     # Training logger
     model_name = args.model.replace("/", "_")
-    log_path = Path(f"{args.output}_{model_name}").with_suffix(".training.jsonl")
+    date_str = datetime.now().strftime("%Y-%m-%d")
+    log_path = Path(f"benchmarks/{date_str}/{model_name}_{args.output}").with_suffix(
+        ".training.jsonl"
+    )
     logger = TrainingDataLogger(
         str(log_path),
         run_metadata={
@@ -127,7 +116,12 @@ def run_benchmark(args):
     if args.agentic:
         from rulechef.coordinator import AgenticCoordinator
 
-        coordinator = AgenticCoordinator(client, model=args.model)
+        coordinator = AgenticCoordinator(
+            client,
+            model=args.model,
+            enable_critic=True,
+            critic_interval=10,
+        )
         print("  Agentic coordinator: enabled")
 
     chef = RuleChef(
@@ -203,6 +197,7 @@ def run_benchmark(args):
             max_iterations=args.max_iterations,
             coordinator=chef.coordinator,
             iteration_callback=on_iteration,
+            audit_interval=0,
         )
         t_refine = time.time() - t0_refine
         t_learn += t_refine
@@ -282,7 +277,7 @@ def run_benchmark(args):
         print(f"  Uncovered intents: {zero_recall}/{len(sorted_classes)}")
 
         # 11. Save results
-        output_path = Path(args.output)
+        output_path = Path(f"benchmarks/{date_str}/{model_name}_{args.output}")
         save_results(
             output_path,
             args.shots,
@@ -415,7 +410,7 @@ def main():
     parser.add_argument(
         "--output",
         type=str,
-        default="benchmarks/results_findok.json",
+        default="results_findok.json",
         help="Save results to JSON file (default: benchmarks/results_findok.json)",
     )
     parser.add_argument(
