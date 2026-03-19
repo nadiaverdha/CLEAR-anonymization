@@ -430,9 +430,9 @@ def run_benchmark(args):
     # 12. Generate per-rule Markdown report
     if not args.no_mdreport:
         from reports.create_md_report_rules import (
+            append_overall_metrics,
             append_rule_metrics,
             create_md_report,
-            append_overall_metrics,
         )
 
         md_path = output_path.with_suffix(".rules_report.md")

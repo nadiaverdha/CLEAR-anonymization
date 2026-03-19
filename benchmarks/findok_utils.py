@@ -45,7 +45,7 @@ def load_findok(train_dir, val_dir):
     return train, val, entity_names
 
 
-def select_windows(text, entities, window_size=200):
+def select_windows(text, entities, window_size=100):
     merged_windows = []
     for ent in entities:
         start = max(0, ent["start"] - window_size)
@@ -195,18 +195,7 @@ def add_feedback(eval_dataset, text, level="task", target=""):
 # ── Test Eval ─────────────────────────────────────────
 
 
-def evaluate_test(test_data, rules, chef, task):
-    test_dataset = Dataset(name="findok_test", task=task)
-    for ex in test_data:
-        test_dataset.examples.append(
-            Example(
-                id=str(uuid.uuid4())[:8],
-                input={"text": ex["text"]},
-                expected_output={"entities": ex["entities"]},
-                source="benchmark",
-            )
-        )
-
+def evaluate_test(test_data, test_dataset, rules, chef, task):
     print(f"\nEVALUATING ON HELD-OUT TEST SET ({len(test_data)} examples)...")
     t0 = time.time()
     test_eval = evaluate_dataset(
@@ -243,6 +232,10 @@ def save_results(
     t_learn,
     t_eval,
     rules,
+    enable_critic,
+    enable_prune,
+    critic_interval,
+    audit_interval,
 ):
     results = {
         "config": {
@@ -257,6 +250,10 @@ def save_results(
             "test_size": len(test_data),
             "use_grex": not no_grex,
             "agentic": agentic,
+            "enable_critic": enable_critic,
+            "enable_prune": enable_prune,
+            "critic_interval": critic_interval,
+            "audit_interval": audit_interval,
         },
         "results": {
             "accuracy": test_eval.exact_match,
