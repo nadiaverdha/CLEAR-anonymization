@@ -5,9 +5,9 @@ import random
 import time
 import uuid
 from collections import defaultdict
+from datetime import datetime
 from pathlib import Path
 from typing import List, Optional
-from datetime import datetime
 
 from openai import OpenAI
 from pydantic import BaseModel, Field, field_validator
@@ -63,6 +63,9 @@ def run_benchmark(args):
         windows=args.windows,
     )
 
+    for i in train_sample[:3]:
+        print(i["text"])
+
     num_classes = len(selected_classes)
     print(
         f"  Few-shot: {args.shots}-shot x {num_classes} classes = {len(train_sample)} examples"
@@ -96,11 +99,32 @@ def run_benchmark(args):
     storage_dir = tempfile.mkdtemp(prefix="rulechef_bench_")
 
     # Training logger
+
     model_name = args.model.replace("/", "_")
     date_str = datetime.now().strftime("%Y-%m-%d")
-    log_path = Path(f"benchmarks/{date_str}/{model_name}_{args.output}").with_suffix(
-        ".training.jsonl"
-    )
+    selected_classes_str = "_".join(c.replace(" ", "") for c in selected_classes)
+
+    if args.rules_json:
+        output_dir = Path(args.rules_json).parent
+    else:
+        base_dir = Path(f"benchmarks/{model_name} / {selected_classes_str}")
+        base_name = date_str
+
+        output_dir = base_dir / base_name
+        if output_dir.exists():
+            version = 1
+            while (base_dir / f"{base_name}_v{version}").exists():
+                version += 1
+            output_dir = base_dir / f"{base_name}_v{version}"
+
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    out_name = Path(args.output)
+    if args.rules_json:
+        out_name = out_name.with_stem(out_name.stem + "_refined")
+
+    log_path = (output_dir / out_name).with_suffix(".training.jsonl")
+
     logger = TrainingDataLogger(
         str(log_path),
         run_metadata={
@@ -119,8 +143,11 @@ def run_benchmark(args):
         coordinator = AgenticCoordinator(
             client,
             model=args.model,
-            enable_critic=True,
-            critic_interval=10,
+            prune_after_learn=args.enable_prune,
+            audit_interval=args.audit_interval,
+            enable_critic=args.enable_critic,
+            critic_interval=args.critic_interval,
+            verbose=True,
         )
         print("  Agentic coordinator: enabled")
 
@@ -161,18 +188,100 @@ def run_benchmark(args):
             )
         )
 
-    # 6. Learn rules (synthesis only, no refinement yet)
-    print("\nLearning rules...")
-    print(f"  model={args.model}")
-    print(f"  format={args.format}")
-    print(f"  max_rules={args.max_rules}")
-    print(f"  max_samples={args.max_samples}")
-    print(f"  max_iterations={args.max_iterations}")
-    t0 = time.time()
-    result = chef.learn_rules(
-        run_evaluation=False,
-    )
-    t_learn = time.time() - t0
+    # 6. Learn rules — fresh synthesis or refinement from existing rules
+    if args.rules_json:
+        print(f"\nRefinement mode — loading rules from {args.rules_json}")
+        saved = json.loads(Path(args.rules_json).read_text())
+        rules = [
+            Rule(
+                id=r["id"],
+                name=r["name"],
+                description=r.get("description", r["name"]),
+                format=RuleFormat(r["format"]),
+                content=r["content"],
+                priority=r.get("priority", 5),
+                output_template=r.get("output_template"),
+                output_key=r.get("output_key"),
+            )
+            for r in saved["rules"]
+        ]
+        print(f"  Loaded {len(rules)} rules")
+
+        print("  Analyzing rules for auto-feedback...")
+        rule_metrics = evaluate_rules_individually(
+            rules=rules,
+            dataset=eval_dataset,
+            apply_rules_fn=chef.learner._apply_rules,
+            mode="text",
+            max_samples=5,
+        )
+        for rm in rule_metrics:
+            rule = next((r for r in rules if r.id == rm.rule_id), None)
+            if not rule:
+                continue
+            if rm.matches > 0 and rm.precision == 0.0:
+                add_feedback(
+                    eval_dataset,
+                    f"Rule '{rule.name}' is pure noise ({rm.false_positives} false positives). Remove or tighten.",
+                    level="rule",
+                    target=rule.id,
+                )
+            elif rm.matches > 3 and rm.precision < 0.2:
+                add_feedback(
+                    eval_dataset,
+                    f"Rule '{rule.name}' is too broad (precision {rm.precision:.0%}). Tighten it.",
+                    level="rule",
+                    target=rule.id,
+                )
+            elif rm.matches == 0:
+                add_feedback(
+                    eval_dataset,
+                    f"Rule '{rule.name}' never fires. Check regex.",
+                    level="rule",
+                    target=rule.id,
+                )
+
+        # Human feedback
+        if args.feedback:
+            feedback_items = json.loads(Path(args.feedback).read_text())
+            print(f"  Loading {len(feedback_items)} human feedback items")
+
+            def _norm(s):
+                return s.replace("\u2011", "-").replace("\u2010", "-")
+
+            for fb in feedback_items:
+                level = fb.get("level", "task")
+                text = fb["text"]
+                target_id = ""
+                if level == "rule":
+                    rule_name = fb.get("rule_name", "")
+                    matched = next(
+                        (r for r in rules if _norm(r.name) == _norm(rule_name)), None
+                    )
+                    if matched:
+                        target_id = matched.id
+                    else:
+                        print(f"  Rule not found: {rule_name} — treating as task-level")
+                        level = "task"
+                add_feedback(eval_dataset, text, level, target_id)
+
+        print("\nLearning rules (incremental)...")
+        t0 = time.time()
+        result = chef.learn_rules(run_evaluation=False, incremental_only=True)
+        t_learn = time.time() - t0
+
+    else:
+        print("\nLearning rules...")
+        print(f"  model={args.model}")
+        print(f"  format={args.format}")
+        print(f"  max_rules={args.max_rules}")
+        print(f"  max_samples={args.max_samples}")
+        print(f"  max_iterations={args.max_iterations}")
+        t0 = time.time()
+        result = chef.learn_rules(
+            run_evaluation=False,
+        )
+        t_learn = time.time() - t0
 
     if result is None:
         print("ERROR: Learning failed!")
@@ -217,7 +326,21 @@ def run_benchmark(args):
     print(f"{'─' * 70}")
 
     # Build held-out test Dataset for final evaluation
-    test_eval, coverage, t_eval = evaluate_test(test_data, rules, chef, task)
+
+    test_dataset = Dataset(name="findok_test", task=task)
+    for ex in test_data:
+        test_dataset.examples.append(
+            Example(
+                id=str(uuid.uuid4())[:8],
+                input={"text": ex["text"]},
+                expected_output={"entities": ex["entities"]},
+                source="benchmark",
+            )
+        )
+
+    test_eval, coverage, t_eval = evaluate_test(
+        test_data, test_dataset, rules, chef, task
+    )
 
     # 9. Print results
     print(f"\n{'=' * 70}")
@@ -277,7 +400,8 @@ def run_benchmark(args):
         print(f"  Uncovered intents: {zero_recall}/{len(sorted_classes)}")
 
         # 11. Save results
-        output_path = Path(f"benchmarks/{date_str}/{model_name}_{args.output}")
+
+        output_path = output_dir / out_name
         save_results(
             output_path,
             args.shots,
@@ -297,22 +421,51 @@ def run_benchmark(args):
             t_learn,
             t_eval,
             rules,
+            args.enable_critic,
+            args.enable_prune,
+            args.critic_interval,
+            args.audit_interval,
         )
 
     # 12. Generate per-rule Markdown report
     if not args.no_mdreport:
-        from rulechef.evaluation import evaluate_rules_individually
-
-        from reports.create_md_report_rules import append_rule_metrics, create_md_report
+        from reports.create_md_report_rules import (
+            append_rule_metrics,
+            create_md_report,
+            append_overall_metrics,
+        )
 
         md_path = output_path.with_suffix(".rules_report.md")
         create_md_report(
             md_path,
             title=f"RuleChef FinDok Benchmark - Rule Analysis- {args.model}",
         )
+
+        append_overall_metrics(
+            md_path=md_path,
+            test_data=test_data,
+            test_dataset=test_dataset,
+            rules=rules,
+            chef=chef,
+            task=task,
+            shots=args.shots,
+            train_sample=train_sample,
+            model=args.model,
+            max_rules=args.max_rules,
+            max_samples=args.max_samples,
+            max_iterations=args.max_iterations,
+            seed=args.seed,
+            agentic=args.agentic,
+            enable_critic=args.enable_critic,
+            enable_prune=args.enable_prune,
+            critic_interval=args.critic_interval,
+            audit_interval=args.audit_interval,
+            use_grex=not args.no_grex,
+        )
+
         rule_metrics = evaluate_rules_individually(
             rules=rules,
-            dataset=eval_dataset,
+            dataset=test_dataset,
             apply_rules_fn=chef.learner._apply_rules,
             mode="text",
             max_samples=10,
@@ -383,8 +536,8 @@ def main():
     parser.add_argument(
         "--max-rules",
         type=int,
-        default=100,
-        help="Max rules to generate per synthesis (default: 100)",
+        default=30,
+        help="Max rules to generate per synthesis (default: 30)",
     )
     parser.add_argument(
         "--max-samples",
@@ -418,6 +571,31 @@ def main():
         action="store_true",
         help="Use AgenticCoordinator for LLM-guided refinement",
     )
+
+    parser.add_argument(
+        "--enable-prune",
+        action="store_true",
+        help="Prune rules after each iteration based on eval set performance",
+    )
+    parser.add_argument(
+        "--audit-interval",
+        type=int,
+        default=0,
+        help="Interval for audit checks (default: 0)",
+    )
+
+    parser.add_argument(
+        "--enable-critic",
+        action="store_true",
+        help="Use CriticAgent for LLM-guided refinement",
+    )
+
+    parser.add_argument(
+        "--critic-interval",
+        type=int,
+        default=0,
+        help="Interval for CriticAgent refinement (default: 0)",
+    )
     parser.add_argument(
         "--no-grex",
         action="store_true",
@@ -433,6 +611,18 @@ def main():
         "--no-mdreport",
         action="store_true",
         help="Disable markdown report generation",
+    )
+    parser.add_argument(
+        "--rules-json",
+        type=str,
+        default=None,
+        help="Path to a previous results JSON — enables refinement mode",
+    )
+    parser.add_argument(
+        "--feedback",
+        type=str,
+        default=None,
+        help="Path to a human feedback JSON file (only used with --rules-json)",
     )
 
     args = parser.parse_args()
