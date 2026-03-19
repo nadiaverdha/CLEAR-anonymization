@@ -29,7 +29,7 @@ python clear_anonymization/preprocess/preprocess_data.py --input_dir {datasetnam
 
 ### LLM Extractor
 
-First, serve a model locally using [vLLM] ((https://docs.vllm.ai/):
+First, serve a model locally using [vLLM] (https://docs.vllm.ai/):
 ```bash
 python -m vllm.entrypoints.openai.api_server   --model google/gemma-3-27b-it  --host 0.0.0.0   --port 8000
 ```
@@ -47,4 +47,9 @@ LLMExtractor.predict("Frau Müller arbeitet beim Bundesgericht.")
 
 [{'start': 0, 'end': 11, 'text': 'Frau Müller', 'entity': 'PERS'}, {'start': 26, 'end': 39, 'text': 'Bundesgericht', 'entity': 'ORG'}]
 ```
+
+### NER Rules
+
+We use [RuleChef] (https://github.com/KRLabsOrg/rulechef) to automatically generate extraction rules.
+
 
