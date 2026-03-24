@@ -11,7 +11,7 @@
   {
     "level": "rule",
     "rule_name": "German GmbH Entities",
-    "text": "Three gaps causing misses: 1) All-caps abbreviation prefixes like 'KQPC' are not matched — allow [A-Z]{2,6} as a valid name start. 2) Names containing '&' like 'Klusner&Päffgen Bildung GMBH' are not matched — allow & as a connector between name parts. 3) CamelCase compound words like 'UnterRecycling' are not matched because the pattern requires lowercase after the first capital."
+    "text": "Three gaps causing misses: 1) All-caps abbreviation prefixes like 'KQPC' are not matched, allow [A-Z]{2,6} as a valid name start. 2) Names containing '&' like 'Klusner&Päffgen Bildung GMBH' are not matched, allow & as a connector between name parts. 3) CamelCase compound words like 'UnterRecycling' are not matched because the pattern requires lowercase after the first capital."
   },
   {
     "level": "rule",
