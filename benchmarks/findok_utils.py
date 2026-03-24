@@ -45,7 +45,7 @@ def load_findok(train_dir, val_dir):
     return train, val, entity_names
 
 
-def select_windows(text, entities, window_size=100):
+def select_windows(text, entities, window_size=20):
     merged_windows = []
     for ent in entities:
         start = max(0, ent["start"] - window_size)
@@ -236,6 +236,8 @@ def save_results(
     enable_prune,
     critic_interval,
     audit_interval,
+    windows,
+    sampling_strategy,
 ):
     results = {
         "config": {
@@ -254,6 +256,8 @@ def save_results(
             "enable_prune": enable_prune,
             "critic_interval": critic_interval,
             "audit_interval": audit_interval,
+            "windows": windows,
+            "sampling_strategy": sampling_strategy,
         },
         "results": {
             "accuracy": test_eval.exact_match,

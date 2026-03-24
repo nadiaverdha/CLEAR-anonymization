@@ -102,12 +102,14 @@ def run_benchmark(args):
 
     model_name = args.model.replace("/", "_")
     date_str = datetime.now().strftime("%Y-%m-%d")
-    selected_classes_str = "_".join(c.replace(" ", "") for c in selected_classes)
+    selected_classes_str = "_".join(
+        c.replace(" ", "") for c in selected_classes
+    ).strip()
 
     if args.rules_json:
         output_dir = Path(args.rules_json).parent
     else:
-        base_dir = Path(f"benchmarks/{model_name} / {selected_classes_str}")
+        base_dir = Path(f"benchmarks/{model_name}") / selected_classes_str
         base_name = date_str
 
         output_dir = base_dir / base_name
@@ -163,6 +165,7 @@ def run_benchmark(args):
         max_samples=args.max_samples,
         coordinator=coordinator,
         training_logger=logger,
+        sampling_strategy=args.sampling_strategy,
     )
 
     # 4. Add training examples (suppress per-example prints)
@@ -213,7 +216,7 @@ def run_benchmark(args):
             dataset=eval_dataset,
             apply_rules_fn=chef.learner._apply_rules,
             mode="text",
-            max_samples=5,
+            max_samples=args.max_samples,
         )
         for rm in rule_metrics:
             rule = next((r for r in rules if r.id == rm.rule_id), None)
@@ -425,6 +428,8 @@ def run_benchmark(args):
             args.enable_prune,
             args.critic_interval,
             args.audit_interval,
+            args.windows,
+            sampling_strategy=args.sampling_strategy,
         )
 
     # 12. Generate per-rule Markdown report
@@ -461,6 +466,7 @@ def run_benchmark(args):
             critic_interval=args.critic_interval,
             audit_interval=args.audit_interval,
             use_grex=not args.no_grex,
+            sampling_strategy=args.sampling_strategy,
         )
 
         rule_metrics = evaluate_rules_individually(
@@ -468,7 +474,7 @@ def run_benchmark(args):
             dataset=test_dataset,
             apply_rules_fn=chef.learner._apply_rules,
             mode="text",
-            max_samples=10,
+            max_samples=args.max_samples,
         )
         append_rule_metrics(md_path, rule_metrics, top_n_examples=5)
         print(f"Markdown report saved to {md_path}")
@@ -600,6 +606,11 @@ def main():
         "--no-grex",
         action="store_true",
         help="Disable grex regex pattern suggestions (for ablation)",
+    )
+    parser.add_argument(
+        "--sampling-strategy",
+        default="balanced",
+        help="Use sampling strategy for selecting training examples",
     )
     parser.add_argument(
         "--windows",
