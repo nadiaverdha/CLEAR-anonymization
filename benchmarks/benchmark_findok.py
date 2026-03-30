@@ -55,22 +55,23 @@ def run_benchmark(args):
     classes = [c.strip() for c in args.classes.split(",")] if args.classes else None
     train_sample, train_remaining, test_data, selected_classes = sample_few_shot(
         train_all,
-        shots_per_class=args.shots,
-        test_shots=50,
+        windows=args.windows,
         seed=args.seed,
         num_classes=args.num_classes,
         classes=classes,
-        windows=args.windows,
+        pool_size=args.pool_size,
+        train_ratio=args.train_ratio,
+        test_ratio=args.test_ratio,
+        shots_per_class=args.shots if args.shots else None,
     )
-
-    for i in train_sample[:3]:
-        print(i["text"])
 
     num_classes = len(selected_classes)
+    print(f"  Pool size:       {args.pool_size or 'all'}")
+    print(f"  Train ({args.train_ratio:.0%}):    {len(train_sample)} examples")
     print(
-        f"  Few-shot: {args.shots}-shot x {num_classes} classes = {len(train_sample)} examples"
+        f"  Eval  ({1 - args.train_ratio - args.test_ratio:.0%}):    {len(train_remaining)} examples"
     )
-    print(f"  Eval pool (unused train): {len(train_remaining)} examples")
+    print(f"  Test  ({args.test_ratio:.0%}):    {len(test_data)} examples")
     if args.num_classes:
         print(f"  Selected classes: {', '.join(sorted(selected_classes))}")
 
@@ -168,16 +169,18 @@ def run_benchmark(args):
         sampling_strategy=args.sampling_strategy,
     )
 
-    # 4. Add training examples (suppress per-example prints)
-    print(f"\nAdding {len(train_sample)} training examples...")
-    t0 = time.time()
-    for ex in train_sample:
-        chef.add_example(
-            {"text": ex["text"]},
-            {"label": ex["entities"]},
-        )
-    t_add = time.time() - t0
-    print(f"  Done ({t_add:.1f}s)")
+    # 4. Add training examples — only in refinement mode (rules-json).
+    #    In fresh synthesis mode, examples are added per-batch in step 6.
+    if args.rules_json:
+        print(f"\nAdding {len(train_sample)} training examples...")
+        t0 = time.time()
+        for ex in train_sample:
+            chef.add_example(
+                {"text": ex["text"]},
+                {"entities": ex["entities"]},
+            )
+        t_add = time.time() - t0
+        print(f"  Done ({t_add:.1f}s)")
 
     # 5. Build eval Dataset from unused training data (for refinement)
     eval_dataset = Dataset(name="findok_eval", task=task)
@@ -192,6 +195,9 @@ def run_benchmark(args):
         )
 
     # 6. Learn rules — fresh synthesis or refinement from existing rules
+    iteration_metrics = []
+    on_iteration = make_oniteration_callback(iteration_metrics)
+
     if args.rules_json:
         print(f"\nRefinement mode — loading rules from {args.rules_json}")
         saved = json.loads(Path(args.rules_json).read_text())
@@ -268,22 +274,59 @@ def run_benchmark(args):
                         level = "task"
                 add_feedback(eval_dataset, text, level, target_id)
 
-        print("\nLearning rules (incremental)...")
-        t0 = time.time()
-        result = chef.learn_rules(run_evaluation=False, incremental_only=True)
-        t_learn = time.time() - t0
+        if args.skip_synthesis:
+            print("\nSkipping synthesis — using loaded rules directly.")
+            t0 = time.time()
+            result = (rules, None)
+            t_learn = time.time() - t0
+        else:
+            print("\nLearning rules (incremental)...")
+            t0 = time.time()
+            result = chef.learn_rules(run_evaluation=False, incremental_only=True)
+            t_learn = time.time() - t0
 
     else:
-        print("\nLearning rules...")
+        print(
+            f"\nLearning rules (incremental, batch_size={args.batch_size}, refine_per_batch={args.refine_per_batch})..."
+        )
         print(f"  model={args.model}")
         print(f"  format={args.format}")
         print(f"  max_rules={args.max_rules}")
         print(f"  max_samples={args.max_samples}")
         print(f"  max_iterations={args.max_iterations}")
+        batches = [
+            train_sample[i : i + args.batch_size]
+            for i in range(0, len(train_sample), args.batch_size)
+        ]
         t0 = time.time()
-        result = chef.learn_rules(
-            run_evaluation=False,
-        )
+        result = None
+        for batch_idx, batch in enumerate(batches):
+            for ex in batch:
+                chef.add_example({"text": ex["text"]}, {"entities": ex["entities"]})
+            batch_result = chef.learn_rules(
+                run_evaluation=False, incremental_only=(batch_idx > 0)
+            )
+            if batch_result:
+                result = batch_result
+                rules_so_far, _ = result
+                print(
+                    f"  Batch {batch_idx + 1}/{len(batches)}: {len(rules_so_far)} rules synthesized"
+                )
+
+                if args.refine_per_batch > 0:
+                    print(f"  Refining ({args.refine_per_batch} iter) on eval set...")
+                    rules_so_far, refine_eval = chef.learner.evaluate_and_refine(
+                        rules_so_far,
+                        eval_dataset,
+                        max_iterations=args.refine_per_batch,
+                        coordinator=chef.coordinator,
+                        iteration_callback=on_iteration,
+                        audit_interval=0,
+                    )
+                    result = (rules_so_far, None)
+                    print(
+                        f"  After refine: {len(rules_so_far)} rules, F1={refine_eval.micro_f1:.1%}"
+                    )
         t_learn = time.time() - t0
 
     if result is None:
@@ -294,9 +337,7 @@ def run_benchmark(args):
     print(f"\nSynthesis complete ({t_learn:.1f}s)")
     print(f"  Rules generated: {len(rules)}")
 
-    # 7. Refine against eval set (unused training data), test set stays held out
-    iteration_metrics = []
-    on_iteration = make_oniteration_callback(iteration_metrics)
+    # 7. Final refine against eval set (unused training data), test set stays held out
 
     if args.max_iterations > 0:
         print(
@@ -467,6 +508,9 @@ def run_benchmark(args):
             audit_interval=args.audit_interval,
             use_grex=not args.no_grex,
             sampling_strategy=args.sampling_strategy,
+            pool_size=args.pool_size,
+            train_ratio=args.train_ratio,
+            test_ratio=args.test_ratio,
         )
 
         rule_metrics = evaluate_rules_individually(
@@ -476,7 +520,7 @@ def run_benchmark(args):
             mode="text",
             max_samples=args.max_samples,
         )
-        append_rule_metrics(md_path, rule_metrics, top_n_examples=5)
+        append_rule_metrics(md_path, rule_metrics, top_n_examples=5, rules=rules)
         print(f"Markdown report saved to {md_path}")
 
     # Cleanup temp storage
@@ -502,11 +546,30 @@ def main():
         type=str,
         help="Path to the test data (JSON format)",
     )
+
+    parser.add_argument(
+        "--pool-size",
+        type=int,
+        default=1000,
+        help="Cap total examples drawn from train file (train + eval combined)",
+    )
     parser.add_argument(
         "--shots",
         type=int,
-        default=20,
-        help="Examples per intent class for training (default: 5)",
+        default=None,
+        help="Per-class cap on training examples (default: auto = n_train // num_classes)",
+    )
+    parser.add_argument(
+        "--train-ratio",
+        type=float,
+        default=0.7,
+        help="Fraction of pool for synthesis (default: 0.7)",
+    )
+    parser.add_argument(
+        "--test-ratio",
+        type=float,
+        default=0.1,
+        help="Fraction of pool for test (default: 0.1), remainder is eval",
     )
     parser.add_argument(
         "--model",
@@ -617,6 +680,18 @@ def main():
         action="store_true",
         help="Crop windows around entities instead of using full text",
     )
+    parser.add_argument(
+        "--batch-size",
+        type=int,
+        default=30,
+        help="Examples per batch for incremental synthesis (default: 20)",
+    )
+    parser.add_argument(
+        "--refine-per-batch",
+        type=int,
+        default=0,
+        help="Refinement iterations after each synthesis batch (default: 0 = disabled)",
+    )
 
     parser.add_argument(
         "--no-mdreport",
@@ -634,6 +709,11 @@ def main():
         type=str,
         default=None,
         help="Path to a human feedback JSON file (only used with --rules-json)",
+    )
+    parser.add_argument(
+        "--skip-synthesis",
+        action="store_true",
+        help="Skip LLM synthesis and use the rules from --rules-json directly (go straight to refinement)",
     )
 
     args = parser.parse_args()

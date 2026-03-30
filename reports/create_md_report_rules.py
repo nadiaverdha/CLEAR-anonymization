@@ -1,10 +1,21 @@
 import json
+import uuid
 from datetime import datetime
 from pathlib import Path
 
-from rulechef.core import Dataset
-from rulechef.evaluation import evaluate_rules_individually
+from rulechef import RuleChef
+from rulechef.core import (
+    Dataset,
+    Example,
+    RuleFormat,
+    Task,
+    TaskType,
+)
+from rulechef.evaluation import evaluate_dataset, evaluate_rules_individually
 from rulechef.executor import RuleExecutor
+
+from benchmarks.findok_utils import load_findok, sample_few_shot
+from clear_anonymization.utils.utils import NEROutput
 
 
 def classify_rule(metric):
@@ -46,19 +57,94 @@ def create_md_report(file_path: Path, title="Rule Evaluation Report"):
         f.write("---\n\n")
 
 
-def append_rule_metrics(file_path: Path, metrics_list, top_n_examples: int = 5):
+def append_overall_metrics(
+    md_path,
+    test_data,
+    test_dataset,
+    rules,
+    chef,
+    task,
+    shots,
+    train_sample,
+    model,
+    max_rules,
+    max_samples,
+    max_iterations,
+    seed,
+    agentic,
+    enable_critic,
+    enable_prune,
+    critic_interval,
+    audit_interval,
+    use_grex,
+    sampling_strategy,
+    pool_size,
+    train_ratio,
+    test_ratio,
+):
+
+    test_eval = evaluate_dataset(
+        rules,
+        test_dataset,
+        chef.learner._apply_rules,
+    )
+    # Coverage = what % of test queries got ANY prediction (TP + FP) / total
+    coverage = (
+        (test_eval.total_tp + test_eval.total_fp) / len(test_data) if test_data else 0
+    )
+    with md_path.open("a", encoding="utf-8") as f:
+        # Configuration table
+        f.write("### Configuration\n\n")
+        f.write("| Parameter | Value |\n")
+        f.write("|-----------|-------|\n")
+        f.write(f"| Pool size | {pool_size} |\n")
+        f.write(f"| Train ratio | {train_ratio:.2f} |\n")
+        f.write(f"| Test ratio | {test_ratio:.2f} |\n")
+        f.write(f"| Shots per class | {shots} |\n")
+        f.write(f"| Training examples | {len(train_sample)} |\n")
+        f.write(f"| Test examples | {len(test_data)} |\n")
+        f.write(f"| Model | {model} |\n")
+        f.write(f"| Max rules | {max_rules} |\n")
+        f.write(f"| Max samples in prompt | {max_samples} |\n")
+        f.write(f"| Refinement iterations | {max_iterations} |\n")
+        f.write(f"| Seed | {seed} |\n")
+        f.write(f"| Agentic | {agentic}|\n")
+        f.write(f"| Enable Critic | {enable_critic} |\n")
+        f.write(f"| Enable Prune | {enable_prune}|\n")
+        f.write(f"| Critic Interval | {critic_interval} |\n")
+        f.write(f"| Audit Interval | {audit_interval}|\n")
+        f.write(f"| Use GREX | {use_grex} |\n\n")
+
+        # Results table
+        f.write("### Results\n\n")
+        f.write("| Metric | Value |\n")
+        f.write("|--------|-------|\n")
+        f.write(f"| Accuracy (exact match) | {test_eval.exact_match:.1%} |\n")
+        f.write(
+            f"| Coverage | {coverage:.1%} ({test_eval.total_tp + test_eval.total_fp}/{len(test_data)} got a label) |\n"
+        )
+        f.write(f"| Micro Precision | {test_eval.micro_precision:.3f} |\n")
+        f.write(f"| Micro Recall | {test_eval.micro_recall:.3f} |\n")
+        f.write(f"| Micro F1 | {test_eval.micro_f1:.3f} |\n")
+        f.write(f"| Macro F1 | {test_eval.macro_f1:.3f} |\n\n")
+
+        f.write("---\n\n")
+
+
+def append_rule_metrics(
+    file_path: Path, metrics_list, top_n_examples: int = 5, rules=None
+):
     with file_path.open("a", encoding="utf-8") as f:
         write_summary_table(f, metrics_list)
 
         metrics_list = sorted(metrics_list, key=lambda m: m.f1, reverse=True)
 
+        rules_by_id = {r.id: r for r in rules} if rules else {}
+
         for metric in metrics_list:
             score = classify_rule(metric)
             f.write(f"## `{metric.rule_name}`\n\n")
             f.write(f"{score} rule\n\n")
-
-            if metric.rule_description:
-                f.write(f"> {metric.rule_description}\n\n")
 
             f.write(
                 f"**F1:** {metric.f1:.3f} | "
@@ -66,10 +152,10 @@ def append_rule_metrics(file_path: Path, metrics_list, top_n_examples: int = 5):
                 f"**Recall:** {metric.recall:.3f}  \n\n"
             )
 
-            f.write(
-                f"**Format:** `{metric.rule_format}`  \n"
-                f"**Content:** `{metric.rule_content}`\n\n"
-            )
+            rule = rules_by_id.get(metric.rule_id)
+            if rule:
+                f.write(f"**Format:** `{rule.format.value}`  \n")
+                f.write(f"**Content:**\n```\n{rule.content}\n```\n\n")
 
             f.write("<details>\n<summary>📊 Detailed Metrics</summary>\n\n")
 
@@ -92,9 +178,13 @@ def append_rule_metrics(file_path: Path, metrics_list, top_n_examples: int = 5):
             f.write("</details>\n\n")
 
             if metric.sample_matches:
-                hits = [s for s in metric.sample_matches if s.tp > 0]
-                misses = [s for s in metric.sample_matches if s.fn > 0]
-                f_p = [s for s in metric.sample_matches if s.fp > 0]
+                hits = [s for s in metric.sample_matches if s["tp"] > 0]
+                misses = [
+                    s
+                    for s in metric.sample_matches
+                    if len(s.get("expected", [])) - s["tp"] > 0
+                ]
+                f_p = [s for s in metric.sample_matches if s["fp"] > 0]
 
                 def write_block(title, samples, render_fn):
                     if not samples:
@@ -111,23 +201,31 @@ def append_rule_metrics(file_path: Path, metrics_list, top_n_examples: int = 5):
 
                 def render_hit(f, i, sample):
                     f.write(f"**Example {i}**\n\n")
-                    f.write(f"```\n{sample.input['text']}\n```\n\n")
+                    f.write(f"```\n{sample['input']['text']}\n```\n\n")
+                    pred_texts = {e["text"] for e in sample["rule_output"]}
+                    gold_texts = {e["text"] for e in sample["expected"]}
                     f.write("| Prediction | Gold |\n")
                     f.write("|------------|------|\n")
-                    for pred, gold in sample.matched_pairs:
-                        f.write(f"| `{pred['text']}` | `{gold['text']}` |\n")
+                    for t in pred_texts & gold_texts:
+                        f.write(f"| `{t}` | `{t}` |\n")
                     f.write("\n")
 
                 def render_miss(f, i, sample):
-                    f.write(f"```\n{sample.input['text']}\n```\n\n")
-                    for miss in sample.missed:
-                        f.write(f"- Missed: `{miss['text']}`\n\n")
+                    f.write(f"```\n{sample['input']['text']}\n```\n\n")
+                    pred_texts = {e["text"] for e in sample["rule_output"]}
+                    for e in sample["expected"]:
+                        if e["text"] not in pred_texts:
+                            f.write(
+                                f"- Missed: `{e['text']}` ({e.get('type', '')})\n\n"
+                            )
                     f.write("\n")
 
                 def render_f_p(f, i, sample):
-                    f.write(f"```\n{sample.input['text']}\n```\n\n")
-                    for false_p in sample.false_positives:
-                        f.write(f"- FP: `{false_p['text']}`\n\n")
+                    f.write(f"```\n{sample['input']['text']}\n```\n\n")
+                    gold_texts = {e["text"] for e in sample["expected"]}
+                    for e in sample["rule_output"]:
+                        if e["text"] not in gold_texts:
+                            f.write(f"- FP: `{e['text']}` ({e.get('type', '')})\n\n")
                     f.write("\n")
 
                 write_block("✅ Worked", hits, render_hit)
@@ -135,49 +233,3 @@ def append_rule_metrics(file_path: Path, metrics_list, top_n_examples: int = 5):
                 write_block("⚠️ False Positives", f_p, render_f_p)
 
             f.write("---\n\n")
-
-
-def main():
-    import argparse
-
-    parser = argparse.ArgumentParser(
-        description="Evaluate RuleChef rules and generate Markdown report"
-    )
-    parser.add_argument("--rules_file", type=str, required=True)
-    parser.add_argument("--dataset_name", default="FinD", type=str, required=True)
-    parser.add_argument("--data_file", type=str, required=False)
-    parser.add_argument("--output_md", type=str, default=None)
-    parser.add_argument("--max_samples", type=int, default=10)
-    parser.add_argument("--mode", type=str, default="text", choices=["text", "exact"])
-
-    args = parser.parse_args()
-
-    data = json.loads(Path(args.rules_file).read_text())
-    dataset = Dataset.from_dict(data)
-
-    if args.output_md:
-        md_path = Path(args.output_md)
-    else:
-        date_str = datetime.now().strftime("%Y-%m-%d")
-        md_path = Path(f"reports/{date_str}_{args.dataset_name}_rule_eval.md")
-
-    create_md_report(md_path, title=f"Rule Evaluation Report — {args.dataset_name}")
-
-    executor = RuleExecutor()
-
-    all_metrics = evaluate_rules_individually(
-        rules=dataset.rules,
-        dataset=dataset,
-        apply_rules_fn=executor.apply_rules,
-        mode=args.mode,
-        max_samples=args.max_samples,
-    )
-
-    append_rule_metrics(md_path, all_metrics, top_n_examples=args.max_samples)
-
-    print(f"✅ Markdown report saved to: {md_path.resolve()}")
-    print(f"   Rules evaluated: {len(all_metrics)}")
-
-
-if __name__ == "__main__":
-    main()

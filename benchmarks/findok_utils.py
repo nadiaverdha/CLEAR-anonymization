@@ -77,15 +77,19 @@ def build_examples(text, merged_windows):
 
 def sample_few_shot(
     train_data,
-    shots_per_class,
-    test_shots,
     windows,
     seed=42,
     num_classes=None,
     classes=None,
     window_size=200,
+    pool_size=None,
+    train_ratio=0.7,
+    test_ratio=0.1,
+    shots_per_class=None,
 ):
+    print(f"TRAINING DATA SIZE: {len(train_data)}")
     rng = random.Random(seed)
+
     if not classes:
         all_labels = sorted({l["type"] for sample in train_data for l in sample.labels})
         if num_classes and num_classes < len(all_labels):
@@ -93,10 +97,10 @@ def sample_few_shot(
             classes = set(sorted(all_labels[:num_classes]))
         else:
             classes = set(all_labels)
-
     classes = set(classes)
 
     all_examples = []
+    seen_texts = set()
     for sample in train_data:
         text = sample.text
         entities = sorted(
@@ -106,41 +110,52 @@ def sample_few_shot(
         if not entities:
             continue
         if windows:
-            all_examples.extend(
-                build_examples(text, select_windows(text, entities, window_size))
-            )
+            for ex in build_examples(text, select_windows(text, entities, window_size)):
+                if ex["text"] not in seen_texts:
+                    seen_texts.add(ex["text"])
+                    all_examples.append(ex)
         else:
-            all_examples.append({"text": text, "entities": entities})
-
-    by_label = defaultdict(list)
-    for ex in all_examples:
-        for ent in ex["entities"]:
-            by_label[ent["type"]].append(ex)
-    labels = sorted(classes & set(by_label.keys()))
-    missing = classes - set(by_label.keys())
+            if text not in seen_texts:
+                seen_texts.add(text)
+                all_examples.append({"text": text, "entities": entities})
+    print(f"TOTAL EXAMPLES AFTER WINDOWING & CLASS FILTER: {len(all_examples)}")
+    missing = classes - {ent["type"] for ex in all_examples for ent in ex["entities"]}
     if missing:
         print(f"WARNING: classes not found in dataset: {missing}")
 
+    rng.shuffle(all_examples)
+
+    n_test = int(len(all_examples) * test_ratio)
+    test = all_examples[:n_test]
+    rest = all_examples[n_test:]
+
+    pool = rest[:pool_size] if pool_size else rest
+
+    n_train = int(len(pool) * train_ratio)
+    train_raw = pool[:n_train]
+    remaining = pool[n_train:]
+
+    labels = sorted(
+        classes & {ent["type"] for ex in all_examples for ent in ex["entities"]}
+    )
+    cap = (
+        shots_per_class
+        if shots_per_class
+        else (n_train // len(labels) if labels else n_train)
+    )
+
+    by_class = defaultdict(int)
     sampled = []
-    remaining = []
-    test = []
+    excess = []
+    for ex in train_raw:
+        label = ex["entities"][0]["type"]
+        if by_class[label] < cap:
+            sampled.append(ex)
+            by_class[label] += 1
+        else:
+            excess.append(ex)
 
-    for label in labels:
-        examples = by_label[label]
-        seen = set()
-        unique = []
-        for ex in examples:
-            if ex["text"] not in seen:
-                seen.add(ex["text"])
-                unique.append(ex)
-        rng.shuffle(unique)
-
-        sampled.extend(unique[:shots_per_class])
-        rest = unique[shots_per_class:]
-
-        test_size = min(test_shots, len(rest))
-        test.extend(rest[:test_size])
-        remaining.extend(rest[test_size:])
+    remaining = excess + remaining
 
     return sampled, remaining, test, classes
 
