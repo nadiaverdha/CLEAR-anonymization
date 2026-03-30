@@ -1,0 +1,274 @@
+{
+  "config": {
+    "shots": 20,
+    "model": "Qwen/Qwen3.5-35B-A3B",
+    "format": "regex",
+    "max_rules": 10,
+    "max_samples": 10,
+    "max_iterations": 10,
+    "seed": 42,
+    "train_size": 20,
+    "test_size": 50,
+    "use_grex": true,
+    "agentic": false,
+    "enable_critic": false,
+    "enable_prune": false,
+    "critic_interval": 0,
+    "audit_interval": 0,
+    "windows": false,
+    "sampling_strategy": "balanced"
+  },
+  "results": {
+    "accuracy": 0.38,
+    "coverage": 0.66,
+    "micro_precision": 0.8181818181818182,
+    "micro_recall": 0.38571428571428573,
+    "micro_f1": 0.5242718446601942,
+    "macro_f1": 0.5242718446601942,
+    "num_rules": 4,
+    "learning_time_s": 141.0,
+    "eval_time_s": 0.002,
+    "per_query_ms": 0.05
+  },
+  "per_class": [
+    {
+      "label": "organisation",
+      "precision": 0.8181818181818182,
+      "recall": 0.38571428571428573,
+      "f1": 0.5242718446601942,
+      "tp": 27,
+      "fp": 6,
+      "fn": 43
+    }
+  ],
+  "iteration_metrics": [
+    {
+      "iteration": 1,
+      "num_rules": 6,
+      "exact_match": 0.04669260700389105,
+      "micro_precision": 0.09029779058597502,
+      "micro_recall": 0.04978813559322034,
+      "micro_f1": 0.06418572891771937,
+      "macro_f1": 0.06418572891771937,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.06418572891771937,
+          "precision": 0.09029779058597502,
+          "recall": 0.04978813559322034
+        }
+      ]
+    },
+    {
+      "iteration": 2,
+      "num_rules": 3,
+      "exact_match": 0.11802853437094682,
+      "micro_precision": 0.24761904761904763,
+      "micro_recall": 0.13771186440677965,
+      "micro_f1": 0.1769911504424779,
+      "macro_f1": 0.1769911504424779,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.1769911504424779,
+          "precision": 0.24761904761904763,
+          "recall": 0.13771186440677965
+        }
+      ]
+    },
+    {
+      "iteration": 3,
+      "num_rules": 4,
+      "exact_match": 0.22762645914396887,
+      "micro_precision": 0.3706647398843931,
+      "micro_recall": 0.2717161016949153,
+      "micro_f1": 0.31356968215158926,
+      "macro_f1": 0.31356968215158926,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.31356968215158926,
+          "precision": 0.3706647398843931,
+          "recall": 0.2717161016949153
+        }
+      ]
+    },
+    {
+      "iteration": 4,
+      "num_rules": 4,
+      "exact_match": 0.42088197146562906,
+      "micro_precision": 0.758095238095238,
+      "micro_recall": 0.4216101694915254,
+      "micro_f1": 0.5418652144315861,
+      "macro_f1": 0.5418652144315861,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.5418652144315861,
+          "precision": 0.758095238095238,
+          "recall": 0.4216101694915254
+        }
+      ]
+    },
+    {
+      "iteration": 5,
+      "num_rules": 4,
+      "exact_match": 0.42088197146562906,
+      "micro_precision": 0.758095238095238,
+      "micro_recall": 0.4216101694915254,
+      "micro_f1": 0.5418652144315861,
+      "macro_f1": 0.5418652144315861,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.5418652144315861,
+          "precision": 0.758095238095238,
+          "recall": 0.4216101694915254
+        }
+      ]
+    },
+    {
+      "iteration": 6,
+      "num_rules": 4,
+      "exact_match": 0.42088197146562906,
+      "micro_precision": 0.758095238095238,
+      "micro_recall": 0.4216101694915254,
+      "micro_f1": 0.5418652144315861,
+      "macro_f1": 0.5418652144315861,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.5418652144315861,
+          "precision": 0.758095238095238,
+          "recall": 0.4216101694915254
+        }
+      ]
+    },
+    {
+      "iteration": 7,
+      "num_rules": 4,
+      "exact_match": 0.42088197146562906,
+      "micro_precision": 0.758095238095238,
+      "micro_recall": 0.4216101694915254,
+      "micro_f1": 0.5418652144315861,
+      "macro_f1": 0.5418652144315861,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.5418652144315861,
+          "precision": 0.758095238095238,
+          "recall": 0.4216101694915254
+        }
+      ]
+    },
+    {
+      "iteration": 8,
+      "num_rules": 4,
+      "exact_match": 0.42088197146562906,
+      "micro_precision": 0.758095238095238,
+      "micro_recall": 0.4216101694915254,
+      "micro_f1": 0.5418652144315861,
+      "macro_f1": 0.5418652144315861,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.5418652144315861,
+          "precision": 0.758095238095238,
+          "recall": 0.4216101694915254
+        }
+      ]
+    },
+    {
+      "iteration": 9,
+      "num_rules": 4,
+      "exact_match": 0.42088197146562906,
+      "micro_precision": 0.758095238095238,
+      "micro_recall": 0.4216101694915254,
+      "micro_f1": 0.5418652144315861,
+      "macro_f1": 0.5418652144315861,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.5418652144315861,
+          "precision": 0.758095238095238,
+          "recall": 0.4216101694915254
+        }
+      ]
+    },
+    {
+      "iteration": 10,
+      "num_rules": 4,
+      "exact_match": 0.42088197146562906,
+      "micro_precision": 0.758095238095238,
+      "micro_recall": 0.4216101694915254,
+      "micro_f1": 0.5418652144315861,
+      "macro_f1": 0.5418652144315861,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.5418652144315861,
+          "precision": 0.758095238095238,
+          "recall": 0.4216101694915254
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "3bf6d0c8",
+      "name": "Specific Organisation Entities",
+      "format": "regex",
+      "content": "\\b((?:FA\\s+Grieskirchen\\s+Wels|Chen\\s+Setzekorn|Vahrenkamp\\s+Luftfahrt|Waldver\\s+E\\u2011Commerce\\s+Systeme\\s+GMBH|Bezirksgericht\\s+Silz|Gartgart\\s+Dienstleistungen\\s+GMBH|Kraftver\\-Gastronomie\\s+GMBH|Finanzamt\\s+Steiermark\\s+Mitte|Schmeltz\\s+Luftfahrt|Dorfcon\\-Verlag|Finanzamt\\s+Wien\\s+8/16/17|OGEM\\s+Landwirtschaft\\s+GMBH|WaldTouristik\\s+Technologien|Finanzamt\\s+Innsbruck|Depp\\s+Versand|Heimwald\\-Forschung\\s+GMBH|Bludszat\\s+Maschinenbau\\s+GMBH|Schiwick\\s+Finanzen\\s+AG|Donau\\s+Furtkraftwald\\s+AG))\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities"
+    },
+    {
+      "id": "72041968",
+      "name": "German Finanzamt Entities",
+      "format": "regex",
+      "content": "\\b(Finanzamt\\s+(?:Steiermark\\s+Mitte|Wien\\s+8/16/17|Innsbruck|Gmunden\\s+V\\u00f6cklabruck|Judenburg\\s+Liezen|Deutschlandsberg\\s+Leibnitz\\s+Voitsberg|Nieder\\u00f6sterreich\\s+Mitte|[A-Z][A-Za-z\\u00C4\\u00D6\\u00DC\\u00E4\\u00F6\\u00FC\\u00DF\\-]+(?:\\s+[A-Z][A-Za-z\\u00C4\\u00D6\\u00DC\\u00E4\\u00F6\\u00FC\\u00DF\\-]+)*))\\b",
+      "priority": 4,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities"
+    },
+    {
+      "id": "a2a186f2",
+      "name": "FA Abbreviation Entities",
+      "format": "regex",
+      "content": "\\bFA\\s+([A-Z][A-Za-z\\u00C4\\u00D6\\u00DC\\u00E4\\u00F6\\u00FC\\u00DF\\-]+(?:\\s+[A-Z][A-Za-z\\u00C4\\u00D6\\u00DC\\u00E4\\u00F6\\u00FC\\u00DF\\-]+)*)\\b",
+      "priority": 6,
+      "output_template": {
+        "text": "FA $1",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities"
+    },
+    {
+      "id": "7a35b78c",
+      "name": "German GmbH Entities",
+      "format": "regex",
+      "content": "(?<![a-zA-Z\\u00C4\\u00D6\\u00DC\\u00E4\\u00F6\\u00FC\\u00DF\\s])([A-Z][A-Za-z\\u00C4\\u00D6\\u00DC\\u00E4\\u00F6\\u00FC\\u00DF\\s\\-\\.]+?\\s+(?:GmbH|AG|KG|GmbH\\s*&\\s*Co\\s*KG))\\b",
+      "priority": 5,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities"
+    }
+  ]
+}

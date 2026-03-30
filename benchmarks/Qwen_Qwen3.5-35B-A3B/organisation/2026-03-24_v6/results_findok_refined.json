@@ -1,0 +1,302 @@
+{
+  "config": {
+    "shots": 20,
+    "model": "Qwen/Qwen3.5-35B-A3B",
+    "format": "regex",
+    "max_rules": 10,
+    "max_samples": 10,
+    "max_iterations": 10,
+    "seed": 42,
+    "train_size": 20,
+    "test_size": 50,
+    "use_grex": true,
+    "agentic": true,
+    "enable_critic": false,
+    "enable_prune": false,
+    "critic_interval": 0,
+    "audit_interval": 0,
+    "windows": false,
+    "sampling_strategy": "balanced"
+  },
+  "results": {
+    "accuracy": 0.52,
+    "coverage": 1.18,
+    "micro_precision": 0.6779661016949152,
+    "micro_recall": 0.5714285714285714,
+    "micro_f1": 0.6201550387596898,
+    "macro_f1": 0.6201550387596898,
+    "num_rules": 6,
+    "learning_time_s": 212.8,
+    "eval_time_s": 0.011,
+    "per_query_ms": 0.22
+  },
+  "per_class": [
+    {
+      "label": "organisation",
+      "precision": 0.6779661016949152,
+      "recall": 0.5714285714285714,
+      "f1": 0.6201550387596898,
+      "tp": 40,
+      "fp": 19,
+      "fn": 30
+    }
+  ],
+  "iteration_metrics": [
+    {
+      "iteration": 1,
+      "num_rules": 3,
+      "exact_match": 0.0025940337224383916,
+      "micro_precision": 0.03585320480297649,
+      "micro_recall": 0.11228813559322035,
+      "micro_f1": 0.0543520061530573,
+      "macro_f1": 0.0543520061530573,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.0543520061530573,
+          "precision": 0.03585320480297649,
+          "recall": 0.11228813559322035
+        }
+      ]
+    },
+    {
+      "iteration": 2,
+      "num_rules": 4,
+      "exact_match": 0.0609597924773022,
+      "micro_precision": 0.14838709677419354,
+      "micro_recall": 0.08527542372881355,
+      "micro_f1": 0.10830810628994281,
+      "macro_f1": 0.10830810628994281,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.10830810628994281,
+          "precision": 0.14838709677419354,
+          "recall": 0.08527542372881355
+        }
+      ]
+    },
+    {
+      "iteration": 3,
+      "num_rules": 6,
+      "exact_match": 0.06679636835278858,
+      "micro_precision": 0.13241379310344828,
+      "micro_recall": 0.2542372881355932,
+      "micro_f1": 0.17413386540903322,
+      "macro_f1": 0.17413386540903322,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.17413386540903322,
+          "precision": 0.13241379310344828,
+          "recall": 0.2542372881355932
+        }
+      ]
+    },
+    {
+      "iteration": 4,
+      "num_rules": 6,
+      "exact_match": 0.06679636835278858,
+      "micro_precision": 0.13241379310344828,
+      "micro_recall": 0.2542372881355932,
+      "micro_f1": 0.17413386540903322,
+      "macro_f1": 0.17413386540903322,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.17413386540903322,
+          "precision": 0.13241379310344828,
+          "recall": 0.2542372881355932
+        }
+      ]
+    },
+    {
+      "iteration": 5,
+      "num_rules": 5,
+      "exact_match": 0.0609597924773022,
+      "micro_precision": 0.10891745064263945,
+      "micro_recall": 0.4353813559322034,
+      "micro_f1": 0.17424483306836247,
+      "macro_f1": 0.17424483306836247,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.17424483306836247,
+          "precision": 0.10891745064263945,
+          "recall": 0.4353813559322034
+        }
+      ]
+    },
+    {
+      "iteration": 6,
+      "num_rules": 5,
+      "exact_match": 0.1867704280155642,
+      "micro_precision": 0.26424581005586595,
+      "micro_recall": 0.2505296610169492,
+      "micro_f1": 0.2572050027188689,
+      "macro_f1": 0.2572050027188689,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.2572050027188689,
+          "precision": 0.26424581005586595,
+          "recall": 0.2505296610169492
+        }
+      ]
+    },
+    {
+      "iteration": 7,
+      "num_rules": 6,
+      "exact_match": 0.2185473411154345,
+      "micro_precision": 0.31654264453348596,
+      "micro_recall": 0.2929025423728814,
+      "micro_f1": 0.30426409903713897,
+      "macro_f1": 0.30426409903713897,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.30426409903713897,
+          "precision": 0.31654264453348596,
+          "recall": 0.2929025423728814
+        }
+      ]
+    },
+    {
+      "iteration": 8,
+      "num_rules": 5,
+      "exact_match": 0.32490272373540857,
+      "micro_precision": 0.46563467492260063,
+      "micro_recall": 0.3983050847457627,
+      "micro_f1": 0.4293462746217528,
+      "macro_f1": 0.4293462746217528,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.4293462746217528,
+          "precision": 0.46563467492260063,
+          "recall": 0.3983050847457627
+        }
+      ]
+    },
+    {
+      "iteration": 9,
+      "num_rules": 5,
+      "exact_match": 0.3164721141374838,
+      "micro_precision": 0.8096551724137931,
+      "micro_recall": 0.3109110169491525,
+      "micro_f1": 0.44929200153080745,
+      "macro_f1": 0.44929200153080745,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.44929200153080745,
+          "precision": 0.8096551724137931,
+          "recall": 0.3109110169491525
+        }
+      ]
+    },
+    {
+      "iteration": 10,
+      "num_rules": 5,
+      "exact_match": 0.4649805447470817,
+      "micro_precision": 0.6002475247524752,
+      "micro_recall": 0.513771186440678,
+      "micro_f1": 0.5536529680365296,
+      "macro_f1": 0.5536529680365296,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.5536529680365296,
+          "precision": 0.6002475247524752,
+          "recall": 0.513771186440678
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "9aadbc57",
+      "name": "German_FA_Abbreviation",
+      "format": "regex",
+      "content": "\\bFA\\s+(?:(?:Grieskirchen\\s+Wels|Steiermark\\s+Mitte|Wien\\s+[0-9/]+|Innsbruck|Nieder\\u00f6sterreich\\s+Mitte|Salzburg\\-Stadt|Deutschlandsberg\\s+Leibnitz\\s+Voitsberg)|[A-Z][A-Za-z\u00c4\u00d6\u00dc\u00e4\u00f6\u00fc\u00df]*(?:\\s+[A-Z][A-Za-z\u00c4\u00d6\u00dc\u00e4\u00f6\u00fc\u00df]*)*(?:\\s+[A-Z][A-Za-z\u00c4\u00d6\u00dc\u00e4\u00f6\u00fc\u00df]*)?)",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities"
+    },
+    {
+      "id": "3a24e234",
+      "name": "German_Finanzamt_Full",
+      "format": "regex",
+      "content": "\\bFinanzamt\\s+(?:(?:Steiermark\\s+Mitte|Wien\\s+[0-9/]+|Innsbruck|Nieder\\u00f6sterreich\\s+Mitte|Salzburg\\-Stadt|Deutschlandsberg\\s+Leibnitz\\s+Voitsberg)|[A-Z][A-Za-z\u00c4\u00d6\u00dc\u00e4\u00f6\u00fc\u00df\\u00C4\\u00D6\\u00DC]*(?:\\s+[A-Z][A-Za-z\u00c4\u00d6\u00dc\u00e4\u00f6\u00fc\u00df\\u00C4\\u00D6\\u00DC]+)*)",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities"
+    },
+    {
+      "id": "5d2e7267",
+      "name": "German_Org_NameSector",
+      "format": "regex",
+      "content": "(?<!\\w)(?<!\\b[Ff]irma\\b)(?<!\\bder\\b)(?<!\\bDie\\b)(?<!\\bSchwestergesellschaft\\b)(?<!\\bBeschwerde\\b)(?<!\\bVorlageantrag\\b)\\b([A-Z\u00c4][A-Za-z\u00c4\u00d6\u00dc\u00e4\u00f6\u00fc\u00df\\-+&]+(?:\\s+[A-Z\u00c4][A-Za-z\u00c4\u00d6\u00dc\u00e4\u00f6\u00fc\u00df\\-+&]+)?(?:\\s+|[+-])?(?:Handel|Pharma|Automotive|Touristik|Getr\u00e4nke|Metall|Lebensmittel|Maschinenbau|Versand|Gastronomie|Versicherung|Sicherheit|Finanzen|Immobilien|Verlag|Recycling|Technologien|Luftfahrt|Forschung|Steuerberatung|Landwirtschaft))\\b(?!\\s*(?:GmbH|GMBH|AG|KG|OG|e\\.K\\.|e\\.V\\.)|\\b)",
+      "priority": 13,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities"
+    },
+    {
+      "id": "556766ea",
+      "name": "German_Org_GeneralWithSuffix",
+      "format": "regex",
+      "content": "(?<!\\w)(?<!\\b[Ff]irma\\b)(?<!\\bder\\b)(?<!\\bDie\\b)(?<!\\bFrau\\b)(?<!\\bHerr\\b)(?<!\\bIm\\b)\\b([A-Z][A-Za-z0-9&\\-']+\\s+)*[A-Z][A-Za-z0-9&\\-']+(?:\\s+[A-Z][A-Za-z0-9&\\-'])?\\s+(GmbH|GMBH|AG|KG|OG|e\\.K\\.|e\\.V\\.)\\b",
+      "priority": 12,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities"
+    },
+    {
+      "id": "32f46760",
+      "name": "German_Org_NameSectorNoSuffix",
+      "format": "regex",
+      "content": "(?<!\\w)(?<!\\b[Ff]irma\\b)(?<!\\bder\\b)(?<!\\bDie\\b)(?<!\\bFrau\\b)(?<!\\bHerr\\b)(?<!\\bder\\b)(?<!\\bBei\\b)(?<!\\bAn\\b)(?<!\\bVon\\b)(?<!\\bIm\\b)(?<!\\bDem\\b)\\b([A-Z][A-Za-z\u00c4\u00d6\u00dc\u00e4\u00f6\u00fc\u00df\\-+&]+(?:\\s+[A-Z][A-Za-z\u00c4\u00d6\u00dc\u00e4\u00f6\u00fc\u00df\\-+&]+)?(?:\\s+|[+-])?(?:Handel|Pharma|Automotive|Touristik|Getr\u00e4nke|Metall|Lebensmittel|Maschinenbau|Versand|Gastronomie|Versicherung|Sicherheit|Finanzen|Immobilien|Verlag|Recycling|Technologien|Luftfahrt|Forschung|Steuerberatung|Landwirtschaft))\\b(?!\\s*(?:GmbH|GMBH|AG|KG|OG|e\\.K\\.|e\\.V\\.)\\b)",
+      "priority": 13,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities"
+    },
+    {
+      "id": "3695c1df",
+      "name": "German_BG_Gericht",
+      "format": "regex",
+      "content": "\\bBezirksgericht\\s+[A-Z][A-Za-z\u00c4\u00d6\u00dc\u00e4\u00f6\u00fc\u00df]+\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities"
+    }
+  ]
+}
