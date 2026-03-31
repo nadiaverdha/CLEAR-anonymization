@@ -288,11 +288,9 @@ def main():
     test_data = [{"text": s.text, "entities": s.labels} for s in test_data_raw.samples]
     print(f"Loaded {len(test_data)} test examples")
 
-    entity_definitions = get_dataset_class_definitions("findok")
-    active_labels = sorted(entity_definitions.keys())
     task = Task(
         name="German Legal Named Entity Recognition",
-        description=f"Recognize named entities in German legal text. Entities: {', '.join(active_labels)}.",
+        description=f"Recognize named entities in German legal text..",
         input_schema={"text": "str"},
         output_schema=NEROutput,
         type=TaskType.NER,
@@ -370,6 +368,12 @@ def main():
     )
     print(f"Report saved to {md_path}")
 
+    total_org = sum(
+        1
+        for ex in test_dataset.examples
+        for e in ex.expected_output.get("entities", [])
+        if e.get("type") == "organisation"
+    )
     import shutil
 
     shutil.rmtree(storage_dir, ignore_errors=True)
