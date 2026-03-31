@@ -83,81 +83,74 @@ def sample_few_shot(
     classes=None,
     window_size=200,
     pool_size=None,
-    train_ratio=0.7,
-    test_ratio=0.1,
     shots_per_class=None,
+    train_ratio=0.7,
+    counter_examples_ratio=0.2,
 ):
-    print(f"TRAINING DATA SIZE: {len(train_data)}")
     rng = random.Random(seed)
+
+    use_filter = classes is not None
 
     if not classes:
         all_labels = sorted({l["type"] for sample in train_data for l in sample.labels})
         if num_classes and num_classes < len(all_labels):
             rng.shuffle(all_labels)
-            classes = set(sorted(all_labels[:num_classes]))
+            classes = set(all_labels[:num_classes])
+            use_filter = True
         else:
             classes = set(all_labels)
+
     classes = set(classes)
 
     all_examples = []
+    negatives = []
     seen_texts = set()
+
     for sample in train_data:
         text = sample.text
-        entities = sorted(
-            [l for l in sample.labels if l["type"] in classes],
-            key=lambda x: x["start"],
-        )
-        if not entities:
+
+        if use_filter:
+            entities = sorted(
+                [l for l in sample.labels if l["type"] in classes],
+                key=lambda x: x["start"],
+            )
+        else:
+            entities = list(sample.labels)
+
+        if text in seen_texts:
             continue
+        seen_texts.add(text)
+
+        if not entities:
+            other_entities = (
+                [l for l in sample.labels if l["type"] not in classes]
+                if use_filter
+                else []
+            )
+            negatives.append({"text": text, "entities": other_entities})
+            continue
+
         if windows:
             for ex in build_examples(text, select_windows(text, entities, window_size)):
                 if ex["text"] not in seen_texts:
                     seen_texts.add(ex["text"])
                     all_examples.append(ex)
         else:
-            if text not in seen_texts:
-                seen_texts.add(text)
-                all_examples.append({"text": text, "entities": entities})
-    print(f"TOTAL EXAMPLES AFTER WINDOWING & CLASS FILTER: {len(all_examples)}")
-    missing = classes - {ent["type"] for ex in all_examples for ent in ex["entities"]}
-    if missing:
-        print(f"WARNING: classes not found in dataset: {missing}")
+            all_examples.append({"text": text, "entities": entities})
+
+    print(f"Total positives: {len(all_examples)}, negatives: {len(negatives)}")
 
     rng.shuffle(all_examples)
+    rng.shuffle(negatives)
+    pool = all_examples[:pool_size] if pool_size else all_examples
 
-    n_test = int(len(all_examples) * test_ratio)
-    test = all_examples[:n_test]
-    rest = all_examples[n_test:]
+    split_idx = int(len(pool) * train_ratio)
+    train_examples = pool[:split_idx]
+    eval_examples = pool[split_idx:]
 
-    pool = rest[:pool_size] if pool_size else rest
+    print(f"Train: {len(train_examples)}, Eval: {len(eval_examples)}")
 
-    n_train = int(len(pool) * train_ratio)
-    train_raw = pool[:n_train]
-    remaining = pool[n_train:]
-
-    labels = sorted(
-        classes & {ent["type"] for ex in all_examples for ent in ex["entities"]}
-    )
-    cap = (
-        shots_per_class
-        if shots_per_class
-        else (n_train // len(labels) if labels else n_train)
-    )
-
-    by_class = defaultdict(int)
-    sampled = []
-    excess = []
-    for ex in train_raw:
-        label = ex["entities"][0]["type"]
-        if by_class[label] < cap:
-            sampled.append(ex)
-            by_class[label] += 1
-        else:
-            excess.append(ex)
-
-    remaining = excess + remaining
-
-    return sampled, remaining, test, classes
+    return train_examples, eval_examples, negatives, classes
 
 
 # ── Iteration callback ─────────────────────────────────────────
@@ -303,11 +296,13 @@ def save_results(
             {
                 "id": r.id,
                 "name": r.name,
+                "description": r.description,
                 "format": r.format.value,
                 "content": r.content,
                 "priority": r.priority,
                 "output_template": r.output_template,
                 "output_key": r.output_key,
+                "created_at": r.created_at.isoformat(),
             }
             for r in rules
         ],

@@ -46,36 +46,34 @@ def run_benchmark(args):
     # 1. Load data
     print("Loading FinDok dataset...")
     train_all, test_all, entity_names = load_findok(args.train_dir, args.val_dir)
+    print("Information about the full dataset:")
     print(
-        f"  Train: {len(train_all)}, Test: {len(test_all)}, Classes: {len(entity_names)}"
+        f"Train: {len(train_all)}, Test: {len(test_all)},  Classes: {len(entity_names)}"
     )
+    print("-------------------------------")
 
     # 2. Few-shot sample (optionally limited to N classes)
+    print("Information about what is being used for training/testing:")
 
     classes = [c.strip() for c in args.classes.split(",")] if args.classes else None
-    train_sample, train_remaining, test_data, selected_classes = sample_few_shot(
-        train_all,
+    train_sample, train_remaining, counter_examples, selected_classes = sample_few_shot(
+        train_data=train_all,
+        train_ratio=args.train_ratio,
         windows=args.windows,
         seed=args.seed,
         num_classes=args.num_classes,
         classes=classes,
         pool_size=args.pool_size,
-        train_ratio=args.train_ratio,
-        test_ratio=args.test_ratio,
-        shots_per_class=args.shots if args.shots else None,
+        shots_per_class=args.shots,
     )
 
     num_classes = len(selected_classes)
-    print(f"  Pool size:       {args.pool_size or 'all'}")
-    print(f"  Train ({args.train_ratio:.0%}):    {len(train_sample)} examples")
-    print(
-        f"  Eval  ({1 - args.train_ratio - args.test_ratio:.0%}):    {len(train_remaining)} examples"
-    )
-    print(f"  Test  ({args.test_ratio:.0%}):    {len(test_data)} examples")
-    if args.num_classes:
-        print(f"  Selected classes: {', '.join(sorted(selected_classes))}")
-
-    print(f"  Test: {len(test_data)} (filtered to selected classes, held out)")
+    print(f"Pool size:    {args.pool_size or 'all'}")
+    print(f"Selected {num_classes} classes: {', '.join(sorted(selected_classes))}")
+    print(f"Train ({args.train_ratio:.0%}):    {len(train_sample)} examples")
+    print(f"Eval  ({1 - args.train_ratio:.0%}):    {len(train_remaining)} examples")
+    print(f"Test:  {len(test_all)} examples")
+    print(f"Counter Examples: {len(counter_examples)}")
 
     # 3. Configure rulechef
     active_labels = sorted(selected_classes)
@@ -154,6 +152,11 @@ def run_benchmark(args):
         )
         print("  Agentic coordinator: enabled")
 
+    if args.synthesis_strategy != "bulk":
+        train_for_chef = train_all + counter_examples
+    else:
+        train_for_chef = train_all
+
     chef = RuleChef(
         task=task,
         client=client,
@@ -164,17 +167,19 @@ def run_benchmark(args):
         use_grex=not args.no_grex,
         max_rules=args.max_rules,
         max_samples=args.max_samples,
+        max_counter_examples=args.max_counter_examples,
         coordinator=coordinator,
         training_logger=logger,
         sampling_strategy=args.sampling_strategy,
+        synthesis_strategy=args.synthesis_strategy,
     )
 
     # 4. Add training examples — only in refinement mode (rules-json).
     #    In fresh synthesis mode, examples are added per-batch in step 6.
     if args.rules_json:
-        print(f"\nAdding {len(train_sample)} training examples...")
+        print(f"\nAdding {len(train_for_chef)} training examples...")
         t0 = time.time()
-        for ex in train_sample:
+        for ex in train_for_chef:
             chef.add_example(
                 {"text": ex["text"]},
                 {"entities": ex["entities"]},
@@ -306,6 +311,8 @@ def run_benchmark(args):
             batch_result = chef.learn_rules(
                 run_evaluation=False, incremental_only=(batch_idx > 0)
             )
+            # Clear so next batch only sees its own examples (not accumulated total)
+            chef.dataset.examples.clear()
             if batch_result:
                 result = batch_result
                 rules_so_far, _ = result
@@ -372,7 +379,7 @@ def run_benchmark(args):
     # Build held-out test Dataset for final evaluation
 
     test_dataset = Dataset(name="findok_test", task=task)
-    for ex in test_data:
+    for ex in test_all:
         test_dataset.examples.append(
             Example(
                 id=str(uuid.uuid4())[:8],
@@ -383,7 +390,7 @@ def run_benchmark(args):
         )
 
     test_eval, coverage, t_eval = evaluate_test(
-        test_data, test_dataset, rules, chef, task
+        test_all, test_dataset, rules, chef, task
     )
 
     # 9. Print results
@@ -393,7 +400,7 @@ def run_benchmark(args):
     print("  Configuration:")
     print(f"    Shots per class:          {args.shots}")
     print(f"    Training examples:        {len(train_sample)}")
-    print(f"    Test examples:            {len(test_data)}")
+    print(f"    Test examples:            {len(test_all)}")
     print(f"    Model:                    {args.model}")
     print(f"    Max rules:                {args.max_rules}")
     print(f"    Max samples in prompt:    {args.max_samples}")
@@ -413,7 +420,7 @@ def run_benchmark(args):
     print("  Timing:")
     print(f"    Learning:                 {t_learn:.1f}s")
     print(f"    Evaluation:               {t_eval:.1f}s")
-    print(f"    Per-query:                {t_eval / len(test_data) * 1000:.2f}ms")
+    print(f"    Per-query:                {t_eval / len(test_all) * 1000:.2f}ms")
     print()
     print(f"  Rules:                      {len(rules)} total")
     print(f"{'=' * 70}")
@@ -456,7 +463,7 @@ def run_benchmark(args):
             args.max_iterations,
             args.seed,
             train_sample,
-            test_data,
+            test_all,
             args.no_grex,
             args.agentic,
             test_eval,
@@ -470,7 +477,11 @@ def run_benchmark(args):
             args.critic_interval,
             args.audit_interval,
             args.windows,
-            sampling_strategy=args.sampling_strategy,
+            args.sampling_strategy,
+            args.train_ratio,
+            args.pool_size,
+            args.batch_size,
+            args.refine_per_batch,
         )
 
     # 12. Generate per-rule Markdown report
@@ -489,13 +500,13 @@ def run_benchmark(args):
 
         append_overall_metrics(
             md_path=md_path,
-            test_data=test_data,
+            test_data=len(test_all),
             test_dataset=test_dataset,
             rules=rules,
             chef=chef,
             task=task,
             shots=args.shots,
-            train_sample=train_sample,
+            train_sample=len(train_sample),
             model=args.model,
             max_rules=args.max_rules,
             max_samples=args.max_samples,
@@ -510,7 +521,6 @@ def run_benchmark(args):
             sampling_strategy=args.sampling_strategy,
             pool_size=args.pool_size,
             train_ratio=args.train_ratio,
-            test_ratio=args.test_ratio,
         )
 
         rule_metrics = evaluate_rules_individually(
@@ -560,18 +570,6 @@ def main():
         help="Per-class cap on training examples (default: auto = n_train // num_classes)",
     )
     parser.add_argument(
-        "--train-ratio",
-        type=float,
-        default=0.7,
-        help="Fraction of pool for synthesis (default: 0.7)",
-    )
-    parser.add_argument(
-        "--test-ratio",
-        type=float,
-        default=0.1,
-        help="Fraction of pool for test (default: 0.1), remainder is eval",
-    )
-    parser.add_argument(
         "--model",
         type=str,
         default="openai/gpt-oss-120b",  # "google/gemma-3-27b-it",
@@ -603,28 +601,34 @@ def main():
         help="Comma-separated list of specific class names to use (overrides --num-classes)",
     )
     parser.add_argument(
+        "--train-ratio",
+        type=float,
+        default=0.8,
+        help="Ratio of training data to use (default: 0.8)",
+    )
+    parser.add_argument(
         "--max-rules",
         type=int,
-        default=30,
+        default=10,
         help="Max rules to generate per synthesis (default: 30)",
     )
     parser.add_argument(
         "--max-samples",
         type=int,
-        default=200,
+        default=50,
         help="Max training examples in LLM prompt (default: 200)",
+    )
+    parser.add_argument(
+        "--max-counter-examples",
+        type=int,
+        default=10,
+        help="Max counter-examples to show in prompts (default: 10)",
     )
     parser.add_argument(
         "--max-iterations",
         type=int,
         default=3,
         help="Max refinement iterations (default: 3)",
-    )
-    parser.add_argument(
-        "--test-limit",
-        type=int,
-        default=100,
-        help="Limit test set size for quick runs (default: full 3080)",
     )
     parser.add_argument(
         "--seed", type=int, default=42, help="Random seed (default: 42)"
@@ -634,6 +638,12 @@ def main():
         type=str,
         default="results_findok.json",
         help="Save results to JSON file (default: benchmarks/results_findok.json)",
+    )
+    parser.add_argument(
+        "--synthesis-strategy",
+        type=str,
+        default="bulk",
+        help="Synthesis strategy to use",
     )
     parser.add_argument(
         "--agentic",
@@ -683,7 +693,7 @@ def main():
     parser.add_argument(
         "--batch-size",
         type=int,
-        default=30,
+        default=20,
         help="Examples per batch for incremental synthesis (default: 20)",
     )
     parser.add_argument(
