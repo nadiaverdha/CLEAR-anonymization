@@ -1,6 +1,6 @@
 # Rule Evaluation Report — Qwen/Qwen3.5-35B-A3B
 
-Generated on: 2026-04-01T09:43:35.360859
+Generated on: 2026-04-01T09:47:12.143013
 
 ---
 
@@ -31,7 +31,9 @@ Generated on: 2026-04-01T09:43:35.360859
 | Metric | Value |
 |--------|-------|
 | Accuracy (exact match) | 93.0% |
-| No. of entities predicted | 37500.0% |
+| No. of entities predicted | 375 |
+| True Positives | 307 |
+| False Positives | 68 |
 | Micro Precision | 0.819 |
 | Micro Recall | 0.758 |
 | Micro F1 | 0.787 |
@@ -76,9 +78,9 @@ Generated on: 2026-04-01T09:43:35.360859
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Matches | TP | FP | Coverage |
-|-----------|--------|----|---------|----|----|----------|
-| 0.954 | 0.457 | 0.618 | 194 | 185 | 9 | 185/405 |
+| Precision | Recall | F1 | Matches | TP | FP 
+|-----------|--------|----|---------|----|----
+| 0.954 | 0.457 | 0.618 | 194 | 185 | 9 
 
 **Per-Class Breakdown**
 
@@ -135,8 +137,8 @@ Seite 2 von 8
 
 | Prediction | Gold |
 |------------|------|
-| `Blazickova & Hepprich Energie AG` | `Blazickova & Hepprich Energie AG` |
 | `Berend Energie AG` | `Berend Energie AG` |
+| `Blazickova & Hepprich Energie AG` | `Blazickova & Hepprich Energie AG` |
 
 **Example 4**
 
@@ -273,9 +275,9 @@ Salzburg-Stadt` (organisation)
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Matches | TP | FP | Coverage |
-|-----------|--------|----|---------|----|----|----------|
-| 0.903 | 0.368 | 0.523 | 165 | 149 | 16 | 149/405 |
+| Precision | Recall | F1 | Matches | TP | FP 
+|-----------|--------|----|---------|----|----
+| 0.903 | 0.368 | 0.523 | 165 | 149 | 16 
 
 **Per-Class Breakdown**
 
@@ -518,9 +520,9 @@ Seite 2 von 20
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Matches | TP | FP | Coverage |
-|-----------|--------|----|---------|----|----|----------|
-| 0.943 | 0.247 | 0.391 | 106 | 100 | 6 | 100/405 |
+| Precision | Recall | F1 | Matches | TP | FP 
+|-----------|--------|----|---------|----|----
+| 0.943 | 0.247 | 0.391 | 106 | 100 | 6 
 
 **Per-Class Breakdown**
 
@@ -739,9 +741,9 @@ Salzburg-Stadt` (organisation)
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Matches | TP | FP | Coverage |
-|-----------|--------|----|---------|----|----|----------|
-| 1.000 | 0.148 | 0.258 | 60 | 60 | 0 | 60/405 |
+| Precision | Recall | F1 | Matches | TP | FP 
+|-----------|--------|----|---------|----|----
+| 1.000 | 0.148 | 0.258 | 60 | 60 | 0 
 
 **Per-Class Breakdown**
 
@@ -907,9 +909,9 @@ Brucktraval AG  1.7.2017 - 31.12.2017 € 6.588,48
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Matches | TP | FP | Coverage |
-|-----------|--------|----|---------|----|----|----------|
-| 1.000 | 0.032 | 0.062 | 13 | 13 | 0 | 13/405 |
+| Precision | Recall | F1 | Matches | TP | FP 
+|-----------|--------|----|---------|----|----
+| 1.000 | 0.032 | 0.062 | 13 | 13 | 0 
 
 **Per-Class Breakdown**
 
@@ -1008,9 +1010,9 @@ Raiffeisenbank\s+[A-Z][a-zA-ZäöüÄÖÜß\-]+(?:\s+[A-Z][a-zA-ZäöüÄÖÜß\
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Matches | TP | FP | Coverage |
-|-----------|--------|----|---------|----|----|----------|
-| 1.000 | 0.015 | 0.029 | 6 | 6 | 0 | 6/405 |
+| Precision | Recall | F1 | Matches | TP | FP 
+|-----------|--------|----|---------|----|----
+| 1.000 | 0.015 | 0.029 | 6 | 6 | 0 
 
 **Per-Class Breakdown**
 
@@ -1120,9 +1122,9 @@ erfolgt sein soll.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Matches | TP | FP | Coverage |
-|-----------|--------|----|---------|----|----|----------|
-| 0.857 | 0.015 | 0.029 | 7 | 6 | 1 | 6/405 |
+| Precision | Recall | F1 | Matches | TP | FP 
+|-----------|--------|----|---------|----|----
+| 0.857 | 0.015 | 0.029 | 7 | 6 | 1 
 
 **Per-Class Breakdown**
 
@@ -1258,9 +1260,9 @@ Finanzen\s+Tradonnex
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Matches | TP | FP | Coverage |
-|-----------|--------|----|---------|----|----|----------|
-| 1.000 | 0.005 | 0.010 | 2 | 2 | 0 | 2/405 |
+| Precision | Recall | F1 | Matches | TP | FP 
+|-----------|--------|----|---------|----|----
+| 1.000 | 0.005 | 0.010 | 2 | 2 | 0 
 
 **Per-Class Breakdown**
 
@@ -1315,9 +1317,9 @@ FA\s+Niederösterreich\s+Mitte
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Matches | TP | FP | Coverage |
-|-----------|--------|----|---------|----|----|----------|
-| 1.000 | 0.002 | 0.005 | 1 | 1 | 0 | 1/405 |
+| Precision | Recall | F1 | Matches | TP | FP 
+|-----------|--------|----|---------|----|----
+| 1.000 | 0.002 | 0.005 | 1 | 1 | 0 
 
 **Per-Class Breakdown**
 
@@ -1365,9 +1367,9 @@ DLCG\s+Bildung
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Matches | TP | FP | Coverage |
-|-----------|--------|----|---------|----|----|----------|
-| 1.000 | 0.002 | 0.005 | 1 | 1 | 0 | 1/405 |
+| Precision | Recall | F1 | Matches | TP | FP 
+|-----------|--------|----|---------|----|----
+| 1.000 | 0.002 | 0.005 | 1 | 1 | 0 
 
 **Per-Class Breakdown**
 
@@ -1408,9 +1410,9 @@ Informationen" verschafft.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Matches | TP | FP | Coverage |
-|-----------|--------|----|---------|----|----|----------|
-| 0.500 | 0.002 | 0.005 | 2 | 1 | 1 | 1/405 |
+| Precision | Recall | F1 | Matches | TP | FP 
+|-----------|--------|----|---------|----|----
+| 0.500 | 0.002 | 0.005 | 2 | 1 | 1 
 
 **Per-Class Breakdown**
 
@@ -1468,9 +1470,9 @@ für Kimberly Schindlmayer  darstellt.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Matches | TP | FP | Coverage |
-|-----------|--------|----|---------|----|----|----------|
-| 0.077 | 0.002 | 0.005 | 13 | 1 | 12 | 1/405 |
+| Precision | Recall | F1 | Matches | TP | FP 
+|-----------|--------|----|---------|----|----
+| 0.077 | 0.002 | 0.005 | 13 | 1 | 12 
 
 **Per-Class Breakdown**
 
@@ -1618,9 +1620,9 @@ Olivier\s+u\.\s+Bartha\s+Recycling
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Matches | TP | FP | Coverage |
-|-----------|--------|----|---------|----|----|----------|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0/3429 |
+| Precision | Recall | F1 | Matches | TP | FP 
+|-----------|--------|----|---------|----|----
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 
 
 </details>
 
@@ -1639,9 +1641,9 @@ Olivier\s+u\.\s+Bartha\s+Recycling
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Matches | TP | FP | Coverage |
-|-----------|--------|----|---------|----|----|----------|
-| 0.000 | 0.000 | 0.000 | 32 | 0 | 32 | 0/405 |
+| Precision | Recall | F1 | Matches | TP | FP 
+|-----------|--------|----|---------|----|----
+| 0.000 | 0.000 | 0.000 | 32 | 0 | 32 
 
 **Per-Class Breakdown**
 
@@ -1764,9 +1766,9 @@ MA 6 gehalten.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Matches | TP | FP | Coverage |
-|-----------|--------|----|---------|----|----|----------|
-| 0.000 | 0.000 | 0.000 | 6 | 0 | 6 | 0/405 |
+| Precision | Recall | F1 | Matches | TP | FP 
+|-----------|--------|----|---------|----|----
+| 0.000 | 0.000 | 0.000 | 6 | 0 | 6 
 
 **Per-Class Breakdown**
 
@@ -1885,9 +1887,9 @@ Süd\s+Sudwil
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Matches | TP | FP | Coverage |
-|-----------|--------|----|---------|----|----|----------|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0/3429 |
+| Precision | Recall | F1 | Matches | TP | FP 
+|-----------|--------|----|---------|----|----
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 
 
 </details>
 
@@ -1906,9 +1908,9 @@ Nord\s+Willemtri\s+KG
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Matches | TP | FP | Coverage |
-|-----------|--------|----|---------|----|----|----------|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0/3429 |
+| Precision | Recall | F1 | Matches | TP | FP 
+|-----------|--------|----|---------|----|----
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 
 
 </details>
 
