@@ -1,6 +1,6 @@
 # Rule Evaluation Report — Qwen/Qwen3.5-35B-A3B
 
-Generated on: 2026-04-01T09:01:13.420923
+Generated on: 2026-04-01T09:08:37.223631
 
 ---
 
@@ -43,23 +43,23 @@ Generated on: 2026-04-01T09:01:13.420923
 
 | Rule | F1 | Precision | Recall | Matches |
 |------|----|----------|--------|--------|
-| `specific_legal_entities` | 🟢 Strong | 0.618 | 0.954 | 0.457 | 194 |
-| `tax_authority_complex` | 🟢 Strong | 0.523 | 0.903 | 0.368 | 165 |
-| `tax_authority` | 🟢 Strong | 0.391 | 0.943 | 0.247 | 106 |
-| `specific_hyphenated_orgs` | 🟢 Strong | 0.258 | 1.000 | 0.148 | 60 |
-| `tax_authority_waldviertel_klosterneuburg` | 🟢 Strong | 0.062 | 1.000 | 0.032 | 13 |
-| `raiffeisenbank` | 🟢 Strong | 0.029 | 1.000 | 0.015 | 6 |
-| `court_organisation` | 🟢 Strong | 0.029 | 0.857 | 0.015 | 7 |
-| `finanzen_tradonnex` | 🟢 Strong | 0.010 | 1.000 | 0.005 | 2 |
-| `missed_org_fa_niederoesterreich` | 🟢 Strong | 0.005 | 1.000 | 0.002 | 1 |
-| `missed_org_dlcg_bildung` | 🟢 Strong | 0.005 | 1.000 | 0.002 | 1 |
-| `company_with_plus` | 🟡 Medium | 0.005 | 0.500 | 0.002 | 2 |
-| `ag_organisation` | 🔴 Weak | 0.005 | 0.077 | 0.002 | 13 |
-| `olivier_bartha_pattern` | 🔴 Weak | 0.000 | 0.000 | 0.000 | 0 |
-| `gmbh_organisation` | 🔴 Weak | 0.000 | 0.000 | 0.000 | 32 |
-| `kg_organisation` | 🔴 Weak | 0.000 | 0.000 | 0.000 | 6 |
-| `missed_org_sud_sudwil` | 🔴 Weak | 0.000 | 0.000 | 0.000 | 0 |
-| `missed_org_nord_willemtri` | 🔴 Weak | 0.000 | 0.000 | 0.000 | 0 |
+| `specific_legal_entities` |0.618 | 0.954 | 0.457 | 194 |
+| `tax_authority_complex` |0.523 | 0.903 | 0.368 | 165 |
+| `tax_authority` |0.391 | 0.943 | 0.247 | 106 |
+| `specific_hyphenated_orgs` |0.258 | 1.000 | 0.148 | 60 |
+| `tax_authority_waldviertel_klosterneuburg` |0.062 | 1.000 | 0.032 | 13 |
+| `raiffeisenbank` |0.029 | 1.000 | 0.015 | 6 |
+| `court_organisation` |0.029 | 0.857 | 0.015 | 7 |
+| `finanzen_tradonnex` |0.010 | 1.000 | 0.005 | 2 |
+| `missed_org_fa_niederoesterreich` |0.005 | 1.000 | 0.002 | 1 |
+| `missed_org_dlcg_bildung` |0.005 | 1.000 | 0.002 | 1 |
+| `company_with_plus` |0.005 | 0.500 | 0.002 | 2 |
+| `ag_organisation` |0.005 | 0.077 | 0.002 | 13 |
+| `olivier_bartha_pattern` |0.000 | 0.000 | 0.000 | 0 |
+| `gmbh_organisation` |0.000 | 0.000 | 0.000 | 32 |
+| `kg_organisation` |0.000 | 0.000 | 0.000 | 6 |
+| `missed_org_sud_sudwil` |0.000 | 0.000 | 0.000 | 0 |
+| `missed_org_nord_willemtri` |0.000 | 0.000 | 0.000 | 0 |
 
 ---
 
@@ -143,8 +143,8 @@ Seite 2 von 8
 
 | Prediction | Gold |
 |------------|------|
-| `Berend Energie AG` | `Berend Energie AG` |
 | `Blazickova & Hepprich Energie AG` | `Blazickova & Hepprich Energie AG` |
+| `Berend Energie AG` | `Berend Energie AG` |
 
 **Example 4**
 
