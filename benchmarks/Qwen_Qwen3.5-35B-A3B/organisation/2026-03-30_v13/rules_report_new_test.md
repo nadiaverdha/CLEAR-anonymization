@@ -1,6 +1,6 @@
 # Rule Evaluation Report — Qwen/Qwen3.5-35B-A3B
 
-Generated on: 2026-04-01T09:08:37.223631
+Generated on: 2026-04-01T09:10:03.794017
 
 ---
 
@@ -64,8 +64,6 @@ Generated on: 2026-04-01T09:08:37.223631
 ---
 
 ## `specific_legal_entities`
-
-🟢 Strong rule
 
 **F1:** 0.618 | **Precision:** 0.954 | **Recall:** 0.457  
 
@@ -143,8 +141,8 @@ Seite 2 von 8
 
 | Prediction | Gold |
 |------------|------|
-| `Blazickova & Hepprich Energie AG` | `Blazickova & Hepprich Energie AG` |
 | `Berend Energie AG` | `Berend Energie AG` |
+| `Blazickova & Hepprich Energie AG` | `Blazickova & Hepprich Energie AG` |
 
 **Example 4**
 
@@ -269,8 +267,6 @@ Salzburg-Stadt` (organisation)
 ---
 
 ## `tax_authority_complex`
-
-🟢 Strong rule
 
 **F1:** 0.523 | **Precision:** 0.903 | **Recall:** 0.368  
 
@@ -523,8 +519,6 @@ Seite 2 von 20
 
 ## `tax_authority`
 
-🟢 Strong rule
-
 **F1:** 0.391 | **Precision:** 0.943 | **Recall:** 0.247  
 
 **Format:** `regex`  
@@ -752,8 +746,6 @@ Salzburg-Stadt` (organisation)
 
 ## `specific_hyphenated_orgs`
 
-🟢 Strong rule
-
 **F1:** 0.258 | **Precision:** 1.000 | **Recall:** 0.148  
 
 **Format:** `regex`  
@@ -808,8 +800,8 @@ finden sich Hinweise darauf, dass die Gartgart Dienstleistungen GMBH  den Vorlag
 
 | Prediction | Gold |
 |------------|------|
-| `Gartgart Dienstleistungen GMBH` | `Gartgart Dienstleistungen GMBH` |
 | `Kraftver-Gastronomie GMBH` | `Kraftver-Gastronomie GMBH` |
+| `Gartgart Dienstleistungen GMBH` | `Gartgart Dienstleistungen GMBH` |
 
 **Example 3**
 
@@ -928,8 +920,6 @@ Brucktraval AG  1.7.2017 - 31.12.2017 € 6.588,48
 
 ## `tax_authority_waldviertel_klosterneuburg`
 
-🟢 Strong rule
-
 **F1:** 0.062 | **Precision:** 1.000 | **Recall:** 0.032  
 
 **Format:** `regex`  
@@ -1036,8 +1026,6 @@ Adresse Postfach 260, 1000 Wien gesendet worden.
 ---
 
 ## `raiffeisenbank`
-
-🟢 Strong rule
 
 **F1:** 0.029 | **Precision:** 1.000 | **Recall:** 0.015  
 
@@ -1156,8 +1144,6 @@ erfolgt sein soll.
 ---
 
 ## `court_organisation`
-
-🟢 Strong rule
 
 **F1:** 0.029 | **Precision:** 0.857 | **Recall:** 0.015  
 
@@ -1303,8 +1289,6 @@ Das Bundesfinanzgericht` (organisation)
 
 ## `finanzen_tradonnex`
 
-🟢 Strong rule
-
 **F1:** 0.010 | **Precision:** 1.000 | **Recall:** 0.005  
 
 **Format:** `regex`  
@@ -1368,8 +1352,6 @@ Verwaltungsgerichtshof.
 
 ## `missed_org_fa_niederoesterreich`
 
-🟢 Strong rule
-
 **F1:** 0.005 | **Precision:** 1.000 | **Recall:** 0.002  
 
 **Format:** `regex`  
@@ -1426,8 +1408,6 @@ I. Die Beschwerde wird gemäß § 279 BAO als unbegründet abgewiesen.
 
 ## `missed_org_dlcg_bildung`
 
-🟢 Strong rule
-
 **F1:** 0.005 | **Precision:** 1.000 | **Recall:** 0.002  
 
 **Format:** `regex`  
@@ -1476,8 +1456,6 @@ Informationen" verschafft.
 ---
 
 ## `company_with_plus`
-
-🟡 Medium rule
 
 **F1:** 0.005 | **Precision:** 0.500 | **Recall:** 0.002  
 
@@ -1544,8 +1522,6 @@ für Kimberly Schindlmayer  darstellt.
 ---
 
 ## `ag_organisation`
-
-🔴 Weak rule
 
 **F1:** 0.005 | **Precision:** 0.077 | **Recall:** 0.002  
 
@@ -1703,8 +1679,6 @@ bezeichnet und es erfolgt dabei eine ausdrückliche Bezugnahme auf § 880a 2.
 
 ## `olivier_bartha_pattern`
 
-🔴 Weak rule
-
 **F1:** 0.000 | **Precision:** 0.000 | **Recall:** 0.000  
 
 **Format:** `regex`  
@@ -1731,8 +1705,6 @@ Olivier\s+u\.\s+Bartha\s+Recycling
 ---
 
 ## `gmbh_organisation`
-
-🔴 Weak rule
 
 **F1:** 0.000 | **Precision:** 0.000 | **Recall:** 0.000  
 
@@ -1865,8 +1837,6 @@ MA 6 gehalten.
 
 ## `kg_organisation`
 
-🔴 Weak rule
-
 **F1:** 0.000 | **Precision:** 0.000 | **Recall:** 0.000  
 
 **Format:** `regex`  
@@ -1994,8 +1964,6 @@ Sowohl der am 25. Mai 2016 erlassene Feststellungsbescheid als auch die am 22. D
 
 ## `missed_org_sud_sudwil`
 
-🔴 Weak rule
-
 **F1:** 0.000 | **Precision:** 0.000 | **Recall:** 0.000  
 
 **Format:** `regex`  
@@ -2022,8 +1990,6 @@ Süd\s+Sudwil
 ---
 
 ## `missed_org_nord_willemtri`
-
-🔴 Weak rule
 
 **F1:** 0.000 | **Precision:** 0.000 | **Recall:** 0.000  
 
