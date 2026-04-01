@@ -1,6 +1,6 @@
 # Rule Evaluation Report — Qwen/Qwen3.5-35B-A3B
 
-Generated on: 2026-04-01T09:10:03.794017
+Generated on: 2026-04-01T09:19:00.662188
 
 ---
 
@@ -68,16 +68,10 @@ Generated on: 2026-04-01T09:10:03.794017
 **F1:** 0.618 | **Precision:** 0.954 | **Recall:** 0.457  
 
 **Format:** `regex`  
-**Format:** ``  
 **Content:**
 ```
 (?:Milan\s+H\u00e4ndlein|Manfredo\s+Herrschmann|Pastel\s+Pharma|Finanzamt\s+Grieskirchen\s+Wels|FA\s+Oststeiermark|D\u00fcfel\s+Technik\s+KG|Nord\s+Kellex|Finanzamt\s+Wien\s+8/16/17|FA\s+Wien\s+8/16/17|S\u00fcdEvent\s+AG|Finanzamt\s+Vorarlberg|Waldtra\-Sicherheit|AlpenSicherheit\s+GMBH|G\u00f6zc\u00fc\s+Getr\u00e4nke|Celikkanat\s+Garten|Finanzamt\s+Klosterneuburg|Trafenfen\s+Automotive|Gartgart\s+Dienstleistungen\s+GMBH|Mur\s+Ververzor\s+Betriebe|Planung\s+Monuniost|K\u00f6k\s+&\s+Heberlein\s+Bau|Leiss\s+Software|Okur\s+Automotive|Finanzamt\s+Bruck\s+Eisenstadt\s+Oberwart|Finanzamt\s+Spittal\s+Villach|Finanzamt\s+Gmunden\s+V\u00f6cklabruck|Raiffeisenbank\s+Wels\s+S\u00fcd|Raiffeisenkasse\s+Retz-Pulkautal|Event\s+Sudkraftlex\s+GMBH|KQPC\s+Versand\s+GMBH|Ostgart\s+AG|Rosilius\s+Pflege\s+AG|Yavasoglu\s+Analyse\s+AG|Pastl\+B\u00e4chle\s+Handel|Textil\s+Steingartlog|Gr\u00f6ne&H\u00f6velberndt\s+E-Commerce|Roelfsen\s+Versicherung|Houdek\s+Maschinenbau|Schmeltz\s+Luftfahrt|WOD\s+Sicherheit\s+KG|Zumholte\s+Verlag\s+OG|Dorfcon-Verlag|Istvan\s+Gerart|Rhein\s+Normonkel\s+Manufaktur\s+GMBH|Lexdon\s+IT|Chen\s+Setzekorn|Hagdorn\s+Robotik|ZFGQ\s+Pharma\s+GMBH|Kubzyk\s+Elektro\s+AG|Finanzamt\s+Salzburg-Stadt|FA\s+Salzburg-Stadt|FA\s+Braunau\s+Ried\s+Sch\u00e4rding|Annemie\s+Bott|Kraftnex\s+Technologien\s+GMBH|Meretick\s+und\s+Adelsheimer\s+Recycling\s+KG|Landesgericht\s+Innsbruck|Schiwick\s+Finanzen\s+AG|Kraftver-Gastronomie\s+GMBH|FWV\s+Luftfahrt\s+GMBH|Biletzki&Emmert\s+Medien\s+GMBH|ZYJY\s+Automotive\s+AG|NYJ\s+Event\s+AG|Sievens\s+Automotive|OstGetr\u00e4nke|Nord\s+Druck|Donau\s+Furtkraftwald|Valbruckzor\-Energie|Bahrdt\s+Digital|OstTechnik|Naa\u00df\s+Elektro|Bersud\s+M\u00f6bel|Unter\s+Heimdorf|Hudec&Christian\s+Immobilien\s+GMBH|Reinemut\s+\+\s+Smoch\s+Handel|YXTG\s+Maschinenbau|Unter\s+Gartglanz\s+GMBH|Sudver\s+Handel\s+Services\s+GMBH|Glanznorost\s+Institut\s+GMBH|Stefansky\s+Bau\s+GMBH|Heimwald\-Forschung\s+GMBH|Dersyn\s+Immobilien\s+GMBH|Mittel\s+Unisyn\s+GMBH|Verdonlex\s+Automotive\s+GMBH|FA\s+Judenburg\s+Liezen|FA\s+Linz|H\u00f6rup\s+Gastronomie\s+AG|UnterRecycling\s+Services\s+GMBH|F\u00fcchsl\s+Touristik\s+GMBH|Bierwerth|Traun-Digital\s+KG|Mur\s+Alver\s+OG|VOLKSBANK\s+WIEN|Unter\s+Donunisee\s+AG|Forschung\s+Waldlemtal|Vahrenkamp\s+Luftfahrt|Nowothnig\s+Wind|Englert\s+M\u00f6bel|Zimmerhackel\s+Bau|Wald\s+Bruckval\s+AG|Berend\s+Energie\s+AG|Blazickova\s+&\s+Hepprich\s+Energie\s+AG|Noruniwald-Technik|Finanzamt\s+Baden\s+M\u00f6dling|FA\s+Wien\s+1/23|Finanzamt\s+Purkersdorf|FA\s+Klagenfurt\s+St\.\s+Veit\s+Wolfsberg|FA\s+Salzburg-Land)
 ```
-
-**Description:**
-`
-
-`
 
 <details>
 <summary>📊 Detailed Metrics</summary>
@@ -141,8 +135,8 @@ Seite 2 von 8
 
 | Prediction | Gold |
 |------------|------|
-| `Berend Energie AG` | `Berend Energie AG` |
 | `Blazickova & Hepprich Energie AG` | `Blazickova & Hepprich Energie AG` |
+| `Berend Energie AG` | `Berend Energie AG` |
 
 **Example 4**
 
@@ -271,16 +265,10 @@ Salzburg-Stadt` (organisation)
 **F1:** 0.523 | **Precision:** 0.903 | **Recall:** 0.368  
 
 **Format:** `regex`  
-**Format:** ``  
 **Content:**
 ```
 (?:Finanzamt\s+|FA\s+)(?:Judenburg\s+Liezen|Tirol\s+Ost|Salzburg-Stadt|Steiermark\s+Mitte|Wien\s+2/20/21/22|Oststeiermark|Grieskirchen\s+Wels|Landeck\s+Reutte|Bregenz|Vorarlberg|Bruck\s+Eisenstadt\s+Oberwart|Spittal\s+Villach|Gmunden\s+Vöcklabruck|Wien\s+8/16/17|Braunau\s+Ried\s+Schärding|Amstetten\s+Melk\s+Scheibbs|Deutschlandsberg\s+Leibnitz\s+Voitsberg|St\.\s+Johann\s+Tamsweg\s+Zell\s+am\s+See|Freistadt\s+Rohrbach\s+Urfahr|Salzburg-Land|Graz-Stadt|Kirchdorf\s+Perg\s+Steyr|Baden\s+Mödling|Wien\s+1/23|Purkersdorf|Klagenfurt\s+St\.\s+Veit\s+Wolfsberg|Waldviertel|Klosterneuburg|Innsbruck|Wien\s+4/5/10)
 ```
-
-**Description:**
-`
-
-`
 
 <details>
 <summary>📊 Detailed Metrics</summary>
@@ -522,16 +510,10 @@ Seite 2 von 20
 **F1:** 0.391 | **Precision:** 0.943 | **Recall:** 0.247  
 
 **Format:** `regex`  
-**Format:** ``  
 **Content:**
 ```
 (?:Finanzamt\s+|FA\s+)(?:Judenburg\s+Liezen|Tirol\s+Ost|Salzburg-Stadt|Steiermark\s+Mitte|Wien\s+2/20/21/22|Oststeiermark|Grieskirchen\s+Wels|Landeck\s+Reutte|Bregenz|Vorarlberg|Bruck\s+Eisenstadt\s+Oberwart|Spittal\s+Villach|Gmunden\s+V\u00f6cklabruck|Wien\s+8/16/17|Braunau\s+Ried\s+Sch\u00e4rding|Amstetten\s+Melk\s+Scheibbs|Deutschlandsberg\s+Leibnitz\s+Voitsberg)
 ```
-
-**Description:**
-`
-
-`
 
 <details>
 <summary>📊 Detailed Metrics</summary>
@@ -749,16 +731,10 @@ Salzburg-Stadt` (organisation)
 **F1:** 0.258 | **Precision:** 1.000 | **Recall:** 0.148  
 
 **Format:** `regex`  
-**Format:** ``  
 **Content:**
 ```
 (?:Conuni\-Heizung|Stadt\s+Dorfkraft|Inn\s+Monost|Digital\s+Seeal|Nord\s+Kellex|Milan\s+Händlein|Schmeltz\s+Luftfahrt|Houdek\s+Maschinenbau|Hörup\s+Gastronomie\s+AG|Wien\s+Waldnor\s+KG|Reinemut\s+\+\s+Smoch\s+Handel|Düfel\s+Technik\s+KG|Schoenfelder\s+Textil\s+KG|Gartgart\s+Dienstleistungen\s+GMBH|Kraftver\-Gastronomie\s+GMBH|TraunChemie\s+GMBH|InnLuftfahrt\s+GMBH|Hudec&Christian\s+Immobilien\s+GMBH|Gumpold\s+Technik\s+GMBH|RheinMetall\s+Technologien\s+GMBH|EnnsBildung|Donau\s+Furtkraftwald\s+AG|Landwirtschaft\s+Zorfurt\s+GMBH|Marzell\s+Versicherung\s+GMBH|Slenzak\s+IT\s+GMBH|BergPlanung|Holz\s+WaldTouristik\s+Technologien\s+GmbH|OGEM\s+Landwirtschaft\s+GMBH|Sud\s+Sudwil)
 ```
-
-**Description:**
-`
-
-`
 
 <details>
 <summary>📊 Detailed Metrics</summary>
@@ -923,16 +899,10 @@ Brucktraval AG  1.7.2017 - 31.12.2017 € 6.588,48
 **F1:** 0.062 | **Precision:** 1.000 | **Recall:** 0.032  
 
 **Format:** `regex`  
-**Format:** ``  
 **Content:**
 ```
 (?:Finanzamt\s+|FA\s+)(?:Waldviertel|Klosterneuburg)
 ```
-
-**Description:**
-`
-
-`
 
 <details>
 <summary>📊 Detailed Metrics</summary>
@@ -1030,16 +1000,10 @@ Adresse Postfach 260, 1000 Wien gesendet worden.
 **F1:** 0.029 | **Precision:** 1.000 | **Recall:** 0.015  
 
 **Format:** `regex`  
-**Format:** ``  
 **Content:**
 ```
 Raiffeisenbank\s+[A-Z][a-zA-ZäöüÄÖÜß\-]+(?:\s+[A-Z][a-zA-ZäöüÄÖÜß\-]+)*(?:\s+Bankstelle\s+[A-Z][a-zA-ZäöüÄÖÜß\-]+)?
 ```
-
-**Description:**
-`
-
-`
 
 <details>
 <summary>📊 Detailed Metrics</summary>
@@ -1148,16 +1112,10 @@ erfolgt sein soll.
 **F1:** 0.029 | **Precision:** 0.857 | **Recall:** 0.015  
 
 **Format:** `regex`  
-**Format:** ``  
 **Content:**
 ```
 (?:Bundesfinanzgericht|(?<!Bezirksgericht\s)Bezirksgericht)\s+[A-Z][a-z]+(?:\s+[A-Z][a-z]+)*
 ```
-
-**Description:**
-`
-
-`
 
 <details>
 <summary>📊 Detailed Metrics</summary>
@@ -1292,16 +1250,10 @@ Das Bundesfinanzgericht` (organisation)
 **F1:** 0.010 | **Precision:** 1.000 | **Recall:** 0.005  
 
 **Format:** `regex`  
-**Format:** ``  
 **Content:**
 ```
 Finanzen\s+Tradonnex
 ```
-
-**Description:**
-`
-
-`
 
 <details>
 <summary>📊 Detailed Metrics</summary>
@@ -1355,16 +1307,10 @@ Verwaltungsgerichtshof.
 **F1:** 0.005 | **Precision:** 1.000 | **Recall:** 0.002  
 
 **Format:** `regex`  
-**Format:** ``  
 **Content:**
 ```
 FA\s+Niederösterreich\s+Mitte
 ```
-
-**Description:**
-`
-
-`
 
 <details>
 <summary>📊 Detailed Metrics</summary>
@@ -1411,16 +1357,10 @@ I. Die Beschwerde wird gemäß § 279 BAO als unbegründet abgewiesen.
 **F1:** 0.005 | **Precision:** 1.000 | **Recall:** 0.002  
 
 **Format:** `regex`  
-**Format:** ``  
 **Content:**
 ```
 DLCG\s+Bildung
 ```
-
-**Description:**
-`
-
-`
 
 <details>
 <summary>📊 Detailed Metrics</summary>
@@ -1460,16 +1400,10 @@ Informationen" verschafft.
 **F1:** 0.005 | **Precision:** 0.500 | **Recall:** 0.002  
 
 **Format:** `regex`  
-**Format:** ``  
 **Content:**
 ```
 (?<![a-zA-ZäöüÄÖÜß\s])(?<!Der\s)(?<!Die\s)(?<!Das\s)(?<!Den\s)(?<!der\s)(?<!die\s)(?<!das\s)(?<!den\s)([A-Z][a-zA-ZäöüÄÖÜß\s\&\-]+\s*\+\s*[A-Z][a-zA-ZäöüÄÖÜß\s\&\-]+(?:\s+(?:GmbH|KG|AG|Versicherung|Handel|Logistik|Solutions|Verlag|Dienstleistungen|Cloud)?))\b
 ```
-
-**Description:**
-`
-
-`
 
 <details>
 <summary>📊 Detailed Metrics</summary>
@@ -1526,16 +1460,10 @@ für Kimberly Schindlmayer  darstellt.
 **F1:** 0.005 | **Precision:** 0.077 | **Recall:** 0.002  
 
 **Format:** `regex`  
-**Format:** ``  
 **Content:**
 ```
 (?<![a-zA-ZäöüÄÖÜß\s])(?<!Der\s)(?<!Die\s)(?<!Das\s)(?<!Den\s)(?<!der\s)(?<!die\s)(?<!das\s)(?<!den\s)(?<![bei\s])(?<![von\s])(?<![für\s])(?<![in\s])(?<![an\s])(?<![auf\s])(?<![mit\s])(?<![zur\s])(?<![zum\s])([A-Z][a-zA-ZäöüÄÖÜß\s\-]+(?:\s+[A-Z][a-zA-ZäöüÄÖÜß\s\-]+)*\s+AG)\b
 ```
-
-**Description:**
-`
-
-`
 
 <details>
 <summary>📊 Detailed Metrics</summary>
@@ -1682,16 +1610,10 @@ bezeichnet und es erfolgt dabei eine ausdrückliche Bezugnahme auf § 880a 2.
 **F1:** 0.000 | **Precision:** 0.000 | **Recall:** 0.000  
 
 **Format:** `regex`  
-**Format:** ``  
 **Content:**
 ```
 Olivier\s+u\.\s+Bartha\s+Recycling
 ```
-
-**Description:**
-`
-
-`
 
 <details>
 <summary>📊 Detailed Metrics</summary>
@@ -1709,16 +1631,10 @@ Olivier\s+u\.\s+Bartha\s+Recycling
 **F1:** 0.000 | **Precision:** 0.000 | **Recall:** 0.000  
 
 **Format:** `regex`  
-**Format:** ``  
 **Content:**
 ```
 (?<![a-zA-ZäöüÄÖÜß\s])(?<!Der\s)(?<!Die\s)(?<!Das\s)(?<!Den\s)(?<!der\s)(?<!die\s)(?<!das\s)(?<!den\s)(?<![bei\s])(?<![von\s])(?<![für\s])(?<![in\s])(?<![an\s])(?<![auf\s])(?<![mit\s])(?<![zur\s])(?<![zum\s])([A-Z][a-zA-ZäöüÄÖÜß\s\-]+(?:\s+[A-Z][a-zA-ZäöüÄÖÜß\s\-]+)*\s+GMBH)\b
 ```
-
-**Description:**
-`
-
-`
 
 <details>
 <summary>📊 Detailed Metrics</summary>
@@ -1840,16 +1756,10 @@ MA 6 gehalten.
 **F1:** 0.000 | **Precision:** 0.000 | **Recall:** 0.000  
 
 **Format:** `regex`  
-**Format:** ``  
 **Content:**
 ```
 (?<![a-zA-ZäöüÄÖÜß\s])(?<!Der\s)(?<!Die\s)(?<!Das\s)(?<!Den\s)(?<!der\s)(?<!die\s)(?<!das\s)(?<!den\s)(?<![bei\s])(?<![von\s])(?<![für\s])(?<![in\s])(?<![an\s])(?<![auf\s])(?<![mit\s])(?<![zur\s])(?<![zum\s])([A-Z][a-zA-ZäöüÄÖÜß\s\-]+(?:\s+[A-Z][a-zA-ZäöüÄÖÜß\s\-]+)*\s+KG)\b
 ```
-
-**Description:**
-`
-
-`
 
 <details>
 <summary>📊 Detailed Metrics</summary>
@@ -1967,16 +1877,10 @@ Sowohl der am 25. Mai 2016 erlassene Feststellungsbescheid als auch die am 22. D
 **F1:** 0.000 | **Precision:** 0.000 | **Recall:** 0.000  
 
 **Format:** `regex`  
-**Format:** ``  
 **Content:**
 ```
 Süd\s+Sudwil
 ```
-
-**Description:**
-`
-
-`
 
 <details>
 <summary>📊 Detailed Metrics</summary>
@@ -1994,16 +1898,10 @@ Süd\s+Sudwil
 **F1:** 0.000 | **Precision:** 0.000 | **Recall:** 0.000  
 
 **Format:** `regex`  
-**Format:** ``  
 **Content:**
 ```
 Nord\s+Willemtri\s+KG
 ```
-
-**Description:**
-`
-
-`
 
 <details>
 <summary>📊 Detailed Metrics</summary>
