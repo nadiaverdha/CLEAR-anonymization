@@ -1,6 +1,6 @@
 # Rule Evaluation Report — Qwen/Qwen3.5-35B-A3B
 
-Generated on: 2026-03-31T18:50:13.296887
+Generated on: 2026-04-01T08:02:26.345123
 
 ### Legend
 🟢 Strong (F1 ≥ 0.8)  
@@ -18,7 +18,7 @@ Generated on: 2026-03-31T18:50:13.296887
 | Test ratio | 0.30 |
 | Shots per class | None |
 | Training examples | 700 |
-| Test examples | 161 |
+| Test examples | 1635 |
 | Model | Qwen/Qwen3.5-35B-A3B |
 | Max rules | 10 |
 | Max samples in prompt | 50 |
@@ -36,7 +36,7 @@ Generated on: 2026-03-31T18:50:13.296887
 | Metric | Value |
 |--------|-------|
 | Accuracy (exact match) | 93.0% |
-| Coverage | 232.9% (375/161 got a label) |
+| Coverage | 22.9% (375/1635 got a label) |
 | Micro Precision | 0.819 |
 | Micro Recall | 0.758 |
 | Micro F1 | 0.787 |

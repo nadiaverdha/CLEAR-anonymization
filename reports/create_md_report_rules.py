@@ -332,7 +332,7 @@ def main():
 
     append_overall_metrics(
         md_path=md_path,
-        test_size=config.get("test_size", 0),
+        test_size=len(test_dataset.examples),
         test_dataset=test_dataset,
         rules=rules,
         chef=chef,
@@ -368,12 +368,6 @@ def main():
     )
     print(f"Report saved to {md_path}")
 
-    total_org = sum(
-        1
-        for ex in test_dataset.examples
-        for e in ex.expected_output.get("entities", [])
-        if e.get("type") == "organisation"
-    )
     import shutil
 
     shutil.rmtree(storage_dir, ignore_errors=True)
