@@ -1,6 +1,6 @@
 # Rule Evaluation Report — Qwen/Qwen3.5-35B-A3B
 
-Generated on: 2026-04-01T09:19:00.662188
+Generated on: 2026-04-01T09:43:35.360859
 
 ---
 
@@ -31,7 +31,7 @@ Generated on: 2026-04-01T09:19:00.662188
 | Metric | Value |
 |--------|-------|
 | Accuracy (exact match) | 93.0% |
-| Coverage | 22.9% (375/1635 got a label) |
+| No. of entities predicted | 37500.0% |
 | Micro Precision | 0.819 |
 | Micro Recall | 0.758 |
 | Micro F1 | 0.787 |
@@ -776,8 +776,8 @@ finden sich Hinweise darauf, dass die Gartgart Dienstleistungen GMBH  den Vorlag
 
 | Prediction | Gold |
 |------------|------|
-| `Kraftver-Gastronomie GMBH` | `Kraftver-Gastronomie GMBH` |
 | `Gartgart Dienstleistungen GMBH` | `Gartgart Dienstleistungen GMBH` |
+| `Kraftver-Gastronomie GMBH` | `Kraftver-Gastronomie GMBH` |
 
 **Example 3**
 
