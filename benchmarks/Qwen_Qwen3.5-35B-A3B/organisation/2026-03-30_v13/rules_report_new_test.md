@@ -1,11 +1,6 @@
 # Rule Evaluation Report — Qwen/Qwen3.5-35B-A3B
 
-Generated on: 2026-04-01T08:02:26.345123
-
-### Legend
-🟢 Strong (F1 ≥ 0.8)  
-🟡 Medium (0.5 ≤ F1 < 0.8)  
-🔴 Weak (F1 < 0.5)
+Generated on: 2026-04-01T09:01:13.420923
 
 ---
 
@@ -46,8 +41,8 @@ Generated on: 2026-04-01T08:02:26.345123
 
 ## 📊 Summary
 
-| Rule | Score | F1 | Precision | Recall | Matches |
-|------|-------|----|----------|--------|--------|
+| Rule | F1 | Precision | Recall | Matches |
+|------|----|----------|--------|--------|
 | `specific_legal_entities` | 🟢 Strong | 0.618 | 0.954 | 0.457 | 194 |
 | `tax_authority_complex` | 🟢 Strong | 0.523 | 0.903 | 0.368 | 165 |
 | `tax_authority` | 🟢 Strong | 0.391 | 0.943 | 0.247 | 106 |
@@ -148,8 +143,8 @@ Seite 2 von 8
 
 | Prediction | Gold |
 |------------|------|
-| `Blazickova & Hepprich Energie AG` | `Blazickova & Hepprich Energie AG` |
 | `Berend Energie AG` | `Berend Energie AG` |
+| `Blazickova & Hepprich Energie AG` | `Blazickova & Hepprich Energie AG` |
 
 **Example 4**
 
