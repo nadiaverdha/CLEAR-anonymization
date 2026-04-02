@@ -4,6 +4,7 @@ import os
 import random
 import time
 import uuid
+import yaml
 from collections import defaultdict
 from datetime import datetime
 from pathlib import Path
@@ -125,7 +126,6 @@ def run_benchmark(args):
         out_name = out_name.with_stem(out_name.stem + "_refined")
 
     log_path = (output_dir / out_name).with_suffix(".training.jsonl")
-
     logger = TrainingDataLogger(
         str(log_path),
         run_metadata={
@@ -136,6 +136,14 @@ def run_benchmark(args):
         },
     )
     print(f"  Training log: {log_path}")
+
+    config_path = output_dir / "config.yaml"
+    config_dict = {
+        k.replace("_", "-"): v for k, v in config_dict.items() if k not in ("config",)
+    }
+    with open(config_path, "w") as f:
+        yaml.dump(config_dict, f, default_flow_style=False, allow_unicode=True)
+    print(f"  Config saved to {config_path}")
 
     coordinator = None
     if args.agentic:
@@ -726,6 +734,19 @@ def main():
         help="Skip LLM synthesis and use the rules from --rules-json directly (go straight to refinement)",
     )
 
+    # if config file is provided, load it and set defaults accordingly
+    pre = argparse.ArgumentParser(add_help=False)
+    pre.add_argument(
+        "--config", type=str, help="Path to YAML config file", default=None
+    )
+    pre_args, _ = pre.parse_known_args()
+    if pre_args.config:
+        with open(pre_args.config) as f:
+            config_args = yaml.safe_load(f)
+        config_args = {k.replace("-", "_"): v for k, v in config_args.items()}
+        parser.set_defaults(**config_args)
+
+    # if no arguments are provided, use arguments from provided in CLI, otherwise defaults
     args = parser.parse_args()
     run_benchmark(args)
 
