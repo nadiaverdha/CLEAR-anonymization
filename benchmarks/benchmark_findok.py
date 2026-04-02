@@ -4,12 +4,12 @@ import os
 import random
 import time
 import uuid
-import yaml
 from collections import defaultdict
 from datetime import datetime
 from pathlib import Path
 from typing import List, Optional
 
+import yaml
 from openai import OpenAI
 from pydantic import BaseModel, Field, field_validator
 from rulechef import RuleChef
