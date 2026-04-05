@@ -139,7 +139,7 @@ def run_benchmark(args):
 
     config_path = output_dir / "config.yaml"
     config_dict = {
-        k.replace("_", "-"): v for k, v in config_dict.items() if k not in ("config",)
+        k.replace("_", "-"): v for k, v in vars(args).items() if k not in ("config",)
     }
     with open(config_path, "w") as f:
         yaml.dump(config_dict, f, default_flow_style=False, allow_unicode=True)
@@ -391,8 +391,8 @@ def run_benchmark(args):
         test_dataset.examples.append(
             Example(
                 id=str(uuid.uuid4())[:8],
-                input={"text": ex["text"]},
-                expected_output={"entities": ex["entities"]},
+                input={"text": ex.text},
+                expected_output={"entities": ex.labels},
                 source="benchmark",
             )
         )
@@ -418,7 +418,7 @@ def run_benchmark(args):
     print("  Results:")
     print(f"    Accuracy (exact match):   {test_eval.exact_match:.1%}")
     print(
-        f"    Coverage:                 {coverage:.1%} ({test_eval.total_tp + test_eval.total_fp}/{len(test_data)} got a label)"
+        f"    Coverage:                 {coverage:.1%} ({test_eval.total_tp + test_eval.total_fp}/{len(test_all)} got a label)"
     )
     print(f"    Micro Precision:          {test_eval.micro_precision:.1%}")
     print(f"    Micro Recall:             {test_eval.micro_recall:.1%}")
@@ -508,13 +508,13 @@ def run_benchmark(args):
 
         append_overall_metrics(
             md_path=md_path,
-            test_data=len(test_all),
+            test_size=len(test_all),
             test_dataset=test_dataset,
             rules=rules,
             chef=chef,
             task=task,
             shots=args.shots,
-            train_sample=len(train_sample),
+            train_size=len(train_sample),
             model=args.model,
             max_rules=args.max_rules,
             max_samples=args.max_samples,
@@ -529,6 +529,7 @@ def run_benchmark(args):
             sampling_strategy=args.sampling_strategy,
             pool_size=args.pool_size,
             train_ratio=args.train_ratio,
+            test_ratio=1.0 - args.train_ratio,
         )
 
         rule_metrics = evaluate_rules_individually(
@@ -568,7 +569,7 @@ def main():
     parser.add_argument(
         "--pool-size",
         type=int,
-        default=1000,
+        default=None,
         help="Cap total examples drawn from train file (train + eval combined)",
     )
     parser.add_argument(
@@ -732,6 +733,9 @@ def main():
         "--skip-synthesis",
         action="store_true",
         help="Skip LLM synthesis and use the rules from --rules-json directly (go straight to refinement)",
+    )
+    parser.add_argument(
+        "--config", type=str, help="Path to YAML config file", default=None
     )
 
     # if config file is provided, load it and set defaults accordingly

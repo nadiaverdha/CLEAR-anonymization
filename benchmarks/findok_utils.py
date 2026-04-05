@@ -246,6 +246,10 @@ def save_results(
     audit_interval,
     windows,
     sampling_strategy,
+    train_ratio,
+    pool_size,
+    batch_size,
+    refine_per_batch,
 ):
     results = {
         "config": {
@@ -266,6 +270,10 @@ def save_results(
             "audit_interval": audit_interval,
             "windows": windows,
             "sampling_strategy": sampling_strategy,
+            "train_ratio": train_ratio,
+            "pool_size": pool_size,
+            "batch_size": batch_size,
+            "refine_per_batch": refine_per_batch,
         },
         "results": {
             "accuracy": test_eval.exact_match,
