@@ -69,11 +69,14 @@ def run_benchmark(args):
     )
 
     num_classes = len(selected_classes)
+    train_annotations = sum(len(ex["entities"]) for ex in train_sample)
+    eval_annotations = sum(len(ex["entities"]) for ex in train_remaining)
+    test_annotations = sum(len(ex.labels) for ex in test_all)
     print(f"Pool size:    {args.pool_size or 'all'}")
     print(f"Selected {num_classes} classes: {', '.join(sorted(selected_classes))}")
-    print(f"Train ({args.train_ratio:.0%}):    {len(train_sample)} examples")
-    print(f"Eval  ({1 - args.train_ratio:.0%}):    {len(train_remaining)} examples")
-    print(f"Test:  {len(test_all)} examples")
+    print(f"Train annotations: {train_annotations}")
+    print(f"Eval annotations: {eval_annotations}")
+    print(f"Test annotations: {test_annotations}")
     print(f"Counter Examples: {len(counter_examples)}")
 
     # 3. Configure rulechef
@@ -109,7 +112,7 @@ def run_benchmark(args):
     if args.rules_json:
         output_dir = Path(args.rules_json).parent
     else:
-        base_dir = Path(f"benchmarks/{model_name}") / selected_classes_str
+        base_dir = Path(f"benchmarks/findok/{model_name}") / selected_classes_str
         base_name = date_str
 
         output_dir = base_dir / base_name
@@ -135,7 +138,7 @@ def run_benchmark(args):
             "num_classes": num_classes,
         },
     )
-    print(f"  Training log: {log_path}")
+    print(f"Training log: {log_path}")
 
     config_path = output_dir / "config.yaml"
     config_dict = {
@@ -143,7 +146,7 @@ def run_benchmark(args):
     }
     with open(config_path, "w") as f:
         yaml.dump(config_dict, f, default_flow_style=False, allow_unicode=True)
-    print(f"  Config saved to {config_path}")
+    print(f"Config saved to {config_path}")
 
     coordinator = None
     if args.agentic:
@@ -158,12 +161,13 @@ def run_benchmark(args):
             critic_interval=args.critic_interval,
             verbose=True,
         )
-        print("  Agentic coordinator: enabled")
+        print("Agentic coordinator: enabled")
 
     if args.synthesis_strategy != "bulk":
-        train_for_chef = train_all + counter_examples
+        train_for_chef = train_sample + counter_examples
+        random.Random(args.seed).shuffle(train_for_chef)
     else:
-        train_for_chef = train_all
+        train_for_chef = train_sample
 
     chef = RuleChef(
         task=task,
@@ -286,6 +290,7 @@ def run_benchmark(args):
                         print(f"  Rule not found: {rule_name} — treating as task-level")
                         level = "task"
                 add_feedback(eval_dataset, text, level, target_id)
+                chef.add_feedback(eval_dataset, text, level, target_id)
 
         if args.skip_synthesis:
             print("\nSkipping synthesis — using loaded rules directly.")
@@ -308,8 +313,8 @@ def run_benchmark(args):
         print(f"  max_samples={args.max_samples}")
         print(f"  max_iterations={args.max_iterations}")
         batches = [
-            train_sample[i : i + args.batch_size]
-            for i in range(0, len(train_sample), args.batch_size)
+            train_for_chef[i : i + args.batch_size]
+            for i in range(0, len(train_for_chef), args.batch_size)
         ]
         t0 = time.time()
         result = None
@@ -471,6 +476,7 @@ def run_benchmark(args):
             args.max_iterations,
             args.seed,
             train_sample,
+            train_remaining,
             test_all,
             args.no_grex,
             args.agentic,
@@ -490,6 +496,10 @@ def run_benchmark(args):
             args.pool_size,
             args.batch_size,
             args.refine_per_batch,
+            args.synthesis_strategy,
+            train_annotations,
+            eval_annotations,
+            test_annotations,
         )
 
     # 12. Generate per-rule Markdown report

@@ -231,6 +231,7 @@ def save_results(
     max_iterations,
     seed,
     train_sample,
+    train_remaining,
     test_data,
     no_grex,
     agentic,
@@ -250,6 +251,10 @@ def save_results(
     pool_size,
     batch_size,
     refine_per_batch,
+    synthesis_strategy,
+    train_annotations,
+    eval_annotations,
+    test_annotations,
 ):
     results = {
         "config": {
@@ -261,7 +266,11 @@ def save_results(
             "max_iterations": max_iterations,
             "seed": seed,
             "train_size": len(train_sample),
+            "eval_size": len(train_remaining),
             "test_size": len(test_data),
+            "train_annotations": train_annotations,
+            "eval_annotations": eval_annotations,
+            "test_annotations": test_annotations,
             "use_grex": not no_grex,
             "agentic": agentic,
             "enable_critic": enable_critic,
@@ -274,6 +283,7 @@ def save_results(
             "pool_size": pool_size,
             "batch_size": batch_size,
             "refine_per_batch": refine_per_batch,
+            "synthesis_strategy": synthesis_strategy,
         },
         "results": {
             "accuracy": test_eval.exact_match,
