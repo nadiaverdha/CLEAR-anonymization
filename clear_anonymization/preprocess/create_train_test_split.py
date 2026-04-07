@@ -71,7 +71,7 @@ def main():
         description=" Named Entity Recognition Benchmark for RuleChef"
     )
     parser.add_argument(
-        "--train-dir",
+        "--train-file",
         type=str,
         help="Path to the train data (JSON format)",
     )
@@ -96,7 +96,7 @@ def main():
 
     args = parser.parse_args()
 
-    train_data = NERData.from_json(json.loads(Path(args.train_dir).read_text()))
+    train_data = NERData.from_json(json.loads(Path(args.train_file).read_text()))
     train_split, test_split = split_test(
         train_data, test_ratio=args.test_ratio, seed=args.seed
     )
