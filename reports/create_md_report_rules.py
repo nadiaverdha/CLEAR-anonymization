@@ -33,21 +33,21 @@ def classify_rule(metric):
         return "🔴 Weak"
 
 
-def write_summary_table(f, metrics_list):
-    f.write("## 📊 Summary\n\n")
-    f.write("| Rule | Score | F1 | Precision | Recall | Matches |\n")
-    f.write("|------|-------|----|----------|--------|--------|\n")
+def write_summary_table(file_path: Path, metrics_list):
+    with file_path.open("a", encoding="utf-8") as f:
+        f.write("<details>\n<summary>📊 Summary</summary>\n\n")
+        f.write("| Rule | F1 | Precision | Recall | Matches |\n")
+        f.write("|------|----|----------|--------|--------|\n")
 
-    sorted_metrics = sorted(metrics_list, key=lambda m: m.f1, reverse=True)
+        sorted_metrics = sorted(metrics_list, key=lambda m: m.f1, reverse=True)
 
-    for m in sorted_metrics:
-        score = classify_rule(m)
-        f.write(
-            f"| `{m.rule_name}` | {score} | {m.f1:.3f} | "
-            f"{m.precision:.3f} | {m.recall:.3f} | {m.matches} |\n"
-        )
+        for m in sorted_metrics:
+            f.write(
+                f"| `{m.rule_name}` |{m.f1:.1%} | "
+                f"{m.precision:.1%} | {m.recall:.1%} | {m.matches} |\n"
+            )
 
-    f.write("\n---\n\n")
+        f.write("\n</details>\n\n---\n\n")
 
 
 def create_md_report(file_path: Path, title="Rule Evaluation Report"):
@@ -55,10 +55,10 @@ def create_md_report(file_path: Path, title="Rule Evaluation Report"):
     with file_path.open("w", encoding="utf-8") as f:
         f.write(f"# {title}\n\n")
         f.write(f"Generated on: {datetime.now().isoformat()}\n\n")
-        f.write("### Legend\n")
-        f.write("🟢 Strong (F1 ≥ 0.8)  \n")
-        f.write("🟡 Medium (0.5 ≤ F1 < 0.8)  \n")
-        f.write("🔴 Weak (F1 < 0.5)\n\n")
+        # f.write("### Legend\n")
+        # f.write("🟢 Strong (F1 ≥ 0.8)  \n")
+        # f.write("🟡 Medium (0.5 ≤ F1 < 0.8)  \n")
+        # f.write("🔴 Weak (F1 < 0.5)\n\n")
 
         f.write("---\n\n")
 
@@ -72,6 +72,10 @@ def append_overall_metrics(
     task,
     shots,
     train_size,
+    eval_size,
+    train_annotations,
+    eval_annotations,
+    test_annotations,
     model,
     max_rules,
     max_samples,
@@ -95,20 +99,27 @@ def append_overall_metrics(
         chef.learner._apply_rules,
     )
     # Coverage = what % of test queries got ANY prediction (TP + FP) / total
-    coverage = (
-        (test_eval.total_tp + test_eval.total_fp) / test_size if test_size > 0 else 0
-    )
+    coverage = test_eval.total_tp + test_eval.total_fp
+    # / test_size if test_size > 0 else 0
+
     with md_path.open("a", encoding="utf-8") as f:
         # Configuration table
-        f.write("### Configuration\n\n")
+
+        f.write("<details>\n<summary> Configuration</summary>\n\n")
+
         f.write("| Parameter | Value |\n")
         f.write("|-----------|-------|\n")
         f.write(f"| Pool size | {pool_size} |\n")
         f.write(f"| Train ratio | {train_ratio:.2f} |\n")
-        f.write(f"| Test ratio | {test_ratio:.2f} |\n")
+        f.write(f"| Validation ratio | {test_ratio:.2f} |\n")
         f.write(f"| Shots per class | {shots} |\n")
         f.write(f"| Training examples | {train_size} |\n")
+        f.write(f"| Validation examples | {eval_size} |\n")
+
         f.write(f"| Test examples | {test_size} |\n")
+        f.write(f"| Train annotations | {train_annotations} |\n")
+        f.write(f"| Validation annotations | {eval_annotations} |\n")
+        f.write(f"| Test annotations | {test_annotations} |\n")
         f.write(f"| Model | {model} |\n")
         f.write(f"| Max rules | {max_rules} |\n")
         f.write(f"| Max samples in prompt | {max_samples} |\n")
@@ -121,20 +132,128 @@ def append_overall_metrics(
         f.write(f"| Audit Interval | {audit_interval}|\n")
         f.write(f"| Use GREX | {use_grex} |\n\n")
 
+        f.write("</details>\n\n---\n\n")
+
         # Results table
-        f.write("### Results\n\n")
+        f.write("<details>\n<summary> Results</summary>\n\n")
+
         f.write("| Metric | Value |\n")
         f.write("|--------|-------|\n")
         f.write(f"| Accuracy (exact match) | {test_eval.exact_match:.1%} |\n")
-        f.write(
-            f"| Coverage | {coverage:.1%} ({test_eval.total_tp + test_eval.total_fp}/{test_size} got a label) |\n"
-        )
-        f.write(f"| Micro Precision | {test_eval.micro_precision:.3f} |\n")
-        f.write(f"| Micro Recall | {test_eval.micro_recall:.3f} |\n")
-        f.write(f"| Micro F1 | {test_eval.micro_f1:.3f} |\n")
-        f.write(f"| Macro F1 | {test_eval.macro_f1:.3f} |\n\n")
+        f.write(f"| No. of entities predicted | {coverage} |\n")
+        f.write(f"| True Positives | {test_eval.total_tp} |\n")
+        f.write(f"| False Positives | {test_eval.total_fp} |\n")
+        f.write(f"| Micro Precision | {test_eval.micro_precision:.1%} |\n")
+        f.write(f"| Micro Recall | {test_eval.micro_recall:.1%} |\n")
+        f.write(f"| Micro F1 | {test_eval.micro_f1:.1%} |\n")
+        f.write(f"| Macro F1 | {test_eval.macro_f1:.1%} |\n\n")
 
-        f.write("---\n\n")
+        f.write("</details>\n\n---\n\n")
+
+
+def write_rule_detail(f, metric, rules_by_id, top_n_examples=5):
+    f.write(f"## `{metric.rule_name}`\n\n")
+    f.write(
+        f"**F1:** {metric.f1:.3f} | "
+        f"**Precision:** {metric.precision:.3f} | "
+        f"**Recall:** {metric.recall:.3f}  \n\n"
+    )
+    rule = rules_by_id.get(metric.rule_id)
+    if rule:
+        f.write(f"**Format:** `{rule.format.value}`  \n")
+        f.write(f"**Content:**\n```\n{rule.content}\n```\n\n")
+
+    f.write("<details>\n<summary>📊 Detailed Metrics</summary>\n\n")
+    f.write("| Precision | Recall | F1 | Matches | TP | FP \n")
+    f.write("|-----------|--------|----|---------|----|----\n")
+    f.write(
+        f"| {metric.precision:.3f} | {metric.recall:.3f} | {metric.f1:.3f} "
+        f"| {metric.matches} | {metric.true_positives} | {metric.false_positives} \n\n"
+    )
+
+    if metric.per_class:
+        f.write("**Per-Class Breakdown**\n\n")
+        f.write("| Class | TP | FP | FN |\n")
+        f.write("|-------|----|----|----|\n")
+        for cls in metric.per_class:
+            f.write(f"| `{cls.label}` | {cls.tp} | {cls.fp} | {cls.fn} |\n")
+        f.write("\n")
+
+    f.write("</details>\n\n")
+
+    if metric.sample_matches:
+        hits = [s for s in metric.sample_matches if s.tp > 0]
+        misses = [s for s in metric.sample_matches if len(s.missed) > 0]
+        f_p = [s for s in metric.sample_matches if s.fp > 0]
+
+        def write_block(title, samples, render_fn):
+            if not samples:
+                return
+            f.write(
+                f"<details>\n<summary>{title} ({min(len(samples), top_n_examples)})</summary>\n\n"
+            )
+            for i, sample in enumerate(samples[:top_n_examples], 1):
+                render_fn(f, i, sample)
+            f.write("</details>\n\n")
+
+        def render_hit(f, i, sample):
+            f.write(f"**Example {i}**\n\n")
+            f.write(f"```\n{sample.input['text']}\n```\n\n")
+            pred_texts = {e["text"] for e in sample.rule_output}
+            gold_texts = {e["text"] for e in sample.expected}
+            f.write("| Prediction | Gold |\n")
+            f.write("|------------|------|\n")
+            for t in pred_texts & gold_texts:
+                f.write(f"| `{t}` | `{t}` |\n")
+            f.write("\n")
+
+        def render_miss(f, i, sample):
+            f.write(f"```\n{sample.input['text']}\n```\n\n")
+            pred_texts = {e["text"] for e in sample.rule_output}
+            for e in sample.missed:
+                if e["text"] not in pred_texts:
+                    f.write(f"- Missed: `{e['text']}` ({e.get('type', '')})\n\n")
+            f.write("\n")
+
+        def render_f_p(f, i, sample):
+            f.write(f"```\n{sample.input['text']}\n```\n\n")
+            gold_texts = {e["text"] for e in sample.expected}
+            for e in sample.rule_output:
+                if e["text"] not in gold_texts:
+                    f.write(f"- FP: `{e['text']}` ({e.get('type', '')})\n\n")
+            f.write("\n")
+
+        write_block("✅ Worked", hits, render_hit)
+        write_block("❌ Missed", misses, render_miss)
+        write_block("⚠️ False Positives", f_p, render_f_p)
+
+    f.write("---\n\n")
+
+
+def append_influential_rules(md_path, metrics_list, rules, top_n=5):
+    with md_path.open("a", encoding="utf-8") as f:
+        rules_by_id = {r.id: r for r in rules} if rules else {}
+        with_matches = [m for m in metrics_list if m.matches > 0]
+
+        best = sorted(with_matches, key=lambda m: m.precision, reverse=True)[:top_n]
+        best_ids = {m.rule_id for m in best}
+        worst = [
+            m
+            for m in sorted(with_matches, key=lambda m: m.precision)
+            if m.rule_id not in best_ids
+        ][:top_n]
+
+        f.write("<details>\n<summary>🏆 Most Precise Rules</summary>\n\n")
+        print(f"Best rules: {[m.rule_name for m in best]}")
+        for m in best:
+            write_rule_detail(f, m, rules_by_id)
+        f.write("</details>\n\n---\n\n")
+
+        f.write("<details>\n<summary>💣 Least Precise Rules</summary>\n\n")
+        print(f"Worst rules: {[m.rule_name for m in worst]}")
+        for m in worst:
+            write_rule_detail(f, m, rules_by_id)
+        f.write("</details>\n\n---\n\n")
 
 
 def append_rule_metrics(
@@ -145,103 +264,13 @@ def append_rule_metrics(
     classes="organisation",
 ):
     with file_path.open("a", encoding="utf-8") as f:
-        write_summary_table(f, metrics_list)
-
+        f.write("<details>\n<summary>📋 All Rules</summary>\n\n")
         metrics_list = sorted(metrics_list, key=lambda m: m.f1, reverse=True)
-
         rules_by_id = {r.id: r for r in rules} if rules else {}
 
         for metric in metrics_list:
-            score = classify_rule(metric)
-            f.write(f"## `{metric.rule_name}`\n\n")
-            f.write(f"{score} rule\n\n")
-
-            f.write(
-                f"**F1:** {metric.f1:.3f} | "
-                f"**Precision:** {metric.precision:.3f} | "
-                f"**Recall:** {metric.recall:.3f}  \n\n"
-            )
-
-            rule = rules_by_id.get(metric.rule_id)
-            if rule:
-                f.write(f"**Format:** `{rule.format.value}`  \n")
-                f.write(f"**Format:** `{rule.description}`  \n")
-                f.write(f"**Content:**\n```\n{rule.content}\n```\n\n")
-                f.write(f"**Description:**\n`\n{rule.description}\n`\n\n")
-
-            f.write("<details>\n<summary>📊 Detailed Metrics</summary>\n\n")
-
-            f.write("| Precision | Recall | F1 | Matches | TP | FP | Coverage |\n")
-            f.write("|-----------|--------|----|---------|----|----|----------|\n")
-            f.write(
-                f"| {metric.precision:.3f} | {metric.recall:.3f} | {metric.f1:.3f} "
-                f"| {metric.matches} | {metric.true_positives} | {metric.false_positives} "
-                f"| {metric.covered_expected}/{metric.total_expected} |\n\n"
-            )
-
-            if metric.per_class:
-                f.write("**Per-Class Breakdown**\n\n")
-                f.write("| Class | TP | FP | FN |\n")
-                f.write("|-------|----|----|----|\n")
-                for cls in metric.per_class:
-                    f.write(f"| `{cls.label}` | {cls.tp} | {cls.fp} | {cls.fn} |\n")
-                f.write("\n")
-
-            f.write("</details>\n\n")
-
-            if metric.sample_matches:
-                hits = [s for s in metric.sample_matches if s.tp > 0]
-                misses = [s for s in metric.sample_matches if len(s.missed) > 0]
-
-                f_p = [s for s in metric.sample_matches if s.fp > 0]
-
-                def write_block(title, samples, render_fn):
-                    if not samples:
-                        return
-
-                    f.write(
-                        f"<details>\n<summary>{title} ({min(len(samples), top_n_examples)})</summary>\n\n"
-                    )
-
-                    for i, sample in enumerate(samples[:top_n_examples], 1):
-                        render_fn(f, i, sample)
-
-                    f.write("</details>\n\n")
-
-                def render_hit(f, i, sample):
-                    f.write(f"**Example {i}**\n\n")
-                    f.write(f"```\n{sample.input['text']}\n```\n\n")
-                    pred_texts = {e["text"] for e in sample.rule_output}
-                    gold_texts = {e["text"] for e in sample.expected}
-                    f.write("| Prediction | Gold |\n")
-                    f.write("|------------|------|\n")
-                    for t in pred_texts & gold_texts:
-                        f.write(f"| `{t}` | `{t}` |\n")
-                    f.write("\n")
-
-                def render_miss(f, i, sample):
-                    f.write(f"```\n{sample.input['text']}\n```\n\n")
-                    pred_texts = {e["text"] for e in sample.rule_output}
-                    for e in sample.missed:
-                        if e["text"] not in pred_texts:
-                            f.write(
-                                f"- Missed: `{e['text']}` ({e.get('type', '')})\n\n"
-                            )
-                    f.write("\n")
-
-                def render_f_p(f, i, sample):
-                    f.write(f"```\n{sample.input['text']}\n```\n\n")
-                    gold_texts = {e["text"] for e in sample.expected}
-                    for e in sample.rule_output:
-                        if e["text"] not in gold_texts:
-                            f.write(f"- FP: `{e['text']}` ({e.get('type', '')})\n\n")
-                    f.write("\n")
-
-                write_block("✅ Worked", hits, render_hit)
-                write_block("❌ Missed", misses, render_miss)
-                write_block("⚠️ False Positives", f_p, render_f_p)
-
-            f.write("---\n\n")
+            write_rule_detail(f, metric, rules_by_id, top_n_examples)
+        f.write("</details>\n\n---\n\n")
 
 
 def main():
@@ -339,6 +368,10 @@ def main():
         task=task,
         shots=config.get("shots"),
         train_size=config.get("train_size", 0),
+        eval_size=config.get("eval_size", 0),
+        train_annotations=config.get("train_annotations", 0),
+        eval_annotations=config.get("eval_annotations", 0),
+        test_annotations=config.get("test_annotations", 0),
         model=config.get("model", "unknown"),
         max_rules=config.get("max_rules", 0),
         max_samples=config.get("max_samples", 50),
@@ -363,9 +396,15 @@ def main():
         mode="text",
         max_samples=config.get("max_samples", 50),
     )
+
+    write_summary_table(md_path, rule_metrics)
+
+    append_influential_rules(md_path, rule_metrics, rules, top_n=5)
+
     append_rule_metrics(
         md_path, rule_metrics, top_n_examples=5, rules=rules, classes="organisation"
     )
+
     print(f"Report saved to {md_path}")
 
     import shutil
