@@ -33,17 +33,6 @@ from clear_anonymization.utils.utils import *
 
 
 def run_benchmark(args):
-    from openai import OpenAI
-    from rulechef import RuleChef
-    from rulechef.core import (
-        Dataset,
-        Example,
-        RuleFormat,
-        Task,
-        TaskType,
-    )
-    from rulechef.evaluation import evaluate_dataset
-
     # 1. Load data
     print("Loading FinDok dataset...")
     train_all, test_all, entity_names = load_findok(args.train_dir, args.val_dir)
@@ -55,6 +44,7 @@ def run_benchmark(args):
 
     # 2. Few-shot sample (optionally limited to N classes)
     print("Information about what is being used for training/testing:")
+    print(f"Pool size:    {args.pool_size or 'all samples'}")
 
     classes = [c.strip() for c in args.classes.split(",")] if args.classes else None
     train_sample, train_remaining, counter_examples, selected_classes = sample_few_shot(
@@ -72,8 +62,8 @@ def run_benchmark(args):
     train_annotations = sum(len(ex["entities"]) for ex in train_sample)
     eval_annotations = sum(len(ex["entities"]) for ex in train_remaining)
     test_annotations = sum(len(ex.labels) for ex in test_all)
-    print(f"Pool size:    {args.pool_size or 'all'}")
     print(f"Selected {num_classes} classes: {', '.join(sorted(selected_classes))}")
+
     print(f"Train annotations: {train_annotations}")
     print(f"Eval annotations: {eval_annotations}")
     print(f"Test annotations: {test_annotations}")
@@ -505,9 +495,11 @@ def run_benchmark(args):
     # 12. Generate per-rule Markdown report
     if not args.no_mdreport:
         from reports.create_md_report_rules import (
+            append_influential_rules,
             append_overall_metrics,
             append_rule_metrics,
             create_md_report,
+            write_summary_table,
         )
 
         md_path = output_path.with_suffix(".rules_report.md")
@@ -525,6 +517,10 @@ def run_benchmark(args):
             task=task,
             shots=args.shots,
             train_size=len(train_sample),
+            eval_size=len(train_remaining),
+            train_annotations=train_annotations,
+            eval_annotations=eval_annotations,
+            test_annotations=test_annotations,
             model=args.model,
             max_rules=args.max_rules,
             max_samples=args.max_samples,
@@ -541,7 +537,6 @@ def run_benchmark(args):
             train_ratio=args.train_ratio,
             test_ratio=1.0 - args.train_ratio,
         )
-
         rule_metrics = evaluate_rules_individually(
             rules=rules,
             dataset=test_dataset,
@@ -549,6 +544,11 @@ def run_benchmark(args):
             mode="text",
             max_samples=args.max_samples,
         )
+
+        write_summary_table(md_path, rule_metrics)
+
+        append_influential_rules(md_path, rule_metrics, rules, top_n=5)
+
         append_rule_metrics(md_path, rule_metrics, top_n_examples=5, rules=rules)
         print(f"Markdown report saved to {md_path}")
 
