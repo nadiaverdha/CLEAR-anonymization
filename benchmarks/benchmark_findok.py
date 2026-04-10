@@ -2,6 +2,8 @@ import argparse
 import json
 import os
 import random
+import shutil
+import tempfile
 import time
 import uuid
 from collections import defaultdict
@@ -13,6 +15,7 @@ import yaml
 from openai import OpenAI
 from pydantic import BaseModel, Field, field_validator
 from rulechef import RuleChef
+from rulechef.coordinator import AgenticCoordinator
 from rulechef.core import (
     Dataset,
     Example,
@@ -23,8 +26,21 @@ from rulechef.core import (
     TaskType,
 )
 from rulechef.evaluation import evaluate_dataset, evaluate_rules_individually
+from rulechef.training_logger import TrainingDataLogger
 
-from benchmarks.findok_utils import *
+from benchmarks.findok_utils import (
+    BenchmarkRun,
+    add_feedback,
+    build_task,
+    evaluate_test,
+    load_findok,
+    make_oniteration_callback,
+    sample_few_shot,
+    save_results,
+    setup_output_dir,
+    setup_output_paths,
+    setup_rulechef,
+)
 from clear_anonymization.ner_datasets import get_dataset_class_definitions
 from clear_anonymization.ner_datasets.ner_dataset import NERData, NERDataset, NERSample
 from clear_anonymization.utils.utils import *
@@ -33,6 +49,7 @@ from clear_anonymization.utils.utils import *
 
 
 def run_benchmark(args):
+
     # 1. Load data
     print("Loading FinDok dataset...")
     train_all, test_all, entity_names = load_findok(args.train_dir, args.val_dir)
@@ -47,7 +64,7 @@ def run_benchmark(args):
     print(f"Pool size:    {args.pool_size or 'all samples'}")
 
     classes = [c.strip() for c in args.classes.split(",")] if args.classes else None
-    train_sample, train_remaining, counter_examples, selected_classes = sample_few_shot(
+    train_data, eval_data, counter_examples, selected_classes = sample_few_shot(
         train_data=train_all,
         train_ratio=args.train_ratio,
         windows=args.windows,
@@ -59,8 +76,8 @@ def run_benchmark(args):
     )
 
     num_classes = len(selected_classes)
-    train_annotations = sum(len(ex["entities"]) for ex in train_sample)
-    eval_annotations = sum(len(ex["entities"]) for ex in train_remaining)
+    train_annotations = sum(len(ex["entities"]) for ex in train_data)
+    eval_annotations = sum(len(ex["entities"]) for ex in eval_data)
     test_annotations = sum(len(ex.labels) for ex in test_all)
     print(f"Selected {num_classes} classes: {', '.join(sorted(selected_classes))}")
 
@@ -70,110 +87,18 @@ def run_benchmark(args):
     print(f"Counter Examples: {len(counter_examples)}")
 
     # 3. Configure rulechef
-    active_labels = sorted(selected_classes)
-    task = Task(
-        name="German Legal Named Entity Recognition",
-        description=f"Recognize named entities in German legal text. Entities to look for: {', '.join(active_labels)}.",
-        input_schema={"text": "str"},
-        output_schema=NEROutput,
-        type=TaskType.NER,
-        text_field="text",
-    )
+    task = build_task(selected_classes)
 
-    client = OpenAI(
-        api_key=os.environ.get("OPENAI_API_KEY") or "EMPTY",
-        base_url=args.base_url,
-    )
+    storage_dir, output_dir, out_name, logger = setup_output_dir(args, selected_classes)
 
-    import tempfile
-
-    from rulechef.training_logger import TrainingDataLogger
-
-    storage_dir = tempfile.mkdtemp(prefix="rulechef_bench_")
-
-    # Training logger
-
-    model_name = args.model.replace("/", "_")
-    date_str = datetime.now().strftime("%Y-%m-%d")
-    selected_classes_str = "_".join(
-        c.replace(" ", "") for c in selected_classes
-    ).strip()
-
-    if args.rules_json:
-        output_dir = Path(args.rules_json).parent
-    else:
-        base_dir = Path(f"benchmarks/findok/{model_name}") / selected_classes_str
-        base_name = date_str
-
-        output_dir = base_dir / base_name
-        if output_dir.exists():
-            version = 1
-            while (base_dir / f"{base_name}_v{version}").exists():
-                version += 1
-            output_dir = base_dir / f"{base_name}_v{version}"
-
-    output_dir.mkdir(parents=True, exist_ok=True)
-
-    out_name = Path(args.output)
-    if args.rules_json:
-        out_name = out_name.with_stem(out_name.stem + "_refined")
-
-    log_path = (output_dir / out_name).with_suffix(".training.jsonl")
-    logger = TrainingDataLogger(
-        str(log_path),
-        run_metadata={
-            "benchmark": "findok",
-            "model": args.model,
-            "format": args.format,
-            "num_classes": num_classes,
-        },
-    )
-    print(f"Training log: {log_path}")
-
-    config_path = output_dir / "config.yaml"
-    config_dict = {
-        k.replace("_", "-"): v for k, v in vars(args).items() if k not in ("config",)
-    }
-    with open(config_path, "w") as f:
-        yaml.dump(config_dict, f, default_flow_style=False, allow_unicode=True)
-    print(f"Config saved to {config_path}")
-
-    coordinator = None
-    if args.agentic:
-        from rulechef.coordinator import AgenticCoordinator
-
-        coordinator = AgenticCoordinator(
-            client,
-            model=args.model,
-            prune_after_learn=args.enable_prune,
-            audit_interval=args.audit_interval,
-            enable_critic=args.enable_critic,
-            critic_interval=args.critic_interval,
-            verbose=True,
-        )
-        print("Agentic coordinator: enabled")
-
-    if args.synthesis_strategy != "bulk":
-        train_for_chef = train_sample + counter_examples
-        random.Random(args.seed).shuffle(train_for_chef)
-    else:
-        train_for_chef = train_sample
-
-    chef = RuleChef(
-        task=task,
-        client=client,
+    chef, train_for_chef = setup_rulechef(
+        args,
+        task,
+        storage_dir,
+        logger,
+        train_data,
+        counter_examples,
         dataset_name="findok",
-        storage_path=storage_dir,
-        allowed_formats=[RuleFormat.REGEX],
-        model=args.model,
-        use_grex=not args.no_grex,
-        max_rules=args.max_rules,
-        max_samples=args.max_samples,
-        max_counter_examples=args.max_counter_examples,
-        coordinator=coordinator,
-        training_logger=logger,
-        sampling_strategy=args.sampling_strategy,
-        synthesis_strategy=args.synthesis_strategy,
     )
 
     # 4. Add training examples — only in refinement mode (rules-json).
@@ -191,7 +116,7 @@ def run_benchmark(args):
 
     # 5. Build eval Dataset from unused training data (for refinement)
     eval_dataset = Dataset(name="findok_eval", task=task)
-    for ex in train_remaining:
+    for ex in eval_data:
         eval_dataset.examples.append(
             Example(
                 id=str(uuid.uuid4())[:8],
@@ -543,6 +468,7 @@ def run_benchmark(args):
             apply_rules_fn=chef.learner._apply_rules,
             mode="text",
             max_samples=args.max_samples,
+            iou_threshold=0.5,
         )
 
         write_summary_table(md_path, rule_metrics)

@@ -1,31 +1,54 @@
 import argparse
+import datetime
 import json
 import os
 import random
+import tempfile
 import time
 import uuid
 from collections import defaultdict
+from dataclasses import dataclass
 from pathlib import Path
-from typing import List, Optional
+from typing import Any, List, Optional
 
+import yaml
 from openai import OpenAI
 from pydantic import BaseModel, Field, field_validator
 from rulechef import RuleChef
+from rulechef.coordinator import AgenticCoordinator
 from rulechef.core import (
     Dataset,
     Example,
     Feedback,
-    Rule,
     RuleFormat,
     Task,
     TaskType,
 )
 from rulechef.evaluation import evaluate_dataset, evaluate_rules_individually
+from rulechef.training_logger import TrainingDataLogger
 
 from benchmarks.findok_utils import *
 from clear_anonymization.ner_datasets import get_dataset_class_definitions
 from clear_anonymization.ner_datasets.ner_dataset import NERData, NERDataset, NERSample
 from clear_anonymization.utils.utils import *
+
+
+# ── BenchmarkRun dataclass ─────────────────────────────────────────
+@dataclass
+class BenchmarkRun:
+    args: Any
+    train_data: list
+    eval_data: list
+    test_data: list
+    train_annotations: int
+    eval_annotations: int
+    test_annotations: int
+    iteration_metrics: list
+    eval_results: Any
+    t_learn: float
+    t_eval: float
+    rules: list
+
 
 # ── Dataset loading ─────────────────────────────────────────
 
@@ -73,6 +96,116 @@ def build_examples(text, merged_windows):
         ]
         examples.append({"text": snippet, "entities": adjusted_entities})
     return examples
+
+
+def build_task(selected_classes):
+    active_labels = sorted(selected_classes)
+    task = Task(
+        name="German Legal Named Entity Recognition",
+        description=f"Recognize named entities in German legal text. Entities to look for: {', '.join(active_labels)}.",
+        input_schema={"text": "str"},
+        output_schema=NEROutput,
+        type=TaskType.NER,
+        text_field="text",
+    )
+    return task
+
+
+def setup_rulechef(
+    args, task, storage_dir, logger, train_data, counter_examples, dataset_name
+):
+    client = OpenAI(
+        api_key=os.environ.get("OPENAI_API_KEY") or "EMPTY",
+        base_url=args.base_url,
+    )
+    coordinator = None
+    if args.agentic:
+        coordinator = AgenticCoordinator(
+            client,
+            model=args.model,
+            prune_after_learn=args.enable_prune,
+            audit_interval=args.audit_interval,
+            enable_critic=args.enable_critic,
+            critic_interval=args.critic_interval,
+            verbose=True,
+        )
+        print("Agentic coordinator: enabled")
+
+    if args.synthesis_strategy != "bulk":
+        train_for_chef = train_data + counter_examples
+        random.Random(args.seed).shuffle(train_for_chef)
+    else:
+        train_for_chef = train_data
+
+    chef = RuleChef(
+        task=task,
+        client=client,
+        dataset_name=dataset_name,
+        storage_path=storage_dir,
+        allowed_formats=[RuleFormat.REGEX],
+        model=args.model,
+        use_grex=not args.no_grex,
+        max_rules=args.max_rules,
+        max_samples=args.max_samples,
+        max_counter_examples=args.max_counter_examples,
+        coordinator=coordinator,
+        training_logger=logger,
+        sampling_strategy=args.sampling_strategy,
+        synthesis_strategy=args.synthesis_strategy,
+    )
+
+    return chef, train_for_chef
+
+
+def setup_output_dir(args, selected_classes):
+    storage_dir = tempfile.mkdtemp(prefix="rulechef_bench_")
+
+    model_name = args.model.replace("/", "_")
+    date_str = datetime.now().strftime("%Y-%m-%d")
+    selected_classes_str = "_".join(
+        c.replace(" ", "") for c in selected_classes
+    ).strip()
+
+    if args.rules_json:
+        output_dir = Path(args.rules_json).parent
+    else:
+        base_dir = Path(f"benchmarks/findok/{model_name}") / selected_classes_str
+        base_name = date_str
+
+        output_dir = base_dir / base_name
+        if output_dir.exists():
+            version = 1
+            while (base_dir / f"{base_name}_v{version}").exists():
+                version += 1
+            output_dir = base_dir / f"{base_name}_v{version}"
+
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    out_name = Path(args.output)
+    if args.rules_json:
+        out_name = out_name.with_stem(out_name.stem + "_refined")
+
+    log_path = (output_dir / out_name).with_suffix(".training.jsonl")
+    logger = TrainingDataLogger(
+        str(log_path),
+        run_metadata={
+            "benchmark": "findok",
+            "model": args.model,
+            "format": args.format,
+            "num_classes": num_classes,
+        },
+    )
+    print(f"Training log: {log_path}")
+
+    config_path = output_dir / "config.yaml"
+    config_dict = {
+        k.replace("_", "-"): v for k, v in vars(args).items() if k not in ("config",)
+    }
+    with open(config_path, "w") as f:
+        yaml.dump(config_dict, f, default_flow_style=False, allow_unicode=True)
+    print(f"Config saved to {config_path}")
+
+    return storage_dir, output_dir, out_name, logger
 
 
 def sample_few_shot(
@@ -187,7 +320,7 @@ def make_oniteration_callback(iteration_metrics: list):
     return on_iteration
 
 
-# ── Add Feedback ─────────────────────────────────────────
+# ── Feedback ─────────────────────────────────────────
 def add_feedback(eval_dataset, text, level="task", target=""):
 
     eval_dataset.structured_feedback.append(
@@ -200,102 +333,69 @@ def add_feedback(eval_dataset, text, level="task", target=""):
     )
 
 
-# ── Test Eval ─────────────────────────────────────────
+# ── Evaluation ─────────────────────────────────────────
 
 
-def evaluate_test(test_data, test_dataset, rules, chef, task):
+def evaluate_test(
+    test_data, test_dataset, rules, chef, task, mode="text", iou_threshold=1
+):
     print(f"\nEVALUATING ON HELD-OUT TEST SET ({len(test_data)} examples)...")
     t0 = time.time()
-    test_eval = evaluate_dataset(
+    eval_results = evaluate_dataset(
         rules,
         test_dataset,
         chef.learner._apply_rules,
+        mode=mode,
+        iou_threshold=iou_threshold,
     )
     t_eval = time.time() - t0
 
-    # Coverage = what % of test queries got ANY prediction (TP + FP) / total
-    coverage = (
-        (test_eval.total_tp + test_eval.total_fp) / len(test_data) if test_data else 0
-    )
-    return test_eval, coverage, t_eval
+    return eval_results, t_eval
 
 
 # ── Save results ─────────────────────────────────────────
-def save_results(
-    output_path,
-    shots,
-    model,
-    format,
-    max_rules,
-    max_samples,
-    max_iterations,
-    seed,
-    train_sample,
-    train_remaining,
-    test_data,
-    no_grex,
-    agentic,
-    test_eval,
-    iteration_metrics,
-    coverage,
-    t_learn,
-    t_eval,
-    rules,
-    enable_critic,
-    enable_prune,
-    critic_interval,
-    audit_interval,
-    windows,
-    sampling_strategy,
-    train_ratio,
-    pool_size,
-    batch_size,
-    refine_per_batch,
-    synthesis_strategy,
-    train_annotations,
-    eval_annotations,
-    test_annotations,
-):
+def save_results(output_path: Path, run: BenchmarkRun):
+    args = run.args
     results = {
         "config": {
-            "shots": shots,
-            "model": model,
-            "format": format,
-            "max_rules": max_rules,
-            "max_samples": max_samples,
-            "max_iterations": max_iterations,
-            "seed": seed,
-            "train_size": len(train_sample),
-            "eval_size": len(train_remaining),
-            "test_size": len(test_data),
-            "train_annotations": train_annotations,
-            "eval_annotations": eval_annotations,
-            "test_annotations": test_annotations,
-            "use_grex": not no_grex,
-            "agentic": agentic,
-            "enable_critic": enable_critic,
-            "enable_prune": enable_prune,
-            "critic_interval": critic_interval,
-            "audit_interval": audit_interval,
-            "windows": windows,
-            "sampling_strategy": sampling_strategy,
-            "train_ratio": train_ratio,
-            "pool_size": pool_size,
-            "batch_size": batch_size,
-            "refine_per_batch": refine_per_batch,
-            "synthesis_strategy": synthesis_strategy,
+            "shots": args.shots,
+            "model": args.model,
+            "format": args.format,
+            "max_rules": args.max_rules,
+            "max_samples": args.max_samples,
+            "max_iterations": args.max_iterations,
+            "seed": args.seed,
+            "train_size": len(run.train_data),
+            "eval_size": len(run.eval_data),
+            "test_size": len(run.test_data),
+            "train_annotations": run.train_annotations,
+            "eval_annotations": run.eval_annotations,
+            "test_annotations": run.test_annotations,
+            "use_grex": not args.no_grex,
+            "agentic": args.agentic,
+            "enable_critic": args.enable_critic,
+            "enable_prune": args.enable_prune,
+            "critic_interval": args.critic_interval,
+            "audit_interval": args.audit_interval,
+            "windows": args.windows,
+            "sampling_strategy": args.sampling_strategy,
+            "train_ratio": args.train_ratio,
+            "pool_size": args.pool_size,
+            "batch_size": args.batch_size,
+            "refine_per_batch": args.refine_per_batch,
+            "synthesis_strategy": args.synthesis_strategy,
         },
         "results": {
-            "accuracy": test_eval.exact_match,
-            "coverage": coverage,
-            "micro_precision": test_eval.micro_precision,
-            "micro_recall": test_eval.micro_recall,
-            "micro_f1": test_eval.micro_f1,
-            "macro_f1": test_eval.macro_f1,
-            "num_rules": len(rules),
-            "learning_time_s": round(t_learn, 1),
-            "eval_time_s": round(t_eval, 3),
-            "per_query_ms": round(t_eval / len(test_data) * 1000, 2),
+            "accuracy": run.eval_results.exact_match,
+            "coverage": run.eval_results.coverage,
+            "micro_precision": run.eval_results.micro_precision,
+            "micro_recall": run.eval_results.micro_recall,
+            "micro_f1": run.eval_results.micro_f1,
+            "macro_f1": run.eval_results.macro_f1,
+            "num_rules": len(run.rules),
+            "learning_time_s": round(run.t_learn, 1),
+            "eval_time_s": round(run.t_eval, 3),
+            "per_query_ms": round(run.t_eval / len(run.test_data) * 1000, 2),
         },
         "per_class": [
             {
@@ -307,9 +407,9 @@ def save_results(
                 "fp": cm.fp,
                 "fn": cm.fn,
             }
-            for cm in (test_eval.per_class or [])
+            for cm in (run.test_eval.per_class or [])
         ],
-        "iteration_metrics": iteration_metrics,
+        "iteration_metrics": run.iteration_metrics,
         "rules": [
             {
                 "id": r.id,
@@ -322,7 +422,7 @@ def save_results(
                 "output_key": r.output_key,
                 "created_at": r.created_at.isoformat(),
             }
-            for r in rules
+            for r in run.rules
         ],
     }
     output_path.write_text(json.dumps(results, indent=2))

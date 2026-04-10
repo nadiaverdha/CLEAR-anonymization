@@ -97,6 +97,7 @@ def append_overall_metrics(
         rules,
         test_dataset,
         chef.learner._apply_rules,
+        mode="text",
     )
     # Coverage = what % of test queries got ANY prediction (TP + FP) / total
     coverage = test_eval.total_tp + test_eval.total_fp
@@ -395,6 +396,7 @@ def main():
         apply_rules_fn=chef.learner._apply_rules,
         mode="text",
         max_samples=config.get("max_samples", 50),
+        iou_threshold=0.5,
     )
 
     write_summary_table(md_path, rule_metrics)
