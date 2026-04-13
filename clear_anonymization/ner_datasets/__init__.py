@@ -1,3 +1,8 @@
+import json
+from pathlib import Path
+
+from clear_anonymization.ner_datasets.ner_dataset import NERData
+
 DATASET_CLASS_DEFINITIONS = {
     "ler": {
         "PERS": "Personen (Familien-, Vor-, Beinamen und Pseudonyme)",
@@ -47,7 +52,14 @@ def get_dataset_class_definitions(dataset: str) -> dict[str, str]:
     return DATASET_CLASS_DEFINITIONS[dataset]
 
 
+def load_ner_dataset(
+    data_path: Path,
+) -> NERData:
+    return NERData.from_json(json.loads(Path(data_path).read_text()))
+
+
 __all__ = [
     "DATASET_CLASS_DEFINITIONS",
     "get_dataset_class_definitions",
+    "load_ner_dataset",
 ]
