@@ -9,21 +9,29 @@ class NERSample:
     text: str
     split: str
     labels: list
+    sentences: list["NERSample"] = None
 
     @classmethod
     def from_json(cls, json_dict: dict) -> "NERSample":
+        sentences = json_dict.get("sentences", None)
         return cls(
             text=json_dict.get("text"),
             split=json_dict.get("split", "unknown"),
             labels=json_dict.get("labels", []),
+            sentences=[NERSample.from_json(s) for s in sentences]
+            if sentences
+            else None,
         )
 
     def to_json(self) -> dict:
-        return {
+        d = {
             "text": self.text,
             "split": self.split,
             "labels": self.labels,
         }
+        if self.sentences is not None:
+            d["sentences"] = [s.to_json() for s in self.sentences]
+        return d
 
 
 @dataclass

@@ -174,7 +174,7 @@ def create_sample(pages, annotations, split, sentences: bool) -> List[NERSample]
     labels = []
     if not annotations:
         return [NERSample(full_text, split, labels)]
-    if not sentences:
+    else:
         for ann in annotations:
             startpage = ann["startPage"]
             endpage = ann["endPage"]
@@ -190,8 +190,7 @@ def create_sample(pages, annotations, split, sentences: bool) -> List[NERSample]
                     "type": ann["label"],
                 }
             )
-        return [NERSample(full_text, split, labels)]
-    else:
+
         # multiple annotations: [(start, end, type), ...]
         # collect annotations per sentence and combine to NERSample
         # remove sentence offset from start/end
@@ -207,7 +206,7 @@ def create_sample(pages, annotations, split, sentences: bool) -> List[NERSample]
                 {"text": ann["text"], "start": start, "end": end, "class": ann["label"]}
             )
 
-        ner_samples = []
+        ner_samples_sents = []
         iter_func = (
             iter_sentences_spacy(full_text)
             if not TUW_NLP
@@ -215,9 +214,13 @@ def create_sample(pages, annotations, split, sentences: bool) -> List[NERSample]
         )
         for sent in iter_func:
             relevant_annos = collect_annos_in_sentence(converted_annos, sent)
-            if len(relevant_annos) != 0:
-                ner_samples.append(NERSample(sent.text, split, relevant_annos))
-        return ner_samples
+            # if len(relevant_annos) != 0:
+            ner_samples_sents.append(NERSample(sent.text, split, relevant_annos))
+        return (
+            [NERSample(full_text, split, labels, sentences=ner_samples_sents)]
+            if sentences
+            else [NERSample(full_text, split, labels)]
+        )
 
 
 def main():
@@ -249,7 +252,7 @@ def main():
     parser.add_argument(
         "--sentences",
         action="store_true",
-        default=False,
+        default=True,
         help="Whether to split the document text into sentences.",
     )
     args = parser.parse_args()
