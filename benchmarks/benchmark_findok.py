@@ -3,47 +3,32 @@ import json
 import os
 import random
 import shutil
-import tempfile
 import time
-import uuid
-from collections import defaultdict
-from datetime import datetime
 from pathlib import Path
-from typing import List, Optional
 
 import yaml
 from openai import OpenAI
-from pydantic import BaseModel, Field, field_validator
-from rulechef import RuleChef
 from rulechef.coordinator import AgenticCoordinator
-from rulechef.core import (
-    Dataset,
-    Example,
-    Feedback,
-    Rule,
-    RuleFormat,
-    Task,
-    TaskType,
-)
-from rulechef.evaluation import evaluate_dataset, evaluate_rules_individually
-from rulechef.training_logger import TrainingDataLogger
+from rulechef.core import Rule, RuleFormat
+from rulechef.evaluation import evaluate_rules_individually
 
-from benchmarks.findok_utils import (
+from benchmarks.util import (
     BenchmarkRun,
     add_feedback,
-    build_task,
     evaluate_test,
-    load_findok,
+    make_dataset,
     make_oniteration_callback,
-    sample_few_shot,
+    print_results,
     save_results,
-    setup_output_dir,
     setup_output_paths,
-    setup_rulechef,
 )
-from clear_anonymization.ner_datasets import get_dataset_class_definitions
-from clear_anonymization.ner_datasets.ner_dataset import NERData, NERDataset, NERSample
-from clear_anonymization.utils.utils import *
+from clear_anonymization.models.nerlearner import NERLearner
+from clear_anonymization.ner_datasets import (
+    get_dataset_class_definitions,
+    load_ner_dataset,
+)
+from clear_anonymization.preprocess.sampling import sample_few_shot
+from reports.create_md_report_rules import create_md_report
 
 # ── Benchmark runner ────────────────────────────────────────
 
@@ -51,18 +36,23 @@ from clear_anonymization.utils.utils import *
 def run_benchmark(args):
 
     # 1. Load data
-    print("Loading FinDok dataset...")
-    train_all, test_all, entity_names = load_findok(args.train_dir, args.val_dir)
-    print("Information about the full dataset:")
-    print(
-        f"Train: {len(train_all)}, Test: {len(test_all)},  Classes: {len(entity_names)}"
+    print(f"Loading {args.dataset_name} dataset...")
+    train_all = load_ner_dataset(
+        args.train_dir,
     )
-    print("-------------------------------")
+    test_all = load_ner_dataset(
+        args.val_dir,
+    )
 
-    # 2. Few-shot sample (optionally limited to N classes)
-    print("Information about what is being used for training/testing:")
-    print(f"Pool size:    {args.pool_size or 'all samples'}")
+    entity_definitions = get_dataset_class_definitions(args.dataset_name)
+    entity_names = set(entity_definitions.keys())
 
+    test_data = [{"text": s.text, "entities": s.labels} for s in test_all.samples]
+    print(
+        f"Train: {len(train_all.samples)}, Test: {len(test_data)}, Classes: {len(entity_names)}"
+    )
+
+    # 2. Sample
     classes = [c.strip() for c in args.classes.split(",")] if args.classes else None
     train_data, eval_data, counter_examples, selected_classes = sample_few_shot(
         train_data=train_all,
@@ -75,63 +65,75 @@ def run_benchmark(args):
         shots_per_class=args.shots,
     )
 
-    num_classes = len(selected_classes)
     train_annotations = sum(len(ex["entities"]) for ex in train_data)
     eval_annotations = sum(len(ex["entities"]) for ex in eval_data)
-    test_annotations = sum(len(ex.labels) for ex in test_all)
-    print(f"Selected {num_classes} classes: {', '.join(sorted(selected_classes))}")
-
-    print(f"Train annotations: {train_annotations}")
-    print(f"Eval annotations: {eval_annotations}")
-    print(f"Test annotations: {test_annotations}")
-    print(f"Counter Examples: {len(counter_examples)}")
-
-    # 3. Configure rulechef
-    task = build_task(selected_classes)
-
-    storage_dir, output_dir, out_name, logger = setup_output_dir(args, selected_classes)
-
-    chef, train_for_chef = setup_rulechef(
-        args,
-        task,
-        storage_dir,
-        logger,
-        train_data,
-        counter_examples,
-        dataset_name="findok",
+    test_annotations = sum(len(ex["entities"]) for ex in test_data)
+    print(
+        f"Selected {len(selected_classes)} classes: {', '.join(sorted(selected_classes))}"
+    )
+    print(
+        f"Train: {len(train_data)}, Eval: {len(eval_data)}, Counter: {len(counter_examples)}"
     )
 
-    # 4. Add training examples — only in refinement mode (rules-json).
-    #    In fresh synthesis mode, examples are added per-batch in step 6.
-    if args.rules_json:
-        print(f"\nAdding {len(train_for_chef)} training examples...")
-        t0 = time.time()
-        for ex in train_for_chef:
-            chef.add_example(
-                {"text": ex["text"]},
-                {"entities": ex["entities"]},
-            )
-        t_add = time.time() - t0
-        print(f"  Done ({t_add:.1f}s)")
+    # 3. Setup output
+    storage_dir, output_dir, out_name, logger = setup_output_paths(
+        args, selected_classes
+    )
 
-    # 5. Build eval Dataset from unused training data (for refinement)
-    eval_dataset = Dataset(name="findok_eval", task=task)
-    for ex in eval_data:
-        eval_dataset.examples.append(
-            Example(
-                id=str(uuid.uuid4())[:8],
-                input={"text": ex["text"]},
-                expected_output={"entities": ex["entities"]},
-                source="benchmark",
-            )
+    # 4. Build train_for_chef
+    if args.synthesis_strategy != "bulk":
+        train_for_chef = train_data + counter_examples
+        random.Random(args.seed).shuffle(train_for_chef)
+    else:
+        train_for_chef = train_data
+
+    # 5. Create coordinator if agentic
+    coordinator = None
+    if args.agentic:
+        client = OpenAI(
+            api_key=os.environ.get("OPENAI_API_KEY") or "EMPTY",
+            base_url=args.base_url,
+        )
+        coordinator = AgenticCoordinator(
+            client,
+            model=args.model,
+            prune_after_learn=args.enable_prune,
+            audit_interval=args.audit_interval,
+            enable_critic=args.enable_critic,
+            critic_interval=args.critic_interval,
+            verbose=True,
         )
 
-    # 6. Learn rules — fresh synthesis or refinement from existing rules
+    # 6. Create learner
+    learner = NERLearner(
+        model=args.model,
+        dataset_name=args.dataset_name,
+        base_url=args.base_url,
+        use_grex=not args.no_grex,
+        max_rules=args.max_rules,
+        max_samples=args.max_samples,
+        max_counter_examples=args.max_counter_examples,
+        coordinator=coordinator,
+        logger=logger,
+        storage_path=storage_dir,
+        sampling_strategy=args.sampling_strategy,
+        synthesis_strategy=args.synthesis_strategy,
+        selected_classes=selected_classes,
+    )
+
+    # 7. Build eval dataset
+    eval_dataset = make_dataset(f"{args.dataset_name}_eval", eval_data, learner.task)
+
+    # 8. Learn rules
     iteration_metrics = []
     on_iteration = make_oniteration_callback(iteration_metrics)
 
     if args.rules_json:
         print(f"\nRefinement mode — loading rules from {args.rules_json}")
+
+        for ex in train_for_chef:
+            learner.add_example({"text": ex["text"]}, {"entities": ex["entities"]})
+
         saved = json.loads(Path(args.rules_json).read_text())
         rules = [
             Rule(
@@ -152,7 +154,7 @@ def run_benchmark(args):
         rule_metrics = evaluate_rules_individually(
             rules=rules,
             dataset=eval_dataset,
-            apply_rules_fn=chef.learner._apply_rules,
+            apply_rules_fn=learner.learner._apply_rules,
             mode="text",
             max_samples=args.max_samples,
         )
@@ -182,14 +184,13 @@ def run_benchmark(args):
                     target=rule.id,
                 )
 
-        # Human feedback
         if args.feedback:
-            feedback_items = json.loads(Path(args.feedback).read_text())
-            print(f"  Loading {len(feedback_items)} human feedback items")
 
             def _norm(s):
                 return s.replace("\u2011", "-").replace("\u2010", "-")
 
+            feedback_items = json.loads(Path(args.feedback).read_text())
+            print(f"  Loading {len(feedback_items)} human feedback items")
             for fb in feedback_items:
                 level = fb.get("level", "task")
                 text = fb["text"]
@@ -205,87 +206,39 @@ def run_benchmark(args):
                         print(f"  Rule not found: {rule_name} — treating as task-level")
                         level = "task"
                 add_feedback(eval_dataset, text, level, target_id)
-                chef.add_feedback(eval_dataset, text, level, target_id)
+                learner.add_feedback(eval_dataset, text, level, target_id)
 
         if args.skip_synthesis:
             print("\nSkipping synthesis — using loaded rules directly.")
-            t0 = time.time()
-            result = (rules, None)
-            t_learn = time.time() - t0
+            t_learn = 0.0
         else:
             print("\nLearning rules (incremental)...")
             t0 = time.time()
-            result = chef.learn_rules(run_evaluation=False, incremental_only=True)
+            result = learner.learn_rules(run_evaluation=False, incremental_only=True)
             t_learn = time.time() - t0
+            if result:
+                rules, _ = result
 
     else:
-        print(
-            f"\nLearning rules (incremental, batch_size={args.batch_size}, refine_per_batch={args.refine_per_batch})..."
+        rules, t_learn = learner.fit_batched(
+            train_for_chef,
+            eval_dataset=eval_dataset if args.refine_per_batch > 0 else None,
+            batch_size=args.batch_size,
+            refine_per_batch=args.refine_per_batch,
+            iteration_callback=on_iteration,
         )
-        print(f"  model={args.model}")
-        print(f"  format={args.format}")
-        print(f"  max_rules={args.max_rules}")
-        print(f"  max_samples={args.max_samples}")
-        print(f"  max_iterations={args.max_iterations}")
-        batches = [
-            train_for_chef[i : i + args.batch_size]
-            for i in range(0, len(train_for_chef), args.batch_size)
-        ]
-        t0 = time.time()
-        result = None
-        for batch_idx, batch in enumerate(batches):
-            for ex in batch:
-                chef.add_example({"text": ex["text"]}, {"entities": ex["entities"]})
-            batch_result = chef.learn_rules(
-                run_evaluation=False, incremental_only=(batch_idx > 0)
-            )
-            # Clear so next batch only sees its own examples (not accumulated total)
-            chef.dataset.examples.clear()
-            if batch_result:
-                result = batch_result
-                rules_so_far, _ = result
-                print(
-                    f"  Batch {batch_idx + 1}/{len(batches)}: {len(rules_so_far)} rules synthesized"
-                )
 
-                if args.refine_per_batch > 0:
-                    print(f"  Refining ({args.refine_per_batch} iter) on eval set...")
-                    rules_so_far, refine_eval = chef.learner.evaluate_and_refine(
-                        rules_so_far,
-                        eval_dataset,
-                        max_iterations=args.refine_per_batch,
-                        coordinator=chef.coordinator,
-                        iteration_callback=on_iteration,
-                        audit_interval=0,
-                    )
-                    result = (rules_so_far, None)
-                    print(
-                        f"  After refine: {len(rules_so_far)} rules, F1={refine_eval.micro_f1:.1%}"
-                    )
-        t_learn = time.time() - t0
-
-    if result is None:
-        print("ERROR: Learning failed!")
-        return
-
-    rules, _ = result
-    print(f"\nSynthesis complete ({t_learn:.1f}s)")
-    print(f"  Rules generated: {len(rules)}")
-
-    # 7. Final refine against eval set (unused training data), test set stays held out
-
+    # 9. Final refine against eval set
     if args.max_iterations > 0:
         print(
-            f"\nRefining against eval set ({len(train_remaining)} examples, max {args.max_iterations} iterations)..."
+            f"\nRefining against eval set ({len(eval_data)} examples, max {args.max_iterations} iterations)..."
         )
         t0_refine = time.time()
-        rules, refine_eval = chef.learner.evaluate_and_refine(
+        rules, refine_eval = learner.refine(
             rules,
             eval_dataset,
             max_iterations=args.max_iterations,
-            coordinator=chef.coordinator,
             iteration_callback=on_iteration,
-            audit_interval=0,
         )
         t_refine = time.time() - t0_refine
         t_learn += t_refine
@@ -295,7 +248,7 @@ def run_benchmark(args):
                 f"  Eval accuracy: {refine_eval.exact_match:.1%}, eval micro F1: {refine_eval.micro_f1:.1%}"
             )
 
-    # 8. Print rule summary
+    # 10. Print rule summary
     print(f"\n{'─' * 70}")
     print("RULES LEARNED:")
     print(f"{'─' * 70}")
@@ -304,56 +257,32 @@ def run_benchmark(args):
         print(f"  [p={r.priority}] {r.name}: {content_preview}")
     print(f"{'─' * 70}")
 
-    # Build held-out test Dataset for final evaluation
+    # 11. Evaluate on held-out test set
+    test_dataset = make_dataset(f"{args.dataset_name}_test", test_data, learner.task)
+    test_eval, t_eval = evaluate_test(test_data, test_dataset, rules, learner)
 
-    test_dataset = Dataset(name="findok_test", task=task)
-    for ex in test_all:
-        test_dataset.examples.append(
-            Example(
-                id=str(uuid.uuid4())[:8],
-                input={"text": ex.text},
-                expected_output={"entities": ex.labels},
-                source="benchmark",
-            )
-        )
-
-    test_eval, coverage, t_eval = evaluate_test(
-        test_all, test_dataset, rules, chef, task
+    benchmark_run = BenchmarkRun(
+        args=args,
+        train_data=train_data,
+        eval_data=eval_data,
+        test_data=test_data,
+        train_size=len(train_data),
+        eval_size=len(eval_data),
+        test_size=len(test_data),
+        train_annotations=train_annotations,
+        eval_annotations=eval_annotations,
+        test_annotations=test_annotations,
+        iteration_metrics=iteration_metrics,
+        eval_results=test_eval,
+        t_learn=t_learn,
+        t_eval=t_eval,
+        rules=rules,
+        selected_classes=sorted(selected_classes),
     )
 
-    # 9. Print results
-    print(f"\n{'=' * 70}")
-    print("German FinDok Results")
-    print(f"{'=' * 70}")
-    print("  Configuration:")
-    print(f"    Shots per class:          {args.shots}")
-    print(f"    Training examples:        {len(train_sample)}")
-    print(f"    Test examples:            {len(test_all)}")
-    print(f"    Model:                    {args.model}")
-    print(f"    Max rules:                {args.max_rules}")
-    print(f"    Max samples in prompt:    {args.max_samples}")
-    print(f"    Refinement iterations:    {args.max_iterations}")
-    print(f"    Seed:                     {args.seed}")
-    print()
-    print("  Results:")
-    print(f"    Accuracy (exact match):   {test_eval.exact_match:.1%}")
-    print(
-        f"    Coverage:                 {coverage:.1%} ({test_eval.total_tp + test_eval.total_fp}/{len(test_all)} got a label)"
-    )
-    print(f"    Micro Precision:          {test_eval.micro_precision:.1%}")
-    print(f"    Micro Recall:             {test_eval.micro_recall:.1%}")
-    print(f"    Micro F1:                 {test_eval.micro_f1:.1%}")
-    print(f"    Macro F1:                 {test_eval.macro_f1:.1%}")
-    print()
-    print("  Timing:")
-    print(f"    Learning:                 {t_learn:.1f}s")
-    print(f"    Evaluation:               {t_eval:.1f}s")
-    print(f"    Per-query:                {t_eval / len(test_all) * 1000:.2f}ms")
-    print()
-    print(f"  Rules:                      {len(rules)} total")
-    print(f"{'=' * 70}")
+    print_results(benchmark_run)
 
-    # 10. Per-class breakdown
+    # 12. Per-class breakdown
     if test_eval.per_class:
         sorted_classes = sorted(test_eval.per_class, key=lambda c: c.f1, reverse=True)
 
@@ -372,115 +301,24 @@ def run_benchmark(args):
             )
 
         zero_recall = sum(1 for cm in sorted_classes if cm.recall == 0)
-        covered = len(sorted_classes) - zero_recall
-        print(
-            f"\n  Intent coverage: {covered}/{len(sorted_classes)} intents have at least one correct match"
-        )
-        print(f"  Uncovered intents: {zero_recall}/{len(sorted_classes)}")
 
-        # 11. Save results
+    # 13. Save results
 
-        output_path = output_dir / out_name
-        save_results(
-            output_path,
-            args.shots,
-            args.model,
-            args.format,
-            args.max_rules,
-            args.max_samples,
-            args.max_iterations,
-            args.seed,
-            train_sample,
-            train_remaining,
-            test_all,
-            args.no_grex,
-            args.agentic,
-            test_eval,
-            iteration_metrics,
-            coverage,
-            t_learn,
-            t_eval,
-            rules,
-            args.enable_critic,
-            args.enable_prune,
-            args.critic_interval,
-            args.audit_interval,
-            args.windows,
-            args.sampling_strategy,
-            args.train_ratio,
-            args.pool_size,
-            args.batch_size,
-            args.refine_per_batch,
-            args.synthesis_strategy,
-            train_annotations,
-            eval_annotations,
-            test_annotations,
-        )
+    output_path = output_dir / out_name
+    save_results(output_path, benchmark_run)
 
-    # 12. Generate per-rule Markdown report
+    # 14. Generate per-rule Markdown report
     if not args.no_mdreport:
-        from reports.create_md_report_rules import (
-            append_influential_rules,
-            append_overall_metrics,
-            append_rule_metrics,
-            create_md_report,
-            write_summary_table,
-        )
-
         md_path = output_path.with_suffix(".rules_report.md")
         create_md_report(
             md_path,
-            title=f"RuleChef FinDok Benchmark - Rule Analysis- {args.model}",
-        )
-
-        append_overall_metrics(
-            md_path=md_path,
-            test_size=len(test_all),
+            chef=learner,
+            run=benchmark_run,
             test_dataset=test_dataset,
-            rules=rules,
-            chef=chef,
-            task=task,
-            shots=args.shots,
-            train_size=len(train_sample),
-            eval_size=len(train_remaining),
-            train_annotations=train_annotations,
-            eval_annotations=eval_annotations,
-            test_annotations=test_annotations,
-            model=args.model,
-            max_rules=args.max_rules,
-            max_samples=args.max_samples,
-            max_iterations=args.max_iterations,
-            seed=args.seed,
-            agentic=args.agentic,
-            enable_critic=args.enable_critic,
-            enable_prune=args.enable_prune,
-            critic_interval=args.critic_interval,
-            audit_interval=args.audit_interval,
-            use_grex=not args.no_grex,
-            sampling_strategy=args.sampling_strategy,
-            pool_size=args.pool_size,
-            train_ratio=args.train_ratio,
-            test_ratio=1.0 - args.train_ratio,
+            title=f"Rule Evaluation Report — {args.model}",
         )
-        rule_metrics = evaluate_rules_individually(
-            rules=rules,
-            dataset=test_dataset,
-            apply_rules_fn=chef.learner._apply_rules,
-            mode="text",
-            max_samples=args.max_samples,
-            iou_threshold=0.5,
-        )
-
-        write_summary_table(md_path, rule_metrics)
-
-        append_influential_rules(md_path, rule_metrics, rules, top_n=5)
-
-        append_rule_metrics(md_path, rule_metrics, top_n_examples=5, rules=rules)
-        print(f"Markdown report saved to {md_path}")
 
     # Cleanup temp storage
-    import shutil
-
     shutil.rmtree(storage_dir, ignore_errors=True)
 
 
@@ -500,6 +338,12 @@ def main():
         "--val_dir",
         type=str,
         help="Path to the test data (JSON format)",
+    )
+    parser.add_argument(
+        "--dataset_name",
+        type=str,
+        default="findok",
+        help="Name of the dataset",
     )
 
     parser.add_argument(
