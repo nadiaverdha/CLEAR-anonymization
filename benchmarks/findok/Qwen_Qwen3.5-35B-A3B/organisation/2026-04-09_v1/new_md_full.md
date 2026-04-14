@@ -1,6 +1,6 @@
 # Rule Evaluation Report — Qwen/Qwen3.5-35B-A3B
 
-Generated on: 2026-04-14T14:51:00.079569
+Generated on: 2026-04-14T16:36:00.461941
 
 ---
 
@@ -318,83 +318,6 @@ gesamten Betriebes (mit Ausnahme der ...
 
 ---
 
-## `specific_org_stadte_energie`
-
-**F1:** 0.015 | **Precision:** 1.000 | **Recall:** 0.007  
-
-**Format:** `regex`  
-**Description:**
-Matches the specific entity 'StadtEnergie Holding'.
-
-**Content:**
-```
-\bStadtEnergie\s+Holding\b
-```
-
-<details>
-<summary>📊 Detailed Metrics</summary>
-
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.007 | 0.015 | 4 | 4 | 0 |
-
-**Per-Class Breakdown**
-
-| Class | TP | FP | FN |
-|---|---|---|---|
-| `organisation` | 4 | 0 | 536 |
-
-</details>
-
----
-
-<details>
-<summary>✅ Worked</summary>
-
-**Example 0**
-
-```
-...
-2) Dipl.-Ing. Angelika Bartholomai  als Rechtsnachfolger der <<<StadtEnergie Holding>>>, Außerbofa 5-8, 2264 Jedenspeigen, Österreich, vertreten durch ...
-```
-
-- Pred: `StadtEnergie Holding` , Gold: `StadtEnergie Holding`)
-
-```
-...
-Gruppenträger 28-587/0533 Dipl.-Ing. Angelika Bartholomai  als RNF der <<<StadtEnergie Holding>>> 
- 
- 
-1 von 39
-Seite 2 von 39 
- 
- 
-1. Entscheidungsgründe 
-I. ...
-```
-
-- Pred: `StadtEnergie Holding` , Gold: `StadtEnergie Holding`)
-
-```
-... das Gruppenmitglied Annemie Bott  als auch der Gruppenträger <<<StadtEnergie Holding>>> 
-(28-587/0533). Begründend wurde ausgeführt: „Die Wiederaufnahme ...
-```
-
-- Pred: `StadtEnergie Holding` , Gold: `StadtEnergie Holding`)
-
-```
-... dem Gruppenträger Dipl.-Ing. Angelika Bartholomai (vormals <<<StadtEnergie Holding>>>). 
-Die PhD Marianne Yener (im Beschwerdezeitraum Laskowsky ...
-```
-
-- Pred: `StadtEnergie Holding` , Gold: `StadtEnergie Holding`)
-
-</details>
-
----
-
----
-
 ## `specific_org_milan`
 
 **F1:** 0.187 | **Precision:** 1.000 | **Recall:** 0.103  
@@ -575,17 +498,17 @@ Verkaufte
 
 ---
 
-## `specific_org_enns`
+## `specific_org_bahrdt`
 
-**F1:** 0.007 | **Precision:** 1.000 | **Recall:** 0.004  
+**F1:** 0.025 | **Precision:** 1.000 | **Recall:** 0.013  
 
 **Format:** `regex`  
 **Description:**
-Matches 'Enns Werkal GMBH'.
+Matches 'Bahrdt Digital'.
 
 **Content:**
 ```
-\bEnns\s+Werkal\s+GMBH\b
+\bBahrdt\s+Digital\b
 ```
 
 <details>
@@ -593,13 +516,13 @@ Matches 'Enns Werkal GMBH'.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 1.000 | 0.004 | 0.007 | 2 | 2 | 0 |
+| 1.000 | 0.013 | 0.025 | 7 | 7 | 0 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 2 | 0 | 284 |
+| `organisation` | 7 | 0 | 105 |
 
 </details>
 
@@ -611,21 +534,120 @@ Matches 'Enns Werkal GMBH'.
 **Example 0**
 
 ```
-... durch die Richterin Dr. Lisa Pucher in der Beschwerdesache 
-<<<Enns Werkal GMBH>>>, Föhrenwald III 19, 3140 Pottenbrunn, Österreich, vertreten ...
+... selbstständiger Tätigkeit als Gesellschaftsgeschäftsführer der Fa. 
+<<<Bahrdt Digital>>> (im Folgenden GmbH-Gesellschaft) abweichend von der 
+1 von ...
 ```
 
-- Pred: `Enns Werkal GMBH` , Gold: `Enns Werkal GMBH`)
+- Pred: `Bahrdt Digital` , Gold: `Bahrdt Digital`)
 
 ```
-... Bundes-Verfassungsgesetz 
-(B-VG) nicht zulässig. 
-Begründung 
-Die <<<Enns Werkal GMBH>>>  hat mit Eingabe vom 07.08.2024 gemäß § 284 Abs 1 BAO 
-Säumnisbeschwerden ...
+...
+1988 (mit einer Gesellschaftsbeteiligung vom 55%) für die Fa. <<<Bahrdt Digital>>>  aus und erzielte 
+damit (unstrittig) Einkünfte aus selbstständiger ...
 ```
 
-- Pred: `Enns Werkal GMBH` , Gold: `Enns Werkal GMBH`)
+- Pred: `Bahrdt Digital` , Gold: `Bahrdt Digital`)
+
+```
+... aktenkundigem Umlaufbeschluss vom 29.02.2016 zwischen dem Bf 
+und der <<<Bahrdt Digital>>>  festgehalten, bezahlte die <<<Bahrdt Digital>>>  dem Bf überdies ...
+```
+
+- Pred: `Bahrdt Digital` , Gold: `Bahrdt Digital`)
+
+```
+... dem Bf 
+und der <<<Bahrdt Digital>>>  festgehalten, bezahlte die <<<Bahrdt Digital>>>  dem Bf überdies seine für 2014 
+geschuldeten Sozialversicherungsbeiträge ...
+```
+
+- Pred: `Bahrdt Digital` , Gold: `Bahrdt Digital`)
+
+```
+... Sozialversicherungsbeiträge iHv. EUR. 17.679,27, in-dem die <<<Bahrdt Digital>>>  die 
+Sozialversicherungsbeiträge anhand vier (etwa vierteljährlich) ...
+```
+
+- Pred: `Bahrdt Digital` , Gold: `Bahrdt Digital`)
+
+</details>
+
+---
+
+---
+
+## `specific_org_reinemut`
+
+**F1:** 0.071 | **Precision:** 1.000 | **Recall:** 0.037  
+
+**Format:** `regex`  
+**Description:**
+Matches 'Reinemut + Smoch Handel'.
+
+**Content:**
+```
+\bReinemut\s+\+\s+Smoch\s+Handel\b
+```
+
+<details>
+<summary>📊 Detailed Metrics</summary>
+
+| Precision | Recall | F1 | Total Predicted | TP | FP |
+|---|---|---|---|---|---|
+| 1.000 | 0.037 | 0.071 | 20 | 20 | 0 |
+
+**Per-Class Breakdown**
+
+| Class | TP | FP | FN |
+|---|---|---|---|
+| `organisation` | 20 | 0 | 13 |
+
+</details>
+
+---
+
+<details>
+<summary>✅ Worked</summary>
+
+**Example 0**
+
+```
+... Dr. A. Schärf-Straße 22, 8783 Gaishorn am See, Österreich 
+2. <<<Reinemut + Smoch Handel>>>, Zachariasweg 4K, 3250 Wieselburg, Österreich  
+beide vertreten ...
+```
+
+- Pred: `Reinemut + Smoch Handel` , Gold: `Reinemut + Smoch Handel`)
+
+```
+... 2019 des Beschuldigten von € 7.315,00, einer Verkürzung der 
+<<<Reinemut + Smoch Handel>>>  an Umsatzsteuer 7/2019 im Teilbetrag von € 63,82 sowie einer ...
+```
+
+- Pred: `Reinemut + Smoch Handel` , Gold: `Reinemut + Smoch Handel`)
+
+```
+... des Verdachts einer Verkürzung an 
+Umsatzsteuer 7/2019 der <<<Reinemut + Smoch Handel>>>  im Teilbetrag von € 63,82 geführte Finanzstrafverfahren 
+wird ...
+```
+
+- Pred: `Reinemut + Smoch Handel` , Gold: `Reinemut + Smoch Handel`)
+
+```
+... §§ 136, 157, 82 Abs. 3 lit. c FinStrG eingestellt. 
+Über die <<<Reinemut + Smoch Handel>>>  wird gemäß §§ 28a Abs. 2 und 33 Abs. 5 FinStrG iVm §§ 3-5 ...
+```
+
+- Pred: `Reinemut + Smoch Handel` , Gold: `Reinemut + Smoch Handel`)
+
+```
+... Angelegenheiten verantwortliche Geschäftsführer der Firma 
+<<<Reinemut + Smoch Handel>>>, St.Nr. 72-531/2688  vorsätzlich unter Verletzung der Verpflichtung ...
+```
+
+- Pred: `Reinemut + Smoch Handel` , Gold: `Reinemut + Smoch Handel`)
 
 </details>
 
@@ -639,206 +661,6 @@ Säumnisbeschwerden ...
 
 <details>
 <summary>💣 Least Precise Rules</summary>
-
-## `specific_org_raiffeisen_hyphen`
-
-**F1:** 0.000 | **Precision:** 0.000 | **Recall:** 0.000  
-
-**Format:** `regex`  
-**Description:**
-Matches 'Raiffeisenbank' followed by hyphenated locations like 'Süd-Weststeiermark' or 'Rion Vöcklabruck'.
-
-**Content:**
-```
-\bRaiffeisenbank\s+[A-Z][a-zA-Z]+(?:\s+-\s+[A-Z][a-zA-Z]+|\s+[A-Z][a-zA-Z]+)*\b
-```
-
-<details>
-<summary>📊 Detailed Metrics</summary>
-
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 6 | 0 | 6 |
-
-**Per-Class Breakdown**
-
-| Class | TP | FP | FN |
-|---|---|---|---|
-| `organisation` | 0 | 6 | 51 |
-
-</details>
-
----
-
-<details>
-<summary>⚠️ False Positives</summary>
-
-**Example 0**
-
-**False Positives:**
-
-```
-... Österreich vom 10. Juni 2021, Zl. 700000/05154/29/2012, wurde 
-der <<<Raiffeisenbank Wels>>> Süd  mitgeteilt, dass der Beschwerdeführer (Bf) Abgaben einschließlich ...
-```
-
-FP: `Raiffeisenbank Wels` (organisation)
-
-```
-... Teilbetrages in Höhe von 
-€ 10.000,00 wird die dem Bf gegen die <<<Raiffeisenbank Wels>>> Süd  wegen des Guthabens auf einem 
-bezeichneten Girokonto ...
-```
-
-FP: `Raiffeisenbank Wels` (organisation)
-
-```
-...
-bezeichneten Girokonto zustehende Forderung gepfändet. Der <<<Raiffeisenbank Wels>>> Süd  wurde, soweit die 
-Forderung gepfändet ist, verboten, ...
-```
-
-FP: `Raiffeisenbank Wels` (organisation)
-
-```
-... Österreich vom 10. Juni 2021, Zl. 700000/05154/29/2012, wurde 
-der <<<Raiffeisenbank Wels>>> Süd  mitgeteilt, dass der Bf Abgaben einschließlich Nebengebühren ...
-```
-
-FP: `Raiffeisenbank Wels` (organisation)
-
-```
-... Teilbetrages in Höhe von € 10.000,00 wurde die dem Bf 
-gegen die <<<Raiffeisenbank Wels>>> Süd  wegen des Guthabens auf einem bezeichneten Girokonto zustehende ...
-```
-
-FP: `Raiffeisenbank Wels` (organisation)
-
-**✅ Gold Entities:**
-- `Mag. Dario Dyckhoff` (person)
-- `Melanie Fjodorov` (person)
-- `Daumegasse 17, 9330 Silberegg, Österreich` (address)
-- `Raiffeisenbank Wels Süd` (organisation)
-- `Raiffeisenbank Wels Süd` (organisation)
-- `Raiffeisenbank Wels Süd` (organisation)
-- `Raiffeisenbank Wels Süd` (organisation)
-- `Raiffeisenbank Wels Süd` (organisation)
-- `Raiffeisenbank Wels Süd` (organisation)
-
-</details>
-
----
-
----
-
-## `specific_org_bezirksgericht`
-
-**F1:** 0.000 | **Precision:** 0.000 | **Recall:** 0.000  
-
-**Format:** `regex`  
-**Description:**
-Matches 'Bezirksgericht' followed by a location, avoiding duplication.
-
-**Content:**
-```
-\bBezirksgericht\s+[A-Z][a-zA-Z]+(?:\s+[A-Z][a-zA-Z]+)*\b
-```
-
-<details>
-<summary>📊 Detailed Metrics</summary>
-
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 5 | 0 | 5 |
-
-**Per-Class Breakdown**
-
-| Class | TP | FP | FN |
-|---|---|---|---|
-| `organisation` | 0 | 5 | 312 |
-
-</details>
-
----
-
-<details>
-<summary>⚠️ False Positives</summary>
-
-**Example 0**
-
-**False Positives:**
-
-```
-... an derselben Adresse gemeldet. Mit 9.7.2019 wurde dies vom <<<Bezirksgericht ORT>>> 
-bestätigt, auch wenn der Vater in diesem Beschluss ebenso ...
-```
-
-FP: `Bezirksgericht ORT` (organisation)
-
-**✅ Gold Entities:**
-- `OSR MedR Chen Bruckmayr` (person)
-- `Überfeld/Sonnenweg 44, 4691 Schlatt, Österreich` (address)
-- `OSR MedR Chen Bruckmayr` (person)
-- `OSR MedR Chen Bruckmayr` (person)
-
-**Example 1**
-
-**False Positives:**
-
-```
-... (AZ-2, AS 7). Mit weiterem 
-Beschluss vom 04.03.2005 ordnete das <<<Bezirksgericht Gericht>>> die Schätzung dieser 
-Liegenschaft durch den allgemein beeideten ...
-```
-
-FP: `Bezirksgericht Gericht` (organisation)
-
-```
-... der Übergabe fehlten. 
-Das Versteigerungsverfahren vor dem <<<Bezirksgericht Gericht>>> wurde infolge des vorgenannten 
-Vertrages mit Beschluss vom ...
-```
-
-FP: `Bezirksgericht Gericht` (organisation)
-
-**✅ Gold Entities:**
-- `Esmeralda Halbgebauer` (person)
-- `Akazienplatz 349, 9634 Rauth, Österreich` (address)
-
-**Example 2**
-
-**False Positives:**
-
-```
-... der 
-Beschwerdeführer an, dass ein Abschöpfungsverfahren beim <<<Bezirksgericht BG>>> seit Oktober 
-2017 anhängig sei. Die angemeldeten Forderungen ...
-```
-
-FP: `Bezirksgericht BG` (organisation)
-
-```
-...
-festgehalten und insbesondere das Abschöpfungsverfahren beim <<<Bezirksgericht BG>>> 
-berücksichtigt. Zudem wurde berücksichtigt, dass der Beschwerdeführer ...
-```
-
-FP: `Bezirksgericht BG` (organisation)
-
-**✅ Gold Entities:**
-- `KommR Vera Schnetger` (person)
-- `St.-Antonius-Straße 3, 3123 Doppel, Österreich` (address)
-- `KommR Vera Schnetger` (person)
-- `KommR Vera Schnetger` (person)
-- `KommR Vera Schnetger` (person)
-- `KommR Vera Schnetger` (person)
-- `KommR Vera Schnetger` (person)
-
-</details>
-
----
-
----
 
 ## `company_kg_general`
 
@@ -1332,17 +1154,17 @@ FP: `Post AG` (organisation)
 
 ---
 
-## `specific_org_fa_wien`
+## `tax_office_finanzamt`
 
-**F1:** 0.004 | **Precision:** 0.167 | **Recall:** 0.002  
+**F1:** 0.191 | **Precision:** 0.452 | **Recall:** 0.121  
 
 **Format:** `regex`  
 **Description:**
-Matches 'Finanzamt Wien 1/23'.
+Matches 'Finanzamt' followed by specific known locations. Removed restrictive negative lookahead to allow 'vom' and dates.
 
 **Content:**
 ```
-\bFinanzamt\s+Wien\s+1/23\b
+\bFinanzamt\s+(?:Schwechat\s+Gerasdorf|Baden\s+M\xf6dling|Wien\s+8/16/17|Salzburg-Stadt|St\.\s+Johann\s+Tamsweg\s+Zell\s+am\s+See|Amstetten\s+Melk\s+Scheibbs|Steiermark\s+Mitte|\d+/?\d+|Bruck\s+Eisenstadt\s+Oberwart|Klagenfurt\s+St\.\s+Veit\s+Wolfsberg|Graz-Stadt|Tirol\s+Ost|Nieder\xf6sterreich\s+Mitte|Grieskirchen\s+Wels|Linz|Freistadt\s+Rohrbach\s+Urfahr|Deutschlandsberg\s+Leibnitz\s+Voitsberg|Judenburg\s+Liezen|Klosterneuburg|Salzburg-Land|Innsbruck|Braunau\s+Ried\s+Sch\xe4rding|Landeck\s+Reutte|Purkersdorf|Vorarlberg|Kirchdorf\s+Perg\s+Steyr|Wien\s+2/20/21/22|Waldviertel|Oststeiermark|Spittal\s+Villach|Gmunden\s+V\xf6cklabruck|Wien\s+1/23|Wien\s+8/16/17|Steiermark\s+Mitte|Nieder\xf6sterreich\s+Mitte|Bruck\s+Eisenstadt\s+Oberwart|Klagenfurt\s+St\.\s+Veit\s+Wolfsberg|Deutschlandsberg\s+Leibnitz\s+Voitsberg|Amstetten\s+Melk\s+Scheibbs|Grieskirchen\s+Wels|Gmunden\s+V\xf6cklabruck|Schwechat\s+Gerasdorf|Baden\s+M\xf6dling|Purkersdorf|Vorarlberg|Waldviertel|Oststeiermark|Spittal\s+Villach|Innsbruck|Braunau\s+Ried\s+Sch\xe4rding|Landeck\s+Reutte|Kirchdorf\s+Perg\s+Steyr|Wien\s+2/20/21/22|Wien\s+1/23|Wien\s+8/16/17|Graz-Stadt|Salzburg-Stadt|Salzburg-Land|Judenburg\s+Liezen|Klosterneuburg|Freistadt\s+Rohrbach\s+Urfahr|St\.\s+Johann\s+Tamsweg\s+Zell\s+am\s+See)(?!\s+vom|\s+\d+)
 ```
 
 <details>
@@ -1350,13 +1172,13 @@ Matches 'Finanzamt Wien 1/23'.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.167 | 0.002 | 0.004 | 6 | 1 | 5 |
+| 0.452 | 0.121 | 0.191 | 146 | 66 | 80 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 1 | 5 | 191 |
+| `organisation` | 66 | 80 | 478 |
 
 </details>
 
@@ -1368,11 +1190,114 @@ Matches 'Finanzamt Wien 1/23'.
 **Example 0**
 
 ```
-... die Beschwerde vom 18. September 2020 gegen den Bescheid des 
-<<<Finanzamt Wien 1/23>>>  vom 24. August 2020 betreffend Einkommensteuer (Arbeitnehmerveranlagung) ...
+...
+gegen den zur Steuernummer 28-115/0315  ergangenen Bescheid des <<<Finanzamt Deutschlandsberg Leibnitz Voitsberg>>> (FA) vom 
+11. August 2021 betreffend Einkommensteuer (Arbeitnehmerveranlagung) ...
 ```
 
-- Pred: `Finanzamt Wien 1/23` , Gold: `Finanzamt Wien 1/23`)
+- Pred: `Finanzamt Deutschlandsberg Leibnitz Voitsberg` , Gold: `Finanzamt Deutschlandsberg Leibnitz Voitsberg`)
+
+**Example 1**
+
+```
+... folgt eine zahlenmäßige Darstellung)  
+Am 26.04.2013 erließ das <<<Finanzamt Grieskirchen Wels>>>  nach Durchführung der Außenprüfung je einen 
+Körperschaftsteuerbescheid ...
+```
+
+- Pred: `Finanzamt Grieskirchen Wels` , Gold: `Finanzamt Grieskirchen Wels`)
+
+```
+...
+RV/5101064/2013) und den Körperschaftsteuerbescheid 2007 des <<<Finanzamt Grieskirchen Wels>>>  gegenüber der 
+mitbeteiligten Partei Annemie Bott (als partiellen ...
+```
+
+- Pred: `Finanzamt Grieskirchen Wels` , Gold: `Finanzamt Grieskirchen Wels`)
+
+```
+... eingereicht. 
+Unmittelbar nachfolgend hat das BFG die Amtsrevision des <<<Finanzamt Grieskirchen Wels>>> (samt Veranlagungsakten 
+sowie Auszügen aus dem Arbeitsbogen ...
+```
+
+- Pred: `Finanzamt Grieskirchen Wels` , Gold: `Finanzamt Grieskirchen Wels`)
+
+```
+... 13.09.2018 zu Ro 2016/15/0010 hat der VwGH die 
+Amtsrevision des <<<Finanzamt Grieskirchen Wels>>>  als unbegründet abgewiesen. Der VwGH formulierte die 
+9 von ...
+```
+
+- Pred: `Finanzamt Grieskirchen Wels` , Gold: `Finanzamt Grieskirchen Wels`)
+
+```
+... betragsmäßig verbindlich wird. Begründend 
+wurde deshalb durch das <<<Finanzamt Grieskirchen Wels>>>  im Sachbescheid Feststellungsbescheid Gruppenmitglied 
+2010 ...
+```
+
+- Pred: `Finanzamt Grieskirchen Wels` , Gold: `Finanzamt Grieskirchen Wels`)
+
+**Example 2**
+
+```
+... Dr. Walter Ganster, Steuerberater in 9100 
+Völkermarkt und <<<Finanzamt Schwechat Gerasdorf>>>  als Amtspartei und als Gesamtrechtsnachfolger des Finanzamtes ...
+```
+
+- Pred: `Finanzamt Schwechat Gerasdorf` , Gold: `Finanzamt Schwechat Gerasdorf`)
+
+**Example 3**
+
+```
+... August 2017 
+gegen den Bescheid des Finanzamtes F (nunmehr: <<<Finanzamt Klagenfurt St. Veit Wolfsberg>>>) vom 2. Juni 2017 betreffend 
+Körperschaftsteuer 2016 zu Steuernummer ...
+```
+
+- Pred: `Finanzamt Klagenfurt St. Veit Wolfsberg` , Gold: `Finanzamt Klagenfurt St. Veit Wolfsberg`)
+
+**Example 4**
+
+```
+... Großbritannien errichtete 
+Gesellschaft mit Sitz in Kranzing. <<<Finanzamt Salzburg-Stadt>>>  betreibt Geschäfte in den Bereichen 
+Unterhaltungsmedien und ...
+```
+
+- Pred: `Finanzamt Salzburg-Stadt` , Gold: `Finanzamt Salzburg-Stadt`)
+
+```
+... erreichbar, welche unter anderem auch in Österreich verfügbar 
+ist. <<<Finanzamt Salzburg-Stadt>>>  hält eine Wettlizenz des Vereinigten Königreichs. 
+KommR Ing. ...
+```
+
+- Pred: `Finanzamt Salzburg-Stadt` , Gold: `Finanzamt Salzburg-Stadt`)
+
+```
+...
+KommR Ing. Roberta Gossling  Limited ist eine im Jahr 2007 von <<<Finanzamt Salzburg-Stadt>>>  Ltd. gegründete Gesellschaft. Das 
+Unternehmen ist in Großbritannien ...
+```
+
+- Pred: `Finanzamt Salzburg-Stadt` , Gold: `Finanzamt Salzburg-Stadt`)
+
+```
+...
+Online Wettprodukte des Unternehmens waren unter der Website www.<<<Finanzamt Salzburg-Stadt>>> .com 
+erreichbar, welche unter anderem auch in Österreich verfügbar ...
+```
+
+- Pred: `Finanzamt Salzburg-Stadt` , Gold: `Finanzamt Salzburg-Stadt`)
+
+```
+... Wette auf den Ausgang der Lotterien erteilt der Teilnehmer <<<Finanzamt Salzburg-Stadt>>>  den 
+Auftrag, die entsprechende Wette an KommR Ing. Roberta ...
+```
+
+- Pred: `Finanzamt Salzburg-Stadt` , Gold: `Finanzamt Salzburg-Stadt`)
 
 </details>
 
@@ -1386,36 +1311,625 @@ Matches 'Finanzamt Wien 1/23'.
 **False Positives:**
 
 ```
-... und 2007 vom 3.7.2009 des Finanzamtes Österreich 
-(ehemals <<<Finanzamt Wien 1/23>>>) richtet, zu Recht erkannt:  
-I. Der Beschwerde, insoweit sich ...
+... Einreichung der 
+Umsatzsteuererklärung 2018 am 15.5.2019 beim <<<Finanzamt Graz-Stadt>>>, wurde die Frist für den 
+Antrag auf Erstattung von Vorsteuern ...
 ```
 
-FP: `Finanzamt Wien 1/23` (organisation)
+FP: `Finanzamt Graz-Stadt` (organisation)
+
+```
+... Anträge auf Erstattung von Vorsteuern zuständigen Behörde 
+(<<<Finanzamt Graz-Stadt>>>) eingebracht. 
+Weiters ist anzumerken, wenn die Behörde die ...
+```
+
+FP: `Finanzamt Graz-Stadt` (organisation)
+
+```
+... 
+Erstattung mittels amtlich vorgeschriebenem Vordruck beim <<<Finanzamt Graz-Stadt>>> zu 
+beantragen. Der Antrag ist binnen sechs Monaten nach Ablauf ...
+```
+
+FP: `Finanzamt Graz-Stadt` (organisation)
 
 **✅ Gold Entities:**
-- `Dietrich Mägerlein` (person)
-- `Mitterfeld 2, 4813 Gmundnerberg, Österreich` (address)
+- `Dr.in Constanze Peest` (person)
+- `Linn Damianou` (person)
+- `Fürnbergstraße 3, 4730 Steinparz, Österreich` (address)
+- `Finanzamt Salzburg-Land` (organisation)
+- `39-261/4216` (tax_number)
 
 **Example 1**
 
 **False Positives:**
 
 ```
-... Die weitere Begründung lautet auszugsweise wie folgt: 
-„Das <<<Finanzamt Wien 1/23>>> hat datiert mit 16. August 2017 eine Beschwerdevorentscheidung ...
+... den 
+Abweisungsbescheid des Finanzamtes Österreich (bisher <<<Finanzamt St. Johann Tamsweg Zell 
+am See>>>) vom 6. August 2019 betreffend Familienbeihilfe für den Zeitraum ...
 ```
 
-FP: `Finanzamt Wien 1/23` (organisation)
+FP: `Finanzamt St. Johann Tamsweg Zell 
+am See` (organisation)
 
 **✅ Gold Entities:**
-- `Leander Neimeyer` (person)
-- `Farchat 2, 4064 Mitterbachham, Österreich` (address)
-- `75-448/9858` (tax_number)
-- `Leander Neimeyer` (person)
-- `Naaß Elektro GMBH` (organisation)
-- `Bersud Möbel GMBH` (organisation)
-- `Unter Heimdorf GMBH` (organisation)
+- `Heinrich Röskens` (person)
+- `Kleinhofstraße 36, 2640 Pettenbach, Österreich` (address)
+
+**Example 2**
+
+**False Positives:**
+
+```
+... Gmunden“ gerichtete 
+Vorlageantrag am 28. Dezember 2018 beim <<<Finanzamt Gmunden Vöcklabruck>>> einlangte, dieses 
+Finanzamt jedoch sachlich und örtlich unzuständig ...
+```
+
+FP: `Finanzamt Gmunden Vöcklabruck` (organisation)
+
+```
+... Marxergasse 4, 4810 Gmunden“ und wurde 
+am selben Tag beim <<<Finanzamt Gmunden Vöcklabruck>>> in Gmunden persönlich durch Einwurf in 
+die „ Postbox“ der ...
+```
+
+FP: `Finanzamt Gmunden Vöcklabruck` (organisation)
+
+```
+... wurde der Vorlageantrag – zuständigkeitshalber - durch das <<<Finanzamt Gmunden 
+Vöcklabruck>>> an das „Finanzamt für Gebühren und Verkehrsst. Marxerg. 4 1030 ...
+```
+
+FP: `Finanzamt Gmunden 
+Vöcklabruck` (organisation)
+
+```
+... seinem sachlich und örtlich zuständigen Finanzamt (in dem 
+Fall <<<Finanzamt Bruck Eisenstadt Oberwart>>>) fristwahrend abgeben. Soweit ihm Finanzonline 
+7 von 10
+Seite ...
+```
+
+FP: `Finanzamt Bruck Eisenstadt Oberwart` (organisation)
+
+```
+... wird die Behörde im Adressfeld durch das weiterleitende Amt (<<<Finanzamt 
+Gmunden Vöcklabruck>>>) selbst mit „Finanzamt für Gebühren u Verkehrsst“ bezeichnet. ...
+```
+
+FP: `Finanzamt 
+Gmunden Vöcklabruck` (organisation)
+
+**✅ Gold Entities:**
+- `Ing. OMedR Albert Voulgaridou` (person)
+- `Patriasdorfer Straße 4, 9634 Katlingberg, Österreich` (address)
+- `07-334/2610` (tax_number)
+
+**Example 3**
+
+**False Positives:**
+
+```
+... hat. 
+In der Zwischenzeit hat er sowohl der SVS als auch dem <<<Finanzamt Linz>>>, bei welchem er als 
+beschränkt Steuerpflichtiger noch zu veranlagen ...
+```
+
+FP: `Finanzamt Linz` (organisation)
+
+```
+... veranlagen war, sämtliche Unterlagen übermittelt, jedoch 
+ist es dem <<<Finanzamt Linz>>> nicht möglich, die zu Unrecht einbehaltene österreichische ...
+```
+
+FP: `Finanzamt Linz` (organisation)
+
+**✅ Gold Entities:**
+- `Viktoria Schreitmueller` (person)
+- `Wolkersdorfer Weg 9q, 5223 Kuglberg, Österreich` (address)
+- `18-890/9416` (tax_number)
+
+**Example 4**
+
+**False Positives:**
+
+```
+... 2020 gegen den Bescheid des 
+Finanzamtes Österreich (vormals <<<Finanzamt Baden Mödling>>>) vom 13. November 2020 
+betreffend Einkommensteuer 2015, Steuernummer ...
+```
+
+FP: `Finanzamt Baden Mödling` (organisation)
+
+**✅ Gold Entities:**
+- `Lara Pfeiferl` (person)
+- `Obernbergerstraße 76, 8253 Schrimpf, Österreich` (address)
+- `85-636/8182` (tax_number)
+
+</details>
+
+---
+
+---
+
+## `tax_office_fa`
+
+**F1:** 0.230 | **Precision:** 0.802 | **Recall:** 0.134  
+
+**Format:** `regex`  
+**Description:**
+Matches 'FA' followed by specific known locations. Removed restrictive negative lookahead to allow 'vom' and dates.
+
+**Content:**
+```
+\bFA\s+(?:Schwechat\s+Gerasdorf|Baden\s+M\xf6dling|Wien\s+8/16/17|Salzburg-Stadt|St\.\s+Johann\s+Tamsweg\s+Zell\s+am\s+See|Amstetten\s+Melk\s+Scheibbs|Steiermark\s+Mitte|\d+/?\d+|Bruck\s+Eisenstadt\s+Oberwart|Klagenfurt\s+St\.\s+Veit\s+Wolfsberg|Graz-Stadt|Tirol\s+Ost|Nieder\xf6sterreich\s+Mitte|Grieskirchen\s+Wels|Linz|Freistadt\s+Rohrbach\s+Urfahr|Deutschlandsberg\s+Leibnitz\s+Voitsberg|Judenburg\s+Liezen|Klosterneuburg|Salzburg-Land|Innsbruck|Braunau\s+Ried\s+Sch\xe4rding|Landeck\s+Reutte|Purkersdorf|Vorarlberg|Kirchdorf\s+Perg\s+Steyr|Wien\s+2/20/21/22|Waldviertel|Oststeiermark|Spittal\s+Villach|Gmunden\s+V\xf6cklabruck|Wien\s+1/23|Wien\s+8/16/17|Steiermark\s+Mitte|Nieder\xf6sterreich\s+Mitte|Bruck\s+Eisenstadt\s+Oberwart|Klagenfurt\s+St\.\s+Veit\s+Wolfsberg|Deutschlandsberg\s+Leibnitz\s+Voitsberg|Amstetten\s+Melk\s+Scheibbs|Grieskirchen\s+Wels|Gmunden\s+V\xf6cklabruck|Schwechat\s+Gerasdorf|Baden\s+M\xf6dling|Purkersdorf|Vorarlberg|Waldviertel|Oststeiermark|Spittal\s+Villach|Innsbruck|Braunau\s+Ried\s+Sch\xe4rding|Landeck\s+Reutte|Kirchdorf\s+Perg\s+Steyr|Wien\s+2/20/21/22|Wien\s+1/23|Wien\s+8/16/17|Graz-Stadt|Salzburg-Stadt|Salzburg-Land|Judenburg\s+Liezen|Klosterneuburg|Freistadt\s+Rohrbach\s+Urfahr|St\.\s+Johann\s+Tamsweg\s+Zell\s+am\s+See)(?!\s+vom|\s+\d+)
+```
+
+<details>
+<summary>📊 Detailed Metrics</summary>
+
+| Precision | Recall | F1 | Total Predicted | TP | FP |
+|---|---|---|---|---|---|
+| 0.802 | 0.134 | 0.230 | 91 | 73 | 18 |
+
+**Per-Class Breakdown**
+
+| Class | TP | FP | FN |
+|---|---|---|---|
+| `organisation` | 73 | 18 | 471 |
+
+</details>
+
+---
+
+<details>
+<summary>✅ Worked</summary>
+
+**Example 0**
+
+```
+... ergangenen Bescheid des Finanzamtes X (jetzt Dienststelle 
+des <<<FA Klosterneuburg>>> ) vom 13. Dezember 2019 betreffend Einkommensteuer 2011 zu ...
+```
+
+- Pred: `FA Klosterneuburg` , Gold: `FA Klosterneuburg`)
+
+**Example 1**
+
+```
+... Milan Händlein. 
+Im Wirtschaftsjahr 2007 ist gemäß der beim <<<FA Grieskirchen Wels>>>  eingereichten 
+Körperschaftsteuererklärung 2007 ein steuerlicher ...
+```
+
+- Pred: `FA Grieskirchen Wels` , Gold: `FA Grieskirchen Wels`)
+
+```
+... 31.05.2013 beigelegt). Mit Vorlagebericht vom 13.11.2013 hat das <<<FA Grieskirchen Wels>>> 
+die eingebrachte Beschwerde (ohne Erlassung einer Beschwerdevorentscheidung) ...
+```
+
+- Pred: `FA Grieskirchen Wels` , Gold: `FA Grieskirchen Wels`)
+
+```
+... Linz, vom 27.01.2016, GZ 
+RV/5101064/2013, wurde seitens des <<<FA Grieskirchen Wels>>>  in vollem Umfang im Zuge einer Amtsrevision 
+angefochten. ...
+```
+
+- Pred: `FA Grieskirchen Wels` , Gold: `FA Grieskirchen Wels`)
+
+```
+... beim 
+Rechtsvorgänger für das Jahr 2007, wurde seitens des <<<FA Grieskirchen Wels>>>  am 07.03.2016 das 
+Veranlagungsjahr 2010 beim gegenständlichen ...
+```
+
+- Pred: `FA Grieskirchen Wels` , Gold: `FA Grieskirchen Wels`)
+
+```
+... 27.01.2016 für das Jahr 2007 (Rechtsvorgänger) 
+wurde seitens des <<<FA Grieskirchen Wels>>>  mittels Amtsrevision bekämpft. Sollte der VwGH der Amtsrevision ...
+```
+
+- Pred: `FA Grieskirchen Wels` , Gold: `FA Grieskirchen Wels`)
+
+**Example 2**
+
+```
+... die Beschwerde vom 
+24. Jänner 2018 gegen den Bescheid des <<<FA Niederösterreich Mitte>>> (nunmehr Finanzamt Österreich) vom 
+19. Dezember 2017, Steuernummer ...
+```
+
+- Pred: `FA Niederösterreich Mitte` , Gold: `FA Niederösterreich Mitte`)
+
+**Example 3**
+
+```
+... der Angelegenheit der Parteien 
+Dagobert Hermkens (Bf) und <<<FA Klagenfurt St. Veit Wolfsberg>>>  als Amtspartei über die Beschwerde vom 7.2.2022     
+     ...
+```
+
+- Pred: `FA Klagenfurt St. Veit Wolfsberg` , Gold: `FA Klagenfurt St. Veit Wolfsberg`)
+
+**Example 4**
+
+```
+... nicht zulässig. 
+ 
+Entscheidungsgründe 
+I. Verfahrensgang 
+<<<FA Salzburg-Stadt>>>  Ltd. (im Folgenden „<<<FA Salzburg-Stadt>>>“) ist eine im Jahr 1999 ...
+```
+
+- Pred: `FA Salzburg-Stadt` , Gold: `FA Salzburg-Stadt`)
+
+```
+... 
+I. Verfahrensgang 
+<<<FA Salzburg-Stadt>>>  Ltd. (im Folgenden „<<<FA Salzburg-Stadt>>>“) ist eine im Jahr 1999 in Großbritannien errichtete 
+Gesellschaft ...
+```
+
+- Pred: `FA Salzburg-Stadt` , Gold: `FA Salzburg-Stadt`)
+
+```
+...
+Unterhaltungsmedien und Wetten. Das Online Wettprodukt von <<<FA Salzburg-Stadt>>>  ist unter der 
+Website www.<<<FA Salzburg-Stadt>>> .com erreichbar, ...
+```
+
+- Pred: `FA Salzburg-Stadt` , Gold: `FA Salzburg-Stadt`)
+
+```
+... Wettprodukt von <<<FA Salzburg-Stadt>>>  ist unter der 
+Website www.<<<FA Salzburg-Stadt>>> .com erreichbar, welche unter anderem auch in Österreich verfügbar ...
+```
+
+- Pred: `FA Salzburg-Stadt` , Gold: `FA Salzburg-Stadt`)
+
+```
+... Registrierungsadresse in Österreich mit 15. September 2019 
+geschlossen. 
+<<<FA Salzburg-Stadt>>>  ist für das Betreiben der Website, das Einrichten und die ...
+```
+
+- Pred: `FA Salzburg-Stadt` , Gold: `FA Salzburg-Stadt`)
+
+</details>
+
+---
+
+<details>
+<summary>⚠️ False Positives</summary>
+
+**Example 0**
+
+**False Positives:**
+
+```
+...
+Rechtsmittelverfahren betreffend Rückabwicklung des Überrechnungsantrages beim <<<FA 08>>> 
+abzuwarten und bis dorthin das gegenständliche Beschwerdeverfahren ...
+```
+
+FP: `FA 08` (organisation)
+
+```
+...
+betreffend Rückabwicklung des Überrechnungsantrages m.W. nach beim <<<FA 08>>> bis dato nicht 
+abgeschlossen ist, sodass nach wie vor der ...
+```
+
+FP: `FA 08` (organisation)
+
+**✅ Gold Entities:**
+- `35-039/2267` (tax_number)
+- `35-039/2267` (tax_number)
+- `35-039/2267` (tax_number)
+- `35-039/2267` (tax_number)
+
+**Example 1**
+
+**False Positives:**
+
+```
+...
+gesondert abgegolten.  
+Auf den Vorlagebericht v.14.07.2015 zu <<<FA 46/2015>>>/002495 wird verwiesen. 
+II. Das Bundesfinanzgericht hat erwogen: ...
+```
+
+FP: `FA 46/2015` (organisation)
+
+**✅ Gold Entities:**
+- `Prof. Hon.-Prof. ÖkR Detlev Leudert` (person)
+- `Bungalowweg 8, 6741 Plazera, Österreich` (address)
+
+**Example 2**
+
+**False Positives:**
+
+```
+... Streitjahres zu gewähren: 
+ 
+1.680 €…….168x10 Pendlerpauschale lt. <<<FA 
+108>>>,30 €……10,83x10 Pendlereuro lt. FA 
+ 
+Steuererklärung 2020 (Arbeitnehmerveranlagung): ...
+```
+
+FP: `FA 
+108` (organisation)
+
+**✅ Gold Entities:**
+- `Mag. Rudolf Hawranek` (person)
+- `Dagobert Hermkens` (person)
+- `FA Klagenfurt St. Veit Wolfsberg` (organisation)
+
+**Example 3**
+
+**False Positives:**
+
+```
+... 21.12.2011 setzte das Finanzamt Wien 9/18/19 Klosterneuburg (<<<FA 07>>>) die 
+Einkommensteuer des Beschwerdeführers (Bf.) u.a. unter ...
+```
+
+FP: `FA 07` (organisation)
+
+**✅ Gold Entities:**
+- `Dr.in Juliana Kleppel` (person)
+- `HR Christian Styrnal` (person)
+- `Babenbergersee I 18, 5524 Hallseiten, Österreich` (address)
+- `60-008/3417` (tax_number)
+
+**Example 4**
+
+**False Positives:**
+
+```
+... September 2009 sowie vom 
+14. Jänner 2013 gegen die Bescheide des <<<FA Salzburg-Land>>> (nunmehr Finanzamt Österreich) 
+vom 18. Dezember 2012 betreffend ...
+```
+
+FP: `FA Salzburg-Land` (organisation)
+
+**✅ Gold Entities:**
+- `Irene Lachmann` (person)
+- `Urbisweg 22, 4060 Sankt Isidor, Österreich` (address)
+- `28-430/1410` (tax_number)
+- `Urbisweg 22, 4060 Sankt Isidor, Österreich` (address)
+
+</details>
+
+---
+
+---
+
+## `company_gmbh_general`
+
+**F1:** 0.035 | **Precision:** 0.500 | **Recall:** 0.018  
+
+**Format:** `regex`  
+**Description:**
+Matches generic company names ending in 'GMBH', ensuring the name starts with a capitalized word and has at least one preceding word, excluding common non-entity prefixes.
+
+**Content:**
+```
+\b([A-Z][a-zA-Z]+(?:\s+[A-Z][a-zA-Z]+|\s+-\s+[A-Z][a-zA-Z]+|\s+&\s+[A-Z][a-zA-Z]+|\s+\+\s+[A-Z][a-zA-Z]+)+\s+GMBH)\b
+```
+
+<details>
+<summary>📊 Detailed Metrics</summary>
+
+| Precision | Recall | F1 | Total Predicted | TP | FP |
+|---|---|---|---|---|---|
+| 0.500 | 0.018 | 0.035 | 20 | 10 | 10 |
+
+**Per-Class Breakdown**
+
+| Class | TP | FP | FN |
+|---|---|---|---|
+| `organisation` | 10 | 10 | 298 |
+
+</details>
+
+---
+
+<details>
+<summary>✅ Worked</summary>
+
+**Example 0**
+
+```
+... „Küche“ wurde zunächst ausgeführt, dass zwei Rechnungen der „<<<Wiederspan Beratung GMBH>>>“ 
+2 von 7
+Seite 3 von 7 
+ 
+ 
+keine Leistungsbeschreibung enthalte ...
+```
+
+- Pred: `Wiederspan Beratung GMBH` , Gold: `Wiederspan Beratung GMBH`)
+
+**Example 1**
+
+```
+... Gesellschafter) der mit Gesellschaftsvertrag 
+vom 30.04.1979 gegründeten <<<Gumpold Technik GMBH>>> (in der Folge: GmbH). Geschäftsgegenstand der 
+GmbH war der ...
+```
+
+- Pred: `Gumpold Technik GMBH` , Gold: `Gumpold Technik GMBH`)
+
+**Example 2**
+
+```
+... Beschwerdesache relevant – 
+mit der Bersud Möbel GMBH (vormals <<<Unter Heimdorf GMBH>>>; im Folgenden: Y GmbH). 
+Sowohl bei der Beschwerdeführerin ...
+```
+
+- Pred: `Unter Heimdorf GMBH` , Gold: `Unter Heimdorf GMBH`)
+
+**Example 3**
+
+```
+... bezog die Bf Einkünfte aus nichtselbständiger Arbeit bei der <<<Technik Valseekel GMBH>>> (nach Berücksichtigung des Pauschbetrages für Werbungskosten ...
+```
+
+- Pred: `Technik Valseekel GMBH` , Gold: `Technik Valseekel GMBH`)
+
+```
+... bezog die Bf Einkünfte aus 
+nichtselbständiger Arbeit bei der <<<Technik Valseekel GMBH>>> (nach Berücksichtigung des Pauschbetrages 
+für Werbungskosten ...
+```
+
+- Pred: `Technik Valseekel GMBH` , Gold: `Technik Valseekel GMBH`)
+
+```
+...
+nichtselbständiger Arbeit. Sie war in genannten Jahren bei der <<<Technik Valseekel GMBH>>>  als 
+4 von 9
+Seite 5 von 9 
+ 
+ 
+Arbeitnehmerin tätig und von ...
+```
+
+- Pred: `Technik Valseekel GMBH` , Gold: `Technik Valseekel GMBH`)
+
+```
+... Österreich an. 
+2. Beweiswürdigung 
+Das Dienstverhältnis der Bf zur <<<Technik Valseekel GMBH>>>  sowie das Bestehen des Wohnsitzes und 
+Mittelpunktes der Lebensinteressen ...
+```
+
+- Pred: `Technik Valseekel GMBH` , Gold: `Technik Valseekel GMBH`)
+
+**Example 4**
+
+```
+... ist, ob der Beschwerdeführer (Bf.) infolge der Insolvenz der <<<Luehrig + Hundertmarck Holz GMBH>>> 
+(Primärschuldnerin) als ehemaliger Geschäftsführer für die ...
+```
+
+- Pred: `Luehrig + Hundertmarck Holz GMBH` , Gold: `Luehrig + Hundertmarck Holz GMBH`)
+
+```
+... ehemaliger Geschäftsführer 
+für die aushaftende Abgabenschuld der <<<Luehrig + Hundertmarck Holz GMBH>>>  in Höhe von Euro 396.769,30 in 
+Anspruch genommen. 
+Dagegen ...
+```
+
+- Pred: `Luehrig + Hundertmarck Holz GMBH` , Gold: `Luehrig + Hundertmarck Holz GMBH`)
+
+```
+... Oktober 2014, sowie ab 18. Dezember 2014 
+Geschäftsführer der <<<Luehrig + Hundertmarck Holz GMBH>>> (Primärschuldnerin). 
+Mit Beschluss des Landesgerichts Wr. ...
+```
+
+- Pred: `Luehrig + Hundertmarck Holz GMBH` , Gold: `Luehrig + Hundertmarck Holz GMBH`)
+
+</details>
+
+---
+
+<details>
+<summary>⚠️ False Positives</summary>
+
+**Example 0**
+
+**False Positives:**
+
+```
+... Bundesfinanzgericht beschließt durch die Richterin Dr. Lisa Pucher in der <<<Beschwerdesache 
+Enns Werkal GMBH>>>, Föhrenwald III 19, 3140 Pottenbrunn, Österreich, vertreten ...
+```
+
+FP: `Beschwerdesache 
+Enns Werkal GMBH` (organisation)
+
+```
+... Bundes-Verfassungsgesetz 
+(B-VG) nicht zulässig. 
+Begründung 
+<<<Die Enns Werkal GMBH>>>  hat mit Eingabe vom 07.08.2024 gemäß § 284 Abs 1 BAO 
+Säumnisbeschwerden ...
+```
+
+FP: `Die Enns Werkal GMBH` (organisation)
+
+**✅ Gold Entities:**
+- `Enns Werkal GMBH` (organisation)
+- `Föhrenwald III 19, 3140 Pottenbrunn, Österreich` (address)
+- `04-382/0421` (tax_number)
+- `Enns Werkal GMBH` (organisation)
+
+**Example 1**
+
+**False Positives:**
+
+```
+...
+Der Bf. war im Beschwerdezeitraum durchgehend bei der Klein-<<<Vorholt KI GMBH>>>  angestellt. Im 
+Vorjahr 2022 war der Bf. zunächst bis einschließlich ...
+```
+
+FP: `Vorholt KI GMBH` (organisation)
+
+```
+... 2022 war der Bf. zunächst bis einschließlich August bei der <<<Firma Gogel Daten GMBH>>> 
+beschäftigt. Ab September 2022 begann sein Dienstverhältnis ...
+```
+
+FP: `Firma Gogel Daten GMBH` (organisation)
+
+```
+... Feststellung, wonach der Bf. im Jahr 2022 zunächst bei der <<<Firma Gogel Daten GMBH>>>  und im 
+Folgenden bei der Klein-Vorholt KI GMBH  beschäftigt ...
+```
+
+FP: `Firma Gogel Daten GMBH` (organisation)
+
+```
+... der Firma Gogel Daten GMBH  und im 
+Folgenden bei der Klein-<<<Vorholt KI GMBH>>>  beschäftigt war, ergibt sich einerseits aus dem vom Bf. mit ...
+```
+
+FP: `Vorholt KI GMBH` (organisation)
+
+```
+...
+Dass der Bf. im Beschwerdezeitraum durchgehend bei der Klein-<<<Vorholt KI GMBH>>>  angestellt war, 
+ergibt sich aus dem an das Finanzamt übermittelten ...
+```
+
+FP: `Vorholt KI GMBH` (organisation)
+
+**✅ Gold Entities:**
+- `Sophie Zekalla` (person)
+- `Benedikt-Stampfl-Weg 17, 8122 Waldstein, Österreich` (address)
+- `71-479/6461` (tax_number)
+- `Klein-Vorholt KI GMBH` (organisation)
+- `Gogel Daten GMBH` (organisation)
+- `Gogel Daten GMBH` (organisation)
+- `Klein-Vorholt KI GMBH` (organisation)
+- `Klein-Vorholt KI GMBH` (organisation)
+- `AT91 2020 2243 9978 8478` (account)
+- `Gogel Daten GMBH` (organisation)
+- `Klein-Vorholt KI GMBH` (organisation)
 
 **Example 2**
 
@@ -1423,42 +1937,1315 @@ FP: `Finanzamt Wien 1/23` (organisation)
 
 ```
 ...
-Bisheriger Verfahrensgang 
-Mit Bescheid vom 9.12.2016 erließ das <<<Finanzamt Wien 1/23>>> einen (Sammel-)Bescheid über 
-die Festsetzung von ersten Säumniszuschlägen ...
+Elmira Gunder  als Masseverwalter im Insolvenzverfahren der Inn-<<<Recycling Institut GMBH>>>, Wolfgerstraße 5, 8223 Buchberg bei Herberstein, Österreich ...
 ```
 
-FP: `Finanzamt Wien 1/23` (organisation)
-
-```
-... könne. 
-Mit Beschwerdevorentscheidung vom 19.1.2017 wies das <<<Finanzamt Wien 1/23>>> die 
-Beschwerde als unbegründet ab und führte als Begründung ...
-```
-
-FP: `Finanzamt Wien 1/23` (organisation)
+FP: `Recycling Institut GMBH` (organisation)
 
 **✅ Gold Entities:**
-- `Peter Wöst` (person)
-- `47-984/7521` (tax_number)
+- `Dr. Torsten Wieskemper` (person)
+- `Elmira Gunder` (person)
+- `Inn-Recycling Institut GMBH` (organisation)
+- `Wolfgerstraße 5, 8223 Buchberg bei Herberstein, Österreich` (address)
+
+</details>
+
+---
+
+---
+
+</details>
+
+---
+
+<details>
+<summary>🔇 Inactive Rules</summary>
+
+## `company_kg_general`
+
+**F1:** 0.021 | **Precision:** 0.055 | **Recall:** 0.013  
+
+**Format:** `regex`  
+**Description:**
+Matches generic company names ending in 'KG', ensuring the name starts with a capitalized word and has at least one preceding word, excluding common non-entity prefixes.
+
+**Content:**
+```
+\b([A-Z][a-zA-Z]+(?:\s+[A-Z][a-zA-Z]+|\s+-\s+[A-Z][a-zA-Z]+|\s+&\s+[A-Z][a-zA-Z]+|\s+\+\s+[A-Z][a-zA-Z]+)+\s+KG)\b
+```
+
+<details>
+<summary>📊 Detailed Metrics</summary>
+
+| Precision | Recall | F1 | Total Predicted | TP | FP |
+|---|---|---|---|---|---|
+| 0.055 | 0.013 | 0.021 | 127 | 7 | 120 |
+
+**Per-Class Breakdown**
+
+| Class | TP | FP | FN |
+|---|---|---|---|
+| `organisation` | 7 | 120 | 536 |
+
+</details>
+
+---
+
+<details>
+<summary>✅ Worked</summary>
+
+**Example 0**
+
+```
+... Beschwerdeführer (kurz: Bf.) war im Jahr 2018 zu 60% an der <<<WOD Sicherheit KG>>>  und zu 33,33% an 
+der Zumholte Verlag OG  beteiligt. Unternehmensgegenstand ...
+```
+
+- Pred: `WOD Sicherheit KG` , Gold: `WOD Sicherheit KG`)
+
+```
+... stellte das Finanzamt die gemeinschaftlichen Einkünfte 2018 der 
+<<<WOD Sicherheit KG>>>  mit 48.094,37 Euro und den auf die Beteiligung an der KG entfallenden ...
+```
+
+- Pred: `WOD Sicherheit KG` , Gold: `WOD Sicherheit KG`)
+
+```
+...
+2018 ein, er habe die Einkünfte aus seiner Beteiligung an der <<<WOD Sicherheit KG>>>  im Jahr 2018 nicht 
+mehr erhalten, weshalb dieser Anteil in ...
+```
+
+- Pred: `WOD Sicherheit KG` , Gold: `WOD Sicherheit KG`)
+
+```
+... Zuflussprinzip zu beachten. Im Jahr 2018 seien ihm 
+keine Einnahmen der <<<WOD Sicherheit KG>>>  zugeflossen, weswegen diese auch nicht der 
+Einkommensteuer ...
+```
+
+- Pred: `WOD Sicherheit KG` , Gold: `WOD Sicherheit KG`)
+
+```
+... erneut, die anteiligen 
+Einkünfte von der Beteiligung an der <<<WOD Sicherheit KG>>>  2018 aus der Einkommensteuerfestsetzung 
+auszunehmen.  
+Am ...
+```
+
+- Pred: `WOD Sicherheit KG` , Gold: `WOD Sicherheit KG`)
+
+</details>
+
+---
+
+<details>
+<summary>⚠️ False Positives</summary>
+
+**Example 0**
+
+**False Positives:**
+
+```
+... Schroateck 20, 8342 Ebersdorf, Österreich, vertreten durch <<<HD Steuerberater GmbH & Co KG>>>, Höchster 
+Str. 51a, 6972 Fußach, über die Beschwerde vom 19. ...
+```
+
+FP: `HD Steuerberater GmbH & Co KG` (organisation)
+
+**✅ Gold Entities:**
+- `Techn R Silke Altpeter` (person)
+- `Schroateck 20, 8342 Ebersdorf, Österreich` (address)
+
+**Example 1**
+
+**False Positives:**
+
+```
+...
+Verlustanteil von 3.111,10 € aus einer Beteiligung des IS an der <<<XY Holding GmbH & Co KG>>>, 
+FN 777777a, StNr 77-777/7777a (nachfolgend XY- KG) enthalten, ...
+```
+
+FP: `XY Holding GmbH & Co KG` (organisation)
+
+**✅ Gold Entities:**
+- `Priv.-Doz.in Milena Cofala` (person)
+- `Kira Junggunst` (person)
+- `Kreuzbichlstraße 15k, 4890 Unterrain, Österreich` (address)
+- `93-986/8725` (tax_number)
+- `FA Klosterneuburg` (organisation)
+
+**Example 2**
+
+**False Positives:**
+
+```
+... Rittschein, Österreich, vertreten durch Copilot Unternehmens- und <<<Steuerberatungs 
+GmbH & Co KG>>>, Littrowgasse 7, 1180 Wien, über folgende Beschwerden gegen ...
+```
+
+FP: `Steuerberatungs 
+GmbH & Co KG` (organisation)
+
+**✅ Gold Entities:**
+- `Karsten Busatis` (person)
+- `Lungaweg 96, 8333 Breitenfeld an der Rittschein, Österreich` (address)
+- `34-796/1007` (tax_number)
+- `Karsten Busatis` (person)
 
 **Example 3**
 
 **False Positives:**
 
 ```
-... für jedes Finanzamt mit 
-Sitz in Wien, ausgenommen für das <<<Finanzamt Wien 1/23>>>; 
- 2. die Organe des Finanzamts Lilienfeld St. Pölten für jedes ...
+... Außerbergweg 6, 4451 Sand, Österreich, vertreten durch HLB Prüf-<<<Treuhand GmbH & Co KG>>>, Berggasse 16, 
+1090 Wien, über die Beschwerde vom 3. November ...
 ```
 
-FP: `Finanzamt Wien 1/23` (organisation)
+FP: `Treuhand GmbH & Co KG` (organisation)
 
 **✅ Gold Entities:**
-- `Dr. Helmut Swionteck` (person)
-- `MedR Univ.-Prof. Georg Schevalje` (person)
-- `Opitzgasse 59, 4752 Achleiten, Österreich` (address)
-- `Linus Schoeppe` (person)
+- `Dagobert Schimmack` (person)
+- `Außerbergweg 6, 4451 Sand, Österreich` (address)
+- `07-354/5950` (tax_number)
+
+**Example 4**
+
+**False Positives:**
+
+```
+... ob dieses Vorbringen den Tatsachen entspricht oder 
+nicht.  
+<<<Die WOD Sicherheit KG>>>  hat ihren Gewinn nach § 4 Abs. 3 EStG 1988 ermittelt. Wird ...
+```
+
+FP: `Die WOD Sicherheit KG` (organisation)
+
+**✅ Gold Entities:**
+- `Priv.-Doz. Hagen Jorkuweit` (person)
+- `Priv.-Doz.in Catharina Tenner` (person)
+- `Dr. Adolf Bastl` (person)
+- `Mag. Andreas Pritzkat` (person)
+- `PhD Marcel Kizilpinar, MSc` (person)
+- `Hohen 73, 5133 Lohnsberg, Österreich` (address)
+- `WOD Sicherheit KG` (organisation)
+- `Zumholte Verlag OG` (organisation)
+- `WOD Sicherheit KG` (organisation)
+- `Zumholte Verlag OG` (organisation)
+- `WOD Sicherheit KG` (organisation)
+- `WOD Sicherheit KG` (organisation)
+- `WOD Sicherheit KG` (organisation)
+- `WOD Sicherheit KG` (organisation)
+- `WOD Sicherheit KG` (organisation)
+- `WOD Sicherheit KG` (organisation)
+
+</details>
+
+---
+
+---
+
+## `company_ag_general`
+
+**F1:** 0.022 | **Precision:** 0.080 | **Recall:** 0.013  
+
+**Format:** `regex`  
+**Description:**
+Matches generic company names ending in 'AG', ensuring the name starts with a capitalized word.
+
+**Content:**
+```
+\b([A-Z][a-zA-Z]+(?:\s+[A-Z][a-zA-Z]+|\s+-\s+[A-Z][a-zA-Z]+|\s+&\s+[A-Z][a-zA-Z]+|\s+\+\s+[A-Z][a-zA-Z]+)*\s+AG)\b
+```
+
+<details>
+<summary>📊 Detailed Metrics</summary>
+
+| Precision | Recall | F1 | Total Predicted | TP | FP |
+|---|---|---|---|---|---|
+| 0.080 | 0.013 | 0.022 | 87 | 7 | 80 |
+
+**Per-Class Breakdown**
+
+| Class | TP | FP | FN |
+|---|---|---|---|
+| `organisation` | 7 | 80 | 537 |
+
+</details>
+
+---
+
+<details>
+<summary>✅ Worked</summary>
+
+**Example 0**
+
+```
+...
+gemäß § 41 Abs 1 Z 2 vor, weil sich die lohnsteuerpflichtigen <<<ZYJY Automotive AG>>>  GmbH sowie 
+NYJ Event AG  GmbH zwar überschneiden würden, ...
+```
+
+- Pred: `ZYJY Automotive AG` , Gold: `ZYJY Automotive AG`)
+
+```
+... sich die lohnsteuerpflichtigen ZYJY Automotive AG  GmbH sowie 
+<<<NYJ Event AG>>>  GmbH zwar überschneiden würden, der Gesetzwortlaut verlange ...
+```
+
+- Pred: `NYJ Event AG` , Gold: `NYJ Event AG`)
+
+```
+... Tatbestandsmerkmal des § 41 Abs 1 Z 12 vor. Im Zuge der 
+Lohnverrechnung/<<<Kubzyk Elektro AG>>>  GmbH sei der ganze Familienbonus Plus ausbezahlt worden, 
+...
+```
+
+- Pred: `Kubzyk Elektro AG` , Gold: `Kubzyk Elektro AG`)
+
+```
+... Arbeit-/Auftraggeber Betrag 
+Lohnzettel 84(1) 01.01.-15.09. <<<Kubzyk Elektro AG>>>  GmbH € 17.356,99 
+Meldung 3(2) 19.09.-02.10. Arbeitsmarktservice ...
+```
+
+- Pred: `Kubzyk Elektro AG` , Gold: `Kubzyk Elektro AG`)
+
+```
+... Arbeitsmarktservice Österreich € 507,22 
+Lohnzettel 84(1) 24.09.-31.12. <<<ZYJY Automotive AG>>>  GmbH € 1.058,79 
+Lohnzettel 84(1) 03.10.-31.12. NYJ Event ...
+```
+
+- Pred: `ZYJY Automotive AG` , Gold: `ZYJY Automotive AG`)
+
+**Example 1**
+
+```
+... zwischen der beschwerdeführenden Partei als Arbeitnehmer und der <<<Heimwil Transport AG>>>  als 
+3 von 6
+Seite 4 von 6 
+ 
+ 
+Arbeitgeberin sowie den Angaben ...
+```
+
+- Pred: `Heimwil Transport AG` , Gold: `Heimwil Transport AG`)
+
+</details>
+
+---
+
+<details>
+<summary>⚠️ False Positives</summary>
+
+**Example 0**
+
+**False Positives:**
+
+```
+... Abschlusszahlung B 
+Sachverhalt: 
+Im WJ 2013/2014 wurden sämtliche vom <<<Konzern AG>>> gehaltenen Anteile an der OÖ. A AG (C) 
+an deren Hauptgesellschafter ...
+```
+
+FP: `Konzern AG` (organisation)
+
+```
+... betreffende Gewinnverteilungsbeschluss kann durch den alleinigen <<<Gesellschafter AG>>> nach 
+Feststellung der Bilanz B per 30.9.2014 erst Ende 2014 ...
+```
+
+FP: `Gesellschafter AG` (organisation)
+
+```
+... Juni 2014 bereits durchgeführt wurde. Im Übrigen waren diese <<<Zahlungen Seitens 
+AG>>> jedenfalls zu leisten, auch wenn kein entsprechender Gewinn ...
+```
+
+FP: `Zahlungen Seitens 
+AG` (organisation)
+
+```
+... Beteiligung. In wirtschaftlicher 
+Betrachtungsweise wurde der <<<Erwerberin AG>>> zugestanden, diesen Restkaufpreis aus der dieser 
+ausschließlich ...
+```
+
+FP: `Erwerberin AG` (organisation)
+
+```
+... übertragen wurde. Dieser 
+bis dahin zukünftig der alleinigen <<<Gesellschafterin AG>>> zufließende Wertzuwachs der Beteiligung 
+B sollte der Verkäuferin ...
+```
+
+FP: `Gesellschafterin AG` (organisation)
+
+**✅ Gold Entities:**
+- `Veronika Cuerten, Bakk. phil.` (person)
+- `Schöglerstraße 1, 9612 Bach, Österreich` (address)
+
+**Example 1**
+
+**False Positives:**
+
+```
+... nach Rückkauf einer fondsgebundenen 
+Lebensversicherung der X <<<Versicherungs AG>>> zum 01.05.2014 mit laufender gleichbleibender 
+Prämienzahlung ...
+```
+
+FP: `Versicherungs AG` (organisation)
+
+```
+... Zuge des Ermittlungsverfahrens vor dem Finanzamt teilte die X <<<Lebensversicherungs AG>>> im 
+Schreiben vom 29.12.2014 mit, dass es sich im gegenständlichen ...
+```
+
+FP: `Lebensversicherungs AG` (organisation)
+
+```
+... Tilgungsträger einer 
+gleichlaufenden endfälligen Finanzierung bei der Y <<<Bank AG>>> zu deren Gunsten verpfändet 
+worden. Durch die für den Kreditnehmer ...
+```
+
+FP: `Bank AG` (organisation)
+
+```
+... Vertragsbeginn in Höhe von 52.000 € beantragt. Lt. Angaben der X 
+<<<Lebensversicherungs AG>>> handelt es sich deshalb nicht um laufende, im Wesentlichen ...
+```
+
+FP: `Lebensversicherungs AG` (organisation)
+
+**✅ Gold Entities:**
+- `Priv.-Doz.in Maria van Birgelen` (person)
+- `Leif Bartheld` (person)
+- `Arlenweg 4X, 5261 Haslau, Österreich` (address)
+
+**Example 2**
+
+**False Positives:**
+
+```
+... nur ein Viertel 
+des Bezuges der X Österreich und jener der Y <<<Pensions AG>>> als ganzjähriger Bezug 
+auszuscheiden. Es komme jedoch die ...
+```
+
+FP: `Pensions AG` (organisation)
+
+```
+... steuerpflichtige 
+Einkünfte bezogen:  
+Firmenkassenpension der Y <<<Pension AG>>> von 1.1. – 31.12.2019 
+Berufsunfähigkeitspension PVA 1.2. – ...
+```
+
+FP: `Pension AG` (organisation)
+
+```
+...
+Tarif zu versteuernde Bezüge: 
+X 1.1. – 30.4.2019 17.416,52 
+Y <<<Pension AG>>>  1.1. – 31.12.2019 2.688,00 
+Pensionsversicherungsanstalt 28.11.2019 ...
+```
+
+FP: `Pension AG` (organisation)
+
+```
+... gegenständlichen Fall betrifft dies 
+ausschließlich die Bezüge der Y <<<Pension AG>>>. Diese Bezüge von 2.688,00 Euro hat das Finanzamt 
+bei Berechnung ...
+```
+
+FP: `Pension AG` (organisation)
+
+```
+... steuerfreien Arbeitslosengeldes) zuerst um die 
+Bezüge der Y <<<Pension AG>>> und um den Jänner-Bezug der X zu vermindern und der verbleibende ...
+```
+
+FP: `Pension AG` (organisation)
+
+**✅ Gold Entities:**
+- `Priv.-Doz.in Franka Münchsmayer` (person)
+- `Henriette Dempwolf` (person)
+- `Hopfersbach 30, 4730 Lindbruck, Österreich` (address)
+- `48-249/3886` (tax_number)
+- `Henriette Dempwolf` (person)
+
+**Example 3**
+
+**False Positives:**
+
+```
+... Finanzamt mittels RSb versandt und von der 
+Österreichischen <<<Post AG>>> der Bf. an ihrer Geschäftsanschrift am 4.3.2021 zugestellt. ...
+```
+
+FP: `Post AG` (organisation)
+
+```
+... ergibt 
+sich aus dem zu den Akten liegenden Zustellnachweis der <<<Post AG>>> vom 4.3.2021. 
+1 von 7
+Seite 2 von 7 
+ 
+ 
+Mit Schreiben vom ...
+```
+
+FP: `Post AG` (organisation)
+
+**✅ Gold Entities:**
+- `Laurentia Schnellert` (person)
+- `Balzerlen 15l, 9334 Guttaringberg, Österreich` (address)
+
+**Example 4**
+
+**False Positives:**
+
+```
+... zustehe. Zusätzlich legte er eine Quittung der Österreichische <<<Post AG>>> vom 
+11.11.2019 über einen per Einschreiben versendeten Brief ...
+```
+
+FP: `Post AG` (organisation)
+
+```
+... Quittung vom 11.11.2019 auch ein Schreiben der Österreichische <<<Post AG>>> vom 
+24.2.2020 betreffend Nachforschung zur Aufgabenummer Nr. ...
+```
+
+FP: `Post AG` (organisation)
+
+```
+... Aufgabenummer 
+Nr. mit dem vorgelegten Schreiben der Österreichische <<<Post AG>>> vom 24.2.2020 erbracht 
+worden sei. Ob bzw. welche Dokumente/Unterlagen ...
+```
+
+FP: `Post AG` (organisation)
+
+```
+...
+Beschwerde) mit dem vorgelegten Schreiben der Österreichische <<<Post AG>>> vom 24.2.2020 
+gelungen sei. 
+Das Bundesfinanzgericht teilt ...
+```
+
+FP: `Post AG` (organisation)
+
+**✅ Gold Entities:**
+- `Hon.-Prof.in Mag.a Brunhild Stieglmaier` (person)
+- `Bühelstauden 7, 4030 Linz, Österreich` (address)
+- `40-192/1103` (tax_number)
+
+</details>
+
+---
+
+---
+
+## `tax_office_finanzamt`
+
+**F1:** 0.191 | **Precision:** 0.452 | **Recall:** 0.121  
+
+**Format:** `regex`  
+**Description:**
+Matches 'Finanzamt' followed by specific known locations. Removed restrictive negative lookahead to allow 'vom' and dates.
+
+**Content:**
+```
+\bFinanzamt\s+(?:Schwechat\s+Gerasdorf|Baden\s+M\xf6dling|Wien\s+8/16/17|Salzburg-Stadt|St\.\s+Johann\s+Tamsweg\s+Zell\s+am\s+See|Amstetten\s+Melk\s+Scheibbs|Steiermark\s+Mitte|\d+/?\d+|Bruck\s+Eisenstadt\s+Oberwart|Klagenfurt\s+St\.\s+Veit\s+Wolfsberg|Graz-Stadt|Tirol\s+Ost|Nieder\xf6sterreich\s+Mitte|Grieskirchen\s+Wels|Linz|Freistadt\s+Rohrbach\s+Urfahr|Deutschlandsberg\s+Leibnitz\s+Voitsberg|Judenburg\s+Liezen|Klosterneuburg|Salzburg-Land|Innsbruck|Braunau\s+Ried\s+Sch\xe4rding|Landeck\s+Reutte|Purkersdorf|Vorarlberg|Kirchdorf\s+Perg\s+Steyr|Wien\s+2/20/21/22|Waldviertel|Oststeiermark|Spittal\s+Villach|Gmunden\s+V\xf6cklabruck|Wien\s+1/23|Wien\s+8/16/17|Steiermark\s+Mitte|Nieder\xf6sterreich\s+Mitte|Bruck\s+Eisenstadt\s+Oberwart|Klagenfurt\s+St\.\s+Veit\s+Wolfsberg|Deutschlandsberg\s+Leibnitz\s+Voitsberg|Amstetten\s+Melk\s+Scheibbs|Grieskirchen\s+Wels|Gmunden\s+V\xf6cklabruck|Schwechat\s+Gerasdorf|Baden\s+M\xf6dling|Purkersdorf|Vorarlberg|Waldviertel|Oststeiermark|Spittal\s+Villach|Innsbruck|Braunau\s+Ried\s+Sch\xe4rding|Landeck\s+Reutte|Kirchdorf\s+Perg\s+Steyr|Wien\s+2/20/21/22|Wien\s+1/23|Wien\s+8/16/17|Graz-Stadt|Salzburg-Stadt|Salzburg-Land|Judenburg\s+Liezen|Klosterneuburg|Freistadt\s+Rohrbach\s+Urfahr|St\.\s+Johann\s+Tamsweg\s+Zell\s+am\s+See)(?!\s+vom|\s+\d+)
+```
+
+<details>
+<summary>📊 Detailed Metrics</summary>
+
+| Precision | Recall | F1 | Total Predicted | TP | FP |
+|---|---|---|---|---|---|
+| 0.452 | 0.121 | 0.191 | 146 | 66 | 80 |
+
+**Per-Class Breakdown**
+
+| Class | TP | FP | FN |
+|---|---|---|---|
+| `organisation` | 66 | 80 | 478 |
+
+</details>
+
+---
+
+<details>
+<summary>✅ Worked</summary>
+
+**Example 0**
+
+```
+...
+gegen den zur Steuernummer 28-115/0315  ergangenen Bescheid des <<<Finanzamt Deutschlandsberg Leibnitz Voitsberg>>> (FA) vom 
+11. August 2021 betreffend Einkommensteuer (Arbeitnehmerveranlagung) ...
+```
+
+- Pred: `Finanzamt Deutschlandsberg Leibnitz Voitsberg` , Gold: `Finanzamt Deutschlandsberg Leibnitz Voitsberg`)
+
+**Example 1**
+
+```
+... folgt eine zahlenmäßige Darstellung)  
+Am 26.04.2013 erließ das <<<Finanzamt Grieskirchen Wels>>>  nach Durchführung der Außenprüfung je einen 
+Körperschaftsteuerbescheid ...
+```
+
+- Pred: `Finanzamt Grieskirchen Wels` , Gold: `Finanzamt Grieskirchen Wels`)
+
+```
+...
+RV/5101064/2013) und den Körperschaftsteuerbescheid 2007 des <<<Finanzamt Grieskirchen Wels>>>  gegenüber der 
+mitbeteiligten Partei Annemie Bott (als partiellen ...
+```
+
+- Pred: `Finanzamt Grieskirchen Wels` , Gold: `Finanzamt Grieskirchen Wels`)
+
+```
+... eingereicht. 
+Unmittelbar nachfolgend hat das BFG die Amtsrevision des <<<Finanzamt Grieskirchen Wels>>> (samt Veranlagungsakten 
+sowie Auszügen aus dem Arbeitsbogen ...
+```
+
+- Pred: `Finanzamt Grieskirchen Wels` , Gold: `Finanzamt Grieskirchen Wels`)
+
+```
+... 13.09.2018 zu Ro 2016/15/0010 hat der VwGH die 
+Amtsrevision des <<<Finanzamt Grieskirchen Wels>>>  als unbegründet abgewiesen. Der VwGH formulierte die 
+9 von ...
+```
+
+- Pred: `Finanzamt Grieskirchen Wels` , Gold: `Finanzamt Grieskirchen Wels`)
+
+```
+... betragsmäßig verbindlich wird. Begründend 
+wurde deshalb durch das <<<Finanzamt Grieskirchen Wels>>>  im Sachbescheid Feststellungsbescheid Gruppenmitglied 
+2010 ...
+```
+
+- Pred: `Finanzamt Grieskirchen Wels` , Gold: `Finanzamt Grieskirchen Wels`)
+
+**Example 2**
+
+```
+... Dr. Walter Ganster, Steuerberater in 9100 
+Völkermarkt und <<<Finanzamt Schwechat Gerasdorf>>>  als Amtspartei und als Gesamtrechtsnachfolger des Finanzamtes ...
+```
+
+- Pred: `Finanzamt Schwechat Gerasdorf` , Gold: `Finanzamt Schwechat Gerasdorf`)
+
+**Example 3**
+
+```
+... August 2017 
+gegen den Bescheid des Finanzamtes F (nunmehr: <<<Finanzamt Klagenfurt St. Veit Wolfsberg>>>) vom 2. Juni 2017 betreffend 
+Körperschaftsteuer 2016 zu Steuernummer ...
+```
+
+- Pred: `Finanzamt Klagenfurt St. Veit Wolfsberg` , Gold: `Finanzamt Klagenfurt St. Veit Wolfsberg`)
+
+**Example 4**
+
+```
+... Großbritannien errichtete 
+Gesellschaft mit Sitz in Kranzing. <<<Finanzamt Salzburg-Stadt>>>  betreibt Geschäfte in den Bereichen 
+Unterhaltungsmedien und ...
+```
+
+- Pred: `Finanzamt Salzburg-Stadt` , Gold: `Finanzamt Salzburg-Stadt`)
+
+```
+... erreichbar, welche unter anderem auch in Österreich verfügbar 
+ist. <<<Finanzamt Salzburg-Stadt>>>  hält eine Wettlizenz des Vereinigten Königreichs. 
+KommR Ing. ...
+```
+
+- Pred: `Finanzamt Salzburg-Stadt` , Gold: `Finanzamt Salzburg-Stadt`)
+
+```
+...
+KommR Ing. Roberta Gossling  Limited ist eine im Jahr 2007 von <<<Finanzamt Salzburg-Stadt>>>  Ltd. gegründete Gesellschaft. Das 
+Unternehmen ist in Großbritannien ...
+```
+
+- Pred: `Finanzamt Salzburg-Stadt` , Gold: `Finanzamt Salzburg-Stadt`)
+
+```
+...
+Online Wettprodukte des Unternehmens waren unter der Website www.<<<Finanzamt Salzburg-Stadt>>> .com 
+erreichbar, welche unter anderem auch in Österreich verfügbar ...
+```
+
+- Pred: `Finanzamt Salzburg-Stadt` , Gold: `Finanzamt Salzburg-Stadt`)
+
+```
+... Wette auf den Ausgang der Lotterien erteilt der Teilnehmer <<<Finanzamt Salzburg-Stadt>>>  den 
+Auftrag, die entsprechende Wette an KommR Ing. Roberta ...
+```
+
+- Pred: `Finanzamt Salzburg-Stadt` , Gold: `Finanzamt Salzburg-Stadt`)
+
+</details>
+
+---
+
+<details>
+<summary>⚠️ False Positives</summary>
+
+**Example 0**
+
+**False Positives:**
+
+```
+... Einreichung der 
+Umsatzsteuererklärung 2018 am 15.5.2019 beim <<<Finanzamt Graz-Stadt>>>, wurde die Frist für den 
+Antrag auf Erstattung von Vorsteuern ...
+```
+
+FP: `Finanzamt Graz-Stadt` (organisation)
+
+```
+... Anträge auf Erstattung von Vorsteuern zuständigen Behörde 
+(<<<Finanzamt Graz-Stadt>>>) eingebracht. 
+Weiters ist anzumerken, wenn die Behörde die ...
+```
+
+FP: `Finanzamt Graz-Stadt` (organisation)
+
+```
+... 
+Erstattung mittels amtlich vorgeschriebenem Vordruck beim <<<Finanzamt Graz-Stadt>>> zu 
+beantragen. Der Antrag ist binnen sechs Monaten nach Ablauf ...
+```
+
+FP: `Finanzamt Graz-Stadt` (organisation)
+
+**✅ Gold Entities:**
+- `Dr.in Constanze Peest` (person)
+- `Linn Damianou` (person)
+- `Fürnbergstraße 3, 4730 Steinparz, Österreich` (address)
+- `Finanzamt Salzburg-Land` (organisation)
+- `39-261/4216` (tax_number)
+
+**Example 1**
+
+**False Positives:**
+
+```
+... den 
+Abweisungsbescheid des Finanzamtes Österreich (bisher <<<Finanzamt St. Johann Tamsweg Zell 
+am See>>>) vom 6. August 2019 betreffend Familienbeihilfe für den Zeitraum ...
+```
+
+FP: `Finanzamt St. Johann Tamsweg Zell 
+am See` (organisation)
+
+**✅ Gold Entities:**
+- `Heinrich Röskens` (person)
+- `Kleinhofstraße 36, 2640 Pettenbach, Österreich` (address)
+
+**Example 2**
+
+**False Positives:**
+
+```
+... Gmunden“ gerichtete 
+Vorlageantrag am 28. Dezember 2018 beim <<<Finanzamt Gmunden Vöcklabruck>>> einlangte, dieses 
+Finanzamt jedoch sachlich und örtlich unzuständig ...
+```
+
+FP: `Finanzamt Gmunden Vöcklabruck` (organisation)
+
+```
+... Marxergasse 4, 4810 Gmunden“ und wurde 
+am selben Tag beim <<<Finanzamt Gmunden Vöcklabruck>>> in Gmunden persönlich durch Einwurf in 
+die „ Postbox“ der ...
+```
+
+FP: `Finanzamt Gmunden Vöcklabruck` (organisation)
+
+```
+... wurde der Vorlageantrag – zuständigkeitshalber - durch das <<<Finanzamt Gmunden 
+Vöcklabruck>>> an das „Finanzamt für Gebühren und Verkehrsst. Marxerg. 4 1030 ...
+```
+
+FP: `Finanzamt Gmunden 
+Vöcklabruck` (organisation)
+
+```
+... seinem sachlich und örtlich zuständigen Finanzamt (in dem 
+Fall <<<Finanzamt Bruck Eisenstadt Oberwart>>>) fristwahrend abgeben. Soweit ihm Finanzonline 
+7 von 10
+Seite ...
+```
+
+FP: `Finanzamt Bruck Eisenstadt Oberwart` (organisation)
+
+```
+... wird die Behörde im Adressfeld durch das weiterleitende Amt (<<<Finanzamt 
+Gmunden Vöcklabruck>>>) selbst mit „Finanzamt für Gebühren u Verkehrsst“ bezeichnet. ...
+```
+
+FP: `Finanzamt 
+Gmunden Vöcklabruck` (organisation)
+
+**✅ Gold Entities:**
+- `Ing. OMedR Albert Voulgaridou` (person)
+- `Patriasdorfer Straße 4, 9634 Katlingberg, Österreich` (address)
+- `07-334/2610` (tax_number)
+
+**Example 3**
+
+**False Positives:**
+
+```
+... hat. 
+In der Zwischenzeit hat er sowohl der SVS als auch dem <<<Finanzamt Linz>>>, bei welchem er als 
+beschränkt Steuerpflichtiger noch zu veranlagen ...
+```
+
+FP: `Finanzamt Linz` (organisation)
+
+```
+... veranlagen war, sämtliche Unterlagen übermittelt, jedoch 
+ist es dem <<<Finanzamt Linz>>> nicht möglich, die zu Unrecht einbehaltene österreichische ...
+```
+
+FP: `Finanzamt Linz` (organisation)
+
+**✅ Gold Entities:**
+- `Viktoria Schreitmueller` (person)
+- `Wolkersdorfer Weg 9q, 5223 Kuglberg, Österreich` (address)
+- `18-890/9416` (tax_number)
+
+**Example 4**
+
+**False Positives:**
+
+```
+... 2020 gegen den Bescheid des 
+Finanzamtes Österreich (vormals <<<Finanzamt Baden Mödling>>>) vom 13. November 2020 
+betreffend Einkommensteuer 2015, Steuernummer ...
+```
+
+FP: `Finanzamt Baden Mödling` (organisation)
+
+**✅ Gold Entities:**
+- `Lara Pfeiferl` (person)
+- `Obernbergerstraße 76, 8253 Schrimpf, Österreich` (address)
+- `85-636/8182` (tax_number)
+
+</details>
+
+---
+
+---
+
+## `tax_office_fa`
+
+**F1:** 0.230 | **Precision:** 0.802 | **Recall:** 0.134  
+
+**Format:** `regex`  
+**Description:**
+Matches 'FA' followed by specific known locations. Removed restrictive negative lookahead to allow 'vom' and dates.
+
+**Content:**
+```
+\bFA\s+(?:Schwechat\s+Gerasdorf|Baden\s+M\xf6dling|Wien\s+8/16/17|Salzburg-Stadt|St\.\s+Johann\s+Tamsweg\s+Zell\s+am\s+See|Amstetten\s+Melk\s+Scheibbs|Steiermark\s+Mitte|\d+/?\d+|Bruck\s+Eisenstadt\s+Oberwart|Klagenfurt\s+St\.\s+Veit\s+Wolfsberg|Graz-Stadt|Tirol\s+Ost|Nieder\xf6sterreich\s+Mitte|Grieskirchen\s+Wels|Linz|Freistadt\s+Rohrbach\s+Urfahr|Deutschlandsberg\s+Leibnitz\s+Voitsberg|Judenburg\s+Liezen|Klosterneuburg|Salzburg-Land|Innsbruck|Braunau\s+Ried\s+Sch\xe4rding|Landeck\s+Reutte|Purkersdorf|Vorarlberg|Kirchdorf\s+Perg\s+Steyr|Wien\s+2/20/21/22|Waldviertel|Oststeiermark|Spittal\s+Villach|Gmunden\s+V\xf6cklabruck|Wien\s+1/23|Wien\s+8/16/17|Steiermark\s+Mitte|Nieder\xf6sterreich\s+Mitte|Bruck\s+Eisenstadt\s+Oberwart|Klagenfurt\s+St\.\s+Veit\s+Wolfsberg|Deutschlandsberg\s+Leibnitz\s+Voitsberg|Amstetten\s+Melk\s+Scheibbs|Grieskirchen\s+Wels|Gmunden\s+V\xf6cklabruck|Schwechat\s+Gerasdorf|Baden\s+M\xf6dling|Purkersdorf|Vorarlberg|Waldviertel|Oststeiermark|Spittal\s+Villach|Innsbruck|Braunau\s+Ried\s+Sch\xe4rding|Landeck\s+Reutte|Kirchdorf\s+Perg\s+Steyr|Wien\s+2/20/21/22|Wien\s+1/23|Wien\s+8/16/17|Graz-Stadt|Salzburg-Stadt|Salzburg-Land|Judenburg\s+Liezen|Klosterneuburg|Freistadt\s+Rohrbach\s+Urfahr|St\.\s+Johann\s+Tamsweg\s+Zell\s+am\s+See)(?!\s+vom|\s+\d+)
+```
+
+<details>
+<summary>📊 Detailed Metrics</summary>
+
+| Precision | Recall | F1 | Total Predicted | TP | FP |
+|---|---|---|---|---|---|
+| 0.802 | 0.134 | 0.230 | 91 | 73 | 18 |
+
+**Per-Class Breakdown**
+
+| Class | TP | FP | FN |
+|---|---|---|---|
+| `organisation` | 73 | 18 | 471 |
+
+</details>
+
+---
+
+<details>
+<summary>✅ Worked</summary>
+
+**Example 0**
+
+```
+... ergangenen Bescheid des Finanzamtes X (jetzt Dienststelle 
+des <<<FA Klosterneuburg>>> ) vom 13. Dezember 2019 betreffend Einkommensteuer 2011 zu ...
+```
+
+- Pred: `FA Klosterneuburg` , Gold: `FA Klosterneuburg`)
+
+**Example 1**
+
+```
+... Milan Händlein. 
+Im Wirtschaftsjahr 2007 ist gemäß der beim <<<FA Grieskirchen Wels>>>  eingereichten 
+Körperschaftsteuererklärung 2007 ein steuerlicher ...
+```
+
+- Pred: `FA Grieskirchen Wels` , Gold: `FA Grieskirchen Wels`)
+
+```
+... 31.05.2013 beigelegt). Mit Vorlagebericht vom 13.11.2013 hat das <<<FA Grieskirchen Wels>>> 
+die eingebrachte Beschwerde (ohne Erlassung einer Beschwerdevorentscheidung) ...
+```
+
+- Pred: `FA Grieskirchen Wels` , Gold: `FA Grieskirchen Wels`)
+
+```
+... Linz, vom 27.01.2016, GZ 
+RV/5101064/2013, wurde seitens des <<<FA Grieskirchen Wels>>>  in vollem Umfang im Zuge einer Amtsrevision 
+angefochten. ...
+```
+
+- Pred: `FA Grieskirchen Wels` , Gold: `FA Grieskirchen Wels`)
+
+```
+... beim 
+Rechtsvorgänger für das Jahr 2007, wurde seitens des <<<FA Grieskirchen Wels>>>  am 07.03.2016 das 
+Veranlagungsjahr 2010 beim gegenständlichen ...
+```
+
+- Pred: `FA Grieskirchen Wels` , Gold: `FA Grieskirchen Wels`)
+
+```
+... 27.01.2016 für das Jahr 2007 (Rechtsvorgänger) 
+wurde seitens des <<<FA Grieskirchen Wels>>>  mittels Amtsrevision bekämpft. Sollte der VwGH der Amtsrevision ...
+```
+
+- Pred: `FA Grieskirchen Wels` , Gold: `FA Grieskirchen Wels`)
+
+**Example 2**
+
+```
+... die Beschwerde vom 
+24. Jänner 2018 gegen den Bescheid des <<<FA Niederösterreich Mitte>>> (nunmehr Finanzamt Österreich) vom 
+19. Dezember 2017, Steuernummer ...
+```
+
+- Pred: `FA Niederösterreich Mitte` , Gold: `FA Niederösterreich Mitte`)
+
+**Example 3**
+
+```
+... der Angelegenheit der Parteien 
+Dagobert Hermkens (Bf) und <<<FA Klagenfurt St. Veit Wolfsberg>>>  als Amtspartei über die Beschwerde vom 7.2.2022     
+     ...
+```
+
+- Pred: `FA Klagenfurt St. Veit Wolfsberg` , Gold: `FA Klagenfurt St. Veit Wolfsberg`)
+
+**Example 4**
+
+```
+... nicht zulässig. 
+ 
+Entscheidungsgründe 
+I. Verfahrensgang 
+<<<FA Salzburg-Stadt>>>  Ltd. (im Folgenden „<<<FA Salzburg-Stadt>>>“) ist eine im Jahr 1999 ...
+```
+
+- Pred: `FA Salzburg-Stadt` , Gold: `FA Salzburg-Stadt`)
+
+```
+... 
+I. Verfahrensgang 
+<<<FA Salzburg-Stadt>>>  Ltd. (im Folgenden „<<<FA Salzburg-Stadt>>>“) ist eine im Jahr 1999 in Großbritannien errichtete 
+Gesellschaft ...
+```
+
+- Pred: `FA Salzburg-Stadt` , Gold: `FA Salzburg-Stadt`)
+
+```
+...
+Unterhaltungsmedien und Wetten. Das Online Wettprodukt von <<<FA Salzburg-Stadt>>>  ist unter der 
+Website www.<<<FA Salzburg-Stadt>>> .com erreichbar, ...
+```
+
+- Pred: `FA Salzburg-Stadt` , Gold: `FA Salzburg-Stadt`)
+
+```
+... Wettprodukt von <<<FA Salzburg-Stadt>>>  ist unter der 
+Website www.<<<FA Salzburg-Stadt>>> .com erreichbar, welche unter anderem auch in Österreich verfügbar ...
+```
+
+- Pred: `FA Salzburg-Stadt` , Gold: `FA Salzburg-Stadt`)
+
+```
+... Registrierungsadresse in Österreich mit 15. September 2019 
+geschlossen. 
+<<<FA Salzburg-Stadt>>>  ist für das Betreiben der Website, das Einrichten und die ...
+```
+
+- Pred: `FA Salzburg-Stadt` , Gold: `FA Salzburg-Stadt`)
+
+</details>
+
+---
+
+<details>
+<summary>⚠️ False Positives</summary>
+
+**Example 0**
+
+**False Positives:**
+
+```
+...
+Rechtsmittelverfahren betreffend Rückabwicklung des Überrechnungsantrages beim <<<FA 08>>> 
+abzuwarten und bis dorthin das gegenständliche Beschwerdeverfahren ...
+```
+
+FP: `FA 08` (organisation)
+
+```
+...
+betreffend Rückabwicklung des Überrechnungsantrages m.W. nach beim <<<FA 08>>> bis dato nicht 
+abgeschlossen ist, sodass nach wie vor der ...
+```
+
+FP: `FA 08` (organisation)
+
+**✅ Gold Entities:**
+- `35-039/2267` (tax_number)
+- `35-039/2267` (tax_number)
+- `35-039/2267` (tax_number)
+- `35-039/2267` (tax_number)
+
+**Example 1**
+
+**False Positives:**
+
+```
+...
+gesondert abgegolten.  
+Auf den Vorlagebericht v.14.07.2015 zu <<<FA 46/2015>>>/002495 wird verwiesen. 
+II. Das Bundesfinanzgericht hat erwogen: ...
+```
+
+FP: `FA 46/2015` (organisation)
+
+**✅ Gold Entities:**
+- `Prof. Hon.-Prof. ÖkR Detlev Leudert` (person)
+- `Bungalowweg 8, 6741 Plazera, Österreich` (address)
+
+**Example 2**
+
+**False Positives:**
+
+```
+... Streitjahres zu gewähren: 
+ 
+1.680 €…….168x10 Pendlerpauschale lt. <<<FA 
+108>>>,30 €……10,83x10 Pendlereuro lt. FA 
+ 
+Steuererklärung 2020 (Arbeitnehmerveranlagung): ...
+```
+
+FP: `FA 
+108` (organisation)
+
+**✅ Gold Entities:**
+- `Mag. Rudolf Hawranek` (person)
+- `Dagobert Hermkens` (person)
+- `FA Klagenfurt St. Veit Wolfsberg` (organisation)
+
+**Example 3**
+
+**False Positives:**
+
+```
+... 21.12.2011 setzte das Finanzamt Wien 9/18/19 Klosterneuburg (<<<FA 07>>>) die 
+Einkommensteuer des Beschwerdeführers (Bf.) u.a. unter ...
+```
+
+FP: `FA 07` (organisation)
+
+**✅ Gold Entities:**
+- `Dr.in Juliana Kleppel` (person)
+- `HR Christian Styrnal` (person)
+- `Babenbergersee I 18, 5524 Hallseiten, Österreich` (address)
+- `60-008/3417` (tax_number)
+
+**Example 4**
+
+**False Positives:**
+
+```
+... September 2009 sowie vom 
+14. Jänner 2013 gegen die Bescheide des <<<FA Salzburg-Land>>> (nunmehr Finanzamt Österreich) 
+vom 18. Dezember 2012 betreffend ...
+```
+
+FP: `FA Salzburg-Land` (organisation)
+
+**✅ Gold Entities:**
+- `Irene Lachmann` (person)
+- `Urbisweg 22, 4060 Sankt Isidor, Österreich` (address)
+- `28-430/1410` (tax_number)
+- `Urbisweg 22, 4060 Sankt Isidor, Österreich` (address)
+
+</details>
+
+---
+
+---
+
+## `company_gmbh_general`
+
+**F1:** 0.035 | **Precision:** 0.500 | **Recall:** 0.018  
+
+**Format:** `regex`  
+**Description:**
+Matches generic company names ending in 'GMBH', ensuring the name starts with a capitalized word and has at least one preceding word, excluding common non-entity prefixes.
+
+**Content:**
+```
+\b([A-Z][a-zA-Z]+(?:\s+[A-Z][a-zA-Z]+|\s+-\s+[A-Z][a-zA-Z]+|\s+&\s+[A-Z][a-zA-Z]+|\s+\+\s+[A-Z][a-zA-Z]+)+\s+GMBH)\b
+```
+
+<details>
+<summary>📊 Detailed Metrics</summary>
+
+| Precision | Recall | F1 | Total Predicted | TP | FP |
+|---|---|---|---|---|---|
+| 0.500 | 0.018 | 0.035 | 20 | 10 | 10 |
+
+**Per-Class Breakdown**
+
+| Class | TP | FP | FN |
+|---|---|---|---|
+| `organisation` | 10 | 10 | 298 |
+
+</details>
+
+---
+
+<details>
+<summary>✅ Worked</summary>
+
+**Example 0**
+
+```
+... „Küche“ wurde zunächst ausgeführt, dass zwei Rechnungen der „<<<Wiederspan Beratung GMBH>>>“ 
+2 von 7
+Seite 3 von 7 
+ 
+ 
+keine Leistungsbeschreibung enthalte ...
+```
+
+- Pred: `Wiederspan Beratung GMBH` , Gold: `Wiederspan Beratung GMBH`)
+
+**Example 1**
+
+```
+... Gesellschafter) der mit Gesellschaftsvertrag 
+vom 30.04.1979 gegründeten <<<Gumpold Technik GMBH>>> (in der Folge: GmbH). Geschäftsgegenstand der 
+GmbH war der ...
+```
+
+- Pred: `Gumpold Technik GMBH` , Gold: `Gumpold Technik GMBH`)
+
+**Example 2**
+
+```
+... Beschwerdesache relevant – 
+mit der Bersud Möbel GMBH (vormals <<<Unter Heimdorf GMBH>>>; im Folgenden: Y GmbH). 
+Sowohl bei der Beschwerdeführerin ...
+```
+
+- Pred: `Unter Heimdorf GMBH` , Gold: `Unter Heimdorf GMBH`)
+
+**Example 3**
+
+```
+... bezog die Bf Einkünfte aus nichtselbständiger Arbeit bei der <<<Technik Valseekel GMBH>>> (nach Berücksichtigung des Pauschbetrages für Werbungskosten ...
+```
+
+- Pred: `Technik Valseekel GMBH` , Gold: `Technik Valseekel GMBH`)
+
+```
+... bezog die Bf Einkünfte aus 
+nichtselbständiger Arbeit bei der <<<Technik Valseekel GMBH>>> (nach Berücksichtigung des Pauschbetrages 
+für Werbungskosten ...
+```
+
+- Pred: `Technik Valseekel GMBH` , Gold: `Technik Valseekel GMBH`)
+
+```
+...
+nichtselbständiger Arbeit. Sie war in genannten Jahren bei der <<<Technik Valseekel GMBH>>>  als 
+4 von 9
+Seite 5 von 9 
+ 
+ 
+Arbeitnehmerin tätig und von ...
+```
+
+- Pred: `Technik Valseekel GMBH` , Gold: `Technik Valseekel GMBH`)
+
+```
+... Österreich an. 
+2. Beweiswürdigung 
+Das Dienstverhältnis der Bf zur <<<Technik Valseekel GMBH>>>  sowie das Bestehen des Wohnsitzes und 
+Mittelpunktes der Lebensinteressen ...
+```
+
+- Pred: `Technik Valseekel GMBH` , Gold: `Technik Valseekel GMBH`)
+
+**Example 4**
+
+```
+... ist, ob der Beschwerdeführer (Bf.) infolge der Insolvenz der <<<Luehrig + Hundertmarck Holz GMBH>>> 
+(Primärschuldnerin) als ehemaliger Geschäftsführer für die ...
+```
+
+- Pred: `Luehrig + Hundertmarck Holz GMBH` , Gold: `Luehrig + Hundertmarck Holz GMBH`)
+
+```
+... ehemaliger Geschäftsführer 
+für die aushaftende Abgabenschuld der <<<Luehrig + Hundertmarck Holz GMBH>>>  in Höhe von Euro 396.769,30 in 
+Anspruch genommen. 
+Dagegen ...
+```
+
+- Pred: `Luehrig + Hundertmarck Holz GMBH` , Gold: `Luehrig + Hundertmarck Holz GMBH`)
+
+```
+... Oktober 2014, sowie ab 18. Dezember 2014 
+Geschäftsführer der <<<Luehrig + Hundertmarck Holz GMBH>>> (Primärschuldnerin). 
+Mit Beschluss des Landesgerichts Wr. ...
+```
+
+- Pred: `Luehrig + Hundertmarck Holz GMBH` , Gold: `Luehrig + Hundertmarck Holz GMBH`)
+
+</details>
+
+---
+
+<details>
+<summary>⚠️ False Positives</summary>
+
+**Example 0**
+
+**False Positives:**
+
+```
+... Bundesfinanzgericht beschließt durch die Richterin Dr. Lisa Pucher in der <<<Beschwerdesache 
+Enns Werkal GMBH>>>, Föhrenwald III 19, 3140 Pottenbrunn, Österreich, vertreten ...
+```
+
+FP: `Beschwerdesache 
+Enns Werkal GMBH` (organisation)
+
+```
+... Bundes-Verfassungsgesetz 
+(B-VG) nicht zulässig. 
+Begründung 
+<<<Die Enns Werkal GMBH>>>  hat mit Eingabe vom 07.08.2024 gemäß § 284 Abs 1 BAO 
+Säumnisbeschwerden ...
+```
+
+FP: `Die Enns Werkal GMBH` (organisation)
+
+**✅ Gold Entities:**
+- `Enns Werkal GMBH` (organisation)
+- `Föhrenwald III 19, 3140 Pottenbrunn, Österreich` (address)
+- `04-382/0421` (tax_number)
+- `Enns Werkal GMBH` (organisation)
+
+**Example 1**
+
+**False Positives:**
+
+```
+...
+Der Bf. war im Beschwerdezeitraum durchgehend bei der Klein-<<<Vorholt KI GMBH>>>  angestellt. Im 
+Vorjahr 2022 war der Bf. zunächst bis einschließlich ...
+```
+
+FP: `Vorholt KI GMBH` (organisation)
+
+```
+... 2022 war der Bf. zunächst bis einschließlich August bei der <<<Firma Gogel Daten GMBH>>> 
+beschäftigt. Ab September 2022 begann sein Dienstverhältnis ...
+```
+
+FP: `Firma Gogel Daten GMBH` (organisation)
+
+```
+... Feststellung, wonach der Bf. im Jahr 2022 zunächst bei der <<<Firma Gogel Daten GMBH>>>  und im 
+Folgenden bei der Klein-Vorholt KI GMBH  beschäftigt ...
+```
+
+FP: `Firma Gogel Daten GMBH` (organisation)
+
+```
+... der Firma Gogel Daten GMBH  und im 
+Folgenden bei der Klein-<<<Vorholt KI GMBH>>>  beschäftigt war, ergibt sich einerseits aus dem vom Bf. mit ...
+```
+
+FP: `Vorholt KI GMBH` (organisation)
+
+```
+...
+Dass der Bf. im Beschwerdezeitraum durchgehend bei der Klein-<<<Vorholt KI GMBH>>>  angestellt war, 
+ergibt sich aus dem an das Finanzamt übermittelten ...
+```
+
+FP: `Vorholt KI GMBH` (organisation)
+
+**✅ Gold Entities:**
+- `Sophie Zekalla` (person)
+- `Benedikt-Stampfl-Weg 17, 8122 Waldstein, Österreich` (address)
+- `71-479/6461` (tax_number)
+- `Klein-Vorholt KI GMBH` (organisation)
+- `Gogel Daten GMBH` (organisation)
+- `Gogel Daten GMBH` (organisation)
+- `Klein-Vorholt KI GMBH` (organisation)
+- `Klein-Vorholt KI GMBH` (organisation)
+- `AT91 2020 2243 9978 8478` (account)
+- `Gogel Daten GMBH` (organisation)
+- `Klein-Vorholt KI GMBH` (organisation)
+
+**Example 2**
+
+**False Positives:**
+
+```
+...
+Elmira Gunder  als Masseverwalter im Insolvenzverfahren der Inn-<<<Recycling Institut GMBH>>>, Wolfgerstraße 5, 8223 Buchberg bei Herberstein, Österreich ...
+```
+
+FP: `Recycling Institut GMBH` (organisation)
+
+**✅ Gold Entities:**
+- `Dr. Torsten Wieskemper` (person)
+- `Elmira Gunder` (person)
+- `Inn-Recycling Institut GMBH` (organisation)
+- `Wolfgerstraße 5, 8223 Buchberg bei Herberstein, Österreich` (address)
 
 </details>
 
