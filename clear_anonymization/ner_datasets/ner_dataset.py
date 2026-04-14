@@ -9,6 +9,7 @@ class NERSample:
     text: str
     split: str
     labels: list
+    doc_id: str = None
     sentences: list["NERSample"] = None
 
     @classmethod
@@ -18,6 +19,7 @@ class NERSample:
             text=json_dict.get("text"),
             split=json_dict.get("split", "unknown"),
             labels=json_dict.get("labels", []),
+            doc_id=json_dict.get("doc_id"),
             sentences=[NERSample.from_json(s) for s in sentences]
             if sentences
             else None,
@@ -29,6 +31,9 @@ class NERSample:
             "split": self.split,
             "labels": self.labels,
         }
+        print(self.doc_id)
+        if self.doc_id is not None:
+            d["doc_id"] = self.doc_id
         if self.sentences is not None:
             d["sentences"] = [s.to_json() for s in self.sentences]
         return d
