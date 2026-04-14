@@ -1,24 +1,22 @@
 import argparse
 import json
-import os
 import random
 import shutil
 import time
 from pathlib import Path
 
 import yaml
-from openai import OpenAI
-from rulechef.coordinator import AgenticCoordinator
-from rulechef.core import Rule, RuleFormat
-from rulechef.evaluation import evaluate_rules_individually
 
 from benchmarks.util import (
     BenchmarkRun,
-    add_feedback,
     evaluate_test,
+    load_human_feedback,
+    load_rules_from_json,
     make_dataset,
     make_oniteration_callback,
+    print_per_class_breakdown,
     print_results,
+    print_rule_summary,
     save_results,
     setup_output_paths,
 )
@@ -44,15 +42,14 @@ def run_benchmark(args):
         args.val_dir,
     )
 
-    entity_definitions = get_dataset_class_definitions(args.dataset_name)
-    entity_names = set(entity_definitions.keys())
+    entity_names = set(get_dataset_class_definitions(args.dataset_name).keys())
 
     test_data = [{"text": s.text, "entities": s.labels} for s in test_all.samples]
     print(
         f"Train: {len(train_all.samples)}, Test: {len(test_data)}, Classes: {len(entity_names)}"
     )
 
-    # 2. Sample
+    # 2. Sample data
     classes = [c.strip() for c in args.classes.split(",")] if args.classes else None
     train_data, eval_data, counter_examples, selected_classes = sample_few_shot(
         train_data=train_all,
@@ -87,24 +84,7 @@ def run_benchmark(args):
     else:
         train_for_chef = train_data
 
-    # 5. Create coordinator if agentic
-    coordinator = None
-    if args.agentic:
-        client = OpenAI(
-            api_key=os.environ.get("OPENAI_API_KEY") or "EMPTY",
-            base_url=args.base_url,
-        )
-        coordinator = AgenticCoordinator(
-            client,
-            model=args.model,
-            prune_after_learn=args.enable_prune,
-            audit_interval=args.audit_interval,
-            enable_critic=args.enable_critic,
-            critic_interval=args.critic_interval,
-            verbose=True,
-        )
-
-    # 6. Create learner
+    # 5. Create learner
     learner = NERLearner(
         model=args.model,
         dataset_name=args.dataset_name,
@@ -113,7 +93,11 @@ def run_benchmark(args):
         max_rules=args.max_rules,
         max_samples=args.max_samples,
         max_counter_examples=args.max_counter_examples,
-        coordinator=coordinator,
+        agentic=args.agentic,
+        enable_prune=args.enable_prune,
+        audit_interval=args.audit_interval,
+        enable_critic=args.enable_critic,
+        critic_interval=args.critic_interval,
         logger=logger,
         storage_path=storage_dir,
         sampling_strategy=args.sampling_strategy,
@@ -121,103 +105,20 @@ def run_benchmark(args):
         selected_classes=selected_classes,
     )
 
-    # 7. Build eval dataset
+    # 6. Build eval and test dataset
     eval_dataset = make_dataset(f"{args.dataset_name}_eval", eval_data, learner.task)
+    test_dataset = make_dataset(f"{args.dataset_name}_test", test_data, learner.task)
 
-    # 8. Learn rules
+    # 7. Load or synthesize rules
     iteration_metrics = []
     on_iteration = make_oniteration_callback(iteration_metrics)
 
     if args.rules_json:
-        print(f"\nRefinement mode — loading rules from {args.rules_json}")
-
-        for ex in train_for_chef:
-            learner.add_example({"text": ex["text"]}, {"entities": ex["entities"]})
-
-        saved = json.loads(Path(args.rules_json).read_text())
-        rules = [
-            Rule(
-                id=r["id"],
-                name=r["name"],
-                description=r.get("description", r["name"]),
-                format=RuleFormat(r["format"]),
-                content=r["content"],
-                priority=r.get("priority", 5),
-                output_template=r.get("output_template"),
-                output_key=r.get("output_key"),
-            )
-            for r in saved["rules"]
-        ]
-        print(f"  Loaded {len(rules)} rules")
-
-        print("  Analyzing rules for auto-feedback...")
-        rule_metrics = evaluate_rules_individually(
-            rules=rules,
-            dataset=eval_dataset,
-            apply_rules_fn=learner.learner._apply_rules,
-            mode="text",
-            max_samples=args.max_samples,
-        )
-        for rm in rule_metrics:
-            rule = next((r for r in rules if r.id == rm.rule_id), None)
-            if not rule:
-                continue
-            if rm.matches > 0 and rm.precision == 0.0:
-                add_feedback(
-                    eval_dataset,
-                    f"Rule '{rule.name}' is pure noise ({rm.false_positives} false positives). Remove or tighten.",
-                    level="rule",
-                    target=rule.id,
-                )
-            elif rm.matches > 3 and rm.precision < 0.2:
-                add_feedback(
-                    eval_dataset,
-                    f"Rule '{rule.name}' is too broad (precision {rm.precision:.0%}). Tighten it.",
-                    level="rule",
-                    target=rule.id,
-                )
-            elif rm.matches == 0:
-                add_feedback(
-                    eval_dataset,
-                    f"Rule '{rule.name}' never fires. Check regex.",
-                    level="rule",
-                    target=rule.id,
-                )
-
+        print(f"\nLoading rules from {args.rules_json}")
+        rules = load_rules_from_json(Path(args.rules_json))
+        print(f"Loaded {len(rules)} rules")
         if args.feedback:
-
-            def _norm(s):
-                return s.replace("\u2011", "-").replace("\u2010", "-")
-
-            feedback_items = json.loads(Path(args.feedback).read_text())
-            print(f"  Loading {len(feedback_items)} human feedback items")
-            for fb in feedback_items:
-                level = fb.get("level", "task")
-                text = fb["text"]
-                target_id = ""
-                if level == "rule":
-                    rule_name = fb.get("rule_name", "")
-                    matched = next(
-                        (r for r in rules if _norm(r.name) == _norm(rule_name)), None
-                    )
-                    if matched:
-                        target_id = matched.id
-                    else:
-                        print(f"  Rule not found: {rule_name} — treating as task-level")
-                        level = "task"
-                add_feedback(eval_dataset, text, level, target_id)
-                learner.add_feedback(eval_dataset, text, level, target_id)
-
-        if args.skip_synthesis:
-            print("\nSkipping synthesis — using loaded rules directly.")
-            t_learn = 0.0
-        else:
-            print("\nLearning rules (incremental)...")
-            t0 = time.time()
-            result = learner.learn_rules(run_evaluation=False, incremental_only=True)
-            t_learn = time.time() - t0
-            if result:
-                rules, _ = result
+            load_human_feedback(args.feedback, rules, eval_dataset, learner)
 
     else:
         rules, t_learn = learner.fit_batched(
@@ -228,7 +129,7 @@ def run_benchmark(args):
             iteration_callback=on_iteration,
         )
 
-    # 9. Final refine against eval set
+    # 8. Refine rules — patches old rules or polishes fresh synthesis
     if args.max_iterations > 0:
         print(
             f"\nRefining against eval set ({len(eval_data)} examples, max {args.max_iterations} iterations)..."
@@ -248,19 +149,11 @@ def run_benchmark(args):
                 f"  Eval accuracy: {refine_eval.exact_match:.1%}, eval micro F1: {refine_eval.micro_f1:.1%}"
             )
 
-    # 10. Print rule summary
-    print(f"\n{'─' * 70}")
-    print("RULES LEARNED:")
-    print(f"{'─' * 70}")
-    for r in sorted(rules, key=lambda r: -r.priority):
-        content_preview = r.content.replace("\n", " ")[:100]
-        print(f"  [p={r.priority}] {r.name}: {content_preview}")
-    print(f"{'─' * 70}")
+    # 9. Print rule summary
+    print_rule_summary(rules)
 
-    # 11. Evaluate on held-out test set
-    test_dataset = make_dataset(f"{args.dataset_name}_test", test_data, learner.task)
+    # 10. Evaluate on held-out test set
     test_eval, t_eval = evaluate_test(test_data, test_dataset, rules, learner)
-
     benchmark_run = BenchmarkRun(
         args=args,
         train_data=train_data,
@@ -280,34 +173,15 @@ def run_benchmark(args):
         selected_classes=sorted(selected_classes),
     )
 
+    # 11. Per-class breakdown
+    print_per_class_breakdown(test_eval)
+
+    # 12. Save results
     print_results(benchmark_run)
-
-    # 12. Per-class breakdown
-    if test_eval.per_class:
-        sorted_classes = sorted(test_eval.per_class, key=lambda c: c.f1, reverse=True)
-
-        print("\n  Top 10 classes by F1:")
-        for cm in sorted_classes[:10]:
-            print(
-                f"    {cm.label:50s} F1={cm.f1:.0%} P={cm.precision:.0%} R={cm.recall:.0%} "
-                f"(TP={cm.tp} FP={cm.fp} FN={cm.fn})"
-            )
-
-        print("\n  Bottom 10 classes by F1:")
-        for cm in sorted_classes[-10:]:
-            print(
-                f"    {cm.label:50s} F1={cm.f1:.0%} P={cm.precision:.0%} R={cm.recall:.0%} "
-                f"(TP={cm.tp} FP={cm.fp} FN={cm.fn})"
-            )
-
-        zero_recall = sum(1 for cm in sorted_classes if cm.recall == 0)
-
-    # 13. Save results
-
     output_path = output_dir / out_name
     save_results(output_path, benchmark_run)
 
-    # 14. Generate per-rule Markdown report
+    # 13. Generate per-rule Markdown report
     if not args.no_mdreport:
         md_path = output_path.with_suffix(".rules_report.md")
         create_md_report(
@@ -361,7 +235,7 @@ def main():
     parser.add_argument(
         "--model",
         type=str,
-        default="openai/gpt-oss-120b",  # "google/gemma-3-27b-it",
+        default="google/gemma-3-27b-it",
         help="LLM model for rule synthesis (default: openai/gpt-oss-120b)",
     )
     parser.add_argument(

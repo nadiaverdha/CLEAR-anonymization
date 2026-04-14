@@ -8,8 +8,8 @@ from pathlib import Path
 from typing import Any
 
 import yaml
-from rulechef.core import Dataset, Example, Feedback
-from rulechef.evaluation import evaluate_dataset
+from rulechef.core import Dataset, Example, Feedback, Rule, RuleFormat
+from rulechef.evaluation import evaluate_dataset, evaluate_rules_individually
 from rulechef.training_logger import TrainingDataLogger
 
 
@@ -101,6 +101,23 @@ def make_dataset(dataset_name, data, task):
     return dataset
 
 
+def load_rules_from_json(path: str | Path) -> list:
+    saved = json.loads(Path(path).read_text())
+    return [
+        Rule(
+            id=r["id"],
+            name=r["name"],
+            description=r.get("description", r["name"]),
+            format=RuleFormat(r["format"]),
+            content=r["content"],
+            priority=r.get("priority", 5),
+            output_template=r.get("output_template"),
+            output_key=r.get("output_key"),
+        )
+        for r in saved["rules"]
+    ]
+
+
 def make_oniteration_callback(iteration_metrics: list):
     """
     Returns a callback function suitable for RuleChef's iteration_callback.
@@ -132,16 +149,35 @@ def make_oniteration_callback(iteration_metrics: list):
     return on_iteration
 
 
-def add_feedback(eval_dataset, text, level="task", target=""):
+def load_human_feedback(feedback_path, rules, eval_dataset, learner):
+    def _norm(s):
+        return s.replace("\u2011", "-").replace("\u2010", "-")
 
-    eval_dataset.structured_feedback.append(
-        Feedback(
-            id=str(uuid.uuid4())[:8],
-            text=text,
-            level=level,
-            target_id=target,
+    feedback_items = json.loads(Path(feedback_path).read_text())
+    print(f"  Loading {len(feedback_items)} human feedback items")
+    for fb in feedback_items:
+        level = fb.get("level", "task")
+        text = fb["text"]
+        target_id = ""
+        if level == "rule":
+            rule_name = fb.get("rule_name", "")
+            matched = next(
+                (r for r in rules if _norm(r.name) == _norm(rule_name)), None
+            )
+            if matched:
+                target_id = matched.id
+            else:
+                print(f"Rule not found: {rule_name} — treating as task-level")
+                level = "task"
+        eval_dataset.structured_feedback.append(
+            Feedback(
+                id=str(uuid.uuid4())[:8],
+                text=text,
+                level=level,
+                target_id=target_id,
+            )
         )
-    )
+        learner.add_feedback(eval_dataset, text, level, target_id)
 
 
 def evaluate_test(test_data, test_dataset, rules, chef, mode="text", iou_threshold=1):
@@ -157,41 +193,6 @@ def evaluate_test(test_data, test_dataset, rules, chef, mode="text", iou_thresho
     t_eval = time.time() - t0
 
     return eval_results, t_eval
-
-
-def print_results(run: BenchmarkRun):
-    args = run.args
-    # 9. Print results
-    print(f"\n{'=' * 70}")
-    print(f"German {args.dataset_name} Results")
-    print(f"{'=' * 70}")
-    print("  Configuration:")
-    print(f"    Shots per class:          {args.shots}")
-    print(f"    Training examples:        {len(run.train_data)}")
-    print(f"    Test examples:            {len(run.test_data)}")
-    print(f"    Model:                    {args.model}")
-    print(f"    Max rules:                {args.max_rules}")
-    print(f"    Max samples in prompt:    {args.max_samples}")
-    print(f"    Refinement iterations:    {args.max_iterations}")
-    print(f"    Seed:                     {args.seed}")
-    print()
-    print("  Results:")
-    print(f"    Accuracy (exact match):   {run.eval_results.exact_match:.1%}")
-
-    print(f"    Micro Precision:          {run.eval_results.micro_precision:.1%}")
-    print(f"    Micro Recall:             {run.eval_results.micro_recall:.1%}")
-    print(f"    Micro F1:                 {run.eval_results.micro_f1:.1%}")
-    print(f"    Macro F1:                 {run.eval_results.macro_f1:.1%}")
-    print()
-    print("  Timing:")
-    print(f"    Learning:                 {run.t_learn:.1f}s")
-    print(f"    Evaluation:               {run.t_eval:.1f}s")
-    print(
-        f"    Per-query:                {run.t_eval / len(run.test_data) * 1000:.2f}ms"
-    )
-    print()
-    print(f"  Rules:                      {len(run.rules)} total")
-    print(f"{'=' * 70}")
 
 
 # ── Save results ─────────────────────────────────────────
@@ -268,3 +269,65 @@ def save_results(output_path: Path, run: BenchmarkRun):
     }
     output_path.write_text(json.dumps(results, indent=2))
     print(f"\nResults saved to {output_path}")
+
+
+def print_results(run: BenchmarkRun):
+    args = run.args
+    # 9. Print results
+    print(f"\n{'=' * 70}")
+    print(f"German {args.dataset_name} Results")
+    print(f"{'=' * 70}")
+    print("Configuration:")
+    print(f"Shots per class:          {args.shots}")
+    print(f"Training examples:        {len(run.train_data)}")
+    print(f"Test examples:            {len(run.test_data)}")
+    print(f"Model:                    {args.model}")
+    print(f"Max rules:                {args.max_rules}")
+    print(f"Max samples in prompt:    {args.max_samples}")
+    print(f"Refinement iterations:    {args.max_iterations}")
+    print(f"Seed:                     {args.seed}")
+    print()
+
+    print("Results:")
+    print(f"Accuracy (exact match):   {run.eval_results.exact_match:.1%}")
+
+    print(f"Micro Precision:          {run.eval_results.micro_precision:.1%}")
+    print(f"Micro Recall:             {run.eval_results.micro_recall:.1%}")
+    print(f"Micro F1:                 {run.eval_results.micro_f1:.1%}")
+    print(f"Macro F1:                 {run.eval_results.macro_f1:.1%}")
+    print()
+    print("Timing:")
+    print(f"Learning:                 {run.t_learn:.1f}s")
+    print(f"Evaluation:               {run.t_eval:.1f}s")
+    print(f"Per-query:                {run.t_eval / len(run.test_data) * 1000:.2f}ms")
+    print()
+    print(f"Rules:                      {len(run.rules)} total")
+    print(f"{'=' * 70}")
+
+
+def print_rule_summary(rules):
+    print(f"\n{'─' * 70}")
+    print("RULES LEARNED:")
+    print(f"{'─' * 70}")
+    for r in sorted(rules, key=lambda r: -r.priority):
+        content_preview = r.content.replace("\n", " ")[:100]
+        print(f"  [p={r.priority}] {r.name}: {content_preview}")
+    print(f"{'─' * 70}")
+
+
+def print_per_class_breakdown(eval_results):
+    if not eval_results.per_class:
+        return
+    sorted_classes = sorted(eval_results.per_class, key=lambda c: c.f1, reverse=True)
+    print("\n  Top 10 classes by F1:")
+    for cm in sorted_classes[:10]:
+        print(
+            f"    {cm.label:50s} F1={cm.f1:.0%} P={cm.precision:.0%} R={cm.recall:.0%} "
+            f"(TP={cm.tp} FP={cm.fp})"
+        )
+    print("\n  Bottom 10 classes by F1:")
+    for cm in sorted_classes[-10:]:
+        print(
+            f"    {cm.label:50s} F1={cm.f1:.0%} P={cm.precision:.0%} R={cm.recall:.0%} "
+            f"(TP={cm.tp} FP={cm.fp})"
+        )
