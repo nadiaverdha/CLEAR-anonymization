@@ -31,7 +31,6 @@ class NERSample:
             "split": self.split,
             "labels": self.labels,
         }
-        print(self.doc_id)
         if self.doc_id is not None:
             d["doc_id"] = self.doc_id
         if self.sentences is not None:

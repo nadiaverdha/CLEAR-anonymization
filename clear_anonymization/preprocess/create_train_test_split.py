@@ -18,6 +18,7 @@ def split_test(train_data, test_ratio=0.2, seed=42):
 
     class_counts = defaultdict(int)
     for sample in samples:
+        print(sample.doc_id)
         for label in {l["type"] for l in sample.labels}:
             class_counts[label] += 1
 

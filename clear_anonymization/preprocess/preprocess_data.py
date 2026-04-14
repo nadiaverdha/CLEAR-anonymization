@@ -66,6 +66,7 @@ def list_folders(zip_path):
 def collect_annos_in_sentence(annos, sent):
     collected = []
     for anno in annos:
+        anno = dict(anno)
         if anno["start"] >= sent.start_char and anno["end"] <= sent.end_char:
             anno["start"] = anno["start"] - sent.start_char
             anno["end"] = anno["end"] - sent.start_char
@@ -155,14 +156,20 @@ def process_folder(
         except:
             annotations = None
 
-    samples = create_sample(pages, annotations, split, sentences)
+    samples = create_sample(pages, annotations, split, sentences, doc_id=folder_name)
 
     validate_docu_annotations(folder_name, samples, verbose)
 
     return samples
 
 
-def create_sample(pages, annotations, split, sentences: bool) -> List[NERSample]:
+def create_sample(
+    pages,
+    annotations,
+    split,
+    sentences: bool,
+    doc_id: str = None,
+) -> List[NERSample]:
     full_text = "".join(pages)
     page_offsets = []
 
@@ -173,7 +180,19 @@ def create_sample(pages, annotations, split, sentences: bool) -> List[NERSample]
 
     labels = []
     if not annotations:
-        return [NERSample(full_text, split, labels)]
+        if sentences:
+            iter_func = (
+                iter_sentences_spacy(full_text)
+                if not TUW_NLP
+                else iter_sentences_stanza(full_text)
+            )
+            ner_samples_sents = [NERSample(sent.text, split, []) for sent in iter_func]
+            return [
+                NERSample(
+                    full_text, split, labels, doc_id=doc_id, sentences=ner_samples_sents
+                )
+            ]
+        return [NERSample(full_text, split, labels, doc_id=doc_id)]
     else:
         for ann in annotations:
             startpage = ann["startPage"]
@@ -203,7 +222,7 @@ def create_sample(pages, annotations, split, sentences: bool) -> List[NERSample]
             end = page_offsets[endpage] + ann["pageRelativeEnd"]
             actual = full_text[start:end]
             converted_annos.append(
-                {"text": ann["text"], "start": start, "end": end, "class": ann["label"]}
+                {"text": ann["text"], "start": start, "end": end, "type": ann["label"]}
             )
 
         ner_samples_sents = []
@@ -217,9 +236,13 @@ def create_sample(pages, annotations, split, sentences: bool) -> List[NERSample]
             # if len(relevant_annos) != 0:
             ner_samples_sents.append(NERSample(sent.text, split, relevant_annos))
         return (
-            [NERSample(full_text, split, labels, sentences=ner_samples_sents)]
+            [
+                NERSample(
+                    full_text, split, labels, doc_id=doc_id, sentences=ner_samples_sents
+                )
+            ]
             if sentences
-            else [NERSample(full_text, split, labels)]
+            else [NERSample(full_text, split, labels, doc_id=doc_id)]
         )
 
 

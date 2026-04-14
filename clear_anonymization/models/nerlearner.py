@@ -31,7 +31,6 @@ class NERLearner(RuleChef):
         max_rules: int = 100,
         max_samples: int = 50,
         max_counter_examples: int = 50,
-        coordinator: bool | None = None,
         logger: TrainingDataLogger | None = None,
         storage_path: str = ".",
         sampling_strategy: str = "balanced",
@@ -56,7 +55,6 @@ class NERLearner(RuleChef):
             api_key=os.environ.get("OPENAI_API_KEY") or "EMPTY",
             base_url=base_url,
         )
-
         coordinator = None
         if agentic:
             coordinator = AgenticCoordinator(
@@ -127,6 +125,7 @@ class NERLearner(RuleChef):
                         iteration_callback=iteration_callback,
                         audit_interval=audit_interval,
                     )
+                    self.dataset.rules = rules_so_far
                     result = (rules_so_far, _)
                     print(
                         f"  After refine: {len(rules_so_far)} rules, F1={refine_eval.micro_f1:.1%}"

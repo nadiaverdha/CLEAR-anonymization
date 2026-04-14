@@ -43,6 +43,14 @@ DATASET_CLASS_DEFINITIONS = {
         "vehicle_license": "Kfz-Kennzeichen",
         "website": "website",
     },
+    "ris": {
+        "person": "Personennamen",
+        "organisation": "Organisationsnamen",
+        "date": "Datumsangaben",
+        "address": "Postadressen",
+        "business_register_number": "Handelsregister- oder Unternehmensnummern",
+        "city": "Stadt",
+    },
 }
 
 
