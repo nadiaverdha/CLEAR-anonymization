@@ -47,7 +47,7 @@ def setup_output_paths(args, selected_classes):
         output_dir = Path(args.rules_json).parent
     else:
         base_dir = (
-            Path(f"benchmarks/{args.dataset_name}/{model_name}") / selected_classes_str
+            Path(f"reports/{args.dataset_name}/{model_name}") / selected_classes_str
         )
         base_name = date_str
 
@@ -93,7 +93,7 @@ def make_dataset(dataset_name, data, task):
         dataset.examples.append(
             Example(
                 id=str(uuid.uuid4())[:8],
-                input={"text": ex["text"]},
+                input={"text": ex["text"], "sentences": ex.get("sentences", [])},
                 expected_output={"entities": ex["entities"]},
                 source="benchmark",
             )

@@ -6,6 +6,7 @@ import time
 from pathlib import Path
 
 import yaml
+from reports.create_md_report_rules import create_md_report
 
 from benchmarks.util import (
     BenchmarkRun,
@@ -26,7 +27,6 @@ from clear_anonymization.ner_datasets import (
     load_ner_dataset,
 )
 from clear_anonymization.preprocess.sampling import sample_few_shot
-from reports.create_md_report_rules import create_md_report
 
 # ── Benchmark runner ────────────────────────────────────────
 
