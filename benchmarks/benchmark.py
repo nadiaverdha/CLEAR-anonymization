@@ -200,6 +200,7 @@ def run_benchmark(args):
             chef=learner,
             run=benchmark_run,
             test_dataset=test_dataset,
+            results_folder=output_dir,
             title=f"Rule Evaluation Report — {args.model}",
         )
 
