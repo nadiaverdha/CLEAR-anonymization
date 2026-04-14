@@ -38,6 +38,13 @@ def _details_block(f, summary: str):
     f.write("</details>\n\n---\n\n")
 
 
+@contextmanager
+def _normal_block(f, summary: str):
+    f.write(f"\n<summary>{summary}</summary>\n\n")
+    yield
+    f.write("\n\n---\n\n")
+
+
 def _write_table(f, headers: list[str], rows: list[list[str]]) -> None:
     f.write("| " + " | ".join(headers) + " |\n")
     f.write("|" + "|".join("---" for _ in headers) + "|\n")
@@ -61,7 +68,7 @@ def write_summary_table(file_path: Path, metrics_list):
         for m in sorted_metrics
     ]
     with file_path.open("a", encoding="utf-8") as f:
-        with _details_block(f, "📊 Summary"):
+        with _normal_block(f, "📊 Summary"):
             _write_table(
                 f,
                 [
@@ -119,7 +126,7 @@ def append_overall_metrics(md_path, chef, test_dataset, run):
                 ],
             )
 
-        with _details_block(f, "Results"):
+        with _normal_block(f, "Results"):
             _write_table(
                 f,
                 ["Metric", "Value"],
@@ -205,12 +212,14 @@ def _write_sample_blocks(f, metric, top_n: int) -> None:
                 f.write(f"- Missed: `{e['text']}` ({e.get('type', '')})\n\n")
         f.write("\n")
 
-    def render_fp(_, sample):
-        f.write(f"```\n{sample.input['text']}\n```\n\n")
-        gold = {e["text"] for e in sample.expected}
-        for e in sample.rule_output:
-            if e["text"] not in gold:
-                f.write(f"- FP: `{e['text']}` ({e.get('type', '')})\n\n")
+    def render_fp(i, sample):
+        f.write(f"**Example {i}**\n\n```\n{sample.input['text']}\n```\n\n")
+        gold = {(e["text"], e.get("type", "")) for e in sample.expected}
+        pred = {(e["text"], e.get("type", "")) for e in sample.rule_output}
+        fps = [(t, tp) for t, tp in pred if (t, tp) not in gold]
+        gold_str = ", ".join(f"`{t}` ({tp})" for t, tp in sorted(gold)) or "—"
+        rows = [[f"`{t}` ({tp})", gold_str] for t, tp in fps]
+        _write_table(f, ["Predicted (FP)", "Gold"], rows)
         f.write("\n")
 
     _block("✅ Worked", hits, render_hit)
@@ -310,6 +319,13 @@ def main():
         default=None,
         help="Output .md path (default: <rules-json>.rules_report.md)",
     )
+    parser.add_argument(
+        "--dataset_name",
+        type=str,
+        default="findok",
+        help="Name of the dataset",
+    )
+
     parser.add_argument("--base-url", type=str, default="http://localhost:8000/v1")
     args = parser.parse_args()
 
@@ -331,13 +347,6 @@ def main():
     ]
     print(f"Loaded {len(rules)} rules")
 
-    test_data_raw = load_ner_dataset(
-        args.test_dir,
-    )
-    test_data = [{"text": s.text, "entities": s.labels} for s in test_data_raw.samples]
-    test_dataset = make_dataset(f"{args.dataset_name}_eval", test_data, learner.task)
-
-    print(f"Loaded {len(test_data)} test examples")
     config = saved.get("config", {})
     learner = NERLearner(
         model=config.get("model"),
@@ -353,17 +362,42 @@ def main():
         selected_classes=config.get("selected_classes"),
     )
 
+    test_data_raw = load_ner_dataset(
+        args.test_dir,
+    )
+    test_data = [{"text": s.text, "entities": s.labels} for s in test_data_raw.samples]
+    test_dataset = make_dataset(f"{args.dataset_name}_eval", test_data, learner.task)
+    print(f"Loaded {len(test_data)} test examples")
+
     md_path = (
         Path(args.output)
         if args.output
         else Path(args.rules_json).with_suffix(".rules_report.md")
     )
-    benchmark_run = (
-        BenchmarkRun(
-            args=config,
-            test_data=test_data,
-            rules=rules,
-        ),
+
+    from types import SimpleNamespace
+
+    run_args = SimpleNamespace(
+        **{**config, "no_grex": not config.get("use_grex", True)}
+    )
+
+    benchmark_run = BenchmarkRun(
+        args=run_args,
+        train_data=[],
+        eval_data=[],
+        test_data=test_data,
+        train_size=config.get("train_size", 0),
+        eval_size=config.get("eval_size", 0),
+        test_size=len(test_data),
+        train_annotations=config.get("train_annotations", 0),
+        eval_annotations=config.get("eval_annotations", 0),
+        test_annotations=config.get("test_annotations", 0),
+        iteration_metrics=[],
+        eval_results=None,
+        t_learn=0.0,
+        t_eval=0.0,
+        selected_classes=config.get("selected_classes", []),
+        rules=rules,
     )
 
     create_md_report(

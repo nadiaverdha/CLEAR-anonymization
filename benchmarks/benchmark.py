@@ -204,17 +204,17 @@ def main():
         description="findok Named Entity Recognition Benchmark for RuleChef"
     )
     parser.add_argument(
-        "--train_dir",
+        "--train-dir",
         type=str,
         help="Path to the train data (JSON format)",
     )
     parser.add_argument(
-        "--val_dir",
+        "--val-dir",
         type=str,
         help="Path to the test data (JSON format)",
     )
     parser.add_argument(
-        "--dataset_name",
+        "--dataset-name",
         type=str,
         default="findok",
         help="Name of the dataset",

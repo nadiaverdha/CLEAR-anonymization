@@ -31,7 +31,7 @@ class NERLearner(RuleChef):
         max_rules: int = 100,
         max_samples: int = 50,
         max_counter_examples: int = 50,
-        coordinator: AgenticCoordinator | None = None,
+        coordinator: bool | None = None,
         logger: TrainingDataLogger | None = None,
         storage_path: str = ".",
         sampling_strategy: str = "balanced",
@@ -93,7 +93,10 @@ class NERLearner(RuleChef):
         refine_per_batch=1,
         iteration_callback=None,
         audit_interval=0,
+        seed_rules=None,
     ):
+        if seed_rules is not None:
+            self.dataset.rules = seed_rules
         batches = [
             train_data[i : i + batch_size]
             for i in range(0, len(train_data), batch_size)
@@ -104,7 +107,8 @@ class NERLearner(RuleChef):
             for ex in batch:
                 self.add_example({"text": ex["text"]}, {"entities": ex["entities"]})
             batch_result = self.learn_rules(
-                run_evaluation=False, incremental_only=(batch_idx > 0)
+                run_evaluation=False,
+                incremental_only=(batch_idx > 0 or seed_rules is not None),
             )
             # Clear so next batch only sees its own examples
             self.dataset.examples.clear()
