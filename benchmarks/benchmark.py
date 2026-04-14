@@ -6,7 +6,7 @@ import time
 from pathlib import Path
 
 import yaml
-from reports.create_md_report_rules import create_md_report
+from create_md_report_rules import create_md_report
 
 from benchmarks.util import (
     BenchmarkRun,
@@ -45,9 +45,11 @@ def run_benchmark(args):
     entity_names = set(get_dataset_class_definitions(args.dataset_name).keys())
 
     test_data = [{"text": s.text, "entities": s.labels} for s in test_all.samples]
+    print(f"Information on the {args.dataset_name} data")
     print(
         f"Train: {len(train_all.samples)}, Test: {len(test_data)}, Classes: {len(entity_names)}"
     )
+    print(f"{'─' * 70}")
 
     # 2. Sample data
     classes = [c.strip() for c in args.classes.split(",")] if args.classes else None
@@ -60,17 +62,24 @@ def run_benchmark(args):
         classes=classes,
         pool_size=args.pool_size,
         shots_per_class=args.shots,
+        use_sentences=not args.not_use_sentences,
     )
 
     train_annotations = sum(len(ex["entities"]) for ex in train_data)
     eval_annotations = sum(len(ex["entities"]) for ex in eval_data)
     test_annotations = sum(len(ex["entities"]) for ex in test_data)
+    print("Information on the experiment set")
     print(
         f"Selected {len(selected_classes)} classes: {', '.join(sorted(selected_classes))}"
     )
     print(
         f"Train: {len(train_data)}, Eval: {len(eval_data)}, Counter: {len(counter_examples)}"
     )
+    print(
+        f"Train annotations: {train_annotations}, Eval annotations: {eval_annotations}, Test annoations: {test_annotations}"
+    )
+
+    print(f"{'─' * 70}")
 
     # 3. Setup output
     storage_dir, output_dir, out_name, logger = setup_output_paths(
@@ -113,6 +122,7 @@ def run_benchmark(args):
     iteration_metrics = []
     on_iteration = make_oniteration_callback(iteration_metrics)
 
+    t_learn = 0.0
     if args.rules_json:
         print(f"\nLoading rules from {args.rules_json}")
         rules = load_rules_from_json(Path(args.rules_json))
@@ -127,6 +137,7 @@ def run_benchmark(args):
             batch_size=args.batch_size,
             refine_per_batch=args.refine_per_batch,
             iteration_callback=on_iteration,
+            audit_interval=args.audit_interval,
         )
 
     # 8. Refine rules — patches old rules or polishes fresh synthesis
@@ -387,6 +398,11 @@ def main():
         "--skip-synthesis",
         action="store_true",
         help="Skip LLM synthesis and use the rules from --rules-json directly (go straight to refinement)",
+    )
+    parser.add_argument(
+        "--not-use-sentences",
+        action="store_true",
+        help="Use only annotated sentences for training",
     )
     parser.add_argument(
         "--config", type=str, help="Path to YAML config file", default=None
