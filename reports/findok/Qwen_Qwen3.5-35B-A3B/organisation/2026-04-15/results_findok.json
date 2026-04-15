@@ -1,0 +1,4131 @@
+{
+  "config": {
+    "shots": null,
+    "model": "Qwen/Qwen3.5-35B-A3B",
+    "format": "regex",
+    "max_rules": 30,
+    "max_samples": 50,
+    "max_iterations": 2,
+    "seed": 42,
+    "train_size": 954,
+    "eval_size": 239,
+    "test_size": 788,
+    "train_annotations": 1165,
+    "eval_annotations": 282,
+    "test_annotations": 3543,
+    "use_grex": true,
+    "agentic": false,
+    "enable_critic": false,
+    "enable_prune": false,
+    "critic_interval": 0,
+    "audit_interval": 0,
+    "windows": false,
+    "sampling_strategy": "balanced",
+    "train_ratio": 0.8,
+    "pool_size": null,
+    "batch_size": 40,
+    "refine_per_batch": 1,
+    "synthesis_strategy": "bulk",
+    "selected_classes": [
+      "organisation"
+    ]
+  },
+  "results": {
+    "accuracy": 0.8883248730964467,
+    "micro_precision": 0.653125,
+    "micro_recall": 0.38419117647058826,
+    "micro_f1": 0.4837962962962963,
+    "macro_f1": 0.4837962962962963,
+    "num_rules": 229,
+    "learning_time_s": 1327.9,
+    "eval_time_s": 74.855,
+    "per_query_ms": 94.99
+  },
+  "per_class": [
+    {
+      "label": "organisation",
+      "precision": 0.653125,
+      "recall": 0.38419117647058826,
+      "f1": 0.4837962962962963,
+      "tp": 209,
+      "fp": 111,
+      "fn": 335
+    }
+  ],
+  "iteration_metrics": [
+    {
+      "iteration": 1,
+      "num_rules": 5,
+      "exact_match": 0.22594142259414227,
+      "micro_precision": 0.5073529411764706,
+      "micro_recall": 0.24468085106382978,
+      "micro_f1": 0.33014354066985646,
+      "macro_f1": 0.33014354066985646,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.33014354066985646,
+          "precision": 0.5073529411764706,
+          "recall": 0.24468085106382978
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 7,
+      "exact_match": 0.26778242677824265,
+      "micro_precision": 0.6857142857142857,
+      "micro_recall": 0.3404255319148936,
+      "micro_f1": 0.4549763033175355,
+      "macro_f1": 0.4549763033175355,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.4549763033175355,
+          "precision": 0.6857142857142857,
+          "recall": 0.3404255319148936
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 13,
+      "exact_match": 0.32217573221757323,
+      "micro_precision": 0.6879432624113475,
+      "micro_recall": 0.34397163120567376,
+      "micro_f1": 0.458628841607565,
+      "macro_f1": 0.458628841607565,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.458628841607565,
+          "precision": 0.6879432624113475,
+          "recall": 0.34397163120567376
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 33,
+      "exact_match": 0.4769874476987448,
+      "micro_precision": 0.9182389937106918,
+      "micro_recall": 0.5177304964539007,
+      "micro_f1": 0.6621315192743764,
+      "macro_f1": 0.6621315192743764,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.6621315192743764,
+          "precision": 0.9182389937106918,
+          "recall": 0.5177304964539007
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 56,
+      "exact_match": 0.5732217573221757,
+      "micro_precision": 0.8,
+      "micro_recall": 0.6666666666666666,
+      "micro_f1": 0.7272727272727272,
+      "macro_f1": 0.7272727272727272,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.7272727272727272,
+          "precision": 0.8,
+          "recall": 0.6666666666666666
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 76,
+      "exact_match": 0.606694560669456,
+      "micro_precision": 0.8145161290322581,
+      "micro_recall": 0.7163120567375887,
+      "micro_f1": 0.7622641509433963,
+      "macro_f1": 0.7622641509433963,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.7622641509433963,
+          "precision": 0.8145161290322581,
+          "recall": 0.7163120567375887
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 95,
+      "exact_match": 0.6359832635983264,
+      "micro_precision": 0.8171206225680934,
+      "micro_recall": 0.7446808510638298,
+      "micro_f1": 0.7792207792207793,
+      "macro_f1": 0.7792207792207793,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.7792207792207793,
+          "precision": 0.8171206225680934,
+          "recall": 0.7446808510638298
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 113,
+      "exact_match": 0.6820083682008368,
+      "micro_precision": 0.825925925925926,
+      "micro_recall": 0.7907801418439716,
+      "micro_f1": 0.8079710144927537,
+      "macro_f1": 0.8079710144927537,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.8079710144927537,
+          "precision": 0.825925925925926,
+          "recall": 0.7907801418439716
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 127,
+      "exact_match": 0.6903765690376569,
+      "micro_precision": 0.8284671532846716,
+      "micro_recall": 0.8049645390070922,
+      "micro_f1": 0.8165467625899281,
+      "macro_f1": 0.8165467625899281,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.8165467625899281,
+          "precision": 0.8284671532846716,
+          "recall": 0.8049645390070922
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 136,
+      "exact_match": 0.8075313807531381,
+      "micro_precision": 0.9915611814345991,
+      "micro_recall": 0.8333333333333334,
+      "micro_f1": 0.9055876685934489,
+      "macro_f1": 0.9055876685934489,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.9055876685934489,
+          "precision": 0.9915611814345991,
+          "recall": 0.8333333333333334
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 140,
+      "exact_match": 0.8200836820083682,
+      "micro_precision": 0.9916666666666667,
+      "micro_recall": 0.8439716312056738,
+      "micro_f1": 0.9118773946360154,
+      "macro_f1": 0.9118773946360154,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.9118773946360154,
+          "precision": 0.9916666666666667,
+          "recall": 0.8439716312056738
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 148,
+      "exact_match": 0.8075313807531381,
+      "micro_precision": 0.9191176470588235,
+      "micro_recall": 0.8865248226950354,
+      "micro_f1": 0.9025270758122743,
+      "macro_f1": 0.9025270758122743,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.9025270758122743,
+          "precision": 0.9191176470588235,
+          "recall": 0.8865248226950354
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 158,
+      "exact_match": 0.8661087866108786,
+      "micro_precision": 0.931899641577061,
+      "micro_recall": 0.9219858156028369,
+      "micro_f1": 0.9269162210338681,
+      "macro_f1": 0.9269162210338681,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.9269162210338681,
+          "precision": 0.931899641577061,
+          "recall": 0.9219858156028369
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 173,
+      "exact_match": 0.9288702928870293,
+      "micro_precision": 0.9925093632958801,
+      "micro_recall": 0.9397163120567376,
+      "micro_f1": 0.965391621129326,
+      "macro_f1": 0.965391621129326,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.965391621129326,
+          "precision": 0.9925093632958801,
+          "recall": 0.9397163120567376
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 173,
+      "exact_match": 0.9288702928870293,
+      "micro_precision": 0.9925093632958801,
+      "micro_recall": 0.9397163120567376,
+      "micro_f1": 0.965391621129326,
+      "macro_f1": 0.965391621129326,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.965391621129326,
+          "precision": 0.9925093632958801,
+          "recall": 0.9397163120567376
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 181,
+      "exact_match": 0.9372384937238494,
+      "micro_precision": 0.9925650557620818,
+      "micro_recall": 0.9468085106382979,
+      "micro_f1": 0.969147005444646,
+      "macro_f1": 0.969147005444646,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.969147005444646,
+          "precision": 0.9925650557620818,
+          "recall": 0.9468085106382979
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 186,
+      "exact_match": 0.9414225941422594,
+      "micro_precision": 0.9925925925925926,
+      "micro_recall": 0.950354609929078,
+      "micro_f1": 0.9710144927536232,
+      "macro_f1": 0.9710144927536232,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.9710144927536232,
+          "precision": 0.9925925925925926,
+          "recall": 0.950354609929078
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 194,
+      "exact_match": 0.9414225941422594,
+      "micro_precision": 0.9925925925925926,
+      "micro_recall": 0.950354609929078,
+      "micro_f1": 0.9710144927536232,
+      "macro_f1": 0.9710144927536232,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.9710144927536232,
+          "precision": 0.9925925925925926,
+          "recall": 0.950354609929078
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 207,
+      "exact_match": 0.9456066945606695,
+      "micro_precision": 0.992619926199262,
+      "micro_recall": 0.9539007092198581,
+      "micro_f1": 0.972875226039783,
+      "macro_f1": 0.972875226039783,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.972875226039783,
+          "precision": 0.992619926199262,
+          "recall": 0.9539007092198581
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 207,
+      "exact_match": 0.9456066945606695,
+      "micro_precision": 0.992619926199262,
+      "micro_recall": 0.9539007092198581,
+      "micro_f1": 0.972875226039783,
+      "macro_f1": 0.972875226039783,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.972875226039783,
+          "precision": 0.992619926199262,
+          "recall": 0.9539007092198581
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 212,
+      "exact_match": 0.9456066945606695,
+      "micro_precision": 0.992619926199262,
+      "micro_recall": 0.9539007092198581,
+      "micro_f1": 0.972875226039783,
+      "macro_f1": 0.972875226039783,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.972875226039783,
+          "precision": 0.992619926199262,
+          "recall": 0.9539007092198581
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 222,
+      "exact_match": 0.9539748953974896,
+      "micro_precision": 0.9926739926739927,
+      "micro_recall": 0.9609929078014184,
+      "micro_f1": 0.9765765765765766,
+      "macro_f1": 0.9765765765765766,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.9765765765765766,
+          "precision": 0.9926739926739927,
+          "recall": 0.9609929078014184
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 229,
+      "exact_match": 0.9539748953974896,
+      "micro_precision": 0.9926739926739927,
+      "micro_recall": 0.9609929078014184,
+      "micro_f1": 0.9765765765765766,
+      "macro_f1": 0.9765765765765766,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.9765765765765766,
+          "precision": 0.9926739926739927,
+          "recall": 0.9609929078014184
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 229,
+      "exact_match": 0.9539748953974896,
+      "micro_precision": 0.9926739926739927,
+      "micro_recall": 0.9609929078014184,
+      "micro_f1": 0.9765765765765766,
+      "macro_f1": 0.9765765765765766,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.9765765765765766,
+          "precision": 0.9926739926739927,
+          "recall": 0.9609929078014184
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "05669ef3",
+      "name": "tax_authority_finanzamt",
+      "description": "Matches full names of tax authorities starting with 'Finanzamt' followed by specific known locations or multi-word locations including abbreviations like 'St.'",
+      "format": "regex",
+      "content": "\\bFinanzamt\\s+(?:St\\.\\s+Johann\\s+Tamsweg\\s+Zell\\s+am\\s+See|Purkersdorf|Lilienfeld\\s+St\\.\\s+P\u00f6lten|Judenburg\\s+Liezen|Neunkirchen\\s+Wr\\.\\s+Neustadt|Klosterneuburg|Wien\\s+1/23|Wien\\s+2/20/21/22|Kirchdorf\\s+Perg\\s+Steyr|Baden\\s+M\u00f6dling|\u00d6sterreich\\s+DS)",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:04:22.495304"
+    },
+    {
+      "id": "ca7099ad",
+      "name": "bank_bawag",
+      "description": "Matches BAWAG P.S.K. Wohnbaubank specifically.",
+      "format": "regex",
+      "content": "\\bBAWAG\\s+P\\.S\\.K\\.\\s+Wohnbaubank",
+      "priority": 7,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:04:07.658043"
+    },
+    {
+      "id": "dd26138c",
+      "name": "court_bezirksgericht",
+      "description": "Matches Bezirksgericht followed by location.",
+      "format": "regex",
+      "content": "\\bBezirksgericht\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+",
+      "priority": 7,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:04:07.658122"
+    },
+    {
+      "id": "a63bd0f4",
+      "name": "tax_authority_finanzamt_extended",
+      "description": "Matches full names of tax authorities starting with 'Finanzamt' followed by specific known locations including Vorarlberg, Freistadt Rohrbach Urfahr, Deutschlandsberg Leibnitz Voitsberg, Tirol Ost, Grieskirchen Wels, Schwechat Gerasdorf, Klagenfurt St. Veit Wolfsberg.",
+      "format": "regex",
+      "content": "\\bFinanzamt\\s+(?:St\\.\\s+Johann\\s+Tamsweg\\s+Zell\\s+am\\s+See|Purkersdorf|Lilienfeld\\s+St\\.\\s+P\\u00f6lten|Judenburg\\s+Liezen|Neunkirchen\\s+Wr\\.\\s+Neustadt|Klosterneuburg|Wien\\s+1/23|Wien\\s+2/20/21/22|Kirchdorf\\s+Perg\\s+Steyr|Baden\\s+M\\u00f6dling|\\u00d6sterreich\\s+DS|Vorarlberg|Freistadt\\s+Rohrbach\\s+Urfahr|Deutschlandsberg\\s+Leibnitz\\s+Voitsberg|Tirol\\s+Ost|Grieskirchen\\s+Wels|Schwechat\\s+Gerasdorf|Klagenfurt\\s+St\\.\\s+Veit\\s+Wolfsberg)",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:07:53.039594"
+    },
+    {
+      "id": "78bd4b33",
+      "name": "specific_company_klusner",
+      "description": "Matches the specific company name Klusner&P\u00e4ffgen Bildung GMBH.",
+      "format": "regex",
+      "content": "\\bKlusner&P\u00e4ffgen\\s+Bildung\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:04:44.632068"
+    },
+    {
+      "id": "0cc12299",
+      "name": "specific_company_yxtg",
+      "description": "Matches the specific company name YXTG Maschinenbau.",
+      "format": "regex",
+      "content": "\\bYXTG\\s+Maschinenbau\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:04:44.632147"
+    },
+    {
+      "id": "020248a2",
+      "name": "specific_company_bierwerth",
+      "description": "Matches the specific company name Bierwerth.",
+      "format": "regex",
+      "content": "\\bBierwerth\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:04:44.632206"
+    },
+    {
+      "id": "ff5f76c2",
+      "name": "specific_company_mur",
+      "description": "Matches the specific company name Mur Ververzor Betriebe.",
+      "format": "regex",
+      "content": "\\bMur\\s+Ververzor\\s+Betriebe\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:04:44.632248"
+    },
+    {
+      "id": "05514bbd",
+      "name": "specific_company_fensudlog",
+      "description": "Matches the specific company name Fensudlog GMBH.",
+      "format": "regex",
+      "content": "\\bFensudlog\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:04:44.632317"
+    },
+    {
+      "id": "25cb4296",
+      "name": "bank_raiffeisen_kasse",
+      "description": "Matches Raiffeisenkasse entities including specific regions.",
+      "format": "regex",
+      "content": "\\bRaiffeisenkasse\\s+[A-Z][a-zA-Z\\-\\u00e4\\u00f6\\u00fc\\u00df]+",
+      "priority": 7,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:07:14.742549"
+    },
+    {
+      "id": "a3d28b83",
+      "name": "specific_company_houdek",
+      "description": "Matches the specific company name Houdek Maschinenbau.",
+      "format": "regex",
+      "content": "\\bHoudek\\s+Maschinenbau\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:07:14.742665"
+    },
+    {
+      "id": "49973031",
+      "name": "specific_company_dorfkraft",
+      "description": "Matches the specific company name Dorfkraft-Sanit\u00e4r AG.",
+      "format": "regex",
+      "content": "\\bDorfkraft-Sanit\\u00e4r\\s+AG\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:07:14.742735"
+    },
+    {
+      "id": "42d47a3a",
+      "name": "specific_company_sudkraftlex",
+      "description": "Matches the specific company name Event Sudkraftlex GMBH.",
+      "format": "regex",
+      "content": "\\bEvent\\s+Sudkraftlex\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:07:14.742832"
+    },
+    {
+      "id": "9efbe8cf",
+      "name": "specific_company_kqpc",
+      "description": "Matches the specific company name KQPC Versand GMBH.",
+      "format": "regex",
+      "content": "\\bKQPC\\s+Versand\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:07:14.742910"
+    },
+    {
+      "id": "8f2d0962",
+      "name": "specific_company_logkeltal",
+      "description": "Matches the specific company name Logkeltal Marine.",
+      "format": "regex",
+      "content": "\\bLogkeltal\\s+Marine\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:07:35.701709"
+    },
+    {
+      "id": "974ff677",
+      "name": "specific_company_innluftfahrt",
+      "description": "Matches the specific company name InnLuftfahrt GMBH.",
+      "format": "regex",
+      "content": "\\bInnLuftfahrt\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:07:35.701852"
+    },
+    {
+      "id": "ec79f8a3",
+      "name": "specific_company_hudec",
+      "description": "Matches the specific company name Hudec&Christian Immobilien GMBH.",
+      "format": "regex",
+      "content": "\\bHudec&Christian\\s+Immobilien\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:07:35.701935"
+    },
+    {
+      "id": "e9e5e864",
+      "name": "specific_company_gartgart",
+      "description": "Matches the specific company name Gartgart Dienstleistungen GMBH.",
+      "format": "regex",
+      "content": "\\bGartgart\\s+Dienstleistungen\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:07:35.702039"
+    },
+    {
+      "id": "554421f4",
+      "name": "specific_company_kraftver",
+      "description": "Matches the specific company name Kraftver-Gastronomie GMBH.",
+      "format": "regex",
+      "content": "\\bKraftver-Gastronomie\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:07:35.702135"
+    },
+    {
+      "id": "7aab7d44",
+      "name": "specific_company_donau",
+      "description": "Matches the specific company name Donau Furtkraftwald AG.",
+      "format": "regex",
+      "content": "\\bDonau\\s+Furtkraftwald\\s+AG\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:07:35.702220"
+    },
+    {
+      "id": "b473ef82",
+      "name": "specific_company_norkel",
+      "description": "Matches the specific company name Norkel-Software GMBH.",
+      "format": "regex",
+      "content": "\\bNorkel-Software\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:07:35.702308"
+    },
+    {
+      "id": "3a673c6f",
+      "name": "specific_company_roelfsen",
+      "description": "Matches the specific company name Roelfsen Versicherung.",
+      "format": "regex",
+      "content": "\\bRoelfsen\\s+Versicherung\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:07:35.702385"
+    },
+    {
+      "id": "1ac755bc",
+      "name": "specific_company_unterrecycling",
+      "description": "Matches the specific company name UnterRecycling Services GMBH.",
+      "format": "regex",
+      "content": "\\bUnterRecycling\\s+Services\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:07:35.702460"
+    },
+    {
+      "id": "4462e13a",
+      "name": "specific_company_textil",
+      "description": "Matches the specific company name Textil Steingartlog.",
+      "format": "regex",
+      "content": "\\bTextil\\s+Steingartlog\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:07:35.702551"
+    },
+    {
+      "id": "2069e04d",
+      "name": "tax_authority_fa_salzburg",
+      "description": "Matches abbreviated tax authorities 'FA' followed by Salzburg-Stadt.",
+      "format": "regex",
+      "content": "\\bFA\\s+Salzburg-Stadt\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:07:35.702626"
+    },
+    {
+      "id": "79e36135",
+      "name": "tax_authority_fa_vorarlberg",
+      "description": "Matches abbreviated tax authorities 'FA' followed by Vorarlberg.",
+      "format": "regex",
+      "content": "\\bFA\\s+Vorarlberg\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:07:35.702699"
+    },
+    {
+      "id": "d1379437",
+      "name": "tax_authority_fa_landeck",
+      "description": "Matches abbreviated tax authorities 'FA' followed by Landeck Reutte.",
+      "format": "regex",
+      "content": "\\bFA\\s+Landeck\\s+Reutte\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:07:35.702781"
+    },
+    {
+      "id": "165d9b9d",
+      "name": "tax_authority_finanzamt_salzburg",
+      "description": "Matches full names of tax authorities 'Finanzamt' followed by Salzburg-Stadt.",
+      "format": "regex",
+      "content": "\\bFinanzamt\\s+Salzburg-Stadt\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:07:35.702870"
+    },
+    {
+      "id": "f392e58d",
+      "name": "tax_authority_finanzamt_waldviertel",
+      "description": "Matches full names of tax authorities 'Finanzamt' followed by Waldviertel.",
+      "format": "regex",
+      "content": "\\bFinanzamt\\s+Waldviertel\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:07:35.702969"
+    },
+    {
+      "id": "7aceb748",
+      "name": "specific_company_hulsebusch",
+      "description": "Matches the specific company name H\u00fclsebusch + Breithaupt Versicherung.",
+      "format": "regex",
+      "content": "\\bH\\u00fclsebusch\\s+\\+\\s+Breithaupt\\s+Versicherung\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:11:12.498711"
+    },
+    {
+      "id": "6098360b",
+      "name": "specific_company_wien_waldnor",
+      "description": "Matches the specific company name Wien Waldnor KG (excluding suffix if already present in specific rule, but here we match the full name).",
+      "format": "regex",
+      "content": "\\bWien\\s+Waldnor\\s+KG\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:09:09.329785"
+    },
+    {
+      "id": "b5ef13ca",
+      "name": "specific_company_bergplanung",
+      "description": "Matches the specific company name BergPlanung, including when followed by GmbH & CoKG.",
+      "format": "regex",
+      "content": "\\bBergPlanung\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:16:37.371552"
+    },
+    {
+      "id": "17b50d21",
+      "name": "specific_company_pastl_bachle",
+      "description": "Matches the specific company name Pastl+B\u00e4chle Handel.",
+      "format": "regex",
+      "content": "\\bPastl\\+B\\u00e4chle\\s+Handel\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:07:53.041120"
+    },
+    {
+      "id": "41449834",
+      "name": "specific_company_gozcu",
+      "description": "Matches the specific company name G\u00f6zc\u00fc Getr\u00e4nke.",
+      "format": "regex",
+      "content": "\\bG\u00f6zc\u00fc\\s+Getr\u00e4nke\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:08:18.505923"
+    },
+    {
+      "id": "9a8e8489",
+      "name": "specific_company_sudver",
+      "description": "Matches the specific company name Sudver Handel Services GMBH.",
+      "format": "regex",
+      "content": "\\bSudver\\s+Handel\\s+Services\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:08:18.506039"
+    },
+    {
+      "id": "bc6fe8eb",
+      "name": "specific_company_glanznorost",
+      "description": "Matches the specific company name Glanznorost Institut GMBH.",
+      "format": "regex",
+      "content": "\\bGlanznorost\\s+Institut\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:08:18.506136"
+    },
+    {
+      "id": "f5a63df6",
+      "name": "specific_company_schmeltz",
+      "description": "Matches the specific company name Schmeltz Luftfahrt.",
+      "format": "regex",
+      "content": "\\bSchmeltz\\s+Luftfahrt\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:08:18.506214"
+    },
+    {
+      "id": "36881981",
+      "name": "specific_company_mittel_unisyn",
+      "description": "Matches the specific company name Mittel Unisyn GMBH.",
+      "format": "regex",
+      "content": "\\bMittel\\s+Unisyn\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:08:18.506275"
+    },
+    {
+      "id": "3619e650",
+      "name": "specific_company_vahrenkamp",
+      "description": "Matches the specific company name Vahrenkamp Luftfahrt.",
+      "format": "regex",
+      "content": "\\bVahrenkamp\\s+Luftfahrt\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:08:18.506341"
+    },
+    {
+      "id": "8a8b7d36",
+      "name": "specific_company_conwil",
+      "description": "Matches the specific company name Conwil-Marine.",
+      "format": "regex",
+      "content": "\\bConwil-Marine\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:08:18.506401"
+    },
+    {
+      "id": "d13163d6",
+      "name": "specific_company_hochlebensmittel",
+      "description": "Matches the specific company name HochLebensmittel Holding GMBH.",
+      "format": "regex",
+      "content": "\\bHochLebensmittel\\s+Holding\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:08:18.506447"
+    },
+    {
+      "id": "eda256c3",
+      "name": "specific_company_sanitar_talder",
+      "description": "Matches the specific company name Sanit\u00e4r Talder GMBH.",
+      "format": "regex",
+      "content": "\\bSanit\u00e4r\\s+Talder\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:08:18.506525"
+    },
+    {
+      "id": "0e3aa9c2",
+      "name": "specific_company_mittel_logistik",
+      "description": "Matches the specific company name Mittel-Logistik.",
+      "format": "regex",
+      "content": "\\bMittel-Logistik\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:08:18.506591"
+    },
+    {
+      "id": "bc6c2214",
+      "name": "specific_company_sud_lemkel",
+      "description": "Matches the specific company name S\u00fcd Lemkel.",
+      "format": "regex",
+      "content": "\\bS\u00fcd\\s+Lemkel\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:08:18.506637"
+    },
+    {
+      "id": "1360ab94",
+      "name": "specific_company_rosilius",
+      "description": "Matches the specific company name Rosilius Pflege AG.",
+      "format": "regex",
+      "content": "\\bRosilius\\s+Pflege\\s+AG\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:08:18.506688"
+    },
+    {
+      "id": "6d5ae0ee",
+      "name": "specific_company_yavasoglu",
+      "description": "Matches the specific company name Yavasoglu Analyse AG.",
+      "format": "regex",
+      "content": "\\bYavasoglu\\s+Analyse\\s+AG\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:08:18.506766"
+    },
+    {
+      "id": "d79046e5",
+      "name": "specific_company_geisselbrecht",
+      "description": "Matches the specific company name Gei\u00dfelbrecht Garten.",
+      "format": "regex",
+      "content": "\\bGei\u00dfelbrecht\\s+Garten\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:08:18.506834"
+    },
+    {
+      "id": "7efed293",
+      "name": "tax_authority_fa_gmunden",
+      "description": "Matches abbreviated tax authorities 'FA' followed by Gmunden V\u00f6cklabruck.",
+      "format": "regex",
+      "content": "\\bFA\\s+Gmunden\\s+V\u00f6cklabruck\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:08:18.506894"
+    },
+    {
+      "id": "bea799ef",
+      "name": "tax_authority_fa_amstetten",
+      "description": "Matches abbreviated tax authorities 'FA' followed by Amstetten Melk Scheibbs.",
+      "format": "regex",
+      "content": "\\bFA\\s+Amstetten\\s+Melk\\s+Scheibbs\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:08:18.506966"
+    },
+    {
+      "id": "2980672d",
+      "name": "tax_authority_fa_tirol_ost",
+      "description": "Matches abbreviated tax authorities 'FA' followed by Tirol Ost.",
+      "format": "regex",
+      "content": "\\bFA\\s+Tirol\\s+Ost\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:08:18.507046"
+    },
+    {
+      "id": "f9eda663",
+      "name": "tax_authority_finanzamt_innsbruck",
+      "description": "Matches full names of tax authorities 'Finanzamt' followed by Innsbruck.",
+      "format": "regex",
+      "content": "\\bFinanzamt\\s+Innsbruck\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:08:18.507113"
+    },
+    {
+      "id": "f09b61bc",
+      "name": "tax_authority_finanzamt_landeck_reutte",
+      "description": "Matches full names of tax authorities 'Finanzamt' followed by Landeck Reutte.",
+      "format": "regex",
+      "content": "\\bFinanzamt\\s+Landeck\\s+Reutte\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:08:18.507174"
+    },
+    {
+      "id": "56a53f5d",
+      "name": "tax_authority_finanzamt_linz",
+      "description": "Matches Finanzamt Linz",
+      "format": "regex",
+      "content": "\\bFinanzamt\\s+Linz\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:08:52.784767"
+    },
+    {
+      "id": "ce154098",
+      "name": "tax_authority_finanzamt_oststeiermark",
+      "description": "Matches Finanzamt Oststeiermark",
+      "format": "regex",
+      "content": "\\bFinanzamt\\s+Oststeiermark\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:08:52.784896"
+    },
+    {
+      "id": "771c195b",
+      "name": "tax_authority_finanzamt_niederoesterreich_mitte",
+      "description": "Matches Finanzamt Nieder\u00f6sterreich Mitte",
+      "format": "regex",
+      "content": "\\bFinanzamt\\s+Nieder\u00f6sterreich\\s+Mitte\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:08:52.784974"
+    },
+    {
+      "id": "06af36bc",
+      "name": "tax_authority_finanzamtbruck_eisenstadt_oberwart",
+      "description": "Matches Finanzamt Bruck Eisenstadt Oberwart",
+      "format": "regex",
+      "content": "\\bFinanzamt\\s+Bruck\\s+Eisenstadt\\s+Oberwart\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:08:52.785066"
+    },
+    {
+      "id": "530532ca",
+      "name": "tax_authority_finanzamt_gmunden_vocklabruck",
+      "description": "Matches Finanzamt Gmunden V\u00f6cklabruck",
+      "format": "regex",
+      "content": "\\bFinanzamt\\s+Gmunden\\s+V\u00f6cklabruck\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:08:52.785164"
+    },
+    {
+      "id": "cdfd879f",
+      "name": "tax_authority_fa_linz",
+      "description": "Matches FA Linz",
+      "format": "regex",
+      "content": "\\bFA\\s+Linz\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:08:52.785248"
+    },
+    {
+      "id": "4775a41d",
+      "name": "generic_company_nord_kellex",
+      "description": "Matches Nord Kellex",
+      "format": "regex",
+      "content": "\\bNord\\s+Kellex\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:08:52.785642"
+    },
+    {
+      "id": "0ba8cfc2",
+      "name": "generic_company_dorfcon_verlag",
+      "description": "Matches Dorfcon-Verlag",
+      "format": "regex",
+      "content": "\\bDorfcon-Verlag\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:08:52.785703"
+    },
+    {
+      "id": "693ae718",
+      "name": "generic_company_starker_beratung",
+      "description": "Matches Starker Beratung",
+      "format": "regex",
+      "content": "\\bStarker\\s+Beratung\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:08:52.785763"
+    },
+    {
+      "id": "1866cbe2",
+      "name": "generic_company_lexdon_it",
+      "description": "Matches Lexdon IT",
+      "format": "regex",
+      "content": "\\bLexdon\\s+IT\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:08:52.785823"
+    },
+    {
+      "id": "7fb2b03a",
+      "name": "generic_company_alal_medien",
+      "description": "Matches Alal-Medien",
+      "format": "regex",
+      "content": "\\bAlal-Medien\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:08:52.785874"
+    },
+    {
+      "id": "0d534994",
+      "name": "generic_company_zimmerhackel_bau",
+      "description": "Matches Zimmerhackel Bau",
+      "format": "regex",
+      "content": "\\bZimmerhackel\\s+Bau\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:08:52.785919"
+    },
+    {
+      "id": "1ca18de8",
+      "name": "generic_company_ober_lemostnor",
+      "description": "Matches Ober Lemostnor AG",
+      "format": "regex",
+      "content": "\\bOber\\s+Lemostnor\\s+AG\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:08:52.785979"
+    },
+    {
+      "id": "1fc841de",
+      "name": "generic_company_vennes_recycling",
+      "description": "Matches Vennes Recycling AG",
+      "format": "regex",
+      "content": "\\bVennes\\s+Recycling\\s+AG\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:08:52.786048"
+    },
+    {
+      "id": "3349a5d7",
+      "name": "generic_company_getranke_nexdorfzor",
+      "description": "Matches Getr\u00e4nke Nexdorfzor GMBH",
+      "format": "regex",
+      "content": "\\bGetr\u00e4nke\\s+Nexdorfzor\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:08:52.786122"
+    },
+    {
+      "id": "b5d3b82d",
+      "name": "generic_company_rheinmetall",
+      "description": "Matches RheinMetall Technologien GMBH",
+      "format": "regex",
+      "content": "\\bRheinMetall\\s+Technologien\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:08:52.786198"
+    },
+    {
+      "id": "deb50412",
+      "name": "generic_company_bludszat",
+      "description": "Matches Bludszat Maschinenbau GMBH",
+      "format": "regex",
+      "content": "\\bBludszat\\s+Maschinenbau\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:08:52.786277"
+    },
+    {
+      "id": "cc9002a6",
+      "name": "generic_company_schiwick",
+      "description": "Matches Schiwick Finanzen AG",
+      "format": "regex",
+      "content": "\\bSchiwick\\s+Finanzen\\s+AG\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:08:52.786355"
+    },
+    {
+      "id": "bfe585af",
+      "name": "generic_company_verdonlex",
+      "description": "Matches Verdonlex Automotive GMBH",
+      "format": "regex",
+      "content": "\\bVerdonlex\\s+Automotive\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:08:52.786431"
+    },
+    {
+      "id": "3588f538",
+      "name": "specific_company_touristik_wildon",
+      "description": "Matches the specific company name Touristik Wildon.",
+      "format": "regex",
+      "content": "\\bTouristik\\s+Wildon\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:09:09.329799"
+    },
+    {
+      "id": "81ea346f",
+      "name": "specific_company_innmarine",
+      "description": "Matches the specific company name InnMarine GMBH.",
+      "format": "regex",
+      "content": "\\bInnMarine\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:09:09.329865"
+    },
+    {
+      "id": "4e9a4edf",
+      "name": "specific_company_seyberth_kaben",
+      "description": "Matches the specific company name Seyberth + Kaben Getr\u00e4nke AG.",
+      "format": "regex",
+      "content": "\\bSeyberth\\s+\\+\\s+Kaben\\s+Getr\u00e4nke\\s+AG\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:09:09.329926"
+    },
+    {
+      "id": "2c379be8",
+      "name": "specific_company_waldver",
+      "description": "Matches the specific company name Waldver E\u2011Commerce Systeme GMBH.",
+      "format": "regex",
+      "content": "\\bWaldver\\s+E\u2011Commerce\\s+Systeme\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:09:09.330022"
+    },
+    {
+      "id": "84240be9",
+      "name": "tax_authority_finanzamt_steiermark_mitte",
+      "description": "Matches Finanzamt Steiermark Mitte.",
+      "format": "regex",
+      "content": "\\bFinanzamt\\s+Steiermark\\s+Mitte\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:09:09.330111"
+    },
+    {
+      "id": "d90414be",
+      "name": "tax_authority_finanzamt_salzburg_land",
+      "description": "Matches Finanzamt Salzburg-Land",
+      "format": "regex",
+      "content": "\\bFinanzamt\\s+Salzburg\\-Land\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:09:31.655849"
+    },
+    {
+      "id": "1a12eb9a",
+      "name": "tax_authority_fa_spittal_villach",
+      "description": "Matches FA Spittal Villach",
+      "format": "regex",
+      "content": "\\bFA\\s+Spittal\\s+Villach\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:09:31.655975"
+    },
+    {
+      "id": "003b6496",
+      "name": "tax_authority_fa_steiermark_mitte",
+      "description": "Matches FA Steiermark Mitte",
+      "format": "regex",
+      "content": "\\bFA\\s+Steiermark\\s+Mitte\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:09:31.656052"
+    },
+    {
+      "id": "1239909f",
+      "name": "tax_authority_fa_kirchdorf_perg_steyr",
+      "description": "Matches FA Kirchdorf Perg Steyr",
+      "format": "regex",
+      "content": "\\bFA\\s+Kirchdorf\\s+Perg\\s+Steyr\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:09:31.656124"
+    },
+    {
+      "id": "f019c0e0",
+      "name": "tax_authority_fa_deutschlandsberg_leibnitz_voitsberg",
+      "description": "Matches FA Deutschlandsberg Leibnitz Voitsberg",
+      "format": "regex",
+      "content": "\\bFA\\s+Deutschlandsberg\\s+Leibnitz\\s+Voitsberg\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:09:31.656211"
+    },
+    {
+      "id": "c04eeaa6",
+      "name": "generic_company_hoch_synwil",
+      "description": "Matches Hoch Synwil",
+      "format": "regex",
+      "content": "\\bHoch\\s+Synwil\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:09:31.656307"
+    },
+    {
+      "id": "70c9792a",
+      "name": "generic_company_kornfelder_recycling",
+      "description": "Matches Kornfelder Recycling",
+      "format": "regex",
+      "content": "\\bKornfelder\\s+Recycling\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:09:31.656367"
+    },
+    {
+      "id": "69c488b5",
+      "name": "generic_company_nordevent_gruppe",
+      "description": "Matches NordEvent Gruppe",
+      "format": "regex",
+      "content": "\\bNordEvent\\s+Gruppe\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:09:31.656429"
+    },
+    {
+      "id": "96fe38d2",
+      "name": "generic_company_maegerlein_logistik",
+      "description": "Matches M\u00e4gerlein Logistik",
+      "format": "regex",
+      "content": "\\bM\u00e4gerlein\\s+Logistik\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:09:31.656488"
+    },
+    {
+      "id": "b8acdb55",
+      "name": "generic_company_traun_aluni_institut",
+      "description": "Matches Traun Aluni Institut GMBH",
+      "format": "regex",
+      "content": "\\bTraun\\s+Aluni\\s+Institut\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:09:31.656548"
+    },
+    {
+      "id": "d9406a1b",
+      "name": "generic_company_talverwerk_garten",
+      "description": "Matches TalVerverwerkGarten GMBH",
+      "format": "regex",
+      "content": "\\bTalVerverwerkGarten\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:09:31.656630"
+    },
+    {
+      "id": "69c78fa4",
+      "name": "generic_company_heimwald_forschung",
+      "description": "Matches Heimwald-Forschung GMBH",
+      "format": "regex",
+      "content": "\\bHeimwald\\-Forschung\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:09:31.656697"
+    },
+    {
+      "id": "08a2589e",
+      "name": "generic_company_keldonbach_sicherheit",
+      "description": "Matches Keldonbach Sicherheit GMBH",
+      "format": "regex",
+      "content": "\\bKeldonbach\\s+Sicherheit\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:09:31.656776"
+    },
+    {
+      "id": "f8e9980f",
+      "name": "bank_sparkasse",
+      "description": "Matches Sparkasse entities including specific locations.",
+      "format": "regex",
+      "content": "\\bSparkasse\\s+[A-Z][a-zA-Z\\-\\u00e4\\u00f6\\u00fc\\u00df]+",
+      "priority": 7,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:09:31.656868"
+    },
+    {
+      "id": "dced3c59",
+      "name": "specific_company_stefansky",
+      "description": "Matches the specific company name Stefansky Bau GMBH.",
+      "format": "regex",
+      "content": "\\bStefansky\\s+Bau\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:09:45.341408"
+    },
+    {
+      "id": "62520fdc",
+      "name": "specific_company_traunchemie",
+      "description": "Matches the specific company name TraunChemie GMBH.",
+      "format": "regex",
+      "content": "\\bTraunChemie\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:09:45.341539"
+    },
+    {
+      "id": "78381d68",
+      "name": "specific_company_ogem",
+      "description": "Matches the specific company name OGEM Landwirtschaft GMBH.",
+      "format": "regex",
+      "content": "\\bOGEM\\s+Landwirtschaft\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:09:45.341608"
+    },
+    {
+      "id": "69ff4d25",
+      "name": "bank_raiffeisen_stallhofen",
+      "description": "Matches Raiffeisenbank Stallhofen.",
+      "format": "regex",
+      "content": "\\bRaiffeisenbank\\s+Stallhofen\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:09:45.341688"
+    },
+    {
+      "id": "e73f62fd",
+      "name": "specific_company_istvan_gerart",
+      "description": "Matches the specific company name Istvan Gerart.",
+      "format": "regex",
+      "content": "\\bIstvan\\s+Gerart\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:10:19.667491"
+    },
+    {
+      "id": "f210ef7a",
+      "name": "specific_company_depp_versand",
+      "description": "Matches the specific company name Depp Versand.",
+      "format": "regex",
+      "content": "\\bDepp\\s+Versand\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:10:19.667628"
+    },
+    {
+      "id": "60ff31d4",
+      "name": "specific_company_talpflege",
+      "description": "Matches the specific company name TalPflege.",
+      "format": "regex",
+      "content": "\\bTalPflege\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:10:19.667688"
+    },
+    {
+      "id": "f597d300",
+      "name": "specific_company_chen_setzekorn",
+      "description": "Matches the specific company name Chen Setzekorn.",
+      "format": "regex",
+      "content": "\\bChen\\s+Setzekorn\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:10:19.667732"
+    },
+    {
+      "id": "73d10d3f",
+      "name": "specific_company_liu_rempis",
+      "description": "Matches the specific company name Liu Rempis.",
+      "format": "regex",
+      "content": "\\bLiu\\s+Rempis\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:10:19.667798"
+    },
+    {
+      "id": "26d31cb5",
+      "name": "specific_company_logal_gruppe",
+      "description": "Matches the specific company name Logal Gruppe.",
+      "format": "regex",
+      "content": "\\bLogal\\s+Gruppe\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:10:19.667851"
+    },
+    {
+      "id": "eea02ec1",
+      "name": "specific_company_vianden_robotik",
+      "description": "Matches the specific company name Vianden Robotik GMBH.",
+      "format": "regex",
+      "content": "\\bVianden\\s+Robotik\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:10:19.667905"
+    },
+    {
+      "id": "585944c9",
+      "name": "specific_company_willeckes_cloud",
+      "description": "Matches the specific company name Willeckes Cloud GMBH.",
+      "format": "regex",
+      "content": "\\bWilleckes\\s+Cloud\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:10:19.667976"
+    },
+    {
+      "id": "953025ca",
+      "name": "specific_company_pergler_beratung",
+      "description": "Matches the specific company name Pergler Beratung GMBH.",
+      "format": "regex",
+      "content": "\\bPergler\\s+Beratung\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:10:19.668048"
+    },
+    {
+      "id": "0858ea91",
+      "name": "specific_company_sudevent_ag",
+      "description": "Matches the specific company name S\u00fcdEvent AG.",
+      "format": "regex",
+      "content": "\\bS\u00fcdEvent\\s+AG\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:10:19.668125"
+    },
+    {
+      "id": "101728b8",
+      "name": "specific_company_rhein_normonkel",
+      "description": "Matches the specific company name Rhein Normonkel Manufaktur GMBH.",
+      "format": "regex",
+      "content": "\\bRhein\\s+Normonkel\\s+Manufaktur\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:10:19.668180"
+    },
+    {
+      "id": "19a4ee8c",
+      "name": "bank_raiffeisen_hippach_hart",
+      "description": "Matches Raiffeisenbank Hippach-Hart.",
+      "format": "regex",
+      "content": "\\bRaiffeisenbank\\s+Hippach-Hart\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:10:19.668266"
+    },
+    {
+      "id": "6255cbb0",
+      "name": "specific_company_hinklein",
+      "description": "Matches the specific company name Hinklein.",
+      "format": "regex",
+      "content": "\\bHinklein\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:10:19.668330"
+    },
+    {
+      "id": "abd62651",
+      "name": "tax_authority_finanzamt_wien_8_16_17",
+      "description": "Matches Finanzamt Wien 8/16/17",
+      "format": "regex",
+      "content": "\\bFinanzamt\\s+Wien\\s+8/16/17\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:10:19.668372"
+    },
+    {
+      "id": "69dc7dd0",
+      "name": "tax_authority_fa_innsbruck",
+      "description": "Matches abbreviated tax authority 'FA Innsbruck'",
+      "format": "regex",
+      "content": "\\bFA\\s+Innsbruck\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:10:57.720592"
+    },
+    {
+      "id": "d7dbeaee",
+      "name": "specific_company_dersyn",
+      "description": "Matches the specific company name Dersyn Immobilien GMBH",
+      "format": "regex",
+      "content": "\\bDersyn\\s+Immobilien\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:10:57.720713"
+    },
+    {
+      "id": "7b483c9e",
+      "name": "specific_company_scheibenzuber",
+      "description": "Matches the specific company name Scheibenzuber Textil",
+      "format": "regex",
+      "content": "\\bScheibenzuber\\s+Textil\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:10:57.720810"
+    },
+    {
+      "id": "148f7eb2",
+      "name": "specific_company_dongartcon",
+      "description": "Matches the specific company name Dongartcon-Landwirtschaft GMBH",
+      "format": "regex",
+      "content": "\\bDongartcon-Landwirtschaft\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:10:57.720876"
+    },
+    {
+      "id": "0492e61f",
+      "name": "tax_authority_fa_klagenfurt_st_veit_wolfsberg",
+      "description": "Matches abbreviated tax authority 'FA Klagenfurt St. Veit Wolfsberg'",
+      "format": "regex",
+      "content": "\\bFA\\s+Klagenfurt\\s+St\\.\\s+Veit\\s+Wolfsberg\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:10:57.720949"
+    },
+    {
+      "id": "7e6d8f33",
+      "name": "specific_company_zschieschank",
+      "description": "Matches the specific company name Zschieschank&Hee\u00df Transport GMBH",
+      "format": "regex",
+      "content": "\\bZschieschank&Hee\u00df\\s+Transport\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:10:57.721043"
+    },
+    {
+      "id": "9c2bd654",
+      "name": "specific_company_mullbrandt",
+      "description": "Matches the specific company name M\u00fcllbrandt u. Worthmeier Digital GMBH",
+      "format": "regex",
+      "content": "\\bM\u00fcllbrandt\\s+u\\.\\s+Worthmeier\\s+Digital\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:10:57.721124"
+    },
+    {
+      "id": "e57d918b",
+      "name": "specific_company_rpxf",
+      "description": "Matches the specific company name RPXF Immobilien",
+      "format": "regex",
+      "content": "\\bRPXF\\s+Immobilien\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:10:57.721220"
+    },
+    {
+      "id": "81c95f94",
+      "name": "specific_company_ostwilnex",
+      "description": "Matches the specific company name OstWilnexLogistik AG",
+      "format": "regex",
+      "content": "\\bOstWilnexLogistik\\s+AG\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:10:57.721279"
+    },
+    {
+      "id": "0005ddd9",
+      "name": "specific_company_niederoesterreichische_vorsorgekasse",
+      "description": "Matches the specific company name Nieder\u00f6sterreichische Vorsorgekasse",
+      "format": "regex",
+      "content": "\\bNieder\u00f6sterreichische\\s+Vorsorgekasse\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:10:57.721338"
+    },
+    {
+      "id": "7907e38c",
+      "name": "bank_raiffeisen_mittleres_mostviertel",
+      "description": "Matches the specific bank name Raiffeisenbank Mittleres Mostviertel",
+      "format": "regex",
+      "content": "\\bRaiffeisenbank\\s+Mittleres\\s+Mostviertel\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:10:57.721413"
+    },
+    {
+      "id": "0097b624",
+      "name": "specific_company_butkus",
+      "description": "Matches the specific company name Butkus Metall",
+      "format": "regex",
+      "content": "\\bButkus\\s+Metall\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:10:57.721494"
+    },
+    {
+      "id": "5c87369f",
+      "name": "tax_authority_fa_salzburg_land",
+      "description": "Matches abbreviated tax authority 'FA Salzburg-Land'",
+      "format": "regex",
+      "content": "\\bFA\\s+Salzburg\\-Land\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:10:57.721551"
+    },
+    {
+      "id": "a04dc4aa",
+      "name": "tax_authority_fa_schwechat_gerasdorf",
+      "description": "Matches abbreviated tax authority 'FA Schwechat Gerasdorf'",
+      "format": "regex",
+      "content": "\\bFA\\s+Schwechat\\s+Gerasdorf\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:10:57.721611"
+    },
+    {
+      "id": "ff1fff0a",
+      "name": "specific_company_liefeith",
+      "description": "Matches the specific company name Liefeith Immobilien.",
+      "format": "regex",
+      "content": "\\bLiefeith\\s+Immobilien\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:11:12.498399"
+    },
+    {
+      "id": "a091f40a",
+      "name": "specific_company_rheinbildung",
+      "description": "Matches the specific company name RheinBildung.",
+      "format": "regex",
+      "content": "\\bRheinBildung\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:11:12.498522"
+    },
+    {
+      "id": "e56d0e89",
+      "name": "specific_company_waldtra",
+      "description": "Matches the specific company name Waldtra-Sicherheit.",
+      "format": "regex",
+      "content": "\\bWaldtra-Sicherheit\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:11:12.498571"
+    },
+    {
+      "id": "b7bdb39a",
+      "name": "specific_company_dufel",
+      "description": "Matches the specific company name D\u00fcfel Technik KG.",
+      "format": "regex",
+      "content": "\\bD\u00fcfel\\s+Technik\\s+KG\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:11:12.498626"
+    },
+    {
+      "id": "298e1067",
+      "name": "specific_company_kelgart_druck",
+      "description": "Matches the specific company name Kelgart-Druck.",
+      "format": "regex",
+      "content": "\\bKelgart-Druck\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:11:27.110761"
+    },
+    {
+      "id": "322bafd1",
+      "name": "specific_company_mittelheizung",
+      "description": "Matches the specific company name MittelHeizung Werke AG.",
+      "format": "regex",
+      "content": "\\bMittelHeizung\\s+Werke\\s+AG\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:11:27.110862"
+    },
+    {
+      "id": "e7d57f24",
+      "name": "specific_company_trafenfen",
+      "description": "Matches the specific company name Trafenfen Automotive.",
+      "format": "regex",
+      "content": "\\bTrafenfen\\s+Automotive\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:11:27.110962"
+    },
+    {
+      "id": "5270168f",
+      "name": "specific_company_ostgart",
+      "description": "Matches the specific company name Ostgart AG.",
+      "format": "regex",
+      "content": "\\bOstgart\\s+AG\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:11:27.111031"
+    },
+    {
+      "id": "f4f169cc",
+      "name": "specific_company_nord_willemtri",
+      "description": "Matches the specific company name Nord Willemtri KG.",
+      "format": "regex",
+      "content": "\\bNord\\s+Willemtri\\s+KG\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:11:27.111089"
+    },
+    {
+      "id": "f2892dd1",
+      "name": "specific_company_traunlandwirtschaft",
+      "description": "Matches the specific company name TraunLandwirtschaft.",
+      "format": "regex",
+      "content": "\\bTraunLandwirtschaft\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:11:27.111162"
+    },
+    {
+      "id": "28eb5246",
+      "name": "specific_company_zfgq_pharma",
+      "description": "Matches the specific company name ZFGQ Pharma GMBH.",
+      "format": "regex",
+      "content": "\\bZFGQ\\s+Pharma\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:11:27.111215"
+    },
+    {
+      "id": "9b6d12fb",
+      "name": "specific_company_hempel",
+      "description": "Matches the specific company name Hempel Heizung GMBH.",
+      "format": "regex",
+      "content": "\\bHempel\\s+Heizung\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:13:47.066089"
+    },
+    {
+      "id": "95dd2b72",
+      "name": "specific_company_sudlandwirtschaft",
+      "description": "Matches the specific company name S\u00fcd-Landwirtschaft.",
+      "format": "regex",
+      "content": "\\bS\u00fcd-Landwirtschaft\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:13:47.066222"
+    },
+    {
+      "id": "6ad549cf",
+      "name": "specific_company_bankhaus_denzel",
+      "description": "Matches the specific company name Bankhaus Denzel.",
+      "format": "regex",
+      "content": "\\bBankhaus\\s+Denzel\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:13:47.066279"
+    },
+    {
+      "id": "5cfd89ab",
+      "name": "specific_company_schoenfelder_textil",
+      "description": "Matches the specific company name Schoenfelder Textil KG.",
+      "format": "regex",
+      "content": "\\bSchoenfelder\\s+Textil\\s+KG\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:13:47.066341"
+    },
+    {
+      "id": "217df900",
+      "name": "specific_company_bcol_event",
+      "description": "Matches BCOL Event AG",
+      "format": "regex",
+      "content": "\\bBCOL\\s+Event\\s+AG\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:16:15.607796"
+    },
+    {
+      "id": "2d6d0e7b",
+      "name": "specific_company_freimut_ohlroge",
+      "description": "Matches Freimut+Ohlroge Analyse AG",
+      "format": "regex",
+      "content": "\\bFreimut\\+Ohlroge\\s+Analyse\\s+AG\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:16:15.607915"
+    },
+    {
+      "id": "54717824",
+      "name": "specific_company_lognex_it",
+      "description": "Matches Lognex-IT AG",
+      "format": "regex",
+      "content": "\\bLognex-IT\\s+AG\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:16:15.608001"
+    },
+    {
+      "id": "d31ad244",
+      "name": "specific_company_traun_digital",
+      "description": "Matches Traun-Digital KG",
+      "format": "regex",
+      "content": "\\bTraun-Digital\\s+KG\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:16:15.608066"
+    },
+    {
+      "id": "574cc945",
+      "name": "specific_company_fwv_luftfahrt",
+      "description": "Matches FWV Luftfahrt GMBH",
+      "format": "regex",
+      "content": "\\bFWV\\s+Luftfahrt\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:16:15.608129"
+    },
+    {
+      "id": "3c97da20",
+      "name": "specific_company_biletzki_emmert",
+      "description": "Matches Biletzki&Emmert Medien GMBH",
+      "format": "regex",
+      "content": "\\bBiletzki&Emmert\\s+Medien\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:16:15.608198"
+    },
+    {
+      "id": "bd4ea531",
+      "name": "tax_authority_fa_extended_multiword",
+      "description": "Matches abbreviated tax authorities 'FA' followed by multi-word locations including Braunau Ried Sch\u00e4rding",
+      "format": "regex",
+      "content": "\\bFA\\s+(?:Braunau\\s+Ried\\s+Sch\\u00e4rding|Judenburg\\s+Liezen|Kirchdorf\\s+Perg\\s+Steyr|Deutschlandsberg\\s+Leibnitz\\s+Voitsberg|Klagenfurt\\s+St\\.\\s+Veit\\s+Wolfsberg|Spittal\\s+Villach|Amstetten\\s+Melk\\s+Scheibbs|Gmunden\\s+V\\u00f6cklabruck|Wien\\s+1/23|Wien\\s+2/20/21/22|St\\.\\s+Johann\\s+Tamsweg\\s+Zell\\s+am\\s+See|Nieder\\u00f6sterreich\\s+Mitte|Schwechat\\s+Gerasdorf|Tirol\\s+Ost|Innsbruck|Steiermark\\s+Mitte|Salzburg-Land|Vorarlberg|Landeck\\s+Reutte|Graz-Stadt|Bruck\\s+Eisenstadt\\s+Oberwart|Salzburg-Stadt|Waldviertel|Grieskirchen\\s+Wels|Purkersdorf|Klosterneuburg|\\u00d6sterreich\\s+DS)",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:16:15.608272"
+    },
+    {
+      "id": "cfc6876e",
+      "name": "tax_authority_finanzamt_braunau_ried_sch\u00e4rding",
+      "description": "Matches Finanzamt Braunau Ried Sch\u00e4rding.",
+      "format": "regex",
+      "content": "\\bFinanzamt\\s+Braunau\\s+Ried\\s+Sch\u00e4rding\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:16:37.371575"
+    },
+    {
+      "id": "b07c81bf",
+      "name": "tax_authority_finanzamt_amstetten_melk_scheibbs",
+      "description": "Matches Finanzamt Amstetten Melk Scheibbs.",
+      "format": "regex",
+      "content": "\\bFinanzamt\\s+Amstetten\\s+Melk\\s+Scheibbs\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:16:37.371755"
+    },
+    {
+      "id": "a6c9268f",
+      "name": "specific_company_sudversand",
+      "description": "Matches the specific company name S\u00fcdVersand.",
+      "format": "regex",
+      "content": "\\bS\u00fcdVersand\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:16:37.371856"
+    },
+    {
+      "id": "67b8a9a8",
+      "name": "specific_company_norconheim",
+      "description": "Matches the specific company name Norconheim.",
+      "format": "regex",
+      "content": "\\bNorconheim\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:16:37.371902"
+    },
+    {
+      "id": "3c84ea05",
+      "name": "specific_company_christofl_ki",
+      "description": "Matches the specific company name Christ\u00f6fl KI.",
+      "format": "regex",
+      "content": "\\bChrist\\u00f6fl\\s+KI\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:16:37.371947"
+    },
+    {
+      "id": "cdc3d3ea",
+      "name": "specific_company_planung_monuniost",
+      "description": "Matches the specific company name Planung Monuniost.",
+      "format": "regex",
+      "content": "\\bPlanung\\s+Monuniost\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:16:37.372012"
+    },
+    {
+      "id": "5c8ee7f1",
+      "name": "tax_authority_finanzamt_spittal_villach",
+      "description": "Matches full names of tax authorities 'Finanzamt Spittal Villach'.",
+      "format": "regex",
+      "content": "\\bFinanzamt\\s+Spittal\\s+Villach\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:16:57.027474"
+    },
+    {
+      "id": "156936ef",
+      "name": "specific_company_valbruckzor",
+      "description": "Matches the specific company name Valbruckzor-Energie.",
+      "format": "regex",
+      "content": "\\bValbruckzor-Energie\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:16:57.027581"
+    },
+    {
+      "id": "9a5b0830",
+      "name": "specific_company_west_luftfahrt",
+      "description": "Matches the specific company name West-Luftfahrt.",
+      "format": "regex",
+      "content": "\\bWest-Luftfahrt\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:16:57.027630"
+    },
+    {
+      "id": "5f02d2d9",
+      "name": "specific_company_ruterborries",
+      "description": "Matches the specific company name R\u00fcterborries+Friderich M\u00f6bel.",
+      "format": "regex",
+      "content": "\\bR\u00fcterborries\\+Friderich\\s+M\u00f6bel\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:16:57.027666"
+    },
+    {
+      "id": "ddc0889c",
+      "name": "specific_company_dlcg_bildung",
+      "description": "Matches the specific company name DLCG Bildung.",
+      "format": "regex",
+      "content": "\\bDLCG\\s+Bildung\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:16:57.027722"
+    },
+    {
+      "id": "e4d2151d",
+      "name": "specific_company_sudgarten",
+      "description": "Matches the specific company name S\u00fcdGarten GMBH.",
+      "format": "regex",
+      "content": "\\bS\u00fcdGarten\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:17:12.921570"
+    },
+    {
+      "id": "aaeb4838",
+      "name": "specific_company_norddaten",
+      "description": "Matches the specific company name NordDaten.",
+      "format": "regex",
+      "content": "\\bNordDaten\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:17:12.921694"
+    },
+    {
+      "id": "ac1bf35c",
+      "name": "specific_company_derwilsee",
+      "description": "Matches the specific company name Maschinenbau Derwilsee.",
+      "format": "regex",
+      "content": "\\bMaschinenbau\\s+Derwilsee\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:17:12.921753"
+    },
+    {
+      "id": "30b44733",
+      "name": "specific_company_ostbachal",
+      "description": "Matches the specific company name Technik Ostbachal.",
+      "format": "regex",
+      "content": "\\bTechnik\\s+Ostbachal\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:17:12.921823"
+    },
+    {
+      "id": "09c7a34c",
+      "name": "specific_company_kraftnex",
+      "description": "Matches the specific company name Kraftnex Technologien GMBH.",
+      "format": "regex",
+      "content": "\\bKraftnex\\s+Technologien\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:17:12.921885"
+    },
+    {
+      "id": "82bf8420",
+      "name": "specific_company_nowothnig",
+      "description": "Matches the specific company name Nowothnig Wind.",
+      "format": "regex",
+      "content": "\\bNowothnig\\s+Wind\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:17:12.921962"
+    },
+    {
+      "id": "63f86b49",
+      "name": "specific_company_cervenka",
+      "description": "Matches the specific company name Cervenka&Neun\u00fcbel Telekom AG.",
+      "format": "regex",
+      "content": "\\bCervenka&Neun\u00fcbel\\s+Telekom\\s+AG\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:17:12.922020"
+    },
+    {
+      "id": "6e64a57c",
+      "name": "specific_company_wacr",
+      "description": "Matches the specific company name WACR M\u00f6bel Planung AG.",
+      "format": "regex",
+      "content": "\\bWACR\\s+M\u00f6bel\\s+Planung\\s+AG\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:17:12.922095"
+    },
+    {
+      "id": "96ac871d",
+      "name": "specific_company_gaebelt",
+      "description": "Matches the specific company name G\u00e4belt.",
+      "format": "regex",
+      "content": "\\bG\u00e4belt\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:17:29.836921"
+    },
+    {
+      "id": "b504f1f3",
+      "name": "specific_company_fatima_finkenbein",
+      "description": "Matches the specific company name Fatima Finkenbein.",
+      "format": "regex",
+      "content": "\\bFatima\\s+Finkenbein\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:17:29.837006"
+    },
+    {
+      "id": "19cd54ca",
+      "name": "specific_company_nexdorf_metall",
+      "description": "Matches the specific company name Nexdorf-Metall.",
+      "format": "regex",
+      "content": "\\bNexdorf-Metall\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:17:29.837097"
+    },
+    {
+      "id": "0a92c788",
+      "name": "specific_company_stadt_logglanz",
+      "description": "Matches the specific company name Stadt Logglanz.",
+      "format": "regex",
+      "content": "\\bStadt\\s+Logglanz\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:17:29.837147"
+    },
+    {
+      "id": "698eb064",
+      "name": "specific_company_dammke_ki",
+      "description": "Matches the specific company name Dammke KI GMBH.",
+      "format": "regex",
+      "content": "\\bDammke\\s+KI\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:17:29.837209"
+    },
+    {
+      "id": "4425dff9",
+      "name": "specific_company_mertznich_bau",
+      "description": "Matches the specific company name Mertznich Bau GMBH.",
+      "format": "regex",
+      "content": "\\bMertznich\\s+Bau\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:17:29.837272"
+    },
+    {
+      "id": "b053df3d",
+      "name": "tax_authority_fa_oststeiermark",
+      "description": "Matches abbreviated tax authorities 'FA' followed by Oststeiermark.",
+      "format": "regex",
+      "content": "\\bFA\\s+Oststeiermark\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:17:29.837346"
+    },
+    {
+      "id": "a8f0bcbe",
+      "name": "tax_authority_fa_freistadt_urbach",
+      "description": "Matches abbreviated tax authorities 'FA' followed by Freistadt Rohrbach Urfahr.",
+      "format": "regex",
+      "content": "\\bFA\\s+Freistadt\\s+Rohrbach\\s+Urfahr\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:17:29.837409"
+    },
+    {
+      "id": "943fdffd",
+      "name": "tax_authority_finanzamt_graz_stadt",
+      "description": "Matches full names of tax authorities 'Finanzamt' followed by Graz-Stadt.",
+      "format": "regex",
+      "content": "\\bFinanzamt\\s+Graz-Stadt\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:17:29.837492"
+    },
+    {
+      "id": "014c63da",
+      "name": "bank_raiffeisen_bankstelle",
+      "description": "Matches Raiffeisenbank entities including 'Bankstelle' suffixes to capture full name.",
+      "format": "regex",
+      "content": "\\bRaiffeisenbank\\s+(?:Karnische\\s+Rion\\s+Bankstelle\\s+St\\.Stefan|genburg|S\\u00fcd-Weststeiermark|Wienerwald|Stallhofen|Hippach-Hart|Mittleres\\s+Mostviertel)",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:17:29.837556"
+    },
+    {
+      "id": "885575bb",
+      "name": "specific_company_logseemon",
+      "description": "Matches the specific company name Logseemon-Metall AG.",
+      "format": "regex",
+      "content": "\\bLogseemon-Metall\\s+AG\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:19:56.553223"
+    },
+    {
+      "id": "391d4976",
+      "name": "specific_company_unter_donunisee",
+      "description": "Matches the specific company name Unter Donunisee AG.",
+      "format": "regex",
+      "content": "\\bUnter\\s+Donunisee\\s+AG\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:19:56.553348"
+    },
+    {
+      "id": "2a14554b",
+      "name": "tax_authority_fa_baden_m\u00f6dling",
+      "description": "Matches abbreviated tax authority 'FA Baden M\u00f6dling'.",
+      "format": "regex",
+      "content": "\\bFA\\s+Baden\\s+M\u00f6dling\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:19:56.553423"
+    },
+    {
+      "id": "e2facdcf",
+      "name": "specific_company_gemke_gamper",
+      "description": "Matches the specific company name Gemke+Gamper Logistik.",
+      "format": "regex",
+      "content": "\\bGemke\\+Gamper\\s+Logistik\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:19:56.553491"
+    },
+    {
+      "id": "9b797860",
+      "name": "specific_company_enns_software",
+      "description": "Matches the specific company name Enns-Software.",
+      "format": "regex",
+      "content": "\\bEnns-Software\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:19:56.553560"
+    },
+    {
+      "id": "0afee18d",
+      "name": "specific_company_finanzen_tradonnex",
+      "description": "Matches the specific company name Finanzen Tradonnex.",
+      "format": "regex",
+      "content": "\\bFinanzen\\s+Tradonnex\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:19:56.553604"
+    },
+    {
+      "id": "0f7f69fc",
+      "name": "specific_company_berwaldkel",
+      "description": "Matches the specific company name Berwaldkel-M\u00f6bel AG.",
+      "format": "regex",
+      "content": "\\bBerwaldkel-M\u00f6bel\\s+AG\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:19:56.553661"
+    },
+    {
+      "id": "52c3e478",
+      "name": "specific_company_inn_monost",
+      "description": "Matches the specific company name Inn Monost.",
+      "format": "regex",
+      "content": "\\bInn\\s+Monost\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:19:56.553719"
+    },
+    {
+      "id": "95af76b1",
+      "name": "specific_company_sud_nortri",
+      "description": "Matches the specific company name S\u00fcd Nortri.",
+      "format": "regex",
+      "content": "\\bS\u00fcd\\s+Nortri\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:20:09.684567"
+    },
+    {
+      "id": "b3539825",
+      "name": "specific_company_tritri_it",
+      "description": "Matches the specific company name Tritri-IT.",
+      "format": "regex",
+      "content": "\\bTritri-IT\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:20:09.684688"
+    },
+    {
+      "id": "b01aa954",
+      "name": "specific_company_dias_telekom",
+      "description": "Matches the specific company name DIAS Telekom Institut.",
+      "format": "regex",
+      "content": "\\bDIAS\\s+Telekom\\s+Institut\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:20:09.684754"
+    },
+    {
+      "id": "7c188f88",
+      "name": "specific_company_rheindigital",
+      "description": "Matches the specific company name RheinDigital.",
+      "format": "regex",
+      "content": "\\bRheinDigital\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:20:09.684848"
+    },
+    {
+      "id": "d225fa60",
+      "name": "tax_authority_fa_wien_8_16_17",
+      "description": "Matches abbreviated tax authority 'FA Wien 8/16/17'.",
+      "format": "regex",
+      "content": "\\bFA\\s+Wien\\s+8/16/17\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:20:09.684904"
+    },
+    {
+      "id": "a82f1698",
+      "name": "specific_company_landwirtschaft_zorfurt",
+      "description": "Matches the specific company name Landwirtschaft Zorfurt GMBH.",
+      "format": "regex",
+      "content": "\\bLandwirtschaft\\s+Zorfurt\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:20:24.381533"
+    },
+    {
+      "id": "e5f43ea0",
+      "name": "specific_company_slenzak_it",
+      "description": "Matches the specific company name Slenzak IT GMBH.",
+      "format": "regex",
+      "content": "\\bSlenzak\\s+IT\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:20:24.381667"
+    },
+    {
+      "id": "1a52609b",
+      "name": "specific_company_lexkel_vertrieb",
+      "description": "Matches the specific company name Lexkel Vertrieb KG.",
+      "format": "regex",
+      "content": "\\bLexkel\\s+Vertrieb\\s+KG\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:20:24.381746"
+    },
+    {
+      "id": "c84a41d4",
+      "name": "specific_company_blazickova_hepprich",
+      "description": "Matches the specific company name Blazickova & Hepprich Energie AG.",
+      "format": "regex",
+      "content": "\\bBlazickova\\s+&\\s+Hepprich\\s+Energie\\s+AG\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:20:24.381820"
+    },
+    {
+      "id": "fa50cdfb",
+      "name": "specific_company_berend",
+      "description": "Matches the specific company name Berend Energie AG.",
+      "format": "regex",
+      "content": "\\bBerend\\s+Energie\\s+AG\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:20:24.381915"
+    },
+    {
+      "id": "a5284217",
+      "name": "specific_company_unibach_getranke",
+      "description": "Matches the specific company name Unibach-Getr\u00e4nke AG.",
+      "format": "regex",
+      "content": "\\bUnibach-Getr\u00e4nke\\s+AG\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:20:24.381980"
+    },
+    {
+      "id": "9ee22481",
+      "name": "specific_company_seenorderecommerce",
+      "description": "Matches the specific company name SeeNorderE\u2011Commerce.",
+      "format": "regex",
+      "content": "\\bSeeNorderE\u2011Commerce\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:20:24.382040"
+    },
+    {
+      "id": "e1ec4993",
+      "name": "specific_company_marzell_versicherung",
+      "description": "Matches the specific company name Marzell Versicherung GMBH.",
+      "format": "regex",
+      "content": "\\bMarzell\\s+Versicherung\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:20:24.382090"
+    },
+    {
+      "id": "a28c33b6",
+      "name": "specific_company_ober_chemie",
+      "description": "Matches the specific company name Ober-Chemie GMBH.",
+      "format": "regex",
+      "content": "\\bOber-Chemie\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:20:45.430006"
+    },
+    {
+      "id": "e4c18ad8",
+      "name": "specific_company_amundi",
+      "description": "Matches the specific company name Amundi Austria GmbH.",
+      "format": "regex",
+      "content": "\\bAmundi\\s+Austria\\s+GmbH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:20:45.430120"
+    },
+    {
+      "id": "4dbf96fc",
+      "name": "specific_company_buhrfeindt",
+      "description": "Matches the specific company name Buhrfeindt Lebensmittel GMBH.",
+      "format": "regex",
+      "content": "\\bBuhrfeindt\\s+Lebensmittel\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:20:45.430203"
+    },
+    {
+      "id": "2773bf51",
+      "name": "specific_company_unter_gartglanz",
+      "description": "Matches the specific company name Unter Gartglanz GMBH.",
+      "format": "regex",
+      "content": "\\bUnter\\s+Gartglanz\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:20:45.430284"
+    },
+    {
+      "id": "179f2586",
+      "name": "specific_company_nord_trinex",
+      "description": "Matches the specific company name Nord Trinex GMBH.",
+      "format": "regex",
+      "content": "\\bNord\\s+Trinex\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:20:45.430352"
+    },
+    {
+      "id": "6a6e9544",
+      "name": "specific_company_wildorftra",
+      "description": "Matches the specific company name Wildorftra KI GMBH.",
+      "format": "regex",
+      "content": "\\bWildorftra\\s+KI\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:20:45.430416"
+    },
+    {
+      "id": "d8ea35a5",
+      "name": "specific_company_henken",
+      "description": "Matches the specific company name Henken.",
+      "format": "regex",
+      "content": "\\bHenken\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:20:45.430481"
+    },
+    {
+      "id": "9c410333",
+      "name": "specific_company_kreschmer",
+      "description": "Matches the specific company name Kreschmer Recycling GMBH.",
+      "format": "regex",
+      "content": "\\bKreschmer\\s+Recycling\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:20:45.430521"
+    },
+    {
+      "id": "f7a902b6",
+      "name": "specific_company_nordtraval",
+      "description": "Matches the specific company name NordTravalUmwelt AG.",
+      "format": "regex",
+      "content": "\\bNordTravalUmwelt\\s+AG\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:20:45.430606"
+    },
+    {
+      "id": "2ff9d0fb",
+      "name": "specific_company_traunluftfahrt",
+      "description": "Matches the specific company name TraunLuftfahrt Solutions.",
+      "format": "regex",
+      "content": "\\bTraunLuftfahrt\\s+Solutions\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:20:45.430667"
+    },
+    {
+      "id": "4eb576d9",
+      "name": "specific_company_schneppensieper",
+      "description": "Matches the specific company name Schneppensieper & B\u00fclbrunne Touristik.",
+      "format": "regex",
+      "content": "\\bSchneppensieper\\s+&\\s+B\u00fclbrunne\\s+Touristik\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:20:45.430730"
+    },
+    {
+      "id": "77b4c96f",
+      "name": "specific_company_monlogtri",
+      "description": "Matches the specific company name Monlogtri-Analyse GMBH.",
+      "format": "regex",
+      "content": "\\bMonlogtri-Analyse\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:20:45.430832"
+    },
+    {
+      "id": "fd215eb2",
+      "name": "specific_company_werkval",
+      "description": "Matches the specific company name Werkval-Medien GMBH.",
+      "format": "regex",
+      "content": "\\bWerkval-Medien\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:20:45.430898"
+    },
+    {
+      "id": "69bd6f07",
+      "name": "court_landesgericht",
+      "description": "Matches Landesgericht followed by location.",
+      "format": "regex",
+      "content": "\\bLandesgericht\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*",
+      "priority": 7,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:23:11.587778"
+    },
+    {
+      "id": "a3722a2e",
+      "name": "specific_company_nexkelkel",
+      "description": "Matches the specific company name Nexkelkel AG.",
+      "format": "regex",
+      "content": "\\bNexkelkel\\s+AG\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:23:11.587945"
+    },
+    {
+      "id": "c7202d49",
+      "name": "specific_company_wenker",
+      "description": "Matches the specific company name Wenker Bau GMBH.",
+      "format": "regex",
+      "content": "\\bWenker\\s+Bau\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:23:11.587995"
+    },
+    {
+      "id": "f3c25c19",
+      "name": "specific_company_noruniwald",
+      "description": "Matches the specific company name Noruniwald-Technik.",
+      "format": "regex",
+      "content": "\\bNoruniwald-Technik\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:23:11.588048"
+    },
+    {
+      "id": "31692f41",
+      "name": "specific_company_nkah",
+      "description": "Matches the specific company name NKAH Luftfahrt Vertrieb.",
+      "format": "regex",
+      "content": "\\bNKAH\\s+Luftfahrt\\s+Vertrieb\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:23:11.588093"
+    },
+    {
+      "id": "3387a939",
+      "name": "specific_company_hagdorn",
+      "description": "Matches the specific company name Hagdorn Robotik.",
+      "format": "regex",
+      "content": "\\bHagdorn\\s+Robotik\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:23:30.317051"
+    },
+    {
+      "id": "c23bedd8",
+      "name": "specific_company_paweltschik",
+      "description": "Matches the specific company name Paweltschik Telekom GMBH.",
+      "format": "regex",
+      "content": "\\bPaweltschik\\s+Telekom\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:23:30.317200"
+    },
+    {
+      "id": "fed37684",
+      "name": "specific_company_vossbein",
+      "description": "Matches the specific company name Vossbein Lebensmittel.",
+      "format": "regex",
+      "content": "\\bVossbein\\s+Lebensmittel\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:23:30.317283"
+    },
+    {
+      "id": "b369602e",
+      "name": "specific_company_mur_donwerk",
+      "description": "Matches the specific company name Mur Donwerk GMBH.",
+      "format": "regex",
+      "content": "\\bMur\\s+Donwerk\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:23:30.317350"
+    },
+    {
+      "id": "8019214a",
+      "name": "specific_company_fuchsl",
+      "description": "Matches the specific company name F\u00fcchsl Touristik GMBH.",
+      "format": "regex",
+      "content": "\\bF\u00fcchsl\\s+Touristik\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:23:30.317418"
+    },
+    {
+      "id": "bfef63d5",
+      "name": "specific_company_olivier_bartha",
+      "description": "Matches the specific company name Olivier u. Bartha Recycling.",
+      "format": "regex",
+      "content": "\\bOlivier\\s+u\\.\\s+Bartha\\s+Recycling\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:23:30.317487"
+    },
+    {
+      "id": "91cd2b59",
+      "name": "specific_company_mittel_glanzval",
+      "description": "Matches the specific company name Mittel Glanzval Consulting AG.",
+      "format": "regex",
+      "content": "\\bMittel\\s+Glanzval\\s+Consulting\\s+AG\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:23:30.317572"
+    },
+    {
+      "id": "c980ed21",
+      "name": "specific_company_rheinverwerk",
+      "description": "Matches the specific company name RheinVerwerkderElektro AG.",
+      "format": "regex",
+      "content": "\\bRheinVerwerkderElektro\\s+AG\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:23:30.317653"
+    },
+    {
+      "id": "b906bc00",
+      "name": "specific_company_grutz",
+      "description": "Matches the specific company name Gr\u00fctz Druck AG.",
+      "format": "regex",
+      "content": "\\bGr\u00fctz\\s+Druck\\s+AG\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:23:30.317719"
+    },
+    {
+      "id": "dc6ae549",
+      "name": "specific_company_oberrecycling",
+      "description": "Matches the specific company name OberRecycling.",
+      "format": "regex",
+      "content": "\\bOberRecycling\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:23:30.317799"
+    },
+    {
+      "id": "b28526fb",
+      "name": "specific_company_schickli_luftfahrt",
+      "description": "Matches the specific company name Schickli Luftfahrt.",
+      "format": "regex",
+      "content": "\\bSchickli\\s+Luftfahrt\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:23:44.814174"
+    },
+    {
+      "id": "fbd3d7e6",
+      "name": "specific_company_greiner_mai_event",
+      "description": "Matches the specific company name Greiner-Mai Event.",
+      "format": "regex",
+      "content": "\\bGreiner-Mai\\s+Event\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:23:44.814299"
+    },
+    {
+      "id": "d9be47d9",
+      "name": "specific_company_energie_synlexder",
+      "description": "Matches the specific company name Energie Synlexder.",
+      "format": "regex",
+      "content": "\\bEnergie\\s+Synlexder\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:23:44.814370"
+    },
+    {
+      "id": "6aa454b9",
+      "name": "specific_company_oina_solar_institut",
+      "description": "Matches the specific company name OINA Solar Institut.",
+      "format": "regex",
+      "content": "\\bOINA\\s+Solar\\s+Institut\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:23:44.814438"
+    },
+    {
+      "id": "f61dbedf",
+      "name": "specific_company_sievens_automotive",
+      "description": "Matches the specific company name Sievens Automotive GMBH.",
+      "format": "regex",
+      "content": "\\bSievens\\s+Automotive\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:23:44.814516"
+    },
+    {
+      "id": "f340f560",
+      "name": "specific_company_nord_druck",
+      "description": "Matches the specific company name Nord-Druck GMBH.",
+      "format": "regex",
+      "content": "\\bNord-Druck\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:23:44.814593"
+    },
+    {
+      "id": "3e8fe5e0",
+      "name": "specific_company_ostgetr\u00e4nke",
+      "description": "Matches the specific company name OstGetr\u00e4nke GMBH.",
+      "format": "regex",
+      "content": "\\bOstGetr\u00e4nke\\s+GMBH\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-15T02:23:44.814657"
+    }
+  ]
+}
