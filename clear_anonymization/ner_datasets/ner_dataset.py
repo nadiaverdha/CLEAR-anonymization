@@ -6,33 +6,32 @@ from torch.utils.data import Dataset
 
 @dataclass
 class NERSample:
+    doc_id: str
     text: str
     split: str
     labels: list
-    doc_id: str = None
     sentences: list["NERSample"] = None
 
     @classmethod
     def from_json(cls, json_dict: dict) -> "NERSample":
-        sentences = json_dict.get("sentences", None)
+        sentences = json_dict.get("sentences")
         return cls(
+            doc_id=json_dict.get("doc_id"),
             text=json_dict.get("text"),
             split=json_dict.get("split", "unknown"),
             labels=json_dict.get("labels", []),
-            doc_id=json_dict.get("doc_id"),
             sentences=[NERSample.from_json(s) for s in sentences]
-            if sentences
+            if sentences is not None
             else None,
         )
 
     def to_json(self) -> dict:
         d = {
+            "doc_id": self.doc_id,
             "text": self.text,
             "split": self.split,
             "labels": self.labels,
         }
-        if self.doc_id is not None:
-            d["doc_id"] = self.doc_id
         if self.sentences is not None:
             d["sentences"] = [s.to_json() for s in self.sentences]
         return d
