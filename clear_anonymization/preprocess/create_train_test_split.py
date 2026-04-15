@@ -71,37 +71,40 @@ def split_test(train_data, test_ratio=0.2, seed=42):
 def save_conll(examples, path):
     with open(path, "w", encoding="utf-8") as f:
         for i, ex in enumerate(examples):
-            doc_id = (
-                ex["doc_id"] if isinstance(ex, dict) else getattr(ex, "doc_id", None)
-            )
-            if isinstance(ex, dict):
-                text = ex["text"]
-                entities = sorted(ex.get("entities", []), key=lambda e: e["start"])
-            else:
-                text = ex.text
-                entities = sorted(ex.labels, key=lambda e: e["start"])
+            sentences = ex.sentences if ex.sentences is not None else [ex]
+            for sent in sentences:
+                doc_id = getattr(sent, "doc_id", None)
+                text = sent.text
+                split = getattr(sent, "split", "")
+                entities = sorted(sent.labels, key=lambda e: e["start"])
 
-            f.write(f"# doc_id = {doc_id}\n")
-            # f.write(f"# text = {text}\n")
+                f.write(f"# doc_id = {doc_id}\n")
+                f.write(f"# sent = {text}\n")
+                f.write(f"# split = {split}\n")
+                f.write(f"# entities\n")
 
-            # ---------------------------
-            # Tokenization + tagging
-            # ---------------------------
-            for m in re.finditer(r"\S+", text):
-                start = m.start()
-                token = m.group()
-
+                """
+                
+                char_tag = {}
                 for ent in entities:
-                    if ent["start"] <= start < ent["end"]:
-                        tag = (
-                            f"B-{ent['type']}"
-                            if start == ent["start"]
-                            else f"I-{ent['type']}"
-                        )
-                        f.write(f"{token} {tag}\n")
-                        break
+                    for pos in range(ent["start"], ent["end"]):
+                        char_tag[pos] = (ent["type"], pos == ent["start"])
 
-            f.write("\n")
+                for m in re.finditer(r"\S+", text):
+                    word = m.group()
+                    start = m.start()
+                    if start in char_tag:
+                        etype, is_start = char_tag[start]
+                        tag = f"B-{etype}" if is_start else f"I-{etype}"
+                        f.write(f"{word} {tag}\n")
+                    else:
+                        tag = "O"
+                    
+                """
+                for ent in entities:
+                    f.write(f"{ent['text']} {ent['type']}\n")
+
+                f.write("\n")
 
 
 def main():
