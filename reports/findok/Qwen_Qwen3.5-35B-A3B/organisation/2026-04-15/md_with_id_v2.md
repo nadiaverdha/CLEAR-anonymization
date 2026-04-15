@@ -1,6 +1,6 @@
 # Rule Evaluation Report — Qwen/Qwen3.5-35B-A3B
 
-Generated on: 2026-04-15T07:47:29.934926
+Generated on: 2026-04-15T07:55:56.304649
 
 ---
 
@@ -19,10 +19,10 @@ Results can be reproduced by running this command:
 | Shots per class | None |
 | Training examples | 954 |
 | Validation examples | 239 |
-| Test examples | 96236 |
+| Test examples | 788 |
 | Train annotations | 1165 |
 | Validation annotations | 282 |
-| Test annotations | 3536 |
+| Test annotations | 3543 |
 | Model | Qwen/Qwen3.5-35B-A3B |
 | Max rules | 30 |
 | Max samples in prompt | 50 |
@@ -44,7 +44,7 @@ Results can be reproduced by running this command:
 
 | Metric | Value |
 |---|---|
-| Accuracy (exact match) | 99.6% |
+| Accuracy (exact match) | 88.8% |
 | True Positives | 209 |
 | False Positives | 111 |
 | Micro Precision | 65.3% |
@@ -331,7 +331,7 @@ Matches abbreviated tax authorities 'FA' followed by Salzburg-Stadt.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/146569.1`)
 
 ```
 ... über die Beschwerde vom 13. Juli 2023 gegen den Bescheid des 
@@ -342,9 +342,11 @@ Matches abbreviated tax authorities 'FA' followed by Salzburg-Stadt.
 |---|---|
 | `FA Salzburg-Stadt` | `FA Salzburg-Stadt` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `deanon_BFG_TRAIN/147541.1`)
 
 ```
+... nicht zulässig. 
+ 
 Entscheidungsgründe 
 I. Verfahrensgang 
 <<<FA Salzburg-Stadt>>>  Ltd. (im Folgenden „<<<FA Salzburg-Stadt>>>“) ist eine im Jahr 1999 ...
@@ -357,15 +359,9 @@ I. Verfahrensgang
 Gesellschaft ...
 ```
 
-| Predicted | Gold |
-|---|---|
-| `FA Salzburg-Stadt` | `FA Salzburg-Stadt` |
-| `FA Salzburg-Stadt` | `FA Salzburg-Stadt` |
-
-**Example 2** (doc_id: ``)
-
 ```
-Das Online Wettprodukt von <<<FA Salzburg-Stadt>>>  ist unter der 
+...
+Unterhaltungsmedien und Wetten. Das Online Wettprodukt von <<<FA Salzburg-Stadt>>>  ist unter der 
 Website www.<<<FA Salzburg-Stadt>>> .com erreichbar, ...
 ```
 
@@ -374,26 +370,25 @@ Website www.<<<FA Salzburg-Stadt>>> .com erreichbar, ...
 Website www.<<<FA Salzburg-Stadt>>> .com erreichbar, welche unter anderem auch in Österreich verfügbar ...
 ```
 
-| Predicted | Gold |
-|---|---|
-| `FA Salzburg-Stadt` | `FA Salzburg-Stadt` |
-| `FA Salzburg-Stadt` | `FA Salzburg-Stadt` |
-
-**Example 3** (doc_id: ``)
-
 ```
+... Registrierungsadresse in Österreich mit 15. September 2019 
+geschlossen. 
 <<<FA Salzburg-Stadt>>>  ist für das Betreiben der Website, das Einrichten und die ...
 ```
 
 | Predicted | Gold |
 |---|---|
 | `FA Salzburg-Stadt` | `FA Salzburg-Stadt` |
+| `FA Salzburg-Stadt` | `FA Salzburg-Stadt` |
+| `FA Salzburg-Stadt` | `FA Salzburg-Stadt` |
+| `FA Salzburg-Stadt` | `FA Salzburg-Stadt` |
+| `FA Salzburg-Stadt` | `FA Salzburg-Stadt` |
 
-**Example 4** (doc_id: ``)
+**Example 2** (doc_id: `deanon_BFG_TRAIN/138929.1`)
 
 ```
-Als Folge 
-davon wird <<<FA Salzburg-Stadt>>>  als Vermittlerin und KommR Ing. Roberta Gossling  als Buchmacherin ...
+... über die Beschwerde vom 18. Mai 2021 gegen den Bescheid des <<<FA Salzburg-Stadt>>> 
+vom 17. Mai 2021 betreffend Einkommensteuer (Arbeitnehmerveranlagung) ...
 ```
 
 | Predicted | Gold |
@@ -437,7 +432,7 @@ Matches abbreviated tax authorities 'FA' followed by multi-word locations includ
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/137730.1`)
 
 ```
 ... Lading, Österreich, vom 30. Juni 2021 gegen den Bescheid des 
@@ -448,7 +443,7 @@ Matches abbreviated tax authorities 'FA' followed by multi-word locations includ
 |---|---|
 | `FA Wien 1/23` | `FA Wien 1/23` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `deanon_BFG_TRAIN/142788.1`)
 
 ```
 ... ergangenen Bescheid des Finanzamtes X (jetzt Dienststelle 
@@ -459,39 +454,159 @@ des <<<FA Klosterneuburg>>> ) vom 13. Dezember 2019 betreffend Einkommensteuer 2
 |---|---|
 | `FA Klosterneuburg` | `FA Klosterneuburg` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `deanon_BFG_TRAIN/145574.1`)
 
 ```
+... Milan Händlein. 
 Im Wirtschaftsjahr 2007 ist gemäß der beim <<<FA Grieskirchen Wels>>>  eingereichten 
 Körperschaftsteuererklärung 2007 ein steuerlicher ...
 ```
 
-| Predicted | Gold |
-|---|---|
-| `FA Grieskirchen Wels` | `FA Grieskirchen Wels` |
-
-**Example 3** (doc_id: ``)
-
 ```
-Mit Vorlagebericht vom 13.11.2013 hat das <<<FA Grieskirchen Wels>>> 
+... 31.05.2013 beigelegt). Mit Vorlagebericht vom 13.11.2013 hat das <<<FA Grieskirchen Wels>>> 
 die eingebrachte Beschwerde (ohne Erlassung einer Beschwerdevorentscheidung) ...
 ```
-
-| Predicted | Gold |
-|---|---|
-| `FA Grieskirchen Wels` | `FA Grieskirchen Wels` |
-
-**Example 4** (doc_id: ``)
 
 ```
 ... Linz, vom 27.01.2016, GZ 
 RV/5101064/2013, wurde seitens des <<<FA Grieskirchen Wels>>>  in vollem Umfang im Zuge einer Amtsrevision 
-angefochten.
+angefochten. ...
+```
+
+```
+... beim 
+Rechtsvorgänger für das Jahr 2007, wurde seitens des <<<FA Grieskirchen Wels>>>  am 07.03.2016 das 
+Veranlagungsjahr 2010 beim gegenständlichen ...
+```
+
+```
+... 27.01.2016 für das Jahr 2007 (Rechtsvorgänger) 
+wurde seitens des <<<FA Grieskirchen Wels>>>  mittels Amtsrevision bekämpft. Sollte der VwGH der Amtsrevision ...
 ```
 
 | Predicted | Gold |
 |---|---|
 | `FA Grieskirchen Wels` | `FA Grieskirchen Wels` |
+| `FA Grieskirchen Wels` | `FA Grieskirchen Wels` |
+| `FA Grieskirchen Wels` | `FA Grieskirchen Wels` |
+| `FA Grieskirchen Wels` | `FA Grieskirchen Wels` |
+| `FA Grieskirchen Wels` | `FA Grieskirchen Wels` |
+
+**Example 3** (doc_id: `deanon_BFG_TRAIN/131589.1`)
+
+```
+... über die Beschwerde vom 23. Juni 2019 gegen die Bescheide des <<<FA Graz-Stadt>>> 
+vom 23. Mai 2019 bzw. 19.08.2019 betreffend Umsatz- und Einkommensteuer ...
+```
+
+| Predicted | Gold |
+|---|---|
+| `FA Graz-Stadt` | `FA Graz-Stadt` |
+
+**Example 4** (doc_id: `deanon_BFG_TRAIN/146569.1`)
+
+```
+... über die Beschwerde vom 13. Juli 2023 gegen den Bescheid des 
+<<<FA Salzburg-Stadt>>>  vom 19. Juni 2023 betreffend Einkommensteuer (Arbeitnehmerveranlagung) ...
+```
+
+| Predicted | Gold |
+|---|---|
+| `FA Salzburg-Stadt` | `FA Salzburg-Stadt` |
+
+</details>
+
+---
+
+<details>
+<summary>⚠️ False Positives</summary>
+
+**Example 0** (doc_id: `deanon_BFG_TRAIN/132879.1`)
+
+**False Positives:**
+
+```
+... September 2009 sowie vom 
+14. Jänner 2013 gegen die Bescheide des <<<FA Salzburg-Land>>> (nunmehr Finanzamt Österreich) 
+vom 18. Dezember 2012 betreffend ...
+```
+
+FP: `FA Salzburg-Land` (organisation)
+
+**✅ Gold Entities:**
+- `Irene Lachmann` (person)
+- `Urbisweg 22, 4060 Sankt Isidor, Österreich` (address)
+- `28-430/1410` (tax_number)
+- `Urbisweg 22, 4060 Sankt Isidor, Österreich` (address)
+
+**Example 1** (doc_id: `deanon_BFG_TRAIN/137690.1`)
+
+**False Positives:**
+
+```
+... hat für 
+sämtliche Zeiträume eine Umsatzsteuererklärung beim <<<FA Graz-Stadt>>> abzugeben. Auf die 
+Niederschrift wird verwiesen. 
+Tz. 8 Vorsteuer: ...
+```
+
+FP: `FA Graz-Stadt` (organisation)
+
+**✅ Gold Entities:**
+- `KommR Zeno Henricy` (person)
+- `Kaplan Herzlik Straße 2, 4962 Gundholling, Österreich` (address)
+- `89-403/3092` (tax_number)
+
+**Example 2** (doc_id: `deanon_BFG_TRAIN/136573.1`)
+
+**False Positives:**
+
+```
+... über die Beschwerde vom 12. Juni 2012 gegen den Bescheid des <<<FA Braunau Ried 
+Schärding>>> vom 9. Mai 2012 betreffend Einkommensteuer 2006 Steuernummer ...
+```
+
+FP: `FA Braunau Ried 
+Schärding` (organisation)
+
+**✅ Gold Entities:**
+- `Ing. Felizia Stammschroer` (person)
+- `Lötz 10, 5340 Winkl, Österreich` (address)
+- `86-740/0703` (tax_number)
+
+**Example 3** (doc_id: `deanon_BFG_TRAIN/132450.1`)
+
+**False Positives:**
+
+```
+... Umsatzsteuerfestsetzungen für die Zeiträume 06/2012 sowie 
+07/2012 des <<<FA Wien 2/20/21/22>>> vom 14. Dezember 2012 beschlossen: 
+I. Der Umsatzsteuerbescheid ...
+```
+
+FP: `FA Wien 2/20/21/22` (organisation)
+
+**✅ Gold Entities:**
+- `Fabienne Lilienkamp` (person)
+- `Burgkirchnerweg 44, 3130 Angern, Österreich` (address)
+
+**Example 4** (doc_id: `deanon_BFG_TRAIN/131739.1`)
+
+**False Positives:**
+
+```
+... fortgeführt. 
+In den gegenständlichen Beschwerdeverfahren, das vom <<<FA Salzburg-Land>>> dem BFG vorgelegt 
+worden waren, ist somit ab 01.01.2021 das ...
+```
+
+FP: `FA Salzburg-Land` (organisation)
+
+**✅ Gold Entities:**
+- `Mag. Merlin Zimmerlin` (person)
+- `OStR Gwendolin Gonschiorek` (person)
+- `Dürne 60, 3920 Hypolz, Österreich` (address)
+- `39-018/7880` (tax_number)
 
 </details>
 
@@ -521,7 +636,7 @@ Matches full names of tax authorities 'Finanzamt' followed by Salzburg-Stadt.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 34 | 5 | 337 |
+| `organisation` | 34 | 5 | 339 |
 
 </details>
 
@@ -530,53 +645,62 @@ Matches full names of tax authorities 'Finanzamt' followed by Salzburg-Stadt.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/147541.1`)
 
 ```
-<<<Finanzamt Salzburg-Stadt>>>  betreibt Geschäfte in den Bereichen 
+... Großbritannien errichtete 
+Gesellschaft mit Sitz in Kranzing. <<<Finanzamt Salzburg-Stadt>>>  betreibt Geschäfte in den Bereichen 
 Unterhaltungsmedien und ...
 ```
 
-| Predicted | Gold |
-|---|---|
-| `Finanzamt Salzburg-Stadt` | `Finanzamt Salzburg-Stadt` |
-
-**Example 1** (doc_id: ``)
-
 ```
-<<<Finanzamt Salzburg-Stadt>>>  hält eine Wettlizenz des Vereinigten Königreichs.
+... erreichbar, welche unter anderem auch in Österreich verfügbar 
+ist. <<<Finanzamt Salzburg-Stadt>>>  hält eine Wettlizenz des Vereinigten Königreichs. 
+KommR Ing. ...
 ```
 
-| Predicted | Gold |
-|---|---|
-| `Finanzamt Salzburg-Stadt` | `Finanzamt Salzburg-Stadt` |
-
-**Example 2** (doc_id: ``)
-
 ```
-KommR Ing. Roberta Gossling  Limited ist eine im Jahr 2007 von <<<Finanzamt Salzburg-Stadt>>>  Ltd. gegründete Gesellschaft.
+...
+KommR Ing. Roberta Gossling  Limited ist eine im Jahr 2007 von <<<Finanzamt Salzburg-Stadt>>>  Ltd. gegründete Gesellschaft. Das 
+Unternehmen ist in Großbritannien ...
 ```
 
-| Predicted | Gold |
-|---|---|
-| `Finanzamt Salzburg-Stadt` | `Finanzamt Salzburg-Stadt` |
-
-**Example 3** (doc_id: ``)
-
 ```
-<<<Finanzamt Salzburg-Stadt>>> .com 
+...
+Online Wettprodukte des Unternehmens waren unter der Website www.<<<Finanzamt Salzburg-Stadt>>> .com 
 erreichbar, welche unter anderem auch in Österreich verfügbar ...
 ```
-
-| Predicted | Gold |
-|---|---|
-| `Finanzamt Salzburg-Stadt` | `Finanzamt Salzburg-Stadt` |
-
-**Example 4** (doc_id: ``)
 
 ```
 ... Wette auf den Ausgang der Lotterien erteilt der Teilnehmer <<<Finanzamt Salzburg-Stadt>>>  den 
 Auftrag, die entsprechende Wette an KommR Ing. Roberta ...
+```
+
+| Predicted | Gold |
+|---|---|
+| `Finanzamt Salzburg-Stadt` | `Finanzamt Salzburg-Stadt` |
+| `Finanzamt Salzburg-Stadt` | `Finanzamt Salzburg-Stadt` |
+| `Finanzamt Salzburg-Stadt` | `Finanzamt Salzburg-Stadt` |
+| `Finanzamt Salzburg-Stadt` | `Finanzamt Salzburg-Stadt` |
+| `Finanzamt Salzburg-Stadt` | `Finanzamt Salzburg-Stadt` |
+
+**Example 1** (doc_id: `deanon_BFG_TRAIN/146796.1`)
+
+```
+... R & P Korneuburg Steuerberatung GmbH, 
+2100 Korneuburg und <<<Finanzamt Salzburg-Stadt>>>  als Amtspartei über die Beschwerde vom 12.7.2023 gegen den ...
+```
+
+| Predicted | Gold |
+|---|---|
+| `Finanzamt Salzburg-Stadt` | `Finanzamt Salzburg-Stadt` |
+
+**Example 2** (doc_id: `deanon_BFG_TRAIN/129505.1`)
+
+```
+... Beschwerde vom 10. September 2018 gegen die 
+Bescheide des <<<Finanzamt Salzburg-Stadt>>>  vom 20. August 2018 betreffend Festsetzung der 
+Normverbrauchsabgabe ...
 ```
 
 | Predicted | Gold |
@@ -590,11 +714,15 @@ Auftrag, die entsprechende Wette an KommR Ing. Roberta ...
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/129929.1`)
 
 **False Positives:**
 
 ```
+...
+Entscheidungsgründe 
+I. Verfahrensgang 
+ 
 Im Zuge einer Nachschau durch das <<<Finanzamt Salzburg-Stadt>>>, sowie in einer Niederschrift 
 aufgenommen am 20.03.2013 wurde ...
 ```
@@ -602,8 +730,10 @@ aufgenommen am 20.03.2013 wurde ...
 FP: `Finanzamt Salzburg-Stadt` (organisation)
 
 **✅ Gold Entities:**
+- `Johanna Rottmeier` (person)
+- `Aichetweg 9, 3371 Krottenthal, Österreich` (address)
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `deanon_BFG_TRAIN/139860.1`)
 
 **False Positives:**
 
@@ -616,12 +746,6 @@ gem § 83 Abs 2 FinStrG davon ...
 
 FP: `Finanzamt Salzburg-Stadt` (organisation)
 
-**✅ Gold Entities:**
-
-**Example 2** (doc_id: ``)
-
-**False Positives:**
-
 ```
 ... insbesondere von Zeugeneinvernahmen am 
 18.8.2020, hat das <<<Finanzamt Salzburg-Stadt>>> als Finanzstrafbehörde am 25.9.2020 eine 
@@ -633,18 +757,15 @@ FP: `Finanzamt Salzburg-Stadt` (organisation)
 ```
 ...
 Stellungnahme gem § 124 Abs 2 FinStrG an den Spruchsenat I beim <<<Finanzamt Salzburg-Stadt>>> 
-übermittelt.
+übermittelt. 
+In dieser Stellungnahme teilte das Finanzamt ...
 ```
 
 FP: `Finanzamt Salzburg-Stadt` (organisation)
 
-**✅ Gold Entities:**
-
-**Example 3** (doc_id: ``)
-
-**False Positives:**
-
 ```
+... Salzburg-Stadt 
+übermittelt. 
 In dieser Stellungnahme teilte das <<<Finanzamt Salzburg-Stadt>>> als Finanzstrafbehörde mit, dass 
 nach dessen Ansicht gegen ...
 ```
@@ -652,6 +773,10 @@ nach dessen Ansicht gegen ...
 FP: `Finanzamt Salzburg-Stadt` (organisation)
 
 **✅ Gold Entities:**
+- `Adalbert Lescinskas` (person)
+- `Gewerbestraße Kubing 11, 4283 Maierhof, Österreich` (address)
+- `DDr.in Kerstin Tittrich, BA` (person)
+- `DDr.in Kerstin Tittrich, BA` (person)
 - `DDr.in Kerstin Tittrich, BA` (person)
 
 </details>
@@ -691,7 +816,7 @@ Matches full names of tax authorities starting with 'Finanzamt' followed by spec
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/148399.1`)
 
 ```
 ...
@@ -703,29 +828,19 @@ gegen den zur Steuernummer 28-115/0315  ergangenen Bescheid des <<<Finanzamt Deu
 |---|---|
 | `Finanzamt Deutschlandsberg Leibnitz Voitsberg` | `Finanzamt Deutschlandsberg Leibnitz Voitsberg` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `deanon_BFG_TRAIN/145574.1`)
 
 ```
+...
 über die Beschwerden vom 29. März 2019 gegen den Bescheid des <<<Finanzamt Grieskirchen Wels>>>  vom 29. Jänner 
 2019 betreffend Wiederaufnahme § 303 BAO / ...
 ```
 
-| Predicted | Gold |
-|---|---|
-| `Finanzamt Grieskirchen Wels` | `Finanzamt Grieskirchen Wels` |
-
-**Example 2** (doc_id: ``)
-
 ```
+... folgt eine zahlenmäßige Darstellung)  
 Am 26.04.2013 erließ das <<<Finanzamt Grieskirchen Wels>>>  nach Durchführung der Außenprüfung je einen 
 Körperschaftsteuerbescheid ...
 ```
-
-| Predicted | Gold |
-|---|---|
-| `Finanzamt Grieskirchen Wels` | `Finanzamt Grieskirchen Wels` |
-
-**Example 3** (doc_id: ``)
 
 ```
 ...
@@ -733,20 +848,59 @@ RV/5101064/2013) und den Körperschaftsteuerbescheid 2007 des <<<Finanzamt Gries
 mitbeteiligten Partei Annemie Bott (als partiellen ...
 ```
 
-| Predicted | Gold |
-|---|---|
-| `Finanzamt Grieskirchen Wels` | `Finanzamt Grieskirchen Wels` |
-
-**Example 4** (doc_id: ``)
-
 ```
+... eingereicht. 
 Unmittelbar nachfolgend hat das BFG die Amtsrevision des <<<Finanzamt Grieskirchen Wels>>> (samt Veranlagungsakten 
 sowie Auszügen aus dem Arbeitsbogen ...
 ```
 
+```
+... 13.09.2018 zu Ro 2016/15/0010 hat der VwGH die 
+Amtsrevision des <<<Finanzamt Grieskirchen Wels>>>  als unbegründet abgewiesen. Der VwGH formulierte die 
+9 von ...
+```
+
 | Predicted | Gold |
 |---|---|
 | `Finanzamt Grieskirchen Wels` | `Finanzamt Grieskirchen Wels` |
+| `Finanzamt Grieskirchen Wels` | `Finanzamt Grieskirchen Wels` |
+| `Finanzamt Grieskirchen Wels` | `Finanzamt Grieskirchen Wels` |
+| `Finanzamt Grieskirchen Wels` | `Finanzamt Grieskirchen Wels` |
+| `Finanzamt Grieskirchen Wels` | `Finanzamt Grieskirchen Wels` |
+
+**Example 2** (doc_id: `deanon_BFG_TRAIN/147023.1`)
+
+```
+... über die Beschwerde vom 20. März 2024 gegen den Bescheid 
+des <<<Finanzamt Freistadt Rohrbach Urfahr>>>  vom 18. März 2024 gemäß § 293 BAO zur Änderung des Bescheides ...
+```
+
+| Predicted | Gold |
+|---|---|
+| `Finanzamt Freistadt Rohrbach Urfahr` | `Finanzamt Freistadt Rohrbach Urfahr` |
+
+**Example 3** (doc_id: `deanon_BFG_TRAIN/144690.1`)
+
+```
+... Dr. Walter Ganster, Steuerberater in 9100 
+Völkermarkt und <<<Finanzamt Schwechat Gerasdorf>>>  als Amtspartei und als Gesamtrechtsnachfolger des Finanzamtes ...
+```
+
+| Predicted | Gold |
+|---|---|
+| `Finanzamt Schwechat Gerasdorf` | `Finanzamt Schwechat Gerasdorf` |
+
+**Example 4** (doc_id: `deanon_BFG_TRAIN/130261.1`)
+
+```
+... Bundesfinanzgericht hat erwogen: 
+1. Sachverhalt 
+Mit Bescheiden des <<<Finanzamt Freistadt Rohrbach Urfahr>>>  vom 27. November 2008 wurde die Umsatzsteuer für die Jahre ...
+```
+
+| Predicted | Gold |
+|---|---|
+| `Finanzamt Freistadt Rohrbach Urfahr` | `Finanzamt Freistadt Rohrbach Urfahr` |
 
 </details>
 
@@ -755,7 +909,7 @@ sowie Auszügen aus dem Arbeitsbogen ...
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/131900.1`)
 
 **False Positives:**
 
@@ -772,11 +926,12 @@ am See` (organisation)
 - `Heinrich Röskens` (person)
 - `Kleinhofstraße 36, 2640 Pettenbach, Österreich` (address)
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `deanon_BFG_TRAIN/131429.1`)
 
 **False Positives:**
 
 ```
+...
 Mit Beschwerdevorentscheidungen vom 17. Februar 2020 wies das <<<Finanzamt Lilienfeld 
 St. Pölten>>> die Beschwerden gegen die Einkommensteuerbescheide für 2017 ...
 ```
@@ -784,40 +939,35 @@ St. Pölten>>> die Beschwerden gegen die Einkommensteuerbescheide für 2017 ...
 FP: `Finanzamt Lilienfeld 
 St. Pölten` (organisation)
 
-**✅ Gold Entities:**
-
-**Example 2** (doc_id: ``)
-
-**False Positives:**
-
 ```
+... Aufgabedatum 11.11.2019. 
 Demnach sei die Sendung am 12.11.2019 an das <<<Finanzamt Lilienfeld St. Pölten>>> zugestellt und 
-von einem Mitarbeiter übernommen worden.
+von einem Mitarbeiter übernommen worden. 
+Mit ...
 ```
 
 FP: `Finanzamt Lilienfeld St. Pölten` (organisation)
 
-**✅ Gold Entities:**
-
-**Example 3** (doc_id: ``)
-
-**False Positives:**
-
 ```
+... übernommen worden. 
 Mit Vorlagebericht vom 5. Mai 2020 legte das <<<Finanzamt Lilienfeld St. Pölten>>> die Beschwerde 
-dem Bundesfinanzgericht zur Entscheidung vor.
+dem Bundesfinanzgericht zur Entscheidung vor. ...
 ```
 
 FP: `Finanzamt Lilienfeld St. Pölten` (organisation)
 
 **✅ Gold Entities:**
+- `Hon.-Prof.in Mag.a Brunhild Stieglmaier` (person)
+- `Bühelstauden 7, 4030 Linz, Österreich` (address)
+- `40-192/1103` (tax_number)
 
-**Example 4** (doc_id: ``)
+**Example 2** (doc_id: `deanon_BFG_TRAIN/145534.1`)
 
 **False Positives:**
 
 ```
-für die Jahre 2001 bis 2003 wurde vom <<<Finanzamt Neunkirchen Wr. 
+... Service 
+GmbH und Mitges. für die Jahre 2001 bis 2003 wurde vom <<<Finanzamt Neunkirchen Wr. 
 Neustadt>>> zu Eingangsrechnungen der geprüften Gesellschaften festgestellt, ...
 ```
 
@@ -825,6 +975,43 @@ FP: `Finanzamt Neunkirchen Wr.
 Neustadt` (organisation)
 
 **✅ Gold Entities:**
+- `Dr.in Juliana Kleppel` (person)
+- `HR Christian Styrnal` (person)
+- `Babenbergersee I 18, 5524 Hallseiten, Österreich` (address)
+- `60-008/3417` (tax_number)
+
+**Example 3** (doc_id: `deanon_BFG_TRAIN/144040.1`)
+
+**False Positives:**
+
+```
+... 2020 gegen den Bescheid des 
+Finanzamtes Österreich (vormals <<<Finanzamt Baden Mödling>>>) vom 13. November 2020 
+betreffend Einkommensteuer 2015, Steuernummer ...
+```
+
+FP: `Finanzamt Baden Mödling` (organisation)
+
+**✅ Gold Entities:**
+- `Lara Pfeiferl` (person)
+- `Obernbergerstraße 76, 8253 Schrimpf, Österreich` (address)
+- `85-636/8182` (tax_number)
+
+**Example 4** (doc_id: `deanon_BFG_TRAIN/135419.1`)
+
+**False Positives:**
+
+```
+... gründet den festgestellten Sachverhalt auf den Inhalt der vom 
+<<<Finanzamt Baden Mödling>>> vorgelegten Verwaltungsakten. Der festgestellte Sachverhalt ...
+```
+
+FP: `Finanzamt Baden Mödling` (organisation)
+
+**✅ Gold Entities:**
+- `Hon.-Prof. Jasmin van der Beck` (person)
+- `OMedR Josefine Weyler` (person)
+- `Mariensiedlung 4, 6672 Haller, Österreich` (address)
 
 </details>
 
@@ -863,19 +1050,19 @@ Matches full names of tax authorities starting with 'Finanzamt' followed by spec
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/134906.1`)
 
 ```
 ... Erkenntnis BFG 6.5.2019, RV/7101631/2016, 
 verwiesen, welches vom <<<Finanzamt Wien 2/20/21/22>>>  hinsichtlich des zweiten Beschwerdepunktes 
-„III.
+„III. 2 Vorsteuerabzug ...
 ```
 
 | Predicted | Gold |
 |---|---|
 | `Finanzamt Wien 2/20/21/22` | `Finanzamt Wien 2/20/21/22` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `deanon_BFG_TRAIN/140834.1`)
 
 ```
 ... Beschwerde vom 5. Dezember 2022 gegen den 
@@ -887,7 +1074,7 @@ Einkommensteuerbescheides ...
 |---|---|
 | `Finanzamt Judenburg Liezen` | `Finanzamt Judenburg Liezen` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `deanon_BFG_TRAIN/149470.1`)
 
 ```
 ... Wiedergut, Steuerberaterin in 9500 Villach, 
@@ -899,7 +1086,7 @@ Großbetriebe) ...
 |---|---|
 | `Finanzamt Baden Mödling` | `Finanzamt Baden Mödling` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `deanon_BFG_TRAIN/144093.1`)
 
 ```
 ... Beschwerde vom 27. September 2018 gegen den Haftungsbescheid 
@@ -911,7 +1098,7 @@ I. Der Beschwerde wird ...
 |---|---|
 | `Finanzamt Purkersdorf` | `Finanzamt Purkersdorf` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `deanon_BFG_TRAIN/144972.1`)
 
 ```
 ... die Beschwerde vom 16. Oktober 2023 gegen den Bescheid des <<<Finanzamt Baden Mödling>>> 
@@ -929,7 +1116,7 @@ vom 13. September 2023 betreffend die Zurückweisung eines ...
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/131900.1`)
 
 **False Positives:**
 
@@ -946,11 +1133,12 @@ am See` (organisation)
 - `Heinrich Röskens` (person)
 - `Kleinhofstraße 36, 2640 Pettenbach, Österreich` (address)
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `deanon_BFG_TRAIN/131429.1`)
 
 **False Positives:**
 
 ```
+...
 Mit Beschwerdevorentscheidungen vom 17. Februar 2020 wies das <<<Finanzamt Lilienfeld 
 St. Pölten>>> die Beschwerden gegen die Einkommensteuerbescheide für 2017 ...
 ```
@@ -958,40 +1146,35 @@ St. Pölten>>> die Beschwerden gegen die Einkommensteuerbescheide für 2017 ...
 FP: `Finanzamt Lilienfeld 
 St. Pölten` (organisation)
 
-**✅ Gold Entities:**
-
-**Example 2** (doc_id: ``)
-
-**False Positives:**
-
 ```
+... Aufgabedatum 11.11.2019. 
 Demnach sei die Sendung am 12.11.2019 an das <<<Finanzamt Lilienfeld St. Pölten>>> zugestellt und 
-von einem Mitarbeiter übernommen worden.
+von einem Mitarbeiter übernommen worden. 
+Mit ...
 ```
 
 FP: `Finanzamt Lilienfeld St. Pölten` (organisation)
 
-**✅ Gold Entities:**
-
-**Example 3** (doc_id: ``)
-
-**False Positives:**
-
 ```
+... übernommen worden. 
 Mit Vorlagebericht vom 5. Mai 2020 legte das <<<Finanzamt Lilienfeld St. Pölten>>> die Beschwerde 
-dem Bundesfinanzgericht zur Entscheidung vor.
+dem Bundesfinanzgericht zur Entscheidung vor. ...
 ```
 
 FP: `Finanzamt Lilienfeld St. Pölten` (organisation)
 
 **✅ Gold Entities:**
+- `Hon.-Prof.in Mag.a Brunhild Stieglmaier` (person)
+- `Bühelstauden 7, 4030 Linz, Österreich` (address)
+- `40-192/1103` (tax_number)
 
-**Example 4** (doc_id: ``)
+**Example 2** (doc_id: `deanon_BFG_TRAIN/145534.1`)
 
 **False Positives:**
 
 ```
-für die Jahre 2001 bis 2003 wurde vom <<<Finanzamt Neunkirchen Wr. 
+... Service 
+GmbH und Mitges. für die Jahre 2001 bis 2003 wurde vom <<<Finanzamt Neunkirchen Wr. 
 Neustadt>>> zu Eingangsrechnungen der geprüften Gesellschaften festgestellt, ...
 ```
 
@@ -999,6 +1182,43 @@ FP: `Finanzamt Neunkirchen Wr.
 Neustadt` (organisation)
 
 **✅ Gold Entities:**
+- `Dr.in Juliana Kleppel` (person)
+- `HR Christian Styrnal` (person)
+- `Babenbergersee I 18, 5524 Hallseiten, Österreich` (address)
+- `60-008/3417` (tax_number)
+
+**Example 3** (doc_id: `deanon_BFG_TRAIN/144040.1`)
+
+**False Positives:**
+
+```
+... 2020 gegen den Bescheid des 
+Finanzamtes Österreich (vormals <<<Finanzamt Baden Mödling>>>) vom 13. November 2020 
+betreffend Einkommensteuer 2015, Steuernummer ...
+```
+
+FP: `Finanzamt Baden Mödling` (organisation)
+
+**✅ Gold Entities:**
+- `Lara Pfeiferl` (person)
+- `Obernbergerstraße 76, 8253 Schrimpf, Österreich` (address)
+- `85-636/8182` (tax_number)
+
+**Example 4** (doc_id: `deanon_BFG_TRAIN/135419.1`)
+
+**False Positives:**
+
+```
+... gründet den festgestellten Sachverhalt auf den Inhalt der vom 
+<<<Finanzamt Baden Mödling>>> vorgelegten Verwaltungsakten. Der festgestellte Sachverhalt ...
+```
+
+FP: `Finanzamt Baden Mödling` (organisation)
+
+**✅ Gold Entities:**
+- `Hon.-Prof. Jasmin van der Beck` (person)
+- `OMedR Josefine Weyler` (person)
+- `Mariensiedlung 4, 6672 Haller, Österreich` (address)
 
 </details>
 
@@ -1044,37 +1264,36 @@ Matches full names of tax authorities 'Finanzamt' followed by Innsbruck.
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/135419.1`)
 
 **False Positives:**
 
 ```
 ... 2007 erfolgte nach Durchführung einer 
-Außenprüfung durch das <<<Finanzamt Innsbruck>>>.
+Außenprüfung durch das <<<Finanzamt Innsbruck>>>. Dagegen eingebrachte Beschwerden wurden 
+mit Erkenntnis des ...
 ```
 
 FP: `Finanzamt Innsbruck` (organisation)
 
 **✅ Gold Entities:**
+- `Hon.-Prof. Jasmin van der Beck` (person)
+- `OMedR Josefine Weyler` (person)
+- `Mariensiedlung 4, 6672 Haller, Österreich` (address)
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `deanon_BFG_TRAIN/129733.1`)
 
 **False Positives:**
 
 ```
 ... das Formular Beih 38 über Auftrag des Antragstellers 
-an das <<<Finanzamt Innsbruck>>> übermittelt.
+an das <<<Finanzamt Innsbruck>>> übermittelt. Mit diesem Formular wurde vom – lt den eigenen ...
 ```
 
 FP: `Finanzamt Innsbruck` (organisation)
 
-**✅ Gold Entities:**
-
-**Example 2** (doc_id: ``)
-
-**False Positives:**
-
 ```
+... Unterkunft gestellt. 
 Beweis: Arbeitgeberbescheinigung 
 Das <<<Finanzamt Innsbruck>>> hat den Antrag des Antragstellers vollständig zurückgewiesen ...
 ```
@@ -1082,8 +1301,11 @@ Das <<<Finanzamt Innsbruck>>> hat den Antrag des Antragstellers vollständig zur
 FP: `Finanzamt Innsbruck` (organisation)
 
 **✅ Gold Entities:**
+- `Hon.-Prof. Wilfried Wedral` (person)
+- `Ramona Goedeken` (person)
+- `Am Kittenberg 37, 4903 Schachen bei Wolfshütte, Österreich` (address)
 
-**Example 3** (doc_id: ``)
+**Example 2** (doc_id: `deanon_BFG_TRAIN/143413.1`)
 
 **False Positives:**
 
@@ -1101,7 +1323,7 @@ FP: `Finanzamt Innsbruck` (organisation)
 - `Frieda Aumund` (person)
 - `Kirchbergerberg 79, 4676 Rakesing, Österreich` (address)
 
-**Example 4** (doc_id: ``)
+**Example 3** (doc_id: `deanon_BFG_TRAIN/144381.1`)
 
 **False Positives:**
 
@@ -1113,12 +1335,54 @@ damaligen <<<Finanzamt Innsbruck>>> als Finanzstrafbehörde vom 18. Juni 2020, G
 
 FP: `Finanzamt Innsbruck` (organisation)
 
+```
+...
+Begründung 
+Mit Erkenntnis des Spruchsenates beim damaligen <<<Finanzamt Innsbruck>>> als Finanzstrafbehörde 
+als Organ des damaligen Finanzamtes ...
+```
+
+FP: `Finanzamt Innsbruck` (organisation)
+
 **✅ Gold Entities:**
 - `Esra Rashid` (person)
 - `Pannaschgasse 2O, 8643 Kindberg, Österreich` (address)
 - `Isabel Clements` (person)
 - `Isabel Clements` (person)
 - `Mona Tommeschat` (person)
+- `Isabel Clements` (person)
+- `Pannaschgasse 2O, 8643 Kindberg, Österreich` (address)
+- `Mona Tommeschat` (person)
+- `Pannaschgasse 2O, 8643 Kindberg, Österreich` (address)
+- `Isabel Clements` (person)
+- `Isabel Clements` (person)
+- `Mona Tommeschat` (person)
+- `Mona Tommeschat` (person)
+- `Isabel Clements` (person)
+- `Isabel Clements` (person)
+- `Mona Tommeschat` (person)
+- `Isabel Clements` (person)
+- `Mona Tommeschat` (person)
+
+**Example 4** (doc_id: `deanon_BFG_TRAIN/139348.1`)
+
+**False Positives:**
+
+```
+...
+Verfassungsgesetz (B-VG) nicht zulässig. 
+ 
+Entscheidungsgründe 
+Das <<<Finanzamt Innsbruck>>> legte die Beschwerde vom 17.09.2014 am 27.11.2015 dem 
+Bundesfinanzgericht ...
+```
+
+FP: `Finanzamt Innsbruck` (organisation)
+
+**✅ Gold Entities:**
+- `Zoltan Schäfers` (person)
+- `40-827/3404` (tax_number)
+- `88-486/1084` (tax_number)
 
 </details>
 
@@ -1157,7 +1421,7 @@ Matches Finanzamt Braunau Ried Schärding.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/148572.1`)
 
 ```
 ... über die 
@@ -1176,25 +1440,25 @@ betreffend Feststellung von Einkünften gemäß ...
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/129865.1`)
 
 **False Positives:**
 
 ```
+...  
 Mit Beschwerdevorentscheidung vom 12. März 2014 wies das <<<Finanzamt Braunau Ried 
-Schärding>>> die Beschwerde als unbegründet ab.
+Schärding>>> die Beschwerde als unbegründet ab. 
+In der Begründung wurde ...
 ```
 
 FP: `Finanzamt Braunau Ried 
 Schärding` (organisation)
 
-**✅ Gold Entities:**
-
-**Example 1** (doc_id: ``)
-
-**False Positives:**
-
 ```
+... von 7 
+ 
+ 
+    
 Mit Vorlagebericht vom 16. Mai 2014 legte das <<<Finanzamt Braunau Ried Schärding>>> die 
 Beschwerde dem Bundesfinanzgericht zur Entscheidung vor ...
 ```
@@ -1202,8 +1466,10 @@ Beschwerde dem Bundesfinanzgericht zur Entscheidung vor ...
 FP: `Finanzamt Braunau Ried Schärding` (organisation)
 
 **✅ Gold Entities:**
+- `Beate Keberle` (person)
+- `Dillingweg 14, 9314 Weindorf, Österreich` (address)
 
-**Example 2** (doc_id: ``)
+**Example 1** (doc_id: `deanon_BFG_TRAIN/135168.1`)
 
 **False Positives:**
 
@@ -1242,32 +1508,59 @@ FP: `Finanzamt Braunau Ried Schärding` (organisation)
 **✅ Gold Entities:**
 - `RgR Alessia Nikoleizik` (person)
 - `Lassingrotte 6, 3970 Spital, Österreich` (address)
+- `37-460/7206` (tax_number)
 
-**Example 3** (doc_id: ``)
+**Example 2** (doc_id: `deanon_BFG_TRAIN/132582.1`)
 
 **False Positives:**
 
 ```
+... Gesamtüberschuss erzielt 
+werden sollte. 
 Am 9. April 2009 erließ das <<<Finanzamt Braunau Ried Schärding>>> einen Bescheid über die 
 Feststellung von Einkünften aus Vermietung ...
 ```
 
 FP: `Finanzamt Braunau Ried Schärding` (organisation)
 
-**✅ Gold Entities:**
-
-**Example 4** (doc_id: ``)
-
-**False Positives:**
-
 ```
+... Steuernummer gesondert 
+zugerechnet. 
 Am 9. November 2009 erließ das <<<Finanzamt Braunau Ried Schärding>>> einen Bescheid über die 
 Feststellung von Einkünften aus Vermietung ...
 ```
 
 FP: `Finanzamt Braunau Ried Schärding` (organisation)
 
+```
+... Steuernummer gesondert 
+zugerechnet. 
+Am 22. März 2011 erließ das <<<Finanzamt Braunau Ried Schärding>>> einen Bescheid über die 
+Feststellung von Einkünften aus Vermietung ...
+```
+
+FP: `Finanzamt Braunau Ried Schärding` (organisation)
+
+```
+... mit der Entwicklung des Yen Kredites. 
+Daraufhin erließ das <<<Finanzamt Braunau Ried Schärding>>> am 30. April 2013 eine als Bescheid 
+bezeichnete Erledigung ...
+```
+
+FP: `Finanzamt Braunau Ried Schärding` (organisation)
+
+```
+... wurden nicht gemacht.  
+Ebenfalls am 30. April 2013 erließ das <<<Finanzamt Braunau Ried Schärding>>> eine weitere 
+Erledigung und bezeichnete sie als Bescheid gemäß ...
+```
+
+FP: `Finanzamt Braunau Ried Schärding` (organisation)
+
 **✅ Gold Entities:**
+- `Daniela Darmstadt` (person)
+- `Niklasseeweg 131, 8345 Marktl, Österreich` (address)
+- `56-645/7503` (tax_number)
 
 </details>
 
@@ -1306,7 +1599,7 @@ Matches Finanzamt Linz
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/147472.1`)
 
 ```
 ... betreffend die Beschwerde vom 26. Mai 2023 gegen den Bescheid des 
@@ -1317,7 +1610,7 @@ Matches Finanzamt Linz
 |---|---|
 | `Finanzamt Linz` | `Finanzamt Linz` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `deanon_BFG_TRAIN/140098.1`)
 
 ```
 ... Österreich, über die Beschwerde vom 6.Mai 2022 gegen den Bescheid des <<<Finanzamt Linz>>>  vom 
@@ -1328,7 +1621,7 @@ Matches Finanzamt Linz
 |---|---|
 | `Finanzamt Linz` | `Finanzamt Linz` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `deanon_BFG_TRAIN/134939.1`)
 
 ```
 ... Beschwerde vom 27. Jänner 2020 gegen 
@@ -1347,11 +1640,12 @@ BAO) ...
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/147500.1`)
 
 **False Positives:**
 
 ```
+... hat. 
 In der Zwischenzeit hat er sowohl der SVS als auch dem <<<Finanzamt Linz>>>, bei welchem er als 
 beschränkt Steuerpflichtiger noch zu veranlagen ...
 ```
@@ -1366,57 +1660,58 @@ ist es dem <<<Finanzamt Linz>>> nicht möglich, die zu Unrecht einbehaltene öst
 FP: `Finanzamt Linz` (organisation)
 
 **✅ Gold Entities:**
+- `Viktoria Schreitmueller` (person)
+- `Wolkersdorfer Weg 9q, 5223 Kuglberg, Österreich` (address)
+- `18-890/9416` (tax_number)
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `deanon_BFG_TRAIN/135041.1`)
 
 **False Positives:**
 
 ```
 ... BAO für 
-2018 (Wirtschaftsjahr 01.02.2017 - 31.01.2018) beim <<<Finanzamt Linz>>> elektronisch eingereicht.
+2018 (Wirtschaftsjahr 01.02.2017 - 31.01.2018) beim <<<Finanzamt Linz>>> elektronisch eingereicht. 
+Der Veräußerungsgewinn für die Anteilsabtretung ...
 ```
 
 FP: `Finanzamt Linz` (organisation)
 
-**✅ Gold Entities:**
-
-**Example 2** (doc_id: ``)
-
-**False Positives:**
-
 ```
+... vom 23.10.2017 übermittelt. 
 Der Sachverhalt wird durch das <<<Finanzamt Linz>>> wie folgt als erwiesen angenommen (der als 
 erwiesen angenommene ...
 ```
 
 FP: `Finanzamt Linz` (organisation)
 
-**✅ Gold Entities:**
-
-**Example 3** (doc_id: ``)
-
-**False Positives:**
-
 ```
+... Wirtschaftsjahres von 01.02.2017 - 31.01.2018 
+vorgenommen.  
 Für das <<<Finanzamt Linz>>> ist es als erwiesen anzunehmen, dass die Gewinnverteilung des ...
 ```
 
 FP: `Finanzamt Linz` (organisation)
 
-**✅ Gold Entities:**
-
-**Example 4** (doc_id: ``)
-
-**False Positives:**
-
 ```
+... nach den Bestimmungen des UGB richten. 
 Es ist daher für das <<<Finanzamt Linz>>> als erwiesen anzunehmen, dass nach der Anteilsabtretung 
 von ...
 ```
 
 FP: `Finanzamt Linz` (organisation)
 
+```
+... Grundstücke (Grund und Boden) erfüllt.  
+Selbst wenn man aber wie das <<<Finanzamt Linz>>> grundsätzlich eine umfassende anteilige 
+Aufdeckung aller stillen ...
+```
+
+FP: `Finanzamt Linz` (organisation)
+
 **✅ Gold Entities:**
+- `Morgana Wasseroth` (person)
+- `Lenglach 50, 4631 Forst, Österreich` (address)
+- `76-301/1405` (tax_number)
 
 </details>
 
@@ -1589,7 +1884,7 @@ Matches abbreviated tax authorities 'FA' followed by multi-word locations includ
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/137730.1`)
 
 ```
 ... Lading, Österreich, vom 30. Juni 2021 gegen den Bescheid des 
@@ -1600,7 +1895,7 @@ Matches abbreviated tax authorities 'FA' followed by multi-word locations includ
 |---|---|
 | `FA Wien 1/23` | `FA Wien 1/23` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `deanon_BFG_TRAIN/142788.1`)
 
 ```
 ... ergangenen Bescheid des Finanzamtes X (jetzt Dienststelle 
@@ -1611,39 +1906,159 @@ des <<<FA Klosterneuburg>>> ) vom 13. Dezember 2019 betreffend Einkommensteuer 2
 |---|---|
 | `FA Klosterneuburg` | `FA Klosterneuburg` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `deanon_BFG_TRAIN/145574.1`)
 
 ```
+... Milan Händlein. 
 Im Wirtschaftsjahr 2007 ist gemäß der beim <<<FA Grieskirchen Wels>>>  eingereichten 
 Körperschaftsteuererklärung 2007 ein steuerlicher ...
 ```
 
-| Predicted | Gold |
-|---|---|
-| `FA Grieskirchen Wels` | `FA Grieskirchen Wels` |
-
-**Example 3** (doc_id: ``)
-
 ```
-Mit Vorlagebericht vom 13.11.2013 hat das <<<FA Grieskirchen Wels>>> 
+... 31.05.2013 beigelegt). Mit Vorlagebericht vom 13.11.2013 hat das <<<FA Grieskirchen Wels>>> 
 die eingebrachte Beschwerde (ohne Erlassung einer Beschwerdevorentscheidung) ...
 ```
-
-| Predicted | Gold |
-|---|---|
-| `FA Grieskirchen Wels` | `FA Grieskirchen Wels` |
-
-**Example 4** (doc_id: ``)
 
 ```
 ... Linz, vom 27.01.2016, GZ 
 RV/5101064/2013, wurde seitens des <<<FA Grieskirchen Wels>>>  in vollem Umfang im Zuge einer Amtsrevision 
-angefochten.
+angefochten. ...
+```
+
+```
+... beim 
+Rechtsvorgänger für das Jahr 2007, wurde seitens des <<<FA Grieskirchen Wels>>>  am 07.03.2016 das 
+Veranlagungsjahr 2010 beim gegenständlichen ...
+```
+
+```
+... 27.01.2016 für das Jahr 2007 (Rechtsvorgänger) 
+wurde seitens des <<<FA Grieskirchen Wels>>>  mittels Amtsrevision bekämpft. Sollte der VwGH der Amtsrevision ...
 ```
 
 | Predicted | Gold |
 |---|---|
 | `FA Grieskirchen Wels` | `FA Grieskirchen Wels` |
+| `FA Grieskirchen Wels` | `FA Grieskirchen Wels` |
+| `FA Grieskirchen Wels` | `FA Grieskirchen Wels` |
+| `FA Grieskirchen Wels` | `FA Grieskirchen Wels` |
+| `FA Grieskirchen Wels` | `FA Grieskirchen Wels` |
+
+**Example 3** (doc_id: `deanon_BFG_TRAIN/131589.1`)
+
+```
+... über die Beschwerde vom 23. Juni 2019 gegen die Bescheide des <<<FA Graz-Stadt>>> 
+vom 23. Mai 2019 bzw. 19.08.2019 betreffend Umsatz- und Einkommensteuer ...
+```
+
+| Predicted | Gold |
+|---|---|
+| `FA Graz-Stadt` | `FA Graz-Stadt` |
+
+**Example 4** (doc_id: `deanon_BFG_TRAIN/146569.1`)
+
+```
+... über die Beschwerde vom 13. Juli 2023 gegen den Bescheid des 
+<<<FA Salzburg-Stadt>>>  vom 19. Juni 2023 betreffend Einkommensteuer (Arbeitnehmerveranlagung) ...
+```
+
+| Predicted | Gold |
+|---|---|
+| `FA Salzburg-Stadt` | `FA Salzburg-Stadt` |
+
+</details>
+
+---
+
+<details>
+<summary>⚠️ False Positives</summary>
+
+**Example 0** (doc_id: `deanon_BFG_TRAIN/132879.1`)
+
+**False Positives:**
+
+```
+... September 2009 sowie vom 
+14. Jänner 2013 gegen die Bescheide des <<<FA Salzburg-Land>>> (nunmehr Finanzamt Österreich) 
+vom 18. Dezember 2012 betreffend ...
+```
+
+FP: `FA Salzburg-Land` (organisation)
+
+**✅ Gold Entities:**
+- `Irene Lachmann` (person)
+- `Urbisweg 22, 4060 Sankt Isidor, Österreich` (address)
+- `28-430/1410` (tax_number)
+- `Urbisweg 22, 4060 Sankt Isidor, Österreich` (address)
+
+**Example 1** (doc_id: `deanon_BFG_TRAIN/137690.1`)
+
+**False Positives:**
+
+```
+... hat für 
+sämtliche Zeiträume eine Umsatzsteuererklärung beim <<<FA Graz-Stadt>>> abzugeben. Auf die 
+Niederschrift wird verwiesen. 
+Tz. 8 Vorsteuer: ...
+```
+
+FP: `FA Graz-Stadt` (organisation)
+
+**✅ Gold Entities:**
+- `KommR Zeno Henricy` (person)
+- `Kaplan Herzlik Straße 2, 4962 Gundholling, Österreich` (address)
+- `89-403/3092` (tax_number)
+
+**Example 2** (doc_id: `deanon_BFG_TRAIN/136573.1`)
+
+**False Positives:**
+
+```
+... über die Beschwerde vom 12. Juni 2012 gegen den Bescheid des <<<FA Braunau Ried 
+Schärding>>> vom 9. Mai 2012 betreffend Einkommensteuer 2006 Steuernummer ...
+```
+
+FP: `FA Braunau Ried 
+Schärding` (organisation)
+
+**✅ Gold Entities:**
+- `Ing. Felizia Stammschroer` (person)
+- `Lötz 10, 5340 Winkl, Österreich` (address)
+- `86-740/0703` (tax_number)
+
+**Example 3** (doc_id: `deanon_BFG_TRAIN/132450.1`)
+
+**False Positives:**
+
+```
+... Umsatzsteuerfestsetzungen für die Zeiträume 06/2012 sowie 
+07/2012 des <<<FA Wien 2/20/21/22>>> vom 14. Dezember 2012 beschlossen: 
+I. Der Umsatzsteuerbescheid ...
+```
+
+FP: `FA Wien 2/20/21/22` (organisation)
+
+**✅ Gold Entities:**
+- `Fabienne Lilienkamp` (person)
+- `Burgkirchnerweg 44, 3130 Angern, Österreich` (address)
+
+**Example 4** (doc_id: `deanon_BFG_TRAIN/131739.1`)
+
+**False Positives:**
+
+```
+... fortgeführt. 
+In den gegenständlichen Beschwerdeverfahren, das vom <<<FA Salzburg-Land>>> dem BFG vorgelegt 
+worden waren, ist somit ab 01.01.2021 das ...
+```
+
+FP: `FA Salzburg-Land` (organisation)
+
+**✅ Gold Entities:**
+- `Mag. Merlin Zimmerlin` (person)
+- `OStR Gwendolin Gonschiorek` (person)
+- `Dürne 60, 3920 Hypolz, Österreich` (address)
+- `39-018/7880` (tax_number)
 
 </details>
 
@@ -1682,7 +2097,7 @@ Matches full names of tax authorities starting with 'Finanzamt' followed by spec
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/148399.1`)
 
 ```
 ...
@@ -1694,29 +2109,19 @@ gegen den zur Steuernummer 28-115/0315  ergangenen Bescheid des <<<Finanzamt Deu
 |---|---|
 | `Finanzamt Deutschlandsberg Leibnitz Voitsberg` | `Finanzamt Deutschlandsberg Leibnitz Voitsberg` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `deanon_BFG_TRAIN/145574.1`)
 
 ```
+...
 über die Beschwerden vom 29. März 2019 gegen den Bescheid des <<<Finanzamt Grieskirchen Wels>>>  vom 29. Jänner 
 2019 betreffend Wiederaufnahme § 303 BAO / ...
 ```
 
-| Predicted | Gold |
-|---|---|
-| `Finanzamt Grieskirchen Wels` | `Finanzamt Grieskirchen Wels` |
-
-**Example 2** (doc_id: ``)
-
 ```
+... folgt eine zahlenmäßige Darstellung)  
 Am 26.04.2013 erließ das <<<Finanzamt Grieskirchen Wels>>>  nach Durchführung der Außenprüfung je einen 
 Körperschaftsteuerbescheid ...
 ```
-
-| Predicted | Gold |
-|---|---|
-| `Finanzamt Grieskirchen Wels` | `Finanzamt Grieskirchen Wels` |
-
-**Example 3** (doc_id: ``)
 
 ```
 ...
@@ -1724,20 +2129,59 @@ RV/5101064/2013) und den Körperschaftsteuerbescheid 2007 des <<<Finanzamt Gries
 mitbeteiligten Partei Annemie Bott (als partiellen ...
 ```
 
-| Predicted | Gold |
-|---|---|
-| `Finanzamt Grieskirchen Wels` | `Finanzamt Grieskirchen Wels` |
-
-**Example 4** (doc_id: ``)
-
 ```
+... eingereicht. 
 Unmittelbar nachfolgend hat das BFG die Amtsrevision des <<<Finanzamt Grieskirchen Wels>>> (samt Veranlagungsakten 
 sowie Auszügen aus dem Arbeitsbogen ...
 ```
 
+```
+... 13.09.2018 zu Ro 2016/15/0010 hat der VwGH die 
+Amtsrevision des <<<Finanzamt Grieskirchen Wels>>>  als unbegründet abgewiesen. Der VwGH formulierte die 
+9 von ...
+```
+
 | Predicted | Gold |
 |---|---|
 | `Finanzamt Grieskirchen Wels` | `Finanzamt Grieskirchen Wels` |
+| `Finanzamt Grieskirchen Wels` | `Finanzamt Grieskirchen Wels` |
+| `Finanzamt Grieskirchen Wels` | `Finanzamt Grieskirchen Wels` |
+| `Finanzamt Grieskirchen Wels` | `Finanzamt Grieskirchen Wels` |
+| `Finanzamt Grieskirchen Wels` | `Finanzamt Grieskirchen Wels` |
+
+**Example 2** (doc_id: `deanon_BFG_TRAIN/147023.1`)
+
+```
+... über die Beschwerde vom 20. März 2024 gegen den Bescheid 
+des <<<Finanzamt Freistadt Rohrbach Urfahr>>>  vom 18. März 2024 gemäß § 293 BAO zur Änderung des Bescheides ...
+```
+
+| Predicted | Gold |
+|---|---|
+| `Finanzamt Freistadt Rohrbach Urfahr` | `Finanzamt Freistadt Rohrbach Urfahr` |
+
+**Example 3** (doc_id: `deanon_BFG_TRAIN/144690.1`)
+
+```
+... Dr. Walter Ganster, Steuerberater in 9100 
+Völkermarkt und <<<Finanzamt Schwechat Gerasdorf>>>  als Amtspartei und als Gesamtrechtsnachfolger des Finanzamtes ...
+```
+
+| Predicted | Gold |
+|---|---|
+| `Finanzamt Schwechat Gerasdorf` | `Finanzamt Schwechat Gerasdorf` |
+
+**Example 4** (doc_id: `deanon_BFG_TRAIN/130261.1`)
+
+```
+... Bundesfinanzgericht hat erwogen: 
+1. Sachverhalt 
+Mit Bescheiden des <<<Finanzamt Freistadt Rohrbach Urfahr>>>  vom 27. November 2008 wurde die Umsatzsteuer für die Jahre ...
+```
+
+| Predicted | Gold |
+|---|---|
+| `Finanzamt Freistadt Rohrbach Urfahr` | `Finanzamt Freistadt Rohrbach Urfahr` |
 
 </details>
 
@@ -1746,7 +2190,7 @@ sowie Auszügen aus dem Arbeitsbogen ...
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/131900.1`)
 
 **False Positives:**
 
@@ -1763,11 +2207,12 @@ am See` (organisation)
 - `Heinrich Röskens` (person)
 - `Kleinhofstraße 36, 2640 Pettenbach, Österreich` (address)
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `deanon_BFG_TRAIN/131429.1`)
 
 **False Positives:**
 
 ```
+...
 Mit Beschwerdevorentscheidungen vom 17. Februar 2020 wies das <<<Finanzamt Lilienfeld 
 St. Pölten>>> die Beschwerden gegen die Einkommensteuerbescheide für 2017 ...
 ```
@@ -1775,40 +2220,35 @@ St. Pölten>>> die Beschwerden gegen die Einkommensteuerbescheide für 2017 ...
 FP: `Finanzamt Lilienfeld 
 St. Pölten` (organisation)
 
-**✅ Gold Entities:**
-
-**Example 2** (doc_id: ``)
-
-**False Positives:**
-
 ```
+... Aufgabedatum 11.11.2019. 
 Demnach sei die Sendung am 12.11.2019 an das <<<Finanzamt Lilienfeld St. Pölten>>> zugestellt und 
-von einem Mitarbeiter übernommen worden.
+von einem Mitarbeiter übernommen worden. 
+Mit ...
 ```
 
 FP: `Finanzamt Lilienfeld St. Pölten` (organisation)
 
-**✅ Gold Entities:**
-
-**Example 3** (doc_id: ``)
-
-**False Positives:**
-
 ```
+... übernommen worden. 
 Mit Vorlagebericht vom 5. Mai 2020 legte das <<<Finanzamt Lilienfeld St. Pölten>>> die Beschwerde 
-dem Bundesfinanzgericht zur Entscheidung vor.
+dem Bundesfinanzgericht zur Entscheidung vor. ...
 ```
 
 FP: `Finanzamt Lilienfeld St. Pölten` (organisation)
 
 **✅ Gold Entities:**
+- `Hon.-Prof.in Mag.a Brunhild Stieglmaier` (person)
+- `Bühelstauden 7, 4030 Linz, Österreich` (address)
+- `40-192/1103` (tax_number)
 
-**Example 4** (doc_id: ``)
+**Example 2** (doc_id: `deanon_BFG_TRAIN/145534.1`)
 
 **False Positives:**
 
 ```
-für die Jahre 2001 bis 2003 wurde vom <<<Finanzamt Neunkirchen Wr. 
+... Service 
+GmbH und Mitges. für die Jahre 2001 bis 2003 wurde vom <<<Finanzamt Neunkirchen Wr. 
 Neustadt>>> zu Eingangsrechnungen der geprüften Gesellschaften festgestellt, ...
 ```
 
@@ -1816,6 +2256,43 @@ FP: `Finanzamt Neunkirchen Wr.
 Neustadt` (organisation)
 
 **✅ Gold Entities:**
+- `Dr.in Juliana Kleppel` (person)
+- `HR Christian Styrnal` (person)
+- `Babenbergersee I 18, 5524 Hallseiten, Österreich` (address)
+- `60-008/3417` (tax_number)
+
+**Example 3** (doc_id: `deanon_BFG_TRAIN/144040.1`)
+
+**False Positives:**
+
+```
+... 2020 gegen den Bescheid des 
+Finanzamtes Österreich (vormals <<<Finanzamt Baden Mödling>>>) vom 13. November 2020 
+betreffend Einkommensteuer 2015, Steuernummer ...
+```
+
+FP: `Finanzamt Baden Mödling` (organisation)
+
+**✅ Gold Entities:**
+- `Lara Pfeiferl` (person)
+- `Obernbergerstraße 76, 8253 Schrimpf, Österreich` (address)
+- `85-636/8182` (tax_number)
+
+**Example 4** (doc_id: `deanon_BFG_TRAIN/135419.1`)
+
+**False Positives:**
+
+```
+... gründet den festgestellten Sachverhalt auf den Inhalt der vom 
+<<<Finanzamt Baden Mödling>>> vorgelegten Verwaltungsakten. Der festgestellte Sachverhalt ...
+```
+
+FP: `Finanzamt Baden Mödling` (organisation)
+
+**✅ Gold Entities:**
+- `Hon.-Prof. Jasmin van der Beck` (person)
+- `OMedR Josefine Weyler` (person)
+- `Mariensiedlung 4, 6672 Haller, Österreich` (address)
 
 </details>
 
@@ -1845,7 +2322,7 @@ Matches full names of tax authorities 'Finanzamt' followed by Salzburg-Stadt.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 34 | 5 | 337 |
+| `organisation` | 34 | 5 | 339 |
 
 </details>
 
@@ -1854,53 +2331,62 @@ Matches full names of tax authorities 'Finanzamt' followed by Salzburg-Stadt.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/147541.1`)
 
 ```
-<<<Finanzamt Salzburg-Stadt>>>  betreibt Geschäfte in den Bereichen 
+... Großbritannien errichtete 
+Gesellschaft mit Sitz in Kranzing. <<<Finanzamt Salzburg-Stadt>>>  betreibt Geschäfte in den Bereichen 
 Unterhaltungsmedien und ...
 ```
 
-| Predicted | Gold |
-|---|---|
-| `Finanzamt Salzburg-Stadt` | `Finanzamt Salzburg-Stadt` |
-
-**Example 1** (doc_id: ``)
-
 ```
-<<<Finanzamt Salzburg-Stadt>>>  hält eine Wettlizenz des Vereinigten Königreichs.
+... erreichbar, welche unter anderem auch in Österreich verfügbar 
+ist. <<<Finanzamt Salzburg-Stadt>>>  hält eine Wettlizenz des Vereinigten Königreichs. 
+KommR Ing. ...
 ```
 
-| Predicted | Gold |
-|---|---|
-| `Finanzamt Salzburg-Stadt` | `Finanzamt Salzburg-Stadt` |
-
-**Example 2** (doc_id: ``)
-
 ```
-KommR Ing. Roberta Gossling  Limited ist eine im Jahr 2007 von <<<Finanzamt Salzburg-Stadt>>>  Ltd. gegründete Gesellschaft.
+...
+KommR Ing. Roberta Gossling  Limited ist eine im Jahr 2007 von <<<Finanzamt Salzburg-Stadt>>>  Ltd. gegründete Gesellschaft. Das 
+Unternehmen ist in Großbritannien ...
 ```
 
-| Predicted | Gold |
-|---|---|
-| `Finanzamt Salzburg-Stadt` | `Finanzamt Salzburg-Stadt` |
-
-**Example 3** (doc_id: ``)
-
 ```
-<<<Finanzamt Salzburg-Stadt>>> .com 
+...
+Online Wettprodukte des Unternehmens waren unter der Website www.<<<Finanzamt Salzburg-Stadt>>> .com 
 erreichbar, welche unter anderem auch in Österreich verfügbar ...
 ```
-
-| Predicted | Gold |
-|---|---|
-| `Finanzamt Salzburg-Stadt` | `Finanzamt Salzburg-Stadt` |
-
-**Example 4** (doc_id: ``)
 
 ```
 ... Wette auf den Ausgang der Lotterien erteilt der Teilnehmer <<<Finanzamt Salzburg-Stadt>>>  den 
 Auftrag, die entsprechende Wette an KommR Ing. Roberta ...
+```
+
+| Predicted | Gold |
+|---|---|
+| `Finanzamt Salzburg-Stadt` | `Finanzamt Salzburg-Stadt` |
+| `Finanzamt Salzburg-Stadt` | `Finanzamt Salzburg-Stadt` |
+| `Finanzamt Salzburg-Stadt` | `Finanzamt Salzburg-Stadt` |
+| `Finanzamt Salzburg-Stadt` | `Finanzamt Salzburg-Stadt` |
+| `Finanzamt Salzburg-Stadt` | `Finanzamt Salzburg-Stadt` |
+
+**Example 1** (doc_id: `deanon_BFG_TRAIN/146796.1`)
+
+```
+... R & P Korneuburg Steuerberatung GmbH, 
+2100 Korneuburg und <<<Finanzamt Salzburg-Stadt>>>  als Amtspartei über die Beschwerde vom 12.7.2023 gegen den ...
+```
+
+| Predicted | Gold |
+|---|---|
+| `Finanzamt Salzburg-Stadt` | `Finanzamt Salzburg-Stadt` |
+
+**Example 2** (doc_id: `deanon_BFG_TRAIN/129505.1`)
+
+```
+... Beschwerde vom 10. September 2018 gegen die 
+Bescheide des <<<Finanzamt Salzburg-Stadt>>>  vom 20. August 2018 betreffend Festsetzung der 
+Normverbrauchsabgabe ...
 ```
 
 | Predicted | Gold |
@@ -1914,11 +2400,15 @@ Auftrag, die entsprechende Wette an KommR Ing. Roberta ...
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/129929.1`)
 
 **False Positives:**
 
 ```
+...
+Entscheidungsgründe 
+I. Verfahrensgang 
+ 
 Im Zuge einer Nachschau durch das <<<Finanzamt Salzburg-Stadt>>>, sowie in einer Niederschrift 
 aufgenommen am 20.03.2013 wurde ...
 ```
@@ -1926,8 +2416,10 @@ aufgenommen am 20.03.2013 wurde ...
 FP: `Finanzamt Salzburg-Stadt` (organisation)
 
 **✅ Gold Entities:**
+- `Johanna Rottmeier` (person)
+- `Aichetweg 9, 3371 Krottenthal, Österreich` (address)
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `deanon_BFG_TRAIN/139860.1`)
 
 **False Positives:**
 
@@ -1940,12 +2432,6 @@ gem § 83 Abs 2 FinStrG davon ...
 
 FP: `Finanzamt Salzburg-Stadt` (organisation)
 
-**✅ Gold Entities:**
-
-**Example 2** (doc_id: ``)
-
-**False Positives:**
-
 ```
 ... insbesondere von Zeugeneinvernahmen am 
 18.8.2020, hat das <<<Finanzamt Salzburg-Stadt>>> als Finanzstrafbehörde am 25.9.2020 eine 
@@ -1957,18 +2443,15 @@ FP: `Finanzamt Salzburg-Stadt` (organisation)
 ```
 ...
 Stellungnahme gem § 124 Abs 2 FinStrG an den Spruchsenat I beim <<<Finanzamt Salzburg-Stadt>>> 
-übermittelt.
+übermittelt. 
+In dieser Stellungnahme teilte das Finanzamt ...
 ```
 
 FP: `Finanzamt Salzburg-Stadt` (organisation)
 
-**✅ Gold Entities:**
-
-**Example 3** (doc_id: ``)
-
-**False Positives:**
-
 ```
+... Salzburg-Stadt 
+übermittelt. 
 In dieser Stellungnahme teilte das <<<Finanzamt Salzburg-Stadt>>> als Finanzstrafbehörde mit, dass 
 nach dessen Ansicht gegen ...
 ```
@@ -1976,6 +2459,10 @@ nach dessen Ansicht gegen ...
 FP: `Finanzamt Salzburg-Stadt` (organisation)
 
 **✅ Gold Entities:**
+- `Adalbert Lescinskas` (person)
+- `Gewerbestraße Kubing 11, 4283 Maierhof, Österreich` (address)
+- `DDr.in Kerstin Tittrich, BA` (person)
+- `DDr.in Kerstin Tittrich, BA` (person)
 - `DDr.in Kerstin Tittrich, BA` (person)
 
 </details>
@@ -2015,7 +2502,7 @@ Matches abbreviated tax authorities 'FA' followed by Salzburg-Stadt.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/146569.1`)
 
 ```
 ... über die Beschwerde vom 13. Juli 2023 gegen den Bescheid des 
@@ -2026,9 +2513,11 @@ Matches abbreviated tax authorities 'FA' followed by Salzburg-Stadt.
 |---|---|
 | `FA Salzburg-Stadt` | `FA Salzburg-Stadt` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `deanon_BFG_TRAIN/147541.1`)
 
 ```
+... nicht zulässig. 
+ 
 Entscheidungsgründe 
 I. Verfahrensgang 
 <<<FA Salzburg-Stadt>>>  Ltd. (im Folgenden „<<<FA Salzburg-Stadt>>>“) ist eine im Jahr 1999 ...
@@ -2041,15 +2530,9 @@ I. Verfahrensgang
 Gesellschaft ...
 ```
 
-| Predicted | Gold |
-|---|---|
-| `FA Salzburg-Stadt` | `FA Salzburg-Stadt` |
-| `FA Salzburg-Stadt` | `FA Salzburg-Stadt` |
-
-**Example 2** (doc_id: ``)
-
 ```
-Das Online Wettprodukt von <<<FA Salzburg-Stadt>>>  ist unter der 
+...
+Unterhaltungsmedien und Wetten. Das Online Wettprodukt von <<<FA Salzburg-Stadt>>>  ist unter der 
 Website www.<<<FA Salzburg-Stadt>>> .com erreichbar, ...
 ```
 
@@ -2058,26 +2541,25 @@ Website www.<<<FA Salzburg-Stadt>>> .com erreichbar, ...
 Website www.<<<FA Salzburg-Stadt>>> .com erreichbar, welche unter anderem auch in Österreich verfügbar ...
 ```
 
-| Predicted | Gold |
-|---|---|
-| `FA Salzburg-Stadt` | `FA Salzburg-Stadt` |
-| `FA Salzburg-Stadt` | `FA Salzburg-Stadt` |
-
-**Example 3** (doc_id: ``)
-
 ```
+... Registrierungsadresse in Österreich mit 15. September 2019 
+geschlossen. 
 <<<FA Salzburg-Stadt>>>  ist für das Betreiben der Website, das Einrichten und die ...
 ```
 
 | Predicted | Gold |
 |---|---|
 | `FA Salzburg-Stadt` | `FA Salzburg-Stadt` |
+| `FA Salzburg-Stadt` | `FA Salzburg-Stadt` |
+| `FA Salzburg-Stadt` | `FA Salzburg-Stadt` |
+| `FA Salzburg-Stadt` | `FA Salzburg-Stadt` |
+| `FA Salzburg-Stadt` | `FA Salzburg-Stadt` |
 
-**Example 4** (doc_id: ``)
+**Example 2** (doc_id: `deanon_BFG_TRAIN/138929.1`)
 
 ```
-Als Folge 
-davon wird <<<FA Salzburg-Stadt>>>  als Vermittlerin und KommR Ing. Roberta Gossling  als Buchmacherin ...
+... über die Beschwerde vom 18. Mai 2021 gegen den Bescheid des <<<FA Salzburg-Stadt>>> 
+vom 17. Mai 2021 betreffend Einkommensteuer (Arbeitnehmerveranlagung) ...
 ```
 
 | Predicted | Gold |
@@ -2121,19 +2603,19 @@ Matches full names of tax authorities starting with 'Finanzamt' followed by spec
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/134906.1`)
 
 ```
 ... Erkenntnis BFG 6.5.2019, RV/7101631/2016, 
 verwiesen, welches vom <<<Finanzamt Wien 2/20/21/22>>>  hinsichtlich des zweiten Beschwerdepunktes 
-„III.
+„III. 2 Vorsteuerabzug ...
 ```
 
 | Predicted | Gold |
 |---|---|
 | `Finanzamt Wien 2/20/21/22` | `Finanzamt Wien 2/20/21/22` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `deanon_BFG_TRAIN/140834.1`)
 
 ```
 ... Beschwerde vom 5. Dezember 2022 gegen den 
@@ -2145,7 +2627,7 @@ Einkommensteuerbescheides ...
 |---|---|
 | `Finanzamt Judenburg Liezen` | `Finanzamt Judenburg Liezen` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `deanon_BFG_TRAIN/149470.1`)
 
 ```
 ... Wiedergut, Steuerberaterin in 9500 Villach, 
@@ -2157,7 +2639,7 @@ Großbetriebe) ...
 |---|---|
 | `Finanzamt Baden Mödling` | `Finanzamt Baden Mödling` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `deanon_BFG_TRAIN/144093.1`)
 
 ```
 ... Beschwerde vom 27. September 2018 gegen den Haftungsbescheid 
@@ -2169,7 +2651,7 @@ I. Der Beschwerde wird ...
 |---|---|
 | `Finanzamt Purkersdorf` | `Finanzamt Purkersdorf` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `deanon_BFG_TRAIN/144972.1`)
 
 ```
 ... die Beschwerde vom 16. Oktober 2023 gegen den Bescheid des <<<Finanzamt Baden Mödling>>> 
@@ -2187,7 +2669,7 @@ vom 13. September 2023 betreffend die Zurückweisung eines ...
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/131900.1`)
 
 **False Positives:**
 
@@ -2204,11 +2686,12 @@ am See` (organisation)
 - `Heinrich Röskens` (person)
 - `Kleinhofstraße 36, 2640 Pettenbach, Österreich` (address)
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `deanon_BFG_TRAIN/131429.1`)
 
 **False Positives:**
 
 ```
+...
 Mit Beschwerdevorentscheidungen vom 17. Februar 2020 wies das <<<Finanzamt Lilienfeld 
 St. Pölten>>> die Beschwerden gegen die Einkommensteuerbescheide für 2017 ...
 ```
@@ -2216,40 +2699,35 @@ St. Pölten>>> die Beschwerden gegen die Einkommensteuerbescheide für 2017 ...
 FP: `Finanzamt Lilienfeld 
 St. Pölten` (organisation)
 
-**✅ Gold Entities:**
-
-**Example 2** (doc_id: ``)
-
-**False Positives:**
-
 ```
+... Aufgabedatum 11.11.2019. 
 Demnach sei die Sendung am 12.11.2019 an das <<<Finanzamt Lilienfeld St. Pölten>>> zugestellt und 
-von einem Mitarbeiter übernommen worden.
+von einem Mitarbeiter übernommen worden. 
+Mit ...
 ```
 
 FP: `Finanzamt Lilienfeld St. Pölten` (organisation)
 
-**✅ Gold Entities:**
-
-**Example 3** (doc_id: ``)
-
-**False Positives:**
-
 ```
+... übernommen worden. 
 Mit Vorlagebericht vom 5. Mai 2020 legte das <<<Finanzamt Lilienfeld St. Pölten>>> die Beschwerde 
-dem Bundesfinanzgericht zur Entscheidung vor.
+dem Bundesfinanzgericht zur Entscheidung vor. ...
 ```
 
 FP: `Finanzamt Lilienfeld St. Pölten` (organisation)
 
 **✅ Gold Entities:**
+- `Hon.-Prof.in Mag.a Brunhild Stieglmaier` (person)
+- `Bühelstauden 7, 4030 Linz, Österreich` (address)
+- `40-192/1103` (tax_number)
 
-**Example 4** (doc_id: ``)
+**Example 2** (doc_id: `deanon_BFG_TRAIN/145534.1`)
 
 **False Positives:**
 
 ```
-für die Jahre 2001 bis 2003 wurde vom <<<Finanzamt Neunkirchen Wr. 
+... Service 
+GmbH und Mitges. für die Jahre 2001 bis 2003 wurde vom <<<Finanzamt Neunkirchen Wr. 
 Neustadt>>> zu Eingangsrechnungen der geprüften Gesellschaften festgestellt, ...
 ```
 
@@ -2257,6 +2735,43 @@ FP: `Finanzamt Neunkirchen Wr.
 Neustadt` (organisation)
 
 **✅ Gold Entities:**
+- `Dr.in Juliana Kleppel` (person)
+- `HR Christian Styrnal` (person)
+- `Babenbergersee I 18, 5524 Hallseiten, Österreich` (address)
+- `60-008/3417` (tax_number)
+
+**Example 3** (doc_id: `deanon_BFG_TRAIN/144040.1`)
+
+**False Positives:**
+
+```
+... 2020 gegen den Bescheid des 
+Finanzamtes Österreich (vormals <<<Finanzamt Baden Mödling>>>) vom 13. November 2020 
+betreffend Einkommensteuer 2015, Steuernummer ...
+```
+
+FP: `Finanzamt Baden Mödling` (organisation)
+
+**✅ Gold Entities:**
+- `Lara Pfeiferl` (person)
+- `Obernbergerstraße 76, 8253 Schrimpf, Österreich` (address)
+- `85-636/8182` (tax_number)
+
+**Example 4** (doc_id: `deanon_BFG_TRAIN/135419.1`)
+
+**False Positives:**
+
+```
+... gründet den festgestellten Sachverhalt auf den Inhalt der vom 
+<<<Finanzamt Baden Mödling>>> vorgelegten Verwaltungsakten. Der festgestellte Sachverhalt ...
+```
+
+FP: `Finanzamt Baden Mödling` (organisation)
+
+**✅ Gold Entities:**
+- `Hon.-Prof. Jasmin van der Beck` (person)
+- `OMedR Josefine Weyler` (person)
+- `Mariensiedlung 4, 6672 Haller, Österreich` (address)
 
 </details>
 
@@ -2295,7 +2810,7 @@ Matches abbreviated tax authorities 'FA' followed by Tirol Ost.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/141190.1`)
 
 ```
 ... betreffend Beschwerde 
@@ -2308,7 +2823,7 @@ Der Vorlageantrag ...
 |---|---|
 | `FA Tirol Ost` | `FA Tirol Ost` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `deanon_BFG_TRAIN/143049.1`)
 
 ```
 ... Parteien 
@@ -2320,18 +2835,19 @@ Gesamtrechtsnachfolger des Finanzamtes ...
 |---|---|
 | `FA Tirol Ost` | `FA Tirol Ost` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `deanon_BFG_TRAIN/137373.1`)
 
 ```
 ... September 
-2012 für Nachname 1 R und Nachname 1 A seien nun beim <<<FA Tirol Ost>>>  eingebracht worden.
+2012 für Nachname 1 R und Nachname 1 A seien nun beim <<<FA Tirol Ost>>>  eingebracht worden. Der 
+Anspruch auf Kinderfreibeträge und ...
 ```
 
 | Predicted | Gold |
 |---|---|
 | `FA Tirol Ost` | `FA Tirol Ost` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `deanon_BFG_TRAIN/139243.1`)
 
 ```
 ...
@@ -2343,7 +2859,7 @@ Finanzamt Tirol Ost, betreffend Einkommensteuer für ...
 |---|---|
 | `FA Tirol Ost` | `FA Tirol Ost` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `deanon_BFG_TRAIN/129384.1`)
 
 ```
 ... 
@@ -2383,7 +2899,7 @@ Matches FA Linz
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 5 | 0 | 144 |
+| `organisation` | 5 | 0 | 145 |
 
 </details>
 
@@ -2392,7 +2908,7 @@ Matches FA Linz
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/147472.1`)
 
 ```
 ... betreffend die Beschwerde vom 26. Mai 2023 gegen 
@@ -2403,18 +2919,12 @@ den Bescheid des <<<FA Linz>>>  vom 27. April 2023 über die Abweisung einer Nac
 |---|---|
 | `FA Linz` | `FA Linz` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `deanon_BFG_TRAIN/144651.1`)
 
 ```
 ... einer vorgelegten Rechnung vom 30.9.2010 geht hervor, dass die <<<FA Linz>>>  eine Prüfung 
 Treppenaufzug zu einem Gesamtbetrag von 102,00 ...
 ```
-
-| Predicted | Gold |
-|---|---|
-| `FA Linz` | `FA Linz` |
-
-**Example 2** (doc_id: ``)
 
 ```
 ... einer vorgelegten Rechnung vom 13.9.2012 geht hervor, dass die <<<FA Linz>>>  eine Prüfung 
@@ -2424,8 +2934,9 @@ des Treppenaufzugs zu einem Gesamtbetrag von ...
 | Predicted | Gold |
 |---|---|
 | `FA Linz` | `FA Linz` |
+| `FA Linz` | `FA Linz` |
 
-**Example 3** (doc_id: ``)
+**Example 2** (doc_id: `deanon_BFG_TRAIN/147464.1`)
 
 ```
 ... Februar 2020, und 24. Februar 2020 gegen die Bescheide des 
@@ -2436,7 +2947,7 @@ des Treppenaufzugs zu einem Gesamtbetrag von ...
 |---|---|
 | `FA Linz` | `FA Linz` |
 
-**Example 4** (doc_id: ``)
+**Example 3** (doc_id: `deanon_BFG_TRAIN/147053.1`)
 
 ```
 ... die Beschwerde vom 13. August 2024 gegen den 
@@ -2484,7 +2995,7 @@ Matches Finanzamt Wien 8/16/17
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/145184.1`)
 
 ```
 ...
@@ -2496,41 +3007,33 @@ zu Steuernummer 45-760/3996  betreffend ...
 |---|---|
 | `Finanzamt Wien 8/16/17` | `Finanzamt Wien 8/16/17` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `deanon_BFG_TRAIN/145689.1`)
 
 ```
 ... Sulztal, Österreich, vom 5. Dezember 2022 gegen den Bescheid des 
 <<<Finanzamt Wien 8/16/17>>>  vom 10. November 2022 betreffend Zahlungserleichterungen § ...
 ```
 
-| Predicted | Gold |
-|---|---|
-| `Finanzamt Wien 8/16/17` | `Finanzamt Wien 8/16/17` |
-
-**Example 2** (doc_id: ``)
-
 ```
-Die steuerliche Vertretung führte aus, dass 
+... Die steuerliche Vertretung führte aus, dass 
 mit Bescheid des <<<Finanzamt Wien 8/16/17>>>  vom 23.07.2021 dem Beschwerdeführer eine COVID-19-
 1 von 9
 ...
 ```
 
-| Predicted | Gold |
-|---|---|
-| `Finanzamt Wien 8/16/17` | `Finanzamt Wien 8/16/17` |
-
-**Example 3** (doc_id: ``)
-
 ```
-Dieser Antrag wurde an das <<<Finanzamt Wien 8/16/17>>>  weitergeleitet.
+...
+bis 30.09.2024 gestundet werden. Dieser Antrag wurde an das <<<Finanzamt Wien 8/16/17>>>  weitergeleitet. 
+II. Das Bundesfinanzgericht hat erwogen: ...
 ```
 
 | Predicted | Gold |
 |---|---|
 | `Finanzamt Wien 8/16/17` | `Finanzamt Wien 8/16/17` |
+| `Finanzamt Wien 8/16/17` | `Finanzamt Wien 8/16/17` |
+| `Finanzamt Wien 8/16/17` | `Finanzamt Wien 8/16/17` |
 
-**Example 4** (doc_id: ``)
+**Example 2** (doc_id: `deanon_BFG_TRAIN/148705.1`)
 
 ```
 ... Soziales und Behindertenwesen 
@@ -2579,7 +3082,7 @@ Matches FA Steiermark Mitte
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/135051.1`)
 
 ```
 ... Abgabenbehörde eingelangt am 15. Juli 2019, gegen den Bescheid des <<<FA Steiermark Mitte>>> (jetzt 
@@ -2590,7 +3093,7 @@ Dienststelle des Finanzamtes Österreich) vom 6. Juni ...
 |---|---|
 | `FA Steiermark Mitte` | `FA Steiermark Mitte` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `deanon_BFG_TRAIN/148555.1`)
 
 ```
 ... über die Beschwerden vom 17. Mai 2016 gegen die Bescheide des <<<FA Steiermark Mitte>>> 
@@ -2601,10 +3104,10 @@ vom 11. April 2016 betreffend ersten Säumniszuschlag 2016 ...
 |---|---|
 | `FA Steiermark Mitte` | `FA Steiermark Mitte` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `deanon_BFG_TRAIN/149218.1`)
 
 ```
-Nach telefonischer Rucksprache 
+... übermittelt. Nach telefonischer Rucksprache 
 mit Frau FA beim <<<FA Steiermark Mitte>>>  hat Frau STB1 die bereits am 26.02.2014 mittels eingeschriebenen ...
 ```
 
@@ -2612,7 +3115,7 @@ mit Frau FA beim <<<FA Steiermark Mitte>>>  hat Frau STB1 die bereits am 26.02.2
 |---|---|
 | `FA Steiermark Mitte` | `FA Steiermark Mitte` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `deanon_BFG_TRAIN/142861.1`)
 
 ```
 ... gegen den zur Steuernummer 45-988/6339  ergangenen Bescheid des <<<FA Steiermark Mitte>>>  vom 
@@ -2660,7 +3163,7 @@ Matches abbreviated tax authority 'FA Wien 8/16/17'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/138597.1`)
 
 ```
 ... Matschek 
@@ -2673,27 +3176,22 @@ Beschwerde vom 11.5.2021
 |---|---|
 | `FA Wien 8/16/17` | `FA Wien 8/16/17` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `deanon_BFG_TRAIN/148705.1`)
 
 ```
 ... die Beschwerde vom 17. Jänner 2025 gegen die Bescheide des <<<FA Wien 8/16/17>>> 
 jeweils vom 7. Jänner 2025 über die Abweisung des Antrages ...
 ```
 
-| Predicted | Gold |
-|---|---|
-| `FA Wien 8/16/17` | `FA Wien 8/16/17` |
-
-**Example 2** (doc_id: ``)
-
 ```
 ...
 Übermittlung des gesamten ärztlichen Sachverständigengutachtens an das <<<FA Wien 8/16/17>>>  hat nicht 
-zu erfolgen.
+zu erfolgen. Der Nachweis des Grades der Behinderung ...
 ```
 
 | Predicted | Gold |
 |---|---|
+| `FA Wien 8/16/17` | `FA Wien 8/16/17` |
 | `FA Wien 8/16/17` | `FA Wien 8/16/17` |
 
 </details>
@@ -2703,7 +3201,7 @@ zu erfolgen.
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/145885.1`)
 
 **False Positives:**
 
@@ -2724,6 +3222,9 @@ FP: `FA Wien
 8/16/17` (organisation)
 
 **✅ Gold Entities:**
+- `Dr. Wolfgang Ringelspacher` (person)
+- `Mehmet Neuschaefer` (person)
+- `Torbachweg 252, 9772 Nörenach, Österreich` (address)
 
 </details>
 
@@ -2762,7 +3263,7 @@ Matches Finanzamt Linz
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/147472.1`)
 
 ```
 ... betreffend die Beschwerde vom 26. Mai 2023 gegen den Bescheid des 
@@ -2773,7 +3274,7 @@ Matches Finanzamt Linz
 |---|---|
 | `Finanzamt Linz` | `Finanzamt Linz` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `deanon_BFG_TRAIN/140098.1`)
 
 ```
 ... Österreich, über die Beschwerde vom 6.Mai 2022 gegen den Bescheid des <<<Finanzamt Linz>>>  vom 
@@ -2784,7 +3285,7 @@ Matches Finanzamt Linz
 |---|---|
 | `Finanzamt Linz` | `Finanzamt Linz` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `deanon_BFG_TRAIN/134939.1`)
 
 ```
 ... Beschwerde vom 27. Jänner 2020 gegen 
@@ -2803,11 +3304,12 @@ BAO) ...
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/147500.1`)
 
 **False Positives:**
 
 ```
+... hat. 
 In der Zwischenzeit hat er sowohl der SVS als auch dem <<<Finanzamt Linz>>>, bei welchem er als 
 beschränkt Steuerpflichtiger noch zu veranlagen ...
 ```
@@ -2822,57 +3324,58 @@ ist es dem <<<Finanzamt Linz>>> nicht möglich, die zu Unrecht einbehaltene öst
 FP: `Finanzamt Linz` (organisation)
 
 **✅ Gold Entities:**
+- `Viktoria Schreitmueller` (person)
+- `Wolkersdorfer Weg 9q, 5223 Kuglberg, Österreich` (address)
+- `18-890/9416` (tax_number)
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `deanon_BFG_TRAIN/135041.1`)
 
 **False Positives:**
 
 ```
 ... BAO für 
-2018 (Wirtschaftsjahr 01.02.2017 - 31.01.2018) beim <<<Finanzamt Linz>>> elektronisch eingereicht.
+2018 (Wirtschaftsjahr 01.02.2017 - 31.01.2018) beim <<<Finanzamt Linz>>> elektronisch eingereicht. 
+Der Veräußerungsgewinn für die Anteilsabtretung ...
 ```
 
 FP: `Finanzamt Linz` (organisation)
 
-**✅ Gold Entities:**
-
-**Example 2** (doc_id: ``)
-
-**False Positives:**
-
 ```
+... vom 23.10.2017 übermittelt. 
 Der Sachverhalt wird durch das <<<Finanzamt Linz>>> wie folgt als erwiesen angenommen (der als 
 erwiesen angenommene ...
 ```
 
 FP: `Finanzamt Linz` (organisation)
 
-**✅ Gold Entities:**
-
-**Example 3** (doc_id: ``)
-
-**False Positives:**
-
 ```
+... Wirtschaftsjahres von 01.02.2017 - 31.01.2018 
+vorgenommen.  
 Für das <<<Finanzamt Linz>>> ist es als erwiesen anzunehmen, dass die Gewinnverteilung des ...
 ```
 
 FP: `Finanzamt Linz` (organisation)
 
-**✅ Gold Entities:**
-
-**Example 4** (doc_id: ``)
-
-**False Positives:**
-
 ```
+... nach den Bestimmungen des UGB richten. 
 Es ist daher für das <<<Finanzamt Linz>>> als erwiesen anzunehmen, dass nach der Anteilsabtretung 
 von ...
 ```
 
 FP: `Finanzamt Linz` (organisation)
 
+```
+... Grundstücke (Grund und Boden) erfüllt.  
+Selbst wenn man aber wie das <<<Finanzamt Linz>>> grundsätzlich eine umfassende anteilige 
+Aufdeckung aller stillen ...
+```
+
+FP: `Finanzamt Linz` (organisation)
+
 **✅ Gold Entities:**
+- `Morgana Wasseroth` (person)
+- `Lenglach 50, 4631 Forst, Österreich` (address)
+- `76-301/1405` (tax_number)
 
 </details>
 
@@ -2911,7 +3414,7 @@ Matches abbreviated tax authorities 'FA' followed by Vorarlberg.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/145043.1`)
 
 ```
 ... 3420 Kritzendorf, vom 15. Mai 2017 gegen die 
@@ -2922,7 +3425,7 @@ Bescheide des <<<FA Vorarlberg>>>  vom 14. Oktober 2016, 16. Oktober 2016, 22. O
 |---|---|
 | `FA Vorarlberg` | `FA Vorarlberg` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `deanon_BFG_TRAIN/128734.1`)
 
 ```
 ... die Beschwerde vom 28. Februar 2019 gegen die Bescheide 
@@ -2971,7 +3474,7 @@ Matches Finanzamt Steiermark Mitte.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/140307.1`)
 
 ```
 ... über die Beschwerde vom 30. März 2015 gegen den Bescheid des <<<Finanzamt Steiermark Mitte>>> 
@@ -2982,7 +3485,7 @@ vom 6. März 2015 betreffend Einkommensteuer 2013 zu Recht ...
 |---|---|
 | `Finanzamt Steiermark Mitte` | `Finanzamt Steiermark Mitte` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `deanon_BFG_TRAIN/145538.1`)
 
 ```
 ... gegen den zu Steuernummer 58-619/3976 
@@ -3031,7 +3534,7 @@ Matches FA Kirchdorf Perg Steyr
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/146342.1`)
 
 ```
 ... die Beschwerde vom 13. September 2021 gegen den Bescheid des 
@@ -3042,7 +3545,7 @@ Matches FA Kirchdorf Perg Steyr
 |---|---|
 | `FA Kirchdorf Perg Steyr` | `FA Kirchdorf Perg Steyr` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `deanon_BFG_TRAIN/149885.1`)
 
 ```
 ... über die Beschwerde vom 17. März 2016 gegen den Bescheid des <<<FA Kirchdorf Perg Steyr>>> 
@@ -3090,7 +3593,7 @@ Matches FA Deutschlandsberg Leibnitz Voitsberg
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/144400.1`)
 
 ```
 ... die Beschwerde vom 7. Februar 2024 
@@ -3102,7 +3605,7 @@ auf ...
 |---|---|
 | `FA Deutschlandsberg Leibnitz Voitsberg` | `FA Deutschlandsberg Leibnitz Voitsberg` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `deanon_BFG_TRAIN/133447.1`)
 
 ```
 ... Bescheides des 
@@ -3152,7 +3655,7 @@ Matches abbreviated tax authority 'FA Klagenfurt St. Veit Wolfsberg'
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/140299.1`)
 
 ```
 ... der Angelegenheit der Parteien 
@@ -3164,7 +3667,7 @@ Dagobert Hermkens (Bf) und <<<FA Klagenfurt St. Veit Wolfsberg>>>  als Amtsparte
 |---|---|
 | `FA Klagenfurt St. Veit Wolfsberg` | `FA Klagenfurt St. Veit Wolfsberg` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `deanon_BFG_TRAIN/139504.1`)
 
 ```
 ... die Beschwerde vom 21. Februar 2022 gegen die Bescheide des <<<FA Klagenfurt St. Veit Wolfsberg>>>  vom 
@@ -3212,7 +3715,7 @@ Matches abbreviated tax authority 'FA Schwechat Gerasdorf'
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/137180.1`)
 
 ```
 ... die Beschwerde vom 3. Oktober 2021 gegen die Bescheide 
@@ -3223,7 +3726,7 @@ des <<<FA Schwechat Gerasdorf>>>  jeweils vom 29. September 2021 betreffend Eink
 |---|---|
 | `FA Schwechat Gerasdorf` | `FA Schwechat Gerasdorf` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `deanon_BFG_TRAIN/134193.1`)
 
 ```
 ... die Beschwerde vom 12. November 2019 gegen den Bescheid des 
@@ -3271,7 +3774,7 @@ Matches abbreviated tax authorities 'FA' followed by Freistadt Rohrbach Urfahr.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/130261.1`)
 
 ```
 ... die Beschwerde vom 21. Jänner 2009 gegen die Bescheide des 
@@ -3282,7 +3785,7 @@ Matches abbreviated tax authorities 'FA' followed by Freistadt Rohrbach Urfahr.
 |---|---|
 | `FA Freistadt Rohrbach Urfahr` | `FA Freistadt Rohrbach Urfahr` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `deanon_BFG_TRAIN/140246.1`)
 
 ```
 ... die zur Steuernummer 93-042/2361  ergangenen Bescheide des 
@@ -3330,7 +3833,7 @@ Matches Finanzamt Salzburg-Land
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/135297.1`)
 
 ```
 ... die Beschwerde vom 29.7.2019 gegen den Bescheid des (nunmehr) <<<Finanzamt Salzburg-Land>>> 
@@ -3341,7 +3844,7 @@ vom 11. Juli 2019 betreffend Umsatzsteuer 2018 Steuernummer ...
 |---|---|
 | `Finanzamt Salzburg-Land` | `Finanzamt Salzburg-Land` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `deanon_BFG_TRAIN/134021.1`)
 
 ```
 ... über die Beschwerde vom 31. Juli 2018 gegen den Bescheid des <<<Finanzamt Salzburg-Land>>>  vom 
@@ -3359,11 +3862,12 @@ vom 11. Juli 2019 betreffend Umsatzsteuer 2018 Steuernummer ...
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/128785.1`)
 
 **False Positives:**
 
 ```
+... nicht zulässig. 
 Entscheidungsgründe 
 I. Verfahrensgang 
 Das <<<Finanzamt Salzburg-Land>>> hat gegenüber Lubomir Näger, Bakk. phil. (nachstehend mit „Bf“ ...
@@ -3373,8 +3877,10 @@ FP: `Finanzamt Salzburg-Land` (organisation)
 
 **✅ Gold Entities:**
 - `Lubomir Näger, Bakk. phil.` (person)
+- `Götzing 15, 4864 Altenberg, Österreich` (address)
+- `Lubomir Näger, Bakk. phil.` (person)
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `deanon_BFG_TRAIN/132165.1`)
 
 **False Positives:**
 
@@ -3427,7 +3933,7 @@ Matches abbreviated tax authority 'FA Salzburg-Land'
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/130961.1`)
 
 ```
 ... die Beschwerde vom 28. Februar 2017 gegen die Bescheide des 
@@ -3438,7 +3944,7 @@ Matches abbreviated tax authority 'FA Salzburg-Land'
 |---|---|
 | `FA Salzburg-Land` | `FA Salzburg-Land` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `deanon_BFG_TRAIN/134771.1`)
 
 ```
 ...
@@ -3457,7 +3963,7 @@ Steuernummer 67-659/6836, betreffend Festsetzung ...
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/132879.1`)
 
 **False Positives:**
 
@@ -3473,12 +3979,14 @@ FP: `FA Salzburg-Land` (organisation)
 - `Irene Lachmann` (person)
 - `Urbisweg 22, 4060 Sankt Isidor, Österreich` (address)
 - `28-430/1410` (tax_number)
+- `Urbisweg 22, 4060 Sankt Isidor, Österreich` (address)
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `deanon_BFG_TRAIN/131739.1`)
 
 **False Positives:**
 
 ```
+... fortgeführt. 
 In den gegenständlichen Beschwerdeverfahren, das vom <<<FA Salzburg-Land>>> dem BFG vorgelegt 
 worden waren, ist somit ab 01.01.2021 das ...
 ```
@@ -3486,6 +3994,10 @@ worden waren, ist somit ab 01.01.2021 das ...
 FP: `FA Salzburg-Land` (organisation)
 
 **✅ Gold Entities:**
+- `Mag. Merlin Zimmerlin` (person)
+- `OStR Gwendolin Gonschiorek` (person)
+- `Dürne 60, 3920 Hypolz, Österreich` (address)
+- `39-018/7880` (tax_number)
 
 </details>
 
@@ -3524,7 +4036,7 @@ Matches abbreviated tax authorities 'FA' followed by Amstetten Melk Scheibbs.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/146435.1`)
 
 ```
 ...
@@ -3573,7 +4085,7 @@ Matches full names of tax authorities 'Finanzamt' followed by Waldviertel.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/136302.1`)
 
 ```
 ... vertreten 
@@ -3592,7 +4104,7 @@ betreffend Zwangsstrafe nach § 16 WiEReG ...
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/144072.1`)
 
 **False Positives:**
 
@@ -3606,6 +4118,11 @@ Abweisungsbescheid ...
 FP: `Finanzamt Waldviertel` (organisation)
 
 **✅ Gold Entities:**
+- `Yelec Träubel` (person)
+- `Pelargonienweg 13, 4063 Rudelsdorf, Österreich` (address)
+- `Karin Steilen` (person)
+- `41-392/0377` (tax_number)
+- `4756010962` (social_security_number)
 
 </details>
 
@@ -3644,7 +4161,7 @@ Matches Finanzamt Oststeiermark
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/138594.1`)
 
 ```
 ... über die Beschwerde vom 1. August 2019 gegen den Bescheid des <<<Finanzamt Oststeiermark>>> 
@@ -3662,19 +4179,80 @@ vom 17. Juli 2019 betreffend Abweisung eines Antrages auf ...
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/134779.1`)
 
 **False Positives:**
 
 ```
-Daher wurde die Prüfung vom <<<Finanzamt 
-Oststeiermark>>> durchgeführt und nicht vom Finanzamt für den 9/18/19 Bezirk.
+... auf andere Finanzämter verteilt. Daher wurde die Prüfung vom <<<Finanzamt 
+Oststeiermark>>> durchgeführt und nicht vom Finanzamt für den 9/18/19 Bezirk. ...
 ```
 
 FP: `Finanzamt 
 Oststeiermark` (organisation)
 
 **✅ Gold Entities:**
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Wachauer Straße 3, 4941 Thaling, Österreich` (address)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
+- `Valentina Kulbarsch, Bakk. rer. nat.` (person)
 
 </details>
 
@@ -3704,7 +4282,7 @@ Matches full names of tax authorities 'Finanzamt Spittal Villach'.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 1 | 1 | 265 |
+| `organisation` | 1 | 1 | 268 |
 
 </details>
 
@@ -3713,7 +4291,7 @@ Matches full names of tax authorities 'Finanzamt Spittal Villach'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/142522.1`)
 
 ```
 ... Wirtschaftstreuhand Gesellschaft mbH, Straße2, Ort, 
@@ -3732,7 +4310,7 @@ November ...
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/142375.1`)
 
 **False Positives:**
 
@@ -3748,6 +4326,11 @@ FP: `Finanzamt Spittal Villach` (organisation)
 - `HR Manfred Leymann` (person)
 - `Thomas-Münzer-Gasse 19, 5133 Bitzlthal, Österreich` (address)
 - `65-622/1704` (tax_number)
+- `HR Manfred Leymann` (person)
+- `Wilhelmine Wadepful` (person)
+- `HR Manfred Leymann` (person)
+- `Wilhelmine Wadepful` (person)
+- `Wilhelmine Wadepful` (person)
 
 </details>
 
@@ -3786,7 +4369,7 @@ Matches Finanzamt Bruck Eisenstadt Oberwart
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/141064.1`)
 
 ```
 ... die zur Steuernummer 58-793/8116  ergangenen Bescheide des <<<Finanzamt Bruck Eisenstadt Oberwart>>>  vom 
@@ -3804,31 +4387,41 @@ Matches Finanzamt Bruck Eisenstadt Oberwart
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/137593.1`)
 
 **False Positives:**
 
 ```
 ... seinem sachlich und örtlich zuständigen Finanzamt (in dem 
-Fall <<<Finanzamt Bruck Eisenstadt Oberwart>>>) fristwahrend abgeben.
+Fall <<<Finanzamt Bruck Eisenstadt Oberwart>>>) fristwahrend abgeben. Soweit ihm Finanzonline 
+7 von 10
+Seite ...
 ```
 
 FP: `Finanzamt Bruck Eisenstadt Oberwart` (organisation)
 
 **✅ Gold Entities:**
+- `Ing. OMedR Albert Voulgaridou` (person)
+- `Patriasdorfer Straße 4, 9634 Katlingberg, Österreich` (address)
+- `07-334/2610` (tax_number)
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `deanon_BFG_TRAIN/130337.1`)
 
 **False Positives:**
 
 ```
-Das <<<Finanzamt Bruck Eisenstadt Oberwart>>> kann über Antrag eines abkommensberechtigten 
+... konzerninterne Personenüberlassung von Angestellten). 
+…….. 
+(3) Das <<<Finanzamt Bruck Eisenstadt Oberwart>>> kann über Antrag eines abkommensberechtigten 
 Arbeitskräfteüberlassungsunternehmens ...
 ```
 
 FP: `Finanzamt Bruck Eisenstadt Oberwart` (organisation)
 
 **✅ Gold Entities:**
+- `Angelika Breloer` (person)
+- `Reideben 15R, 5252 Rottersham, Österreich` (address)
+- `18-258/9998` (tax_number)
 
 </details>
 
@@ -3858,7 +4451,7 @@ Matches full names of tax authorities 'Finanzamt' followed by Graz-Stadt.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 1 | 3 | 542 |
+| `organisation` | 1 | 3 | 543 |
 
 </details>
 
@@ -3867,7 +4460,7 @@ Matches full names of tax authorities 'Finanzamt' followed by Graz-Stadt.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/129101.1`)
 
 ```
 ... die Beschwerde vom 22. Jänner 2018 gegen den Bescheid 
@@ -3885,7 +4478,7 @@ des <<<Finanzamt Graz-Stadt>>>  vom 21. Dezember 2017 betreffend Haftung uRecht 
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/135297.1`)
 
 **False Positives:**
 
@@ -3897,34 +4490,28 @@ Antrag auf Erstattung von Vorsteuern ...
 
 FP: `Finanzamt Graz-Stadt` (organisation)
 
-**✅ Gold Entities:**
-
-**Example 1** (doc_id: ``)
-
-**False Positives:**
-
 ```
 ... Anträge auf Erstattung von Vorsteuern zuständigen Behörde 
-(<<<Finanzamt Graz-Stadt>>>) eingebracht.
+(<<<Finanzamt Graz-Stadt>>>) eingebracht. 
+Weiters ist anzumerken, wenn die Behörde die ...
 ```
 
 FP: `Finanzamt Graz-Stadt` (organisation)
-
-**✅ Gold Entities:**
-
-**Example 2** (doc_id: ``)
-
-**False Positives:**
 
 ```
 ... 
 Erstattung mittels amtlich vorgeschriebenem Vordruck beim <<<Finanzamt Graz-Stadt>>> zu 
-beantragen.
+beantragen. Der Antrag ist binnen sechs Monaten nach Ablauf ...
 ```
 
 FP: `Finanzamt Graz-Stadt` (organisation)
 
 **✅ Gold Entities:**
+- `Dr.in Constanze Peest` (person)
+- `Linn Damianou` (person)
+- `Fürnbergstraße 3, 4730 Steinparz, Österreich` (address)
+- `Finanzamt Salzburg-Land` (organisation)
+- `39-261/4216` (tax_number)
 
 </details>
 
@@ -3963,7 +4550,7 @@ Matches Finanzamt Gmunden Vöcklabruck
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/129437.1`)
 
 ```
 ... die Beschwerde vom 24. Jänner 2019 gegen den Bescheid des 
@@ -3981,7 +4568,7 @@ Matches Finanzamt Gmunden Vöcklabruck
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/137593.1`)
 
 **False Positives:**
 
@@ -3993,12 +4580,6 @@ Finanzamt jedoch sachlich und örtlich unzuständig ...
 
 FP: `Finanzamt Gmunden Vöcklabruck` (organisation)
 
-**✅ Gold Entities:**
-
-**Example 1** (doc_id: ``)
-
-**False Positives:**
-
 ```
 ... Marxergasse 4, 4810 Gmunden“ und wurde 
 am selben Tag beim <<<Finanzamt Gmunden Vöcklabruck>>> in Gmunden persönlich durch Einwurf in 
@@ -4007,35 +4588,26 @@ die „ Postbox“ der ...
 
 FP: `Finanzamt Gmunden Vöcklabruck` (organisation)
 
-**✅ Gold Entities:**
-
-**Example 2** (doc_id: ``)
-
-**False Positives:**
-
 ```
 ... wurde der Vorlageantrag – zuständigkeitshalber - durch das <<<Finanzamt Gmunden 
-Vöcklabruck>>> an das „Finanzamt für Gebühren und Verkehrsst.
+Vöcklabruck>>> an das „Finanzamt für Gebühren und Verkehrsst. Marxerg. 4 1030 ...
 ```
 
 FP: `Finanzamt Gmunden 
 Vöcklabruck` (organisation)
 
-**✅ Gold Entities:**
-
-**Example 3** (doc_id: ``)
-
-**False Positives:**
-
 ```
 ... wird die Behörde im Adressfeld durch das weiterleitende Amt (<<<Finanzamt 
-Gmunden Vöcklabruck>>>) selbst mit „Finanzamt für Gebühren u Verkehrsst“ bezeichnet.
+Gmunden Vöcklabruck>>>) selbst mit „Finanzamt für Gebühren u Verkehrsst“ bezeichnet. ...
 ```
 
 FP: `Finanzamt 
 Gmunden Vöcklabruck` (organisation)
 
 **✅ Gold Entities:**
+- `Ing. OMedR Albert Voulgaridou` (person)
+- `Patriasdorfer Straße 4, 9634 Katlingberg, Österreich` (address)
+- `07-334/2610` (tax_number)
 
 </details>
 
@@ -4074,7 +4646,7 @@ Matches Finanzamt Braunau Ried Schärding.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/148572.1`)
 
 ```
 ... über die 
@@ -4093,25 +4665,25 @@ betreffend Feststellung von Einkünften gemäß ...
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/129865.1`)
 
 **False Positives:**
 
 ```
+...  
 Mit Beschwerdevorentscheidung vom 12. März 2014 wies das <<<Finanzamt Braunau Ried 
-Schärding>>> die Beschwerde als unbegründet ab.
+Schärding>>> die Beschwerde als unbegründet ab. 
+In der Begründung wurde ...
 ```
 
 FP: `Finanzamt Braunau Ried 
 Schärding` (organisation)
 
-**✅ Gold Entities:**
-
-**Example 1** (doc_id: ``)
-
-**False Positives:**
-
 ```
+... von 7 
+ 
+ 
+    
 Mit Vorlagebericht vom 16. Mai 2014 legte das <<<Finanzamt Braunau Ried Schärding>>> die 
 Beschwerde dem Bundesfinanzgericht zur Entscheidung vor ...
 ```
@@ -4119,8 +4691,10 @@ Beschwerde dem Bundesfinanzgericht zur Entscheidung vor ...
 FP: `Finanzamt Braunau Ried Schärding` (organisation)
 
 **✅ Gold Entities:**
+- `Beate Keberle` (person)
+- `Dillingweg 14, 9314 Weindorf, Österreich` (address)
 
-**Example 2** (doc_id: ``)
+**Example 1** (doc_id: `deanon_BFG_TRAIN/135168.1`)
 
 **False Positives:**
 
@@ -4159,32 +4733,59 @@ FP: `Finanzamt Braunau Ried Schärding` (organisation)
 **✅ Gold Entities:**
 - `RgR Alessia Nikoleizik` (person)
 - `Lassingrotte 6, 3970 Spital, Österreich` (address)
+- `37-460/7206` (tax_number)
 
-**Example 3** (doc_id: ``)
+**Example 2** (doc_id: `deanon_BFG_TRAIN/132582.1`)
 
 **False Positives:**
 
 ```
+... Gesamtüberschuss erzielt 
+werden sollte. 
 Am 9. April 2009 erließ das <<<Finanzamt Braunau Ried Schärding>>> einen Bescheid über die 
 Feststellung von Einkünften aus Vermietung ...
 ```
 
 FP: `Finanzamt Braunau Ried Schärding` (organisation)
 
-**✅ Gold Entities:**
-
-**Example 4** (doc_id: ``)
-
-**False Positives:**
-
 ```
+... Steuernummer gesondert 
+zugerechnet. 
 Am 9. November 2009 erließ das <<<Finanzamt Braunau Ried Schärding>>> einen Bescheid über die 
 Feststellung von Einkünften aus Vermietung ...
 ```
 
 FP: `Finanzamt Braunau Ried Schärding` (organisation)
 
+```
+... Steuernummer gesondert 
+zugerechnet. 
+Am 22. März 2011 erließ das <<<Finanzamt Braunau Ried Schärding>>> einen Bescheid über die 
+Feststellung von Einkünften aus Vermietung ...
+```
+
+FP: `Finanzamt Braunau Ried Schärding` (organisation)
+
+```
+... mit der Entwicklung des Yen Kredites. 
+Daraufhin erließ das <<<Finanzamt Braunau Ried Schärding>>> am 30. April 2013 eine als Bescheid 
+bezeichnete Erledigung ...
+```
+
+FP: `Finanzamt Braunau Ried Schärding` (organisation)
+
+```
+... wurden nicht gemacht.  
+Ebenfalls am 30. April 2013 erließ das <<<Finanzamt Braunau Ried Schärding>>> eine weitere 
+Erledigung und bezeichnete sie als Bescheid gemäß ...
+```
+
+FP: `Finanzamt Braunau Ried Schärding` (organisation)
+
 **✅ Gold Entities:**
+- `Daniela Darmstadt` (person)
+- `Niklasseeweg 131, 8345 Marktl, Österreich` (address)
+- `56-645/7503` (tax_number)
 
 </details>
 
@@ -4247,25 +4848,20 @@ Matches Bezirksgericht followed by location.
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/130744.1`)
 
 **False Positives:**
 
 ```
-Mit weiterem 
+... (AZ-2, AS 7). Mit weiterem 
 Beschluss vom 04.03.2005 ordnete das <<<Bezirksgericht Gericht>>> die Schätzung dieser 
 Liegenschaft durch den allgemein beeideten ...
 ```
 
 FP: `Bezirksgericht Gericht` (organisation)
 
-**✅ Gold Entities:**
-
-**Example 1** (doc_id: ``)
-
-**False Positives:**
-
 ```
+... der Übergabe fehlten. 
 Das Versteigerungsverfahren vor dem <<<Bezirksgericht Gericht>>> wurde infolge des vorgenannten 
 Vertrages mit Beschluss vom ...
 ```
@@ -4273,6 +4869,8 @@ Vertrages mit Beschluss vom ...
 FP: `Bezirksgericht Gericht` (organisation)
 
 **✅ Gold Entities:**
+- `Esmeralda Halbgebauer` (person)
+- `Akazienplatz 349, 9634 Rauth, Österreich` (address)
 
 </details>
 
@@ -4791,7 +5389,7 @@ Matches abbreviated tax authorities 'FA' followed by Landeck Reutte.
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/139043.1`)
 
 **False Positives:**
 
@@ -5300,37 +5898,36 @@ Matches full names of tax authorities 'Finanzamt' followed by Innsbruck.
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/135419.1`)
 
 **False Positives:**
 
 ```
 ... 2007 erfolgte nach Durchführung einer 
-Außenprüfung durch das <<<Finanzamt Innsbruck>>>.
+Außenprüfung durch das <<<Finanzamt Innsbruck>>>. Dagegen eingebrachte Beschwerden wurden 
+mit Erkenntnis des ...
 ```
 
 FP: `Finanzamt Innsbruck` (organisation)
 
 **✅ Gold Entities:**
+- `Hon.-Prof. Jasmin van der Beck` (person)
+- `OMedR Josefine Weyler` (person)
+- `Mariensiedlung 4, 6672 Haller, Österreich` (address)
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `deanon_BFG_TRAIN/129733.1`)
 
 **False Positives:**
 
 ```
 ... das Formular Beih 38 über Auftrag des Antragstellers 
-an das <<<Finanzamt Innsbruck>>> übermittelt.
+an das <<<Finanzamt Innsbruck>>> übermittelt. Mit diesem Formular wurde vom – lt den eigenen ...
 ```
 
 FP: `Finanzamt Innsbruck` (organisation)
 
-**✅ Gold Entities:**
-
-**Example 2** (doc_id: ``)
-
-**False Positives:**
-
 ```
+... Unterkunft gestellt. 
 Beweis: Arbeitgeberbescheinigung 
 Das <<<Finanzamt Innsbruck>>> hat den Antrag des Antragstellers vollständig zurückgewiesen ...
 ```
@@ -5338,8 +5935,11 @@ Das <<<Finanzamt Innsbruck>>> hat den Antrag des Antragstellers vollständig zur
 FP: `Finanzamt Innsbruck` (organisation)
 
 **✅ Gold Entities:**
+- `Hon.-Prof. Wilfried Wedral` (person)
+- `Ramona Goedeken` (person)
+- `Am Kittenberg 37, 4903 Schachen bei Wolfshütte, Österreich` (address)
 
-**Example 3** (doc_id: ``)
+**Example 2** (doc_id: `deanon_BFG_TRAIN/143413.1`)
 
 **False Positives:**
 
@@ -5357,7 +5957,7 @@ FP: `Finanzamt Innsbruck` (organisation)
 - `Frieda Aumund` (person)
 - `Kirchbergerberg 79, 4676 Rakesing, Österreich` (address)
 
-**Example 4** (doc_id: ``)
+**Example 3** (doc_id: `deanon_BFG_TRAIN/144381.1`)
 
 **False Positives:**
 
@@ -5369,12 +5969,54 @@ damaligen <<<Finanzamt Innsbruck>>> als Finanzstrafbehörde vom 18. Juni 2020, G
 
 FP: `Finanzamt Innsbruck` (organisation)
 
+```
+...
+Begründung 
+Mit Erkenntnis des Spruchsenates beim damaligen <<<Finanzamt Innsbruck>>> als Finanzstrafbehörde 
+als Organ des damaligen Finanzamtes ...
+```
+
+FP: `Finanzamt Innsbruck` (organisation)
+
 **✅ Gold Entities:**
 - `Esra Rashid` (person)
 - `Pannaschgasse 2O, 8643 Kindberg, Österreich` (address)
 - `Isabel Clements` (person)
 - `Isabel Clements` (person)
 - `Mona Tommeschat` (person)
+- `Isabel Clements` (person)
+- `Pannaschgasse 2O, 8643 Kindberg, Österreich` (address)
+- `Mona Tommeschat` (person)
+- `Pannaschgasse 2O, 8643 Kindberg, Österreich` (address)
+- `Isabel Clements` (person)
+- `Isabel Clements` (person)
+- `Mona Tommeschat` (person)
+- `Mona Tommeschat` (person)
+- `Isabel Clements` (person)
+- `Isabel Clements` (person)
+- `Mona Tommeschat` (person)
+- `Isabel Clements` (person)
+- `Mona Tommeschat` (person)
+
+**Example 4** (doc_id: `deanon_BFG_TRAIN/139348.1`)
+
+**False Positives:**
+
+```
+...
+Verfassungsgesetz (B-VG) nicht zulässig. 
+ 
+Entscheidungsgründe 
+Das <<<Finanzamt Innsbruck>>> legte die Beschwerde vom 17.09.2014 am 27.11.2015 dem 
+Bundesfinanzgericht ...
+```
+
+FP: `Finanzamt Innsbruck` (organisation)
+
+**✅ Gold Entities:**
+- `Zoltan Schäfers` (person)
+- `40-827/3404` (tax_number)
+- `88-486/1084` (tax_number)
 
 </details>
 
@@ -5413,37 +6055,26 @@ Matches full names of tax authorities 'Finanzamt' followed by Landeck Reutte.
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/132176.1`)
 
 **False Positives:**
 
 ```
-Nach Abschluss 
+... 2016 durchgeführt. Nach Abschluss 
 der Außenprüfung wurden vom <<<Finanzamt Landeck Reutte>>> am 26.4.2018 Haftungsbescheide 
 (Einkommensteuer gemäß § 99 ...
 ```
 
 FP: `Finanzamt Landeck Reutte` (organisation)
 
-**✅ Gold Entities:**
-
-**Example 1** (doc_id: ``)
-
-**False Positives:**
-
 ```
 ... gemäß § 99 
 EStG 1988) nach Durchführung einer GPLA-Prüfung vom <<<Finanzamt Landeck Reutte>>> erlassen 
-und gegen diese Bescheide Beschwerden erhoben.
+und gegen diese Bescheide Beschwerden erhoben. 
+Gemäß ...
 ```
 
 FP: `Finanzamt Landeck Reutte` (organisation)
-
-**✅ Gold Entities:**
-
-**Example 2** (doc_id: ``)
-
-**False Positives:**
 
 ```
 ... bedeutet zwar, dass ein Organ des Finanzamtes Innsbruck für das 
@@ -5453,6 +6084,10 @@ FP: `Finanzamt Landeck Reutte` (organisation)
 FP: `Finanzamt Landeck Reutte` (organisation)
 
 **✅ Gold Entities:**
+- `Dr. Helmut Swionteck` (person)
+- `MedR Univ.-Prof. Georg Schevalje` (person)
+- `Opitzgasse 59, 4752 Achleiten, Österreich` (address)
+- `Linus Schoeppe` (person)
 
 </details>
 
@@ -7339,52 +7974,37 @@ Matches Finanzamt Amstetten Melk Scheibbs.
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/139802.1`)
 
 **False Positives:**
 
 ```
+... 256,12 geltend. 
 Mit Bescheid vom 18. April 2018 setzt das <<<Finanzamt Amstetten Melk Scheibbs>>> die 
 Einkommensteuer für das Jahr 2017 unter Berücksichtigung ...
 ```
 
 FP: `Finanzamt Amstetten Melk Scheibbs` (organisation)
 
-**✅ Gold Entities:**
-
-**Example 1** (doc_id: ``)
-
-**False Positives:**
-
 ```
 ... Aufwendungen für Fachliteratur in 
 Höhe von EUR 256,12 wurden vom <<<Finanzamt Amstetten Melk Scheibbs>>> hingegen nicht 
-anerkannt.
+anerkannt. In der Bescheidbegründung wurde ...
 ```
 
 FP: `Finanzamt Amstetten Melk Scheibbs` (organisation)
 
-**✅ Gold Entities:**
-
-**Example 2** (doc_id: ``)
-
-**False Positives:**
-
 ```
+...
+zur Vertreterpauschale als Werbungskosten anzuerkennen. 
 Das <<<Finanzamt Amstetten Melk Scheibbs>>> gab diesem Antrag vom 26. April 2018 auf Aufhebung 
 des Einkommensteuerbescheids ...
 ```
 
 FP: `Finanzamt Amstetten Melk Scheibbs` (organisation)
 
-**✅ Gold Entities:**
-
-**Example 3** (doc_id: ``)
-
-**False Positives:**
-
 ```
-Im Rahmen dieser Festsetzung 
+... Jahr 2017. Im Rahmen dieser Festsetzung 
 berücksichtigte das <<<Finanzamt Amstetten Melk Scheibbs>>> die geltend gemachten Aus-, 
 Fortbildungs-, Umschulungskosten ...
 ```
@@ -7392,6 +8012,12 @@ Fortbildungs-, Umschulungskosten ...
 FP: `Finanzamt Amstetten Melk Scheibbs` (organisation)
 
 **✅ Gold Entities:**
+- `Roy Schreinert, LLB` (person)
+- `Laurschweg 4, 4143 Haitzendorf, Österreich` (address)
+- `13-441/2069` (tax_number)
+- `Heimwil Transport AG` (organisation)
+- `Heimwil Transport AG` (organisation)
+- `Heimwil Transport AG` (organisation)
 
 </details>
 
@@ -8798,20 +9424,27 @@ Matches Landesgericht followed by location.
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `deanon_BFG_TRAIN/141791.1`)
 
 **False Positives:**
 
 ```
-andererseits wurde beim <<<Landesgericht Ort>>> der 
+... Finanzstrafverfahrens mitzuteilen; andererseits wurde beim <<<Landesgericht Ort>>> der 
 dort gegen die Bf. geführte Akt zu abcd (wegen §§ 146, ...
 ```
 
 FP: `Landesgericht Ort` (organisation)
 
 **✅ Gold Entities:**
+- `Wilma Zikorski` (person)
+- `Matthäusgasse 7, 9620 Untermöschach, Österreich` (address)
+- `29-724/8832` (tax_number)
+- `Matthäusgasse 7, 9620 Untermöschach, Österreich` (address)
+- `Matthäusgasse 7, 9620 Untermöschach, Österreich` (address)
+- `Matthäusgasse 7, 9620 Untermöschach, Österreich` (address)
+- `Matthäusgasse 7, 9620 Untermöschach, Österreich` (address)
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `deanon_BFG_TRAIN/147147.1`)
 
 **False Positives:**
 
@@ -8823,26 +9456,33 @@ FP: `Landesgericht Ort` (organisation)
 FP: `Landesgericht Ort` (organisation)
 
 **✅ Gold Entities:**
+- `Dr.in Milena Nieselt` (person)
+- `OSR Karola Krebes` (person)
+- `OSR Karola Krebes` (person)
+- `OSR Karola Krebes` (person)
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `deanon_BFG_TRAIN/144314.1`)
 
 **False Positives:**
 
 ```
 ... aber auch die Gründung der BC GmbH, FN 99999, eingetragen im <<<Landesgericht 
-Leoben>>>, zu sehen.
+Leoben>>>, zu sehen. Während über die Ltd. keine Geschäfte abgewickelt ...
 ```
 
 FP: `Landesgericht 
 Leoben` (organisation)
 
 **✅ Gold Entities:**
+- `Priv.-Doz. Quirin Scholtiseck` (person)
+- `13-855/0399` (tax_number)
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `deanon_BFG_TRAIN/140246.1`)
 
 **False Positives:**
 
 ```
+... ZZ-Genussscheine orientiert hat. 
 Im Strafverfahren vor dem <<<Landesgericht Stadt>>>-A hat XY selbst ausgesagt, dass er glaubte 
 selbst über 12.000 ...
 ```
@@ -8850,6 +9490,15 @@ selbst über 12.000 ...
 FP: `Landesgericht Stadt` (organisation)
 
 **✅ Gold Entities:**
+- `Univ.-Prof.in Georgette Hausner` (person)
+- `Herta Armburster` (person)
+- `Sportclubweg 22, 3071 Röhrenbach, Österreich` (address)
+- `93-042/2361` (tax_number)
+- `FA Freistadt Rohrbach Urfahr` (organisation)
+- `Finanzamt Freistadt Rohrbach Urfahr` (organisation)
+- `Herta Armburster` (person)
+- `Herta Armburster` (person)
+- `Herta Armburster` (person)
 
 </details>
 
