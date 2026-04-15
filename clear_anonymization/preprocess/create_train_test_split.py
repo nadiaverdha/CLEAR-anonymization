@@ -1,4 +1,5 @@
 import argparse
+import re
 import json
 import os
 import random
@@ -67,6 +68,42 @@ def split_test(train_data, test_ratio=0.2, seed=42):
     return NERData(samples=train_samples), NERData(samples=test_samples)
 
 
+def save_conll(examples, path):
+    with open(path, "w", encoding="utf-8") as f:
+        for i, ex in enumerate(examples):
+            doc_id = (
+                ex["doc_id"] if isinstance(ex, dict) else getattr(ex, "doc_id", None)
+            )
+            if isinstance(ex, dict):
+                text = ex["text"]
+                entities = sorted(ex.get("entities", []), key=lambda e: e["start"])
+            else:
+                text = ex.text
+                entities = sorted(ex.labels, key=lambda e: e["start"])
+
+            f.write(f"# doc_id = {doc_id}\n")
+            # f.write(f"# text = {text}\n")
+
+            # ---------------------------
+            # Tokenization + tagging
+            # ---------------------------
+            for m in re.finditer(r"\S+", text):
+                start = m.start()
+                token = m.group()
+
+                for ent in entities:
+                    if ent["start"] <= start < ent["end"]:
+                        tag = (
+                            f"B-{ent['type']}"
+                            if start == ent["start"]
+                            else f"I-{ent['type']}"
+                        )
+                        f.write(f"{token} {tag}\n")
+                        break
+
+            f.write("\n")
+
+
 def main():
     parser = argparse.ArgumentParser(
         description=" Named Entity Recognition Benchmark for RuleChef"
@@ -106,6 +143,8 @@ def main():
     output_dir.mkdir(parents=True, exist_ok=True)
     (output_dir / "train.json").write_text(json.dumps(train_split.to_json(), indent=2))
     (output_dir / "test.json").write_text(json.dumps(test_split.to_json(), indent=2))
+    save_conll(train_split.samples, output_dir / "train.conll")
+    save_conll(test_split.samples, output_dir / "test.conll")
 
     print(
         f"Train: {len(train_split.samples)} samples, Test: {len(test_split.samples)} samples"
