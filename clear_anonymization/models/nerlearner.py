@@ -154,5 +154,4 @@ class NERLearner(RuleChef):
             max_iterations=max_iterations,
             coordinator=self.coordinator,
             iteration_callback=iteration_callback,
-            audit_interval=audit_interval,
         )
