@@ -24,7 +24,7 @@ ABBREV.extend(TITLES)
 ABBREV.extend(TOB)
 ABBREV.extend(MISC)
 ABBREV.extend(ROMAN_NUMBERING)
-ma
+
 # monkey patch for is_err
 SsplitFixer.is_err = _is_err_patch
 
@@ -128,7 +128,10 @@ def validate_docu_annotations(folder, samples: List[NERSample], verbose=False):
 
 
 def process_folder(
-    zip_path, folder_name, split, verbose, sentences: bool
+    zip_path,
+    folder_name,
+    split,
+    verbose,
 ) -> List[NERSample]:
     pages = []
     annotations = None
@@ -156,7 +159,13 @@ def process_folder(
         except:
             annotations = None
 
-    samples = create_sample(pages, annotations, split, sentences, doc_id=folder_name)
+    samples = create_sample(
+        folder_name,
+        pages,
+        annotations,
+        split,
+    )
+    # print(samples)
 
     validate_docu_annotations(folder_name, samples, verbose)
 
@@ -164,86 +173,42 @@ def process_folder(
 
 
 def create_sample(
+    doc_id,
     pages,
     annotations,
     split,
-    sentences: bool,
-    doc_id: str = None,
 ) -> List[NERSample]:
     full_text = "".join(pages)
-    page_offsets = []
 
+    page_offsets = []
     current_offset = 0
-    for i, p in enumerate(pages):
+    for p in pages:
         page_offsets.append(current_offset)
         current_offset += len(p)
 
     labels = []
-    if not annotations:
-        if sentences:
-            iter_func = (
-                iter_sentences_spacy(full_text)
-                if not TUW_NLP
-                else iter_sentences_stanza(full_text)
-            )
-            ner_samples_sents = [NERSample(sent.text, split, []) for sent in iter_func]
-            return [
-                NERSample(
-                    full_text, split, labels, doc_id=doc_id, sentences=ner_samples_sents
-                )
-            ]
-        return [NERSample(full_text, split, labels, doc_id=doc_id)]
-    else:
+    if annotations:
         for ann in annotations:
-            startpage = ann["startPage"]
-            endpage = ann["endPage"]
-
-            start = page_offsets[startpage] + ann["pageRelativeStart"]
-            end = page_offsets[endpage] + ann["pageRelativeEnd"]
-            actual = full_text[start:end]
+            start = page_offsets[ann["startPage"]] + ann["pageRelativeStart"]
+            end = page_offsets[ann["endPage"]] + ann["pageRelativeEnd"]
             labels.append(
-                {
-                    "text": ann["text"],
-                    "start": start,
-                    "end": end,
-                    "type": ann["label"],
-                }
-            )
-
-        # multiple annotations: [(start, end, type), ...]
-        # collect annotations per sentence and combine to NERSample
-        # remove sentence offset from start/end
-        converted_annos = []
-        for ann in annotations:
-            startpage = ann["startPage"]
-            endpage = ann["endPage"]
-
-            start = page_offsets[startpage] + ann["pageRelativeStart"]
-            end = page_offsets[endpage] + ann["pageRelativeEnd"]
-            actual = full_text[start:end]
-            converted_annos.append(
                 {"text": ann["text"], "start": start, "end": end, "type": ann["label"]}
             )
 
-        ner_samples_sents = []
-        iter_func = (
-            iter_sentences_spacy(full_text)
-            if not TUW_NLP
-            else iter_sentences_stanza(full_text)
+    iter_func = (
+        iter_sentences_stanza(full_text) if TUW_NLP else iter_sentences_spacy(full_text)
+    )
+    ner_samples_sents = [
+        NERSample(
+            f"{doc_id}_s{i}",
+            sent.text,
+            split,
+            collect_annos_in_sentence(labels, sent) if labels else [],
+            None,
         )
-        for sent in iter_func:
-            relevant_annos = collect_annos_in_sentence(converted_annos, sent)
-            # if len(relevant_annos) != 0:
-            ner_samples_sents.append(NERSample(sent.text, split, relevant_annos))
-        return (
-            [
-                NERSample(
-                    full_text, split, labels, doc_id=doc_id, sentences=ner_samples_sents
-                )
-            ]
-            if sentences
-            else [NERSample(full_text, split, labels, doc_id=doc_id)]
-        )
+        for i, sent in enumerate(iter_func)
+    ]
+    return [NERSample(doc_id, full_text, split, labels, sentences=ner_samples_sents)]
 
 
 def main():
@@ -272,21 +237,14 @@ def main():
         help="Whether to show detailed annotations check.",
     )
 
-    parser.add_argument(
-        "--sentences",
-        action="store_true",
-        default=True,
-        help="Whether to split the document text into sentences.",
-    )
     args = parser.parse_args()
     ner_data = NERData(samples=[])
     folders = list_folders(args.input_dir)
     for folder in folders:
+        # if folder == "deanon_BFG_TRAIN/100833.1":
         print(f"==== Document {folder} ====")
 
-        sample = process_folder(
-            args.input_dir, folder, args.split, args.verbose, args.sentences
-        )
+        sample = process_folder(args.input_dir, folder, args.split, args.verbose)
 
         ner_data.samples.extend(sample)
         print("-----------------")
