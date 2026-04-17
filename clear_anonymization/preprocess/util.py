@@ -14,7 +14,6 @@ def split_test(data, test_ratio=0.2, seed=42):
 
     class_counts = defaultdict(int)
     for sample in samples:
-        
         for l in sample.labels:
             print(l)
             class_counts[l["type"]] += 1
@@ -45,15 +44,12 @@ def split_test(data, test_ratio=0.2, seed=42):
 
     for sample in samples:
         sample_labels = [l["type"] for l in sample.labels]
-        print(sample_labels)
         if (
             len(test_samples) < max_test_size
             and sample_labels
             and any(test_filled[label] < test_quota[label] for label in sample_labels)
-        ):  
-            
+        ):
             test_samples.append(sample)
-            print(test_samples)
             for label in sample_labels:
                 test_filled[label] += 1
         else:

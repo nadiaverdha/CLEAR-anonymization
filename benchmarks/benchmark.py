@@ -24,7 +24,7 @@ from benchmarks.util import (
 from clear_anonymization.models.nerlearner import NERLearner
 from clear_anonymization.ner_datasets import (
     get_dataset_class_definitions,
-    load_ner_dataset,
+    load_ner_dataset_from_conll,
 )
 from clear_anonymization.preprocess.sampling import sample_few_shot
 
@@ -35,16 +35,20 @@ def run_benchmark(args):
 
     # 1. Load data
     print(f"Loading {args.dataset_name} dataset...")
-    train_all = load_ner_dataset(
+    train_all = load_ner_dataset_from_conll(
         args.train_dir,
     )
-    test_all = load_ner_dataset(
+    test_all = load_ner_dataset_from_conll(
         args.val_dir,
     )
 
     entity_names = set(get_dataset_class_definitions(args.dataset_name).keys())
 
-    test_data = [{"text": s.text, "entities": s.labels} for s in test_all.samples]
+    test_data = [
+        {"text": sent.text, "entities": sent.labels}
+        for s in test_all.samples
+        for sent in s.sentences
+    ]
     print(f"Information on the {args.dataset_name} data")
     print(
         f"Train: {len(train_all.samples)}, Test: {len(test_data)}, Classes: {len(entity_names)}"
@@ -52,17 +56,19 @@ def run_benchmark(args):
     print(f"{'─' * 70}")
 
     # 2. Sample data
+    train_data = [
+        {"text": sent.text, "entities": sent.labels}
+        for s in train_all.samples
+        for sent in s.sentences
+    ]
     classes = [c.strip() for c in args.classes.split(",")] if args.classes else None
     train_data, eval_data, counter_examples, selected_classes = sample_few_shot(
         train_data=train_all,
-        train_ratio=args.train_ratio,
         windows=args.windows,
         seed=args.seed,
         num_classes=args.num_classes,
         classes=classes,
         pool_size=args.pool_size,
-        shots_per_class=args.shots,
-        use_sentences=not args.not_use_sentences,
     )
 
     train_annotations = sum(len(ex["entities"]) for ex in train_data)
@@ -399,11 +405,6 @@ def main():
         "--skip-synthesis",
         action="store_true",
         help="Skip LLM synthesis and use the rules from --rules-json directly (go straight to refinement)",
-    )
-    parser.add_argument(
-        "--not-use-sentences",
-        action="store_true",
-        help="Use only annotated sentences for training",
     )
     parser.add_argument(
         "--config", type=str, help="Path to YAML config file", default=None

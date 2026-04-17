@@ -247,9 +247,10 @@ def main():
     folders = list_folders(args.input_dir)
     all_samples = []
     output_path = Path(args.output_dir)
+
     do = True
     if do:
-        for folder in folders[:5]:
+        for folder in folders:
             print(f"==== Document {folder} ====")
             sample = process_folder(args.input_dir, folder, args.split, args.verbose)
             all_samples.append(sample)
@@ -257,13 +258,16 @@ def main():
 
         if args.split == "train":
             train_data, test_data = split_test(data, test_ratio=0.2)
-            with open(output_path.with_name("test.conllu"), "w") as f:
-                f.write(test_data.to_conll())
-            with open(output_path.with_name("train_2.conllu"), "w") as f:
-                f.write(train_data.to_conll())
+            test_path = output_path / "test.conllu"
+            train_path = output_path / "train.conllu"
+            print("Writing to:", test_path)
+            print("Writing to:", train_path)
+            test_path.write_text(test_data.to_conll())
+            train_path.write_text(train_data.to_conll())
         else:
-            with open(output_path.with_name("val.conllu"), "w") as f:
-                f.write(data.to_conll())
+            val_path = output_path / "val.conllu"
+            val_path.write_text(data.to_conll())
+
 
 if __name__ == "__main__":
     main()

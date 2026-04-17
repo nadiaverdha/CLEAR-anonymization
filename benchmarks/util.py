@@ -93,7 +93,11 @@ def make_dataset(dataset_name, data, task):
         dataset.examples.append(
             Example(
                 id=str(uuid.uuid4())[:8],
-                input={"text": ex["text"], "sentences": ex.get("sentences", [])},
+                input={
+                    "text": ex["text"],
+                    "sentences": ex.get("sentences", []),
+                    "doc_id": ex.get("doc_id", ""),
+                },
                 expected_output={"entities": ex["entities"]},
                 source="benchmark",
             )

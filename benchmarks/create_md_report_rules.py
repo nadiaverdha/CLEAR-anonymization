@@ -28,7 +28,8 @@ from benchmarks.util import BenchmarkRun, make_dataset
 from clear_anonymization.models.nerlearner import NERLearner, NEROutput
 from clear_anonymization.ner_datasets import (
     get_dataset_class_definitions,
-    load_ner_dataset,
+    load_ner_dataset_from_conll,
+    load_ner_dataset_from_json,
 )
 from clear_anonymization.ner_datasets.ner_dataset import NERData
 from clear_anonymization.preprocess.sampling import sample_few_shot
@@ -232,7 +233,8 @@ def _write_sample_blocks(f, metric, top_n: int):
                 render_fn(i, sample)
 
     def render_hit(i, sample):
-        f.write(f"**Example {i}**\n\n")
+        doc_id = sample.input.get("doc_id", "")
+        f.write(f"**Example {i}** (doc_id: `{doc_id}`)\n\n")
         text = sample.input["text"]
 
         for pred, gold in sample.matched_pairs[:top_n]:
@@ -249,7 +251,8 @@ def _write_sample_blocks(f, metric, top_n: int):
         )
 
     def render_fp(i, sample):
-        f.write(f"**Example {i}**\n\n")
+        doc_id = sample.input.get("doc_id", "")
+        f.write(f"**Example {i}** (doc_id: `{doc_id}`)\n\n")
         text = sample.input["text"]
 
         f.write("**False Positives:**\n\n")
@@ -422,6 +425,7 @@ def main():
     test_data_raw = load_ner_dataset(
         args.test_dir,
     )
+
     test_data = [
         {
             "text": s.text,
