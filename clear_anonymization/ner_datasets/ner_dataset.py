@@ -5,6 +5,8 @@ from stanza.models.common.doc import Document
 from stanza.utils.conll import CoNLL
 from torch.utils.data import Dataset
 
+from clear_anonymization.ner_datasets.util import recreate_sent_labels_from_tokens
+
 
 @dataclass
 class NERSentence:
@@ -37,6 +39,7 @@ class NERSentence:
         sent_id = None
         text = None
         tokens = []
+
         for line in lines:
             if line.startswith("# sent_id = "):
                 sent_id = line.removeprefix("# sent_id = ")
@@ -44,25 +47,37 @@ class NERSentence:
                 text = line.removeprefix("# text = ")
             elif line and not line.startswith("#"):
                 parts = line.split("\t")
+                if len(parts) < 10:
+                    continue
+
                 tokens.append(
                     {
-                        "text": parts[0],
-                        "lemma": parts[1],
-                        "upos": parts[2],
-                        "xpos": parts[3],
-                        "tag": parts[4],
+                        "id": parts[0],
+                        "text": parts[1],
+                        "lemma": parts[2],
+                        "upos": parts[3],
+                        "xpos": parts[4],
+                        "feats": parts[5],
+                        "misc": parts[9],
                     }
                 )
-        return cls(sent_id=sent_id, text=text, tokens=tokens)
 
-    def to_conll(self) -> str:
-        doc = Document([self.tokens])
-        doc.sentences[0]._comments = [
-            f"# sent_id = {self.sent_id}",
-            f"# text = {self.text}",
-        ]
-        sent_lines = CoNLL.doc2conll(doc)[0]
-        return "\n".join(sent_lines) + "\n"
+        labels = recreate_sent_labels_from_tokens(tokens, text)
+        return cls(sent_id=sent_id, text=text, tokens=tokens, labels=labels)
+
+    def to_conll_token(self, tok):
+        return {
+            "id": tok["id"],
+            "text": tok["text"],
+            "lemma": tok.get("lemma", "_"),
+            "upos": tok.get("upos", "_"),
+            "xpos": tok.get("xpos", "_"),
+            "feats": tok.get("feats", "_") or "_",
+            "head": 0,
+            "deprel": "_",
+            "deps": "_",
+            "misc": tok.get("misc", "_"),
+        }
 
 
 @dataclass
@@ -116,12 +131,18 @@ class NERSample:
         return cls(doc_id=doc_id, split=split, text="", labels=[], sentences=sentences)
 
     def to_conll(self) -> str:
-        doc = Document([s.tokens for s in self.sentences])
+        doc = Document(
+            [[s.to_conll_token(tok) for tok in s.tokens] for s in self.sentences]
+        )
+
         for i, (sent, ner_sent) in enumerate(zip(doc.sentences, self.sentences)):
             comments = []
             if i == 0:
                 comments += [f"# doc_id = {self.doc_id}", f"# split = {self.split}"]
-            comments += [f"# sent_id = {ner_sent.sent_id}", f"# text = {ner_sent.text}"]
+            comments += [
+                f"# sent_id = {ner_sent.sent_id}",
+                f"# text = {ner_sent.text.replace(chr(10), ' ')}",
+            ]
             sent._comments = comments
         lines = []
         for sent_lines in CoNLL.doc2conll(doc):

@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-from clear_anonymization.ner_datasets.ner_dataset import NERData
+from clear_anonymization.ner_datasets.ner_dataset import NERData, NERSample, NERSentence
 
 DATASET_CLASS_DEFINITIONS = {
     "ler": {
@@ -60,10 +60,18 @@ def get_dataset_class_definitions(dataset: str) -> dict[str, str]:
     return DATASET_CLASS_DEFINITIONS[dataset]
 
 
-def load_ner_dataset(
+def load_ner_dataset_from_json(
     data_path: Path,
 ) -> NERData:
     return NERData.from_json(json.loads(Path(data_path).read_text()))
+
+
+def load_ner_dataset_from_conll(
+    data_path: Path,
+) -> NERData:
+    with open(data_path) as f:
+        data = NERData.from_conll(f.read())
+    return data
 
 
 __all__ = [
