@@ -22,7 +22,6 @@ from clear_anonymization.preprocess.util import (
     TOB,
     _is_err_patch,
     preprocess_text,
-    split_test,
     validate_docu_annotations,
     validate_sentence_annotations,
 )
@@ -164,7 +163,7 @@ def iter_sentences_spacy(full_text: str):
         start = end
 
 
-def process_folder(zip_path, folder_name, split, verbose):
+def process_folder(zip_path, folder_name, split, error_file, verbose):
     pages = []
     annotations = None
     with zipfile.ZipFile(zip_path, "r") as archive:
@@ -187,14 +186,14 @@ def process_folder(zip_path, folder_name, split, verbose):
             annotations = None
 
     annotated, labels, full_text = create_sample(
-        folder_name, pages, annotations, split, verbose
+        folder_name, pages, annotations, split, error_file, verbose
     )
     # validate_docu_annotations(full_text, labels, verbose)
 
     return annotated
 
 
-def create_sample(doc_id, pages, annotations, split, verbose):
+def create_sample(doc_id, pages, annotations, split, error_file, verbose):
     full_text = "".join(pages)
 
     page_offsets = []
@@ -213,7 +212,7 @@ def create_sample(doc_id, pages, annotations, split, verbose):
             )
 
     annotated = annotate_sentence(full_text, labels, doc_id, split)
-    validate_sentence_annotations(annotated, verbose)
+    validate_sentence_annotations(annotated, error_file, verbose)
     return annotated, labels, full_text
 
 
@@ -222,7 +221,8 @@ def main():
     parser.add_argument(
         "--input-path",
         type=str,
-        help="Path where to load the zip file from",
+        nargs="+",
+        help="Path(s) to zip file(s)",
     )
 
     parser.add_argument(
@@ -244,17 +244,42 @@ def main():
     )
 
     args = parser.parse_args()
-    folders = list_folders(args.input_path)
     all_samples = []
     output_path = Path(args.output_path)
+    progress_path = output_path.with_suffix(".progress")
+    error_path = output_path.with_suffix(".errors")
 
-    for folder in folders:
-        print(f"==== Document {folder} ====")
-        sample = process_folder(args.input_dir, folder, args.split, args.verbose)
-        all_samples.append(sample)
-    data = NERData(all_samples)
-    print("Writing to:", output_path)
-    output_path.write_text(data.to_conll())
+    processed = set()
+    if progress_path.exists():
+        with open(progress_path) as f:
+            processed = set(line.strip() for line in f)
+
+    print(f"Resuming: {len(processed)} already processed")
+
+    with open(output_path, "a", encoding="utf-8") as out_f, open(
+        progress_path, "a", encoding="utf-8"
+    ) as prog_f:
+        for zip_path in args.input_path:
+            folders = list_folders(zip_path)
+
+            for i, folder in enumerate(folders):
+                if folder in processed:
+                    continue
+
+                print(f"==== {i}/{len(folders)} Document {folder} ====")
+
+                try:
+                    sample = process_folder(
+                        zip_path, folder, args.split, error_path, args.verbose
+                    )
+                    out_f.write(sample.to_conll())
+                    out_f.write("\n")
+                    prog_f.write(folder + "\n")
+                    prog_f.flush()
+                    out_f.flush()
+                except Exception as e:
+                    print(f"❌ Failed on {folder}: {e}")
+                    continue
 
 
 if __name__ == "__main__":
