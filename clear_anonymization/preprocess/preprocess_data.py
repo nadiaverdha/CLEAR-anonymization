@@ -220,13 +220,13 @@ def create_sample(doc_id, pages, annotations, split, verbose):
 def main():
     parser = argparse.ArgumentParser(description="Load a dataset from M2N zip file ")
     parser.add_argument(
-        "--input_dir",
+        "--input-path",
         type=str,
         help="Path where to load the zip file from",
     )
 
     parser.add_argument(
-        "--output_dir",
+        "--output-path",
         type=str,
         help="Path where to save the JSON file",
     )
@@ -244,29 +244,17 @@ def main():
     )
 
     args = parser.parse_args()
-    folders = list_folders(args.input_dir)
+    folders = list_folders(args.input_path)
     all_samples = []
-    output_path = Path(args.output_dir)
+    output_path = Path(args.output_path)
 
-    do = True
-    if do:
-        for folder in folders:
-            print(f"==== Document {folder} ====")
-            sample = process_folder(args.input_dir, folder, args.split, args.verbose)
-            all_samples.append(sample)
-        data = NERData(all_samples)
-
-        if args.split == "train":
-            train_data, test_data = split_test(data, test_ratio=0.2)
-            test_path = output_path / "test.conllu"
-            train_path = output_path / "train.conllu"
-            print("Writing to:", test_path)
-            print("Writing to:", train_path)
-            test_path.write_text(test_data.to_conll())
-            train_path.write_text(train_data.to_conll())
-        else:
-            val_path = output_path / "val.conllu"
-            val_path.write_text(data.to_conll())
+    for folder in folders:
+        print(f"==== Document {folder} ====")
+        sample = process_folder(args.input_dir, folder, args.split, args.verbose)
+        all_samples.append(sample)
+    data = NERData(all_samples)
+    print("Writing to:", output_path)
+    output_path.write_text(data.to_conll())
 
 
 if __name__ == "__main__":
