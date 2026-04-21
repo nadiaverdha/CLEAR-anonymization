@@ -1,6 +1,6 @@
 # Rule Evaluation Report — Qwen/Qwen3.5-35B-A3B
 
-Generated on: 2026-04-21T13:50:45.661444
+Generated on: 2026-04-21T14:07:55.032742
 
 ---
 
@@ -17,12 +17,12 @@ Results can be reproduced by running this command:
 | Train ratio | 0.80 |
 | Validation ratio | 0.20 |
 | Shots per class | None |
-| Training examples | 2327 |
-| Validation examples | 218 |
-| Test examples | 12077 |
-| Train annotations | 3103 |
-| Validation annotations | 259 |
-| Test annotations | 1993 |
+| Training documents | 385 |
+| Validation documents | 97 |
+| Test documents | 108 |
+| Train sentences | 2327 |
+| Validation sentences | 218 |
+| Test sentences | 12077 |
 | Model | Qwen/Qwen3.5-35B-A3B |
 | Max rules | 30 |
 | Max samples in prompt | 50 |
