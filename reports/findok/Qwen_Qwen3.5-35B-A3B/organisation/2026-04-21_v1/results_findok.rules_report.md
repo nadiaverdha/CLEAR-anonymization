@@ -1,6 +1,6 @@
 # Rule Evaluation Report — Qwen/Qwen3.5-35B-A3B
 
-Generated on: 2026-04-21T12:27:45.722364
+Generated on: 2026-04-21T13:50:45.661444
 
 ---
 
@@ -22,7 +22,7 @@ Results can be reproduced by running this command:
 | Test examples | 12077 |
 | Train annotations | 3103 |
 | Validation annotations | 259 |
-| Test annotations | 3323 |
+| Test annotations | 1993 |
 | Model | Qwen/Qwen3.5-35B-A3B |
 | Max rules | 30 |
 | Max samples in prompt | 50 |
@@ -51,13 +51,13 @@ Results can be reproduced by running this command:
 
 | Metric | Value |
 |---|---|
-| Accuracy (exact match) | 90.5% |
-| True Positives | 1381 |
-| False Positives | 1121 |
-| Micro Precision | 55.2% |
-| Micro Recall | 79.2% |
-| Micro F1 | 65.1% |
-| Macro F1 | 65.1% |
+| Accuracy (exact match) | 90.4% |
+| True Positives | 1379 |
+| False Positives | 1123 |
+| Micro Precision | 55.1% |
+| Micro Recall | 79.1% |
+| Micro F1 | 65.0% |
+| Macro F1 | 65.0% |
 
 </details>
 
@@ -398,7 +398,7 @@ Matches the specific entity 'Houdek Maschinenbau'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_17`)
 
 ```
 ... Verfahren wie folgt:   a) Sachverhalt und Verfahrensablauf bei der <<<Houdek Maschinenbau>>>, Str.Nr.
@@ -408,7 +408,7 @@ Matches the specific entity 'Houdek Maschinenbau'.
 |---|---|
 | `Houdek Maschinenbau` | `Houdek Maschinenbau` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_18`)
 
 ```
 95-002/7970, BV 24:  Das Unternehmen <<<Houdek Maschinenbau>>>  hat im Jahr 2007 ein Vermögen von 84 Tankstellen besessen.
@@ -418,7 +418,7 @@ Matches the specific entity 'Houdek Maschinenbau'.
 |---|---|
 | `Houdek Maschinenbau` | `Houdek Maschinenbau` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_20`)
 
 ```
 ... die Nachfolgejahre wurden folgende  Umgründungsschritte bei <<<Houdek Maschinenbau>>>  durchgeführt:  Auf Grundlage des Spaltungs- und Übernahmsvertrages ...
@@ -433,7 +433,7 @@ Matches the specific entity 'Houdek Maschinenbau'.
 | `Houdek Maschinenbau` | `Houdek Maschinenbau` |
 | `Houdek Maschinenbau` | `Houdek Maschinenbau` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_22`)
 
 ```
 Zum Stichtag 31.12.2008 ist die <<<Houdek Maschinenbau>>>  mit dem verbliebenen Vermögen entsprechend  dem Umgründungsplan ...
@@ -443,7 +443,7 @@ Zum Stichtag 31.12.2008 ist die <<<Houdek Maschinenbau>>>  mit dem verbliebenen 
 |---|---|
 | `Houdek Maschinenbau` | `Houdek Maschinenbau` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_25`)
 
 ```
 ... Umgründungsschritte (partielle)  Gesamtrechtsnachfolger der <<<Houdek Maschinenbau>>>, insoweit das auch nach der Abspaltung zum  31.12.2007 bei ...
@@ -495,7 +495,7 @@ Matches the abbreviation 'FAÖ' (Finanzamt Österreich).
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/149809.1`) ( sent_id: `findok-manually-annotated_TRAIN/149809.1_22`)
 
 ```
 ... Beschwerdeführer, sein Steuerberater, ein Vertreter des Fachbereiches des  <<<FAÖ>>> sowie ein Mitarbeiter der Abgabensicherung geladen wurden.
@@ -505,7 +505,7 @@ Matches the abbreviation 'FAÖ' (Finanzamt Österreich).
 |---|---|
 | `FAÖ` | `FAÖ` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149809.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149809.1_22`)
 
 ```
 ... Beschwerdeführer, sein Steuerberater, ein Vertreter des Fachbereiches des  <<<FAÖ>>> sowie ein Mitarbeiter der Abgabensicherung geladen wurden.
@@ -515,7 +515,7 @@ Matches the abbreviation 'FAÖ' (Finanzamt Österreich).
 |---|---|
 | `FAÖ` | `FAÖ` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated_TRAIN/149505.1`) ( sent_id: `findok-manually-annotated_TRAIN/149505.1_4`)
 
 ```
 ... strittig, ob das Finanzamt Österreich (in der Folge  kurz: <<<FAÖ>>>) zur Erlassung der Beschwerdevorentscheidungen im Zusammenhang ...
@@ -525,7 +525,7 @@ Matches the abbreviation 'FAÖ' (Finanzamt Österreich).
 |---|---|
 | `FAÖ` | `FAÖ` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated_TRAIN/149505.1`) ( sent_id: `findok-manually-annotated_TRAIN/149505.1_11`)
 
 ```
 ... 11.7.2025 teilte das FAG der Bf. mit, dass die Steuernummer auf das <<<FAÖ>>>  übergegangen sei.
@@ -535,7 +535,7 @@ Matches the abbreviation 'FAÖ' (Finanzamt Österreich).
 |---|---|
 | `FAÖ` | `FAÖ` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated_TRAIN/149505.1`) ( sent_id: `findok-manually-annotated_TRAIN/149505.1_12`)
 
 ```
 Mit Beschwerdevorentscheidungen vom 17.7.2025 wies das <<<FAÖ>>> die Beschwerden sowohl  gegen den Umsatzsteuerbescheid 2022 ...
@@ -582,7 +582,7 @@ Matches the abbreviation 'ÖGK' (Österreichische Gesundheitskasse).
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1_13`)
 
 ```
 ... diese Bescheide Herrn F persönlich zugestellt würden, da die <<<ÖGK>>> die SV-Abgaben, die  sich aus derselben Prüfung ergeben hätten, ...
@@ -592,7 +592,7 @@ Matches the abbreviation 'ÖGK' (Österreichische Gesundheitskasse).
 |---|---|
 | `ÖGK` | `ÖGK` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1_28`)
 
 ```
 ... die oben  angeführten Abgaben - entsprechend dem Vorgehen der <<<ÖGK>>> - ebenfalls der Gmbh  vorgeschrieben worden, wären diese Abgaben ...
@@ -602,7 +602,7 @@ Matches the abbreviation 'ÖGK' (Österreichische Gesundheitskasse).
 |---|---|
 | `ÖGK` | `ÖGK` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1_74`)
 
 ```
 ... Zuge derselben GPLB angefallen seien,  seien diese seitens der <<<ÖGK>>> der GmbH vorgeschrieben worden, sodass Herr F nicht damit  ...
@@ -612,7 +612,7 @@ Matches the abbreviation 'ÖGK' (Österreichische Gesundheitskasse).
 |---|---|
 | `ÖGK` | `ÖGK` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1_214`)
 
 ```
 ... in die Databox des EU gerichtet  wurden, die Bescheide der <<<ÖGK>>> allerdings an die GmbH übermittelt wurden.
@@ -622,7 +622,7 @@ Matches the abbreviation 'ÖGK' (Österreichische Gesundheitskasse).
 |---|---|
 | `ÖGK` | `ÖGK` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated_TRAIN/149808.1_13`)
 
 ```
 ... diese Bescheide Herrn F persönlich zugestellt würden, da die <<<ÖGK>>> die SV-Abgaben, die  sich aus derselben Prüfung ergeben hätten, ...
@@ -669,7 +669,7 @@ Matches 'Roelfsen Versicherung'
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_2`)
 
 ```
 Kff. Sandra Khartchenko  als Rechtsnachfolger der <<<Roelfsen Versicherung>>>, Schölmlahn 46, 6380 St. Johann in Tirol, Österreich, vertreten ...
@@ -679,7 +679,7 @@ Kff. Sandra Khartchenko  als Rechtsnachfolger der <<<Roelfsen Versicherung>>>, S
 |---|---|
 | `Roelfsen Versicherung` | `Roelfsen Versicherung` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_7`)
 
 ```
 Kff. Sandra Khartchenko  als RNF der <<<Roelfsen Versicherung>>>  Gruppenträger 02-013/5959 Magdalena Diegmueller, LLB  als ...
@@ -689,7 +689,7 @@ Kff. Sandra Khartchenko  als RNF der <<<Roelfsen Versicherung>>>  Gruppenträger
 |---|---|
 | `Roelfsen Versicherung` | `Roelfsen Versicherung` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_10`)
 
 ```
 ... betreffend Feststellungsbescheid Gruppenmitglied 2010 erlassen (<<<Roelfsen Versicherung>>>  St. Nr. 85-900/3590) und das Verfahren wiederaufgenommen.
@@ -699,7 +699,7 @@ Kff. Sandra Khartchenko  als RNF der <<<Roelfsen Versicherung>>>  Gruppenträger
 |---|---|
 | `Roelfsen Versicherung` | `Roelfsen Versicherung` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_11`)
 
 ```
 Bescheidadressaten waren  sowohl das Gruppenmitglied <<<Roelfsen Versicherung>>>  als auch der Gruppenträger Lubomir Merschmeyer  (02-013/5959).
@@ -709,7 +709,7 @@ Bescheidadressaten waren  sowohl das Gruppenmitglied <<<Roelfsen Versicherung>>>
 |---|---|
 | `Roelfsen Versicherung` | `Roelfsen Versicherung` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_24`)
 
 ```
 ... Generalversammlungsbeschlusses vom  19.08.2009 eine Abspaltung zur Aufnahme in die <<<Roelfsen Versicherung>>>  durch Übertragung des  gesamten Betriebes (mit Ausnahme der ...
@@ -756,7 +756,7 @@ Matches the abbreviation 'FAG' (Finanzamt für Großbetriebe).
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/149505.1`) ( sent_id: `findok-manually-annotated_TRAIN/149505.1_4`)
 
 ```
 ... Zusammenhang mit vom  Finanzamt für Großbetriebe (in der Folge kurz: <<<FAG>>>) erlassenen Bescheiden zuständig ist.
@@ -766,7 +766,7 @@ Matches the abbreviation 'FAG' (Finanzamt für Großbetriebe).
 |---|---|
 | `FAG` | `FAG` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated_TRAIN/149505.1`) ( sent_id: `findok-manually-annotated_TRAIN/149505.1_5`)
 
 ```
 Das <<<FAG>>> erließ am 21.8.2024 einen Bescheid über die Aufhebung des Umsatzsteuerbescheides ...
@@ -776,7 +776,7 @@ Das <<<FAG>>> erließ am 21.8.2024 einen Bescheid über die Aufhebung des Umsatz
 |---|---|
 | `FAG` | `FAG` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated_TRAIN/149505.1`) ( sent_id: `findok-manually-annotated_TRAIN/149505.1_7`)
 
 ```
 Am 5.11.2024 hob das <<<FAG>>> den Umsatzsteuerbescheid 2022 vom 21.8.2024  erneut nach § ...
@@ -786,7 +786,7 @@ Am 5.11.2024 hob das <<<FAG>>> den Umsatzsteuerbescheid 2022 vom 21.8.2024  erne
 |---|---|
 | `FAG` | `FAG` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated_TRAIN/149505.1`) ( sent_id: `findok-manually-annotated_TRAIN/149505.1_8`)
 
 ```
 Weiters hob das <<<FAG>>> am  26.5.2025 den Umsatzsteuerbescheid des Jahres 2023 gemäß ...
@@ -796,7 +796,7 @@ Weiters hob das <<<FAG>>> am  26.5.2025 den Umsatzsteuerbescheid des Jahres 2023
 |---|---|
 | `FAG` | `FAG` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated_TRAIN/149505.1`) ( sent_id: `findok-manually-annotated_TRAIN/149505.1_10`)
 
 ```
 ... wurde von der Bf. am 16.6.2025 Beschwerde, eingebracht beim <<<FAG>>>, erhoben.
@@ -850,7 +850,7 @@ Matches 'Bundesfinanzgericht' and its genitive forms 'Bundesfinanzgerichtes' and
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated_TRAIN/149808.1_1`)
 
 ```
 IM NAMEN DER REPUBLI K  Das <<<Bundesfinanzgericht>>> hat durch den Richter Hon.-Prof. Edwin Brunnarius  in der Beschwerdesache ...
@@ -860,7 +860,7 @@ IM NAMEN DER REPUBLI K  Das <<<Bundesfinanzgericht>>> hat durch den Richter Hon.
 |---|---|
 | `Bundesfinanzgericht` | `Bundesfinanzgericht` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated_TRAIN/149808.1_210`)
 
 ```
 II. Das <<<Bundesfinanzgericht>>> hat erwogen:  1. Sachverhalt   Im Antrag vom 7.6.2022 beantragte ...
@@ -870,7 +870,7 @@ II. Das <<<Bundesfinanzgericht>>> hat erwogen:  1. Sachverhalt   Im Antrag vom 7
 |---|---|
 | `Bundesfinanzgericht` | `Bundesfinanzgericht` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated_TRAIN/149808.1_226`)
 
 ```
 Beweiswürdigung  Das <<<Bundesfinanzgericht>>> geht in freier Beweiswürdigung vom oben geschilderten Sachverhalt ...
@@ -880,7 +880,7 @@ Beweiswürdigung  Das <<<Bundesfinanzgericht>>> geht in freier Beweiswürdigung 
 |---|---|
 | `Bundesfinanzgericht` | `Bundesfinanzgericht` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated_TRAIN/149808.1_227`)
 
 ```
 Ergänzend wird festgehalten, dass das <<<Bundesfinanzgericht>>> die  Aussage, wonach die in der Erstaussage im Zuge der GPLA-Prüfung ...
@@ -890,7 +890,7 @@ Ergänzend wird festgehalten, dass das <<<Bundesfinanzgericht>>> die  Aussage, w
 |---|---|
 | `Bundesfinanzgericht` | `Bundesfinanzgericht` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated_TRAIN/149808.1_236`)
 
 ```
 Grundsätzlich schließt sich das <<<Bundesfinanzgericht>>> den Ausführungen in der BVE an,  ergänzend wird betont, dass ...
@@ -907,7 +907,7 @@ Grundsätzlich schließt sich das <<<Bundesfinanzgericht>>> den Ausführungen in
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1_1`)
 
 **False Positives:**
 
@@ -926,7 +926,7 @@ FP: `Bundesfinanzgericht` (organisation)
 - `FA Waldviertel` (organisation)
 - `94-628/5503` (tax_number)
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1_210`)
 
 **False Positives:**
 
@@ -938,7 +938,7 @@ FP: `Bundesfinanzgericht` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1_226`)
 
 **False Positives:**
 
@@ -950,7 +950,7 @@ FP: `Bundesfinanzgericht` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1_227`)
 
 **False Positives:**
 
@@ -963,7 +963,7 @@ FP: `Bundesfinanzgericht` (organisation)
 **✅ Gold Entities:**
 - `USA` (country)
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1_236`)
 
 **False Positives:**
 
@@ -1012,7 +1012,7 @@ Matches 'Verwaltungsgerichtshof' and its genitive forms 'Verwaltungsgerichtshofe
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated_TRAIN/149808.1_2`)
 
 ```
 ... Gegen dieses Erkenntnis ist eine ordentliche Revision an den <<<Verwaltungsgerichtshof>>> nach  Art. 133 Abs. 4 Bundes-Verfassungsgesetz (B-VG) nicht ...
@@ -1022,7 +1022,7 @@ Matches 'Verwaltungsgerichtshof' and its genitive forms 'Verwaltungsgerichtshofe
 |---|---|
 | `Verwaltungsgerichtshof` | `Verwaltungsgerichtshof` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated_TRAIN/149808.1_274`)
 
 ```
 ... dem vorerst zu entgegnen, dass nach der Rechtsprechung des  <<<Verwaltungsgerichtshofes>>> (VwGH 14.1.1991, 90/15/0060) auch die Notwendigkeit,  Vermögenswerte ...
@@ -1032,7 +1032,7 @@ Matches 'Verwaltungsgerichtshof' and its genitive forms 'Verwaltungsgerichtshofe
 |---|---|
 | `Verwaltungsgerichtshofes` | `Verwaltungsgerichtshofes` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated_TRAIN/149808.1_278`)
 
 ```
 Nach ständiger Rechtsprechung des <<<Verwaltungsgerichtshofes>>> sind für die Entscheidung bei  Nachsichtsersuchen die Vermögens- ...
@@ -1042,7 +1042,7 @@ Nach ständiger Rechtsprechung des <<<Verwaltungsgerichtshofes>>> sind für die 
 |---|---|
 | `Verwaltungsgerichtshofes` | `Verwaltungsgerichtshofes` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated_TRAIN/149808.1_289`)
 
 ```
 Der Bf. ist daher auf die ständige Rechtsprechung des <<<Verwaltungsgerichtshofes>>> zu § 236 BAO  zu verweisen, wonach den Antragsteller im Nachsichtsverfahren ...
@@ -1052,7 +1052,7 @@ Der Bf. ist daher auf die ständige Rechtsprechung des <<<Verwaltungsgerichtshof
 |---|---|
 | `Verwaltungsgerichtshofes` | `Verwaltungsgerichtshofes` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated_TRAIN/149808.1_297`)
 
 ```
 ... insbesondere weil  das Erkenntnis von der Rechtsprechung des <<<Verwaltungsgerichtshofes>>> abweicht, eine solche  Rechtsprechung fehlt oder die zu lösende ...
@@ -1074,7 +1074,7 @@ Der Bf. ist daher auf die ständige Rechtsprechung des <<<Verwaltungsgerichtshof
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1_2`)
 
 **False Positives:**
 
@@ -1086,7 +1086,7 @@ FP: `Verwaltungsgerichtshof` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1_274`)
 
 **False Positives:**
 
@@ -1098,7 +1098,7 @@ FP: `Verwaltungsgerichtshofes` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1_278`)
 
 **False Positives:**
 
@@ -1110,7 +1110,7 @@ FP: `Verwaltungsgerichtshofes` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1_289`)
 
 **False Positives:**
 
@@ -1122,7 +1122,7 @@ FP: `Verwaltungsgerichtshofes` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1_297`)
 
 **False Positives:**
 
@@ -1177,7 +1177,7 @@ Matches the abbreviation 'VwGH' (Verwaltungsgerichtshof) but excludes citation c
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated_TRAIN/149808.1_199`)
 
 ```
 ... DBA-Durchführungs-Anpassungsverordnung und auf ein Erkenntnis des <<<VwGH>>>  verwiesen (Ra 2020/13/0089).
@@ -1187,7 +1187,7 @@ Matches the abbreviation 'VwGH' (Verwaltungsgerichtshof) but excludes citation c
 |---|---|
 | `VwGH` | `VwGH` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated_TRAIN/144562.1`) ( sent_id: `findok-manually-annotated_TRAIN/144562.1_125`)
 
 ```
 ... Bestimmungen und wurde im  Übrigen der ständigen Rechtsprechung des <<<VwGH>>> gefolgt.
@@ -1204,7 +1204,7 @@ Matches the abbreviation 'VwGH' (Verwaltungsgerichtshof) but excludes citation c
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1_199`)
 
 **False Positives:**
 
@@ -1216,7 +1216,7 @@ FP: `VwGH` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated_TRAIN/138736.1`) ( sent_id: `findok-manually-annotated_TRAIN/138736.1_38`)
 
 **False Positives:**
 
@@ -1228,7 +1228,7 @@ FP: `VwGH` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated_TRAIN/138736.1`) ( sent_id: `findok-manually-annotated_TRAIN/138736.1_39`)
 
 **False Positives:**
 
@@ -1240,7 +1240,7 @@ FP: `VwGH` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated_TRAIN/138736.1`) ( sent_id: `findok-manually-annotated_TRAIN/138736.1_41`)
 
 **False Positives:**
 
@@ -1252,7 +1252,7 @@ FP: `VwGH` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated_TRAIN/138736.1`) ( sent_id: `findok-manually-annotated_TRAIN/138736.1_42`)
 
 **False Positives:**
 
@@ -1301,7 +1301,7 @@ Matches the abbreviation 'BFG' (Bundesfinanzgericht) but excludes citation conte
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated_TRAIN/149808.1_101`)
 
 ```
 ... abweisende Bescheid wurde bekämpft und schlussendlich entschied das  <<<BFG>>>, indem es die Beschwerde als unbegründet abwies (RV/2100724/2019).
@@ -1311,7 +1311,7 @@ Matches the abbreviation 'BFG' (Bundesfinanzgericht) but excludes citation conte
 |---|---|
 | `BFG` | `BFG` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated_TRAIN/149808.1_103`)
 
 ```
 Nach dem abweisenden Erkenntnis des <<<BFG>>> vom 31.03.2022 (RV/2100724/2019) brachte man  am 07.06.2022 ...
@@ -1321,7 +1321,7 @@ Nach dem abweisenden Erkenntnis des <<<BFG>>> vom 31.03.2022 (RV/2100724/2019) b
 |---|---|
 | `BFG` | `BFG` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated_TRAIN/149808.1_135`)
 
 ```
 ... Öffnen, Lesen,  oder Ausdrucken eines Bescheides) nicht an (vgl. <<<BFG>>> vom 11.5.2016, RV/7104423/2014).
@@ -1331,7 +1331,7 @@ Nach dem abweisenden Erkenntnis des <<<BFG>>> vom 31.03.2022 (RV/2100724/2019) b
 |---|---|
 | `BFG` | `BFG` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated_TRAIN/149808.1_147`)
 
 ```
 Wie das <<<BFG>>> vom 31.03.2022, RV/2100724/2019, bereits unmissverständlich ...
@@ -1341,7 +1341,7 @@ Wie das <<<BFG>>> vom 31.03.2022, RV/2100724/2019, bereits unmissverständlich .
 |---|---|
 | `BFG` | `BFG` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated_TRAIN/149808.1_148`)
 
 ```
 Zur Einbringung des Einzelunternehmens in die GmbH  Wie das <<<BFG>>> vom 31.03.2022, RV/2100724/2019, bereits klargestellt hat, ...
@@ -1358,7 +1358,7 @@ Zur Einbringung des Einzelunternehmens in die GmbH  Wie das <<<BFG>>> vom 31.03.
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1_101`)
 
 **False Positives:**
 
@@ -1370,7 +1370,7 @@ FP: `BFG` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1_103`)
 
 **False Positives:**
 
@@ -1382,7 +1382,7 @@ FP: `BFG` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1_135`)
 
 **False Positives:**
 
@@ -1394,7 +1394,7 @@ FP: `BFG` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1_147`)
 
 **False Positives:**
 
@@ -1406,7 +1406,7 @@ FP: `BFG` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1_148`)
 
 **False Positives:**
 
@@ -1455,7 +1455,7 @@ Matches the abbreviation 'VfGH' (Verfassungsgerichtshof) but excludes citation c
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/149418.1`) ( sent_id: `findok-manually-annotated_TRAIN/149418.1_32`)
 
 ```
 ... Beschwerde geäußerten verfassungsrechtlichen Bedenken an den <<<VfGH>>> zu tragen.
@@ -1472,7 +1472,7 @@ Matches the abbreviation 'VfGH' (Verfassungsgerichtshof) but excludes citation c
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_156`)
 
 **False Positives:**
 
@@ -1484,7 +1484,7 @@ FP: `VfGH` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_157`)
 
 **False Positives:**
 
@@ -1496,7 +1496,7 @@ FP: `VfGH` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_159`)
 
 **False Positives:**
 
@@ -1508,7 +1508,7 @@ FP: `VfGH` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_162`)
 
 **False Positives:**
 
@@ -1520,7 +1520,7 @@ FP: `VfGH` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_250`)
 
 **False Positives:**
 
@@ -1703,7 +1703,7 @@ Matches 'Bundesfinanzgericht' and its genitive forms 'Bundesfinanzgerichtes' and
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated_TRAIN/149808.1_1`)
 
 ```
 IM NAMEN DER REPUBLI K  Das <<<Bundesfinanzgericht>>> hat durch den Richter Hon.-Prof. Edwin Brunnarius  in der Beschwerdesache ...
@@ -1713,7 +1713,7 @@ IM NAMEN DER REPUBLI K  Das <<<Bundesfinanzgericht>>> hat durch den Richter Hon.
 |---|---|
 | `Bundesfinanzgericht` | `Bundesfinanzgericht` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated_TRAIN/149808.1_210`)
 
 ```
 II. Das <<<Bundesfinanzgericht>>> hat erwogen:  1. Sachverhalt   Im Antrag vom 7.6.2022 beantragte ...
@@ -1723,7 +1723,7 @@ II. Das <<<Bundesfinanzgericht>>> hat erwogen:  1. Sachverhalt   Im Antrag vom 7
 |---|---|
 | `Bundesfinanzgericht` | `Bundesfinanzgericht` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated_TRAIN/149808.1_226`)
 
 ```
 Beweiswürdigung  Das <<<Bundesfinanzgericht>>> geht in freier Beweiswürdigung vom oben geschilderten Sachverhalt ...
@@ -1733,7 +1733,7 @@ Beweiswürdigung  Das <<<Bundesfinanzgericht>>> geht in freier Beweiswürdigung 
 |---|---|
 | `Bundesfinanzgericht` | `Bundesfinanzgericht` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated_TRAIN/149808.1_227`)
 
 ```
 Ergänzend wird festgehalten, dass das <<<Bundesfinanzgericht>>> die  Aussage, wonach die in der Erstaussage im Zuge der GPLA-Prüfung ...
@@ -1743,7 +1743,7 @@ Ergänzend wird festgehalten, dass das <<<Bundesfinanzgericht>>> die  Aussage, w
 |---|---|
 | `Bundesfinanzgericht` | `Bundesfinanzgericht` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated_TRAIN/149808.1_236`)
 
 ```
 Grundsätzlich schließt sich das <<<Bundesfinanzgericht>>> den Ausführungen in der BVE an,  ergänzend wird betont, dass ...
@@ -1760,7 +1760,7 @@ Grundsätzlich schließt sich das <<<Bundesfinanzgericht>>> den Ausführungen in
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1_1`)
 
 **False Positives:**
 
@@ -1779,7 +1779,7 @@ FP: `Bundesfinanzgericht` (organisation)
 - `FA Waldviertel` (organisation)
 - `94-628/5503` (tax_number)
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1_210`)
 
 **False Positives:**
 
@@ -1791,7 +1791,7 @@ FP: `Bundesfinanzgericht` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1_226`)
 
 **False Positives:**
 
@@ -1803,7 +1803,7 @@ FP: `Bundesfinanzgericht` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1_227`)
 
 **False Positives:**
 
@@ -1816,7 +1816,7 @@ FP: `Bundesfinanzgericht` (organisation)
 **✅ Gold Entities:**
 - `USA` (country)
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1_236`)
 
 **False Positives:**
 
@@ -1865,7 +1865,7 @@ Matches 'Verwaltungsgerichtshof' and its genitive forms 'Verwaltungsgerichtshofe
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated_TRAIN/149808.1_2`)
 
 ```
 ... Gegen dieses Erkenntnis ist eine ordentliche Revision an den <<<Verwaltungsgerichtshof>>> nach  Art. 133 Abs. 4 Bundes-Verfassungsgesetz (B-VG) nicht ...
@@ -1875,7 +1875,7 @@ Matches 'Verwaltungsgerichtshof' and its genitive forms 'Verwaltungsgerichtshofe
 |---|---|
 | `Verwaltungsgerichtshof` | `Verwaltungsgerichtshof` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated_TRAIN/149808.1_274`)
 
 ```
 ... dem vorerst zu entgegnen, dass nach der Rechtsprechung des  <<<Verwaltungsgerichtshofes>>> (VwGH 14.1.1991, 90/15/0060) auch die Notwendigkeit,  Vermögenswerte ...
@@ -1885,7 +1885,7 @@ Matches 'Verwaltungsgerichtshof' and its genitive forms 'Verwaltungsgerichtshofe
 |---|---|
 | `Verwaltungsgerichtshofes` | `Verwaltungsgerichtshofes` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated_TRAIN/149808.1_278`)
 
 ```
 Nach ständiger Rechtsprechung des <<<Verwaltungsgerichtshofes>>> sind für die Entscheidung bei  Nachsichtsersuchen die Vermögens- ...
@@ -1895,7 +1895,7 @@ Nach ständiger Rechtsprechung des <<<Verwaltungsgerichtshofes>>> sind für die 
 |---|---|
 | `Verwaltungsgerichtshofes` | `Verwaltungsgerichtshofes` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated_TRAIN/149808.1_289`)
 
 ```
 Der Bf. ist daher auf die ständige Rechtsprechung des <<<Verwaltungsgerichtshofes>>> zu § 236 BAO  zu verweisen, wonach den Antragsteller im Nachsichtsverfahren ...
@@ -1905,7 +1905,7 @@ Der Bf. ist daher auf die ständige Rechtsprechung des <<<Verwaltungsgerichtshof
 |---|---|
 | `Verwaltungsgerichtshofes` | `Verwaltungsgerichtshofes` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated_TRAIN/149808.1_297`)
 
 ```
 ... insbesondere weil  das Erkenntnis von der Rechtsprechung des <<<Verwaltungsgerichtshofes>>> abweicht, eine solche  Rechtsprechung fehlt oder die zu lösende ...
@@ -1927,7 +1927,7 @@ Der Bf. ist daher auf die ständige Rechtsprechung des <<<Verwaltungsgerichtshof
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1_2`)
 
 **False Positives:**
 
@@ -1939,7 +1939,7 @@ FP: `Verwaltungsgerichtshof` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1_274`)
 
 **False Positives:**
 
@@ -1951,7 +1951,7 @@ FP: `Verwaltungsgerichtshofes` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1_278`)
 
 **False Positives:**
 
@@ -1963,7 +1963,7 @@ FP: `Verwaltungsgerichtshofes` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1_289`)
 
 **False Positives:**
 
@@ -1975,7 +1975,7 @@ FP: `Verwaltungsgerichtshofes` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1_297`)
 
 **False Positives:**
 
@@ -2030,7 +2030,7 @@ Matches 'Finanzamt Österreich' and its genitive form 'Finanzamtes Österreich'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/143567.1`) ( sent_id: `findok-manually-annotated_TRAIN/143567.1_1`)
 
 ```
 ... Hinterhütten, Österreich, vom 11. September 2023 gegen den Bescheid des <<<Finanzamtes  Österreich>>> vom 7. September 2023 betreffend   - Rückforderung von Familienbeihilfe ...
@@ -2040,7 +2040,7 @@ Matches 'Finanzamt Österreich' and its genitive form 'Finanzamtes Österreich'.
 |---|---|
 | `Finanzamtes  Österreich` | `Finanzamtes  Österreich` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated_TRAIN/144562.1`) ( sent_id: `findok-manually-annotated_TRAIN/144562.1_1`)
 
 ```
 ... Babenham, Österreich, vom 26. Mai 2023 gegen den Bescheid des <<<Finanzamtes Österreich>>>  vom 28. April 2023 betreffend Abweisung des Antrages auf Familienbeihilfe ...
@@ -2050,7 +2050,7 @@ Matches 'Finanzamt Österreich' and its genitive form 'Finanzamtes Österreich'.
 |---|---|
 | `Finanzamtes Österreich` | `Finanzamtes Österreich` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated_TRAIN/149497.1`) ( sent_id: `findok-manually-annotated_TRAIN/149497.1_1`)
 
 ```
 ... betreffend Beschwerde vom 16. Mai 2024 gegen den  Bescheid des <<<Finanzamtes Österreich>>> vom 7. Mai 2024 betreffend Anspruchszinsen (§ 205  BAO) 2022 ...
@@ -2060,7 +2060,7 @@ Matches 'Finanzamt Österreich' and its genitive form 'Finanzamtes Österreich'.
 |---|---|
 | `Finanzamtes Österreich` | `Finanzamtes Österreich` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/148650.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/148650.1_1`)
 
 ```
 ... betreffend Beschwerde vom 9. Juli 2024 gegen den Bescheid des  <<<Finanzamtes Österreich>>> vom 17. Juni 2024 betreffend Abweisung des Antrages vom  31. ...
@@ -2070,7 +2070,7 @@ Matches 'Finanzamt Österreich' and its genitive form 'Finanzamtes Österreich'.
 |---|---|
 | `Finanzamtes Österreich` | `Finanzamtes Österreich` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149421.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149421.1_1`)
 
 ```
 ... die Beschwerde vom 17. Dezember 2019 gegen die Bescheide des  <<<Finanzamtes Österreich>>> vom 16. Dezember 2019 betreffend Einkommensteuer  (Arbeitnehmerveranlagung) ...
@@ -2087,7 +2087,7 @@ Matches 'Finanzamt Österreich' and its genitive form 'Finanzamtes Österreich'.
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_VALIDATE/149793.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_VALIDATE/149793.1_1`)
 
 **False Positives:**
 
@@ -2142,7 +2142,7 @@ Matches the specific entity 'Houdek Maschinenbau'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_17`)
 
 ```
 ... Verfahren wie folgt:   a) Sachverhalt und Verfahrensablauf bei der <<<Houdek Maschinenbau>>>, Str.Nr.
@@ -2152,7 +2152,7 @@ Matches the specific entity 'Houdek Maschinenbau'.
 |---|---|
 | `Houdek Maschinenbau` | `Houdek Maschinenbau` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_18`)
 
 ```
 95-002/7970, BV 24:  Das Unternehmen <<<Houdek Maschinenbau>>>  hat im Jahr 2007 ein Vermögen von 84 Tankstellen besessen.
@@ -2162,7 +2162,7 @@ Matches the specific entity 'Houdek Maschinenbau'.
 |---|---|
 | `Houdek Maschinenbau` | `Houdek Maschinenbau` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_20`)
 
 ```
 ... die Nachfolgejahre wurden folgende  Umgründungsschritte bei <<<Houdek Maschinenbau>>>  durchgeführt:  Auf Grundlage des Spaltungs- und Übernahmsvertrages ...
@@ -2177,7 +2177,7 @@ Matches the specific entity 'Houdek Maschinenbau'.
 | `Houdek Maschinenbau` | `Houdek Maschinenbau` |
 | `Houdek Maschinenbau` | `Houdek Maschinenbau` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_22`)
 
 ```
 Zum Stichtag 31.12.2008 ist die <<<Houdek Maschinenbau>>>  mit dem verbliebenen Vermögen entsprechend  dem Umgründungsplan ...
@@ -2187,7 +2187,7 @@ Zum Stichtag 31.12.2008 ist die <<<Houdek Maschinenbau>>>  mit dem verbliebenen 
 |---|---|
 | `Houdek Maschinenbau` | `Houdek Maschinenbau` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_25`)
 
 ```
 ... Umgründungsschritte (partielle)  Gesamtrechtsnachfolger der <<<Houdek Maschinenbau>>>, insoweit das auch nach der Abspaltung zum  31.12.2007 bei ...
@@ -2239,7 +2239,7 @@ Matches 'Schweizerischen Unfallversicherungsanstalt (SUVA)' with flexible whites
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/149828.1`) ( sent_id: `findok-manually-annotated_TRAIN/149828.1_8`)
 
 ```
 ... von der Eidgenössischen Invalidenver- sicherung (IV) und der <<<Schweizerischen Unfallversicherungsanstalt (SUVA)>>> sowie einer Pensi- onskassenleistung resultierenden Einkünfte ...
@@ -2249,7 +2249,7 @@ Matches 'Schweizerischen Unfallversicherungsanstalt (SUVA)' with flexible whites
 |---|---|
 | `Schweizerischen Unfallversicherungsanstalt (SUVA)` | `Schweizerischen Unfallversicherungsanstalt (SUVA)` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated_TRAIN/149828.1`) ( sent_id: `findok-manually-annotated_TRAIN/149828.1_11`)
 
 ```
 ... Ansatz blieb und die von der Invalidenversicherung sowie der <<<SUVA>>> ausbezahl- ten Invalidenrenten in der nachgewiesenen Höhe berücksichtigt ...
@@ -2259,7 +2259,7 @@ Matches 'Schweizerischen Unfallversicherungsanstalt (SUVA)' with flexible whites
 |---|---|
 | `SUVA` | `SUVA` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated_TRAIN/149828.1`) ( sent_id: `findok-manually-annotated_TRAIN/149828.1_12`)
 
 ```
 Die beantragte Steu- erfreiheit der von der <<<SUVA>>> bezogenen Invalidenrente verneinte das Finanzamt indes mit ...
@@ -2269,7 +2269,7 @@ Die beantragte Steu- erfreiheit der von der <<<SUVA>>> bezogenen Invalidenrente 
 |---|---|
 | `SUVA` | `SUVA` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated_TRAIN/149828.1`) ( sent_id: `findok-manually-annotated_TRAIN/149828.1_13`)
 
 ```
 ... Teil der Invali- denrente entfallenden Anteiles der von der <<<SUVA>>> einbehaltenen Quellensteuer (5.623,80 CHF)  geltend gemacht ...
@@ -2279,7 +2279,7 @@ Die beantragte Steu- erfreiheit der von der <<<SUVA>>> bezogenen Invalidenrente 
 |---|---|
 | `SUVA` | `SUVA` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated_TRAIN/149828.1`) ( sent_id: `findok-manually-annotated_TRAIN/149828.1_14`)
 
 ```
 ... Vertretung ergänzend vor, dass beim  Beschwerdeführer von der <<<SUVA>>> aufgrund eines Arbeitsunfalles im Jahr 2010 eine Beeinträch- ...
@@ -2296,7 +2296,7 @@ Die beantragte Steu- erfreiheit der von der <<<SUVA>>> bezogenen Invalidenrente 
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/149828.1`) ( sent_id: `findok-manually-annotated_TRAIN/149828.1_25`)
 
 **False Positives:**
 
@@ -2315,7 +2315,7 @@ FP: `SUVA` (organisation)
 **✅ Gold Entities:**
 - `SUVA` (organisation)
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated_TRAIN/149828.1`) ( sent_id: `findok-manually-annotated_TRAIN/149828.1_27`)
 
 **False Positives:**
 
@@ -2328,7 +2328,7 @@ FP: `SUVA` (organisation)
 **✅ Gold Entities:**
 - `SUVA` (organisation)
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated_TRAIN/149828.1`) ( sent_id: `findok-manually-annotated_TRAIN/149828.1_44`)
 
 **False Positives:**
 
@@ -2340,7 +2340,7 @@ FP: `SUVA` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated_TRAIN/149828.1`) ( sent_id: `findok-manually-annotated_TRAIN/149828.1_58`)
 
 **False Positives:**
 
@@ -2354,7 +2354,7 @@ FP: `SUVA` (organisation)
 - `Eidgenössischen Invalidenversicherung (IV)` (organisation)
 - `Schweizeri- schen Unfallversicherungsanstalt (SUVA)` (organisation)
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated_TRAIN/149828.1`) ( sent_id: `findok-manually-annotated_TRAIN/149828.1_63`)
 
 **False Positives:**
 
@@ -2403,7 +2403,7 @@ Matches 'Finanzamt Österreich' specifically to ensure nominative form is caught
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149552.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149552.1_1`)
 
 ```
 ... Fischhamering, Österreich, gegen den von der belangten Behörde <<<Finanzamt Österreich>>> am 15. Mai 2025  zu Steuernummer 98-117/5180  ausgefertigten ...
@@ -2413,7 +2413,7 @@ Matches 'Finanzamt Österreich' specifically to ensure nominative form is caught
 |---|---|
 | `Finanzamt Österreich` | `Finanzamt Österreich` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated_TRAIN/138736.1`) ( sent_id: `findok-manually-annotated_TRAIN/138736.1_1`)
 
 ```
 ... die Bescheide des FA St. Johann Tamsweg Zell am See (nunmehr <<<Finanzamt Österreich>>>) vom 26. Juli  2017 betreffend Abweisung der Wiederaufnahme ...
@@ -2428,7 +2428,7 @@ Matches 'Finanzamt Österreich' specifically to ensure nominative form is caught
 | `Finanzamt Österreich` | `Finanzamt Österreich` |
 | `Finanzamt Österreich` | `Finanzamt Österreich` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149691.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149691.1_1`)
 
 ```
 ... Einkommensteuerbescheide der Jahre 2014 – 2017 des Finanzamtes  Innsbruck (nunmehr <<<Finanzamt Österreich>>>) allesamt vom 22. Juli 2019, Steuernummer  31-785/0303, nach ...
@@ -2438,7 +2438,7 @@ Matches 'Finanzamt Österreich' specifically to ensure nominative form is caught
 |---|---|
 | `Finanzamt Österreich` | `Finanzamt Österreich` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated_TRAIN/149861.1`) ( sent_id: `findok-manually-annotated_TRAIN/149861.1_1`)
 
 ```
 ... 2012 gegen den Bescheid des  Finanzamtes Wien 1/23 (nunmehr <<<Finanzamt Österreich>>>) vom 21. Mai 2012 betreffend  Einkommensteuer 2010 und über ...
@@ -2453,7 +2453,7 @@ Matches 'Finanzamt Österreich' specifically to ensure nominative form is caught
 | `Finanzamt Österreich` | `Finanzamt Österreich` |
 | `Finanzamt Österreich` | `Finanzamt Österreich` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/138736.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/138736.1_1`)
 
 ```
 ... die Bescheide des FA St. Johann Tamsweg Zell am See (nunmehr <<<Finanzamt Österreich>>>) vom 26. Juli  2017 betreffend Abweisung der Wiederaufnahme ...
@@ -2475,7 +2475,7 @@ Matches 'Finanzamt Österreich' specifically to ensure nominative form is caught
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146072.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146072.1_50`)
 
 **False Positives:**
 
@@ -2497,7 +2497,7 @@ FP: `Finanzamt Österreich` (organisation)
 - `Finanzamt Österreich  (DST12)` (organisation)
 - `01-186/7053` (tax_number)
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146072.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146072.1_52`)
 
 **False Positives:**
 
@@ -2510,7 +2510,7 @@ FP: `Finanzamt Österreich` (organisation)
 **✅ Gold Entities:**
 - `Finanzamt Österreich (DST12)` (organisation)
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146072.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146072.1_65`)
 
 **False Positives:**
 
@@ -2523,7 +2523,7 @@ FP: `Finanzamt Österreich` (organisation)
 **✅ Gold Entities:**
 - `Finanzamt Österreich (DST12)` (organisation)
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146072.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146072.1_125`)
 
 **False Positives:**
 
@@ -2573,7 +2573,7 @@ Matches the abbreviation 'FAÖ' (Finanzamt Österreich).
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/149809.1`) ( sent_id: `findok-manually-annotated_TRAIN/149809.1_22`)
 
 ```
 ... Beschwerdeführer, sein Steuerberater, ein Vertreter des Fachbereiches des  <<<FAÖ>>> sowie ein Mitarbeiter der Abgabensicherung geladen wurden.
@@ -2583,7 +2583,7 @@ Matches the abbreviation 'FAÖ' (Finanzamt Österreich).
 |---|---|
 | `FAÖ` | `FAÖ` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149809.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149809.1_22`)
 
 ```
 ... Beschwerdeführer, sein Steuerberater, ein Vertreter des Fachbereiches des  <<<FAÖ>>> sowie ein Mitarbeiter der Abgabensicherung geladen wurden.
@@ -2593,7 +2593,7 @@ Matches the abbreviation 'FAÖ' (Finanzamt Österreich).
 |---|---|
 | `FAÖ` | `FAÖ` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated_TRAIN/149505.1`) ( sent_id: `findok-manually-annotated_TRAIN/149505.1_4`)
 
 ```
 ... strittig, ob das Finanzamt Österreich (in der Folge  kurz: <<<FAÖ>>>) zur Erlassung der Beschwerdevorentscheidungen im Zusammenhang ...
@@ -2603,7 +2603,7 @@ Matches the abbreviation 'FAÖ' (Finanzamt Österreich).
 |---|---|
 | `FAÖ` | `FAÖ` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated_TRAIN/149505.1`) ( sent_id: `findok-manually-annotated_TRAIN/149505.1_11`)
 
 ```
 ... 11.7.2025 teilte das FAG der Bf. mit, dass die Steuernummer auf das <<<FAÖ>>>  übergegangen sei.
@@ -2613,7 +2613,7 @@ Matches the abbreviation 'FAÖ' (Finanzamt Österreich).
 |---|---|
 | `FAÖ` | `FAÖ` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated_TRAIN/149505.1`) ( sent_id: `findok-manually-annotated_TRAIN/149505.1_12`)
 
 ```
 Mit Beschwerdevorentscheidungen vom 17.7.2025 wies das <<<FAÖ>>> die Beschwerden sowohl  gegen den Umsatzsteuerbescheid 2022 ...
@@ -2660,7 +2660,7 @@ Matches 'Magistrat der Stadt Wien' including genitive 'Magistrats', 'Magistrates
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149675.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149675.1_1`)
 
 ```
 ... Oktober 2025, gegen das Straferkenntnis der belangten  Behörde <<<Magistrat der Stadt Wien, MA 67>>>, als Abgabenstrafbehörde, vom 18. September  2025, GZ. MA67/GZ/2025, ...
@@ -2675,7 +2675,7 @@ Matches 'Magistrat der Stadt Wien' including genitive 'Magistrats', 'Magistrates
 | `Magistrat der Stadt Wien, MA 67` | `Magistrat der Stadt Wien, MA 67` |
 | `Magistrates der Stadt Wien` | `Magistrates der Stadt Wien` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149675.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149675.1_3`)
 
 ```
 III. Gemäß § 25 Abs. 2 BFGG wird der <<<Magistrat der Stadt Wien>>> als Vollstreckungsbehörde  bestimmt.
@@ -2685,7 +2685,7 @@ III. Gemäß § 25 Abs. 2 BFGG wird der <<<Magistrat der Stadt Wien>>> als Volls
 |---|---|
 | `Magistrat der Stadt Wien` | `Magistrat der Stadt Wien` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149675.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149675.1_8`)
 
 ```
 Der <<<Magistrat der Stadt Wien, Magistratsabteilung 67>>>, forderte die Firma Firma, AdrFirma, als  Zulassungsbesitzerin ...
@@ -2695,7 +2695,7 @@ Der <<<Magistrat der Stadt Wien, Magistratsabteilung 67>>>, forderte die Firma F
 |---|---|
 | `Magistrat der Stadt Wien, Magistratsabteilung 67` | `Magistrat der Stadt Wien, Magistratsabteilung 67` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149675.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149675.1_27`)
 
 ```
 In der Folge lastete der <<<Magistrat der Stadt Wien>>> dem Bf. mit Straferkenntnis vom  18. September 2025, GZ. MA67/GZ/2025, ...
@@ -2705,7 +2705,7 @@ In der Folge lastete der <<<Magistrat der Stadt Wien>>> dem Bf. mit Straferkennt
 |---|---|
 | `Magistrat der Stadt Wien` | `Magistrat der Stadt Wien` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149675.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149675.1_117`)
 
 ```
 Hier erweist sich der <<<Magistrat der Stadt Wien>>> als Vollstreckungsbehörde zweckmäßig, da dem  Magistrat der ...
@@ -2727,7 +2727,7 @@ Hier erweist sich der <<<Magistrat der Stadt Wien>>> als Vollstreckungsbehörde 
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated_TRAIN/134689.1_1`)
 
 **False Positives:**
 
@@ -2746,7 +2746,7 @@ FP: `Magistrates der Stadt Wien` (organisation)
 - `Wien` (city)
 - `Wien` (city)
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated_TRAIN/134689.1_7`)
 
 **False Positives:**
 
@@ -2762,7 +2762,7 @@ FP: `Magistrats der Stadt Wien` (organisation)
 - `KQPC Versand GMBH` (organisation)
 - `Spiegelgrundstraße 45, 5061 Vorderfager, Österreich` (address)
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1_1`)
 
 **False Positives:**
 
@@ -2780,7 +2780,7 @@ FP: `Magistrates der Stadt Wien` (organisation)
 - `Wien` (city)
 - `Wien` (city)
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1_7`)
 
 **False Positives:**
 
@@ -2796,7 +2796,7 @@ FP: `Magistrats der Stadt Wien` (organisation)
 - `KQPC Versand GMBH` (organisation)
 - `Spiegelgrundstraße 45, 5061 Vorderfager, Österreich` (address)
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated_TRAIN/149661.1`) ( sent_id: `findok-manually-annotated_TRAIN/149661.1_1`)
 
 **False Positives:**
 
@@ -2850,7 +2850,7 @@ Matches the abbreviation 'ÖGK' (Österreichische Gesundheitskasse).
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1_13`)
 
 ```
 ... diese Bescheide Herrn F persönlich zugestellt würden, da die <<<ÖGK>>> die SV-Abgaben, die  sich aus derselben Prüfung ergeben hätten, ...
@@ -2860,7 +2860,7 @@ Matches the abbreviation 'ÖGK' (Österreichische Gesundheitskasse).
 |---|---|
 | `ÖGK` | `ÖGK` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1_28`)
 
 ```
 ... die oben  angeführten Abgaben - entsprechend dem Vorgehen der <<<ÖGK>>> - ebenfalls der Gmbh  vorgeschrieben worden, wären diese Abgaben ...
@@ -2870,7 +2870,7 @@ Matches the abbreviation 'ÖGK' (Österreichische Gesundheitskasse).
 |---|---|
 | `ÖGK` | `ÖGK` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1_74`)
 
 ```
 ... Zuge derselben GPLB angefallen seien,  seien diese seitens der <<<ÖGK>>> der GmbH vorgeschrieben worden, sodass Herr F nicht damit  ...
@@ -2880,7 +2880,7 @@ Matches the abbreviation 'ÖGK' (Österreichische Gesundheitskasse).
 |---|---|
 | `ÖGK` | `ÖGK` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1_214`)
 
 ```
 ... in die Databox des EU gerichtet  wurden, die Bescheide der <<<ÖGK>>> allerdings an die GmbH übermittelt wurden.
@@ -2890,7 +2890,7 @@ Matches the abbreviation 'ÖGK' (Österreichische Gesundheitskasse).
 |---|---|
 | `ÖGK` | `ÖGK` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated_TRAIN/149808.1_13`)
 
 ```
 ... diese Bescheide Herrn F persönlich zugestellt würden, da die <<<ÖGK>>> die SV-Abgaben, die  sich aus derselben Prüfung ergeben hätten, ...
@@ -2937,7 +2937,7 @@ Matches 'Roelfsen Versicherung'
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_2`)
 
 ```
 Kff. Sandra Khartchenko  als Rechtsnachfolger der <<<Roelfsen Versicherung>>>, Schölmlahn 46, 6380 St. Johann in Tirol, Österreich, vertreten ...
@@ -2947,7 +2947,7 @@ Kff. Sandra Khartchenko  als Rechtsnachfolger der <<<Roelfsen Versicherung>>>, S
 |---|---|
 | `Roelfsen Versicherung` | `Roelfsen Versicherung` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_7`)
 
 ```
 Kff. Sandra Khartchenko  als RNF der <<<Roelfsen Versicherung>>>  Gruppenträger 02-013/5959 Magdalena Diegmueller, LLB  als ...
@@ -2957,7 +2957,7 @@ Kff. Sandra Khartchenko  als RNF der <<<Roelfsen Versicherung>>>  Gruppenträger
 |---|---|
 | `Roelfsen Versicherung` | `Roelfsen Versicherung` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_10`)
 
 ```
 ... betreffend Feststellungsbescheid Gruppenmitglied 2010 erlassen (<<<Roelfsen Versicherung>>>  St. Nr. 85-900/3590) und das Verfahren wiederaufgenommen.
@@ -2967,7 +2967,7 @@ Kff. Sandra Khartchenko  als RNF der <<<Roelfsen Versicherung>>>  Gruppenträger
 |---|---|
 | `Roelfsen Versicherung` | `Roelfsen Versicherung` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_11`)
 
 ```
 Bescheidadressaten waren  sowohl das Gruppenmitglied <<<Roelfsen Versicherung>>>  als auch der Gruppenträger Lubomir Merschmeyer  (02-013/5959).
@@ -2977,7 +2977,7 @@ Bescheidadressaten waren  sowohl das Gruppenmitglied <<<Roelfsen Versicherung>>>
 |---|---|
 | `Roelfsen Versicherung` | `Roelfsen Versicherung` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_24`)
 
 ```
 ... Generalversammlungsbeschlusses vom  19.08.2009 eine Abspaltung zur Aufnahme in die <<<Roelfsen Versicherung>>>  durch Übertragung des  gesamten Betriebes (mit Ausnahme der ...
@@ -3024,7 +3024,7 @@ Matches the abbreviation 'BFG' (Bundesfinanzgericht) but excludes citation conte
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated_TRAIN/149808.1_101`)
 
 ```
 ... abweisende Bescheid wurde bekämpft und schlussendlich entschied das  <<<BFG>>>, indem es die Beschwerde als unbegründet abwies (RV/2100724/2019).
@@ -3034,7 +3034,7 @@ Matches the abbreviation 'BFG' (Bundesfinanzgericht) but excludes citation conte
 |---|---|
 | `BFG` | `BFG` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated_TRAIN/149808.1_103`)
 
 ```
 Nach dem abweisenden Erkenntnis des <<<BFG>>> vom 31.03.2022 (RV/2100724/2019) brachte man  am 07.06.2022 ...
@@ -3044,7 +3044,7 @@ Nach dem abweisenden Erkenntnis des <<<BFG>>> vom 31.03.2022 (RV/2100724/2019) b
 |---|---|
 | `BFG` | `BFG` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated_TRAIN/149808.1_135`)
 
 ```
 ... Öffnen, Lesen,  oder Ausdrucken eines Bescheides) nicht an (vgl. <<<BFG>>> vom 11.5.2016, RV/7104423/2014).
@@ -3054,7 +3054,7 @@ Nach dem abweisenden Erkenntnis des <<<BFG>>> vom 31.03.2022 (RV/2100724/2019) b
 |---|---|
 | `BFG` | `BFG` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated_TRAIN/149808.1_147`)
 
 ```
 Wie das <<<BFG>>> vom 31.03.2022, RV/2100724/2019, bereits unmissverständlich ...
@@ -3064,7 +3064,7 @@ Wie das <<<BFG>>> vom 31.03.2022, RV/2100724/2019, bereits unmissverständlich .
 |---|---|
 | `BFG` | `BFG` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated_TRAIN/149808.1_148`)
 
 ```
 Zur Einbringung des Einzelunternehmens in die GmbH  Wie das <<<BFG>>> vom 31.03.2022, RV/2100724/2019, bereits klargestellt hat, ...
@@ -3081,7 +3081,7 @@ Zur Einbringung des Einzelunternehmens in die GmbH  Wie das <<<BFG>>> vom 31.03.
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1_101`)
 
 **False Positives:**
 
@@ -3093,7 +3093,7 @@ FP: `BFG` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1_103`)
 
 **False Positives:**
 
@@ -3105,7 +3105,7 @@ FP: `BFG` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1_135`)
 
 **False Positives:**
 
@@ -3117,7 +3117,7 @@ FP: `BFG` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1_147`)
 
 **False Positives:**
 
@@ -3129,7 +3129,7 @@ FP: `BFG` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1_148`)
 
 **False Positives:**
 
@@ -3178,7 +3178,7 @@ Matches 'Wirtschaftsuniversität Wien' and its abbreviation 'WU Wien'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/143567.1`) ( sent_id: `findok-manually-annotated_TRAIN/143567.1_6`)
 
 ```
 Im Wintersemester 2018/2019 war sie an der <<<Wirtschaftsuniversität Wien>>> inskribiert.
@@ -3188,7 +3188,7 @@ Im Wintersemester 2018/2019 war sie an der <<<Wirtschaftsuniversität Wien>>> in
 |---|---|
 | `Wirtschaftsuniversität Wien` | `Wirtschaftsuniversität Wien` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated_TRAIN/143567.1`) ( sent_id: `findok-manually-annotated_TRAIN/143567.1_47`)
 
 ```
 Im Wintersemester 2018/2019 war sie an der <<<Wirtschaftsuniversität Wien>>> inskribiert.
@@ -3198,7 +3198,7 @@ Im Wintersemester 2018/2019 war sie an der <<<Wirtschaftsuniversität Wien>>> in
 |---|---|
 | `Wirtschaftsuniversität Wien` | `Wirtschaftsuniversität Wien` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated_TRAIN/143567.1`) ( sent_id: `findok-manually-annotated_TRAIN/143567.1_74`)
 
 ```
 ... 2018/2019 bis Sommersemester 2019 (= 2 Semester) war sie an der  <<<Wirtschaftsuniversität Wien>>> in der Studienrichtung Wirtschaftsrecht (UJ033 500) inskribiert.
@@ -3208,7 +3208,7 @@ Im Wintersemester 2018/2019 war sie an der <<<Wirtschaftsuniversität Wien>>> in
 |---|---|
 | `Wirtschaftsuniversität Wien` | `Wirtschaftsuniversität Wien` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated_TRAIN/143567.1`) ( sent_id: `findok-manually-annotated_TRAIN/143567.1_135`)
 
 ```
 ... 2018/2019 bis Sommersemester 2019 (= 2 Semester) war sie an der  <<<Wirtschaftsuniversität Wien>>> in der Studienrichtung Wirtschaftsrecht inskribiert.
@@ -3218,7 +3218,7 @@ Im Wintersemester 2018/2019 war sie an der <<<Wirtschaftsuniversität Wien>>> in
 |---|---|
 | `Wirtschaftsuniversität Wien` | `Wirtschaftsuniversität Wien` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/143567.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/143567.1_6`)
 
 ```
 Im Wintersemester 2018/2019 war sie an der <<<Wirtschaftsuniversität Wien>>> inskribiert.
@@ -3235,7 +3235,7 @@ Im Wintersemester 2018/2019 war sie an der <<<Wirtschaftsuniversität Wien>>> in
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_VALIDATE/138708.1`) ( sent_id: `findok-manually-annotated_VALIDATE/138708.1_10`)
 
 **False Positives:**
 
@@ -3254,7 +3254,7 @@ FP: `WU Wien` (organisation)
 **✅ Gold Entities:**
 - `Wirtschaftsuniversität Wien (WU Wien)` (organisation)
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated_VALIDATE/138708.1`) ( sent_id: `findok-manually-annotated_VALIDATE/138708.1_87`)
 
 **False Positives:**
 
@@ -3305,7 +3305,7 @@ Matches the abbreviation 'FAG' (Finanzamt für Großbetriebe).
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/149505.1`) ( sent_id: `findok-manually-annotated_TRAIN/149505.1_4`)
 
 ```
 ... Zusammenhang mit vom  Finanzamt für Großbetriebe (in der Folge kurz: <<<FAG>>>) erlassenen Bescheiden zuständig ist.
@@ -3315,7 +3315,7 @@ Matches the abbreviation 'FAG' (Finanzamt für Großbetriebe).
 |---|---|
 | `FAG` | `FAG` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated_TRAIN/149505.1`) ( sent_id: `findok-manually-annotated_TRAIN/149505.1_5`)
 
 ```
 Das <<<FAG>>> erließ am 21.8.2024 einen Bescheid über die Aufhebung des Umsatzsteuerbescheides ...
@@ -3325,7 +3325,7 @@ Das <<<FAG>>> erließ am 21.8.2024 einen Bescheid über die Aufhebung des Umsatz
 |---|---|
 | `FAG` | `FAG` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated_TRAIN/149505.1`) ( sent_id: `findok-manually-annotated_TRAIN/149505.1_7`)
 
 ```
 Am 5.11.2024 hob das <<<FAG>>> den Umsatzsteuerbescheid 2022 vom 21.8.2024  erneut nach § ...
@@ -3335,7 +3335,7 @@ Am 5.11.2024 hob das <<<FAG>>> den Umsatzsteuerbescheid 2022 vom 21.8.2024  erne
 |---|---|
 | `FAG` | `FAG` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated_TRAIN/149505.1`) ( sent_id: `findok-manually-annotated_TRAIN/149505.1_8`)
 
 ```
 Weiters hob das <<<FAG>>> am  26.5.2025 den Umsatzsteuerbescheid des Jahres 2023 gemäß ...
@@ -3345,7 +3345,7 @@ Weiters hob das <<<FAG>>> am  26.5.2025 den Umsatzsteuerbescheid des Jahres 2023
 |---|---|
 | `FAG` | `FAG` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated_TRAIN/149505.1`) ( sent_id: `findok-manually-annotated_TRAIN/149505.1_10`)
 
 ```
 ... wurde von der Bf. am 16.6.2025 Beschwerde, eingebracht beim <<<FAG>>>, erhoben.
@@ -3392,7 +3392,7 @@ Matches generic company patterns like 'Name Industry GMBH' including Steuerberat
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated_TRAIN/134689.1_7`)
 
 ```
 ... befunden, da er als  handelsrechtlicher Geschäftsführer der <<<KQPC Versand GMBH>>>  vor der Spiegelgrundstraße 45, 5061 Vorderfager, Österreich, ...
@@ -3402,7 +3402,7 @@ Matches generic company patterns like 'Name Industry GMBH' including Steuerberat
 |---|---|
 | `KQPC Versand GMBH` | `KQPC Versand GMBH` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated_TRAIN/134689.1_10`)
 
 ```
 Zudem  wurde im Straferkenntnis ausgesprochen, dass die <<<KQPC Versand GMBH>>>  gem § 9 Abs 7 VStG über  die verhängten Geldstrafen und die ...
@@ -3412,7 +3412,7 @@ Zudem  wurde im Straferkenntnis ausgesprochen, dass die <<<KQPC Versand GMBH>>> 
 |---|---|
 | `KQPC Versand GMBH` | `KQPC Versand GMBH` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated_TRAIN/134689.1_11`)
 
 ```
 ... Juni bis Dezember 2017 bereits Verjährung eingetreten und die  <<<KQPC Versand GMBH>>>  im Jänner 2018 nicht mehr tätig gewesen sei.
@@ -3422,7 +3422,7 @@ Zudem  wurde im Straferkenntnis ausgesprochen, dass die <<<KQPC Versand GMBH>>> 
 |---|---|
 | `KQPC Versand GMBH` | `KQPC Versand GMBH` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated_TRAIN/134689.1_16`)
 
 ```
 ... inkriminierten Zeitraum sowohl handelsrechtlicher Geschäftsführer  der <<<KQPC Versand GMBH>>>  als auch der Event Sudkraftlex GMBH.
@@ -3432,7 +3432,7 @@ Zudem  wurde im Straferkenntnis ausgesprochen, dass die <<<KQPC Versand GMBH>>> 
 |---|---|
 | `KQPC Versand GMBH` | `KQPC Versand GMBH` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated_TRAIN/134689.1_18`)
 
 ```
 ... der Beschuldigte  als handelsrechtlicher Geschäftsführer der <<<KQPC Versand GMBH>>>  wegen 22  Verwaltungsübertretungen nach § 1 Abs 1 iVm § 16 ...
@@ -3449,7 +3449,7 @@ Zudem  wurde im Straferkenntnis ausgesprochen, dass die <<<KQPC Versand GMBH>>> 
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated_TRAIN/134689.1_17`)
 
 **False Positives:**
 
@@ -3464,7 +3464,7 @@ FP: `Die KQPC Versand GMBH` (organisation)
 - `Spiegelgrundstraße 45, 5061 Vorderfager, Österreich` (address)
 - `Event Sudkraftlex GMBH` (organisation)
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1_17`)
 
 **False Positives:**
 
@@ -3516,7 +3516,7 @@ Matches the specific entity 'KQPC Versand GMBH'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated_TRAIN/134689.1_7`)
 
 ```
 ... befunden, da er als  handelsrechtlicher Geschäftsführer der <<<KQPC Versand GMBH>>>  vor der Spiegelgrundstraße 45, 5061 Vorderfager, Österreich, ...
@@ -3526,7 +3526,7 @@ Matches the specific entity 'KQPC Versand GMBH'.
 |---|---|
 | `KQPC Versand GMBH` | `KQPC Versand GMBH` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated_TRAIN/134689.1_10`)
 
 ```
 Zudem  wurde im Straferkenntnis ausgesprochen, dass die <<<KQPC Versand GMBH>>>  gem § 9 Abs 7 VStG über  die verhängten Geldstrafen und die ...
@@ -3536,7 +3536,7 @@ Zudem  wurde im Straferkenntnis ausgesprochen, dass die <<<KQPC Versand GMBH>>> 
 |---|---|
 | `KQPC Versand GMBH` | `KQPC Versand GMBH` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated_TRAIN/134689.1_11`)
 
 ```
 ... Juni bis Dezember 2017 bereits Verjährung eingetreten und die  <<<KQPC Versand GMBH>>>  im Jänner 2018 nicht mehr tätig gewesen sei.
@@ -3546,7 +3546,7 @@ Zudem  wurde im Straferkenntnis ausgesprochen, dass die <<<KQPC Versand GMBH>>> 
 |---|---|
 | `KQPC Versand GMBH` | `KQPC Versand GMBH` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated_TRAIN/134689.1_16`)
 
 ```
 ... inkriminierten Zeitraum sowohl handelsrechtlicher Geschäftsführer  der <<<KQPC Versand GMBH>>>  als auch der Event Sudkraftlex GMBH.
@@ -3556,7 +3556,7 @@ Zudem  wurde im Straferkenntnis ausgesprochen, dass die <<<KQPC Versand GMBH>>> 
 |---|---|
 | `KQPC Versand GMBH` | `KQPC Versand GMBH` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated_TRAIN/134689.1_17`)
 
 ```
 Die <<<KQPC Versand GMBH>>>  war Bauherrin und  Auftraggeber (Gebraucher) der Umbauarbeiten ...
@@ -3603,7 +3603,7 @@ Matches the specific entity 'Event Sudkraftlex GMBH'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated_TRAIN/134689.1_12`)
 
 ```
 ... abgabenrechtlichen Nachbemessungsbescheid vom 16.1.2018 an die <<<Event Sudkraftlex GMBH>>>  hinsichtlich der oa.
@@ -3613,7 +3613,7 @@ Matches the specific entity 'Event Sudkraftlex GMBH'.
 |---|---|
 | `Event Sudkraftlex GMBH` | `Event Sudkraftlex GMBH` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated_TRAIN/134689.1_13`)
 
 ```
 ... Bescheides gegen den Beschuldigten als Geschäftsführer der <<<Event Sudkraftlex GMBH>>>  ein  Verwaltungsstrafverfahren geführt und die Strafverfügung ...
@@ -3623,7 +3623,7 @@ Matches the specific entity 'Event Sudkraftlex GMBH'.
 |---|---|
 | `Event Sudkraftlex GMBH` | `Event Sudkraftlex GMBH` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated_TRAIN/134689.1_16`)
 
 ```
 ... handelsrechtlicher Geschäftsführer  der KQPC Versand GMBH  als auch der <<<Event Sudkraftlex GMBH>>>.
@@ -3633,7 +3633,7 @@ Matches the specific entity 'Event Sudkraftlex GMBH'.
 |---|---|
 | `Event Sudkraftlex GMBH` | `Event Sudkraftlex GMBH` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated_TRAIN/134689.1_17`)
 
 ```
 ... der Spiegelgrundstraße 45, 5061 Vorderfager, Österreich, die <<<Event Sudkraftlex GMBH>>>  war  mit dem Bauvorhaben befasst bzw. bauausführende Firma ...
@@ -3643,7 +3643,7 @@ Matches the specific entity 'Event Sudkraftlex GMBH'.
 |---|---|
 | `Event Sudkraftlex GMBH` | `Event Sudkraftlex GMBH` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated_TRAIN/134689.1_20`)
 
 ```
 ... MA6/ARP-S- 780/2018 u.a., als handelsrechtlicher Geschäftsführer der <<<Event Sudkraftlex GMBH>>>  hinsichtlich der  Spiegelgrundstraße 45, 5061 Vorderfager, ...
@@ -3690,7 +3690,7 @@ Matches 'FA Wien 1/23'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_27`)
 
 ```
 Im Wirtschaftsjahr 2007 ist gemäß der beim <<<FA Wien 1/23>>>  eingereichten  Körperschaftsteuererklärung 2007 ein steuerlicher ...
@@ -3700,7 +3700,7 @@ Im Wirtschaftsjahr 2007 ist gemäß der beim <<<FA Wien 1/23>>>  eingereichten  
 |---|---|
 | `FA Wien 1/23` | `FA Wien 1/23` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_30`)
 
 ```
 Am 26.04.2013 erließ das <<<FA Wien 1/23>>>  nach Durchführung der Außenprüfung je einen  Körperschaftsteuerbescheid ...
@@ -3710,7 +3710,7 @@ Am 26.04.2013 erließ das <<<FA Wien 1/23>>>  nach Durchführung der Außenprüf
 |---|---|
 | `FA Wien 1/23` | `FA Wien 1/23` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_74`)
 
 ```
 Mit Vorlagebericht vom 13.11.2013 hat das <<<FA Wien 1/23>>>  die eingebrachte Beschwerde (ohne Erlassung einer Beschwerdevorentscheidung) ...
@@ -3720,7 +3720,7 @@ Mit Vorlagebericht vom 13.11.2013 hat das <<<FA Wien 1/23>>>  die eingebrachte B
 |---|---|
 | `FA Wien 1/23` | `FA Wien 1/23` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_75`)
 
 ```
 ... RV/5101064/2013) und den Körperschaftsteuerbescheid 2007 des <<<FA Wien 1/23>>>  gegenüber der  mitbeteiligten Partei Roelfsen Versicherung ...
@@ -3730,7 +3730,7 @@ Mit Vorlagebericht vom 13.11.2013 hat das <<<FA Wien 1/23>>>  die eingebrachte B
 |---|---|
 | `FA Wien 1/23` | `FA Wien 1/23` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_100`)
 
 ```
 ... Linz, vom 27.01.2016, GZ  RV/5101064/2013, wurde seitens des <<<FA Wien 1/23>>>  in vollem Umfang im Zuge einer Amtsrevision  angefochten.
@@ -3777,7 +3777,7 @@ Matches the specific entity 'Finanzamt Wien 1/23'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_3`)
 
 ```
 über die Beschwerden vom 29. März 2019 gegen den Bescheid des <<<Finanzamt Wien 1/23>>>  vom 29. Jänner  2019 betreffend Wiederaufnahme § 303 BAO / ...
@@ -3787,7 +3787,7 @@ Matches the specific entity 'Finanzamt Wien 1/23'.
 |---|---|
 | `Finanzamt Wien 1/23` | `Finanzamt Wien 1/23` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_102`)
 
 ```
 Unmittelbar nachfolgend hat das BFG die Amtsrevision des <<<Finanzamt Wien 1/23>>> (samt Veranlagungsakten  sowie Auszügen aus dem Arbeitsbogen ...
@@ -3797,7 +3797,7 @@ Unmittelbar nachfolgend hat das BFG die Amtsrevision des <<<Finanzamt Wien 1/23>
 |---|---|
 | `Finanzamt Wien 1/23` | `Finanzamt Wien 1/23` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_111`)
 
 ```
 ... 13.09.2018 zu Ro 2016/15/0010 hat der VwGH die  Amtsrevision des <<<Finanzamt Wien 1/23>>>  als unbegründet abgewiesen.
@@ -3807,7 +3807,7 @@ Unmittelbar nachfolgend hat das BFG die Amtsrevision des <<<Finanzamt Wien 1/23>
 |---|---|
 | `Finanzamt Wien 1/23` | `Finanzamt Wien 1/23` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_135`)
 
 ```
 Begründend  wurde deshalb durch das <<<Finanzamt Wien 1/23>>>  im Sachbescheid Feststellungsbescheid Gruppenmitglied  2010 ...
@@ -3817,7 +3817,7 @@ Begründend  wurde deshalb durch das <<<Finanzamt Wien 1/23>>>  im Sachbescheid 
 |---|---|
 | `Finanzamt Wien 1/23` | `Finanzamt Wien 1/23` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_137`)
 
 ```
 ... 27.01.2016 für das Jahr 2007 (Rechtsvorgänger) wurde  seitens des <<<Finanzamt Wien 1/23>>>  mittels Amtsrevision bekämpft.
@@ -3864,7 +3864,7 @@ Matches the specific entity 'X GmbH' which is a placeholder for a company name.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_113`)
 
 ```
 ... 2007 von EUR -882.676,16  vorrangig mit Gewinnen 2007 von der <<<X GmbH>>> verbliebenen Tankstellen (Teilbetrieben) in  Höhe von EUR 1.183.053,01 ...
@@ -3874,7 +3874,7 @@ Matches the specific entity 'X GmbH' which is a placeholder for a company name.
 |---|---|
 | `X GmbH` | `X GmbH` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_114`)
 
 ```
 ... also letztlich, weicher Teil des Jahresverlustes 2007  der <<<X GmbH>>> in Anbetracht des § 35 UmgrStG von der <<<X GmbH>>> in den auf das ...
@@ -3889,7 +3889,7 @@ Matches the specific entity 'X GmbH' which is a placeholder for a company name.
 | `X GmbH` | `X GmbH` |
 | `X GmbH` | `X GmbH` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_121`)
 
 ```
 Für den Revisionsfall folge daraus: Die <<<X GmbH>>> habe - unter Berücksichtigung der unstrittigen  Feststellungen ...
@@ -3904,7 +3904,7 @@ Für den Revisionsfall folge daraus: Die <<<X GmbH>>> habe - unter Berücksichti
 | `X GmbH` | `X GmbH` |
 | `X GmbH` | `X GmbH` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_123`)
 
 ```
 ... des Veranlagungsjahres 2007 von 3,632.188,29 EUR durch die <<<X  GmbH>>> erzielt worden sei.
@@ -3914,7 +3914,7 @@ Für den Revisionsfall folge daraus: Die <<<X GmbH>>> habe - unter Berücksichti
 |---|---|
 | `X  GmbH` | `X  GmbH` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_124`)
 
 ```
 Auch wenn der <<<X GmbH>>> bzw. der mitbeteiligten Partei als Rechtsnachfolgerin der X ...
@@ -3966,7 +3966,7 @@ Matches 'Universität Wien' and 'Universität in Wien'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/143567.1`) ( sent_id: `findok-manually-annotated_TRAIN/143567.1_4`)
 
 ```
 ... Sommersemester 2020 im Diplomstudium  Rechtswissenschaften an der <<<Universität Wien>>> inskribiert.
@@ -3976,7 +3976,7 @@ Matches 'Universität Wien' and 'Universität in Wien'.
 |---|---|
 | `Universität Wien` | `Universität Wien` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated_TRAIN/143567.1`) ( sent_id: `findok-manually-annotated_TRAIN/143567.1_46`)
 
 ```
 ... Sommersemester 2020 das Studium  Rechtswissenschaften an der <<<Universität Wien>>> betrieben.
@@ -3986,7 +3986,7 @@ Matches 'Universität Wien' and 'Universität in Wien'.
 |---|---|
 | `Universität Wien` | `Universität Wien` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated_TRAIN/143567.1`) ( sent_id: `findok-manually-annotated_TRAIN/143567.1_73`)
 
 ```
 ... Wintersemester 2015/2016 bis Sommersemester 2018 (= 6 Semester) an der  <<<Universität Wien>>> im Diplomstudium Rechtswissenschaften (UA101) inskribiert.
@@ -3996,7 +3996,7 @@ Matches 'Universität Wien' and 'Universität in Wien'.
 |---|---|
 | `Universität Wien` | `Universität Wien` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated_TRAIN/143567.1`) ( sent_id: `findok-manually-annotated_TRAIN/143567.1_134`)
 
 ```
 ... Wintersemester 2015/2016 bis Sommersemester 2018 (= 6  Semester) an der <<<Universität Wien>>> im Diplomstudium Rechtswissenschaften inskribiert.
@@ -4006,7 +4006,7 @@ Matches 'Universität Wien' and 'Universität in Wien'.
 |---|---|
 | `Universität Wien` | `Universität Wien` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated_TRAIN/144562.1`) ( sent_id: `findok-manually-annotated_TRAIN/144562.1_3`)
 
 ```
 ... Unterrichtsfächern Biologie und Umweltkunde  und Spanisch an der <<<Universität Wien>>>) bis September 2021 Familienbeihilfe und  Kinderabsetzbeträge.
@@ -4053,7 +4053,7 @@ Matches 'Johannes Kepler Universität Linz' and its abbreviation 'JKU Linz'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_VALIDATE/138708.1`) ( sent_id: `findok-manually-annotated_VALIDATE/138708.1_9`)
 
 ```
 ... 10/2019 (Bachelorstudium Wirtschaftswissenschaften an der  <<<Johannes Kepler Universität Linz>>>).
@@ -4063,7 +4063,7 @@ Matches 'Johannes Kepler Universität Linz' and its abbreviation 'JKU Linz'.
 |---|---|
 | `Johannes Kepler Universität Linz` | `Johannes Kepler Universität Linz` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated_VALIDATE/138708.1`) ( sent_id: `findok-manually-annotated_VALIDATE/138708.1_12`)
 
 ```
 ... Studienerfolgsnachweis der Johannes Kepler Universität Linz (<<<JKU Linz>>>) vom  06.12.2020 betreffend das Bachelorstudium Wirtschaftswissenschaften ...
@@ -4078,7 +4078,7 @@ Matches 'Johannes Kepler Universität Linz' and its abbreviation 'JKU Linz'.
 | `JKU Linz` | `JKU Linz` |
 | `JKU Linz` | `JKU Linz` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated_VALIDATE/138708.1`) ( sent_id: `findok-manually-annotated_VALIDATE/138708.1_14`)
 
 ```
  Abgangsbescheinigung der <<<JKU Linz>>> vom 14.12.2020 betreffend das Bachelorstudium  Wirtschaftswissenschaften ...
@@ -4088,7 +4088,7 @@ Matches 'Johannes Kepler Universität Linz' and its abbreviation 'JKU Linz'.
 |---|---|
 | `JKU Linz` | `JKU Linz` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated_VALIDATE/138708.1`) ( sent_id: `findok-manually-annotated_VALIDATE/138708.1_36`)
 
 ```
 ... E-Mail des  Zulassungsservices Lehr und Studienorganisation der <<<Johannes Kepler Universität Linz>>> vom  4 von 16 Seite 5 von 16
@@ -4098,7 +4098,7 @@ Matches 'Johannes Kepler Universität Linz' and its abbreviation 'JKU Linz'.
 |---|---|
 | `Johannes Kepler Universität Linz` | `Johannes Kepler Universität Linz` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated_VALIDATE/138708.1`) ( sent_id: `findok-manually-annotated_VALIDATE/138708.1_37`)
 
 ```
 ... Wirtschaftswissenschaften an der WU Wien und BA Wirtschaftswissenschaften an der <<<JKU Linz>>>  ausgegangen werden könne, tätigt das Finanzamt jedoch nicht.
@@ -4115,7 +4115,7 @@ Matches 'Johannes Kepler Universität Linz' and its abbreviation 'JKU Linz'.
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_VALIDATE/138708.1`) ( sent_id: `findok-manually-annotated_VALIDATE/138708.1_12`)
 
 **False Positives:**
 
@@ -4137,7 +4137,7 @@ FP: `JKU Linz` (organisation)
 - `WU Wien` (organisation)
 - `JKU Linz` (organisation)
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated_VALIDATE/138708.1`) ( sent_id: `findok-manually-annotated_VALIDATE/138708.1_72`)
 
 **False Positives:**
 
@@ -4153,7 +4153,7 @@ FP: `Johannes Kepler Universität Linz` (organisation)
 - `Wirtschaftsuniversität Wien` (organisation)
 - `Johannes Kepler Universität Linz (` (organisation)
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated_VALIDATE/138708.1`) ( sent_id: `findok-manually-annotated_VALIDATE/138708.1_87`)
 
 **False Positives:**
 
@@ -4167,7 +4167,7 @@ FP: `Johannes Kepler Universität Linz` (organisation)
 - `Wirtschaftsuniversität Wien (WU)` (organisation)
 - `Johannes Kepler Universität Linz (JKU)` (organisation)
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated_VALIDATE/138708.1`) ( sent_id: `findok-manually-annotated_VALIDATE/138708.1_98`)
 
 **False Positives:**
 
@@ -4217,7 +4217,7 @@ Matches the abbreviation 'VwGH' (Verwaltungsgerichtshof) but excludes citation c
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated_TRAIN/149808.1_199`)
 
 ```
 ... DBA-Durchführungs-Anpassungsverordnung und auf ein Erkenntnis des <<<VwGH>>>  verwiesen (Ra 2020/13/0089).
@@ -4227,7 +4227,7 @@ Matches the abbreviation 'VwGH' (Verwaltungsgerichtshof) but excludes citation c
 |---|---|
 | `VwGH` | `VwGH` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated_TRAIN/144562.1`) ( sent_id: `findok-manually-annotated_TRAIN/144562.1_125`)
 
 ```
 ... Bestimmungen und wurde im  Übrigen der ständigen Rechtsprechung des <<<VwGH>>> gefolgt.
@@ -4244,7 +4244,7 @@ Matches the abbreviation 'VwGH' (Verwaltungsgerichtshof) but excludes citation c
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1_199`)
 
 **False Positives:**
 
@@ -4256,7 +4256,7 @@ FP: `VwGH` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated_TRAIN/138736.1`) ( sent_id: `findok-manually-annotated_TRAIN/138736.1_38`)
 
 **False Positives:**
 
@@ -4268,7 +4268,7 @@ FP: `VwGH` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated_TRAIN/138736.1`) ( sent_id: `findok-manually-annotated_TRAIN/138736.1_39`)
 
 **False Positives:**
 
@@ -4280,7 +4280,7 @@ FP: `VwGH` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated_TRAIN/138736.1`) ( sent_id: `findok-manually-annotated_TRAIN/138736.1_41`)
 
 **False Positives:**
 
@@ -4292,7 +4292,7 @@ FP: `VwGH` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated_TRAIN/138736.1`) ( sent_id: `findok-manually-annotated_TRAIN/138736.1_42`)
 
 **False Positives:**
 
@@ -4341,7 +4341,7 @@ Matches the specific entity 'Schmeltz Luftfahrt'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_20`)
 
 ```
 ... Vermögen, bestehend aus 11 einzeln  benannten Tankstellen, auf die <<<Schmeltz Luftfahrt>>>  übertragen.
@@ -4351,7 +4351,7 @@ Matches the specific entity 'Schmeltz Luftfahrt'.
 |---|---|
 | `Schmeltz Luftfahrt` | `Schmeltz Luftfahrt` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_21`)
 
 ```
 Die <<<Schmeltz Luftfahrt>>>  ist zum  31.10.2010 als übertragende Gesellschaft mit Dorfcon-Verlag ...
@@ -4361,7 +4361,7 @@ Die <<<Schmeltz Luftfahrt>>>  ist zum  31.10.2010 als übertragende Gesellschaft
 |---|---|
 | `Schmeltz Luftfahrt` | `Schmeltz Luftfahrt` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_26`)
 
 ```
 ... Dorfcon-Verlag  ist  auf Grund der Verschmelzung zum 31.10.2010 mit der <<<Schmeltz Luftfahrt>>> (partielle)  Gesamtrechtsnachfolgerin der Houdek Maschinenbau.
@@ -4371,7 +4371,7 @@ Die <<<Schmeltz Luftfahrt>>>  ist zum  31.10.2010 als übertragende Gesellschaft
 |---|---|
 | `Schmeltz Luftfahrt` | `Schmeltz Luftfahrt` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_49`)
 
 ```
 Teilbetriebe  <<<Schmeltz Luftfahrt>>>:   Verluste  geschlossene  Teilbetriebe  Houdek Maschinenbau: ...
@@ -4381,7 +4381,7 @@ Teilbetriebe  <<<Schmeltz Luftfahrt>>>:   Verluste  geschlossene  Teilbetriebe  
 |---|---|
 | `Schmeltz Luftfahrt` | `Schmeltz Luftfahrt` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_54`)
 
 ```
 Abgespaltene  Tankstellen  <<<Schmeltz Luftfahrt>>> **   Geschlossene  Tankstellen  Houdek Maschinenbau **  Verkaufte ...
@@ -4428,7 +4428,7 @@ Matches 'Merkur Treuhand Steuerberatung GmbH' handling potential line breaks or 
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146072.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146072.1_1`)
 
 ```
 ... Haan,  Oisching 129, 3071 Wiesen, Österreich, vertreten durch <<<Merkur Treuhand Steuerberatung GmbH>>>, St.-Veit-Gasse 50,  1130 Wien, über die Beschwerde vom 16. ...
@@ -4438,7 +4438,7 @@ Matches 'Merkur Treuhand Steuerberatung GmbH' handling potential line breaks or 
 |---|---|
 | `Merkur Treuhand Steuerberatung GmbH` | `Merkur Treuhand Steuerberatung GmbH` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146072.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146072.1_43`)
 
 ```
 ... bei der belangten Behörde am selben Tage,  übermittelte die <<<Merkur Treuhand Steuerberatung GmbH>>> der belangten Behörde eine am  11.3.2024 von der Beschwerdeführerin ...
@@ -4453,7 +4453,7 @@ Matches 'Merkur Treuhand Steuerberatung GmbH' handling potential line breaks or 
 | `Merkur Treuhand Steuerberatung GmbH` | `Merkur Treuhand Steuerberatung GmbH` |
 | `Merkur Treuhand Steuerberatung GmbH` | `Merkur Treuhand Steuerberatung GmbH` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146072.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146072.1_44`)
 
 ```
 Weiters wurde  der <<<Merkur Treuhand Steuerberatung GmbH>>> darin die Vollmacht „zum Empfang von  Schriftstücken, insbesondere ...
@@ -4463,7 +4463,7 @@ Weiters wurde  der <<<Merkur Treuhand Steuerberatung GmbH>>> darin die Vollmacht
 |---|---|
 | `Merkur Treuhand Steuerberatung GmbH` | `Merkur Treuhand Steuerberatung GmbH` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146072.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146072.1_45`)
 
 ```
 Im (Begleit-) Schreiben vom 13.3.2024 führt die <<<Merkur Treuhand Steuerberatung  GmbH>>> aus, dass die Vollmacht als „Spezialvollmacht für das laufende ...
@@ -4473,7 +4473,7 @@ Im (Begleit-) Schreiben vom 13.3.2024 führt die <<<Merkur Treuhand Steuerberatu
 |---|---|
 | `Merkur Treuhand Steuerberatung  GmbH` | `Merkur Treuhand Steuerberatung  GmbH` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146072.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146072.1_54`)
 
 ```
 ... (Sicherstellungsauftrag) und 3.4.2024 (Pfändung) mit E-Mail vom 16.4.2024 an die  <<<Merkur Treuhand Steuerberatung GmbH>>> weiter.
@@ -4520,7 +4520,7 @@ Matches the specific entity 'Dorfcon-Verlag'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_21`)
 
 ```
 ... Luftfahrt  ist zum  31.10.2010 als übertragende Gesellschaft mit <<<Dorfcon-Verlag>>>  verschmolzen worden.
@@ -4530,7 +4530,7 @@ Matches the specific entity 'Dorfcon-Verlag'.
 |---|---|
 | `Dorfcon-Verlag` | `Dorfcon-Verlag` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_26`)
 
 ```
 Die <<<Dorfcon-Verlag>>>  ist  auf Grund der Verschmelzung zum 31.10.2010 mit der Schmeltz ...
@@ -4540,7 +4540,7 @@ Die <<<Dorfcon-Verlag>>>  ist  auf Grund der Verschmelzung zum 31.10.2010 mit de
 |---|---|
 | `Dorfcon-Verlag` | `Dorfcon-Verlag` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_30`)
 
 ```
 ... Lexdon IT  und einen Körperschaftsteuerbescheid 2007 an die <<<Dorfcon-Verlag>>>, da diese Gesellschaften auf  Grund der Abspaltung der 11 Tankstellen ...
@@ -4550,7 +4550,7 @@ Die <<<Dorfcon-Verlag>>>  ist  auf Grund der Verschmelzung zum 31.10.2010 mit de
 |---|---|
 | `Dorfcon-Verlag` | `Dorfcon-Verlag` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_32`)
 
 ```
 ... erzielten  Verlust 2007 zwischen Roelfsen Versicherung  und <<<Dorfcon-Verlag>>>  grundsätzlich entsprechend der  Zuordnung der Einkünfte zu ...
@@ -4560,7 +4560,7 @@ Die <<<Dorfcon-Verlag>>>  ist  auf Grund der Verschmelzung zum 31.10.2010 mit de
 |---|---|
 | `Dorfcon-Verlag` | `Dorfcon-Verlag` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_45`)
 
 ```
 ... ermittelte Verlust wäre  daher zwischen Roelfsen Versicherung  und <<<Dorfcon-Verlag>>>  wie folgt aliquot (unter Außerachtlassung  einer geringfügigen ...
@@ -4607,7 +4607,7 @@ Matches bare abbreviations 'JKU' and 'WU' for universities.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_VALIDATE/138708.1`) ( sent_id: `findok-manually-annotated_VALIDATE/138708.1_27`)
 
 ```
 ... Wirtschaftswissenschaften an der WU  Wien und BA Wirtschaftswissenschaften an der <<<JKU>>> um dasselbe Studium handelt,  dürfen wir Ihnen folgendes mitteilen: ...
@@ -4617,7 +4617,7 @@ Matches bare abbreviations 'JKU' and 'WU' for universities.
 |---|---|
 | `JKU` | `JKU` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated_VALIDATE/138708.1`) ( sent_id: `findok-manually-annotated_VALIDATE/138708.1_41`)
 
 ```
 Siehe Internetseite <<<JKU>>> und WU  Karriereaussichten!
@@ -4632,7 +4632,7 @@ Siehe Internetseite JKU und <<<WU>>>  Karriereaussichten!
 | `JKU` | `JKU` |
 | `WU` | `WU` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated_VALIDATE/138708.1`) ( sent_id: `findok-manually-annotated_VALIDATE/138708.1_47`)
 
 ```
 ... Wirtschaftswissenschaften an der WU  Wien und BA Wirtschaftswissenschaften an der <<<JKU>>> um dasselbe Studium handelt,  dürfen wir Ihnen folgendes mitteilen: ...
@@ -4642,7 +4642,7 @@ Siehe Internetseite JKU und <<<WU>>>  Karriereaussichten!
 |---|---|
 | `JKU` | `JKU` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated_VALIDATE/138708.1`) ( sent_id: `findok-manually-annotated_VALIDATE/138708.1_49`)
 
 ```
  Beispieldarstellung Übereinstimmung Lehrplan <<<WU>>> mit JKU:     Berufungsentscheidung des UFS vom 19.10.2010, ...
@@ -4657,7 +4657,7 @@ Siehe Internetseite JKU und <<<WU>>>  Karriereaussichten!
 | `WU` | `WU` |
 | `JKU` | `JKU` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated_VALIDATE/138708.1`) ( sent_id: `findok-manually-annotated_VALIDATE/138708.1_92`)
 
 ```
 ... sozialwissenschaftliche Grundlagen,  auswählbare Studienzweige (<<<WU>>>: „Betriebswirtschaft“, „Internationale Betriebswirtschaft“, ...
@@ -4679,7 +4679,7 @@ Siehe Internetseite JKU und <<<WU>>>  Karriereaussichten!
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_VALIDATE/138708.1`) ( sent_id: `findok-manually-annotated_VALIDATE/138708.1_10`)
 
 **False Positives:**
 
@@ -4692,7 +4692,7 @@ FP: `WU` (organisation)
 **✅ Gold Entities:**
 - `Wirtschaftsuniversität Wien (WU Wien)` (organisation)
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated_VALIDATE/138708.1`) ( sent_id: `findok-manually-annotated_VALIDATE/138708.1_11`)
 
 **False Positives:**
 
@@ -4705,7 +4705,7 @@ FP: `WU` (organisation)
 **✅ Gold Entities:**
 - `WU Wien` (organisation)
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated_VALIDATE/138708.1`) ( sent_id: `findok-manually-annotated_VALIDATE/138708.1_12`)
 
 **False Positives:**
 
@@ -4739,7 +4739,7 @@ FP: `JKU` (organisation)
 - `WU Wien` (organisation)
 - `JKU Linz` (organisation)
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated_VALIDATE/138708.1`) ( sent_id: `findok-manually-annotated_VALIDATE/138708.1_14`)
 
 **False Positives:**
 
@@ -4752,7 +4752,7 @@ FP: `JKU` (organisation)
 **✅ Gold Entities:**
 - `JKU Linz` (organisation)
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated_VALIDATE/138708.1`) ( sent_id: `findok-manually-annotated_VALIDATE/138708.1_25`)
 
 **False Positives:**
 
@@ -4802,7 +4802,7 @@ Matches 'Landespolizeidirektion Wien'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149675.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149675.1_7`)
 
 ```
 ...  wurde von einem Kontrollorgan der Parkraumüberwachung der <<<Landespolizeidirektion Wien>>>  (A118) am 18. April 2025 um 11:07 Uhr in 1120 Wien, Meidlinger ...
@@ -4812,7 +4812,7 @@ Matches 'Landespolizeidirektion Wien'.
 |---|---|
 | `Landespolizeidirektion Wien` | `Landespolizeidirektion Wien` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149675.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149675.1_19`)
 
 ```
 ... welche von einem Organ des Parkraumüberwachungsorgans  der <<<Landespolizeidirektion Wien>>> aufgrund eigener dienstlicher Wahrnehmung gelegt wurde,  ergibt ...
@@ -4822,7 +4822,7 @@ Matches 'Landespolizeidirektion Wien'.
 |---|---|
 | `Landespolizeidirektion Wien` | `Landespolizeidirektion Wien` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated_TRAIN/149822.1`) ( sent_id: `findok-manually-annotated_TRAIN/149822.1_7`)
 
 ```
 ... W-Kennz. (A) wurde vom  Kontrollorgan der Parkraumüberwachung der <<<Landespolizeidirektion Wien>>> am 07. Mai 2025  um 11:59 Uhr in der gebührenpflichtigen Kurzparkzone ...
@@ -4832,7 +4832,7 @@ Matches 'Landespolizeidirektion Wien'.
 |---|---|
 | `Landespolizeidirektion Wien` | `Landespolizeidirektion Wien` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated-filtered-higher-courts_VALIDATE/134209.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_VALIDATE/134209.1_55`)
 
 ```
 Am 11. September 2019 bewilligte die <<<Landespolizeidirektion Wien>>> - Verkehrsamt - der Tochter  des Bf. gemäß § 122 Kraftfahrgesetz ...
@@ -4842,7 +4842,7 @@ Am 11. September 2019 bewilligte die <<<Landespolizeidirektion Wien>>> - Verkehr
 |---|---|
 | `Landespolizeidirektion Wien` | `Landespolizeidirektion Wien` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated-filtered-higher-courts_VALIDATE/134209.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_VALIDATE/134209.1_57`)
 
 ```
 Am 20. Februar 2020 überwies der Bf. € 173,10 an die <<<Landespolizeidirektion Wien>>> -  Verkehrsamt (handschriftlich vom Bf. eingefügt: Führerschein ...
@@ -4889,7 +4889,7 @@ Matches 'Bundesministerium für Finanzen' and its genitive form 'Bundesministeri
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/148650.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/148650.1_43`)
 
 ```
 Nach Auskunft des <<<Bundesministeriums für Finanzen>>> in gleichgelagerten Fällen ist der im  Signaturblock angegebene ...
@@ -4899,7 +4899,7 @@ Nach Auskunft des <<<Bundesministeriums für Finanzen>>> in gleichgelagerten Fä
 |---|---|
 | `Bundesministeriums für Finanzen` | `Bundesministeriums für Finanzen` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149868.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149868.1_42`)
 
 ```
 ... vom Bundesfinanzgericht  durchgeführte Berechnung mit dem von <<<Bundesministerium für Finanzen>>> im Internet zur  Verfügung gestellten Pendlerrechner.
@@ -4909,7 +4909,7 @@ Nach Auskunft des <<<Bundesministeriums für Finanzen>>> in gleichgelagerten Fä
 |---|---|
 | `Bundesministerium für Finanzen` | `Bundesministerium für Finanzen` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149868.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149868.1_91`)
 
 ```
 ... unzumutbar ist, für Verhältnisse innerhalb  Österreichs der vom <<<Bundesministerium für Finanzen>>> im Internet zur Verfügung gestellte  Pendlerrechner zu verwenden.
@@ -4919,7 +4919,7 @@ Nach Auskunft des <<<Bundesministeriums für Finanzen>>> in gleichgelagerten Fä
 |---|---|
 | `Bundesministerium für Finanzen` | `Bundesministerium für Finanzen` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149868.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149868.1_92`)
 
 ```
 ... Zuge seiner Entscheidungsfindung eine Berechnung mit  dem vom <<<Bundesministerium für Finanzen>>> im Internet zur Verfügung gestellten  Pendlerrechner durch.
@@ -4929,7 +4929,7 @@ Nach Auskunft des <<<Bundesministeriums für Finanzen>>> in gleichgelagerten Fä
 |---|---|
 | `Bundesministerium für Finanzen` | `Bundesministerium für Finanzen` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149473.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149473.1_68`)
 
 ```
 ... richtete das Bundesfinanzgericht ein Amtshilfeersuchen an das  <<<Bundesministerium für Finanzen>>>.
@@ -4976,7 +4976,7 @@ Matches the abbreviation 'Frontex'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1_6`)
 
 ```
 ... Reisekosten wie folgt auf:  Einsätze für die Grenzschutzagentur <<<Frontex>>>: versteuerte Taggelder  Einsatz im Jahr 2018 als <<<Frontex>>>-Beamter ...
@@ -4986,7 +4986,7 @@ Matches the abbreviation 'Frontex'.
 |---|---|
 | `Frontex` | `Frontex` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1_62`)
 
 ```
 Werbungskosten die in Zusammenhang mit <<<Frontex>>>, EASO, ... Einsätzen stehen, dürfen daher in  solchen Fällen ...
@@ -4996,7 +4996,7 @@ Werbungskosten die in Zusammenhang mit <<<Frontex>>>, EASO, ... Einsätzen stehe
 |---|---|
 | `Frontex` | `Frontex` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1_74`)
 
 ```
 ... ausgenommenen Taggelder in Zusammenhang mit dem Kurzzeiteinsatz für  <<<Frontex>>> auch die laut Reisekosten-Beilage gesondert beantragten Kilometer-/ ...
@@ -5006,7 +5006,7 @@ Werbungskosten die in Zusammenhang mit <<<Frontex>>>, EASO, ... Einsätzen stehe
 |---|---|
 | `Frontex` | `Frontex` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1_76`)
 
 ```
 ... und wurde gemäß § 39a BDG in der Zeit 26. Februar 2025  an <<<Frontex>>> entsendet und war im Auslandseinsatz in Sizilien.
@@ -5016,7 +5016,7 @@ Werbungskosten die in Zusammenhang mit <<<Frontex>>>, EASO, ... Einsätzen stehe
 |---|---|
 | `Frontex` | `Frontex` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1_84`)
 
 ```
 ... Flughafen München mit dem  privaten PKW wurden dem Bf. vom BMI bzw. <<<Frontex>>> nicht ersetzt.
@@ -5033,7 +5033,7 @@ Werbungskosten die in Zusammenhang mit <<<Frontex>>>, EASO, ... Einsätzen stehe
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1_6`)
 
 **False Positives:**
 
@@ -5046,7 +5046,7 @@ FP: `Frontex` (organisation)
 **✅ Gold Entities:**
 - `Frontex` (organisation)
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1_10`)
 
 **False Positives:**
 
@@ -5058,7 +5058,7 @@ FP: `Frontex` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1_25`)
 
 **False Positives:**
 
@@ -5070,7 +5070,7 @@ FP: `Frontex` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1_28`)
 
 **False Positives:**
 
@@ -5083,7 +5083,7 @@ FP: `Frontex` (organisation)
 **✅ Gold Entities:**
 - `Trapani` (city)
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1_43`)
 
 **False Positives:**
 
@@ -5134,7 +5134,7 @@ Matches the specific entity 'Lexdon IT'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_22`)
 
 ```
 ... übertragende Gesellschaft (neben anderen Gesellschaften) mit der  <<<Lexdon IT>>>  als übernehmende Gesellschaft verschmolzen worden.
@@ -5144,7 +5144,7 @@ Matches the specific entity 'Lexdon IT'.
 |---|---|
 | `Lexdon IT` | `Lexdon IT` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_25`)
 
 ```
 Die <<<Lexdon IT>>>  und  Roelfsen Versicherung  sind aufgrund der dargestellten ...
@@ -5154,7 +5154,7 @@ Die <<<Lexdon IT>>>  und  Roelfsen Versicherung  sind aufgrund der dargestellten
 |---|---|
 | `Lexdon IT` | `Lexdon IT` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_30`)
 
 ```
 ... 2007 iSd § 19 Abs. 1 BAO an die Roelfsen Versicherung, die <<<Lexdon IT>>>  und einen Körperschaftsteuerbescheid 2007 an die Dorfcon-Verlag, ...
@@ -5164,7 +5164,7 @@ Die <<<Lexdon IT>>>  und  Roelfsen Versicherung  sind aufgrund der dargestellten
 |---|---|
 | `Lexdon IT` | `Lexdon IT` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_31`)
 
 ```
 Der <<<Lexdon IT>>>  als weiterem partiellen  Gesamtrechtsnachfolger wurde ein ...
@@ -5174,7 +5174,7 @@ Der <<<Lexdon IT>>>  als weiterem partiellen  Gesamtrechtsnachfolger wurde ein .
 |---|---|
 | `Lexdon IT` | `Lexdon IT` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_98`)
 
 ```
 ... Rechtsmeinung des Beschwerdeführers geteilt, wonach der bei der  <<<Lexdon IT>>>  im Jahr 2007 insgesamt entstandene Verlust nach Vornahme des ...
@@ -5221,7 +5221,7 @@ Matches 'Universität in St. Gallen' and 'Universität St. Gallen'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/144169.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/144169.1_24`)
 
 ```
 ... am … .2000 studiert seit dem Wintersemester 2020/21 an der <<<Universität  in St. Gallen>>> in der Schweiz, das Studium wird ernsthaft und zielstrebig ...
@@ -5231,7 +5231,7 @@ Matches 'Universität in St. Gallen' and 'Universität St. Gallen'.
 |---|---|
 | `Universität  in St. Gallen` | `Universität  in St. Gallen` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/144169.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/144169.1_45`)
 
 ```
 ... Sohn P… (geb. … .00) hat von 2020 bis 2023 erfolgreich an der <<<Universität St. Gallen>>>  studiert.
@@ -5241,7 +5241,7 @@ Matches 'Universität in St. Gallen' and 'Universität St. Gallen'.
 |---|---|
 | `Universität St. Gallen` | `Universität St. Gallen` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/144169.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/144169.1_50`)
 
 ```
 ... Studium hatte sich die Corona-Pandemie für Studierende der <<<Universität St.  Gallen>>> zu Gunsten der Ortsunabhängigkeit der Studierenden ausgewirkt.
@@ -5251,7 +5251,7 @@ Matches 'Universität in St. Gallen' and 'Universität St. Gallen'.
 |---|---|
 | `Universität St.  Gallen` | `Universität St.  Gallen` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/144169.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/144169.1_53`)
 
 ```
 Außerdem besteht  an der <<<Universität St. Gallen>>> (unabhängig der Pandemie Situation) keine Anwesenheitspflicht.
@@ -5261,7 +5261,7 @@ Außerdem besteht  an der <<<Universität St. Gallen>>> (unabhängig der Pandemi
 |---|---|
 | `Universität St. Gallen` | `Universität St. Gallen` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/144169.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/144169.1_68`)
 
 ```
 ... Herbstsemester 2020 für  das Studium der Betriebswirtschaftslehre an der <<<Universität St. Gallen>>> (HSG) in der Schweiz  inskribiert.
@@ -5308,7 +5308,7 @@ Matches the abbreviation 'BMF' (Bundesministerium für Finanzen).
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149552.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149552.1_24`)
 
 ```
 Abrufbar auf der  Website des <<<BMF>>> unter Formulare) kann auch für ausländische Arbeitgeber  ausgefüllt ...
@@ -5318,7 +5318,7 @@ Abrufbar auf der  Website des <<<BMF>>> unter Formulare) kann auch für ausländ
 |---|---|
 | `BMF` | `BMF` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated_TRAIN/144562.1`) ( sent_id: `findok-manually-annotated_TRAIN/144562.1_101`)
 
 ```
 ... Familienbeihilfe für das neue Studium heranzuziehen (vgl. Erlass des <<<BMF>>> vom 05.10.2010,  <<<BMF>>>-110900/0003-IV/2/2010).
@@ -5328,7 +5328,7 @@ Abrufbar auf der  Website des <<<BMF>>> unter Formulare) kann auch für ausländ
 |---|---|
 | `BMF` | `BMF` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_65`)
 
 ```
 ... der diesbezüglichen  VwGH-Rechtsprechung und nach Ansicht des <<<BMF>>> sei es dem Steuerpflichtigen freigestellt, in  welcher Reihenfolge ...
@@ -5338,7 +5338,7 @@ Abrufbar auf der  Website des <<<BMF>>> unter Formulare) kann auch für ausländ
 |---|---|
 | `BMF` | `BMF` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149473.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149473.1_8`)
 
 ```
 ... sondern nur in FOn gespeichert worden sei,  da ein auf Seiten des <<<BMF>>> liegendes technisches Problem die Einbringung verhindere.
@@ -5348,7 +5348,7 @@ Abrufbar auf der  Website des <<<BMF>>> unter Formulare) kann auch für ausländ
 |---|---|
 | `BMF` | `BMF` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/144562.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/144562.1_101`)
 
 ```
 ... Familienbeihilfe für das neue Studium heranzuziehen (vgl. Erlass des <<<BMF>>> vom 05.10.2010,  <<<BMF>>>-110900/0003-IV/2/2010).
@@ -5365,7 +5365,7 @@ Abrufbar auf der  Website des <<<BMF>>> unter Formulare) kann auch für ausländ
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/144562.1`) ( sent_id: `findok-manually-annotated_TRAIN/144562.1_101`)
 
 **False Positives:**
 
@@ -5378,7 +5378,7 @@ FP: `BMF` (organisation)
 **✅ Gold Entities:**
 - `BMF` (organisation)
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated_TRAIN/149280.1`) ( sent_id: `findok-manually-annotated_TRAIN/149280.1_86`)
 
 **False Positives:**
 
@@ -5390,7 +5390,7 @@ FP: `BMF` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated_TRAIN/149280.1`) ( sent_id: `findok-manually-annotated_TRAIN/149280.1_98`)
 
 **False Positives:**
 
@@ -5402,7 +5402,7 @@ FP: `BMF` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated_TRAIN/149280.1`) ( sent_id: `findok-manually-annotated_TRAIN/149280.1_100`)
 
 **False Positives:**
 
@@ -5414,7 +5414,7 @@ FP: `BMF` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/144562.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/144562.1_101`)
 
 **False Positives:**
 
@@ -5464,7 +5464,7 @@ Matches 'INET Internet Service GmbH' specifically to avoid partial matches.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145534.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145534.1_6`)
 
 ```
 ... und Nichtfeststellungsbescheid für das Jahr 2004  betreffend <<<INET Internet Service GmbH>>> und Mitges.
@@ -5474,7 +5474,7 @@ Matches 'INET Internet Service GmbH' specifically to avoid partial matches.
 |---|---|
 | `INET Internet Service GmbH` | `INET Internet Service GmbH` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145534.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145534.1_13`)
 
 ```
 ... Mitunternehmerschaft (atypisch stillen  Beteiligung) an der <<<INET Internet Service GmbH>>> und Mitges., St.nr.: ***, (Beteiligung in den  Streitjahren) ...
@@ -5484,7 +5484,7 @@ Matches 'INET Internet Service GmbH' specifically to avoid partial matches.
 |---|---|
 | `INET Internet Service GmbH` | `INET Internet Service GmbH` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145534.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145534.1_31`)
 
 ```
 Der Bf. war unstrittig in den Streitjahren an der <<<INET Internet Service GmbH>>> und Mitges.
@@ -5494,7 +5494,7 @@ Der Bf. war unstrittig in den Streitjahren an der <<<INET Internet Service GmbH>
 |---|---|
 | `INET Internet Service GmbH` | `INET Internet Service GmbH` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145534.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145534.1_75`)
 
 ```
 ... Zuge von Wiederholungsprüfungen gem. § 99 FinStrG u.a. bei der <<<INET Internet Service  GmbH>>> und Mitges.
@@ -5504,7 +5504,7 @@ Der Bf. war unstrittig in den Streitjahren an der <<<INET Internet Service GmbH>
 |---|---|
 | `INET Internet Service  GmbH` | `INET Internet Service  GmbH` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145534.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145534.1_83`)
 
 ```
 ... gemäß § 293b BAO betreffend das  Feststellungsverfahren der <<<INET Internet Service GmbH>>> und atypisch Stille erlassen, mit  welchem die Feststellungsbescheide ...
@@ -5551,7 +5551,7 @@ Matches the various forms of the school name 'Schule für allgemeine Gesundheits
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_VALIDATE/131197.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_VALIDATE/131197.1_6`)
 
 ```
 ... die Ausbildung zur Steuerassistentin und ein Schreiben der <<<Schule  für allgemeine Gesundheits- und Krankenpflege Grillenreith>>>, in dem bestätigt wurde, dass die  Tochter die Schule in der ...
@@ -5561,7 +5561,7 @@ Matches the various forms of the school name 'Schule für allgemeine Gesundheits
 |---|---|
 | `Schule  für allgemeine Gesundheits- und Krankenpflege Grillenreith` | `Schule  für allgemeine Gesundheits- und Krankenpflege Grillenreith` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_VALIDATE/131197.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_VALIDATE/131197.1_10`)
 
 ```
 ... Bakk. techn.  war von 1.10.2016 bis 4.10.2017 Schülerin an der <<<Schule für  allgemeine Gesundheits- und Krankenpflege am LKH Grillenreith>>>.
@@ -5571,7 +5571,7 @@ Matches the various forms of the school name 'Schule für allgemeine Gesundheits
 |---|---|
 | `Schule für  allgemeine Gesundheits- und Krankenpflege am LKH Grillenreith` | `Schule für  allgemeine Gesundheits- und Krankenpflege am LKH Grillenreith` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated-filtered-higher-courts_VALIDATE/131197.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_VALIDATE/131197.1_13`)
 
 ```
 ... im Oktober  2017 aus gesundheitlichen Gründen die allgemeine <<<Gesundheits- und Krankenpflege-Schule am  LKH Grillenreith>>>  nicht weiterführen konnte, hat sie diese Ausbildung beendet.
@@ -5581,7 +5581,7 @@ Matches the various forms of the school name 'Schule für allgemeine Gesundheits
 |---|---|
 | `Gesundheits- und Krankenpflege-Schule am  LKH Grillenreith` | `Gesundheits- und Krankenpflege-Schule am  LKH Grillenreith` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated-filtered-higher-courts_VALIDATE/131197.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_VALIDATE/131197.1_20`)
 
 ```
 ... Stella Marschalk, Bakk. techn.  war vom 1.10.2016 an in der <<<Schule für allgemeine Gesundheits- und  Krankenpflege Grillenreith>>>  in Ausbildung zur Krankenpflegerin.
@@ -5591,7 +5591,7 @@ Matches the various forms of the school name 'Schule für allgemeine Gesundheits
 |---|---|
 | `Schule für allgemeine Gesundheits- und  Krankenpflege Grillenreith` | `Schule für allgemeine Gesundheits- und  Krankenpflege Grillenreith` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated-filtered-higher-courts_VALIDATE/131197.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_VALIDATE/131197.1_26`)
 
 ```
 Dem Vorlageantrag beigelegt war ein Schreiben der <<<Schule für allgemeine Gesundheits- und  Krankenpflege in Grillenreith>>>, in dem bestätigt wurde, dass Stella Marschalk, Bakk. techn. ...
@@ -5638,7 +5638,7 @@ Matches 'Flughafen München' and 'Flughafen  München' (with double space).
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1_75`)
 
 ```
 ... Bf. nach Rückfrage mit, dass die An- und Rückreisekosten  zum <<<Flughafen München>>> mit dem privat PKW ohne entsprechende Belege laut Anweisung ...
@@ -5648,7 +5648,7 @@ Matches 'Flughafen München' and 'Flughafen  München' (with double space).
 |---|---|
 | `Flughafen München` | `Flughafen München` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1_83`)
 
 ```
 ... Frühstückskosten iHv € 181,35, sowie An- und Rückreisekosten zum <<<Flughafen  München>>> iHv € 173,80.
@@ -5658,7 +5658,7 @@ Matches 'Flughafen München' and 'Flughafen  München' (with double space).
 |---|---|
 | `Flughafen  München` | `Flughafen  München` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1_84`)
 
 ```
 Die An- und Rückreisekosten zum <<<Flughafen München>>> mit dem  privaten PKW wurden dem Bf. vom BMI bzw. Frontex nicht ...
@@ -5668,7 +5668,7 @@ Die An- und Rückreisekosten zum <<<Flughafen München>>> mit dem  privaten PKW 
 |---|---|
 | `Flughafen München` | `Flughafen München` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1_127`)
 
 ```
 ... pauschale Frühstückskosten sowie die An- und  Rückreisekosten zum <<<Flughafen München>>> als Werbungskosten im Zusammenhang mit der  Auslandstätigkeit ...
@@ -5678,7 +5678,7 @@ Die An- und Rückreisekosten zum <<<Flughafen München>>> mit dem  privaten PKW 
 |---|---|
 | `Flughafen München` | `Flughafen München` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1_139`)
 
 ```
 Die Kosten für die Fahrt  zwischen Wohnort und <<<Flughafen München>>>, die der Bf. mit dem eigenen PKW zurückgelegt  hat, wurden ...
@@ -5725,7 +5725,7 @@ Matches 'University of Bristol'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_VALIDATE/134209.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_VALIDATE/134209.1_26`)
 
 ```
 Die Tochter studiert an der <<<University of Bristol>>> bis voraussichtlich Juli 2023.
@@ -5735,7 +5735,7 @@ Die Tochter studiert an der <<<University of Bristol>>> bis voraussichtlich Juli
 |---|---|
 | `University of Bristol` | `University of Bristol` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_VALIDATE/134209.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_VALIDATE/134209.1_30`)
 
 ```
 ... getragen hat  und ab September 2020 in einem Studentenwohnheim der <<<University of Bristol>>>.
@@ -5745,7 +5745,7 @@ Die Tochter studiert an der <<<University of Bristol>>> bis voraussichtlich Juli
 |---|---|
 | `University of Bristol` | `University of Bristol` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated-filtered-higher-courts_VALIDATE/134209.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_VALIDATE/134209.1_66`)
 
 ```
 Am 11. Dezember 2020 bestätigte die <<<University of Bristol>>>, that Miss Maximiliane Sakschewsky, MA (Tochter  des Bf.) student ...
@@ -5755,7 +5755,7 @@ Am 11. Dezember 2020 bestätigte die <<<University of Bristol>>>, that Miss Maxi
 |---|---|
 | `University of Bristol` | `University of Bristol` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated-filtered-higher-courts_VALIDATE/134209.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_VALIDATE/134209.1_67`)
 
 ```
 2…7 is studying for a Chemistry (BSc) full time at the <<<University of Bristol>>>.
@@ -5765,7 +5765,7 @@ Am 11. Dezember 2020 bestätigte die <<<University of Bristol>>>, that Miss Maxi
 |---|---|
 | `University of Bristol` | `University of Bristol` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated-filtered-higher-courts_VALIDATE/134209.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_VALIDATE/134209.1_68`)
 
 ```
 Miss Maximiliane Sakschewsky, MA … started at the <<<University of Bristol>>> on 28 September 2020 and is  expected to complete her course ...
@@ -5812,7 +5812,7 @@ Matches 'Schabetsberger Steuerberatung GmbH'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146072.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146072.1_51`)
 
 ```
 ... Abgabenschuldner“) wurden der Beschwerdeführerin am 5.4.2024 zu  Handen der <<<Schabetsberger Steuerberatung GmbH>>>, Fischerstiege 9, 1010 Wien, zugestellt.
@@ -5822,7 +5822,7 @@ Matches 'Schabetsberger Steuerberatung GmbH'.
 |---|---|
 | `Schabetsberger Steuerberatung GmbH` | `Schabetsberger Steuerberatung GmbH` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146072.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146072.1_54`)
 
 ```
 Die <<<Schabetsberger Steuerberatung GmbH>>> leitete Scans der ihr zugestellten Bescheide vom  20.3.2024 ...
@@ -5832,7 +5832,7 @@ Die <<<Schabetsberger Steuerberatung GmbH>>> leitete Scans der ihr zugestellten 
 |---|---|
 | `Schabetsberger Steuerberatung GmbH` | `Schabetsberger Steuerberatung GmbH` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146072.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146072.1_63`)
 
 ```
 ... Mitarbeiter oder eine  Mitarbeiterin (Unterschrift unleserlich) der <<<Schabetsberger Steuerberatung GmbH>>> die  Übernahme dieser beiden Bescheide am 5.4.2024 bestätigt, ...
@@ -5842,7 +5842,7 @@ Die <<<Schabetsberger Steuerberatung GmbH>>> leitete Scans der ihr zugestellten 
 |---|---|
 | `Schabetsberger Steuerberatung GmbH` | `Schabetsberger Steuerberatung GmbH` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146072.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146072.1_108`)
 
 ```
 ... Vollmachten (daher auch eine allfällige Zustellvollmacht der  <<<Schabetsberger Steuerberatung GmbH>>>) aufgelöst.
@@ -5852,7 +5852,7 @@ Die <<<Schabetsberger Steuerberatung GmbH>>> leitete Scans der ihr zugestellten 
 |---|---|
 | `Schabetsberger Steuerberatung GmbH` | `Schabetsberger Steuerberatung GmbH` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146072.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146072.1_114`)
 
 ```
 Die Zustellung an die <<<Schabetsberger  Steuerberatung GmbH>>> war unwirksam.
@@ -5899,7 +5899,7 @@ Matches 'Verfassungsgerichtshof' and its genitive forms 'Verfassungsgerichtshofe
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated_TRAIN/134689.1_51`)
 
 ```
 ... Zeit eines Verfahrens vor dem Verwaltungsgerichtshof, vor dem <<<Verfassungsgerichtshof>>>  oder vor dem Gerichtshof der Europäischen Union.
@@ -5909,7 +5909,7 @@ Matches 'Verfassungsgerichtshof' and its genitive forms 'Verfassungsgerichtshofe
 |---|---|
 | `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated_TRAIN/149418.1`) ( sent_id: `findok-manually-annotated_TRAIN/149418.1_33`)
 
 ```
 ... hat,  den Antrag auf Aufhebung dieser Rechtsvorschrift beim <<<Verfassungsgerichtshof>>> zu stellen.
@@ -5919,7 +5919,7 @@ Matches 'Verfassungsgerichtshof' and its genitive forms 'Verfassungsgerichtshofe
 |---|---|
 | `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated_TRAIN/149708.1`) ( sent_id: `findok-manually-annotated_TRAIN/149708.1_2`)
 
 ```
 ... Verwaltungsgerichtshof (§ 25a Abs. 2 Z 1 VwGG) oder eine Beschwerde an den  <<<Verfassungsgerichtshof>>> (§ 88a Abs. 2 VfGG) nicht zulässig.
@@ -5929,7 +5929,7 @@ Matches 'Verfassungsgerichtshof' and its genitive forms 'Verfassungsgerichtshofe
 |---|---|
 | `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated_TRAIN/149863.1`) ( sent_id: `findok-manually-annotated_TRAIN/149863.1_50`)
 
 ```
 Darüber hinaus hat der <<<Verfassungsgerichtshof>>> in seinem Beschluss vom 19. September 2025  zu E 1733/2025 ...
@@ -5939,7 +5939,7 @@ Darüber hinaus hat der <<<Verfassungsgerichtshof>>> in seinem Beschluss vom 19.
 |---|---|
 | `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated_TRAIN/149683.1`) ( sent_id: `findok-manually-annotated_TRAIN/149683.1_84`)
 
 ```
 ... unmittelbar im Zusammenhang mit dem  DBA Deutschland - vom <<<Verfassungsgerichtshof>>> geprüft und als verfassungskonform beurteilt  wurde (vgl VfGH ...
@@ -5956,7 +5956,7 @@ Darüber hinaus hat der <<<Verfassungsgerichtshof>>> in seinem Beschluss vom 19.
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_156`)
 
 **False Positives:**
 
@@ -5968,7 +5968,7 @@ FP: `Verfassungsgerichtshof` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_172`)
 
 **False Positives:**
 
@@ -5980,7 +5980,7 @@ FP: `Verfassungsgerichtshof` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_250`)
 
 **False Positives:**
 
@@ -5992,7 +5992,7 @@ FP: `Verfassungsgerichtshofes` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_293`)
 
 **False Positives:**
 
@@ -6010,7 +6010,7 @@ FP: `Verfassungsgerichtshofes` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_295`)
 
 **False Positives:**
 
@@ -6059,7 +6059,7 @@ Matches 'Rhein Normonkel Manufaktur GMBH'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/132504.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/132504.1_32`)
 
 ```
 Der ehemalige Arbeitgeber unseres Klienten, die Firma <<<Rhein Normonkel Manufaktur GMBH>>>, hat ihren Sitz in  4331  Wien, Elmbachweg (siehe aktenkundigen ...
@@ -6069,7 +6069,7 @@ Der ehemalige Arbeitgeber unseres Klienten, die Firma <<<Rhein Normonkel Manufak
 |---|---|
 | `Rhein Normonkel Manufaktur GMBH` | `Rhein Normonkel Manufaktur GMBH` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/132504.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/132504.1_69`)
 
 ```
 ... Sachverhalt:  Der Bf war im Streitjahr für die in Wien ansässige <<<Rhein Normonkel Manufaktur GMBH>>>, einem Marktführer im  institutionellen Hygienebereich, als ...
@@ -6079,7 +6079,7 @@ Der ehemalige Arbeitgeber unseres Klienten, die Firma <<<Rhein Normonkel Manufak
 |---|---|
 | `Rhein Normonkel Manufaktur GMBH` | `Rhein Normonkel Manufaktur GMBH` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/132504.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/132504.1_70`)
 
 ```
 Im Rahmen dieses Dienstverhältnisses wurde dem Bf von der <<<Rhein Normonkel Manufaktur GMBH>>>  ein Dienstwagen  der Marke Skoda Octavia zur Verfügung gestellt, ...
@@ -6089,7 +6089,7 @@ Im Rahmen dieses Dienstverhältnisses wurde dem Bf von der <<<Rhein Normonkel Ma
 |---|---|
 | `Rhein Normonkel Manufaktur GMBH` | `Rhein Normonkel Manufaktur GMBH` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/132504.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/132504.1_71`)
 
 ```
 Die <<<Rhein Normonkel Manufaktur GMBH>>>  setzte in der laufenden Lohnverrechnung den vollen Pkw-Sachbezug ...
@@ -6099,7 +6099,7 @@ Die <<<Rhein Normonkel Manufaktur GMBH>>>  setzte in der laufenden Lohnverrechnu
 |---|---|
 | `Rhein Normonkel Manufaktur GMBH` | `Rhein Normonkel Manufaktur GMBH` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/132504.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/132504.1_72`)
 
 ```
 Auch in den von der <<<Rhein Normonkel Manufaktur GMBH>>>  an das Finanzamt  übermittelten Lohnzettel, der den im Einkommensteuerbescheid ...
@@ -6146,7 +6146,7 @@ Matches 'Raiffeisenbank Karnische Rion Bankstelle St.Stefan' with flexible white
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145133.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145133.1_13`)
 
 ```
 ... Kontoinhaber des Kontos mit der  AT78 2024 1897 7421 2903  bei der <<<Raiffeisenbank Karnische Rion  Bankstelle St.Stefan>>>  sei.
@@ -6156,7 +6156,7 @@ Matches 'Raiffeisenbank Karnische Rion Bankstelle St.Stefan' with flexible white
 |---|---|
 | `Raiffeisenbank Karnische Rion  Bankstelle St.Stefan` | `Raiffeisenbank Karnische Rion  Bankstelle St.Stefan` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145133.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145133.1_36`)
 
 ```
 ... es bei dem Konto mit der AT78 2024 1897 7421 2903  bei der  <<<Raiffeisenbank Karnische Rion  Bankstelle St.Stefan>>>  um kein ODER-Konto, sondern ein UND-Konto handle.
@@ -6166,7 +6166,7 @@ Matches 'Raiffeisenbank Karnische Rion Bankstelle St.Stefan' with flexible white
 |---|---|
 | `Raiffeisenbank Karnische Rion  Bankstelle St.Stefan` | `Raiffeisenbank Karnische Rion  Bankstelle St.Stefan` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145133.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145133.1_39`)
 
 ```
 Der <<<Raiffeisenbank Karnische Rion  Bankstelle St.Stefan>>>  wurde der Bescheid vom 10.10.2022 zugestellt und aufgetragen, ...
@@ -6176,7 +6176,7 @@ Der <<<Raiffeisenbank Karnische Rion  Bankstelle St.Stefan>>>  wurde der Beschei
 |---|---|
 | `Raiffeisenbank Karnische Rion  Bankstelle St.Stefan` | `Raiffeisenbank Karnische Rion  Bankstelle St.Stefan` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145133.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145133.1_41`)
 
 ```
 ... Kontoinhaber des Kontos mit der AT78 2024 1897 7421 2903  bei der  <<<Raiffeisenbank Karnische Rion  Bankstelle St.Stefan>>>.
@@ -6186,7 +6186,7 @@ Der <<<Raiffeisenbank Karnische Rion  Bankstelle St.Stefan>>>  wurde der Beschei
 |---|---|
 | `Raiffeisenbank Karnische Rion  Bankstelle St.Stefan` | `Raiffeisenbank Karnische Rion  Bankstelle St.Stefan` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145133.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145133.1_45`)
 
 ```
 ... Beschwerdeführers betreffend  Konto AT78 2024 1897 7421 2903  bei der <<<Raiffeisenbank Karnische Rion  Bankstelle St.Stefan>>>  gründen sich auf die Kontenregisterauskunft.
@@ -6233,7 +6233,7 @@ Matches abbreviations 'PVA' and 'SVS/SVB' in context of social security.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149421.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149421.1_10`)
 
 ```
 ... Bezirkshauptmannschaft Bludenz getragen  werden würden, welche auch die von der <<<PVA>>> einbehaltenen Beträge (das waren die selbst zu  tragende Kosten) ...
@@ -6243,7 +6243,7 @@ Matches abbreviations 'PVA' and 'SVS/SVB' in context of social security.
 |---|---|
 | `PVA` | `PVA` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149421.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149421.1_13`)
 
 ```
 Dazu wurden von der Bf Bestätigungen der <<<PVA>>>, dem SeneCura Laurentius-Park Bludenz und  diverse Arzthonorare ...
@@ -6253,7 +6253,7 @@ Dazu wurden von der Bf Bestätigungen der <<<PVA>>>, dem SeneCura Laurentius-Par
 |---|---|
 | `PVA` | `PVA` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149421.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149421.1_63`)
 
 ```
 Davon wurde ein Selbstbetrag von der <<<PVA>>> direkt  an den Kostenträger zur teilweisen Deckung der Verpflegungskosten ...
@@ -6263,7 +6263,7 @@ Davon wurde ein Selbstbetrag von der <<<PVA>>> direkt  an den Kostenträger zur 
 |---|---|
 | `PVA` | `PVA` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149421.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149421.1_64`)
 
 ```
 ... (lt Verständigung über die Leistungshöhe zum 01.01.2017 der <<<PVA>>>  war dies ein Betrag von ca 200,00 bis 230,00 Euro) verblieb ...
@@ -6273,7 +6273,7 @@ Davon wurde ein Selbstbetrag von der <<<PVA>>> direkt  an den Kostenträger zur 
 |---|---|
 | `PVA` | `PVA` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149421.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149421.1_80`)
 
 ```
 ... insbesondere den angeführten Aktenteilen wie den Bestätigungen der <<<PVA>>>, des SeneCura  Laurentius Park Bludenz und den Kontoauszügen.
@@ -6290,7 +6290,7 @@ Davon wurde ein Selbstbetrag von der <<<PVA>>> direkt  an den Kostenträger zur 
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149421.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149421.1_11`)
 
 **False Positives:**
 
@@ -6304,7 +6304,7 @@ FP: `PVA` (organisation)
 - `SENECURA` (organisation)
 - `SENECURA` (organisation)
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149421.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149421.1_12`)
 
 **False Positives:**
 
@@ -6354,7 +6354,7 @@ Matches the abbreviation 'UFS' only when not followed by 'Salzburg' or part of '
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_74`)
 
 ```
 ... (ohne Erlassung einer Beschwerdevorentscheidung) dem  damaligen <<<UFS>>> (nunmehr BFG, Außenstelle Linz) zur Entscheidung vorgelegt.
@@ -6364,7 +6364,7 @@ Matches the abbreviation 'UFS' only when not followed by 'Salzburg' or part of '
 |---|---|
 | `UFS` | `UFS` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_128`)
 
 ```
 ... Angemessenheitsprüfung PKW)  16.12.2013 Vorlage an BFG (damals noch <<<UFS>>>)  17.08.2015 Erkenntnis des BFG RV/5100056/2014 - unbegründete ...
@@ -6374,7 +6374,7 @@ Matches the abbreviation 'UFS' only when not followed by 'Salzburg' or part of '
 |---|---|
 | `UFS` | `UFS` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_141`)
 
 ```
 ... Angemessenheitsprüfung PKW)   16.12.2013 Vorlage an BFG (damals noch <<<UFS>>>)   17.08.2015 Erkenntnis des BFG RV/5100056/2014 - unbegründete ...
@@ -6384,7 +6384,7 @@ Matches the abbreviation 'UFS' only when not followed by 'Salzburg' or part of '
 |---|---|
 | `UFS` | `UFS` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated_TRAIN/128676.1`) ( sent_id: `findok-manually-annotated_TRAIN/128676.1_68`)
 
 ```
 1.13. Gemäß § 323 Abs. 38 BAO sind die am 31.12.2013 beim <<<UFS>>> als Abgabenbehörde zweiter  Instanz anhängigen Berufungen vom ...
@@ -6394,7 +6394,7 @@ Matches the abbreviation 'UFS' only when not followed by 'Salzburg' or part of '
 |---|---|
 | `UFS` | `UFS` |
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145534.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145534.1_19`)
 
 ```
 ... Berufungsvorentscheidung (nunmehr Beschwerdevorentscheidung) an den  damaligen <<<UFS>>> (nunmehr: BFG) vorgelegt.
@@ -6411,7 +6411,7 @@ Matches the abbreviation 'UFS' only when not followed by 'Salzburg' or part of '
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/149280.1`) ( sent_id: `findok-manually-annotated_TRAIN/149280.1_64`)
 
 **False Positives:**
 
@@ -6423,7 +6423,7 @@ FP: `UFS` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated_TRAIN/149280.1`) ( sent_id: `findok-manually-annotated_TRAIN/149280.1_78`)
 
 **False Positives:**
 
@@ -6435,7 +6435,7 @@ FP: `UFS` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated_TRAIN/149280.1`) ( sent_id: `findok-manually-annotated_TRAIN/149280.1_82`)
 
 **False Positives:**
 
@@ -6447,7 +6447,7 @@ FP: `UFS` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated_TRAIN/149280.1`) ( sent_id: `findok-manually-annotated_TRAIN/149280.1_86`)
 
 **False Positives:**
 
@@ -6459,7 +6459,7 @@ FP: `UFS` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated_TRAIN/149280.1`) ( sent_id: `findok-manually-annotated_TRAIN/149280.1_93`)
 
 **False Positives:**
 
@@ -6508,7 +6508,7 @@ Matches the specific entity 'FA St. Johann Tamsweg Zell am See'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/138736.1`) ( sent_id: `findok-manually-annotated_TRAIN/138736.1_1`)
 
 ```
 ... 2017 (eingebracht am 28. August 2017)  gegen die Bescheide des <<<FA St. Johann Tamsweg Zell am See>>> (nunmehr Finanzamt Österreich) vom 26. Juli  2017 betreffend ...
@@ -6523,7 +6523,7 @@ Matches the specific entity 'FA St. Johann Tamsweg Zell am See'.
 | `FA St. Johann Tamsweg Zell am See` | `FA St. Johann Tamsweg Zell am See` |
 | `FA St. Johann Tamsweg Zell am See` | `FA St. Johann Tamsweg Zell am See` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/138736.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/138736.1_1`)
 
 ```
 ... 2017 (eingebracht am 28. August 2017)  gegen die Bescheide des <<<FA St. Johann Tamsweg Zell am See>>> (nunmehr Finanzamt Österreich) vom 26. Juli  2017 betreffend ...
@@ -6575,7 +6575,7 @@ Matches 'Lubomir Merschmeyer'
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_2`)
 
 ```
 ... und   2) Magdalena Diegmueller, LLB  als Rechtsnachfolger der <<<Lubomir Merschmeyer>>>, Hilfbergstraße 26, 4861 Pranzing, Österreich, vertreten durch ...
@@ -6585,7 +6585,7 @@ Matches 'Lubomir Merschmeyer'
 |---|---|
 | `Lubomir Merschmeyer` | `Lubomir Merschmeyer` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_7`)
 
 ```
 ... Gruppenträger 02-013/5959 Magdalena Diegmueller, LLB  als RNF der <<<Lubomir Merschmeyer>>>
@@ -6595,7 +6595,7 @@ Matches 'Lubomir Merschmeyer'
 |---|---|
 | `Lubomir Merschmeyer` | `Lubomir Merschmeyer` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_11`)
 
 ```
 ... Gruppenmitglied Roelfsen Versicherung  als auch der Gruppenträger <<<Lubomir Merschmeyer>>>  (02-013/5959).
@@ -6605,7 +6605,7 @@ Matches 'Lubomir Merschmeyer'
 |---|---|
 | `Lubomir Merschmeyer` | `Lubomir Merschmeyer` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_419`)
 
 ```
 ... Unternehmensgruppe mit dem Gruppenträger Magdalena Diegmueller, LLB (vormals <<<Lubomir Merschmeyer>>>).
@@ -6652,7 +6652,7 @@ Matches the specific entity 'Finanzamt Wien 9/18/19 Klosterneuburg' and its geni
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_VALIDATE/149676.1`) ( sent_id: `findok-manually-annotated_VALIDATE/149676.1_2`)
 
 ```
 ... die Beschwerde vom 14. November 2016  gegen den Bescheid des <<<Finanzamtes Wien 9/18/19 Klosterneuburg>>> vom 19. Oktober 2016  betreffend Einkommensteuer für die Jahre ...
@@ -6662,7 +6662,7 @@ Matches the specific entity 'Finanzamt Wien 9/18/19 Klosterneuburg' and its geni
 |---|---|
 | `Finanzamtes Wien 9/18/19 Klosterneuburg` | `Finanzamtes Wien 9/18/19 Klosterneuburg` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated_TRAIN/138410.1`) ( sent_id: `findok-manually-annotated_TRAIN/138410.1_2`)
 
 ```
 ... die Beschwerde vom 2.  November 2020 gegen den Bescheid des <<<Finanzamtes Wien 9/18/19 Klosterneuburg>>> (nunmehr  zuständig: Finanzamt Österreich) vom 9. September ...
@@ -6672,7 +6672,7 @@ Matches the specific entity 'Finanzamt Wien 9/18/19 Klosterneuburg' and its geni
 |---|---|
 | `Finanzamtes Wien 9/18/19 Klosterneuburg` | `Finanzamtes Wien 9/18/19 Klosterneuburg` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated_VALIDATE/149803.1`) ( sent_id: `findok-manually-annotated_VALIDATE/149803.1_1`)
 
 ```
 ... der Beschwerde vom 19. April 2016 gegen die Bescheide des  <<<Finanzamtes Wien 9/18/19 Klosterneuburg>>>, nunmehr des Finanzamtes Österreich,  Steuernummer 75-059/0556, ...
@@ -6682,7 +6682,7 @@ Matches the specific entity 'Finanzamt Wien 9/18/19 Klosterneuburg' and its geni
 |---|---|
 | `Finanzamtes Wien 9/18/19 Klosterneuburg` | `Finanzamtes Wien 9/18/19 Klosterneuburg` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145534.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145534.1_13`)
 
 ```
 ... Einkommensteuerbescheiden für die Jahre 2001 bis  2003 vom 21.12.2011 setzte das <<<Finanzamt Wien 9/18/19 Klosterneuburg>>> (FA 07) die  Einkommensteuer des Beschwerdeführers (Bf.) u.a. ...
@@ -6729,7 +6729,7 @@ Matches 'Berwaldkel-Möbel AG'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/138586.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/138586.1_5`)
 
 ```
 Das Pendlerpauschale war bereits vom Arbeitgeber <<<Berwaldkel-Möbel AG>>>  berücksichtigt worden, hatte  aber dort wegen der Geringfügigkeit ...
@@ -6739,7 +6739,7 @@ Das Pendlerpauschale war bereits vom Arbeitgeber <<<Berwaldkel-Möbel AG>>>  ber
 |---|---|
 | `Berwaldkel-Möbel AG` | `Berwaldkel-Möbel AG` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/138586.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/138586.1_7`)
 
 ```
 ... Pendlerpauschale  in Höhe von 1.476,00 € gekürzten Einkünfte bei der Fa. <<<Berwaldkel-Möbel AG>>>  in Ansatz gebracht.
@@ -6749,7 +6749,7 @@ Das Pendlerpauschale war bereits vom Arbeitgeber <<<Berwaldkel-Möbel AG>>>  ber
 |---|---|
 | `Berwaldkel-Möbel AG` | `Berwaldkel-Möbel AG` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/138586.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/138586.1_16`)
 
 ```
 Beigelegt war eine Bestätigung der Firma <<<Berwaldkel-Möbel AG>>>  vom 09.03.2021, wonach die Beschwerdeführerin das Pendlerpauschale ...
@@ -6759,7 +6759,7 @@ Beigelegt war eine Bestätigung der Firma <<<Berwaldkel-Möbel AG>>>  vom 09.03.
 |---|---|
 | `Berwaldkel-Möbel AG` | `Berwaldkel-Möbel AG` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/138586.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/138586.1_27`)
 
 ```
 ... dadurch  Berücksichtigung gefunden habe, dass die vom Arbeitgeber <<<Berwaldkel-Möbel AG>>>  übermittelten Einkünfte  schon um das Pendlerpauschale gekürzt ...
@@ -6806,7 +6806,7 @@ Matches 'Bankhaus Denzel' which was missing from the rules.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/140526.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/140526.1_11`)
 
 ```
 ... Beschwerdeführer eine Reihe von Urkunden, darunter ein Kreditantrag an die <<<Bankhaus Denzel>>>  vom 7.9.2000, einen Kfz-Zulassungsschein und eine Auflistung ...
@@ -6816,7 +6816,7 @@ Matches 'Bankhaus Denzel' which was missing from the rules.
 |---|---|
 | `Bankhaus Denzel` | `Bankhaus Denzel` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/140526.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/140526.1_50`)
 
 ```
 ... Kreditunterlagen aus dem Jahr 2000 sowie ein Schreiben der <<<Bankhaus Denzel>>>  vom 26.3.2015 vor,  worin ihm mitgeteilt wird, dass auf dem ...
@@ -6826,7 +6826,7 @@ Matches 'Bankhaus Denzel' which was missing from the rules.
 |---|---|
 | `Bankhaus Denzel` | `Bankhaus Denzel` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/140526.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/140526.1_73`)
 
 ```
 ... Beschwerdeführer einen Kredit über ATS 300.000,00 bei der  <<<Bankhaus Denzel>>>  zum Zwecke eines Hausbaues in Ungarn auf.
@@ -6836,7 +6836,7 @@ Matches 'Bankhaus Denzel' which was missing from the rules.
 |---|---|
 | `Bankhaus Denzel` | `Bankhaus Denzel` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/140526.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/140526.1_90`)
 
 ```
 ... 7.9.2000, der Selbstauskunft vom 31.8.2001 und  dem Schreiben der <<<Bankhaus Denzel>>>  vom 26.3.2015.
@@ -6883,7 +6883,7 @@ Matches the abbreviation 'BMI' (Bundesministerium für Inneres).
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1_66`)
 
 ```
 ... Berücksichtigung der € 2.114,80 ein berichtigter Lohnzettel des <<<BMI>>> wäre.
@@ -6893,7 +6893,7 @@ Matches the abbreviation 'BMI' (Bundesministerium für Inneres).
 |---|---|
 | `BMI` | `BMI` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1_75`)
 
 ```
 ... dem privat PKW ohne entsprechende Belege laut Anweisung des  <<<BMI>>> (National Frontex Point of Contact) nicht refundiert worden ...
@@ -6903,7 +6903,7 @@ Matches the abbreviation 'BMI' (Bundesministerium für Inneres).
 |---|---|
 | `BMI` | `BMI` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1_84`)
 
 ```
 ... Flughafen München mit dem  privaten PKW wurden dem Bf. vom <<<BMI>>> bzw. Frontex nicht ersetzt.
@@ -6913,7 +6913,7 @@ Matches the abbreviation 'BMI' (Bundesministerium für Inneres).
 |---|---|
 | `BMI` | `BMI` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/144072.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/144072.1_93`)
 
 ```
 ... 2020/16/0039-6, liegt die  Grundausbildungsverordnung-Exekutivdienst <<<BMI>>> des Bundesministers für Inneres, BGBl. II  vom 12. Juni 2017, ...
@@ -6960,7 +6960,7 @@ Matches 'Finanzamtes Wien 1/23' (genitive form).
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/149861.1`) ( sent_id: `findok-manually-annotated_TRAIN/149861.1_1`)
 
 ```
 ... über die Beschwerde vom 14. Juni 2012 gegen den Bescheid des  <<<Finanzamtes Wien 1/23>>> (nunmehr Finanzamt Österreich) vom 21. Mai 2012 betreffend ...
@@ -6975,7 +6975,7 @@ Matches 'Finanzamtes Wien 1/23' (genitive form).
 | `Finanzamtes Wien 1/23` | `Finanzamtes Wien 1/23` |
 | `Finanzamtes Wien 1/23` | `Finanzamtes Wien 1/23` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149861.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149861.1_1`)
 
 ```
 ... über die Beschwerde vom 14. Juni 2012 gegen den Bescheid des  <<<Finanzamtes Wien 1/23>>> (nunmehr Finanzamt Österreich) vom 21. Mai 2012 betreffend ...
@@ -7027,7 +7027,7 @@ Matches 'Magistratsabteilung 67' as a standalone entity.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/148818.1`) ( sent_id: `findok-manually-annotated_TRAIN/148818.1_9`)
 
 ```
 Mit Schreiben der <<<Magistratsabteilung 67>>> vom 28. April 2025 (Lenkererhebung) wurde die  Firma Firma ...
@@ -7037,7 +7037,7 @@ Mit Schreiben der <<<Magistratsabteilung 67>>> vom 28. April 2025 (Lenkererhebun
 |---|---|
 | `Magistratsabteilung 67` | `Magistratsabteilung 67` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated_TRAIN/148818.1`) ( sent_id: `findok-manually-annotated_TRAIN/148818.1_55`)
 
 ```
 Die <<<Magistratsabteilung 67>>> legte die Beschwerde samt Verwaltungsstrafakt dem  Bundesfinanzgericht ...
@@ -7047,7 +7047,7 @@ Die <<<Magistratsabteilung 67>>> legte die Beschwerde samt Verwaltungsstrafakt d
 |---|---|
 | `Magistratsabteilung 67` | `Magistratsabteilung 67` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/148818.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/148818.1_9`)
 
 ```
 Mit Schreiben der <<<Magistratsabteilung 67>>> vom 28. April 2025 (Lenkererhebung) wurde die  Firma Firma ...
@@ -7057,7 +7057,7 @@ Mit Schreiben der <<<Magistratsabteilung 67>>> vom 28. April 2025 (Lenkererhebun
 |---|---|
 | `Magistratsabteilung 67` | `Magistratsabteilung 67` |
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/148818.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/148818.1_55`)
 
 ```
 Die <<<Magistratsabteilung 67>>> legte die Beschwerde samt Verwaltungsstrafakt dem  Bundesfinanzgericht ...
@@ -7074,7 +7074,7 @@ Die <<<Magistratsabteilung 67>>> legte die Beschwerde samt Verwaltungsstrafakt d
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149675.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149675.1_8`)
 
 **False Positives:**
 
@@ -7087,7 +7087,7 @@ FP: `Magistratsabteilung 67` (organisation)
 **✅ Gold Entities:**
 - `Magistrat der Stadt Wien, Magistratsabteilung 67` (organisation)
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149675.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149675.1_54`)
 
 **False Positives:**
 
@@ -7099,7 +7099,7 @@ FP: `Magistratsabteilung 67` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated_TRAIN/149661.1`) ( sent_id: `findok-manually-annotated_TRAIN/149661.1_20`)
 
 **False Positives:**
 
@@ -7112,7 +7112,7 @@ FP: `Magistratsabteilung 67` (organisation)
 **✅ Gold Entities:**
 - `Bundesfinanzgericht` (organisation)
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149661.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149661.1_20`)
 
 **False Positives:**
 
@@ -7124,7 +7124,7 @@ FP: `Magistratsabteilung 67` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated_TRAIN/149822.1`) ( sent_id: `findok-manually-annotated_TRAIN/149822.1_1`)
 
 **False Positives:**
 
@@ -7183,7 +7183,7 @@ Matches the specific entity 'Gözcü Getränke'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_412`)
 
 ```
 Ein Firmenbuchauszug vom 9.7.2024 ergab, dass die <<<Gözcü Getränke>>>  seit 15.5.2024 aufgrund  einer Neufassung des Gesellschaftsvertrages ...
@@ -7193,7 +7193,7 @@ Ein Firmenbuchauszug vom 9.7.2024 ergab, dass die <<<Gözcü Getränke>>>  seit 
 |---|---|
 | `Gözcü Getränke` | `Gözcü Getränke` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_419`)
 
 ```
 Die RgR Dipl. Kff. Sandra Khartchenko (im Beschwerdezeitraum <<<Gözcü Getränke>>>) war im Jahr 2010 Gruppenmittglied  der Unternehmensgruppe ...
@@ -7203,7 +7203,7 @@ Die RgR Dipl. Kff. Sandra Khartchenko (im Beschwerdezeitraum <<<Gözcü Getränk
 |---|---|
 | `Gözcü Getränke` | `Gözcü Getränke` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_420`)
 
 ```
 Die RgR Dipl. Kff. Sandra Khartchenko (im Beschwerdezeitraum <<<Gözcü Getränke>>>) ist als Rechtsnachfolgerin der  Roelfsen Versicherung  auch ...
@@ -7250,7 +7250,7 @@ Matches 'Deloitte Tax Wirtschaftsprüfungs GmbH'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/149861.1`) ( sent_id: `findok-manually-annotated_TRAIN/149861.1_1`)
 
 ```
 ... Eggenburger Gasse 7, 9121 Rakollach, Österreich, vertreten durch <<<Deloitte Tax Wirtschaftsprüfungs GmbH>>>, Renngasse  1/Freyung, 1010 Wien, über die Beschwerde vom 14. ...
@@ -7260,7 +7260,7 @@ Matches 'Deloitte Tax Wirtschaftsprüfungs GmbH'.
 |---|---|
 | `Deloitte Tax Wirtschaftsprüfungs GmbH` | `Deloitte Tax Wirtschaftsprüfungs GmbH` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated_TRAIN/149505.1`) ( sent_id: `findok-manually-annotated_TRAIN/149505.1_2`)
 
 ```
 ... Tschierweg 3, 9862 Vorderkrems, Österreich  vertreten durch <<<Deloitte Tax Wirtschaftsprüfungs  GmbH>>>, Renngasse/Freyung 1, 1013 Wien, über die Beschwerden gegen ...
@@ -7270,7 +7270,7 @@ Matches 'Deloitte Tax Wirtschaftsprüfungs GmbH'.
 |---|---|
 | `Deloitte Tax Wirtschaftsprüfungs  GmbH` | `Deloitte Tax Wirtschaftsprüfungs  GmbH` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149861.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149861.1_1`)
 
 ```
 ... Eggenburger Gasse 7, 9121 Rakollach, Österreich, vertreten durch <<<Deloitte Tax Wirtschaftsprüfungs GmbH>>>, Renngasse  1/Freyung, 1010 Wien, über die Beschwerde vom 14. ...
@@ -7317,7 +7317,7 @@ Matches 'FA Waldviertel' which was missing from the rules.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1_1`)
 
 ```
 ... über die Beschwerde vom  21. März 2023 gegen den Bescheid des <<<FA Waldviertel>>>  vom 17. Februar 2023 betreffend Nachsicht §  236 BAO 2023 ...
@@ -7327,7 +7327,7 @@ Matches 'FA Waldviertel' which was missing from the rules.
 |---|---|
 | `FA Waldviertel` | `FA Waldviertel` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated_TRAIN/149808.1_1`)
 
 ```
 ... über die Beschwerde vom  21. März 2023 gegen den Bescheid des <<<FA Waldviertel>>>  vom 17. Februar 2023 betreffend Nachsicht §  236 BAO 2023 ...
@@ -7337,7 +7337,7 @@ Matches 'FA Waldviertel' which was missing from the rules.
 |---|---|
 | `FA Waldviertel` | `FA Waldviertel` |
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/144072.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/144072.1_88`)
 
 ```
 ... 14. Juni 2021:   Mit Abweisungsbescheid vom 04.02.2020 des <<<FA Waldviertel>>> wurde Familienbeihilfe für die  das Kind … (Nachname die Bf.) ...
@@ -7384,7 +7384,7 @@ Matches the specific entity 'Sudver Handel Services GMBH'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated_TRAIN/134689.1_32`)
 
 ```
 ... GMBH (Baufirma) sowie an die KQPC Versand GMBH (Auftraggeber), <<<Sudver Handel Services GMBH>>>  und Glanznorost Institut GMBH (jeweils Baufirma) als Gesamtschuldner, ...
@@ -7394,7 +7394,7 @@ Matches the specific entity 'Sudver Handel Services GMBH'.
 |---|---|
 | `Sudver Handel Services GMBH` | `Sudver Handel Services GMBH` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1_32`)
 
 ```
 ... GMBH (Baufirma) sowie an die KQPC Versand GMBH (Auftraggeber), <<<Sudver Handel Services GMBH>>>  und Glanznorost Institut GMBH (jeweils Baufirma) als Gesamtschuldner, ...
@@ -7441,7 +7441,7 @@ Matches the specific entity 'Glanznorost Institut GMBH'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated_TRAIN/134689.1_32`)
 
 ```
 ... Versand GMBH (Auftraggeber), Sudver Handel Services GMBH  und <<<Glanznorost Institut GMBH>>> (jeweils Baufirma) als Gesamtschuldner, welcher erst am 11.1.2019 ...
@@ -7451,7 +7451,7 @@ Matches the specific entity 'Glanznorost Institut GMBH'.
 |---|---|
 | `Glanznorost Institut GMBH` | `Glanznorost Institut GMBH` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1_32`)
 
 ```
 ... Versand GMBH (Auftraggeber), Sudver Handel Services GMBH  und <<<Glanznorost Institut GMBH>>> (jeweils Baufirma) als Gesamtschuldner, welcher erst am 11.1.2019 ...
@@ -7498,7 +7498,7 @@ Matches 'Mag. Ghesla Steuerberater GmbH'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/149828.1`) ( sent_id: `findok-manually-annotated_TRAIN/149828.1_1`)
 
 ```
 ... Penken 55, 4903 Hofmanning, Österreich, vertreten durch die <<<Mag. Ghesla Steuerberater GmbH>>>, Kirchstraße  32, 6923 Lauterach, über die Beschwerden gegen ...
@@ -7508,7 +7508,7 @@ Matches 'Mag. Ghesla Steuerberater GmbH'.
 |---|---|
 | `Mag. Ghesla Steuerberater GmbH` | `Mag. Ghesla Steuerberater GmbH` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149828.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149828.1_1`)
 
 ```
 ... Penken 55, 4903 Hofmanning, Österreich, vertreten durch die <<<Mag. Ghesla Steuerberater GmbH>>>, Kirchstraße  32, 6923 Lauterach, über die Beschwerden gegen ...
@@ -7555,7 +7555,7 @@ Matches 'Finanzamt Neunkirchen Wr. Neustadt' and its genitive form.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/149741.1`) ( sent_id: `findok-manually-annotated_TRAIN/149741.1_1`)
 
 ```
 ... die Beschwerde vom 11. Oktober 2019 gegen den Bescheid des <<<Finanzamtes  Neunkirchen Wr. Neustadt>>> (nunmehr Finanzamt Österreich) vom 11. September 2019  betreffend ...
@@ -7565,7 +7565,7 @@ Matches 'Finanzamt Neunkirchen Wr. Neustadt' and its genitive form.
 |---|---|
 | `Finanzamtes  Neunkirchen Wr. Neustadt` | `Finanzamtes  Neunkirchen Wr. Neustadt` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145534.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145534.1_76`)
 
 ```
 für die Jahre 2001 bis 2003 wurde vom <<<Finanzamt Neunkirchen Wr.  Neustadt>>> zu Eingangsrechnungen der geprüften Gesellschaften festgestellt, ...
@@ -7612,7 +7612,7 @@ Matches 'INET System Informations GmbH' specifically.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145534.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145534.1_84`)
 
 ```
 ... Ergänzungsersuchen des Finanzamts Neunkirchen Wiener Neustadt an <<<INET System  Informations GmbH>>> und Mitges.
@@ -7622,7 +7622,7 @@ Matches 'INET System Informations GmbH' specifically.
 |---|---|
 | `INET System  Informations GmbH` | `INET System  Informations GmbH` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145534.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145534.1_87`)
 
 ```
 ... 2009 wurde am 9.10.2009 der Prüfungsauftrag betreffend die <<<INET System  Informations GmbH>>> und Mitges.
@@ -7669,7 +7669,7 @@ Matches 'Bundesministeriums für Inneres' (genitive) and 'Bundesministerium für
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/144052.1`) ( sent_id: `findok-manually-annotated_TRAIN/144052.1_87`)
 
 ```
 ... andererseits mit  den Eintragungen im Zentralen Melderegister des <<<Bundesministeriums für Inneres>>> (demnach  wurde der verfahrensgegenständliche Hauptwohnsitz ...
@@ -7679,7 +7679,7 @@ Matches 'Bundesministeriums für Inneres' (genitive) and 'Bundesministerium für
 |---|---|
 | `Bundesministeriums für Inneres` | `Bundesministeriums für Inneres` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1_72`)
 
 ```
 ... mit dem Kurzzeiteinsatz zusammenhängenden, im Lohnzettel des  <<<Bundesministerium für Inneres>>> ausgewiesenen Reisekostenersatz, welcher zuvor iSd § 47 EStG ...
@@ -7726,7 +7726,7 @@ Matches 'Cervenka&Neunübel Telekom AG' which was missing from the rules.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/140526.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/140526.1_56`)
 
 ```
 ... noch in den streitgegenständlichen Jahren  als Monteur bei der <<<Cervenka&Neunübel Telekom AG>>>, unselbstständig erwerbstätig.
@@ -7736,7 +7736,7 @@ Matches 'Cervenka&Neunübel Telekom AG' which was missing from the rules.
 |---|---|
 | `Cervenka&Neunübel Telekom AG` | `Cervenka&Neunübel Telekom AG` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/140526.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/140526.1_80`)
 
 ```
 ... geleisteten Kostenersätzen gründen sich auf das Schreiben  der <<<Cervenka&Neunübel Telekom AG>>>  vom 9.6.2016 sowie die mit diesem Schreiben übermittelten ...
@@ -7783,7 +7783,7 @@ Matches 'Kriminalpolizei in Österreich'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1_55`)
 
 ```
 ... wahrscheinlich die Dienstreisen im Zuge meiner  Tätigkeit bei der <<<Kriminalpolizei in Österreich>>>.
@@ -7793,7 +7793,7 @@ Matches 'Kriminalpolizei in Österreich'.
 |---|---|
 | `Kriminalpolizei in Österreich` | `Kriminalpolizei in Österreich` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1_67`)
 
 ```
 ... Dienstreisen ausschließlich im Rahmen der Tätigkeit bei der  <<<Kriminalpolizei in Österreich>>> getätigt worden seien.
@@ -7840,7 +7840,7 @@ Matches 'BM für Inneres'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1_45`)
 
 ```
 Auf den Lohnzettel des <<<BM für Inneres>>> wird verwiesen.
@@ -7850,7 +7850,7 @@ Auf den Lohnzettel des <<<BM für Inneres>>> wird verwiesen.
 |---|---|
 | `BM für Inneres` | `BM für Inneres` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1_51`)
 
 ```
 Der Betrag, welcher vom <<<BM für Inneres>>> als Bezüge gem. § 26 EStG ausbezahlt wird, betrifft  den Kfz-Aufwand, ...
@@ -7897,7 +7897,7 @@ Matches 'Höhere Lehranstalt für Tourismus, Eventmanagement, Sport und Freizeit
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149824.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149824.1_3`)
 
 ```
 ... Beschwerdeführerin bezog für die Tochter T., geb. 2003, wegen Schulbesuch (<<<Höhere  Lehranstalt für Tourismus, Eventmanagement, Sport und Freizeit>>> in Krems) bis Juni 2022  Familienbeihilfe.
@@ -7907,7 +7907,7 @@ Matches 'Höhere Lehranstalt für Tourismus, Eventmanagement, Sport und Freizeit
 |---|---|
 | `Höhere  Lehranstalt für Tourismus, Eventmanagement, Sport und Freizeit` | `Höhere  Lehranstalt für Tourismus, Eventmanagement, Sport und Freizeit` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149824.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149824.1_34`)
 
 ```
 Sachverhalt:  T. legte am 30.05.2022 die Reifeprüfung an der <<<Höheren Lehranstalt für Tourismus,  Eventmanagement, Sport und Freizeit>>> ab und machte danach keine weitere Ausbildung.
@@ -7954,7 +7954,7 @@ Matches 'England' as an organisation in this specific legal context (e.g., juris
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_VALIDATE/134209.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_VALIDATE/134209.1_17`)
 
 ```
 ... MA  hätte zu dieser Zeit bis zur Erlangung der Matura - in <<<England>>> Advanced Level  genannt - noch ein Jahr im King's School absolvieren ...
@@ -7964,7 +7964,7 @@ Matches 'England' as an organisation in this specific legal context (e.g., juris
 |---|---|
 | `England` | `England` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_VALIDATE/134209.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_VALIDATE/134209.1_58`)
 
 ```
 ... wohnt 1 Monat bei der Mutter ihres Freundes wegen Lockdown in <<<England>>>).
@@ -8011,7 +8011,7 @@ Matches 'SeneCura Laurentius Park Bludenz' with flexible whitespace.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149421.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149421.1_61`)
 
 ```
 ... der Bf war in den streitgegenständlichen Jahren im Pflegeheim <<<SeneCura Laurentius  Park Bludenz>>> (beginnend ab 28.01.2016) untergebracht.
@@ -8021,7 +8021,7 @@ Matches 'SeneCura Laurentius Park Bludenz' with flexible whitespace.
 |---|---|
 | `SeneCura Laurentius  Park Bludenz` | `SeneCura Laurentius  Park Bludenz` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149421.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149421.1_80`)
 
 ```
 ... angeführten Aktenteilen wie den Bestätigungen der PVA, des <<<SeneCura  Laurentius Park Bludenz>>> und den Kontoauszügen.
@@ -8068,7 +8068,7 @@ Matches 'BFG´s' (genitive) and 'BFG,' (with comma) as complete entities to prev
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/149768.1`) ( sent_id: `findok-manually-annotated_TRAIN/149768.1_18`)
 
 ```
 ... vom 10.03.2025 im Rahmen des Beschwerdeverfahrens vor dem  <<<BFG,>>> RV/5100109/2025, betreffend Einkommensteuer 2022 werde als ...
@@ -8078,7 +8078,7 @@ Matches 'BFG´s' (genitive) and 'BFG,' (with comma) as complete entities to prev
 |---|---|
 | `BFG,` | `BFG,` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated_TRAIN/149768.1`) ( sent_id: `findok-manually-annotated_TRAIN/149768.1_23`)
 
 ```
 ... vom 10.03.2025 im Rahmen des  Beschwerdeverfahrens vor dem <<<BFG,>>> RV/5100109/2025 (bis dato noch kein Erkenntnis),  betreffend ...
@@ -8095,7 +8095,7 @@ Matches 'BFG´s' (genitive) and 'BFG,' (with comma) as complete entities to prev
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1_101`)
 
 **False Positives:**
 
@@ -8107,7 +8107,7 @@ FP: `BFG,` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated_TRAIN/149808.1_101`)
 
 **False Positives:**
 
@@ -8120,7 +8120,7 @@ FP: `BFG,` (organisation)
 **✅ Gold Entities:**
 - `BFG` (organisation)
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_74`)
 
 **False Positives:**
 
@@ -8134,7 +8134,7 @@ FP: `BFG,` (organisation)
 - `FA Wien 1/23` (organisation)
 - `UFS` (organisation)
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_355`)
 
 **False Positives:**
 
@@ -8147,7 +8147,7 @@ FP: `BFG´s` (organisation)
 **✅ Gold Entities:**
 - `Finanzamt Wien 1/23` (organisation)
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_358`)
 
 **False Positives:**
 
@@ -8196,7 +8196,7 @@ Matches 'Pensionsversicherungsanstalt'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_VALIDATE/149825.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_VALIDATE/149825.1_38`)
 
 ```
 ... im Streitjahr 2022  Einkünfte aus nichtselbständiger Arbeit (<<<Pensionsversicherungsanstalt>>>) in Höhe von  Euro 11.616,84.
@@ -8206,7 +8206,7 @@ Matches 'Pensionsversicherungsanstalt'.
 |---|---|
 | `Pensionsversicherungsanstalt` | `Pensionsversicherungsanstalt` |
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated_VALIDATE/149825.1`) ( sent_id: `findok-manually-annotated_VALIDATE/149825.1_38`)
 
 ```
 ... im Streitjahr 2022  Einkünfte aus nichtselbständiger Arbeit (<<<Pensionsversicherungsanstalt>>>) in Höhe von  Euro 11.616,84.
@@ -8223,7 +8223,7 @@ Matches 'Pensionsversicherungsanstalt'.
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149874.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149874.1_41`)
 
 **False Positives:**
 
@@ -8235,7 +8235,7 @@ FP: `Pensionsversicherungsanstalt` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149874.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149874.1_42`)
 
 **False Positives:**
 
@@ -8247,7 +8247,7 @@ FP: `Pensionsversicherungsanstalt` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149874.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149874.1_45`)
 
 **False Positives:**
 
@@ -8265,7 +8265,7 @@ FP: `Pensionsversicherungsanstalt` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149874.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149874.1_46`)
 
 **False Positives:**
 
@@ -8277,7 +8277,7 @@ FP: `Pensionsversicherungsanstalt` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated_TRAIN/149683.1`) ( sent_id: `findok-manually-annotated_TRAIN/149683.1_24`)
 
 **False Positives:**
 
@@ -8328,7 +8328,7 @@ Matches the specific entity 'Finanzamt Braunau Ried Schärding'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145133.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145133.1_1`)
 
 ```
 ... Fraham, Österreich, vom 19. Oktober 2022 gegen den Bescheid des  <<<Finanzamt Braunau Ried Schärding>>>  vom 10. Oktober 2022 betreffend Pfändung einer Geldforderung ...
@@ -8375,7 +8375,7 @@ Matches the specific entity 'FA Braunau Ried Schärding'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145133.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145133.1_40`)
 
 ```
 ... der gepfändete Betrag in Höhe von EUR 4.681,64 am Konto des <<<FA Braunau Ried Schärding>>>  ein und ist am  Abgabenkonto des Beschwerdeführers verbucht.
@@ -8422,7 +8422,7 @@ Matches 'Finanzamt Landeck Reutte' and its genitive form.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/128676.1`) ( sent_id: `findok-manually-annotated_TRAIN/128676.1_1`)
 
 ```
 ... die jeweils am   8. Oktober 2010 ausgefertigten Bescheide des <<<Finanzamtes Landeck Reutte>>> betreffend  Einkommensteuer (Arbeitnehmerveranlagung) 2006 ...
@@ -8469,7 +8469,7 @@ Matches 'Finanzamt Waldviertel' specifically.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/144072.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/144072.1_78`)
 
 ```
 ...  Vorausgegangenes Verfahren:  Am 4. Februar 2020 hatte das <<<Finanzamt Waldviertel>>> folgenden Bescheid an die Bf. erlassen:   Abweisungsbescheid ...
@@ -8516,7 +8516,7 @@ Matches the specific entity 'Tritri-IT'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_348`)
 
 ```
 ... Vollständigkeit halber  wird angemerkt, dass damals alle Beschwerden des <<<Tritri-IT>>> -Konzernes durch denselben  Richter beim BFG entschieden wurden).
@@ -8563,7 +8563,7 @@ Matches the specific entity 'Mur Alver OG' which was missing.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149691.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149691.1_26`)
 
 ```
 ... nicht der Bf als Empfänger aufscheine und eine  Rechnung der „<<<Mur Alver OG>>>“ Leuchten aus dem Luxussegment anführe.
@@ -8610,7 +8610,7 @@ Matches 'AMS Österreich'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/149765.1`) ( sent_id: `findok-manually-annotated_TRAIN/149765.1_6`)
 
 ```
 Entscheidungsgründe  I. Verfahrensgang  Aufgrund einer vom <<<AMS Österreich>>> der Abgabenbehörde übermittelten korrigierten  Mitteilung nahm ...
@@ -8657,7 +8657,7 @@ Matches 'Landespolizeidirketion Tirol'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/149316.1`) ( sent_id: `findok-manually-annotated_TRAIN/149316.1_6`)
 
 ```
 Mit Verständigungen gem. § 82 Abs. 9 KFG 1967 wurde durch die <<<Landespolizeidirketion  Tirol>>> an die Finanzpolizei mitgeteilt, dass im Zuge von Kontrollen ...
@@ -8704,7 +8704,7 @@ Matches 'Musikhochschule Wien'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_VALIDATE/149676.1`) ( sent_id: `findok-manually-annotated_VALIDATE/149676.1_6`)
 
 ```
 ... Verfahrensgang  Der Beschwerdeführer (Bf.) studierte an der <<<Musikhochschule Wien>>> und am Konservatorium  der Stadt Wien klassisches Schlagwerk ...
@@ -8751,7 +8751,7 @@ Matches 'Konservatorium der Stadt Wien'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_VALIDATE/149676.1`) ( sent_id: `findok-manually-annotated_VALIDATE/149676.1_6`)
 
 ```
 ... Beschwerdeführer (Bf.) studierte an der Musikhochschule Wien und am <<<Konservatorium  der Stadt Wien>>> klassisches Schlagwerk sowie Theorie und Komposition an der ...
@@ -8798,7 +8798,7 @@ Matches 'Wiener Philharmoniker'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_VALIDATE/149676.1`) ( sent_id: `findok-manually-annotated_VALIDATE/149676.1_153`)
 
 ```
 ... Verwaltungsgerichtshof in seinem einen Berufsmusiker und Mitglied der <<<Wiener  Philharmoniker>>> betreffenden, Erkenntnis vom 21. September 2005, 2001/13/0241, ...
@@ -8845,7 +8845,7 @@ Matches 'UFS/BFG' as a single entity.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145534.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145534.1_94`)
 
 ```
 Obwohl sich im  weiteren Verfahren (beim <<<UFS/BFG>>>) herausstellte, dass dies sogenannte „Nichtbescheide“  waren, ...
@@ -8892,7 +8892,7 @@ Matches 'How to spend it Verlag GmbH'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145534.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145534.1_134`)
 
 ```
 *** „<<<How to spend it Verlag GmbH>>> u. Mitges.“: € 613,72  Beteiligung INET II: € -2.235,63 (aufgrund ...
@@ -8939,7 +8939,7 @@ Matches 'Garanta VersicherungsAG'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/128676.1`) ( sent_id: `findok-manually-annotated_TRAIN/128676.1_56`)
 
 ```
 ... wurden eine Versicherungsbestätigung zur Mobilitätsgarantie  der <<<Garanta VersicherungsAG>>> (undatiert) für den Zeitraum 26.08.2011 bis 25.08.2012 für ...
@@ -8986,7 +8986,7 @@ Matches 'The International Sivananda Yoga Vedanta Centre'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/128676.1`) ( sent_id: `findok-manually-annotated_TRAIN/128676.1_56`)
 
 ```
 ... der Beschwerdeführerin  und eine englische Bestätigung des <<<The International Sivananda Yoga Vedanta Centre>>> in  Canada vom 24.05.2003, in der die Beschwerdeführerin als ...
@@ -9033,7 +9033,7 @@ Matches 'DA Deutsche Allgemeine Versicherung AG'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/128676.1`) ( sent_id: `findok-manually-annotated_TRAIN/128676.1_113`)
 
 ```
 ... 3 (siehe Vorschreibung der Kraftfahrversicherung durch die  <<<DA Deutsche Allgemeine Versicherung AG>>> vom Jänner 2006).
@@ -9080,7 +9080,7 @@ Matches 'Geschenkartikel GmbH'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/128676.1`) ( sent_id: `findok-manually-annotated_TRAIN/128676.1_211`)
 
 ```
 ... Arbeitsmittel (ohne Massageliege) iHv € 1.213,81 vorliegt (Rechnung <<<Geschenkartikel GmbH>>> €  92,73;
@@ -9127,7 +9127,7 @@ Matches 'AVED cosmetic'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/128676.1`) ( sent_id: `findok-manually-annotated_TRAIN/128676.1_223`)
 
 ```
 ... Bundesfinanzgericht wurde ein Zahlungsnachweis der Kosten der Firma  <<<AVED cosmetic>>> iHv € 975,48 nicht vorgelegt.
@@ -9174,7 +9174,7 @@ Matches 'Yoga Vidya GmbH'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/128676.1`) ( sent_id: `findok-manually-annotated_TRAIN/128676.1_230`)
 
 ```
 ... sich laut der vorgelegten Abrechnung vom 19.10.2006  von der <<<Yoga Vidya GmbH>>> um jeweils eine Anwendung Abhyanga, Garshan, kleine Abhyanga, ...
@@ -9221,7 +9221,7 @@ Matches 'Magistrat der Stadt Klagenfurt' and its genitive form 'Magistrats der S
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/144052.1`) ( sent_id: `findok-manually-annotated_TRAIN/144052.1_69`)
 
 ```
 Mit selbem Datum wurde das <<<Magistrat der Stadt Klagenfurt>>>  ersucht, den Bauakt die strittige Liegenschaft betreffend ...
@@ -9268,7 +9268,7 @@ Matches 'Tschurtschenthaler, Walder, Fister Rechtsanwälte GmbH'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/144052.1`) ( sent_id: `findok-manually-annotated_TRAIN/144052.1_2`)
 
 ```
 ... Frauengasse 2, 3180 Hintereben, Österreich  vertreten durch <<<Tschurtschenthaler, Walder,  Fister Rechtsanwälte GmbH>>>, Dr. Arthur Lemisch Platz 7, 9020 Klagenfurt, über die Beschwerde ...
@@ -9315,7 +9315,7 @@ Matches 'Immobilienbüro Mandl'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/144052.1`) ( sent_id: `findok-manually-annotated_TRAIN/144052.1_58`)
 
 ```
 ... die  vorliegenden Pläne keine amtlichen Pläne, sondern vom <<<Immobilienbüro Mandl>>> erstellte.
@@ -9362,7 +9362,7 @@ Matches 'Finanzamt für Großbetriebe'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/149505.1`) ( sent_id: `findok-manually-annotated_TRAIN/149505.1_4`)
 
 ```
 ... Erlassung der Beschwerdevorentscheidungen im Zusammenhang mit vom  <<<Finanzamt für Großbetriebe>>> (in der Folge kurz: FAG) erlassenen Bescheiden zuständig ist.
@@ -9409,7 +9409,7 @@ Matches 'Finanzamt Wien 3/6/7/11/15 Schwechat Gerasdorf' and its genitive form '
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/140526.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/140526.1_1`)
 
 ```
 ... über die Beschwerden vom 23. März 2015 gegen die Bescheide des <<<Finanzamtes Wien  3/6/7/11/15 Schwechat Gerasdorf>>> (heute zuständig: Finanzamt Österreich) vom 17. März 2015  ...
@@ -9456,7 +9456,7 @@ Matches the abbreviation 'EASO'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1_62`)
 
 ```
 Werbungskosten die in Zusammenhang mit Frontex, <<<EASO>>>, ... Einsätzen stehen, dürfen daher in  solchen Fällen nicht ...
@@ -9503,7 +9503,7 @@ Matches 'Europäischen Grenzschutzagentur Frontex' (genitive) and 'Europäische 
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1_46`)
 
 ```
 Für die Tätigkeit  bei der "<<<Europäischen Grenzschutzagentur Frontex>>>" wird eine Reisezulage in der Höhe von 98,--  Euro täglich ...
@@ -9550,7 +9550,7 @@ Matches the abbreviation 'HLF Krems/Donau'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149824.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149824.1_28`)
 
 ```
 ... 23.03.2023, vor, dass ihre  Tochter T. am 30.05.2022 an der <<<HLF Krems/Donau>>> maturiert habe und damit in die alte  2 von 6 Seite 3 von 6
@@ -9597,7 +9597,7 @@ Matches 'Hallas & Partner Wirtschaftsprüfung und Steuerberatung GmbH & Co KG' w
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/149280.1`) ( sent_id: `findok-manually-annotated_TRAIN/149280.1_1`)
 
 ```
 ... Mielnickel, Viertelweg 16, 3720 Gaindorf, Österreich, vertreten durch <<<Hallas & Partner Wirtschaftsprüfung und  Steuerberatung GmbH & Co KG>>>, Praterstraße 38, 1020 Wien, über die Beschwerde vom  30. November ...
@@ -9644,7 +9644,7 @@ Matches 'Bezirksgericht Purkersdorf'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_VALIDATE/134209.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_VALIDATE/134209.1_11`)
 
 ```
 ihrem Ehemann nach meiner Einwilligung vor dem <<<Bezirksgericht Purkersdorf>>> - Protokoll Ri  Mag. P…, 1P… vom 25.02.2014 - im Sommer 2014 ...
@@ -9691,7 +9691,7 @@ Matches 'Grazer Treuhand Steuerberatung GmbH & Partner KG'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/132504.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/132504.1_1`)
 
 ```
 ... 26, 4591 Rosenau am Hengstpaß, Österreich, vertreten durch <<<Grazer Treuhand Steuerberatung GmbH & Partner KG>>>,  Petersgasse 128a, 8010 Graz, über die Beschwerde vom 14.11.2016 ...
@@ -9738,7 +9738,7 @@ Matches 'Finanzamts Graz-Stadt' and 'Finanzamts Graz- Stadt' (genitive with spac
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/132504.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/132504.1_1`)
 
 ```
 ... 9.7.2015 auf Aufhebung des Einkommensteuerbescheides 2014 des <<<Finanzamts Graz- Stadt>>> vom 20.5.2015 zu Recht erkannt:   I. Die Beschwerde wird gemäß ...
@@ -9785,7 +9785,7 @@ Matches 'UFS Salzburg' specifically to prevent partial matching of 'UFS'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146072.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146072.1_98`)
 
 ```
 ... diesem Zusammenhang ins Treffen geführten Entscheidung des <<<UFS  Salzburg>>> vom 20.8.2013, RV/0389-S/13 (dort hatte der Berufungswerber ...
@@ -9832,7 +9832,7 @@ Matches 'Verwaltungsgericht Wien'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149308.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149308.1_15`)
 
 ```
 ... erhebe ich hiermit das Rechtsmittel der Beschwerde an das  <<<Verwaltungsgericht Wien>>>.
@@ -9879,7 +9879,7 @@ Matches 'Steuerberater Metzler & Adelsberger OG'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149691.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149691.1_1`)
 
 ```
 ... Schödensack, Ornetsedt 12, 4274 Kollnedt, Österreich, vertreten durch <<<Steuerberater Metzler & Adelsberger OG>>>,  Stadtgraben 25, 6060 Hall in Tirol, über die Beschwerde vom ...
@@ -9926,7 +9926,7 @@ Matches 'Finanzamt Innsbruck' and its genitive form 'Finanzamtes Innsbruck'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149691.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149691.1_1`)
 
 ```
 ... berichtigten Einkommensteuerbescheide der Jahre 2014 – 2017 des <<<Finanzamtes  Innsbruck>>> (nunmehr Finanzamt Österreich) allesamt vom 22. Juli 2019, ...
@@ -9973,7 +9973,7 @@ Matches 'Ikea' as an organisation.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149691.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149691.1_47`)
 
 ```
 ... Bescheidbegründung waren Online-Angebote von Küchenzeilen der Unternehmen <<<Ikea>>>,  Obi, Leiner, Möbelix, MömaX, Otto.de, xxxLutz und Quelle.at ...
@@ -10020,7 +10020,7 @@ Matches 'Obi' as an organisation.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149691.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149691.1_47`)
 
 ```
 ... waren Online-Angebote von Küchenzeilen der Unternehmen Ikea,  <<<Obi>>>, Leiner, Möbelix, MömaX, Otto.de, xxxLutz und Quelle.at angefügt.
@@ -10067,7 +10067,7 @@ Matches 'Leiner' as an organisation.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149691.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149691.1_47`)
 
 ```
 ... Online-Angebote von Küchenzeilen der Unternehmen Ikea,  Obi, <<<Leiner>>>, Möbelix, MömaX, Otto.de, xxxLutz und Quelle.at angefügt.
@@ -10114,7 +10114,7 @@ Matches 'Möbelix' as an organisation.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149691.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149691.1_47`)
 
 ```
 ... Online-Angebote von Küchenzeilen der Unternehmen Ikea,  Obi, Leiner, <<<Möbelix>>>, MömaX, Otto.de, xxxLutz und Quelle.at angefügt.
@@ -10161,7 +10161,7 @@ Matches 'MömaX' as an organisation.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149691.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149691.1_47`)
 
 ```
 ... von Küchenzeilen der Unternehmen Ikea,  Obi, Leiner, Möbelix, <<<MömaX>>>, Otto.de, xxxLutz und Quelle.at angefügt.
@@ -10208,7 +10208,7 @@ Matches 'Otto.de' as an organisation.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149691.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149691.1_47`)
 
 ```
 ... Küchenzeilen der Unternehmen Ikea,  Obi, Leiner, Möbelix, MömaX, <<<Otto.de>>>, xxxLutz und Quelle.at angefügt.
@@ -10255,7 +10255,7 @@ Matches 'xxxLutz' as an organisation.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149691.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149691.1_47`)
 
 ```
 ... der Unternehmen Ikea,  Obi, Leiner, Möbelix, MömaX, Otto.de, <<<xxxLutz>>> und Quelle.at angefügt.
@@ -10302,7 +10302,7 @@ Matches 'Quelle.at' as an organisation.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149691.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149691.1_47`)
 
 ```
 ... Unternehmen Ikea,  Obi, Leiner, Möbelix, MömaX, Otto.de, xxxLutz und <<<Quelle.at>>> angefügt.
@@ -10349,7 +10349,7 @@ Matches 'Krankenpflegevereins Bludenz' (genitive) and 'Krankenpflegeverein Blude
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149421.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149421.1_88`)
 
 ```
 Die Kosten lt Bestätigungen des <<<Krankenpflegevereins  Bludenz>>> (welche auch mittels Kontoauszüge nachgewiesen wurden) iHv ...
@@ -10396,7 +10396,7 @@ Matches the specific entity 'InnMarine GMBH'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/149741.1`) ( sent_id: `findok-manually-annotated_TRAIN/149741.1_3`)
 
 ```
 ... Beschwerdeführer gemäß § 9a BAO für die  aushaftenden Abgabenschulden der <<<InnMarine GMBH>>> (Primärschuldnerin) im Ausmaß von  € 99.885,72 in Anspruch ...
@@ -10443,7 +10443,7 @@ Matches the specific entity 'Lenfeld/Leys/Sonderegger Rechtsanwälte'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149462.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149462.1_1`)
 
 ```
 ... Caritasstraße 286, 3920 Heinreichs, Österreich, vertreten durch <<<Lenfeld/Leys/Sonderegger Rechtsanwälte>>>, Malserstraße 19,  6500 Landeck, über die Beschwerde vom 14. ...
@@ -10490,7 +10490,7 @@ Matches the specific entity 'Universität Innsbruck'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149462.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149462.1_29`)
 
 ```
 Nach dem Studienblatt der <<<Universität Innsbruck>>> inskribierte der Sohn im Wintersemester  2019/20 im Diplomstudium ...
@@ -10537,7 +10537,7 @@ Matches 'Bundesministerin für Finanzen' (feminine form).
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149868.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149868.1_74`)
 
 ```
 Gemäß § 4 Abs 1 Verordnung der <<<Bundesministerin für Finanzen>>> über die Kriterien zur  Ermittlung des Pendlerpauschales und ...
@@ -10584,7 +10584,7 @@ Matches the specific entity 'BDO Austria GmbH WP- u. StBges.'
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_2`)
 
 ```
 ... 46, 6380 St. Johann in Tirol, Österreich, vertreten durch  <<<BDO Austria GmbH WP- u. StBges.>>>       und   2) Magdalena Diegmueller, LLB  als Rechtsnachfolger ...
@@ -10631,7 +10631,7 @@ Matches the specific entity 'LeitnerLeitner GmbH Wirtschaftsprüfer und Steuerbe
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_2`)
 
 ```
 ... Hilfbergstraße 26, 4861 Pranzing, Österreich, vertreten durch  <<<LeitnerLeitner GmbH Wirtschaftsprüfer und Steuerberater>>>, Ottensheimer Straße 32,  4040 Linz,
@@ -10678,7 +10678,7 @@ Matches the specific entity 'Betriebsprüfung GmbH'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_229`)
 
 ```
 Nach Ansicht der <<<Betriebsprüfung GmbH>>> das Finanzamt müsse der gesamte im Jahr 2007  erwirtschaftete ...
@@ -10725,7 +10725,7 @@ Matches the specific entity 'X-GmbH' (hyphenated) which was missing from the rul
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_268`)
 
 ```
 ... zum Ablauf des 31. Dezember  2007 vorgenommenen Spaltung des <<<X-GmbH>>> - in den Folgejahren [Herv d Verf] als  Verlustvortrag iSd ...
@@ -10772,7 +10772,7 @@ Matches the abbreviation 'AMS' (Arbeitsmarktservice).
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149848.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149848.1_27`)
 
 ```
 ... Behinderung eine Umschulung von einem Art Beruf auf neuer  Beruf vom <<<AMS>>> finanziert worden.
@@ -10789,7 +10789,7 @@ Matches the abbreviation 'AMS' (Arbeitsmarktservice).
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/149765.1`) ( sent_id: `findok-manually-annotated_TRAIN/149765.1_6`)
 
 **False Positives:**
 
@@ -10802,7 +10802,7 @@ FP: `AMS` (organisation)
 **✅ Gold Entities:**
 - `AMS Österreich` (organisation)
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated_TRAIN/149765.1`) ( sent_id: `findok-manually-annotated_TRAIN/149765.1_11`)
 
 **False Positives:**
 
@@ -10853,7 +10853,7 @@ Matches the abbreviation 'BFH' (Bundesfinanzgericht in Germany).
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/132504.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/132504.1_64`)
 
 ```
 ... des Fahrtenbuches sei auf die Rechtsprechung  des deutschen <<<BFH>>> zu verweisen, die auch für die österreichische Rechtslage relevant ...
@@ -10870,7 +10870,7 @@ Matches the abbreviation 'BFH' (Bundesfinanzgericht in Germany).
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/149280.1`) ( sent_id: `findok-manually-annotated_TRAIN/149280.1_43`)
 
 **False Positives:**
 
@@ -10882,7 +10882,7 @@ FP: `BFH` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated_TRAIN/149280.1`) ( sent_id: `findok-manually-annotated_TRAIN/149280.1_49`)
 
 **False Positives:**
 
@@ -10931,7 +10931,7 @@ Matches 'Amt für Betrugsbekämpfung' and its genitive form 'Amtes für Betrugsb
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146072.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146072.1_22`)
 
 ```
 ... NOVA- Meldungen mit dem Hinweis, dass man auf eine Aussage des <<<Amtes für Betrugsbekämpfung>>>  (ABB) warte.
@@ -10948,7 +10948,7 @@ Matches 'Amt für Betrugsbekämpfung' and its genitive form 'Amtes für Betrugsb
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146475.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146475.1_15`)
 
 **False Positives:**
 
@@ -10965,7 +10965,7 @@ FP: `Amtes für Betrugsbekämpfung` (organisation)
 - `Reinemut + Smoch Handel` (organisation)
 - `72-531/2688` (tax_number)
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated_TRAIN/146475.1`) ( sent_id: `findok-manually-annotated_TRAIN/146475.1_15`)
 
 **False Positives:**
 
@@ -11019,7 +11019,7 @@ Matches 'Bundesministers für Finanzen' (genitive) and 'Bundesminister für Fina
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/149801.1`) ( sent_id: `findok-manually-annotated_TRAIN/149801.1_6`)
 
 ```
 ... öffentlicher Verkehrsmittel nach  § 3 Abs 1 Verordnung des <<<Bundesministers für Finanzen>>> über außergewöhnliche Belastungen  (hinfort: § 3 Abs 1 VO).
@@ -11036,7 +11036,7 @@ Matches 'Bundesministers für Finanzen' (genitive) and 'Bundesminister für Fina
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149868.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149868.1_73`)
 
 **False Positives:**
 
@@ -11048,7 +11048,7 @@ FP: `Bundesminister für Finanzen` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated_TRAIN/148648.1`) ( sent_id: `findok-manually-annotated_TRAIN/148648.1_103`)
 
 **False Positives:**
 
@@ -11097,7 +11097,7 @@ Matches the abbreviation 'OECD'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/136623.1_94`)
 
 ```
 ... Einrichtung, die im Rahmen  der europäischen Integration oder der <<<OECD>>> tätig ist, oder  2.
@@ -11114,7 +11114,7 @@ Matches the abbreviation 'OECD'.
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/149828.1`) ( sent_id: `findok-manually-annotated_TRAIN/149828.1_107`)
 
 **False Positives:**
 
@@ -11134,7 +11134,7 @@ FP: `OECD` (organisation)
 - `SUVA` (organisation)
 - `Österreich` (country)
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149828.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149828.1_107`)
 
 **False Positives:**
 
@@ -11191,7 +11191,7 @@ Matches the abbreviation 'VfGH' (Verfassungsgerichtshof) but excludes citation c
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated_TRAIN/149418.1`) ( sent_id: `findok-manually-annotated_TRAIN/149418.1_32`)
 
 ```
 ... Beschwerde geäußerten verfassungsrechtlichen Bedenken an den <<<VfGH>>> zu tragen.
@@ -11208,7 +11208,7 @@ Matches the abbreviation 'VfGH' (Verfassungsgerichtshof) but excludes citation c
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_156`)
 
 **False Positives:**
 
@@ -11220,7 +11220,7 @@ FP: `VfGH` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_157`)
 
 **False Positives:**
 
@@ -11232,7 +11232,7 @@ FP: `VfGH` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 2** (doc_id: ``)
+**Example 2** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_159`)
 
 **False Positives:**
 
@@ -11244,7 +11244,7 @@ FP: `VfGH` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 3** (doc_id: ``)
+**Example 3** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_162`)
 
 **False Positives:**
 
@@ -11256,7 +11256,7 @@ FP: `VfGH` (organisation)
 
 **✅ Gold Entities:**
 
-**Example 4** (doc_id: ``)
+**Example 4** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_250`)
 
 **False Positives:**
 
@@ -14401,7 +14401,7 @@ Matches 'Sozialversicherungsanstalt der Bauern' and 'Sozialversicherung der Baue
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149834.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149834.1_200`)
 
 **False Positives:**
 
@@ -14414,7 +14414,7 @@ FP: `Sozialversicherung der Bauern` (organisation)
 **✅ Gold Entities:**
 - `WKO` (organisation)
 
-**Example 1** (doc_id: ``)
+**Example 1** (doc_id: `findok-manually-annotated_TRAIN/149834.1`) ( sent_id: `findok-manually-annotated_TRAIN/149834.1_200`)
 
 **False Positives:**
 
@@ -15112,7 +15112,7 @@ Matches the specific entity 'BFG, Außenstelle Linz'.
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_74`)
 
 **False Positives:**
 
@@ -15235,7 +15235,7 @@ Matches 'Bundesamt für Soziales und Behindertenwesen' and its genitive form 'Bu
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: ``)
+**Example 0** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/140526.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/140526.1_148`)
 
 **False Positives:**
 
