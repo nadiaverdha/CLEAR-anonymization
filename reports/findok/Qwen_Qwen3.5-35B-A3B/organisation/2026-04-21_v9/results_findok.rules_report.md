@@ -1,6 +1,6 @@
 # Rule Evaluation Report — Qwen/Qwen3.5-35B-A3B
 
-Generated on: 2026-04-21T23:27:57.379083
+Generated on: 2026-04-21T23:37:09.081590
 
 ---
 
@@ -340,6 +340,217 @@ Der Sachverhalt ergibt sich bisherigen Verfahren wie folgt:   a) Sachverhalt und
 |---|---|
 | `Houdek Maschinenbau` | `Houdek Maschinenbau` |
 
+**Example 5** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_18`)
+
+
+95-002/7970, BV 24:  Das Unternehmen Houdek Maschinenbau  hat im Jahr 2007 ein Vermögen von 84 Tankstellen besessen.
+
+| Predicted | Gold |
+|---|---|
+| `Houdek Maschinenbau` | `Houdek Maschinenbau` |
+
+**Example 6** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_20`)
+
+
+Für das ursprünglich streitgegenständliche Jahr 2007 und die Nachfolgejahre wurden folgende  Umgründungsschritte bei Houdek Maschinenbau  durchgeführt:  Auf Grundlage des Spaltungs- und Übernahmsvertrages vom 18.08.2008 hat die Houdek Maschinenbau  mit Stichtag 31.12.2007 als übertragende Gesellschaft nach den Bestimmungen des  Bundesgesetz über die Spaltung von Kapitalgesellschaften mit Gesamtrechtsnachfolgewirkung  und unter Inanspruchnahme der umgründungssteuerlichen Begünstigungen des Artikel VI  UmgrStG das in der Übertragungsbilanz dargestellte Vermögen, bestehend aus 11 einzeln  benannten Tankstellen, auf die Schmeltz Luftfahrt  übertragen.
+
+
+Für das ursprünglich streitgegenständliche Jahr 2007 und die Nachfolgejahre wurden folgende  Umgründungsschritte bei Houdek Maschinenbau  durchgeführt:  Auf Grundlage des Spaltungs- und Übernahmsvertrages vom 18.08.2008 hat die Houdek Maschinenbau  mit Stichtag 31.12.2007 als übertragende Gesellschaft nach den Bestimmungen des  Bundesgesetz über die Spaltung von Kapitalgesellschaften mit Gesamtrechtsnachfolgewirkung  und unter Inanspruchnahme der umgründungssteuerlichen Begünstigungen des Artikel VI  UmgrStG das in der Übertragungsbilanz dargestellte Vermögen, bestehend aus 11 einzeln  benannten Tankstellen, auf die Schmeltz Luftfahrt  übertragen.
+
+
+Für das ursprünglich streitgegenständliche Jahr 2007 und die Nachfolgejahre wurden folgende  Umgründungsschritte bei Houdek Maschinenbau  durchgeführt:  Auf Grundlage des Spaltungs- und Übernahmsvertrages vom 18.08.2008 hat die Houdek Maschinenbau  mit Stichtag 31.12.2007 als übertragende Gesellschaft nach den Bestimmungen des  Bundesgesetz über die Spaltung von Kapitalgesellschaften mit Gesamtrechtsnachfolgewirkung  und unter Inanspruchnahme der umgründungssteuerlichen Begünstigungen des Artikel VI  UmgrStG das in der Übertragungsbilanz dargestellte Vermögen, bestehend aus 11 einzeln  benannten Tankstellen, auf die Schmeltz Luftfahrt  übertragen.
+
+| Predicted | Gold |
+|---|---|
+| `Houdek Maschinenbau` | `Houdek Maschinenbau` |
+| `Houdek Maschinenbau` | `Houdek Maschinenbau` |
+| `Schmeltz Luftfahrt` | `Schmeltz Luftfahrt` |
+
+**Example 7** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_21`)
+
+
+Die Schmeltz Luftfahrt  ist zum  31.10.2010 als übertragende Gesellschaft mit Dorfcon-Verlag  verschmolzen worden.
+
+
+Die Schmeltz Luftfahrt  ist zum  31.10.2010 als übertragende Gesellschaft mit Dorfcon-Verlag  verschmolzen worden.
+
+| Predicted | Gold |
+|---|---|
+| `Schmeltz Luftfahrt` | `Schmeltz Luftfahrt` |
+| `Dorfcon-Verlag` | `Dorfcon-Verlag` |
+
+**Example 8** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_22`)
+
+
+Zum Stichtag 31.12.2008 ist die Houdek Maschinenbau  mit dem verbliebenen Vermögen entsprechend  dem Umgründungsplan vom 29.06.2009 gemäß § 39 UmgrStG in einem ersten  Umgründungsschritt als übertragende Gesellschaft (neben anderen Gesellschaften) mit der  Lexdon IT  als übernehmende Gesellschaft verschmolzen worden.
+
+
+Zum Stichtag 31.12.2008 ist die Houdek Maschinenbau  mit dem verbliebenen Vermögen entsprechend  dem Umgründungsplan vom 29.06.2009 gemäß § 39 UmgrStG in einem ersten  Umgründungsschritt als übertragende Gesellschaft (neben anderen Gesellschaften) mit der  Lexdon IT  als übernehmende Gesellschaft verschmolzen worden.
+
+| Predicted | Gold |
+|---|---|
+| `Houdek Maschinenbau` | `Houdek Maschinenbau` |
+| `Lexdon IT` | `Lexdon IT` |
+
+**Example 9** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_24`)
+
+
+zweiten Umgründungsschritt ist auf Grundlage des Generalversammlungsbeschlusses vom  19.08.2009 eine Abspaltung zur Aufnahme in die Roelfsen Versicherung  durch Übertragung des  gesamten Betriebes (mit Ausnahme der unter Punkt Drittens 10.4 des Spaltungs- und  Übernahmsvertrages taxativ angeführten Positionen) erfolgt.
+
+| Predicted | Gold |
+|---|---|
+| `Roelfsen Versicherung` | `Roelfsen Versicherung` |
+
+**Example 10** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_25`)
+
+
+Die Lexdon IT  und  Roelfsen Versicherung  sind aufgrund der dargestellten Umgründungsschritte (partielle)  Gesamtrechtsnachfolger der Houdek Maschinenbau, insoweit das auch nach der Abspaltung zum  31.12.2007 bei der Houdek Maschinenbau  verbliebende Vermögen betroffen ist.
+
+
+Die Lexdon IT  und  Roelfsen Versicherung  sind aufgrund der dargestellten Umgründungsschritte (partielle)  Gesamtrechtsnachfolger der Houdek Maschinenbau, insoweit das auch nach der Abspaltung zum  31.12.2007 bei der Houdek Maschinenbau  verbliebende Vermögen betroffen ist.
+
+
+Die Lexdon IT  und  Roelfsen Versicherung  sind aufgrund der dargestellten Umgründungsschritte (partielle)  Gesamtrechtsnachfolger der Houdek Maschinenbau, insoweit das auch nach der Abspaltung zum  31.12.2007 bei der Houdek Maschinenbau  verbliebende Vermögen betroffen ist.
+
+
+Die Lexdon IT  und  Roelfsen Versicherung  sind aufgrund der dargestellten Umgründungsschritte (partielle)  Gesamtrechtsnachfolger der Houdek Maschinenbau, insoweit das auch nach der Abspaltung zum  31.12.2007 bei der Houdek Maschinenbau  verbliebende Vermögen betroffen ist.
+
+| Predicted | Gold |
+|---|---|
+| `Lexdon IT` | `Lexdon IT` |
+| `Roelfsen Versicherung` | `Roelfsen Versicherung` |
+| `Houdek Maschinenbau` | `Houdek Maschinenbau` |
+| `Houdek Maschinenbau` | `Houdek Maschinenbau` |
+
+**Example 11** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_26`)
+
+
+Die Dorfcon-Verlag  ist  auf Grund der Verschmelzung zum 31.10.2010 mit der Schmeltz Luftfahrt (partielle)  Gesamtrechtsnachfolgerin der Houdek Maschinenbau.
+
+
+Die Dorfcon-Verlag  ist  auf Grund der Verschmelzung zum 31.10.2010 mit der Schmeltz Luftfahrt (partielle)  Gesamtrechtsnachfolgerin der Houdek Maschinenbau.
+
+
+Die Dorfcon-Verlag  ist  auf Grund der Verschmelzung zum 31.10.2010 mit der Schmeltz Luftfahrt (partielle)  Gesamtrechtsnachfolgerin der Houdek Maschinenbau.
+
+| Predicted | Gold |
+|---|---|
+| `Dorfcon-Verlag` | `Dorfcon-Verlag` |
+| `Schmeltz Luftfahrt` | `Schmeltz Luftfahrt` |
+| `Houdek Maschinenbau` | `Houdek Maschinenbau` |
+
+**Example 12** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_27`)
+
+
+Im Wirtschaftsjahr 2007 ist gemäß der beim FA Wien 1/23  eingereichten  Körperschaftsteuererklärung 2007 ein steuerlicher Verlust von € -4.239.321,85 aus den 84  Tankstellen erzielt worden.
+
+| Predicted | Gold |
+|---|---|
+| `FA Wien 1/23` | `FA Wien 1/23` |
+
+**Example 13** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_28`)
+
+
+In den Jahren 2011 bis 2013 fand eine Außenprüfung gemäß § 147 BAO durch die  Großbetriebsprüfung (Außenstelle Linz) über die Jahre 2007 und 2008 bei der Houdek Maschinenbau  statt.
+
+| Predicted | Gold |
+|---|---|
+| `Houdek Maschinenbau` | `Houdek Maschinenbau` |
+
+**Example 14** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_30`)
+
+
+Am 26.04.2013 erließ das FA Wien 1/23  nach Durchführung der Außenprüfung je einen  Körperschaftsteuerbescheid 2007 iSd § 19 Abs. 1 BAO an die Roelfsen Versicherung, die Lexdon IT  und einen Körperschaftsteuerbescheid 2007 an die Dorfcon-Verlag, da diese Gesellschaften auf  Grund der Abspaltung der 11 Tankstellen gem. § 14 Abs. 2 Z. 1 SpaltG (und der weiteren  Umgründungsschritte) partielle Gesamtrechtsnachfolger der Houdek Maschinenbau  sind und  demgemäß die Bescheide insoweit an die partiellen Gesamtrechtsnachfolger zu richten sind,  als die Einkünfte den abgespaltenen Tankstellen-Teilbetrieben bzw. den verbleibenden  Teilbetrieben bzw. Vermögen zuzuordnen sind.
+
+
+Am 26.04.2013 erließ das FA Wien 1/23  nach Durchführung der Außenprüfung je einen  Körperschaftsteuerbescheid 2007 iSd § 19 Abs. 1 BAO an die Roelfsen Versicherung, die Lexdon IT  und einen Körperschaftsteuerbescheid 2007 an die Dorfcon-Verlag, da diese Gesellschaften auf  Grund der Abspaltung der 11 Tankstellen gem. § 14 Abs. 2 Z. 1 SpaltG (und der weiteren  Umgründungsschritte) partielle Gesamtrechtsnachfolger der Houdek Maschinenbau  sind und  demgemäß die Bescheide insoweit an die partiellen Gesamtrechtsnachfolger zu richten sind,  als die Einkünfte den abgespaltenen Tankstellen-Teilbetrieben bzw. den verbleibenden  Teilbetrieben bzw. Vermögen zuzuordnen sind.
+
+
+Am 26.04.2013 erließ das FA Wien 1/23  nach Durchführung der Außenprüfung je einen  Körperschaftsteuerbescheid 2007 iSd § 19 Abs. 1 BAO an die Roelfsen Versicherung, die Lexdon IT  und einen Körperschaftsteuerbescheid 2007 an die Dorfcon-Verlag, da diese Gesellschaften auf  Grund der Abspaltung der 11 Tankstellen gem. § 14 Abs. 2 Z. 1 SpaltG (und der weiteren  Umgründungsschritte) partielle Gesamtrechtsnachfolger der Houdek Maschinenbau  sind und  demgemäß die Bescheide insoweit an die partiellen Gesamtrechtsnachfolger zu richten sind,  als die Einkünfte den abgespaltenen Tankstellen-Teilbetrieben bzw. den verbleibenden  Teilbetrieben bzw. Vermögen zuzuordnen sind.
+
+
+Am 26.04.2013 erließ das FA Wien 1/23  nach Durchführung der Außenprüfung je einen  Körperschaftsteuerbescheid 2007 iSd § 19 Abs. 1 BAO an die Roelfsen Versicherung, die Lexdon IT  und einen Körperschaftsteuerbescheid 2007 an die Dorfcon-Verlag, da diese Gesellschaften auf  Grund der Abspaltung der 11 Tankstellen gem. § 14 Abs. 2 Z. 1 SpaltG (und der weiteren  Umgründungsschritte) partielle Gesamtrechtsnachfolger der Houdek Maschinenbau  sind und  demgemäß die Bescheide insoweit an die partiellen Gesamtrechtsnachfolger zu richten sind,  als die Einkünfte den abgespaltenen Tankstellen-Teilbetrieben bzw. den verbleibenden  Teilbetrieben bzw. Vermögen zuzuordnen sind.
+
+
+Am 26.04.2013 erließ das FA Wien 1/23  nach Durchführung der Außenprüfung je einen  Körperschaftsteuerbescheid 2007 iSd § 19 Abs. 1 BAO an die Roelfsen Versicherung, die Lexdon IT  und einen Körperschaftsteuerbescheid 2007 an die Dorfcon-Verlag, da diese Gesellschaften auf  Grund der Abspaltung der 11 Tankstellen gem. § 14 Abs. 2 Z. 1 SpaltG (und der weiteren  Umgründungsschritte) partielle Gesamtrechtsnachfolger der Houdek Maschinenbau  sind und  demgemäß die Bescheide insoweit an die partiellen Gesamtrechtsnachfolger zu richten sind,  als die Einkünfte den abgespaltenen Tankstellen-Teilbetrieben bzw. den verbleibenden  Teilbetrieben bzw. Vermögen zuzuordnen sind.
+
+| Predicted | Gold |
+|---|---|
+| `FA Wien 1/23` | `FA Wien 1/23` |
+| `Roelfsen Versicherung` | `Roelfsen Versicherung` |
+| `Lexdon IT` | `Lexdon IT` |
+| `Dorfcon-Verlag` | `Dorfcon-Verlag` |
+| `Houdek Maschinenbau` | `Houdek Maschinenbau` |
+
+**Example 15** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_31`)
+
+
+Der Lexdon IT  als weiterem partiellen  Gesamtrechtsnachfolger wurde ein Körperschaftsteuerbescheid 2007 zugestellt, der einen  Ergebnisanteil von Null mangels Übergang von verlustverursachenden Vermögen auswies.
+
+| Predicted | Gold |
+|---|---|
+| `Lexdon IT` | `Lexdon IT` |
+
+**Example 16** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_32`)
+
+
+Neben der Berücksichtigung der unstrittigen Feststellungen teilte das Finanzamt den erzielten  Verlust 2007 zwischen Roelfsen Versicherung  und Dorfcon-Verlag  grundsätzlich entsprechend der  Zuordnung der Einkünfte zu den abgespaltenen bzw. verbliebenen (Teil-)Betrieben auf und  verweigerte damit im Ergebnis die gänzliche Zurechnung des erzielten Verlustes 2007  ausschließlich an die Roelfsen Versicherung.
+
+
+Neben der Berücksichtigung der unstrittigen Feststellungen teilte das Finanzamt den erzielten  Verlust 2007 zwischen Roelfsen Versicherung  und Dorfcon-Verlag  grundsätzlich entsprechend der  Zuordnung der Einkünfte zu den abgespaltenen bzw. verbliebenen (Teil-)Betrieben auf und  verweigerte damit im Ergebnis die gänzliche Zurechnung des erzielten Verlustes 2007  ausschließlich an die Roelfsen Versicherung.
+
+
+Neben der Berücksichtigung der unstrittigen Feststellungen teilte das Finanzamt den erzielten  Verlust 2007 zwischen Roelfsen Versicherung  und Dorfcon-Verlag  grundsätzlich entsprechend der  Zuordnung der Einkünfte zu den abgespaltenen bzw. verbliebenen (Teil-)Betrieben auf und  verweigerte damit im Ergebnis die gänzliche Zurechnung des erzielten Verlustes 2007  ausschließlich an die Roelfsen Versicherung.
+
+| Predicted | Gold |
+|---|---|
+| `Roelfsen Versicherung` | `Roelfsen Versicherung` |
+| `Dorfcon-Verlag` | `Dorfcon-Verlag` |
+| `Roelfsen Versicherung` | `Roelfsen Versicherung` |
+
+**Example 17** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_33`)
+
+
+Begründend führte das Finanzamt zusammenfassend aus,  dass die Houdek Maschinenbau  aufgrund der Rechtsform eine nach unternehmensrechtlichen  Vorschriften zur Rechnungslegung verpflichtete Körperschaft im Sinne des § 7 Abs. 3 KStG 1988  3 von 39 Seite 4 von 39
+
+| Predicted | Gold |
+|---|---|
+| `Houdek Maschinenbau` | `Houdek Maschinenbau` |
+
+**Example 18** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_45`)
+
+
+Der im Rahmen der Betriebsprüfung ermittelte Verlust wäre  daher zwischen Roelfsen Versicherung  und Dorfcon-Verlag  wie folgt aliquot (unter Außerachtlassung  einer geringfügigen Rundungsdifferenz € 0,01) aufzuteilen:  Gewinne verkaufte Teilbetriebe  Houdek Maschinenbau:  596.815,17  Gewinne verbleibende Teilbetriebe  Houdek Maschinenbau  586.237,84  Summe Gewinne: 1.183.053,01
+
+
+Der im Rahmen der Betriebsprüfung ermittelte Verlust wäre  daher zwischen Roelfsen Versicherung  und Dorfcon-Verlag  wie folgt aliquot (unter Außerachtlassung  einer geringfügigen Rundungsdifferenz € 0,01) aufzuteilen:  Gewinne verkaufte Teilbetriebe  Houdek Maschinenbau:  596.815,17  Gewinne verbleibende Teilbetriebe  Houdek Maschinenbau  586.237,84  Summe Gewinne: 1.183.053,01
+
+
+Der im Rahmen der Betriebsprüfung ermittelte Verlust wäre  daher zwischen Roelfsen Versicherung  und Dorfcon-Verlag  wie folgt aliquot (unter Außerachtlassung  einer geringfügigen Rundungsdifferenz € 0,01) aufzuteilen:  Gewinne verkaufte Teilbetriebe  Houdek Maschinenbau:  596.815,17  Gewinne verbleibende Teilbetriebe  Houdek Maschinenbau  586.237,84  Summe Gewinne: 1.183.053,01
+
+
+Der im Rahmen der Betriebsprüfung ermittelte Verlust wäre  daher zwischen Roelfsen Versicherung  und Dorfcon-Verlag  wie folgt aliquot (unter Außerachtlassung  einer geringfügigen Rundungsdifferenz € 0,01) aufzuteilen:  Gewinne verkaufte Teilbetriebe  Houdek Maschinenbau:  596.815,17  Gewinne verbleibende Teilbetriebe  Houdek Maschinenbau  586.237,84  Summe Gewinne: 1.183.053,01
+
+| Predicted | Gold |
+|---|---|
+| `Roelfsen Versicherung` | `Roelfsen Versicherung` |
+| `Dorfcon-Verlag` | `Dorfcon-Verlag` |
+| `Houdek Maschinenbau` | `Houdek Maschinenbau` |
+| `Houdek Maschinenbau` | `Houdek Maschinenbau` |
+
+**Example 19** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_49`)
+
+
+Teilbetriebe  Schmeltz Luftfahrt:   Verluste  geschlossene  Teilbetriebe  Houdek Maschinenbau:   -326.546,95 6,78 %
+
+
+Teilbetriebe  Schmeltz Luftfahrt:   Verluste  geschlossene  Teilbetriebe  Houdek Maschinenbau:   -326.546,95 6,78 %
+
+| Predicted | Gold |
+|---|---|
+| `Schmeltz Luftfahrt` | `Schmeltz Luftfahrt` |
+| `Houdek Maschinenbau` | `Houdek Maschinenbau` |
+
 </details>
 
 ---
@@ -417,6 +628,149 @@ Mit Schreiben vom 11.7.2025 teilte das FAG der Bf. mit, dass die Steuernummer au
 
 
 Mit Beschwerdevorentscheidungen vom 17.7.2025 wies das FAÖ die Beschwerden sowohl  gegen den Umsatzsteuerbescheid 2022 vom 5.11.2024, als auch jene das Jahr 2023 betreffend  vom 26.5.2025, als unbegründet ab.
+
+| Predicted | Gold |
+|---|---|
+| `FAÖ` | `FAÖ` |
+
+**Example 5** (doc_id: `findok-manually-annotated_TRAIN/149505.1`) ( sent_id: `findok-manually-annotated_TRAIN/149505.1_13`)
+
+
+Die Bf. richtete daraufhin am 13.8.2025 einen Vorlageantrag an das FAÖ, dies verbunden mit  dem Antrag auf Durchführung einer mündlichen Verhandlung und Entscheidung durch den  Senat.
+
+| Predicted | Gold |
+|---|---|
+| `FAÖ` | `FAÖ` |
+
+**Example 6** (doc_id: `findok-manually-annotated_TRAIN/149505.1`) ( sent_id: `findok-manually-annotated_TRAIN/149505.1_14`)
+
+
+Inhaltlich monierte die Bf. insbesondere, dass rücksichtlich der Bestimmung des § 59  BAO die Beschwerdevorentscheidungen von der unzuständigen Behörde, nämlich dem FAÖ  anstatt dem FAG, erlassen worden seien.
+
+| Predicted | Gold |
+|---|---|
+| `FAÖ` | `FAÖ` |
+
+**Example 7** (doc_id: `findok-manually-annotated_TRAIN/149505.1`) ( sent_id: `findok-manually-annotated_TRAIN/149505.1_16`)
+
+
+Das Verwaltungsgericht forderte sowohl das FAÖ als auch das FAG am 21.10.2025 auf, die  bezughabenden Akten vorzulegen und umfassend zum Vorbringen der Bf. Stellung zu nehmen.
+
+| Predicted | Gold |
+|---|---|
+| `FAÖ` | `FAÖ` |
+
+**Example 8** (doc_id: `findok-manually-annotated_TRAIN/149505.1`) ( sent_id: `findok-manually-annotated_TRAIN/149505.1_18`)
+
+
+Das FAÖ gab am selben Tag bekannt, sich der Stellungnahme des FAG  vollinhaltlich anzuschließen.
+
+| Predicted | Gold |
+|---|---|
+| `FAÖ` | `FAÖ` |
+
+**Example 9** (doc_id: `findok-manually-annotated_TRAIN/149505.1`) ( sent_id: `findok-manually-annotated_TRAIN/149505.1_30`)
+
+
+Mit Schreiben vom 11.7.2025 wurde die Bf. darüber in Kenntnis gesetzt, dass die  Steuernummer auf das FAÖ übergegangen sei.
+
+| Predicted | Gold |
+|---|---|
+| `FAÖ` | `FAÖ` |
+
+**Example 10** (doc_id: `findok-manually-annotated_TRAIN/149505.1`) ( sent_id: `findok-manually-annotated_TRAIN/149505.1_31`)
+
+
+Mit Beschwerdevorentscheidungen je vom 17.7.2025 wies nunmehr das FAÖ die Beschwerden  gegen die Umsatzsteuerbescheide 2022 und 2023 als unbegründet ab.
+
+| Predicted | Gold |
+|---|---|
+| `FAÖ` | `FAÖ` |
+
+**Example 11** (doc_id: `findok-manually-annotated_TRAIN/149505.1`) ( sent_id: `findok-manually-annotated_TRAIN/149505.1_32`)
+
+
+Die Bf. richtete daraufhin am 13.8.2025 einen Vorlageantrag an das FAÖ, dies verbunden mit  dem Antrag auf Durchführung einer mündlichen Verhandlung und Entscheidung durch den  Senat.
+
+| Predicted | Gold |
+|---|---|
+| `FAÖ` | `FAÖ` |
+
+**Example 12** (doc_id: `findok-manually-annotated_TRAIN/149505.1`) ( sent_id: `findok-manually-annotated_TRAIN/149505.1_34`)
+
+
+Inhaltlich monierte die Bf. -  soweit für die vorerst maßgebliche Rechtsfrage von Relevanz -, dass rücksichtlich der  Bestimmung des § 59 BAO die Beschwerdevorentscheidungen von der unzuständigen Behörde,  nämlich dem FAÖ anstatt dem FAG, erlassen worden seien.
+
+| Predicted | Gold |
+|---|---|
+| `FAÖ` | `FAÖ` |
+
+**Example 13** (doc_id: `findok-manually-annotated_TRAIN/149505.1`) ( sent_id: `findok-manually-annotated_TRAIN/149505.1_36`)
+
+
+Sowohl das FAG als auch das FAÖ teilten in der Folge die Rechtsansicht der Bf., wonach die  Beschwerdevorentscheidungen vom 17.7.2025 nicht vom FAÖ, sondern vom FAG hätten  erlassen werden müssen.
+
+
+Sowohl das FAG als auch das FAÖ teilten in der Folge die Rechtsansicht der Bf., wonach die  Beschwerdevorentscheidungen vom 17.7.2025 nicht vom FAÖ, sondern vom FAG hätten  erlassen werden müssen.
+
+| Predicted | Gold |
+|---|---|
+| `FAÖ` | `FAÖ` |
+| `FAÖ` | `FAÖ` |
+
+**Example 14** (doc_id: `findok-manually-annotated_TRAIN/149505.1`) ( sent_id: `findok-manually-annotated_TRAIN/149505.1_38`)
+
+
+Im Übrigen ist er – auch was die  Frage der Zuständigkeiten zwischen dem FAG und dem FAÖ anlangt – unstrittig (vgl. dazu  insbesondere die Schreiben des FAG und des FAÖ vom 22.10.2025).
+
+
+Im Übrigen ist er – auch was die  Frage der Zuständigkeiten zwischen dem FAG und dem FAÖ anlangt – unstrittig (vgl. dazu  insbesondere die Schreiben des FAG und des FAÖ vom 22.10.2025).
+
+| Predicted | Gold |
+|---|---|
+| `FAÖ` | `FAÖ` |
+| `FAÖ` | `FAÖ` |
+
+**Example 15** (doc_id: `findok-manually-annotated_TRAIN/149505.1`) ( sent_id: `findok-manually-annotated_TRAIN/149505.1_45`)
+
+
+unstrittig ist weiters, dass – nach Erlassung von Beschwerdevorentscheidungen –  am 13.8.2025 ein Vorlageantrag der Bf. beim FAÖ einlangte.
+
+| Predicted | Gold |
+|---|---|
+| `FAÖ` | `FAÖ` |
+
+**Example 16** (doc_id: `findok-manually-annotated_TRAIN/149505.1`) ( sent_id: `findok-manually-annotated_TRAIN/149505.1_51`)
+
+
+Fraglich ist, wie der  Übergang der Zuständigkeit vom FAG an das FAÖ – wie aus der Mitteilung vom 11.7.2025  entnommen werden kann – auf die anhängigen Beschwerdeverfahren wirkt.
+
+| Predicted | Gold |
+|---|---|
+| `FAÖ` | `FAÖ` |
+
+**Example 17** (doc_id: `findok-manually-annotated_TRAIN/149505.1`) ( sent_id: `findok-manually-annotated_TRAIN/149505.1_53`)
+
+
+Daraus folgt sohin, dass zwar die  Zuständigkeit vom FAG auf das FAÖ übergegangen sein mag, das FAG bleibt aber weiterhin für  jene Beschwerdeverfahren zuständig, die bis zum Übergang dieser Zuständigkeit bei ihr  anhängig gemacht wurden.
+
+| Predicted | Gold |
+|---|---|
+| `FAÖ` | `FAÖ` |
+
+**Example 18** (doc_id: `findok-manually-annotated_TRAIN/149505.1`) ( sent_id: `findok-manually-annotated_TRAIN/149505.1_55`)
+
+
+die Änderung der  Zuständigkeit erfolgte jedoch erst zeitlich später, sodass nicht das FAÖ, sondern richtigerweise  das FAG zur Erlassung der Beschwerdevorentscheidungen zuständig gewesen wäre.
+
+| Predicted | Gold |
+|---|---|
+| `FAÖ` | `FAÖ` |
+
+**Example 19** (doc_id: `findok-manually-annotated_TRAIN/149505.1`) ( sent_id: `findok-manually-annotated_TRAIN/149505.1_56`)
+
+
+Nur der Ordnung halber wird an dieser Stelle noch angemerkt, dass aufgrund der nach außen  in Erscheinung tretenden Umstände (ausdrückliche Nennung des FAÖ im Briefkopf, deren  Telefonnummer für das Kundenservice, deren Bankverbindung) es auch offensichtlich ist,  welches Finanzamt die Beschwerdevorentscheidungen erlassen hat und kann hier etwa nicht  mit einem einfachen Schreibfehler iSd § 293 BAO argumentiert werden.
 
 | Predicted | Gold |
 |---|---|
@@ -504,6 +858,145 @@ Herr F (und auch wir als seine steuerliche Vertretung) hätten auch gar nicht da
 |---|---|
 | `ÖGK` | `ÖGK` |
 
+**Example 5** (doc_id: `findok-manually-annotated_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated_TRAIN/149808.1_28`)
+
+
+Wären die oben  angeführten Abgaben - entsprechend dem Vorgehen der ÖGK - ebenfalls der Gmbh  vorgeschrieben worden, wären diese Abgaben ebenfalls mit einer Quote von 25%bedient  worden.
+
+| Predicted | Gold |
+|---|---|
+| `ÖGK` | `ÖGK` |
+
+**Example 6** (doc_id: `findok-manually-annotated_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated_TRAIN/149808.1_74`)
+
+
+Betreffend der SV- Abgaben, die im Zuge derselben GPLB angefallen seien,  seien diese seitens der ÖGK der GmbH vorgeschrieben worden, sodass Herr F nicht damit  rechnen habe können, dass die Vorschreibung der Abgaben L, DB und DZ 2016 an ihn  persönlich erfolgen würde.
+
+| Predicted | Gold |
+|---|---|
+| `ÖGK` | `ÖGK` |
+
+**Example 7** (doc_id: `findok-manually-annotated_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated_TRAIN/149808.1_214`)
+
+
+Weiters wurde nochmals  erklärt, dass die Grundlagenbescheide über Finanz-Online in die Databox des EU gerichtet  wurden, die Bescheide der ÖGK allerdings an die GmbH übermittelt wurden.
+
+| Predicted | Gold |
+|---|---|
+| `ÖGK` | `ÖGK` |
+
+**Example 8** (doc_id: `findok-manually-annotated-filtered-higher-courts_VALIDATE/149825.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_VALIDATE/149825.1_22`)
+
+
+Der Kostenersatz der ÖGK sei auf der Rechnung ersichtlich,  weitere Ersatzleistungen habe es nicht gegeben.
+
+| Predicted | Gold |
+|---|---|
+| `ÖGK` | `ÖGK` |
+
+**Example 9** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146878.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146878.1_3`)
+
+
+Entscheidungsgründe  I. Verfahrensgang  Strittig ist in der vorliegenden Beschwerdesache, ob zu Recht Einkünfte in Höhe von EUR  620,43 von der Österreichischen Gesundheitskasse (im Folgenden: ÖGK) im  Einkommensteuerbescheid 2023 des Beschwerdeführers (im Folgenden: Bf.) berücksichtigt  wurden.
+
+| Predicted | Gold |
+|---|---|
+| `ÖGK` | `ÖGK` |
+
+**Example 10** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146878.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146878.1_6`)
+
+
+Darin  wurden auch Einkünfte von der ÖGK in Höhe von EUR 620,43 berücksichtigt.
+
+| Predicted | Gold |
+|---|---|
+| `ÖGK` | `ÖGK` |
+
+**Example 11** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146878.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146878.1_15`)
+
+
+Im Jahr 2023 erhielt der Bf. von der ÖGK eine Erstattung von insgesamt EUR 723,84 an  Beiträgen zur Sozialversicherung (davon entfielen auf die Krankenversicherung EUR 163,53, auf  die Arbeitslosenversicherung EUR 126,77 und auf die Pensionsversicherung EUR 433,54).
+
+| Predicted | Gold |
+|---|---|
+| `ÖGK` | `ÖGK` |
+
+**Example 12** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146878.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146878.1_16`)
+
+
+Diese  Erstattung hatte ihre Wurzel im Jahr 2022, da in diesem Jahr Beiträge über die  Höchstbeitragsgrundlage hinaus an die ÖGK entrichtet wurden.
+
+| Predicted | Gold |
+|---|---|
+| `ÖGK` | `ÖGK` |
+
+**Example 13** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146878.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146878.1_17`)
+
+
+In einem Schreiben der ÖGK  vom 12.5.2023 wurde der Bf. über die Rückerstattung der Beiträge informiert und darauf  aufmerksam gemacht, dass die rückerstatteten Sozialversicherungsbeiträge steuerpflichtig  sind.
+
+| Predicted | Gold |
+|---|---|
+| `ÖGK` | `ÖGK` |
+
+**Example 14** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146878.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146878.1_18`)
+
+
+Am 20.2.2024 wurde dem Finanzamt von der ÖGK ein Lohnzettel für den Bf. und das Jahr 2023  übermittelt.
+
+| Predicted | Gold |
+|---|---|
+| `ÖGK` | `ÖGK` |
+
+**Example 15** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146878.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146878.1_20`)
+
+
+Im Einkommensteuerbescheid 2023 des Bf. kamen bei den Einkünften aus nichtselbständiger  Arbeit auch die von der ÖGK rückerstatteten Sozialversicherungsbeiträge in Höhe von EUR  620,43 zum Ansatz.
+
+| Predicted | Gold |
+|---|---|
+| `ÖGK` | `ÖGK` |
+
+**Example 16** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146878.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146878.1_23`)
+
+
+Darüber hinaus enthält das  Schreiben der ÖGK vom 12.5.2023 eine Aufstellung der für die Berechnung relevanten  Versicherungsverhältnisse 2022 und ergibt sich die Sachverhaltsfeststellung auch daraus.
+
+| Predicted | Gold |
+|---|---|
+| `ÖGK` | `ÖGK` |
+
+**Example 17** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146878.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146878.1_27`)
+
+
+Die Feststellung, wonach der Bf. im Jahr 2023 von der ÖGK eine Erstattung von EUR 723,84  erhielt und sich diese auf das Jahr 2022 bezog, weil in diesem Jahr zu hohe Beiträge geleistet  wurden (nämlich über die Höchstbeitragsgrundlage hinaus), ergibt sich aus dem im Sachverhalt  angeführten Schreiben der ÖGK an den Bf. vom 12.5.2023.
+
+
+Die Feststellung, wonach der Bf. im Jahr 2023 von der ÖGK eine Erstattung von EUR 723,84  erhielt und sich diese auf das Jahr 2022 bezog, weil in diesem Jahr zu hohe Beiträge geleistet  wurden (nämlich über die Höchstbeitragsgrundlage hinaus), ergibt sich aus dem im Sachverhalt  angeführten Schreiben der ÖGK an den Bf. vom 12.5.2023.
+
+| Predicted | Gold |
+|---|---|
+| `ÖGK` | `ÖGK` |
+| `ÖGK` | `ÖGK` |
+
+**Example 18** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146878.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146878.1_32`)
+
+
+Dieses Schreiben der ÖGK über die Erstattung von Beiträgen in Höhe von EUR 723,84 ist im  finanzbehördlichen Abgabeninformationssystem (JVP) hinterlegt.
+
+| Predicted | Gold |
+|---|---|
+| `ÖGK` | `ÖGK` |
+
+**Example 19** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146878.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146878.1_35`)
+
+
+Aufgrund dieses Schreibens der ÖGK an den Bf. ist für das Bundesfinanzgericht die Grundlage  für den im Jahr 2024 übermittelten Lohnzettel an das Finanzamt (auch dieser ist in der JVP  ersichtlich) und die Berücksichtigung des Betrages von EUR 620,43 im  Einkommensteuerbescheid 2023 des Bf. geklärt.
+
+| Predicted | Gold |
+|---|---|
+| `ÖGK` | `ÖGK` |
+
 </details>
 
 ---
@@ -581,6 +1074,153 @@ Weiters hob das FAG am  26.5.2025 den Umsatzsteuerbescheid des Jahres 2023 gemä
 
 
 Dagegen wurde von der Bf. am 16.6.2025 Beschwerde, eingebracht beim FAG, erhoben.
+
+| Predicted | Gold |
+|---|---|
+| `FAG` | `FAG` |
+
+**Example 5** (doc_id: `findok-manually-annotated_TRAIN/149505.1`) ( sent_id: `findok-manually-annotated_TRAIN/149505.1_11`)
+
+
+Mit Schreiben vom 11.7.2025 teilte das FAG der Bf. mit, dass die Steuernummer auf das FAÖ  übergegangen sei.
+
+| Predicted | Gold |
+|---|---|
+| `FAG` | `FAG` |
+
+**Example 6** (doc_id: `findok-manually-annotated_TRAIN/149505.1`) ( sent_id: `findok-manually-annotated_TRAIN/149505.1_14`)
+
+
+Inhaltlich monierte die Bf. insbesondere, dass rücksichtlich der Bestimmung des § 59  BAO die Beschwerdevorentscheidungen von der unzuständigen Behörde, nämlich dem FAÖ  anstatt dem FAG, erlassen worden seien.
+
+| Predicted | Gold |
+|---|---|
+| `FAG` | `FAG` |
+
+**Example 7** (doc_id: `findok-manually-annotated_TRAIN/149505.1`) ( sent_id: `findok-manually-annotated_TRAIN/149505.1_16`)
+
+
+Das Verwaltungsgericht forderte sowohl das FAÖ als auch das FAG am 21.10.2025 auf, die  bezughabenden Akten vorzulegen und umfassend zum Vorbringen der Bf. Stellung zu nehmen.
+
+| Predicted | Gold |
+|---|---|
+| `FAG` | `FAG` |
+
+**Example 8** (doc_id: `findok-manually-annotated_TRAIN/149505.1`) ( sent_id: `findok-manually-annotated_TRAIN/149505.1_17`)
+
+
+Daraufhin teilte das FAG am 22.10.2025 mit, dass es den Einwand, wonach die  Beschwerdevorentscheidungen vom 17.7.2025 von der unzuständigen Behörde erlassen  worden seien, teile.
+
+| Predicted | Gold |
+|---|---|
+| `FAG` | `FAG` |
+
+**Example 9** (doc_id: `findok-manually-annotated_TRAIN/149505.1`) ( sent_id: `findok-manually-annotated_TRAIN/149505.1_18`)
+
+
+Das FAÖ gab am selben Tag bekannt, sich der Stellungnahme des FAG  vollinhaltlich anzuschließen.
+
+| Predicted | Gold |
+|---|---|
+| `FAG` | `FAG` |
+
+**Example 10** (doc_id: `findok-manually-annotated_TRAIN/149505.1`) ( sent_id: `findok-manually-annotated_TRAIN/149505.1_27`)
+
+
+Alle genannten Bescheide wurden  vom FAG als damals für die Bf. zuständige Behörde erlassen;
+
+| Predicted | Gold |
+|---|---|
+| `FAG` | `FAG` |
+
+**Example 11** (doc_id: `findok-manually-annotated_TRAIN/149505.1`) ( sent_id: `findok-manually-annotated_TRAIN/149505.1_28`)
+
+
+die Beschwerden wurden allesamt  beim FAG eingebracht.
+
+| Predicted | Gold |
+|---|---|
+| `FAG` | `FAG` |
+
+**Example 12** (doc_id: `findok-manually-annotated_TRAIN/149505.1`) ( sent_id: `findok-manually-annotated_TRAIN/149505.1_34`)
+
+
+Inhaltlich monierte die Bf. -  soweit für die vorerst maßgebliche Rechtsfrage von Relevanz -, dass rücksichtlich der  Bestimmung des § 59 BAO die Beschwerdevorentscheidungen von der unzuständigen Behörde,  nämlich dem FAÖ anstatt dem FAG, erlassen worden seien.
+
+| Predicted | Gold |
+|---|---|
+| `FAG` | `FAG` |
+
+**Example 13** (doc_id: `findok-manually-annotated_TRAIN/149505.1`) ( sent_id: `findok-manually-annotated_TRAIN/149505.1_36`)
+
+
+Sowohl das FAG als auch das FAÖ teilten in der Folge die Rechtsansicht der Bf., wonach die  Beschwerdevorentscheidungen vom 17.7.2025 nicht vom FAÖ, sondern vom FAG hätten  erlassen werden müssen.
+
+
+Sowohl das FAG als auch das FAÖ teilten in der Folge die Rechtsansicht der Bf., wonach die  Beschwerdevorentscheidungen vom 17.7.2025 nicht vom FAÖ, sondern vom FAG hätten  erlassen werden müssen.
+
+| Predicted | Gold |
+|---|---|
+| `FAG` | `FAG` |
+| `FAG` | `FAG` |
+
+**Example 14** (doc_id: `findok-manually-annotated_TRAIN/149505.1`) ( sent_id: `findok-manually-annotated_TRAIN/149505.1_38`)
+
+
+Im Übrigen ist er – auch was die  Frage der Zuständigkeiten zwischen dem FAG und dem FAÖ anlangt – unstrittig (vgl. dazu  insbesondere die Schreiben des FAG und des FAÖ vom 22.10.2025).
+
+
+Im Übrigen ist er – auch was die  Frage der Zuständigkeiten zwischen dem FAG und dem FAÖ anlangt – unstrittig (vgl. dazu  insbesondere die Schreiben des FAG und des FAÖ vom 22.10.2025).
+
+| Predicted | Gold |
+|---|---|
+| `FAG` | `FAG` |
+| `FAG` | `FAG` |
+
+**Example 15** (doc_id: `findok-manually-annotated_TRAIN/149505.1`) ( sent_id: `findok-manually-annotated_TRAIN/149505.1_51`)
+
+
+Fraglich ist, wie der  Übergang der Zuständigkeit vom FAG an das FAÖ – wie aus der Mitteilung vom 11.7.2025  entnommen werden kann – auf die anhängigen Beschwerdeverfahren wirkt.
+
+| Predicted | Gold |
+|---|---|
+| `FAG` | `FAG` |
+
+**Example 16** (doc_id: `findok-manually-annotated_TRAIN/149505.1`) ( sent_id: `findok-manually-annotated_TRAIN/149505.1_53`)
+
+
+Daraus folgt sohin, dass zwar die  Zuständigkeit vom FAG auf das FAÖ übergegangen sein mag, das FAG bleibt aber weiterhin für  jene Beschwerdeverfahren zuständig, die bis zum Übergang dieser Zuständigkeit bei ihr  anhängig gemacht wurden.
+
+
+Daraus folgt sohin, dass zwar die  Zuständigkeit vom FAG auf das FAÖ übergegangen sein mag, das FAG bleibt aber weiterhin für  jene Beschwerdeverfahren zuständig, die bis zum Übergang dieser Zuständigkeit bei ihr  anhängig gemacht wurden.
+
+| Predicted | Gold |
+|---|---|
+| `FAG` | `FAG` |
+| `FAG` | `FAG` |
+
+**Example 17** (doc_id: `findok-manually-annotated_TRAIN/149505.1`) ( sent_id: `findok-manually-annotated_TRAIN/149505.1_54`)
+
+
+Wie aus dem elektronischen Akt unzweifelhaft hervorgeht, waren  die Beschwerden ab dem 5.11.2024 bzw. 26.5.2025 beim FAG anhängig;
+
+| Predicted | Gold |
+|---|---|
+| `FAG` | `FAG` |
+
+**Example 18** (doc_id: `findok-manually-annotated_TRAIN/149505.1`) ( sent_id: `findok-manually-annotated_TRAIN/149505.1_55`)
+
+
+die Änderung der  Zuständigkeit erfolgte jedoch erst zeitlich später, sodass nicht das FAÖ, sondern richtigerweise  das FAG zur Erlassung der Beschwerdevorentscheidungen zuständig gewesen wäre.
+
+| Predicted | Gold |
+|---|---|
+| `FAG` | `FAG` |
+
+**Example 19** (doc_id: `findok-manually-annotated_TRAIN/149505.1`) ( sent_id: `findok-manually-annotated_TRAIN/149505.1_61`)
+
+
+Es wird somit nun das FAG die  Beschwerdevorentscheidungen zu erlassen haben.
 
 | Predicted | Gold |
 |---|---|
@@ -668,6 +1308,141 @@ Die KQPC Versand GMBH  war Bauherrin und  Auftraggeber (Gebraucher) der Umbauarb
 |---|---|
 | `KQPC Versand GMBH` | `KQPC Versand GMBH` |
 
+**Example 5** (doc_id: `findok-manually-annotated_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated_TRAIN/134689.1_18`)
+
+
+Mit Straferkenntnis vom 28.12.2020, GZ: MA6/196000000656/2019, wurde der Beschuldigte  als handelsrechtlicher Geschäftsführer der KQPC Versand GMBH  wegen 22  Verwaltungsübertretungen nach § 1 Abs 1 iVm § 16 Abs 1 und Tarifpost D 1 und D 4 GAG  verurteilt, da er bis zum 22.8.2018 Gebrauchsabgaben für die Monate Juni 2017 bis Jänner  2018 im Zusammenhang mit der Spiegelgrundstraße 45, 5061 Vorderfager, Österreich  verkürzt habe.
+
+| Predicted | Gold |
+|---|---|
+| `KQPC Versand GMBH` | `KQPC Versand GMBH` |
+
+**Example 6** (doc_id: `findok-manually-annotated_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated_TRAIN/134689.1_22`)
+
+
+Die beiden Strafentscheidungen sind nahezu ident und unterscheiden sich im  Wesentlichen nur hinsichtlich der Funktion des Beschuldigten (Geschäftsführer Event Sudkraftlex GMBH  bzw. Geschäftsführer KQPC Versand GMBH) und des Zeitpunktes hinsichtlich der Beendigung der  Verwaltungsübertretungen (22.8.2018 bzw. 16.1.2018).
+
+| Predicted | Gold |
+|---|---|
+| `KQPC Versand GMBH` | `KQPC Versand GMBH` |
+
+**Example 7** (doc_id: `findok-manually-annotated_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated_TRAIN/134689.1_32`)
+
+
+Weiters erging mit Bescheiddatum 22.8.2018 hinsichtlich der selben Abgabenansprüche ein  weiterer (inhaltsgleicher) Abgabenfestsetzungsbescheid und zwar neuerlich an die Event Sudkraftlex GMBH (Baufirma) sowie an die KQPC Versand GMBH (Auftraggeber), Sudver Handel Services GMBH  und Glanznorost Institut GMBH (jeweils Baufirma) als Gesamtschuldner, welcher erst am 11.1.2019 von der  belangten Behörde versandt wurde.
+
+| Predicted | Gold |
+|---|---|
+| `KQPC Versand GMBH` | `KQPC Versand GMBH` |
+
+**Example 8** (doc_id: `findok-manually-annotated_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated_TRAIN/134689.1_68`)
+
+
+Damit entfällt auch die  Haftung der KQPC Versand GMBH  gem. § 9 Abs. 7 VStG.
+
+| Predicted | Gold |
+|---|---|
+| `KQPC Versand GMBH` | `KQPC Versand GMBH` |
+
+**Example 9** (doc_id: `findok-manually-annotated_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated_TRAIN/134689.1_69`)
+
+
+Da das Verfahren schon aus diesem Grund einzustellen war, erübrigt es sich auch auf die Frage  einer möglichen Doppelbestrafung (Bestrafung als Vertretungsbefugter gem § 9 Abs 2 VStG der  Event Sudkraftlex GMBH  und der KQPC Versand GMBH) einzugehen (vgl. dazu VwGH 6.3.1997, 95/09/0342).
+
+| Predicted | Gold |
+|---|---|
+| `KQPC Versand GMBH` | `KQPC Versand GMBH` |
+
+**Example 10** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1_7`)
+
+
+Entscheidungsgründe  I. Bisheriger Verfahrensgang  Mit Straferkenntnis des Magistrats der Stadt Wien, Magistratsabteilung 6, vom 28.12.2020, GZ:  MA6/196000000656/2019, wurde Brunhild Katschmareck  hinsichtlich 22 Verwaltungs-übertretungen nach §  1 Abs 1 iVm § 16 Abs 1 und Tarifpost D 1 und D 4 GAG für schuldig befunden, da er als  handelsrechtlicher Geschäftsführer der KQPC Versand GMBH  vor der Spiegelgrundstraße 45, 5061 Vorderfager, Österreich, auf dem  öffentlichen Gemeindegrund, der dem öffentlichen Verkehr dient, ein Gerüst im Ausmaß von  19 m², eine Baustofflagerung im Ausmaß von 12 m² (im Juni und Juli 2017 von 23 m²) und eine  Mobil-Toilette im Ausmaß von 1 m² aufgestellt habe, wobei er hiefür bis zum 22.8.2018 weder  eine Gebrauchsabgabe erwirkt, noch die Gebrauchsabgabe entrichtet habe und dadurch die  Gebrauchsabgaben für die Monate Juni 2017 bis Jänner 2018 verkürzt habe.
+
+| Predicted | Gold |
+|---|---|
+| `KQPC Versand GMBH` | `KQPC Versand GMBH` |
+
+**Example 11** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1_10`)
+
+
+Zudem  wurde im Straferkenntnis ausgesprochen, dass die KQPC Versand GMBH  gem § 9 Abs 7 VStG über  die verhängten Geldstrafen und die Verfahrenskosten zur ungeteilten Hand hafte.
+
+| Predicted | Gold |
+|---|---|
+| `KQPC Versand GMBH` | `KQPC Versand GMBH` |
+
+**Example 12** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1_11`)
+
+
+In der am 14.1.2021 vom Beschuldigten dagegen eingebrachten Beschwerde bringt dieser im  Wesentlichen vor, dass für Juni bis Dezember 2017 bereits Verjährung eingetreten und die  KQPC Versand GMBH  im Jänner 2018 nicht mehr tätig gewesen sei.
+
+| Predicted | Gold |
+|---|---|
+| `KQPC Versand GMBH` | `KQPC Versand GMBH` |
+
+**Example 13** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1_16`)
+
+
+Der Beschuldigte war im inkriminierten Zeitraum sowohl handelsrechtlicher Geschäftsführer  der KQPC Versand GMBH  als auch der Event Sudkraftlex GMBH.
+
+| Predicted | Gold |
+|---|---|
+| `KQPC Versand GMBH` | `KQPC Versand GMBH` |
+
+**Example 14** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1_17`)
+
+
+Die KQPC Versand GMBH  war Bauherrin und  Auftraggeber (Gebraucher) der Umbauarbeiten an der Spiegelgrundstraße 45, 5061 Vorderfager, Österreich, die Event Sudkraftlex GMBH  war  mit dem Bauvorhaben befasst bzw. bauausführende Firma (Nutzer).
+
+| Predicted | Gold |
+|---|---|
+| `KQPC Versand GMBH` | `KQPC Versand GMBH` |
+
+**Example 15** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1_18`)
+
+
+Mit Straferkenntnis vom 28.12.2020, GZ: MA6/196000000656/2019, wurde der Beschuldigte  als handelsrechtlicher Geschäftsführer der KQPC Versand GMBH  wegen 22  Verwaltungsübertretungen nach § 1 Abs 1 iVm § 16 Abs 1 und Tarifpost D 1 und D 4 GAG  verurteilt, da er bis zum 22.8.2018 Gebrauchsabgaben für die Monate Juni 2017 bis Jänner  2018 im Zusammenhang mit der Spiegelgrundstraße 45, 5061 Vorderfager, Österreich  verkürzt habe.
+
+| Predicted | Gold |
+|---|---|
+| `KQPC Versand GMBH` | `KQPC Versand GMBH` |
+
+**Example 16** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1_22`)
+
+
+Die beiden Strafentscheidungen sind nahezu ident und unterscheiden sich im  Wesentlichen nur hinsichtlich der Funktion des Beschuldigten (Geschäftsführer Event Sudkraftlex GMBH  bzw. Geschäftsführer KQPC Versand GMBH) und des Zeitpunktes hinsichtlich der Beendigung der  Verwaltungsübertretungen (22.8.2018 bzw. 16.1.2018).
+
+| Predicted | Gold |
+|---|---|
+| `KQPC Versand GMBH` | `KQPC Versand GMBH` |
+
+**Example 17** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1_32`)
+
+
+Weiters erging mit Bescheiddatum 22.8.2018 hinsichtlich der selben Abgabenansprüche ein  weiterer (inhaltsgleicher) Abgabenfestsetzungsbescheid und zwar neuerlich an die Event Sudkraftlex GMBH (Baufirma) sowie an die KQPC Versand GMBH (Auftraggeber), Sudver Handel Services GMBH  und Glanznorost Institut GMBH (jeweils Baufirma) als Gesamtschuldner, welcher erst am 11.1.2019 von der  belangten Behörde versandt wurde.
+
+| Predicted | Gold |
+|---|---|
+| `KQPC Versand GMBH` | `KQPC Versand GMBH` |
+
+**Example 18** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1_68`)
+
+
+Damit entfällt auch die  Haftung der KQPC Versand GMBH  gem. § 9 Abs. 7 VStG.
+
+| Predicted | Gold |
+|---|---|
+| `KQPC Versand GMBH` | `KQPC Versand GMBH` |
+
+**Example 19** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1_69`)
+
+
+Da das Verfahren schon aus diesem Grund einzustellen war, erübrigt es sich auch auf die Frage  einer möglichen Doppelbestrafung (Bestrafung als Vertretungsbefugter gem § 9 Abs 2 VStG der  Event Sudkraftlex GMBH  und der KQPC Versand GMBH) einzugehen (vgl. dazu VwGH 6.3.1997, 95/09/0342).
+
+| Predicted | Gold |
+|---|---|
+| `KQPC Versand GMBH` | `KQPC Versand GMBH` |
+
 </details>
 
 ---
@@ -745,6 +1520,141 @@ Die KQPC Versand GMBH  war Bauherrin und  Auftraggeber (Gebraucher) der Umbauarb
 
 
 Weiters wurde der Beschuldigte bereits mit Strafverfügung vom 19.4.2018, GZ: MA6/ARP-S- 780/2018 u.a., als handelsrechtlicher Geschäftsführer der Event Sudkraftlex GMBH  hinsichtlich der  Spiegelgrundstraße 45, 5061 Vorderfager, Österreich  rechtskräftig verurteilt, da er bis zum 16.1.2018 oa.
+
+| Predicted | Gold |
+|---|---|
+| `Event Sudkraftlex GMBH` | `Event Sudkraftlex GMBH` |
+
+**Example 5** (doc_id: `findok-manually-annotated_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated_TRAIN/134689.1_22`)
+
+
+Die beiden Strafentscheidungen sind nahezu ident und unterscheiden sich im  Wesentlichen nur hinsichtlich der Funktion des Beschuldigten (Geschäftsführer Event Sudkraftlex GMBH  bzw. Geschäftsführer KQPC Versand GMBH) und des Zeitpunktes hinsichtlich der Beendigung der  Verwaltungsübertretungen (22.8.2018 bzw. 16.1.2018).
+
+| Predicted | Gold |
+|---|---|
+| `Event Sudkraftlex GMBH` | `Event Sudkraftlex GMBH` |
+
+**Example 6** (doc_id: `findok-manually-annotated_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated_TRAIN/134689.1_25`)
+
+
+Zunächst wurde mit Bescheiddatum 16.1.2018 ein Nachbemessungsbescheid an die Event Sudkraftlex GMBH  erlassen und die oa. streitgegenständlichen Gebrauchsabgaben vorgeschrieben.
+
+| Predicted | Gold |
+|---|---|
+| `Event Sudkraftlex GMBH` | `Event Sudkraftlex GMBH` |
+
+**Example 7** (doc_id: `findok-manually-annotated_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated_TRAIN/134689.1_32`)
+
+
+Weiters erging mit Bescheiddatum 22.8.2018 hinsichtlich der selben Abgabenansprüche ein  weiterer (inhaltsgleicher) Abgabenfestsetzungsbescheid und zwar neuerlich an die Event Sudkraftlex GMBH (Baufirma) sowie an die KQPC Versand GMBH (Auftraggeber), Sudver Handel Services GMBH  und Glanznorost Institut GMBH (jeweils Baufirma) als Gesamtschuldner, welcher erst am 11.1.2019 von der  belangten Behörde versandt wurde.
+
+| Predicted | Gold |
+|---|---|
+| `Event Sudkraftlex GMBH` | `Event Sudkraftlex GMBH` |
+
+**Example 8** (doc_id: `findok-manually-annotated_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated_TRAIN/134689.1_58`)
+
+
+Da die in der bekämpften Strafentscheidung angeführten Gebrauchsabgaben mit Erlassung des  Abgabenbescheides vom 16.1.2018 an die Event Sudkraftlex GMBH  Mitte/Ende Jänner 2018 erstmals  bescheidmäßig festgesetzt wurden, sind die jeweiligen strafbaren Taten spätestens Ende  Jänner 2018 abgeschlossen worden bzw. hat das strafbare Verhalten aufgehört.
+
+| Predicted | Gold |
+|---|---|
+| `Event Sudkraftlex GMBH` | `Event Sudkraftlex GMBH` |
+
+**Example 9** (doc_id: `findok-manually-annotated_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated_TRAIN/134689.1_69`)
+
+
+Da das Verfahren schon aus diesem Grund einzustellen war, erübrigt es sich auch auf die Frage  einer möglichen Doppelbestrafung (Bestrafung als Vertretungsbefugter gem § 9 Abs 2 VStG der  Event Sudkraftlex GMBH  und der KQPC Versand GMBH) einzugehen (vgl. dazu VwGH 6.3.1997, 95/09/0342).
+
+| Predicted | Gold |
+|---|---|
+| `Event Sudkraftlex GMBH` | `Event Sudkraftlex GMBH` |
+
+**Example 10** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1_12`)
+
+
+Im Zuge eines umfangreichen Vorhalteverfahrens übermittelte die belangte Behörde auch  einen abgabenrechtlichen Nachbemessungsbescheid vom 16.1.2018 an die Event Sudkraftlex GMBH  hinsichtlich der oa.
+
+| Predicted | Gold |
+|---|---|
+| `Event Sudkraftlex GMBH` | `Event Sudkraftlex GMBH` |
+
+**Example 11** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1_13`)
+
+
+Gebrauchsabgabenverkürzungen und teilte mit, dass auf Basis dieses  Bescheides gegen den Beschuldigten als Geschäftsführer der Event Sudkraftlex GMBH  ein  Verwaltungsstrafverfahren geführt und die Strafverfügung rechtskräftig geworden sei.
+
+| Predicted | Gold |
+|---|---|
+| `Event Sudkraftlex GMBH` | `Event Sudkraftlex GMBH` |
+
+**Example 12** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1_16`)
+
+
+Der Beschuldigte war im inkriminierten Zeitraum sowohl handelsrechtlicher Geschäftsführer  der KQPC Versand GMBH  als auch der Event Sudkraftlex GMBH.
+
+| Predicted | Gold |
+|---|---|
+| `Event Sudkraftlex GMBH` | `Event Sudkraftlex GMBH` |
+
+**Example 13** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1_17`)
+
+
+Die KQPC Versand GMBH  war Bauherrin und  Auftraggeber (Gebraucher) der Umbauarbeiten an der Spiegelgrundstraße 45, 5061 Vorderfager, Österreich, die Event Sudkraftlex GMBH  war  mit dem Bauvorhaben befasst bzw. bauausführende Firma (Nutzer).
+
+| Predicted | Gold |
+|---|---|
+| `Event Sudkraftlex GMBH` | `Event Sudkraftlex GMBH` |
+
+**Example 14** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1_20`)
+
+
+Weiters wurde der Beschuldigte bereits mit Strafverfügung vom 19.4.2018, GZ: MA6/ARP-S- 780/2018 u.a., als handelsrechtlicher Geschäftsführer der Event Sudkraftlex GMBH  hinsichtlich der  Spiegelgrundstraße 45, 5061 Vorderfager, Österreich  rechtskräftig verurteilt, da er bis zum 16.1.2018 oa.
+
+| Predicted | Gold |
+|---|---|
+| `Event Sudkraftlex GMBH` | `Event Sudkraftlex GMBH` |
+
+**Example 15** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1_22`)
+
+
+Die beiden Strafentscheidungen sind nahezu ident und unterscheiden sich im  Wesentlichen nur hinsichtlich der Funktion des Beschuldigten (Geschäftsführer Event Sudkraftlex GMBH  bzw. Geschäftsführer KQPC Versand GMBH) und des Zeitpunktes hinsichtlich der Beendigung der  Verwaltungsübertretungen (22.8.2018 bzw. 16.1.2018).
+
+| Predicted | Gold |
+|---|---|
+| `Event Sudkraftlex GMBH` | `Event Sudkraftlex GMBH` |
+
+**Example 16** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1_25`)
+
+
+Zunächst wurde mit Bescheiddatum 16.1.2018 ein Nachbemessungsbescheid an die Event Sudkraftlex GMBH  erlassen und die oa. streitgegenständlichen Gebrauchsabgaben vorgeschrieben.
+
+| Predicted | Gold |
+|---|---|
+| `Event Sudkraftlex GMBH` | `Event Sudkraftlex GMBH` |
+
+**Example 17** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1_32`)
+
+
+Weiters erging mit Bescheiddatum 22.8.2018 hinsichtlich der selben Abgabenansprüche ein  weiterer (inhaltsgleicher) Abgabenfestsetzungsbescheid und zwar neuerlich an die Event Sudkraftlex GMBH (Baufirma) sowie an die KQPC Versand GMBH (Auftraggeber), Sudver Handel Services GMBH  und Glanznorost Institut GMBH (jeweils Baufirma) als Gesamtschuldner, welcher erst am 11.1.2019 von der  belangten Behörde versandt wurde.
+
+| Predicted | Gold |
+|---|---|
+| `Event Sudkraftlex GMBH` | `Event Sudkraftlex GMBH` |
+
+**Example 18** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1_58`)
+
+
+Da die in der bekämpften Strafentscheidung angeführten Gebrauchsabgaben mit Erlassung des  Abgabenbescheides vom 16.1.2018 an die Event Sudkraftlex GMBH  Mitte/Ende Jänner 2018 erstmals  bescheidmäßig festgesetzt wurden, sind die jeweiligen strafbaren Taten spätestens Ende  Jänner 2018 abgeschlossen worden bzw. hat das strafbare Verhalten aufgehört.
+
+| Predicted | Gold |
+|---|---|
+| `Event Sudkraftlex GMBH` | `Event Sudkraftlex GMBH` |
+
+**Example 19** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1_69`)
+
+
+Da das Verfahren schon aus diesem Grund einzustellen war, erübrigt es sich auch auf die Frage  einer möglichen Doppelbestrafung (Bestrafung als Vertretungsbefugter gem § 9 Abs 2 VStG der  Event Sudkraftlex GMBH  und der KQPC Versand GMBH) einzugehen (vgl. dazu VwGH 6.3.1997, 95/09/0342).
 
 | Predicted | Gold |
 |---|---|
@@ -844,6 +1754,104 @@ Auch wenn der X GmbH bzw. der mitbeteiligten Partei als Rechtsnachfolgerin der X
 | `X GmbH` | `X GmbH` |
 | `X GmbH` | `X GmbH` |
 
+**Example 5** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_126`)
+
+
+Mit dem Spruch des Erkenntnisses werde nämlich nicht  normativ über die Höhe der Verlustvorträge, die vor dem Hintergrund des § 35 UmgrStG der X  GmbH verbleiben, abgesprochen.
+
+| Predicted | Gold |
+|---|---|
+| `X  GmbH` | `X  GmbH` |
+
+**Example 6** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_265`)
+
+
+In Rz 24  der Entscheidung hält der VwGH ausdrücklich fest, dass „für die Berechnung der  Körperschaftsteuer der X GmbH für das Jahr 2007 im Rahmen der  Körperschaftsteuerveranlagung zur Ermittlung des steuerpflichtigen Einkommens ein  innerbetrieblicher Verlustausgleich vorzunehmen ist [...].
+
+| Predicted | Gold |
+|---|---|
+| `X GmbH` | `X GmbH` |
+
+**Example 7** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_268`)
+
+
+Übersehen werden dabei insbesondere die Ausführungen des VwGH in Rz 25: „Eine andere  Frage ist es, von wem dieser Jahresverlust - in Anbetracht der zum Ablauf des 31. Dezember  2007 vorgenommenen Spaltung des X-GmbH - in den Folgejahren [Herv d Verf] als  Verlustvortrag iSd § 8 Abs 4 KStG 1988 geltend gemacht werden kann."
+
+| Predicted | Gold |
+|---|---|
+| `X-GmbH` | `X-GmbH` |
+
+**Example 8** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_430`)
+
+
+Der VwGH  führte mit Erkenntnis vom 13.9.2018 (VwGH 13.9.2018, Ro 2016/15/0010) aus: „28 Für den  Revisionsfall folgt daraus: Die X GmbH hat - unter Berücksichtigung der unstrittigen  Feststellungen des Prüfers - im Jahr 2007 einen Gesamtverlust von 3,632.188,29 EUR erzielt,  der für Zwecke des Verlustvortrages in nachfolgenden Veranlagungsjahren gemäß § 35  UmgrStG iVm § 21 UmgrStG entsprechend dem Verursachungszusammenhang auf die bei der  X GmbH verbliebenen und auf die im Wege einer Spaltung auf die R GmbH übergegangenen  Tankstellen aufzuteilen ist.
+
+
+Der VwGH  führte mit Erkenntnis vom 13.9.2018 (VwGH 13.9.2018, Ro 2016/15/0010) aus: „28 Für den  Revisionsfall folgt daraus: Die X GmbH hat - unter Berücksichtigung der unstrittigen  Feststellungen des Prüfers - im Jahr 2007 einen Gesamtverlust von 3,632.188,29 EUR erzielt,  der für Zwecke des Verlustvortrages in nachfolgenden Veranlagungsjahren gemäß § 35  UmgrStG iVm § 21 UmgrStG entsprechend dem Verursachungszusammenhang auf die bei der  X GmbH verbliebenen und auf die im Wege einer Spaltung auf die R GmbH übergegangenen  Tankstellen aufzuteilen ist.
+
+| Predicted | Gold |
+|---|---|
+| `X GmbH` | `X GmbH` |
+| `X GmbH` | `X GmbH` |
+
+**Example 9** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_432`)
+
+
+29 Entscheidend ist allerdings, dass im Veranlagungsjahr 2007 die Spaltung noch nicht erfolgt  ist und der gesamte Verlust des Veranlagungsjahres 2007 von 3.632.188,29 EUR durch die X  GmbH erzielt worden ist.
+
+| Predicted | Gold |
+|---|---|
+| `X  GmbH` | `X  GmbH` |
+
+**Example 10** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_433`)
+
+
+30 Auch wenn der X GmbH bzw. der mitbeteiligten Partei als Rechtsnachfolgerin der X GmbH  der Verlustvortrag in den Jahren nach 2007 nur in der zuvor dargestellten (mittels  objektbezogener Zuordnung zu ermittelnden) Höhe und somit nicht in der im angefochtenen  Erkenntnis des Bundesfinanzgerichts dargestellten Höhe zusteht, erweist sich der Spruch des  angefochtenen Erkenntnisses nicht als rechtswidrig.
+
+
+30 Auch wenn der X GmbH bzw. der mitbeteiligten Partei als Rechtsnachfolgerin der X GmbH  der Verlustvortrag in den Jahren nach 2007 nur in der zuvor dargestellten (mittels  objektbezogener Zuordnung zu ermittelnden) Höhe und somit nicht in der im angefochtenen  Erkenntnis des Bundesfinanzgerichts dargestellten Höhe zusteht, erweist sich der Spruch des  angefochtenen Erkenntnisses nicht als rechtswidrig.
+
+| Predicted | Gold |
+|---|---|
+| `X GmbH` | `X GmbH` |
+| `X GmbH` | `X GmbH` |
+
+**Example 11** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_434`)
+
+
+Mit dem Spruch des Erkenntnisses wird  nämlich nicht normativ über die Höhe der Verlustvorträge, die vor dem Hintergrund des § 35  UmgrStG der X GmbH verbleiben, abgesprochen.
+
+| Predicted | Gold |
+|---|---|
+| `X GmbH` | `X GmbH` |
+
+**Example 12** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149868.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149868.1_28`)
+
+
+bis 31.12.2023 Einkünfte aus nichtselbständiger Arbeit von der  X GmbH in Adr AG.
+
+| Predicted | Gold |
+|---|---|
+| `X GmbH` | `X GmbH` |
+
+**Example 13** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149868.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149868.1_33`)
+
+
+Die Entfernung zwischen der Adresse des Arbeitgebers X GmbH in Adr AG und der  österreichischen Wohnadresse Bf-Adr Ö beträgt weniger als 20 Kilometer.
+
+| Predicted | Gold |
+|---|---|
+| `X GmbH` | `X GmbH` |
+
+**Example 14** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149868.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149868.1_42`)
+
+
+Die Feststellungen hinsichtlich der Entfernung zwischen der Adresse des Arbeitgebers X GmbH  in Adr AG und der österreichischen Wohnadresse Bf-Adr Ö und der Zeitdauer der Benutzung  eines Massenbeförderungsmittels gründen sich auf eine vom Bundesfinanzgericht  durchgeführte Berechnung mit dem von Bundesministerium für Finanzen im Internet zur  Verfügung gestellten Pendlerrechner.
+
+| Predicted | Gold |
+|---|---|
+| `X GmbH` | `X GmbH` |
+
 </details>
 
 ---
@@ -921,6 +1929,123 @@ Zusammenfassend wird Folgendes festgestellt:  Zufolge der Aktenlage war T. vom W
 
 
 Entscheidungsgründe  Verfahrensgang  Die Beschwerdeführerin (Bf.) bezog für ihre Tochter T., geb. am 2002, von Oktober 2020  (Beginn des Bachelorstudiums Lehramt mit den Unterrichtsfächern Biologie und Umweltkunde  und Spanisch an der Universität Wien) bis September 2021 Familienbeihilfe und  Kinderabsetzbeträge.
+
+| Predicted | Gold |
+|---|---|
+| `Universität Wien` | `Universität Wien` |
+
+**Example 5** (doc_id: `findok-manually-annotated_TRAIN/144562.1`) ( sent_id: `findok-manually-annotated_TRAIN/144562.1_10`)
+
+
+Abweisungsbescheid vom 28. April 2023  Das Finanzamt stellte folgenden Sachverhalt fest:  T. brach nach vier Semestern das Lehramtsstudium an der Universität Wien ab und begann im  Wintersemester 2022/2023 an der Pädagogischen Hochschule Wien mit dem Bachelorstudium  Lehramt Primarstufe.
+
+| Predicted | Gold |
+|---|---|
+| `Universität Wien` | `Universität Wien` |
+
+**Example 6** (doc_id: `findok-manually-annotated_TRAIN/144562.1`) ( sent_id: `findok-manually-annotated_TRAIN/144562.1_27`)
+
+
+Auf der Homepage der Universität Wien sei folgende Formulierung zu finden:  „Wird das Studium erst später gewechselt, entfällt die Familienbeihilfe für so viele Semester,  wie in den vor dem Wechsel betriebenen Studien Familienbeihilfe bezogen wurde.
+
+| Predicted | Gold |
+|---|---|
+| `Universität Wien` | `Universität Wien` |
+
+**Example 7** (doc_id: `findok-manually-annotated_TRAIN/144562.1`) ( sent_id: `findok-manually-annotated_TRAIN/144562.1_54`)
+
+
+Das Bundesfinanzgericht hat erwogen  Folgender unstrittige Sachverhalt ergibt sich aus dem Familienbeihilfenakt:  Die Tochter der Bf. war vom WS 2020/21 bis SS 2022 an der Universität Wien in der  Studienrichtung LA Sekundarstufe UF Biologie und Umweltkunde und UF Spanisch  (Bachelorstudium) inskribiert und wies für das 1.
+
+| Predicted | Gold |
+|---|---|
+| `Universität Wien` | `Universität Wien` |
+
+**Example 8** (doc_id: `findok-manually-annotated_TRAIN/144562.1`) ( sent_id: `findok-manually-annotated_TRAIN/144562.1_116`)
+
+
+Im Beschwerdefall steht zweifelsfrei und unstrittig fest, dass durch den Wechsel des an der  Universität Wien betriebenen Studiums (LA Sekundarstufe UF Biologie und Umweltkunde und  UF Spanisch) nach vier Semestern (WS 2020/21, SS 2021, WS 2021/22, SS 2022) zum Studium  LA Primarstufe (PM098) an die Pädagogische Hochschule Wien ein schädlicher Studienwechsel  iSd § 17 Abs. 1 Z 2 StudFG vorliegt.
+
+| Predicted | Gold |
+|---|---|
+| `Universität Wien` | `Universität Wien` |
+
+**Example 9** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/143567.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/143567.1_4`)
+
+
+T. war vom Wintersemester 2015/2016 bis einschließlich Sommersemester 2018 und vom  Wintersemester 2019/2020 bis einschließlich Sommersemester 2020 im Diplomstudium  Rechtswissenschaften an der Universität Wien inskribiert.
+
+| Predicted | Gold |
+|---|---|
+| `Universität Wien` | `Universität Wien` |
+
+**Example 10** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/143567.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/143567.1_46`)
+
+
+Ihre Tochter T. hat von Wintersemester 2015/2016 bis einschließlich Sommersemester 2018  und von Wintersemester 2019/2020 bis einschließlich Sommersemester 2020 das Studium  Rechtswissenschaften an der Universität Wien betrieben.
+
+| Predicted | Gold |
+|---|---|
+| `Universität Wien` | `Universität Wien` |
+
+**Example 11** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/143567.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/143567.1_73`)
+
+
+Das Bundesfinanzgericht hat erwogen  Sachverhalt   T. war vom Wintersemester 2015/2016 bis Sommersemester 2018 (= 6 Semester) an der  Universität Wien im Diplomstudium Rechtswissenschaften (UA101) inskribiert.
+
+| Predicted | Gold |
+|---|---|
+| `Universität Wien` | `Universität Wien` |
+
+**Example 12** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/143567.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/143567.1_134`)
+
+
+Zusammenfassend wird Folgendes festgestellt:  Zufolge der Aktenlage war T. vom Wintersemester 2015/2016 bis Sommersemester 2018 (= 6  Semester) an der Universität Wien im Diplomstudium Rechtswissenschaften inskribiert.
+
+| Predicted | Gold |
+|---|---|
+| `Universität Wien` | `Universität Wien` |
+
+**Example 13** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/144562.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/144562.1_3`)
+
+
+Entscheidungsgründe  Verfahrensgang  Die Beschwerdeführerin (Bf.) bezog für ihre Tochter T., geb. am 2002, von Oktober 2020  (Beginn des Bachelorstudiums Lehramt mit den Unterrichtsfächern Biologie und Umweltkunde  und Spanisch an der Universität Wien) bis September 2021 Familienbeihilfe und  Kinderabsetzbeträge.
+
+| Predicted | Gold |
+|---|---|
+| `Universität Wien` | `Universität Wien` |
+
+**Example 14** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/144562.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/144562.1_10`)
+
+
+Abweisungsbescheid vom 28. April 2023  Das Finanzamt stellte folgenden Sachverhalt fest:  T. brach nach vier Semestern das Lehramtsstudium an der Universität Wien ab und begann im  Wintersemester 2022/2023 an der Pädagogischen Hochschule Wien mit dem Bachelorstudium  Lehramt Primarstufe.
+
+| Predicted | Gold |
+|---|---|
+| `Universität Wien` | `Universität Wien` |
+
+**Example 15** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/144562.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/144562.1_27`)
+
+
+Auf der Homepage der Universität Wien sei folgende Formulierung zu finden:  „Wird das Studium erst später gewechselt, entfällt die Familienbeihilfe für so viele Semester,  wie in den vor dem Wechsel betriebenen Studien Familienbeihilfe bezogen wurde.
+
+| Predicted | Gold |
+|---|---|
+| `Universität Wien` | `Universität Wien` |
+
+**Example 16** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/144562.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/144562.1_54`)
+
+
+Das Bundesfinanzgericht hat erwogen  Folgender unstrittige Sachverhalt ergibt sich aus dem Familienbeihilfenakt:  Die Tochter der Bf. war vom WS 2020/21 bis SS 2022 an der Universität Wien in der  Studienrichtung LA Sekundarstufe UF Biologie und Umweltkunde und UF Spanisch  (Bachelorstudium) inskribiert und wies für das 1.
+
+| Predicted | Gold |
+|---|---|
+| `Universität Wien` | `Universität Wien` |
+
+**Example 17** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/144562.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/144562.1_116`)
+
+
+Im Beschwerdefall steht zweifelsfrei und unstrittig fest, dass durch den Wechsel des an der  Universität Wien betriebenen Studiums (LA Sekundarstufe UF Biologie und Umweltkunde und  UF Spanisch) nach vier Semestern (WS 2020/21, SS 2021, WS 2021/22, SS 2022) zum Studium  LA Primarstufe (PM098) an die Pädagogische Hochschule Wien ein schädlicher Studienwechsel  iSd § 17 Abs. 1 Z 2 StudFG vorliegt.
 
 | Predicted | Gold |
 |---|---|
@@ -1008,6 +2133,78 @@ Diese  Feststellung ob, ab wann und in welchem Ausmaß eine Behinderung vorliegt
 |---|---|
 | `Bundesamt für Soziales und Behindertenwesen` | `Bundesamt für Soziales und Behindertenwesen` |
 
+**Example 5** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149874.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149874.1_18`)
+
+
+2. Beweiswürdigung  Der Grad der Behinderung oder die voraussichtlich dauernde Unfähigkeit, sich selbst den  Unterhalt zu verschaffen, ist dem Finanzamt Österreich vom Bundesamt für Soziales und  Behindertenwesen mit einer Bescheinigung aufgrund eines ärztlichen  Sachverständigengutachtens nachzuweisen (§ 8 Abs. 6 FLAG).
+
+| Predicted | Gold |
+|---|---|
+| `Bundesamt für Soziales und  Behindertenwesen` | `Bundesamt für Soziales und  Behindertenwesen` |
+
+**Example 6** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149874.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149874.1_19`)
+
+
+Sowohl die Abgabenbehörde als  auch das Bundesfinanzgericht sind an die im Sachverständigengutachten des Bundesamts für  Soziales und Behindertenwesen getroffenen Feststellungen gebunden.
+
+| Predicted | Gold |
+|---|---|
+| `Bundesamts für  Soziales und Behindertenwesen` | `Bundesamts für  Soziales und Behindertenwesen` |
+
+**Example 7** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149874.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149874.1_20`)
+
+
+Gutachten des  Bundesamts für Soziales und Behindertenwesen dürfen lediglich auf Schlüssigkeit,  Vollständigkeit und im Fall mehrerer Gutachten auf Widerspruchsfreiheit überprüft werden (zB  VwGH 9.9.2017, 2013/16/0049).
+
+| Predicted | Gold |
+|---|---|
+| `Bundesamts für Soziales und Behindertenwesen` | `Bundesamts für Soziales und Behindertenwesen` |
+
+**Example 8** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149874.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149874.1_21`)
+
+
+Die Behinderung der Bf seit Juli 1999 ergibt sich ebenso wie deren Ausmaß von 30% aus dem  Sachverständigengutachten (mit Untersuchung) des Bundesamts für Soziales und  Behindertenwesen vom 5. Dezember 2024.
+
+| Predicted | Gold |
+|---|---|
+| `Bundesamts für Soziales und  Behindertenwesen` | `Bundesamts für Soziales und  Behindertenwesen` |
+
+**Example 9** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149874.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149874.1_22`)
+
+
+Da sich dieses Gutachten auf sämtliche zum  Zeitpunkt der Gutachtenserstellung vorliegenden Befunde stützt, ist es, was die Frage des  Zeitpunkts des Eintritts der Behinderung und deren Ausmaß anbelangt, das aus Sicht des  Bundesfinanzgerichts glaubwürdigste, weil vollständigste, der insgesamt drei Gutachten des  Bundesamts für Soziales und Behindertenwesen.
+
+| Predicted | Gold |
+|---|---|
+| `Bundesamts für Soziales und Behindertenwesen` | `Bundesamts für Soziales und Behindertenwesen` |
+
+**Example 10** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149874.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149874.1_26`)
+
+
+Die Behinderung im Ausmaß von 50% seit Mai 2012 ergibt sich ebenfalls aus dem  Sachverständigengutachten (mit Untersuchung) des Bundesamts für Soziales und  Behindertenwesen vom 5. Dezember 2024.
+
+| Predicted | Gold |
+|---|---|
+| `Bundesamts für Soziales und  Behindertenwesen` | `Bundesamts für Soziales und  Behindertenwesen` |
+
+**Example 11** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149874.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149874.1_38`)
+
+
+Die drei Sachverständigengutachten des Bundesamts für Soziales und Behindertenwesen  widersprechen sich bezüglich der Frage, ob die Bf dauerhaft erwerbsunfähig ist.
+
+| Predicted | Gold |
+|---|---|
+| `Bundesamts für Soziales und Behindertenwesen` | `Bundesamts für Soziales und Behindertenwesen` |
+
+**Example 12** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149874.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149874.1_47`)
+
+
+Gutachtens vom 2. Juli 2021 und der damit im Zusammenhang stehenden chefärztlichen  Stellungnahme vom 6. Juli 2021 kann das Bundesfinanzgericht daher dem Schluss der beiden  Gutachten des Bundesamts für Soziales und Behindertenwesen vom 14. Februar 2024 und vom  5. Dezember 2024, die Bf sei (erst) seit Juli 2021 dauerhaft erwerbsunfähig, nicht folgen.
+
+| Predicted | Gold |
+|---|---|
+| `Bundesamts für Soziales und Behindertenwesen` | `Bundesamts für Soziales und Behindertenwesen` |
+
 </details>
 
 ---
@@ -1089,6 +2286,78 @@ Diese  Feststellung ob, ab wann und in welchem Ausmaß eine Behinderung vorliegt
 | Predicted | Gold |
 |---|---|
 | `Bundesamt für Soziales und Behindertenwesen` | `Bundesamt für Soziales und Behindertenwesen` |
+
+**Example 5** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149874.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149874.1_18`)
+
+
+2. Beweiswürdigung  Der Grad der Behinderung oder die voraussichtlich dauernde Unfähigkeit, sich selbst den  Unterhalt zu verschaffen, ist dem Finanzamt Österreich vom Bundesamt für Soziales und  Behindertenwesen mit einer Bescheinigung aufgrund eines ärztlichen  Sachverständigengutachtens nachzuweisen (§ 8 Abs. 6 FLAG).
+
+| Predicted | Gold |
+|---|---|
+| `Bundesamt für Soziales und  Behindertenwesen` | `Bundesamt für Soziales und  Behindertenwesen` |
+
+**Example 6** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149874.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149874.1_19`)
+
+
+Sowohl die Abgabenbehörde als  auch das Bundesfinanzgericht sind an die im Sachverständigengutachten des Bundesamts für  Soziales und Behindertenwesen getroffenen Feststellungen gebunden.
+
+| Predicted | Gold |
+|---|---|
+| `Bundesamts für  Soziales und Behindertenwesen` | `Bundesamts für  Soziales und Behindertenwesen` |
+
+**Example 7** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149874.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149874.1_20`)
+
+
+Gutachten des  Bundesamts für Soziales und Behindertenwesen dürfen lediglich auf Schlüssigkeit,  Vollständigkeit und im Fall mehrerer Gutachten auf Widerspruchsfreiheit überprüft werden (zB  VwGH 9.9.2017, 2013/16/0049).
+
+| Predicted | Gold |
+|---|---|
+| `Bundesamts für Soziales und Behindertenwesen` | `Bundesamts für Soziales und Behindertenwesen` |
+
+**Example 8** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149874.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149874.1_21`)
+
+
+Die Behinderung der Bf seit Juli 1999 ergibt sich ebenso wie deren Ausmaß von 30% aus dem  Sachverständigengutachten (mit Untersuchung) des Bundesamts für Soziales und  Behindertenwesen vom 5. Dezember 2024.
+
+| Predicted | Gold |
+|---|---|
+| `Bundesamts für Soziales und  Behindertenwesen` | `Bundesamts für Soziales und  Behindertenwesen` |
+
+**Example 9** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149874.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149874.1_22`)
+
+
+Da sich dieses Gutachten auf sämtliche zum  Zeitpunkt der Gutachtenserstellung vorliegenden Befunde stützt, ist es, was die Frage des  Zeitpunkts des Eintritts der Behinderung und deren Ausmaß anbelangt, das aus Sicht des  Bundesfinanzgerichts glaubwürdigste, weil vollständigste, der insgesamt drei Gutachten des  Bundesamts für Soziales und Behindertenwesen.
+
+| Predicted | Gold |
+|---|---|
+| `Bundesamts für Soziales und Behindertenwesen` | `Bundesamts für Soziales und Behindertenwesen` |
+
+**Example 10** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149874.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149874.1_26`)
+
+
+Die Behinderung im Ausmaß von 50% seit Mai 2012 ergibt sich ebenfalls aus dem  Sachverständigengutachten (mit Untersuchung) des Bundesamts für Soziales und  Behindertenwesen vom 5. Dezember 2024.
+
+| Predicted | Gold |
+|---|---|
+| `Bundesamts für Soziales und  Behindertenwesen` | `Bundesamts für Soziales und  Behindertenwesen` |
+
+**Example 11** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149874.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149874.1_38`)
+
+
+Die drei Sachverständigengutachten des Bundesamts für Soziales und Behindertenwesen  widersprechen sich bezüglich der Frage, ob die Bf dauerhaft erwerbsunfähig ist.
+
+| Predicted | Gold |
+|---|---|
+| `Bundesamts für Soziales und Behindertenwesen` | `Bundesamts für Soziales und Behindertenwesen` |
+
+**Example 12** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149874.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149874.1_47`)
+
+
+Gutachtens vom 2. Juli 2021 und der damit im Zusammenhang stehenden chefärztlichen  Stellungnahme vom 6. Juli 2021 kann das Bundesfinanzgericht daher dem Schluss der beiden  Gutachten des Bundesamts für Soziales und Behindertenwesen vom 14. Februar 2024 und vom  5. Dezember 2024, die Bf sei (erst) seit Juli 2021 dauerhaft erwerbsunfähig, nicht folgen.
+
+| Predicted | Gold |
+|---|---|
+| `Bundesamts für Soziales und Behindertenwesen` | `Bundesamts für Soziales und Behindertenwesen` |
 
 </details>
 
@@ -1179,6 +2448,19 @@ Der Bf. ist daher auf die ständige Rechtsprechung des Verwaltungsgerichtshofes 
 |---|---|
 | `Verwaltungsgerichtshofes` | `Verwaltungsgerichtshofes` |
 
+**Example 5** (doc_id: `findok-manually-annotated_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated_TRAIN/149808.1_297`)
+
+
+Zu Spruchpunkt II. (Revision)  Gegen ein Erkenntnis des Bundesfinanzgerichtes ist die Revision zulässig, wenn sie von der  Lösung einer Rechtsfrage abhängt, der grundsätzliche Bedeutung zukommt, insbesondere weil  das Erkenntnis von der Rechtsprechung des Verwaltungsgerichtshofes abweicht, eine solche  Rechtsprechung fehlt oder die zu lösende Rechtsfrage in der bisherigen Rechtsprechung des  Verwaltungsgerichtshofes nicht einheitlich beantwortet wird.
+
+
+Zu Spruchpunkt II. (Revision)  Gegen ein Erkenntnis des Bundesfinanzgerichtes ist die Revision zulässig, wenn sie von der  Lösung einer Rechtsfrage abhängt, der grundsätzliche Bedeutung zukommt, insbesondere weil  das Erkenntnis von der Rechtsprechung des Verwaltungsgerichtshofes abweicht, eine solche  Rechtsprechung fehlt oder die zu lösende Rechtsfrage in der bisherigen Rechtsprechung des  Verwaltungsgerichtshofes nicht einheitlich beantwortet wird.
+
+| Predicted | Gold |
+|---|---|
+| `Verwaltungsgerichtshofes` | `Verwaltungsgerichtshofes` |
+| `Verwaltungsgerichtshofes` | `Verwaltungsgerichtshofes` |
+
 </details>
 
 ---
@@ -1238,6 +2520,125 @@ FP: `Verwaltungsgerichtshofes` (organisation)
 Der Bf. ist daher auf die ständige Rechtsprechung des Verwaltungsgerichtshofes zu § 236 BAO  zu verweisen, wonach den Antragsteller im Nachsichtsverfahren eine erhöhte  Mitwirkungspflicht trifft.
 
 FP: `Verwaltungsgerichtshofes` (organisation)
+
+**✅ Gold Entities:**
+
+**Example 5** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1_291`)
+
+**False Positives:**
+
+
+Das Hauptgewicht der Behauptungs- und Beweislast liegt beim Nachsichtswerber (vgl. etwa  VwGH 20. November 2019, Ra 2018/15/0014 und VwGH 7. Juli 2011, 2008/15/0010).
+
+FP: `VwGH` (organisation)
+
+
+Das Hauptgewicht der Behauptungs- und Beweislast liegt beim Nachsichtswerber (vgl. etwa  VwGH 20. November 2019, Ra 2018/15/0014 und VwGH 7. Juli 2011, 2008/15/0010).
+
+FP: `VwGH` (organisation)
+
+**✅ Gold Entities:**
+
+**Example 6** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1_294`)
+
+**False Positives:**
+
+
+Für eine  Ermessenentscheidung bleibt daher kein Raum (vgl. VwGH 27. Juni 2013, 2013/15/0173).
+
+FP: `VwGH` (organisation)
+
+**✅ Gold Entities:**
+
+**Example 7** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1_297`)
+
+**False Positives:**
+
+
+Zu Spruchpunkt II. (Revision)  Gegen ein Erkenntnis des Bundesfinanzgerichtes ist die Revision zulässig, wenn sie von der  Lösung einer Rechtsfrage abhängt, der grundsätzliche Bedeutung zukommt, insbesondere weil  das Erkenntnis von der Rechtsprechung des Verwaltungsgerichtshofes abweicht, eine solche  Rechtsprechung fehlt oder die zu lösende Rechtsfrage in der bisherigen Rechtsprechung des  Verwaltungsgerichtshofes nicht einheitlich beantwortet wird.
+
+FP: `Verwaltungsgerichtshofes` (organisation)
+
+
+Zu Spruchpunkt II. (Revision)  Gegen ein Erkenntnis des Bundesfinanzgerichtes ist die Revision zulässig, wenn sie von der  Lösung einer Rechtsfrage abhängt, der grundsätzliche Bedeutung zukommt, insbesondere weil  das Erkenntnis von der Rechtsprechung des Verwaltungsgerichtshofes abweicht, eine solche  Rechtsprechung fehlt oder die zu lösende Rechtsfrage in der bisherigen Rechtsprechung des  Verwaltungsgerichtshofes nicht einheitlich beantwortet wird.
+
+FP: `Verwaltungsgerichtshofes` (organisation)
+
+**✅ Gold Entities:**
+
+**Example 8** (doc_id: `findok-manually-annotated_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated_TRAIN/149808.1_291`)
+
+**False Positives:**
+
+
+Das Hauptgewicht der Behauptungs- und Beweislast liegt beim Nachsichtswerber (vgl. etwa  VwGH 20. November 2019, Ra 2018/15/0014 und VwGH 7. Juli 2011, 2008/15/0010).
+
+FP: `VwGH` (organisation)
+
+
+Das Hauptgewicht der Behauptungs- und Beweislast liegt beim Nachsichtswerber (vgl. etwa  VwGH 20. November 2019, Ra 2018/15/0014 und VwGH 7. Juli 2011, 2008/15/0010).
+
+FP: `VwGH` (organisation)
+
+**✅ Gold Entities:**
+
+**Example 9** (doc_id: `findok-manually-annotated_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated_TRAIN/149808.1_294`)
+
+**False Positives:**
+
+
+Für eine  Ermessenentscheidung bleibt daher kein Raum (vgl. VwGH 27. Juni 2013, 2013/15/0173).
+
+FP: `VwGH` (organisation)
+
+**✅ Gold Entities:**
+
+**Example 10** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149552.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149552.1_2`)
+
+**False Positives:**
+
+
+II. Gegen dieses Erkenntnis ist eine ordentliche Revision an den Verwaltungsgerichtshof  nach Art. 133 Abs. 4 B-VG nicht zulässig.
+
+FP: `Verwaltungsgerichtshof` (organisation)
+
+**✅ Gold Entities:**
+
+**Example 11** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149552.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149552.1_69`)
+
+**False Positives:**
+
+
+III. Zulässigkeit einer Revision  Nach Art 133 Abs. 4 B-VG ist gegen ein Erkenntnis des Bundesfinanzgerichtes die Revision an  den Verwaltungsgerichtshof zulässig, wenn sie von der Lösung einer Rechtsfrage abhängt, der  4 von 5 Seite 5 von 5
+
+FP: `Verwaltungsgerichtshof` (organisation)
+
+**✅ Gold Entities:**
+
+**Example 12** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149552.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149552.1_71`)
+
+**False Positives:**
+
+
+Eine Rechtsfrage grundsätzlicher Bedeutung liegt vor  Allem dann vor, wenn das Erkenntnis von der Rechtsprechung des Verwaltungsgerichtshofes  abweicht, eine solche Rechtsprechung fehlt oder die zu lösende Rechtsfrage in der bisherigen  Rechtsprechung des Verwaltungsgerichtshofes nicht einheitlich beantwortet wird.
+
+FP: `Verwaltungsgerichtshofes` (organisation)
+
+
+Eine Rechtsfrage grundsätzlicher Bedeutung liegt vor  Allem dann vor, wenn das Erkenntnis von der Rechtsprechung des Verwaltungsgerichtshofes  abweicht, eine solche Rechtsprechung fehlt oder die zu lösende Rechtsfrage in der bisherigen  Rechtsprechung des Verwaltungsgerichtshofes nicht einheitlich beantwortet wird.
+
+FP: `Verwaltungsgerichtshofes` (organisation)
+
+**✅ Gold Entities:**
+
+**Example 13** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149552.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149552.1_73`)
+
+**False Positives:**
+
+
+Die ordentliche  Revision an den Verwaltungsgerichtshof ist demzufolge nicht zulässig.
+
+FP: `Verwaltungsgerichtshof` (organisation)
 
 **✅ Gold Entities:**
 
@@ -1323,6 +2724,42 @@ Grundsätzlich schließt sich das Bundesfinanzgericht den Ausführungen in der B
 |---|---|
 | `Bundesfinanzgericht` | `Bundesfinanzgericht` |
 
+**Example 5** (doc_id: `findok-manually-annotated_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated_TRAIN/149808.1_251`)
+
+
+Dass diese Zustellung zu Unrecht erfolgt sei, wurde  nicht behauptet und konnte auch durch das Bundesfinanzgericht nicht erkannt werden.
+
+| Predicted | Gold |
+|---|---|
+| `Bundesfinanzgericht` | `Bundesfinanzgericht` |
+
+**Example 6** (doc_id: `findok-manually-annotated_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated_TRAIN/149808.1_279`)
+
+
+Das  Bundesfinanzgericht hat grundsätzlich auf Grund der zum Zeitpunkt ihrer Entscheidung  gegebenen Sach- und Rechtslage zu entscheiden (vgl. VwGH 24.3.2009, 2006/13/0149).
+
+| Predicted | Gold |
+|---|---|
+| `Bundesfinanzgericht` | `Bundesfinanzgericht` |
+
+**Example 7** (doc_id: `findok-manually-annotated_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated_TRAIN/149808.1_288`)
+
+
+Die Angaben des Bf.  versetzen das Bundesfinanzgericht nicht in die Lage, abschließend eine persönliche Unbilligkeit  feststellen zu können.
+
+| Predicted | Gold |
+|---|---|
+| `Bundesfinanzgericht` | `Bundesfinanzgericht` |
+
+**Example 8** (doc_id: `findok-manually-annotated_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated_TRAIN/149808.1_297`)
+
+
+Zu Spruchpunkt II. (Revision)  Gegen ein Erkenntnis des Bundesfinanzgerichtes ist die Revision zulässig, wenn sie von der  Lösung einer Rechtsfrage abhängt, der grundsätzliche Bedeutung zukommt, insbesondere weil  das Erkenntnis von der Rechtsprechung des Verwaltungsgerichtshofes abweicht, eine solche  Rechtsprechung fehlt oder die zu lösende Rechtsfrage in der bisherigen Rechtsprechung des  Verwaltungsgerichtshofes nicht einheitlich beantwortet wird.
+
+| Predicted | Gold |
+|---|---|
+| `Bundesfinanzgerichtes` | `Bundesfinanzgerichtes` |
+
 </details>
 
 ---
@@ -1388,6 +2825,77 @@ FP: `Bundesfinanzgericht` (organisation)
 
 
 Grundsätzlich schließt sich das Bundesfinanzgericht den Ausführungen in der BVE an,  ergänzend wird betont, dass eine vom Gesetz geforderte Unbilligkeit eine sachliche oder eine  persönliche sein kann.
+
+FP: `Bundesfinanzgericht` (organisation)
+
+**✅ Gold Entities:**
+
+**Example 5** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1_251`)
+
+**False Positives:**
+
+
+Dass diese Zustellung zu Unrecht erfolgt sei, wurde  nicht behauptet und konnte auch durch das Bundesfinanzgericht nicht erkannt werden.
+
+FP: `Bundesfinanzgericht` (organisation)
+
+**✅ Gold Entities:**
+
+**Example 6** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1_279`)
+
+**False Positives:**
+
+
+Das  Bundesfinanzgericht hat grundsätzlich auf Grund der zum Zeitpunkt ihrer Entscheidung  gegebenen Sach- und Rechtslage zu entscheiden (vgl. VwGH 24.3.2009, 2006/13/0149).
+
+FP: `Bundesfinanzgericht` (organisation)
+
+**✅ Gold Entities:**
+
+**Example 7** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1_288`)
+
+**False Positives:**
+
+
+Die Angaben des Bf.  versetzen das Bundesfinanzgericht nicht in die Lage, abschließend eine persönliche Unbilligkeit  feststellen zu können.
+
+FP: `Bundesfinanzgericht` (organisation)
+
+**✅ Gold Entities:**
+
+**Example 8** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149808.1_297`)
+
+**False Positives:**
+
+
+Zu Spruchpunkt II. (Revision)  Gegen ein Erkenntnis des Bundesfinanzgerichtes ist die Revision zulässig, wenn sie von der  Lösung einer Rechtsfrage abhängt, der grundsätzliche Bedeutung zukommt, insbesondere weil  das Erkenntnis von der Rechtsprechung des Verwaltungsgerichtshofes abweicht, eine solche  Rechtsprechung fehlt oder die zu lösende Rechtsfrage in der bisherigen Rechtsprechung des  Verwaltungsgerichtshofes nicht einheitlich beantwortet wird.
+
+FP: `Bundesfinanzgerichtes` (organisation)
+
+**✅ Gold Entities:**
+
+**Example 9** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149552.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149552.1_1`)
+
+**False Positives:**
+
+
+IM NAMEN DER REPUBLI K  Das Bundesfinanzgericht hat durch den Richter Priv.-Doz. Priv.-Doz. Niklas Bußjann  in der Beschwerdesache ÖkR ÖkR Jonas Sternekicker,  Mühlbach 2, 4851 Fischhamering, Österreich, gegen den von der belangten Behörde Finanzamt Österreich am 15. Mai 2025  zu Steuernummer 98-117/5180  ausgefertigten Bescheid betreffend Einkommensteuer für  das Jahr 2024 zu Recht erkannt:   I. Die Beschwerde wird gemäß § 279 Abs. 1 BAO als unbegründet abgewiesen.
+
+FP: `Bundesfinanzgericht` (organisation)
+
+**✅ Gold Entities:**
+- `Priv.-Doz. Priv.-Doz. Niklas Bußjann` (person)
+- `ÖkR ÖkR Jonas Sternekicker` (person)
+- `Mühlbach 2, 4851 Fischhamering, Österreich` (address)
+- `Finanzamt Österreich` (organisation)
+- `98-117/5180` (tax_number)
+
+**Example 10** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149552.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149552.1_43`)
+
+**False Positives:**
+
+
+8. Die belangte Behörde hat die Bescheidbeschwerde mit Bericht vom 23. September 2025  dem Bundesfinanzgericht zur Entscheidung vorgelegt.
 
 FP: `Bundesfinanzgericht` (organisation)
 
@@ -1479,6 +2987,55 @@ Zu Spruchpunkt II. (Revision)  Gegen ein Erkenntnis des Bundesfinanzgerichtes is
 | `Verwaltungsgerichtshofes` | `Verwaltungsgerichtshofes` |
 | `Verwaltungsgerichtshofes` | `Verwaltungsgerichtshofes` |
 
+**Example 5** (doc_id: `findok-manually-annotated_TRAIN/143567.1`) ( sent_id: `findok-manually-annotated_TRAIN/143567.1_2`)
+
+
+Gegen dieses Erkenntnis ist eine ordentliche Revision an den Verwaltungsgerichtshof nach Art.  133 Abs. 4 Bundes-Verfassungsgesetz (B-VG) unzulässig.
+
+| Predicted | Gold |
+|---|---|
+| `Verwaltungsgerichtshof` | `Verwaltungsgerichtshof` |
+
+**Example 6** (doc_id: `findok-manually-annotated_TRAIN/143567.1`) ( sent_id: `findok-manually-annotated_TRAIN/143567.1_118`)
+
+
+Der Verwaltungsgerichtshof hat zum schädlichen und unschädlichen Studienwechsel folgende  Judikatur entwickelt:  Ein Studienwechsel iSd § 17 StudFG liegt vor, wenn der/die Studierende das von ihm/ihr  begonnene und bisher betriebene, aber noch nicht abgeschlossene Studium nicht mehr  fortsetzt und an dessen Stelle ein anderes unter den Geltungsbereich des StudFG fallendes  Studium beginnt (VwGH 26.05.2011, 2011/16/0060).
+
+| Predicted | Gold |
+|---|---|
+| `Verwaltungsgerichtshof` | `Verwaltungsgerichtshof` |
+
+**Example 7** (doc_id: `findok-manually-annotated_TRAIN/143567.1`) ( sent_id: `findok-manually-annotated_TRAIN/143567.1_146`)
+
+
+Entgegen der Rechtsansicht des Bf, dass der erste tatsächliche Studienwechsel zum Studium  der biotechnischen Verfahren erfolgt ist, gilt auch der Rückwechsel vom Bachelorstudium  Wirtschaftsrecht auf das Studium Rechtswissenschaften nach der zitierten Judikatur des  Verwaltungsgerichtshofes (VwGH 01.02.1990, 89/12/0175) als Studienwechsel.
+
+| Predicted | Gold |
+|---|---|
+| `Verwaltungsgerichtshofes` | `Verwaltungsgerichtshofes` |
+
+**Example 8** (doc_id: `findok-manually-annotated_TRAIN/143567.1`) ( sent_id: `findok-manually-annotated_TRAIN/143567.1_163`)
+
+
+Subjektive  Momente, wie Verschulden an der (ursprünglichen oder weiteren) Auszahlung der  Familienleistungen, Gutgläubigkeit des Empfangs der Familienbeihilfe und des  Kinderabsetzbetrags oder die Verwendung der Familienbeihilfe und des Kinderabsetzbetrags,  sind nach ständiger Rechtsprechung des Verwaltungsgerichtshofes für die Verpflichtung zur  Rückerstattung unrechtmäßiger Beihilfenbezüge unerheblich.
+
+| Predicted | Gold |
+|---|---|
+| `Verwaltungsgerichtshofes` | `Verwaltungsgerichtshofes` |
+
+**Example 9** (doc_id: `findok-manually-annotated_TRAIN/143567.1`) ( sent_id: `findok-manually-annotated_TRAIN/143567.1_175`)
+
+
+Unzulässigkeit der Revision:  Gegen ein Erkenntnis des Bundesfinanzgerichtes ist die Revision zulässig, wenn sie von der  Lösung einer Rechtsfrage abhängt, der grundsätzliche Bedeutung zukommt, insbesondere weil  das Erkenntnis von der Rechtsprechung des Verwaltungsgerichtshofes abweicht, eine solche  Rechtsprechung fehlt oder die zu lösende Rechtsfrage in der bisherigen Rechtsprechung des  Verwaltungsgerichtshofes nicht einheitlich beantwortet wird.
+
+
+Unzulässigkeit der Revision:  Gegen ein Erkenntnis des Bundesfinanzgerichtes ist die Revision zulässig, wenn sie von der  Lösung einer Rechtsfrage abhängt, der grundsätzliche Bedeutung zukommt, insbesondere weil  das Erkenntnis von der Rechtsprechung des Verwaltungsgerichtshofes abweicht, eine solche  Rechtsprechung fehlt oder die zu lösende Rechtsfrage in der bisherigen Rechtsprechung des  Verwaltungsgerichtshofes nicht einheitlich beantwortet wird.
+
+| Predicted | Gold |
+|---|---|
+| `Verwaltungsgerichtshofes` | `Verwaltungsgerichtshofes` |
+| `Verwaltungsgerichtshofes` | `Verwaltungsgerichtshofes` |
+
 </details>
 
 ---
@@ -1543,6 +3100,66 @@ FP: `Verwaltungsgerichtshofes` (organisation)
 Zu Spruchpunkt II. (Revision)  Gegen ein Erkenntnis des Bundesfinanzgerichtes ist die Revision zulässig, wenn sie von der  Lösung einer Rechtsfrage abhängt, der grundsätzliche Bedeutung zukommt, insbesondere weil  das Erkenntnis von der Rechtsprechung des Verwaltungsgerichtshofes abweicht, eine solche  Rechtsprechung fehlt oder die zu lösende Rechtsfrage in der bisherigen Rechtsprechung des  Verwaltungsgerichtshofes nicht einheitlich beantwortet wird.
 
 FP: `Verwaltungsgerichtshofes` (organisation)
+
+**✅ Gold Entities:**
+
+**Example 5** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149552.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149552.1_2`)
+
+**False Positives:**
+
+
+II. Gegen dieses Erkenntnis ist eine ordentliche Revision an den Verwaltungsgerichtshof  nach Art. 133 Abs. 4 B-VG nicht zulässig.
+
+FP: `Verwaltungsgerichtshof` (organisation)
+
+**✅ Gold Entities:**
+
+**Example 6** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149552.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149552.1_69`)
+
+**False Positives:**
+
+
+III. Zulässigkeit einer Revision  Nach Art 133 Abs. 4 B-VG ist gegen ein Erkenntnis des Bundesfinanzgerichtes die Revision an  den Verwaltungsgerichtshof zulässig, wenn sie von der Lösung einer Rechtsfrage abhängt, der  4 von 5 Seite 5 von 5
+
+FP: `Verwaltungsgerichtshof` (organisation)
+
+**✅ Gold Entities:**
+
+**Example 7** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149552.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149552.1_71`)
+
+**False Positives:**
+
+
+Eine Rechtsfrage grundsätzlicher Bedeutung liegt vor  Allem dann vor, wenn das Erkenntnis von der Rechtsprechung des Verwaltungsgerichtshofes  abweicht, eine solche Rechtsprechung fehlt oder die zu lösende Rechtsfrage in der bisherigen  Rechtsprechung des Verwaltungsgerichtshofes nicht einheitlich beantwortet wird.
+
+FP: `Verwaltungsgerichtshofes` (organisation)
+
+
+Eine Rechtsfrage grundsätzlicher Bedeutung liegt vor  Allem dann vor, wenn das Erkenntnis von der Rechtsprechung des Verwaltungsgerichtshofes  abweicht, eine solche Rechtsprechung fehlt oder die zu lösende Rechtsfrage in der bisherigen  Rechtsprechung des Verwaltungsgerichtshofes nicht einheitlich beantwortet wird.
+
+FP: `Verwaltungsgerichtshofes` (organisation)
+
+**✅ Gold Entities:**
+
+**Example 8** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149552.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149552.1_73`)
+
+**False Positives:**
+
+
+Die ordentliche  Revision an den Verwaltungsgerichtshof ist demzufolge nicht zulässig.
+
+FP: `Verwaltungsgerichtshof` (organisation)
+
+**✅ Gold Entities:**
+
+**Example 9** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149552.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149552.1_74`)
+
+**False Positives:**
+
+
+Zur außerordentlichen  Revision an den Verwaltungsgerichtshof siehe nachstehende Rechtsbelehrung.
+
+FP: `Verwaltungsgerichtshof` (organisation)
 
 **✅ Gold Entities:**
 
@@ -1656,6 +3273,165 @@ FP: `VfGH` (organisation)
 Der Verfassungsgerichtshof ist bei der o.a, Entscheidung zum Ergebnis gelangt, dass ein  derartiger Fall, nämlich wenn eine Entscheidung derselben Behörde für einen früheren  Steuerzeitraum, die sich in der rechtlichen Würdigung des Sachverhaltes direkt auf einen  (einen späteren Steuerzeitraum betreffenden) Bescheid auswirkt, in gleicher Weise behandelt  werden muss, wie der Fall der Vorfrage;
 
 FP: `Verfassungsgerichtshof` (organisation)
+
+**✅ Gold Entities:**
+
+**Example 5** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_250`)
+
+**False Positives:**
+
+
+Dies unter Bezug auf ein Erkenntnis des  Verfassungsgerichtshofes (VfGH 6.12.1990, B 783/89), wonach eine Entscheidung derselben  Behörde für einen früheren Steuerzeitraum, die sich in der rechtlichen Würdigung des  Sachverhaltes direkt auf einen (einen späteren Steuerzeitraum betreffenden) Bescheid  auswirke, in gleicher Weise behandelt werden müsse, wie der Fall der Vorfrage.
+
+FP: `Verfassungsgerichtshofes` (organisation)
+
+**✅ Gold Entities:**
+
+**Example 6** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_293`)
+
+**False Positives:**
+
+
+2.4 Zitierte Entscheidung des Verfassungsgerichtshofes gegenständlich nicht einschlägig   Wie das Finanzamt unter Hinweis auf ein Erkenntnis des Verfassungsgerichtshofes (6.12.1990,  B 783/89) ausführt, könne eine Wiederaufnahme grundsätzlich auch dann erfolgen, wenn eine  Vorfrage im klassischen Sinne nicht vor liege;
+
+FP: `Verfassungsgerichtshofes` (organisation)
+
+
+2.4 Zitierte Entscheidung des Verfassungsgerichtshofes gegenständlich nicht einschlägig   Wie das Finanzamt unter Hinweis auf ein Erkenntnis des Verfassungsgerichtshofes (6.12.1990,  B 783/89) ausführt, könne eine Wiederaufnahme grundsätzlich auch dann erfolgen, wenn eine  Vorfrage im klassischen Sinne nicht vor liege;
+
+FP: `Verfassungsgerichtshofes` (organisation)
+
+**✅ Gold Entities:**
+
+**Example 7** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_295`)
+
+**False Positives:**
+
+
+Im der  zitierten Entscheidung des Verfassungsgerichtshofes zugrundeliegenden Sachverhalt war  strittig, ob bei nachträglicher Aktivierung eine beantragte Wiederaufnahme für die Folgejahre  zwecks Berücksichtigung der AfA vorzunehmen ist.
+
+FP: `Verfassungsgerichtshofes` (organisation)
+
+**✅ Gold Entities:**
+
+**Example 8** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_301`)
+
+**False Positives:**
+
+
+Erst der Verfassungsgerichtshof kam zu dem  Ergebnis, dass in diesem Fall ein Wiederaufnahmegrund vorliege bzw eine Wiederaufnahme zu  verfügen sei, um ein gleichheitskonformes Ergebnis zu erreichen.
+
+FP: `Verfassungsgerichtshof` (organisation)
+
+**✅ Gold Entities:**
+
+**Example 9** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_313`)
+
+**False Positives:**
+
+
+- Weiters wurde vom Verfassungsgerichtshof aufgezeigt, dass eine Nichtwiederaufnahme im  Hinblick auf die Jahre 1975 und 1976 auch dem Grundsatz von Treu und Glauben  widersprechen würde, da sich die Abgabepflichtigen auf die ursprüngliche rechtliche  Beurteilung der Behörde verlassen haben.
+
+FP: `Verfassungsgerichtshof` (organisation)
+
+**✅ Gold Entities:**
+
+**Example 10** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_316`)
+
+**False Positives:**
+
+
+Im Ergebnis zeigt sich, dass eine Erweiterung der Regelung des § 303 BAO auch vom  Verfassungsgerichtshof nur in bestimmten Ausnahmefällen angedacht ist.
+
+FP: `Verfassungsgerichtshof` (organisation)
+
+**✅ Gold Entities:**
+
+**Example 11** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_328`)
+
+**False Positives:**
+
+
+Dazu ergänzend wird seitens des Finanzamtes zu den Beschwerdeausführungen wie folgt  Stellung genommen:   Wie bereits in der händischen Begründung der Wiederaufnahme vom 29.01.2019 ausgeführt,  kam der VfGH in seiner Entscheidung B 783/89 vom 6.12.1990 zum Schluss, dass auch eine  Wiederaufnahme des Verfahrens in verfassungsgemäßer Interpretation möglich ist und eine  Vorfrage deshalb auch nicht nur "klassisch" zu verstehen ist.
+
+FP: `VfGH` (organisation)
+
+**✅ Gold Entities:**
+
+**Example 12** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_329`)
+
+**False Positives:**
+
+
+D.h. durch die Entscheidung des  VfGH wurden die Wiederaufnahmegründe in ihrem Anwendungsbereich de facto erweitert (so  auch Ritz, 6.
+
+FP: `VfGH` (organisation)
+
+**✅ Gold Entities:**
+
+**Example 13** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_367`)
+
+**False Positives:**
+
+
+Lt. Ansicht des Finanzamtes liegt damit auch hier  eine weite Auslegung der Wiederaufnahmebestimmung im Sinn der Rechtsprechung des VfGH  vor (verfassungskonforme Interpretation des § 303 Abs. 1 lit c BAO).
+
+FP: `VfGH` (organisation)
+
+**✅ Gold Entities:**
+
+**Example 14** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_383`)
+
+**False Positives:**
+
+
+Die Wiederaufnahme wurde laut Begründung des angefochtenen Bescheides auf die  verfassungskonforme Auslegung des § 303 Abs. 1 lit c BAO - Wiederaufnahmsgrund laut  Erkenntnis des VfGH vom 6.12.1990, B 783/89 (siehe dazu bei Ritz, BAO, 6.
+
+FP: `VfGH` (organisation)
+
+**✅ Gold Entities:**
+
+**Example 15** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_385`)
+
+**False Positives:**
+
+
+Die Parallelität zum vom Verfassungsgerichtshof entschiedenen Fall ergibt  sich daraus, dass nach dem gegenüber der Beschwerdeführerin ergangenen und in Rechtskraft  erwachsenen Bescheid vom 7.3.2016 gegenüber (auch) der Beschwerdeführerin eine anders  lautende Gerichtsentscheidung ergangen ist, nach welcher der Bescheid vom 7.3.2016 so nicht  ergehen hätte dürfen, da die vom BFG gelöste, vom Finanzamt aufgrund der Bindungswirkung  dem Bescheid zugrunde gelegte Rechtsfrage, nachträglich höchstgerichtlich anders beurteilt  bzw. entschieden wurde.
+
+FP: `Verfassungsgerichtshof` (organisation)
+
+**✅ Gold Entities:**
+
+**Example 16** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_454`)
+
+**False Positives:**
+
+
+Dazu hat der VfGH in seinem Erkenntnis vom 6.12.1990, B 783/89  klargestellt, dass als Vorfragetatbestand bei der Wiederaufnahme des Verfahrens auch ein  neuer Bescheid derselben Abgabenbehörde in einem anderen Verfahren in Betracht kommen  kann (siehe Ritz, BAO 5, § 303, Tz 41;
+
+FP: `VfGH` (organisation)
+
+**✅ Gold Entities:**
+
+**Example 17** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_457`)
+
+**False Positives:**
+
+
+In diesem Erkenntnis des VfGH war die Frage zu lösen, ob die nachträgliche Änderung der  behördlichen Auffassung zur Frage der Aktivierung oder Nichtaktivierung eines Aufwandes für  ein bestimmtes Veranlagungsjahr zur Wiederaufnahme nachfolgender - bereits rechtskräftiger  - Veranlagungsjahre, in denen der selbe Aufwand (im Hinblick auf seine Aktivierung)  Auswirkungen zeitigte, führen kann.
+
+FP: `VfGH` (organisation)
+
+**✅ Gold Entities:**
+
+**Example 18** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_458`)
+
+**False Positives:**
+
+
+Der VfGH hat zugestanden, dass die rechtliche Beurteilung  eines Sachverhaltes für ein früheres Steuerjahr keine Vorfrage im technischen Sinn darstellt  und dass nach der Judikatur des VwGH die Änderung der rechtlichen Qualifikation eines  Sachverhaltes keine Tatsache iSd § 303 Abs 1 lit. b BAO darstellt.
+
+FP: `VfGH` (organisation)
 
 **✅ Gold Entities:**
 
@@ -1785,6 +3561,141 @@ FP: `UFS` (organisation)
 
 **✅ Gold Entities:**
 
+**Example 5** (doc_id: `findok-manually-annotated_VALIDATE/149676.1`) ( sent_id: `findok-manually-annotated_VALIDATE/149676.1_26`)
+
+**False Positives:**
+
+
+Von einer Liebhabereitätigkeit kann ja wohl nur dann gesprochen werden, wenn jemand,  dessen Hauptberuf sich von seinem Hobby, dem er aus besonderer Neigung nachgeht (siehe  UFS 27.11.2003, RV/0509-L/02), unterscheidet, und dieses Hobby zu steuerlich unbeachtlichen  Gesamtverlusten führt.
+
+FP: `UFS` (organisation)
+
+**✅ Gold Entities:**
+
+**Example 6** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149731.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149731.1_30`)
+
+**False Positives:**
+
+
+Der Zeitpunkt, an dem die Daten in den elektronischen Verfügungsbereich des Empfängers  gelangt sind, ist bei FinanzOnline der Zeitpunkt der Einbringung der Daten in die Databox, zu  der der Empfänger Zugang hat (UFS 22.7.2013, RV/0002-F/13;
+
+FP: `UFS` (organisation)
+
+**✅ Gold Entities:**
+
+**Example 7** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149731.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149731.1_41`)
+
+**False Positives:**
+
+
+UFS  22.7.2013, RV/0002-F/13;
+
+FP: `UFS` (organisation)
+
+**✅ Gold Entities:**
+
+**Example 8** (doc_id: `findok-manually-annotated_TRAIN/148648.1`) ( sent_id: `findok-manually-annotated_TRAIN/148648.1_62`)
+
+**False Positives:**
+
+
+Ein Zimmer bei den Eltern ist nicht als Haushalt anzusehen  (UFS 4.12.08, RV/0662-L/07).
+
+FP: `UFS` (organisation)
+
+**✅ Gold Entities:**
+
+**Example 9** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146878.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146878.1_55`)
+
+**False Positives:**
+
+
+Wird zu einem späteren Zeitpunkt festgestellt, dass Beiträge nicht oder in geringerer Höhe zu  leisten gewesen wären, ändert dies nichts an ihrem ursprünglichen Charakter (UFS 15.4.2013,  RV/0220-W/13;
+
+FP: `UFS` (organisation)
+
+**✅ Gold Entities:**
+
+**Example 10** (doc_id: `findok-manually-annotated_VALIDATE/138708.1`) ( sent_id: `findok-manually-annotated_VALIDATE/138708.1_49`)
+
+**False Positives:**
+
+
+ Beispieldarstellung Übereinstimmung Lehrplan WU mit JKU:     Berufungsentscheidung des UFS vom 19.10.2010, RV/0180-L/10  9.
+
+FP: `UFS` (organisation)
+
+**✅ Gold Entities:**
+- `WU` (organisation)
+- `JKU` (organisation)
+
+**Example 11** (doc_id: `findok-manually-annotated_VALIDATE/138708.1`) ( sent_id: `findok-manually-annotated_VALIDATE/138708.1_130`)
+
+**False Positives:**
+
+
+Allerdings ist durch die mit Einführung des UG 2002 erreichte Autonomie der Universitäten –  und damit verbunden die jeder Einrichtung mögliche individuelle Gestaltung der Studien – bei  einem Wechsel der Studieneinrichtung auch bei gleichbleibender Studienrichtung nicht in  jedem Fall eine Gleichwertigkeit gegeben (UFS 02.11.2011, RV/0289-F/11  (Hebenstreit/Lenneis/Reinalter in Lenneis/Wanke, FLAG2 § 2 Rz 96).
+
+FP: `UFS` (organisation)
+
+**✅ Gold Entities:**
+
+**Example 12** (doc_id: `findok-manually-annotated_VALIDATE/138708.1`) ( sent_id: `findok-manually-annotated_VALIDATE/138708.1_134`)
+
+**False Positives:**
+
+
+UFS 19.10.2010, RV/0180-L/10).
+
+FP: `UFS` (organisation)
+
+**✅ Gold Entities:**
+
+**Example 13** (doc_id: `findok-manually-annotated_VALIDATE/138708.1`) ( sent_id: `findok-manually-annotated_VALIDATE/138708.1_143`)
+
+**False Positives:**
+
+
+Die Gewährung der Familienbeihilfe  für volljährige Kinder stellt nach den näheren Regelungen des § 2 Abs. 1 lit. b FLAG ersichtlich  darauf ab, dass sich das Kind einer Berufsausbildung mit dem ernstlichen und zielstrebigen,  nach außen erkennbaren Bemühen um den Ausbildungserfolg unterzieht (UFS 19.10.2010,  RV/0180-L/10).
+
+FP: `UFS` (organisation)
+
+**✅ Gold Entities:**
+
+**Example 14** (doc_id: `findok-manually-annotated_VALIDATE/138708.1`) ( sent_id: `findok-manually-annotated_VALIDATE/138708.1_156`)
+
+**False Positives:**
+
+
+In allen Fällen von Studienortwechseln bezüglich Rechtswissenschaften hat das  Bundesfinanzgericht – soweit ersichtlich – einen Studienwechsel verneint und ist ebenfalls von  einem „bloßen“ Studienortwechsel, welcher nicht zu einem Studienwechsel führte,  ausgegangen und dies teilweise trotz abweichenden Studienaufbaus (2 bzw. 3  Studienabschnitte), da der Studieninhalt im Wesentlichen, im Kernbereich, deckungsgleich war  (UFS 19.10.2010, RV/0180-L/10;
+
+FP: `UFS` (organisation)
+
+**✅ Gold Entities:**
+- `Bundesfinanzgericht` (organisation)
+
+**Example 15** (doc_id: `findok-manually-annotated_VALIDATE/138708.1`) ( sent_id: `findok-manually-annotated_VALIDATE/138708.1_164`)
+
+**False Positives:**
+
+
+vgl. auch UFS  16.02.2007, RV/0189-G/06).
+
+FP: `UFS` (organisation)
+
+**✅ Gold Entities:**
+
+**Example 16** (doc_id: `findok-manually-annotated_VALIDATE/138708.1`) ( sent_id: `findok-manually-annotated_VALIDATE/138708.1_168`)
+
+**False Positives:**
+
+
+Eine frühe  Spezialisierung auf einen bestimmten Bereich der Betriebswirtschaftslehre könne unter  Umständen für die spätere Berufslaufbahn von Vorteil sein, doch führe dies nach der  Rechtsprechung des VwGH nicht dazu, von einer fehlenden Gleichwertigkeit der  Studienangebote auszugehen (UFS 16.02.2007, RV/0189-G/06 mit Verweis auf VwGH  26.05.2004, 2000/14/0207).
+
+FP: `UFS` (organisation)
+
+**✅ Gold Entities:**
+
 </details>
 
 ---
@@ -1871,6 +3782,73 @@ Begründung  Verfahrensgang:  Das Bundesfinanzgericht hat mit Erkenntnis vom 17.
 |---|---|
 | `Magistrates der Stadt Wien` | `Magistrates der Stadt Wien` |
 
+**Example 5** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149661.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149661.1_4`)
+
+
+Begründung  Verfahrensgang:  Das Bundesfinanzgericht hat mit Erkenntnis vom 17. Juni 2025, GZ. RV/GZ2/2025, die  Beschwerde des Beschwerdeführers (Bf.) vom 6. Mai 2025 gegen das Straferkenntnis des  Magistrates der Stadt Wien vom 3. April 2025, GZ. MA67/GZ1/2024, gemäß § 50  Verwaltungsgerichtsverfahrensgesetz (VwGVG) iVm § 24 Abs. 1 Bundesfinanzgerichtsgesetz  (BFGG) und § 5 Gesetz über das Wiener Abgabenorganisationsrecht (WAOR) als unbegründet  abgewiesen und das angefochtene Straferkenntnis bestätigt.
+
+| Predicted | Gold |
+|---|---|
+| `Magistrates der Stadt Wien` | `Magistrates der Stadt Wien` |
+
+**Example 6** (doc_id: `findok-manually-annotated_TRAIN/149822.1`) ( sent_id: `findok-manually-annotated_TRAIN/149822.1_1`)
+
+
+IM NAMEN DER REPUBLI K  Das Bundesfinanzgericht hat durch die Richterin Mag. Karoline Windsteig in der  Verwaltungsstrafsache gegen Emanuela Deider, Astätt 60, 4682 Wilding, Österreich, wegen der Verwaltungsübertretung  gemäß § 5 Abs. 2 Wiener Parkometerabgabeverordnung, ABl. der Stadt Wien Nr. 51/2005, idF  ABl. der Stadt Wien Nr. 20/2020, in Verbindung mit § 4 Abs. 1 Wiener Parkometergesetz 2006,  LGBl. für Wien Nr. 9/2006, idF LGBl. für Wien Nr. 71/2018, über die Beschwerde des  Beschuldigten vom 26. September 2025 gegen das Straferkenntnis des Magistrates der Stadt  Wien, Magistratsabteilung 67 vom 29. August 2025, Zahl: MA67/MA-GZ/2025 zu Recht  erkannt:  I. Gemäß § 50 Verwaltungsgerichtsverfahrensgesetz (VwGVG) in Verbindung mit § 24 Abs. 1  Bundesfinanzgerichtsgesetz (BFGG) und § 5 Gesetz über das Wiener  Abgabenorganisationsrecht (WAOR) wird die Beschwerde als unbegründet abgewiesen und das  Straferkenntnis des Magistrates der Stadt Wien bestätigt.
+
+| Predicted | Gold |
+|---|---|
+| `Magistrates der Stadt Wien` | `Magistrates der Stadt Wien` |
+
+**Example 7** (doc_id: `findok-manually-annotated_TRAIN/149822.1`) ( sent_id: `findok-manually-annotated_TRAIN/149822.1_3`)
+
+
+III. Gemäß § 25 Abs. 2 BFGG wird der Magistrat der Stadt Wien als Vollstreckungsbehörde  bestimmt.
+
+| Predicted | Gold |
+|---|---|
+| `Magistrat der Stadt Wien` | `Magistrat der Stadt Wien` |
+
+**Example 8** (doc_id: `findok-manually-annotated_TRAIN/149822.1`) ( sent_id: `findok-manually-annotated_TRAIN/149822.1_15`)
+
+
+Wegen Verletzung des § 5 Abs. 2 Wiener Parkometerabgabeverordnung iVm § 4 Abs. 1 Wiener  Parkometergesetz 2006 verhängte der Magistrat der Stadt Wien über den Bf. eine Geldstrafe in  Höhe € 75,00 (Ersatzfreiheitsstrafe 17 Stunden).
+
+| Predicted | Gold |
+|---|---|
+| `Magistrat der Stadt Wien` | `Magistrat der Stadt Wien` |
+
+**Example 9** (doc_id: `findok-manually-annotated_TRAIN/149822.1`) ( sent_id: `findok-manually-annotated_TRAIN/149822.1_30`)
+
+
+Die vom Magistrat der Stadt Wien verhängte Geldstrafe sei im Hinblick auf die  Strafzumessungsgründe und den bis zu € 365,00 reichenden Strafsatz, den Unrechtsgehalt der  Tat und das Verschulden, selbst bei ungünstigen wirtschaftlichen Verhältnissen, durchaus  angemessen und keineswegs zu hoch.
+
+| Predicted | Gold |
+|---|---|
+| `Magistrat der Stadt Wien` | `Magistrat der Stadt Wien` |
+
+**Example 10** (doc_id: `findok-manually-annotated_TRAIN/149822.1`) ( sent_id: `findok-manually-annotated_TRAIN/149822.1_35`)
+
+
+Über die Beschwerde wurde erwogen:  Der Bf. hat in seiner Beschwerde gegen das Straferkenntnis des Magistrates der Stadt Wien  vom 29. August 2025, Zahl: MA67/MA-GZ/2025, lediglich die Höhe der verhängten Geldstrafe  bekämpft und die angelastete Verwaltungsübertretung nicht in Abrede gestellt, sodass der  Schuldspruch des Straferkenntnisses in Rechtskraft erwachsen ist.
+
+| Predicted | Gold |
+|---|---|
+| `Magistrates der Stadt Wien` | `Magistrates der Stadt Wien` |
+
+**Example 11** (doc_id: `findok-manually-annotated_TRAIN/149822.1`) ( sent_id: `findok-manually-annotated_TRAIN/149822.1_110`)
+
+
+Hier erweist sich der Magistrat der Stadt Wien als Vollstreckungsbehörde zweckmäßig, da dem  Magistrat der Stadt Wien bereits gemäß § 1 Abs. 1 Z 3 VVG die Vollstreckung der von den  (anderen) Verwaltungsgerichten erlassenen Erkenntnisse und Beschlüsse obliegt (vgl. für viele  ausführlich BFG 13.
+
+
+Hier erweist sich der Magistrat der Stadt Wien als Vollstreckungsbehörde zweckmäßig, da dem  Magistrat der Stadt Wien bereits gemäß § 1 Abs. 1 Z 3 VVG die Vollstreckung der von den  (anderen) Verwaltungsgerichten erlassenen Erkenntnisse und Beschlüsse obliegt (vgl. für viele  ausführlich BFG 13.
+
+| Predicted | Gold |
+|---|---|
+| `Magistrat der Stadt Wien` | `Magistrat der Stadt Wien` |
+| `Magistrat der Stadt Wien` | `Magistrat der Stadt Wien` |
+
 </details>
 
 ---
@@ -1956,6 +3934,84 @@ FP: `Magistrates der Stadt Wien` (organisation)
 - `Martina Hennefahrt` (person)
 - `Grete von Zieritz-Gasse 46, 8940 Weißenbach bei Liezen, Österreich` (address)
 - `Magistrates der Stadt Wien, Magistratsabteilung 6 - BA32` (organisation)
+
+**Example 5** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149661.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149661.1_1`)
+
+**False Positives:**
+
+
+BESCHLUSS  Das Bundesfinanzgericht hat durch die Richterin Mag. Renate Schohaj über die Beschwerde des  Martina Hennefahrt, Grete von Zieritz-Gasse 46, 8940 Weißenbach bei Liezen, Österreich, vom 2. Oktober 2025, gegen die Vollstreckungsverfügung des  Magistrates der Stadt Wien, Magistratsabteilung 6 - BA32, vom 1. September 2025, GZ.  MA67/GZ1/2024, in Zusammenhang mit einer Verwaltungsübertretung gemäß § 5 Abs. 2  Wiener Parkometerabgabeverordnung in Verbindung mit § 4 Abs. 1 Wiener Parkometergesetz  2006, den Beschluss gefasst:  Die Beschwerde vom 2. Oktober 2025 wird gemäß §§ 28 Abs. 1 und 31 VwGVG als verspätet  zurückgewiesen.
+
+FP: `Magistrates der Stadt Wien` (organisation)
+
+**✅ Gold Entities:**
+- `Mag. Renate Schohaj` (person)
+- `Martina Hennefahrt` (person)
+- `Grete von Zieritz-Gasse 46, 8940 Weißenbach bei Liezen, Österreich` (address)
+- `Magistrates der Stadt Wien, Magistratsabteilung 6 - BA32` (organisation)
+
+**Example 6** (doc_id: `findok-manually-annotated_TRAIN/149822.1`) ( sent_id: `findok-manually-annotated_TRAIN/149822.1_1`)
+
+**False Positives:**
+
+
+IM NAMEN DER REPUBLI K  Das Bundesfinanzgericht hat durch die Richterin Mag. Karoline Windsteig in der  Verwaltungsstrafsache gegen Emanuela Deider, Astätt 60, 4682 Wilding, Österreich, wegen der Verwaltungsübertretung  gemäß § 5 Abs. 2 Wiener Parkometerabgabeverordnung, ABl. der Stadt Wien Nr. 51/2005, idF  ABl. der Stadt Wien Nr. 20/2020, in Verbindung mit § 4 Abs. 1 Wiener Parkometergesetz 2006,  LGBl. für Wien Nr. 9/2006, idF LGBl. für Wien Nr. 71/2018, über die Beschwerde des  Beschuldigten vom 26. September 2025 gegen das Straferkenntnis des Magistrates der Stadt  Wien, Magistratsabteilung 67 vom 29. August 2025, Zahl: MA67/MA-GZ/2025 zu Recht  erkannt:  I. Gemäß § 50 Verwaltungsgerichtsverfahrensgesetz (VwGVG) in Verbindung mit § 24 Abs. 1  Bundesfinanzgerichtsgesetz (BFGG) und § 5 Gesetz über das Wiener  Abgabenorganisationsrecht (WAOR) wird die Beschwerde als unbegründet abgewiesen und das  Straferkenntnis des Magistrates der Stadt Wien bestätigt.
+
+FP: `Magistrates der Stadt  Wien` (organisation)
+
+**✅ Gold Entities:**
+- `Bundesfinanzgericht` (organisation)
+- `Mag. Karoline Windsteig` (person)
+- `Emanuela Deider` (person)
+- `Astätt 60, 4682 Wilding, Österreich` (address)
+- `Wien` (city)
+- `Wien` (city)
+- `Wien` (city)
+- `Wien` (city)
+- `Magistrates der Stadt  Wien, Magistratsabteilung 67` (organisation)
+- `Magistrates der Stadt Wien` (organisation)
+
+**Example 7** (doc_id: `findok-manually-annotated_TRAIN/149822.1`) ( sent_id: `findok-manually-annotated_TRAIN/149822.1_13`)
+
+**False Positives:**
+
+
+In der Folge lastete der Magistrat der Stadt Wien, MA 67, nach durchgeführter Lenkererhebung  (Erteilung der Lenkerauskunft durch Zulassungsbesitzerin per E-Mail am 10. Juli 2025) mit  Strafverfügung vom 11. Juli 2025, zugestellt am 17. Juli 2025, GZ MA67/MA-GZ/2025, dem  Beschwerdeführer (kurz Bf.) an, er habe das mehrspurige Kraftfahrzeug mit dem behördlichen  Kennzeichen W-Kennz. (A) am 07. Mai 2025 um 11:59 Uhr in der gebührenpflichtigen  Kurzparkzone in 1050 Wien, Bacherplatz gegenüber 14, abgestellt, ohne für seine  Kennzeichnung mit einem für den Beanstandungszeitpunkt gültigen Parkschein gesorgt zu  haben.
+
+FP: `Magistrat der Stadt Wien` (organisation)
+
+**✅ Gold Entities:**
+- `Magistrat der Stadt Wien, MA 67` (organisation)
+- `1050 Wien, Bacherplatz` (address)
+
+**Example 8** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149308.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149308.1_1`)
+
+**False Positives:**
+
+
+BESCHLUSS  Das Bundesfinanzgericht fasst durch den Richter Priv.-Doz. Felix Grenzheuser  über die Beschwerde des PhD Ing. Theobald Reuschel,  Schloss Straße 184, 3371 Köchling, Österreich  vom 24. April 2025 gegen die Vollstreckungsverfügung des Magistrates der  Stadt Wien, Magistratsabteilung 6, vom 31. März 2025, Zahl: MA67/GZ/2024 in  Zusammenhang mit einer Verwaltungsübertretung gemäß § 5 Abs. 2 Wiener  Parkometerabgabeverordnung, ABl. der Stadt Wien Nr. 51/2005 idF. ABl. der Stadt Wien Nr.  20/2020, in Verbindung mit § 4 Abs. 1 Wiener Parkometergesetz 2006, LGBl. für Wien Nr.  9/2006 idF LGBl.
+
+FP: `Magistrates der  Stadt Wien` (organisation)
+
+**✅ Gold Entities:**
+- `Priv.-Doz. Felix Grenzheuser` (person)
+- `PhD Ing. Theobald Reuschel` (person)
+- `Schloss Straße 184, 3371 Köchling, Österreich` (address)
+- `Magistrates der  Stadt Wien, Magistratsabteilung 6` (organisation)
+
+**Example 9** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149308.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149308.1_5`)
+
+**False Positives:**
+
+
+I. Verfahrensgang  Mit Strafverfügung vom 03. Jänner 2025, zugestellt am 14. Februar 2025, GZ. MA67/GZ/2024  lastete der Magistrat der Stadt Wien, Magistratsabteilung 67, dem Beschwerdeführer (kurz Bf.)  an, er habe das mehrspurige Kraftfahrzeug mit dem behördlichen Kennzeichen GU-405 NY  (A) am 06. November 2024 um 12:21 Uhr in der gebührenpflichtigen Kurzparkzone in 1020  Wien, Rustenschacherallee vor Baum 1009 abgestellt, ohne für seine Kennzeichnung mit einem  für den Beanstandungszeitpunkt gültigen Parkschein gesorgt zu haben.
+
+FP: `Magistrat der Stadt Wien` (organisation)
+
+**✅ Gold Entities:**
+- `Magistrat der Stadt Wien, Magistratsabteilung 67` (organisation)
+- `GU-405 NY` (vehicle_license)
+- `1020  Wien, Rustenschacherallee` (address)
 
 </details>
 
@@ -2093,6 +4149,148 @@ FP: `WU` (organisation)
 - `WU  Wien` (organisation)
 - `JKU` (organisation)
 
+**Example 5** (doc_id: `findok-manually-annotated_VALIDATE/138708.1`) ( sent_id: `findok-manually-annotated_VALIDATE/138708.1_29`)
+
+**False Positives:**
+
+
+Die von der belangten Behörde angeforderten Angaben der WU Wien wurden mit diesem  Schreiben jedoch nicht vorgelegt.
+
+FP: `WU` (organisation)
+
+**✅ Gold Entities:**
+- `WU Wien` (organisation)
+
+**Example 6** (doc_id: `findok-manually-annotated_VALIDATE/138708.1`) ( sent_id: `findok-manually-annotated_VALIDATE/138708.1_33`)
+
+**False Positives:**
+
+
+An der WU Wien wurde das Studium  Wirtschafts- und Sozialwissenschaften (Bachelor) betrieben, in Linz handelte es sich um das  Studium Wirtschaftswissenschaften (Bachelor).
+
+FP: `WU` (organisation)
+
+**✅ Gold Entities:**
+- `WU Wien` (organisation)
+- `Linz` (city)
+
+**Example 7** (doc_id: `findok-manually-annotated_VALIDATE/138708.1`) ( sent_id: `findok-manually-annotated_VALIDATE/138708.1_37`)
+
+**False Positives:**
+
+
+01.12.2021 (s. Anhang), wonach von einer Gleichwertigkeit der Studien BA Sozial- und  Wirtschaftswissenschaften an der WU Wien und BA Wirtschaftswissenschaften an der JKU Linz  ausgegangen werden könne, tätigt das Finanzamt jedoch nicht.
+
+FP: `WU` (organisation)
+
+**✅ Gold Entities:**
+- `WU Wien` (organisation)
+- `JKU Linz` (organisation)
+
+**Example 8** (doc_id: `findok-manually-annotated_VALIDATE/138708.1`) ( sent_id: `findok-manually-annotated_VALIDATE/138708.1_47`)
+
+**False Positives:**
+
+
+Dem Vorlageantrag lagen bei:   E-Mail des Zulassungsservices Lehr- und Studienorganisation der Johannes Kepler  Universität Linz vom 01.12.2021 mit dem Betreff „Vergleichbarkeitsprüfung  Viktoria Immohr“:  „Nach Überprüfung ob es sich bei BA Sozial- und Wirtschaftswissenschaften an der WU  Wien und BA Wirtschaftswissenschaften an der JKU um dasselbe Studium handelt,  dürfen wir Ihnen folgendes mitteilen: Vergleicht man die Qualifikationsprofile der  beiden Studien, so kann von einer grundsätzlichen Gleichwertigkeit des Studiums  ausgegangen werden.
+
+FP: `WU` (organisation)
+
+**✅ Gold Entities:**
+- `Johannes Kepler  Universität Linz` (organisation)
+- `Viktoria Immohr` (person)
+- `WU  Wien` (organisation)
+- `JKU` (organisation)
+
+**Example 9** (doc_id: `findok-manually-annotated_VALIDATE/138708.1`) ( sent_id: `findok-manually-annotated_VALIDATE/138708.1_48`)
+
+**False Positives:**
+
+
+Die Qualifikations- bzw. Ausbildungsziele für ein Studium der Wirtschaftswissenschaften  in Hinblick auf Kompetenzen (im Sinne eines spezialisiertes Systems von Fähigkeiten)  sowie von avisierten Lernergebnissen (operationalisiert durch vollzogene Prüfungen)  sind an beiden Universitäten in Hinblick auf diesen beiden Programme als gleichwertig  anzusehen.“   Curricula (Studienpläne) des BA Sozial- und Wirtschaftswissenschaften der WU Wien  und des BA Wirtschaftswissenschaften der JKU Linz aus dem betreffenden Zeitraum  5 von 16 Seite 6 von 16
+
+FP: `WU` (organisation)
+
+**✅ Gold Entities:**
+- `WU Wien` (organisation)
+- `JKU Linz` (organisation)
+
+**Example 10** (doc_id: `findok-manually-annotated_VALIDATE/138708.1`) ( sent_id: `findok-manually-annotated_VALIDATE/138708.1_54`)
+
+**False Positives:**
+
+
+Aufgrund des Arbeitsauftrages wurde dann ermittelt und es stellte sich ein Studienwechsel mit  WS 19/20 heraus, vom Studium UJ033 561 Bachelorstudium Wirtschafts- und  Sozialwissenschaften an der WU Wien auf UK033 572 Bachelorstudium  Wirtschaftswissenschaften an der JKU Linz.
+
+FP: `WU` (organisation)
+
+**✅ Gold Entities:**
+- `WU Wien` (organisation)
+- `JKU Linz` (organisation)
+
+**Example 11** (doc_id: `findok-manually-annotated_VALIDATE/138708.1`) ( sent_id: `findok-manually-annotated_VALIDATE/138708.1_61`)
+
+**False Positives:**
+
+
+Weiters wurde jedoch von  den abgelegten 42 ECTS an der WU Wien, nur 24 ECTS an der JKU Linz angerechnet.
+
+FP: `WU` (organisation)
+
+**✅ Gold Entities:**
+- `WU Wien` (organisation)
+- `JKU Linz` (organisation)
+
+**Example 12** (doc_id: `findok-manually-annotated_VALIDATE/138708.1`) ( sent_id: `findok-manually-annotated_VALIDATE/138708.1_65`)
+
+**False Positives:**
+
+
+Im gegenständlichen Fall  wurde das erste Studium an der WU Wien nach 4 Semester gewechselt, also nach dem jeweils  dritten inskribierten Semester und daher liegt ein schädlicher Studienwechsel vor.
+
+FP: `WU` (organisation)
+
+**✅ Gold Entities:**
+- `WU Wien` (organisation)
+
+**Example 13** (doc_id: `findok-manually-annotated_VALIDATE/138708.1`) ( sent_id: `findok-manually-annotated_VALIDATE/138708.1_73`)
+
+**False Positives:**
+
+
+Von den an der WU Wien absolvierten  Lehrveranstaltungen mit 42 ECTS-Punkten wurden 24 ECTS-Punkte an der JKU Linz  angerechnet.
+
+FP: `WU` (organisation)
+
+**✅ Gold Entities:**
+- `WU Wien` (organisation)
+- `JKU Linz` (organisation)
+
+**Example 14** (doc_id: `findok-manually-annotated_VALIDATE/138708.1`) ( sent_id: `findok-manually-annotated_VALIDATE/138708.1_87`)
+
+**False Positives:**
+
+
+Strittig war, ob durch den Wechsel der Bf. vom Bachelorstudium „Wirtschafts- und  Sozialwissenschaften“ an der Wirtschaftsuniversität Wien (WU) zum Bachelorstudium  „Wirtschaftswissenschaften“ an der Johannes Kepler Universität Linz (JKU) ein Studienwechsel  (Argumentation des Finanzamtes) oder bloß ein Studienortwechsel (Argumentation der Bf.)  vorlag.
+
+FP: `WU` (organisation)
+
+**✅ Gold Entities:**
+- `Wirtschaftsuniversität Wien (WU)` (organisation)
+- `Johannes Kepler Universität Linz (JKU)` (organisation)
+
+**Example 15** (doc_id: `findok-manually-annotated_VALIDATE/138708.1`) ( sent_id: `findok-manually-annotated_VALIDATE/138708.1_98`)
+
+**False Positives:**
+
+
+Die belangte Behörde bringt vor, dass von den abgelegten 42 ECTS an der WU Wien lediglich  24 ECTS an der JKU Linz angerechnet wurden.
+
+FP: `WU` (organisation)
+
+**✅ Gold Entities:**
+- `WU Wien` (organisation)
+
 </details>
 
 ---
@@ -2175,6 +4373,15 @@ Soweit der Beschwerdeführer die Verfassungswidrigkeit des Progressionsvorbehalt
 |---|---|
 | `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
 
+**Example 5** (doc_id: `findok-manually-annotated_TRAIN/149379.1`) ( sent_id: `findok-manually-annotated_TRAIN/149379.1_65`)
+
+
+Eine Einschränkung finden diese Überlegungen insoweit, als nach der Rechtsprechung des  Verfassungsgerichtshofes (vgl VfGH 05.03.1979, B 175/76), welcher sich der  Verwaltungsgerichtshof (vgl VwGH 13.02.1991, 90/13/0161;
+
+| Predicted | Gold |
+|---|---|
+| `Verfassungsgerichtshofes` | `Verfassungsgerichtshofes` |
+
 </details>
 
 ---
@@ -2239,6 +4446,106 @@ FP: `Verfassungsgerichtshofes` (organisation)
 Im der  zitierten Entscheidung des Verfassungsgerichtshofes zugrundeliegenden Sachverhalt war  strittig, ob bei nachträglicher Aktivierung eine beantragte Wiederaufnahme für die Folgejahre  zwecks Berücksichtigung der AfA vorzunehmen ist.
 
 FP: `Verfassungsgerichtshofes` (organisation)
+
+**✅ Gold Entities:**
+
+**Example 5** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_301`)
+
+**False Positives:**
+
+
+Erst der Verfassungsgerichtshof kam zu dem  Ergebnis, dass in diesem Fall ein Wiederaufnahmegrund vorliege bzw eine Wiederaufnahme zu  verfügen sei, um ein gleichheitskonformes Ergebnis zu erreichen.
+
+FP: `Verfassungsgerichtshof` (organisation)
+
+**✅ Gold Entities:**
+
+**Example 6** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_313`)
+
+**False Positives:**
+
+
+- Weiters wurde vom Verfassungsgerichtshof aufgezeigt, dass eine Nichtwiederaufnahme im  Hinblick auf die Jahre 1975 und 1976 auch dem Grundsatz von Treu und Glauben  widersprechen würde, da sich die Abgabepflichtigen auf die ursprüngliche rechtliche  Beurteilung der Behörde verlassen haben.
+
+FP: `Verfassungsgerichtshof` (organisation)
+
+**✅ Gold Entities:**
+
+**Example 7** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_316`)
+
+**False Positives:**
+
+
+Im Ergebnis zeigt sich, dass eine Erweiterung der Regelung des § 303 BAO auch vom  Verfassungsgerichtshof nur in bestimmten Ausnahmefällen angedacht ist.
+
+FP: `Verfassungsgerichtshof` (organisation)
+
+**✅ Gold Entities:**
+
+**Example 8** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/145564.1_385`)
+
+**False Positives:**
+
+
+Die Parallelität zum vom Verfassungsgerichtshof entschiedenen Fall ergibt  sich daraus, dass nach dem gegenüber der Beschwerdeführerin ergangenen und in Rechtskraft  erwachsenen Bescheid vom 7.3.2016 gegenüber (auch) der Beschwerdeführerin eine anders  lautende Gerichtsentscheidung ergangen ist, nach welcher der Bescheid vom 7.3.2016 so nicht  ergehen hätte dürfen, da die vom BFG gelöste, vom Finanzamt aufgrund der Bindungswirkung  dem Bescheid zugrunde gelegte Rechtsfrage, nachträglich höchstgerichtlich anders beurteilt  bzw. entschieden wurde.
+
+FP: `Verfassungsgerichtshof` (organisation)
+
+**✅ Gold Entities:**
+
+**Example 9** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/134689.1_51`)
+
+**False Positives:**
+
+
+die Zeit eines Verfahrens vor dem Verwaltungsgerichtshof, vor dem Verfassungsgerichtshof  oder vor dem Gerichtshof der Europäischen Union.
+
+FP: `Verfassungsgerichtshof` (organisation)
+
+**✅ Gold Entities:**
+
+**Example 10** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149863.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149863.1_50`)
+
+**False Positives:**
+
+
+Darüber hinaus hat der Verfassungsgerichtshof in seinem Beschluss vom 19. September 2025  zu E 1733/2025 bereits festgehalten, dass in Bezug auf § 16 Abs. 1 COFAG-NoAG keine  verfassungsrechtlichen Bedenken bestehen, war doch vor Erlassung dieser Bestimmung  aufgrund allgemeiner zivilrechtlicher Bestimmungen davon auszugehen, dass rechtsgrundlos  ausbezahlte Geldleistungen seitens der COFAG mit einer dem Gesetz (vgl. insbesondere § 1000  ABGB und § 1333 ABGB) entsprechenden Verzinsung vom Empfänger rückzuerstatten sind, und  gebietet ferner das Unionsrecht, dass dem Unionsrecht zuwiderlaufende Beihilfen mit einer  angemessenen Verzinsung zurückzuzahlen sind.
+
+FP: `Verfassungsgerichtshof` (organisation)
+
+**✅ Gold Entities:**
+- `COFAG` (organisation)
+
+**Example 11** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149824.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149824.1_53`)
+
+**False Positives:**
+
+
+Wenn sich die Bf. dadurch benachteiligt fühlt, dass der Prüfungstermin ohne ihre  Einflussmöglichkeit bereits für Mai 2022 angesetzt wurde, ist ihr Folgendes entgegenzuhalten:  Der Verfassungsgerichtshof hat wiederholt zum Ausdruck gebracht, dass der rechtspolitische  Gestaltungsspielraum des Gesetzgebers bei staatlichen Beihilfen, selbst wenn sie hoheitlich  gewährt werden (zur Familienbeihilfe vgl.
+
+FP: `Verfassungsgerichtshof` (organisation)
+
+**✅ Gold Entities:**
+
+**Example 12** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149824.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149824.1_65`)
+
+**False Positives:**
+
+
+Eine Verfassungswidrigkeit, die es gebieten würde, die Norm zunächst bis zu einer  Entscheidung des Verfassungsgerichtshofes unangewendet zu lassen, kann das  Bundesfinanzgericht nicht erkennen.
+
+FP: `Verfassungsgerichtshofes` (organisation)
+
+**✅ Gold Entities:**
+
+**Example 13** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149418.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/149418.1_33`)
+
+**False Positives:**
+
+
+Nach Art 89 Abs 2 B-VG iVm Art 135 Abs hat ein Verwaltungsgericht dann, wenn es gegen  die Anwendung eines Gesetzes aus dem Grund der Verfassungswidrigkeit Bedenken hat,  den Antrag auf Aufhebung dieser Rechtsvorschrift beim Verfassungsgerichtshof zu stellen.
+
+FP: `Verfassungsgerichtshof` (organisation)
 
 **✅ Gold Entities:**
 
@@ -2324,6 +4631,113 @@ Die beantragte Steu- erfreiheit der von der SUVA bezogenen Invalidenrente vernei
 |---|---|
 | `SUVA` | `SUVA` |
 
+**Example 5** (doc_id: `findok-manually-annotated_TRAIN/149828.1`) ( sent_id: `findok-manually-annotated_TRAIN/149828.1_19`)
+
+
+6.  Mit am 11. Februar 2022 elektronisch eingereichtem Anbringen gab die steuerliche Vertre- tung unter Anschluss einer E-Mail des Steueramtes des Kantons Luzern, wonach die Schweiz  nach Art. 19 DBA-Schweiz das Recht habe, die von der SUVA (öffentlich-rechtlich) ausbezahlte  Rente zu besteuern, bekannt, dass sein Antrag auf Rückerstattung der Schweizer Quellensteuer  in der Schweiz abgewiesen worden sei.
+
+| Predicted | Gold |
+|---|---|
+| `SUVA` | `SUVA` |
+
+**Example 6** (doc_id: `findok-manually-annotated_TRAIN/149828.1`) ( sent_id: `findok-manually-annotated_TRAIN/149828.1_21`)
+
+
+von der SUVA bezogenen Rente wie auch die Abzugsfähigkeit der von der Schweiz einbehal- tenen Quellensteuer und gab der Beschwerde gegen den Einkommensteuerbescheid 2015 ge- samthaft gesehen im Umfang der Beschwerdevorentscheidung (Höhe der Schweizer Invaliden- renten, Nichtberücksichtigung einer Pensionskassenleistung) teilweise Folge.
+
+| Predicted | Gold |
+|---|---|
+| `SUVA` | `SUVA` |
+
+**Example 7** (doc_id: `findok-manually-annotated_TRAIN/149828.1`) ( sent_id: `findok-manually-annotated_TRAIN/149828.1_22`)
+
+
+Die einzig die  Frage der Steuerpflicht der von der SUVA ausbezahlten Invalidenrente betreffenden Beschwer- den gegen den Einkommensteuerbescheid 2016 und die Einkommensteuervorauszahlungsbe- scheide 2017 sowie 2018 und Folgejahre wurden als unbegründet abgewiesen.
+
+| Predicted | Gold |
+|---|---|
+| `SUVA` | `SUVA` |
+
+**Example 8** (doc_id: `findok-manually-annotated_TRAIN/149828.1`) ( sent_id: `findok-manually-annotated_TRAIN/149828.1_25`)
+
+
+10.  Daraufhin ersuchte das Finanzamt die steuerliche Vertretung mit Schreiben vom 22. April  2025, zwecks Feststellung des steuerfreien Anteiles der SUVA-Rente   um Darstellung der örtlichen, zeitlichen und ursächlichen Umstände des Unfalles, aufgrund  dessen die SUVA-Rente gewährt wurde (zB Krankenhaus-Unfallberichte, Polizeiberichte,  Unterlagen der SUVA) und des Zusammenhanges mit der Beschäftigung;
+
+| Predicted | Gold |
+|---|---|
+| `SUVA` | `SUVA` |
+
+**Example 9** (doc_id: `findok-manually-annotated_TRAIN/149828.1`) ( sent_id: `findok-manually-annotated_TRAIN/149828.1_27`)
+
+
+ die Unterlagen der SUVA zur Einschätzung des Grades der Behinderung (zB SUVA-Gutach- ten) und die zugrundeliegenden medizinischen Befunde und Atteste vorzulegen;
+
+| Predicted | Gold |
+|---|---|
+| `SUVA` | `SUVA` |
+
+**Example 10** (doc_id: `findok-manually-annotated_TRAIN/149828.1`) ( sent_id: `findok-manually-annotated_TRAIN/149828.1_34`)
+
+
+Es werde dazu auf die Verfügung der  SUVA vom 8. Jänner 2024 sowie auf die Untersuchungsberichte des Kantonsspitals St. Gallen  und weitere ärztliche Untersuchungsberichte verwiesen.
+
+| Predicted | Gold |
+|---|---|
+| `SUVA` | `SUVA` |
+
+**Example 11** (doc_id: `findok-manually-annotated_TRAIN/149828.1`) ( sent_id: `findok-manually-annotated_TRAIN/149828.1_35`)
+
+
+Die Unterlagen, welche großteils an  die SUVA gerichtet seien, dürften dabei auch die Grundlage für die Einschätzung der festge- stellten Invalidität darstellen.
+
+| Predicted | Gold |
+|---|---|
+| `SUVA` | `SUVA` |
+
+**Example 12** (doc_id: `findok-manually-annotated_TRAIN/149828.1`) ( sent_id: `findok-manually-annotated_TRAIN/149828.1_39`)
+
+
+Angeschlossen waren der Vorhaltsbeantwortung die Rentenbescheinigung der SUVA für das  Jahr 2016, die Verfügung der SUVA vom 8. Jänner 2014 betreffend die Ausrichtung einer Inva- lidenrente und Integritätsentschädigung aufgrund der verbliebenen Beeinträchtigung aus dem  Unfall vom 27. Oktober 2010 sowie der „Unfallakt“ (Schreiben des Kantonsspitals St. Gallen  vom 9. November 2010, Bestätigung der Arbeitsunfähigkeit, diverse Berichte über durchge- führte Untersuchungen und Behandlungen).
+
+
+Angeschlossen waren der Vorhaltsbeantwortung die Rentenbescheinigung der SUVA für das  Jahr 2016, die Verfügung der SUVA vom 8. Jänner 2014 betreffend die Ausrichtung einer Inva- lidenrente und Integritätsentschädigung aufgrund der verbliebenen Beeinträchtigung aus dem  Unfall vom 27. Oktober 2010 sowie der „Unfallakt“ (Schreiben des Kantonsspitals St. Gallen  vom 9. November 2010, Bestätigung der Arbeitsunfähigkeit, diverse Berichte über durchge- führte Untersuchungen und Behandlungen).
+
+| Predicted | Gold |
+|---|---|
+| `SUVA` | `SUVA` |
+| `SUVA` | `SUVA` |
+
+**Example 13** (doc_id: `findok-manually-annotated_TRAIN/149828.1`) ( sent_id: `findok-manually-annotated_TRAIN/149828.1_45`)
+
+
+13.  Auf Ersuchen des Bundesfinanzgerichtes vom 2. Juli 2025, zu den Ausführungen des Fi- nanzamtes Stellung zu nehmen und die angeforderten Nachweise nachzureichen bzw. an- hand entsprechend geeigneter Unterlagen zu belegen, dass tatsächlich ein Arbeitsunfall vor- lag (Darstellung der örtlichen, zeitlichen und ursächlichen Umstände des Unfalles), übermit- telte die steuerliche Vertretung am 30. Juli 2025 ein Schreiben der SUVA betreffend die Ent- scheidungsgrundlagen für die Rentenfestsetzung, diverse Arztberichte sowie den Unfallbe- richt der Arbeitgeberin samt Schadensmeldung an die SUVA.
+
+
+13.  Auf Ersuchen des Bundesfinanzgerichtes vom 2. Juli 2025, zu den Ausführungen des Fi- nanzamtes Stellung zu nehmen und die angeforderten Nachweise nachzureichen bzw. an- hand entsprechend geeigneter Unterlagen zu belegen, dass tatsächlich ein Arbeitsunfall vor- lag (Darstellung der örtlichen, zeitlichen und ursächlichen Umstände des Unfalles), übermit- telte die steuerliche Vertretung am 30. Juli 2025 ein Schreiben der SUVA betreffend die Ent- scheidungsgrundlagen für die Rentenfestsetzung, diverse Arztberichte sowie den Unfallbe- richt der Arbeitgeberin samt Schadensmeldung an die SUVA.
+
+| Predicted | Gold |
+|---|---|
+| `SUVA` | `SUVA` |
+| `SUVA` | `SUVA` |
+
+**Example 14** (doc_id: `findok-manually-annotated_TRAIN/149828.1`) ( sent_id: `findok-manually-annotated_TRAIN/149828.1_50`)
+
+
+Dem- nach wurde die Minderung der Erwerbsfähigkeit im Hinblick auf die im Einzelnen angeführten  unfallkausalen Diagnosen und Verletzungsfolgen sowie die Beurteilung des Integritätsschadens  nach Gutachten der SUVA mit ärztlicher Abschlussuntersuchung am 22. Juli 2013 mit 30 % be- wertet.
+
+| Predicted | Gold |
+|---|---|
+| `SUVA` | `SUVA` |
+
+**Example 15** (doc_id: `findok-manually-annotated_TRAIN/149828.1`) ( sent_id: `findok-manually-annotated_TRAIN/149828.1_60`)
+
+
+Betreffend das Jahr 2015 wurde von der SUVA Quellensteuer in Höhe von 5.623,80 CHF einbe- halten.
+
+| Predicted | Gold |
+|---|---|
+| `SUVA` | `SUVA` |
+
 </details>
 
 ---
@@ -2396,6 +4810,17 @@ FP: `SUVA` (organisation)
 **✅ Gold Entities:**
 - `Eidgenössischen Invalidenversicherung (IV)` (organisation)
 - `Schweizeri- schen Unfallversicherungsanstalt (SUVA)` (organisation)
+
+**Example 5** (doc_id: `findok-manually-annotated_TRAIN/149828.1`) ( sent_id: `findok-manually-annotated_TRAIN/149828.1_63`)
+
+**False Positives:**
+
+
+Rechtliche Beurteilung  2.1. SUVA-Invalidenrente  Gemäß § 3 Abs. 1 Z 4 lit. c EStG 1988 sind Geldleistungen aus einer gesetzlichen Unfallversor- gung sowie dem Grunde und der Höhe nach gleichartige Beträge aus einer ausländischen ge- setzlichen Unfallversorgung, die einer inländischen gesetzlichen Unfallversorgung entspricht,  steuerbefreit.
+
+FP: `SUVA` (organisation)
+
+**✅ Gold Entities:**
 
 </details>
 
@@ -2524,6 +4949,105 @@ FP: `Amt für Betrugsbekämpfung` (organisation)
 
 **✅ Gold Entities:**
 - `OSR Jan Passerschroer, MA` (person)
+
+**Example 5** (doc_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146475.1`) ( sent_id: `findok-manually-annotated-filtered-higher-courts_TRAIN/146475.1_140`)
+
+**False Positives:**
+
+
+Die Darlegung hat, wenn die  Handhabung der verletzten Abgaben- oder Monopolvorschriften dem Zollamt Österreich  obliegt, gegenüber diesem, sonst gegenüber einem Finanzamt oder dem Amt für  Betrugsbekämpfung zu erfolgen.
+
+FP: `Amt für  Betrugsbekämpfung` (organisation)
+
+**✅ Gold Entities:**
+- `Zollamt Österreich` (organisation)
+
+**Example 6** (doc_id: `findok-manually-annotated_TRAIN/146475.1`) ( sent_id: `findok-manually-annotated_TRAIN/146475.1_2`)
+
+**False Positives:**
+
+
+Herrn OSR Jan Passerschroer, MA, geb. am 1960, Dr. A. Schärf-Straße 22, 8783 Gaishorn am See, Österreich  2. Reinemut + Smoch Handel, Zachariasweg 4K, 3250 Wieselburg, Österreich   beide vertreten durch HPS Hergovits, Pinkel & Schnabl Steuerberatungs GmbH, Triesterstraße  14, 2351 Wiener Neudorf,   wegen der Finanzvergehen der Abgabenhinterziehungen und Finanzordnungswidrigkeiten  gemäß §§ 33 Abs. 1 und Abs. 2 lit. a und 49 Abs. 1 lit. a FinStrG des Finanzstrafgesetzes  (FinStrG) über die Beschwerden des Beschuldigten und des belangten Verbandes jeweils vom  7. August 2024 gegen das Erkenntnis des Spruchsenates beim Amt für Betrugsbekämpfung als  Finanzstrafbehörde vom 28. Mai 2024, Geschäftszahl SpS-1, in der Sitzung am 10. Dezember  2024 in Anwesenheit der Schriftführerin zu Recht erkannt:  1.
+
+FP: `Amt für Betrugsbekämpfung` (organisation)
+
+**✅ Gold Entities:**
+- `OSR Jan Passerschroer, MA` (person)
+- `1960` (date)
+- `Dr. A. Schärf-Straße 22, 8783 Gaishorn am See, Österreich` (address)
+- `Reinemut + Smoch Handel` (organisation)
+- `Zachariasweg 4K, 3250 Wieselburg, Österreich` (address)
+- `HPS Hergovits, Pinkel & Schnabl Steuerberatungs GmbH` (organisation)
+- `Triesterstraße  14, 2351 Wiener Neudorf` (address)
+
+**Example 7** (doc_id: `findok-manually-annotated_TRAIN/146475.1`) ( sent_id: `findok-manually-annotated_TRAIN/146475.1_3`)
+
+**False Positives:**
+
+
+Der Beschwerde des Beschuldigten wird teilweise stattgegeben und das angefochtene  Erkenntnis des Spruchsenates wie folgt abgeändert:  Das beim Amt für Betrugsbekämpfung als Finanzstrafbehörde wegen des Verdachts einer  Verkürzung an Einkommensteuer 2019 des Beschuldigten von € 7.315,00, einer Verkürzung der  Reinemut + Smoch Handel  an Umsatzsteuer 7/2019 im Teilbetrag von € 63,82 sowie einer Verkürzung von  Umsatzsteuer 1-12/2017 der *OG* von € 599,99 geführte Finanzstrafverfahren wird gemäß §§  136, 157, 82 Abs. 3 lit. c FinStrG eingestellt.
+
+FP: `Amt für Betrugsbekämpfung` (organisation)
+
+**✅ Gold Entities:**
+- `Reinemut + Smoch Handel` (organisation)
+
+**Example 8** (doc_id: `findok-manually-annotated_TRAIN/146475.1`) ( sent_id: `findok-manually-annotated_TRAIN/146475.1_10`)
+
+**False Positives:**
+
+
+Der Beschwerde des belangten Verbandes wird teilweise stattgegeben und das beim Amt für  Betrugsbekämpfung als Finanzstrafbehörde wegen des Verdachts einer Verkürzung an  Umsatzsteuer 7/2019 der Reinemut + Smoch Handel  im Teilbetrag von € 63,82 geführte Finanzstrafverfahren  wird gemäß §§ 136, 157, 82 Abs. 3 lit. c FinStrG eingestellt.
+
+FP: `Amt für  Betrugsbekämpfung` (organisation)
+
+**✅ Gold Entities:**
+- `Reinemut + Smoch Handel` (organisation)
+
+**Example 9** (doc_id: `findok-manually-annotated_TRAIN/146475.1`) ( sent_id: `findok-manually-annotated_TRAIN/146475.1_15`)
+
+**False Positives:**
+
+
+Entscheidungsgründe  Verfahrensgang ab Spruchsenat:  Mit Erkenntnis des Spruchsenates beim Amt für Betrugsbekämpfung als Finanzstrafbehörde als  Organ des Amtes für Betrugsbekämpfung als Finanzstrafbehörde vom 28. Mai 2024,  Geschäftszahl SpS-1, wurden   „I. Herr OSR Jan Passerschroer, MA  schuldig erkannt, er hat im Bereich des Finanzamts Österreich   a) vorsätzlich unter Verletzung einer abgabenrechtlichen Offenlegungs- und   Wahrheitspflicht durch Nichtabgabe der Einkommensteuererklärungen für die Jahre 2019 und  2020 eine Verkürzung an   Einkommensteuer 2019 in Höhe von € 7.315,00   Einkommensteuer 2020 in Höhe von € 1.525,00  Gesamt: € 8.840,00  zu bewirken versucht, und  b) als der für die steuerlichen Angelegenheiten verantwortliche Geschäftsführer der Firma  Reinemut + Smoch Handel, St.Nr. 72-531/2688  vorsätzlich unter Verletzung der Verpflichtung zur Abgabe  von dem § 21 des Umsatzsteuergesetzes 1994 (UStG) entsprechenden Voranmeldungen eine  Verkürzung von Vorauszahlungen im Teilbetrag von   Umsatzsteuer 7/2019 von € 2.792,16  Umsatzsteuer 10/2021 von € 1.077,23  Umsatzsteuer 11/2021 von € 1.695,00  Umsatzsteuer 3/2022 von € 980,00  2 von 22 Seite 3 von 22
+
+FP: `Amt für Betrugsbekämpfung` (organisation)
+
+
+Entscheidungsgründe  Verfahrensgang ab Spruchsenat:  Mit Erkenntnis des Spruchsenates beim Amt für Betrugsbekämpfung als Finanzstrafbehörde als  Organ des Amtes für Betrugsbekämpfung als Finanzstrafbehörde vom 28. Mai 2024,  Geschäftszahl SpS-1, wurden   „I. Herr OSR Jan Passerschroer, MA  schuldig erkannt, er hat im Bereich des Finanzamts Österreich   a) vorsätzlich unter Verletzung einer abgabenrechtlichen Offenlegungs- und   Wahrheitspflicht durch Nichtabgabe der Einkommensteuererklärungen für die Jahre 2019 und  2020 eine Verkürzung an   Einkommensteuer 2019 in Höhe von € 7.315,00   Einkommensteuer 2020 in Höhe von € 1.525,00  Gesamt: € 8.840,00  zu bewirken versucht, und  b) als der für die steuerlichen Angelegenheiten verantwortliche Geschäftsführer der Firma  Reinemut + Smoch Handel, St.Nr. 72-531/2688  vorsätzlich unter Verletzung der Verpflichtung zur Abgabe  von dem § 21 des Umsatzsteuergesetzes 1994 (UStG) entsprechenden Voranmeldungen eine  Verkürzung von Vorauszahlungen im Teilbetrag von   Umsatzsteuer 7/2019 von € 2.792,16  Umsatzsteuer 10/2021 von € 1.077,23  Umsatzsteuer 11/2021 von € 1.695,00  Umsatzsteuer 3/2022 von € 980,00  2 von 22 Seite 3 von 22
+
+FP: `Amtes für Betrugsbekämpfung` (organisation)
+
+**✅ Gold Entities:**
+- `Amtes für Betrugsbekämpfung als Finanzstrafbehörde` (organisation)
+- `OSR Jan Passerschroer, MA` (person)
+- `Finanzamts Österreich` (organisation)
+- `Reinemut + Smoch Handel` (organisation)
+- `72-531/2688` (tax_number)
+
+**Example 10** (doc_id: `findok-manually-annotated_TRAIN/146475.1`) ( sent_id: `findok-manually-annotated_TRAIN/146475.1_89`)
+
+**False Positives:**
+
+
+3. Feststellungen des Vorsatzes nach § 33 (1) sowie des Vorsatzes und der Wissentlichkeit nach  § 33 (2) a und b FinStrG  Aus den Ausführungen unserer Mandantschaft, insbesondere des Schreibens vom 17.05.2024  an das Amt für Betrugsbekämpfung, geht hervor, dass Herr OSR Jan Passerschroer, MA  zu den Tatzeitpunkten  in einem psychisch instabilen Zustand war.
+
+FP: `Amt für Betrugsbekämpfung` (organisation)
+
+**✅ Gold Entities:**
+- `OSR Jan Passerschroer, MA` (person)
+
+**Example 11** (doc_id: `findok-manually-annotated_TRAIN/146475.1`) ( sent_id: `findok-manually-annotated_TRAIN/146475.1_140`)
+
+**False Positives:**
+
+
+Die Darlegung hat, wenn die  Handhabung der verletzten Abgaben- oder Monopolvorschriften dem Zollamt Österreich  obliegt, gegenüber diesem, sonst gegenüber einem Finanzamt oder dem Amt für  Betrugsbekämpfung zu erfolgen.
+
+FP: `Amt für  Betrugsbekämpfung` (organisation)
+
+**✅ Gold Entities:**
+- `Zollamt Österreich` (organisation)
 
 </details>
 
