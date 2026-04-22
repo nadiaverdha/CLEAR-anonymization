@@ -1,6 +1,6 @@
 # Rule Evaluation Report — Qwen/Qwen3.5-35B-A3B
 
-Generated on: 2026-04-22T09:20:52.181989
+Generated on: 2026-04-22T09:23:36.906218
 
 ---
 
@@ -337,9 +337,9 @@ Matches the specific entity 'Houdek Maschinenbau'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.032 | 0.062 | 56 | 56 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.032 | 0.062 | 56 | 56 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -421,9 +421,9 @@ Matches the acronym 'FAÖ' (Finanzamt Österreich) as an organisation.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.024 | 0.046 | 41 | 41 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.024 | 0.046 | 41 | 41 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -503,9 +503,9 @@ Matches the acronym 'ÖGK' (Österreichische Gesundheitskasse).
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.023 | 0.045 | 40 | 40 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.023 | 0.045 | 40 | 40 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -585,9 +585,9 @@ Matches the specific entity 'Roelfsen Versicherung'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.018 | 0.036 | 32 | 32 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.018 | 0.036 | 32 | 32 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -667,9 +667,9 @@ Matches 'FA' followed by specific known tax office locations including Waldviert
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.013 | 0.026 | 23 | 23 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.013 | 0.026 | 23 | 23 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -749,9 +749,9 @@ Matches the acronym 'FAG' (Finanzamt für Großbetriebe) as an organisation.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.013 | 0.026 | 23 | 23 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.013 | 0.026 | 23 | 23 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -831,9 +831,9 @@ Matches 'Finanzamt' followed by specific known tax office locations including Wa
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.013 | 0.025 | 22 | 22 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.013 | 0.025 | 22 | 22 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -913,9 +913,9 @@ Matches the specific entity 'Event Sudkraftlex GMBH'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.011 | 0.023 | 20 | 20 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.011 | 0.023 | 20 | 20 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -995,9 +995,9 @@ Matches the specific entity 'KQPC Versand GMBH'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.011 | 0.023 | 20 | 20 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.011 | 0.023 | 20 | 20 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -1077,9 +1077,9 @@ Matches the specific entity 'FA Wien 1/23' to ensure the full numeric code is ca
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.011 | 0.023 | 20 | 20 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.011 | 0.023 | 20 | 20 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -1166,9 +1166,9 @@ Matches 'Bundesfinanzgericht' and its optional suffixes (Außenstelle Linz, (BFG
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.436 | 0.131 | 0.202 | 525 | 229 | 296 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.436 | 0.131 | 0.202 | 525 | 229 | 296 | 0 | 282 |
 
 **Per-Class Breakdown**
 
@@ -1328,9 +1328,9 @@ Matches 'Verwaltungsgerichtshof' and its genitive forms 'Verwaltungsgerichtshofe
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.423 | 0.119 | 0.186 | 492 | 208 | 284 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.423 | 0.119 | 0.186 | 492 | 208 | 284 | 1 | 283 |
 
 **Per-Class Breakdown**
 
@@ -1484,9 +1484,9 @@ Matches the acronym 'VwGH' (Verwaltungsgerichtshof) as a standalone organization
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.084 | 0.010 | 0.018 | 214 | 18 | 196 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.084 | 0.010 | 0.018 | 214 | 18 | 196 | 1 | 195 |
 
 **Per-Class Breakdown**
 
@@ -1640,9 +1640,9 @@ Matches 'BFG' acronym as an organisation, excluding cases where it is part of a 
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.212 | 0.018 | 0.033 | 146 | 31 | 115 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.212 | 0.018 | 0.033 | 146 | 31 | 115 | 6 | 109 |
 
 **Per-Class Breakdown**
 
@@ -1794,9 +1794,9 @@ Matches 'Magistrat/Magistrats/Magistrates der Stadt Wien' without the MA 67 suff
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.479 | 0.013 | 0.026 | 48 | 23 | 25 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.479 | 0.013 | 0.026 | 48 | 23 | 25 | 25 | 0 |
 
 **Per-Class Breakdown**
 
@@ -1975,9 +1975,9 @@ Matches the acronym 'UFS' (Unabhängiger Finanzsenat).
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.172 | 0.003 | 0.006 | 29 | 5 | 24 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.172 | 0.003 | 0.006 | 29 | 5 | 24 | 2 | 22 |
 
 **Per-Class Breakdown**
 
@@ -2129,9 +2129,9 @@ Matches the acronym 'VfGH' (Verfassungsgerichtshof) as a standalone organization
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.095 | 0.001 | 0.002 | 21 | 2 | 19 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.095 | 0.001 | 0.002 | 21 | 2 | 19 | 0 | 19 |
 
 **Per-Class Breakdown**
 
@@ -2256,9 +2256,9 @@ Matches 'Universität' followed by a location or name, excluding common labels l
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.543 | 0.011 | 0.021 | 35 | 19 | 16 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.543 | 0.011 | 0.021 | 35 | 19 | 16 | 15 | 1 |
 
 **Per-Class Breakdown**
 
@@ -2425,9 +2425,9 @@ Matches the acronym 'SUVA' as a standalone organization name.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.750 | 0.028 | 0.053 | 64 | 48 | 16 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.750 | 0.028 | 0.053 | 64 | 48 | 16 | 12 | 4 |
 
 **Per-Class Breakdown**
 
@@ -2586,9 +2586,9 @@ Matches 'Amts für Betrugsbekämpfung' and its genitive form 'Amtes für Betrugs
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 12 | 0 | 12 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 12 | 0 | 12 | 0 | 12 |
 
 **Per-Class Breakdown**
 
@@ -2710,9 +2710,9 @@ Matches the specific entity 'Pastl+Bächle Handel' which was missing from the ru
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -2734,9 +2734,9 @@ Matches the specific entity 'Bezirksgericht Zell am See'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -2758,9 +2758,9 @@ Matches the specific entity 'Klusner&Päffgen Bildung GMBH' which was missing an
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -2782,9 +2782,9 @@ Matches 'Englert Möbel' including cases where it is followed by a hyphenated su
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -2806,9 +2806,9 @@ Matches the specific entity 'Hülsebusch + Breithaupt Versicherung' including ca
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -2830,9 +2830,9 @@ Matches the specific entity 'Logal Gruppe'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -2854,9 +2854,9 @@ Matches the specific entity 'Enns Werkal GMBH'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -2878,9 +2878,9 @@ Matches the specific entity 'Süd Nortri'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -2902,9 +2902,9 @@ Matches the specific entity 'Trafenfen Automotive'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -2926,9 +2926,9 @@ Matches the specific entity 'Mur Ververzor Betriebe'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -2957,9 +2957,9 @@ Matches 'Bundesfinanzgericht' and its optional suffixes (Außenstelle Linz, (BFG
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.436 | 0.131 | 0.202 | 525 | 229 | 296 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.436 | 0.131 | 0.202 | 525 | 229 | 296 | 0 | 282 |
 
 **Per-Class Breakdown**
 
@@ -4165,9 +4165,9 @@ Matches 'Verwaltungsgerichtshof' and its genitive forms 'Verwaltungsgerichtshofe
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.423 | 0.119 | 0.186 | 492 | 208 | 284 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.423 | 0.119 | 0.186 | 492 | 208 | 284 | 1 | 283 |
 
 **Per-Class Breakdown**
 
@@ -5335,9 +5335,9 @@ Matches the genitive form 'Finanzamtes Österreich'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.985 | 0.038 | 0.073 | 67 | 66 | 1 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.985 | 0.038 | 0.073 | 67 | 66 | 1 | 0 | 1 |
 
 **Per-Class Breakdown**
 
@@ -5849,9 +5849,9 @@ Matches the specific entity 'Houdek Maschinenbau'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.032 | 0.062 | 56 | 56 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.032 | 0.062 | 56 | 56 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -6318,9 +6318,9 @@ Matches the acronym 'SUVA' as a standalone organization name.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.750 | 0.028 | 0.053 | 64 | 48 | 16 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.750 | 0.028 | 0.053 | 64 | 48 | 16 | 12 | 4 |
 
 **Per-Class Breakdown**
 
@@ -6961,9 +6961,9 @@ Matches 'Finanzamt Österreich' specifically to ensure it is captured.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.894 | 0.024 | 0.047 | 47 | 42 | 5 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.894 | 0.024 | 0.047 | 47 | 42 | 5 | 5 | 0 |
 
 **Per-Class Breakdown**
 
@@ -7411,9 +7411,9 @@ Matches the acronym 'FAÖ' (Finanzamt Österreich) as an organisation.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.024 | 0.046 | 41 | 41 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.024 | 0.046 | 41 | 41 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -7801,9 +7801,9 @@ Matches the acronym 'ÖGK' (Österreichische Gesundheitskasse).
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.023 | 0.045 | 40 | 40 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.023 | 0.045 | 40 | 40 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -8182,9 +8182,9 @@ Matches the specific entity 'Roelfsen Versicherung'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.018 | 0.036 | 32 | 32 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.018 | 0.036 | 32 | 32 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -8475,9 +8475,9 @@ Matches 'BFG' acronym as an organisation, excluding cases where it is part of a 
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.212 | 0.018 | 0.033 | 146 | 31 | 115 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.212 | 0.018 | 0.033 | 146 | 31 | 115 | 6 | 109 |
 
 **Per-Class Breakdown**
 
@@ -9481,9 +9481,9 @@ Matches 'Wirtschaftsuniversität Wien', 'WU Wien', and the standalone abbreviati
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.879 | 0.017 | 0.033 | 33 | 29 | 4 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.879 | 0.017 | 0.033 | 33 | 29 | 4 | 4 | 0 |
 
 **Per-Class Breakdown**
 
@@ -9817,9 +9817,9 @@ Matches 'FA' followed by specific known tax office locations including Waldviert
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.013 | 0.026 | 23 | 23 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.013 | 0.026 | 23 | 23 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -10061,9 +10061,9 @@ Matches the acronym 'FAG' (Finanzamt für Großbetriebe) as an organisation.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.013 | 0.026 | 23 | 23 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.013 | 0.026 | 23 | 23 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -10281,9 +10281,9 @@ Matches 'Magistrat/Magistrats/Magistrates der Stadt Wien' without the MA 67 suff
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.479 | 0.013 | 0.026 | 48 | 23 | 25 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.479 | 0.013 | 0.026 | 48 | 23 | 25 | 25 | 0 |
 
 **Per-Class Breakdown**
 
@@ -10909,9 +10909,9 @@ Matches 'Finanzamt' followed by specific known tax office locations including Wa
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.013 | 0.025 | 22 | 22 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.013 | 0.025 | 22 | 22 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -11136,9 +11136,9 @@ Matches the specific entity 'Event Sudkraftlex GMBH'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.011 | 0.023 | 20 | 20 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.011 | 0.023 | 20 | 20 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -11353,9 +11353,9 @@ Matches the specific entity 'KQPC Versand GMBH'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.011 | 0.023 | 20 | 20 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.011 | 0.023 | 20 | 20 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -11570,9 +11570,9 @@ Matches the specific entity 'FA Wien 1/23' to ensure the full numeric code is ca
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.011 | 0.023 | 20 | 20 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.011 | 0.023 | 20 | 20 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -11787,9 +11787,9 @@ Matches the specific entity 'X GmbH' which appears in training data and was miss
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.011 | 0.022 | 19 | 19 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.011 | 0.022 | 19 | 19 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -11955,9 +11955,9 @@ Matches 'Universität' followed by a location or name, excluding common labels l
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.543 | 0.011 | 0.021 | 35 | 19 | 16 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.543 | 0.011 | 0.021 | 35 | 19 | 16 | 15 | 1 |
 
 **Per-Class Breakdown**
 
@@ -12414,9 +12414,9 @@ Matches the specific entity 'Universität Wien'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.010 | 0.020 | 18 | 18 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.010 | 0.020 | 18 | 18 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -12613,9 +12613,9 @@ Matches the acronym 'VwGH' (Verwaltungsgerichtshof) as a standalone organization
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.084 | 0.010 | 0.018 | 214 | 18 | 196 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.084 | 0.010 | 0.018 | 214 | 18 | 196 | 1 | 195 |
 
 **Per-Class Breakdown**
 
@@ -13489,9 +13489,9 @@ Matches 'Johannes Kepler Universität Linz' and its abbreviation 'JKU Linz'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.762 | 0.009 | 0.018 | 21 | 16 | 5 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.762 | 0.009 | 0.018 | 21 | 16 | 5 | 4 | 1 |
 
 **Per-Class Breakdown**
 
@@ -13733,9 +13733,9 @@ Matches 'Bundesamt für Soziales und Behindertenwesen' and its genitive forms 'B
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.929 | 0.007 | 0.015 | 14 | 13 | 1 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.929 | 0.007 | 0.015 | 14 | 13 | 1 | 0 | 1 |
 
 **Per-Class Breakdown**
 
@@ -13907,9 +13907,9 @@ Matches the specific entity 'Schmeltz Luftfahrt'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.006 | 0.013 | 11 | 11 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.006 | 0.013 | 11 | 11 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -14043,9 +14043,9 @@ Matches 'SeneCura' and its variations including the full location 'Laurentius Pa
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.006 | 0.013 | 11 | 11 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.006 | 0.013 | 11 | 11 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -14171,9 +14171,9 @@ Matches 'Merkur Treuhand Steuerberatung GmbH' including variants with double spa
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.006 | 0.011 | 10 | 10 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.006 | 0.011 | 10 | 10 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -14290,9 +14290,9 @@ Matches 'Bundesministerium' and its genitive form 'Bundesministeriums' followed 
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.006 | 0.011 | 10 | 10 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.006 | 0.011 | 10 | 10 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -14417,9 +14417,9 @@ Matches the specific entity 'Dorfcon-Verlag'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.005 | 0.010 | 9 | 9 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.005 | 0.010 | 9 | 9 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -14535,9 +14535,9 @@ Matches 'Magistrat/Magistrats/Magistrates der Stadt Wien, MA 67' covering nomina
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.005 | 0.010 | 9 | 9 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.005 | 0.010 | 9 | 9 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -14653,9 +14653,9 @@ Matches 'Magistrates der Stadt Wien' (plural genitive) and its variants with MA 
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.643 | 0.005 | 0.010 | 14 | 9 | 5 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.643 | 0.005 | 0.010 | 14 | 9 | 5 | 5 | 0 |
 
 **Per-Class Breakdown**
 
@@ -14861,9 +14861,9 @@ Matches 'Bundesministeriums für Finanzen' and its base form 'Bundesministerium 
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.005 | 0.009 | 8 | 8 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.005 | 0.009 | 8 | 8 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -14970,9 +14970,9 @@ Matches 'Magistrat/Magistrats/Magistrates der Stadt Wien, Magistratsabteilung 67
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.005 | 0.009 | 8 | 8 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.005 | 0.009 | 8 | 8 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -15079,9 +15079,9 @@ Matches 'Landespolizeidirektion Wien' and the typo 'Landespolizeidirketion Wien'
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.005 | 0.009 | 8 | 8 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.005 | 0.009 | 8 | 8 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -15188,9 +15188,9 @@ Matches the specific entity 'Frontex'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.421 | 0.005 | 0.009 | 19 | 8 | 11 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.421 | 0.005 | 0.009 | 19 | 8 | 11 | 4 | 7 |
 
 **Per-Class Breakdown**
 
@@ -15448,9 +15448,9 @@ Matches the specific entity 'Lexdon IT'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.004 | 0.008 | 7 | 7 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.004 | 0.008 | 7 | 7 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -15548,9 +15548,9 @@ Matches 'Universität St. Gallen' and 'Universität in St. Gallen', handling var
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.004 | 0.008 | 7 | 7 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.004 | 0.008 | 7 | 7 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -15648,9 +15648,9 @@ Matches the acronym 'BMF' (Bundesministerium für Finanzen).
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.583 | 0.004 | 0.008 | 12 | 7 | 5 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.583 | 0.004 | 0.008 | 12 | 7 | 5 | 2 | 3 |
 
 **Per-Class Breakdown**
 
@@ -15822,9 +15822,9 @@ Matches the specific organization 'INET Internet Service GmbH'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.003 | 0.007 | 6 | 6 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.003 | 0.007 | 6 | 6 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -15913,9 +15913,9 @@ Matches 'Magistrat der Stadt Wien, MA 67' specifically.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.003 | 0.007 | 6 | 6 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.003 | 0.007 | 6 | 6 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -16004,9 +16004,9 @@ Matches the specific entity 'Flughafen München'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.003 | 0.007 | 6 | 6 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.003 | 0.007 | 6 | 6 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -16095,9 +16095,9 @@ Matches the specific entity 'University of Bristol'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.003 | 0.007 | 6 | 6 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.003 | 0.007 | 6 | 6 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -16186,9 +16186,9 @@ Matches 'Schabetsberger Steuerberatung GmbH' including variants with double spac
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.003 | 0.007 | 6 | 6 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.003 | 0.007 | 6 | 6 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -16277,9 +16277,9 @@ Matches the standalone abbreviation 'JKU' only when not followed by 'Linz' or '(
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.750 | 0.003 | 0.007 | 8 | 6 | 2 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.750 | 0.003 | 0.007 | 8 | 6 | 2 | 1 | 1 |
 
 **Per-Class Breakdown**
 
@@ -16403,9 +16403,9 @@ Matches 'Finanzamts' (genitive) followed by specific known locations.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.003 | 0.006 | 5 | 5 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.003 | 0.006 | 5 | 5 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -16485,9 +16485,9 @@ Matches the complex entity 'Schule für allgemeine Gesundheits- und Krankenpfleg
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.003 | 0.006 | 5 | 5 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.003 | 0.006 | 5 | 5 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -16567,9 +16567,9 @@ Matches the specific entity 'Rhein Normonkel Manufaktur GMBH' to prevent partial
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.003 | 0.006 | 5 | 5 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.003 | 0.006 | 5 | 5 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -16649,9 +16649,9 @@ Matches specific retail entities: Ikea, Obi, Leiner, Möbelix, MömaX.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.003 | 0.006 | 5 | 5 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.003 | 0.006 | 5 | 5 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -16699,9 +16699,9 @@ Matches the acronym 'PVA' (Pflegeversicherung) as an organisation.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.714 | 0.003 | 0.006 | 7 | 5 | 2 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.714 | 0.003 | 0.006 | 7 | 5 | 2 | 0 | 2 |
 
 **Per-Class Breakdown**
 
@@ -16817,9 +16817,9 @@ Matches 'Magistrat/Magistrates der Stadt Wien, Magistratsabteilung 6' covering n
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.714 | 0.003 | 0.006 | 7 | 5 | 2 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.714 | 0.003 | 0.006 | 7 | 5 | 2 | 2 | 0 |
 
 **Per-Class Breakdown**
 
@@ -16941,9 +16941,9 @@ Matches 'Finanzamt' followed by a location, excluding known multi-word entities.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.333 | 0.003 | 0.006 | 15 | 5 | 10 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.333 | 0.003 | 0.006 | 15 | 5 | 10 | 5 | 5 |
 
 **Per-Class Breakdown**
 
@@ -17169,9 +17169,9 @@ Matches the specific entity 'Verfassungsgerichtshof'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.312 | 0.003 | 0.006 | 16 | 5 | 11 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.312 | 0.003 | 0.006 | 16 | 5 | 11 | 0 | 11 |
 
 **Per-Class Breakdown**
 
@@ -17402,9 +17402,9 @@ Matches the acronym 'UFS' (Unabhängiger Finanzsenat).
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.172 | 0.003 | 0.006 | 29 | 5 | 24 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.172 | 0.003 | 0.006 | 29 | 5 | 24 | 2 | 22 |
 
 **Per-Class Breakdown**
 
@@ -17809,9 +17809,9 @@ Matches the specific entity 'Lubomir Merschmeyer'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.002 | 0.005 | 4 | 4 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.002 | 0.005 | 4 | 4 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -17882,9 +17882,9 @@ Matches the specific entity 'FA St. Johann Tamsweg Zell am See' to prevent parti
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.002 | 0.005 | 4 | 4 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.002 | 0.005 | 4 | 4 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -17939,9 +17939,9 @@ Matches the specific entity 'Berwaldkel-Möbel AG'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.002 | 0.005 | 4 | 4 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.002 | 0.005 | 4 | 4 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -18012,9 +18012,9 @@ Matches the specific entity 'Bankhaus Denzel' which was missing and causing tota
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.002 | 0.005 | 4 | 4 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.002 | 0.005 | 4 | 4 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -18085,9 +18085,9 @@ Matches the acronym 'BMI' (Bundesministerium für Inneres).
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.002 | 0.005 | 4 | 4 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.002 | 0.005 | 4 | 4 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -18158,9 +18158,9 @@ Matches the specific genitive entity 'Finanzamtes Wien 1/23' which was missing.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.002 | 0.005 | 4 | 4 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.002 | 0.005 | 4 | 4 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -18215,9 +18215,9 @@ Matches 'Magistratsabteilung 67' as a standalone entity, covering cases where th
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.267 | 0.002 | 0.005 | 15 | 4 | 11 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.267 | 0.002 | 0.005 | 15 | 4 | 11 | 8 | 3 |
 
 **Per-Class Breakdown**
 
@@ -18463,9 +18463,9 @@ Matches the specific entity 'Gözcü Getränke' which was missing from the rules
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.002 | 0.003 | 3 | 3 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.002 | 0.003 | 3 | 3 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -18527,9 +18527,9 @@ Matches the specific genitive entity 'Finanzamtes Wien 9/18/19 Klosterneuburg'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.002 | 0.003 | 3 | 3 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.002 | 0.003 | 3 | 3 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -18591,9 +18591,9 @@ Matches 'Deloitte Tax Wirtschaftsprüfungs GmbH' allowing for variable whitespac
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.002 | 0.003 | 3 | 3 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.002 | 0.003 | 3 | 3 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -18655,9 +18655,9 @@ Matches the specific entity 'Bezirkshauptmannschaft Bludenz' which was missing a
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.002 | 0.003 | 3 | 3 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.002 | 0.003 | 3 | 3 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -18719,9 +18719,9 @@ Matches 'FA' followed by a location, excluding known multi-word entities. Refine
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.250 | 0.002 | 0.003 | 12 | 3 | 9 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.250 | 0.002 | 0.003 | 12 | 3 | 9 | 7 | 2 |
 
 **Per-Class Breakdown**
 
@@ -18914,9 +18914,9 @@ Matches the specific entity 'Sudver Handel Services GMBH'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.002 | 2 | 2 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.002 | 2 | 2 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -18969,9 +18969,9 @@ Matches the specific entity 'Glanznorost Institut GMBH'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.002 | 2 | 2 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.002 | 2 | 2 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -19024,9 +19024,9 @@ Matches the specific entity 'Mag. Ghesla Steuerberater GmbH'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.002 | 2 | 2 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.002 | 2 | 2 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -19079,9 +19079,9 @@ Matches the specific entity 'INET System Informations GmbH' including cases with
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.002 | 2 | 2 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.002 | 2 | 2 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -19134,9 +19134,9 @@ Matches 'Magistrat der Stadt Klagenfurt' and its genitive form 'Magistrats der S
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.002 | 2 | 2 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.002 | 2 | 2 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -19189,9 +19189,9 @@ Matches 'Bundesministeriums für Inneres' (genitive) and 'Bundesministerium für
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.002 | 2 | 2 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.002 | 2 | 2 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -19244,9 +19244,9 @@ Matches the specific entity 'Cervenka&Neunübel Telekom AG' to prevent partial m
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.002 | 2 | 2 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.002 | 2 | 2 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -19299,9 +19299,9 @@ Matches 'Europäische Grenzschutzagentur Frontex' and its genitive form 'Europä
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.002 | 2 | 2 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.002 | 2 | 2 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -19354,9 +19354,9 @@ Matches the specific organization 'BM für Inneres'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.002 | 2 | 2 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.002 | 2 | 2 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -19409,9 +19409,9 @@ Matches the specific entity 'Kriminalpolizei in Österreich'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.002 | 2 | 2 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.002 | 2 | 2 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -19464,9 +19464,9 @@ Matches 'Arbeits- und Sozialgericht' with optional 'Wien' suffix and variable wh
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.002 | 2 | 2 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.002 | 2 | 2 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -19519,9 +19519,9 @@ Matches the full entity 'Magistrates der Stadt Wien, Magistratsabteilung 67' as 
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.002 | 2 | 2 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.002 | 2 | 2 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -19574,9 +19574,9 @@ Matches 'The King's School Worcester' and variations with different apostrophes.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.002 | 2 | 2 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.002 | 2 | 2 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -19621,9 +19621,9 @@ Matches 'England' as an organization in legal contexts (e.g., jurisdiction).
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.002 | 2 | 2 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.002 | 2 | 2 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -19676,9 +19676,9 @@ Matches the Austrian Federal Railways acronym 'ÖBB'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.002 | 2 | 2 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.002 | 2 | 2 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -19731,9 +19731,9 @@ Matches the specific entity 'R GmbH' which was missing from the rules.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.002 | 2 | 2 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.002 | 2 | 2 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -19786,9 +19786,9 @@ Matches 'King's School' and variations with different apostrophes (e.g., King´s
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.400 | 0.001 | 0.002 | 5 | 2 | 3 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.400 | 0.001 | 0.002 | 5 | 2 | 3 | 3 | 0 |
 
 **Per-Class Breakdown**
 
@@ -19881,9 +19881,9 @@ Matches 'Pensionsversicherungsanstalt'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.154 | 0.001 | 0.002 | 13 | 2 | 11 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.154 | 0.001 | 0.002 | 13 | 2 | 11 | 2 | 9 |
 
 **Per-Class Breakdown**
 
@@ -20082,9 +20082,9 @@ Matches the acronym 'VfGH' (Verfassungsgerichtshof) as a standalone organization
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.095 | 0.001 | 0.002 | 21 | 2 | 19 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.095 | 0.001 | 0.002 | 21 | 2 | 19 | 0 | 19 |
 
 **Per-Class Breakdown**
 
@@ -20391,9 +20391,9 @@ Matches the specific entity 'Mur Alver OG'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -20437,9 +20437,9 @@ Matches the specific entity 'Tritri-IT' including cases where it is followed by 
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -20483,9 +20483,9 @@ Matches the specific entity 'Landespolizeidirketion Tirol' (including the typo '
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -20529,9 +20529,9 @@ Matches the specific entity 'Musikhochschule Wien'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -20575,9 +20575,9 @@ Matches the specific entity 'Konservatorium der Stadt Wien'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -20621,9 +20621,9 @@ Matches the specific entity 'Wiener Philharmoniker'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -20667,9 +20667,9 @@ Matches 'AMS Österreich' specifically to prevent the generic 'AMS' rule from ma
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -20713,9 +20713,9 @@ Matches the specific organization 'TPA STB Wien GmbH'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -20759,9 +20759,9 @@ Matches the combined entity 'UFS/BFG' to prevent splitting into 'UFS' and 'BFG'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -20805,9 +20805,9 @@ Matches the specific entity 'How to spend it Verlag GmbH'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -20851,9 +20851,9 @@ Matches the genitive form 'Finanzamtes Landeck Reutte'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -20897,9 +20897,9 @@ Matches the specific entity 'Garanta VersicherungsAG'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -20943,9 +20943,9 @@ Matches the specific entity 'The International Sivananda Yoga Vedanta Centre'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -20989,9 +20989,9 @@ Matches the specific entity 'DA Deutsche Allgemeine Versicherung AG'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -21035,9 +21035,9 @@ Matches the specific entity 'Geschenkartikel GmbH'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -21081,9 +21081,9 @@ Matches the specific entity 'AVED cosmetic' which was missing.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -21127,9 +21127,9 @@ Matches the specific entity 'Yoga Vidya GmbH'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -21173,9 +21173,9 @@ Matches the specific entity 'Hamburger Fern-Hochschule'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -21219,9 +21219,9 @@ Matches 'Tschurtschenthaler, Walder, Fister Rechtsanwälte GmbH' handling variab
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -21265,9 +21265,9 @@ Matches the specific entity 'Immobilienbüro Mandl'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -21311,9 +21311,9 @@ Matches the specific entity 'Anwälte Mandl & Mitterbauer GmbH' which was missin
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -21357,9 +21357,9 @@ Matches the alternative phrasing 'Gesundheits- und Krankenpflege-Schule am LKH G
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -21403,9 +21403,9 @@ Matches the specific entity 'FA Graz-Stadt' which might be missed by general FA 
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -21449,9 +21449,9 @@ Matches the specific genitive entity 'Finanzamtes Wien 3/6/7/11/15 Schwechat Ger
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -21495,9 +21495,9 @@ Matches the specific entity 'TAXCOACH Wirtschaftsprüfung und Steuerberatung Gmb
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -21541,9 +21541,9 @@ Matches the acronym 'EASO' (European Asylum Support Office).
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -21587,9 +21587,9 @@ Matches the specific entity 'Eckhardt SteuerberatungsgmbH'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -21633,9 +21633,9 @@ Matches the specific abbreviation 'HLF Krems/Donau'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -21679,9 +21679,9 @@ Matches the specific entity 'Hallas & Partner Wirtschaftsprüfung und Steuerbera
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -21725,9 +21725,9 @@ Matches the specific entity 'Grazer Treuhand Steuerberatung GmbH & Partner KG' t
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -21771,9 +21771,9 @@ Matches the specific entity 'Finanzamts Graz-Stadt' (genitive).
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -21817,9 +21817,9 @@ Matches the specific entity 'Finanzamts Graz- Stadt' (genitive with space).
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -21863,9 +21863,9 @@ Matches 'Merkur Steuerberatung GmbH' including variants with double spaces.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -21909,9 +21909,9 @@ Matches the specific entity 'UFS Salzburg'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -21955,9 +21955,9 @@ Matches 'Verwaltungsgericht Wien' specifically.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -22001,9 +22001,9 @@ Matches the specific entity 'Wiederspan Beratung GMBH'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -22047,9 +22047,9 @@ Matches the specific entity 'Steuerberater Metzler & Adelsberger OG' to prevent 
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -22093,9 +22093,9 @@ Matches the specific multi-word entity 'FA Braunau Ried Schärding' with high pr
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -22139,9 +22139,9 @@ Matches the genitive form 'Finanzamtes Innsbruck'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -22185,9 +22185,9 @@ Matches the specific entity 'Finanzamt Braunau Ried Schärding' with high priori
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -22231,9 +22231,9 @@ Matches the specific entity 'Krankenpflegevereins Bludenz' which was missing fro
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -22277,9 +22277,9 @@ Matches the specific entity 'InnMarine GMBH'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -22323,9 +22323,9 @@ Matches the specific entity 'Universität Innsbruck'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -22369,9 +22369,9 @@ Matches the specific law firm 'Lenfeld/Leys/Sonderegger Rechtsanwälte'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -22415,9 +22415,9 @@ Matches the specific genitive entity 'Finanzamtes Neunkirchen Wr. Neustadt' with
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -22461,9 +22461,9 @@ Matches 'Bundesministerin für Finanzen' and its genitive form 'Bundesministersi
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -22507,9 +22507,9 @@ Matches the specific entity 'LeitnerLeitner GmbH Wirtschaftsprüfer und Steuerbe
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -22553,9 +22553,9 @@ Matches the specific entity 'X-GmbH' which was missing and causing total misses 
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 1.000 | 0.001 | 0.001 | 1 | 1 | 0 | 0 | 0 |
 
 **Per-Class Breakdown**
 
@@ -22599,9 +22599,9 @@ Matches the acronym 'AMS' only when not followed by 'Österreich' or part of 'Ar
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.500 | 0.001 | 0.001 | 2 | 1 | 1 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.500 | 0.001 | 0.001 | 2 | 1 | 1 | 1 | 0 |
 
 **Per-Class Breakdown**
 
@@ -22667,9 +22667,9 @@ Matches 'Bezirksgericht' followed by a location name to capture unseen district 
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.500 | 0.001 | 0.001 | 2 | 1 | 1 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.500 | 0.001 | 0.001 | 2 | 1 | 1 | 0 | 1 |
 
 **Per-Class Breakdown**
 
@@ -22733,9 +22733,9 @@ Matches the acronym 'BFH' (Bundesfinanzgericht) as an organisation.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.333 | 0.001 | 0.001 | 3 | 1 | 2 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.333 | 0.001 | 0.001 | 3 | 1 | 2 | 0 | 2 |
 
 **Per-Class Breakdown**
 
@@ -22812,9 +22812,9 @@ Matches 'Bundesministers für Finanzen' and its base form 'Bundesminister für F
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.333 | 0.001 | 0.001 | 3 | 1 | 2 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.333 | 0.001 | 0.001 | 3 | 1 | 2 | 0 | 2 |
 
 **Per-Class Breakdown**
 
@@ -22891,9 +22891,9 @@ Matches the full entity 'King's School Worcester' to prevent partial matching by
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.333 | 0.001 | 0.001 | 3 | 1 | 2 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.333 | 0.001 | 0.001 | 3 | 1 | 2 | 2 | 0 |
 
 **Per-Class Breakdown**
 
@@ -22961,9 +22961,9 @@ Matches the acronym 'OECD' (Organisation for Economic Co-operation and Developme
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.200 | 0.001 | 0.001 | 5 | 1 | 4 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.200 | 0.001 | 0.001 | 5 | 1 | 4 | 0 | 4 |
 
 **Per-Class Breakdown**
 
@@ -23046,9 +23046,9 @@ Matches generic company names ending in AG, with stricter context checks to avoi
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.200 | 0.001 | 0.001 | 5 | 1 | 4 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.200 | 0.001 | 0.001 | 5 | 1 | 4 | 1 | 3 |
 
 **Per-Class Breakdown**
 
@@ -23155,9 +23155,9 @@ Matches the genitive form 'Verfassungsgerichtshofes' which was missing.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.167 | 0.001 | 0.001 | 6 | 1 | 5 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.167 | 0.001 | 0.001 | 6 | 1 | 5 | 0 | 5 |
 
 **Per-Class Breakdown**
 
@@ -23261,9 +23261,9 @@ Matches 'Merkur Treuhand Steuerberatung' (without GmbH) including variants with 
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.091 | 0.001 | 0.001 | 11 | 1 | 10 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.091 | 0.001 | 0.001 | 11 | 1 | 10 | 10 | 0 |
 
 **Per-Class Breakdown**
 
@@ -23451,9 +23451,9 @@ Matches the specific entity 'Pastl+Bächle Handel' which was missing from the ru
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -23475,9 +23475,9 @@ Matches the specific entity 'Bezirksgericht Zell am See'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -23499,9 +23499,9 @@ Matches the specific entity 'Klusner&Päffgen Bildung GMBH' which was missing an
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -23523,9 +23523,9 @@ Matches 'Englert Möbel' including cases where it is followed by a hyphenated su
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -23547,9 +23547,9 @@ Matches 'Raiffeisenbank' followed by specific location patterns, extended to cap
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 5 | 0 | 5 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 5 | 0 | 5 | 5 | 0 |
 
 **Per-Class Breakdown**
 
@@ -23658,9 +23658,9 @@ Matches the specific entity 'Hülsebusch + Breithaupt Versicherung' including ca
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -23682,9 +23682,9 @@ Matches the specific entity 'Logal Gruppe'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -23706,9 +23706,9 @@ Matches the specific entity 'Enns Werkal GMBH'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -23730,9 +23730,9 @@ Matches the specific entity 'Süd Nortri'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -23754,9 +23754,9 @@ Matches the specific entity 'Trafenfen Automotive'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -23778,9 +23778,9 @@ Matches the specific entity 'Mur Ververzor Betriebe'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -23802,9 +23802,9 @@ Matches the specific entity 'Kornfelder Recycling'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -23826,9 +23826,9 @@ Matches the specific entity 'Füchsl Touristik GMBH'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -23850,9 +23850,9 @@ Matches the specific entity 'Mägerlein Logistik'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -23874,9 +23874,9 @@ Matches the specific entity 'Naaß Elektro GMBH'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -23898,9 +23898,9 @@ Matches the specific entity 'Bersud Möbel GMBH'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -23922,9 +23922,9 @@ Matches the specific entity 'Unter Heimdorf GMBH'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -23946,9 +23946,9 @@ Matches the specific entity 'Buhrfeindt Lebensmittel GMBH'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -23970,9 +23970,9 @@ Matches the specific entity 'Dongartcon-Landwirtschaft GMBH'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -23994,9 +23994,9 @@ Matches the specific entity 'Monlogtri-Analyse GMBH'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -24018,9 +24018,9 @@ Matches the specific entity 'Traun Aluni Institut GMBH'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -24042,9 +24042,9 @@ Matches the specific entity 'Berend Energie AG'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -24066,9 +24066,9 @@ Matches the specific entity 'Blazickova & Hepprich Energie AG'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -24090,9 +24090,9 @@ Matches the specific entity 'Botho Mikloweit'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -24114,9 +24114,9 @@ Matches the specific entity 'Unter Gartglanz GMBH'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -24138,9 +24138,9 @@ Matches the specific entity 'Finanzen Tradonnex GmbH' which was missing.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -24162,9 +24162,9 @@ Matches the specific entity 'Obernöder+Küsbert Touristik GMBH'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -24186,9 +24186,9 @@ Matches the specific entity 'Talost GMBH'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -24210,9 +24210,9 @@ Matches the specific entity 'DonauRecycling GMBH'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -24234,9 +24234,9 @@ Matches the specific entity 'XJOV Cloud Dienstleistungen GMBH'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -24258,9 +24258,9 @@ Matches the specific entity 'MittelHeizung Werke AG' which was missing from the 
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -24282,9 +24282,9 @@ Matches the specific entity 'Traun-Digital KG' to prevent partial matching by th
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -24306,9 +24306,9 @@ Matches 'FA Klosterneuburg' specifically to ensure it is captured.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -24330,9 +24330,9 @@ Matches 'Finanzamt Amstetten Melk Scheibbs' specifically.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -24354,9 +24354,9 @@ Matches 'Finanzamt Wien 8/16/17' specifically.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -24378,9 +24378,9 @@ Matches 'FA Wien 8/16/17' specifically.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -24402,9 +24402,9 @@ Matches 'Gernot Hirschkorn' as an organisation in legal contexts.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -24426,9 +24426,9 @@ Matches the full name of the Swiss accident insurance institution including the 
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -24450,9 +24450,9 @@ Matches the specific entity 'UnterRecycling Services GMBH' which was missing fro
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -24474,9 +24474,9 @@ Matches 'Arbeitsmarktservice (AMS)' specifically.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -24498,9 +24498,9 @@ Matches the specific entity 'FA Wien 2/20/21/22' which was missing.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -24522,9 +24522,9 @@ Matches the specific entity 'FA Landeck Reutte' which was missing.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -24546,9 +24546,9 @@ Matches the specific entity 'FA Oststeiermark'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -24570,9 +24570,9 @@ Matches the specific entity 'FA Linz'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -24594,9 +24594,9 @@ Matches the specific entity 'FA Judenburg Liezen' which was missing.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -24618,9 +24618,9 @@ Matches the specific entity 'Finanzamt Salzburg-Stadt'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -24642,9 +24642,9 @@ Matches the specific entity 'Finanzamt Landeck Reutte'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -24666,9 +24666,9 @@ Matches the specific entity 'Finanzamt Judenburg Liezen'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -24690,9 +24690,9 @@ Matches the full complex entity 'ÖBUG' DR. NIKOLAUS Wirtschaftstreuhand GmbH - 
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -24714,9 +24714,9 @@ Matches the specific organization 'Österreichische Gesellschaft für Europapoli
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -24738,9 +24738,9 @@ Matches the specific organization 'BM für Finanzen'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -24762,9 +24762,9 @@ Matches the specific entity 'FH Kärnten'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -24786,9 +24786,9 @@ Matches the specific entity 'Karl-Franzens- Universität Graz'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -24810,9 +24810,9 @@ Matches the specific entity 'BKS Steuerberatung GmbH & Co KG'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -24834,9 +24834,9 @@ Matches the specific entity 'Fachhochschule Kärnten'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -24858,9 +24858,9 @@ Matches the specific entity 'Huber Swoboda Oswald Aixberger Rechtsanwälte GmbH'
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -24882,9 +24882,9 @@ Matches 'London Film Academy' and its common typo 'Acadamy', handling double spa
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -24906,9 +24906,9 @@ Matches the genitive form 'Bundeskanzleramtes'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -24930,9 +24930,9 @@ Matches the combined acronym 'SVS/SVB' (Sozialversicherung der Selbständigen / 
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -24954,9 +24954,9 @@ Matches the specific entity 'PSD Wien Ambulatorium Landstraße' with high priori
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -24978,9 +24978,9 @@ Matches 'Sozialversicherungsanstalt der Bauern' and its genitive form 'Sozialver
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -25002,9 +25002,9 @@ Matches 'Sozialversicherung der Bauern' and its genitive form 'Sozialversicherun
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 2 | 0 | 2 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 2 | 0 | 2 | 0 | 2 |
 
 **Per-Class Breakdown**
 
@@ -25067,9 +25067,9 @@ Matches 'PSD Wien'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -25091,9 +25091,9 @@ Matches 'Psychiatrie Otto Wagner Spital' including the hyphenated suffix seen in
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -25115,9 +25115,9 @@ Matches the full name of the ministry, handling the genitive 'Bundesministers' a
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -25139,9 +25139,9 @@ Matches 'Bundesfinanzgericht (BFG)' as a single entity to prevent splitting.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -25163,9 +25163,9 @@ Matches the specific law firm 'Saxinger Chalupsky & Partner Rechtsanwälte GmbH'
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -25187,9 +25187,9 @@ Matches the specific law firm 'Imre & Schaffer Rechtsanwälte OG'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -25211,9 +25211,9 @@ Matches the specific entity 'FA Vorarlberg'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -25235,9 +25235,9 @@ Matches the specific entity 'Finanzamt Klagenfurt St. Veit Wolfsberg'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -25259,9 +25259,9 @@ Matches the specific entity 'Finanzamt Bruck Eisenstadt Oberwart'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -25283,9 +25283,9 @@ Matches the full name with abbreviation in parentheses: 'Wirtschaftsuniversität
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -25307,9 +25307,9 @@ Matches the full name with abbreviation in parentheses: 'Johannes Kepler Univers
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -25331,9 +25331,9 @@ Matches 'Amts für Betrugsbekämpfung' and its genitive form 'Amtes für Betrugs
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 12 | 0 | 12 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 12 | 0 | 12 | 0 | 12 |
 
 **Per-Class Breakdown**
 
@@ -25556,9 +25556,9 @@ Matches 'LG Innsbruck' (Landesgericht Innsbruck acronym).
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -25580,9 +25580,9 @@ Matches 'Landesgericht Innsbruck'.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -25604,9 +25604,9 @@ Matches 'Bezirksgericht Silz' specifically to ensure the location is captured.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -25628,9 +25628,9 @@ Matches the specific entity 'LG für ZRS Wien' (Landesgericht für Zivilrechtssa
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -25652,9 +25652,9 @@ Matches 'Bundesministeriums für Justiz' (genitive) and 'Bundesministerium für 
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -25676,9 +25676,9 @@ Matches 'Hinklein' as an organization name in legal contexts (party names), but 
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -25700,9 +25700,9 @@ Matches company names ending in 'KG', excluding 'Co KG' as a standalone match, e
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -25724,9 +25724,9 @@ Matches 'Amts für Betrugsbekämpfung' and its genitive form 'Amtes für Betrugs
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 12 | 0 | 12 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 12 | 0 | 12 | 0 | 12 |
 
 **Per-Class Breakdown**
 
@@ -25949,9 +25949,9 @@ Matches the specific school entity 'Höhere Lehranstalt für Tourismus, Eventman
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 2 | 0 | 2 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 2 | 0 | 2 | 2 | 0 |
 
 **Per-Class Breakdown**
 
@@ -26015,9 +26015,9 @@ Matches the specific entity 'Paugger Steuerberatung GmbH' to prevent partial mat
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -26039,9 +26039,9 @@ Matches the specific entity 'FA Kirchdorf Perg Steyr' to ensure the full locatio
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -26063,9 +26063,9 @@ Matches the specific entity 'Finanzamt Kirchdorf Perg Steyr' to ensure the full 
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -26087,9 +26087,9 @@ Matches 'Finanzamt Österreich (DST12)' specifically to capture the full entity 
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -26111,9 +26111,9 @@ Matches the specific entity 'B-GmbH' which was missing and causing total misses.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -26135,9 +26135,9 @@ Matches the specific entity 'A-GmbH' which was missing and causing total misses.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -26159,9 +26159,9 @@ Matches the specific entity 'Hausverwaltung-GmbH' which was missing and causing 
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -26183,9 +26183,9 @@ Matches the specific entity 'Mittel Unisyn GMBH' which was missing.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -26207,9 +26207,9 @@ Matches the specific entity 'Ober Lemostnor AG' which was missing.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -26231,9 +26231,9 @@ Matches the specific entity 'Vennes Recycling AG' which was missing.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -26255,9 +26255,9 @@ Matches the specific entity 'Bärs & Walterscheidt Handel GMBH' which was missin
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -26279,9 +26279,9 @@ Matches the specific genitive entity 'Finanzamtes Hollabrunn Korneuburg Tulln' w
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -26303,9 +26303,9 @@ Matches the specific entity 'Unter Donunisee AG' with high priority to ensure it
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -26327,9 +26327,9 @@ Matches the specific entity 'BDO Austria GmbH WP- u. StBges.' which was missing 
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -26351,9 +26351,9 @@ Matches the specific entity 'BFG, Außenstelle Linz' to ensure the full location
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 1 | 0 | 1 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 1 | 0 | 1 | 0 | 1 |
 
 **Per-Class Breakdown**
 
@@ -26403,9 +26403,9 @@ Matches company names ending in KG, with strict context checks. Excludes 'Co KG'
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -26427,9 +26427,9 @@ Matches 'FA Österreich' specifically to ensure it is captured.
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -26451,9 +26451,9 @@ Matches law firms ending in 'Rechtsanwaltskanzlei' or 'Rechtsanwälte' with opti
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -26475,9 +26475,9 @@ Matches 'Sozialversicherung' followed by 'der' and a group (e.g., 'der Bauern', 
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 2 | 0 | 2 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 2 | 0 | 2 | 0 | 2 |
 
 **Per-Class Breakdown**
 
@@ -26540,9 +26540,9 @@ Matches organizations ending in 'Partnerschaft' (e.g., 'Partnerschaft M. Müller
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
@@ -26564,9 +26564,9 @@ Matches 'Landesgericht' followed by a location name to capture unseen state cour
 <details>
 <summary>📊 Detailed Metrics</summary>
 
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
+| Precision | Recall | F1 | Total Predicted | TP | FP | FP partial | FP missing annotation |
+|---|---|---|---|---|---|---|---|
+| 0.000 | 0.000 | 0.000 | 0 | 0 | 0 | 0 | 0 |
 
 </details>
 
