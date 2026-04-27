@@ -1,0 +1,3624 @@
+{
+  "config": {
+    "shots": null,
+    "model": "Qwen/Qwen3.5-35B-A3B",
+    "format": "regex",
+    "max_rules": 20,
+    "max_samples": 50,
+    "max_iterations": 10,
+    "seed": 42,
+    "train_size": 2755,
+    "eval_size": 213,
+    "test_size": 1247,
+    "train_annotations": 2755,
+    "eval_annotations": 213,
+    "test_annotations": 1247,
+    "use_grex": true,
+    "agentic": false,
+    "enable_critic": false,
+    "enable_prune": false,
+    "critic_interval": 0,
+    "audit_interval": 0,
+    "windows": false,
+    "sampling_strategy": "balanced",
+    "train_ratio": 0.8,
+    "pool_size": null,
+    "batch_size": 40,
+    "refine_per_batch": 1,
+    "synthesis_strategy": "bulk",
+    "selected_classes": [
+      "organisation"
+    ],
+    "dataset_name": "findok",
+    "max_counter_examples": 10,
+    "refine_every": 10,
+    "extra_train_dir": "/share/nverdha/data/bfg/final_files/2026-04-23_findok-manually-annotated_TRAIN.conllu",
+    "manually_annotated_size": 1584,
+    "first_manual_batch": 29
+  },
+  "results": {
+    "accuracy": 0.8091419406575782,
+    "micro_precision": 0.43171806167400884,
+    "micro_recall": 0.3828125,
+    "micro_f1": 0.4057971014492754,
+    "macro_f1": 0.4057971014492754,
+    "num_rules": 132,
+    "learning_time_s": 1665.4,
+    "eval_time_s": 0.705,
+    "per_query_ms": 0.57
+  },
+  "per_class": [
+    {
+      "label": "organisation",
+      "precision": 0.43171806167400884,
+      "recall": 0.3828125,
+      "f1": 0.4057971014492754,
+      "tp": 98,
+      "fp": 129,
+      "fn": 158
+    }
+  ],
+  "iteration_metrics": [
+    {
+      "iteration": 1,
+      "num_rules": 6,
+      "exact_match": 0.3568075117370892,
+      "micro_precision": 0.6242424242424243,
+      "micro_recall": 0.44017094017094016,
+      "micro_f1": 0.5162907268170426,
+      "macro_f1": 0.5162907268170426,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.5162907268170426,
+          "precision": 0.6242424242424243,
+          "recall": 0.44017094017094016
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 7,
+      "exact_match": 0.38497652582159625,
+      "micro_precision": 0.6666666666666666,
+      "micro_recall": 0.47863247863247865,
+      "micro_f1": 0.5572139303482587,
+      "macro_f1": 0.5572139303482587,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.5572139303482587,
+          "precision": 0.6666666666666666,
+          "recall": 0.47863247863247865
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 9,
+      "exact_match": 0.14084507042253522,
+      "micro_precision": 0.3964285714285714,
+      "micro_recall": 0.47435897435897434,
+      "micro_f1": 0.4319066147859921,
+      "macro_f1": 0.4319066147859921,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.4319066147859921,
+          "precision": 0.3964285714285714,
+          "recall": 0.47435897435897434
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 21,
+      "exact_match": 0.08450704225352113,
+      "micro_precision": 0.379746835443038,
+      "micro_recall": 0.38461538461538464,
+      "micro_f1": 0.3821656050955415,
+      "macro_f1": 0.3821656050955415,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.3821656050955415,
+          "precision": 0.379746835443038,
+          "recall": 0.38461538461538464
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 42,
+      "exact_match": 0.13615023474178403,
+      "micro_precision": 0.36619718309859156,
+      "micro_recall": 0.4444444444444444,
+      "micro_f1": 0.4015444015444016,
+      "macro_f1": 0.4015444015444016,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.4015444015444016,
+          "precision": 0.36619718309859156,
+          "recall": 0.4444444444444444
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 93,
+      "exact_match": 0.1784037558685446,
+      "micro_precision": 0.39932885906040266,
+      "micro_recall": 0.5085470085470085,
+      "micro_f1": 0.4473684210526315,
+      "macro_f1": 0.4473684210526315,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.4473684210526315,
+          "precision": 0.39932885906040266,
+          "recall": 0.5085470085470085
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 132,
+      "exact_match": 0.2112676056338028,
+      "micro_precision": 0.431438127090301,
+      "micro_recall": 0.5512820512820513,
+      "micro_f1": 0.4840525328330207,
+      "macro_f1": 0.4840525328330207,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.4840525328330207,
+          "precision": 0.431438127090301,
+          "recall": 0.5512820512820513
+        }
+      ]
+    },
+    {
+      "iteration": 2,
+      "num_rules": 129,
+      "exact_match": 0.3568075117370892,
+      "micro_precision": 0.6558441558441559,
+      "micro_recall": 0.43162393162393164,
+      "micro_f1": 0.5206185567010309,
+      "macro_f1": 0.5206185567010309,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.5206185567010309,
+          "precision": 0.6558441558441559,
+          "recall": 0.43162393162393164
+        }
+      ]
+    },
+    {
+      "iteration": 3,
+      "num_rules": 129,
+      "exact_match": 0.431924882629108,
+      "micro_precision": 0.6949152542372882,
+      "micro_recall": 0.5256410256410257,
+      "micro_f1": 0.5985401459854015,
+      "macro_f1": 0.5985401459854015,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.5985401459854015,
+          "precision": 0.6949152542372882,
+          "recall": 0.5256410256410257
+        }
+      ]
+    }
+  ],
+  "batch_test_metrics": [
+    {
+      "batch": 1,
+      "num_rules": 4,
+      "exact_match": 0.8508420208500401,
+      "micro_f1": 0.030534351145038167,
+      "micro_precision": 0.6666666666666666,
+      "micro_recall": 0.015625,
+      "macro_f1": 0.030534351145038167,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.030534351145038167,
+          "precision": 0.6666666666666666,
+          "recall": 0.015625
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": false
+    },
+    {
+      "batch": 2,
+      "num_rules": 4,
+      "exact_match": 0.8508420208500401,
+      "micro_f1": 0.030534351145038167,
+      "micro_precision": 0.6666666666666666,
+      "micro_recall": 0.015625,
+      "macro_f1": 0.030534351145038167,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.030534351145038167,
+          "precision": 0.6666666666666666,
+          "recall": 0.015625
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": false
+    },
+    {
+      "batch": 3,
+      "num_rules": 4,
+      "exact_match": 0.8508420208500401,
+      "micro_f1": 0.03816793893129771,
+      "micro_precision": 0.8333333333333334,
+      "micro_recall": 0.01953125,
+      "macro_f1": 0.03816793893129771,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.03816793893129771,
+          "precision": 0.8333333333333334,
+          "recall": 0.01953125
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": false
+    },
+    {
+      "batch": 4,
+      "num_rules": 5,
+      "exact_match": 0.8524458700882117,
+      "micro_f1": 0.06037735849056604,
+      "micro_precision": 0.8888888888888888,
+      "micro_recall": 0.03125,
+      "macro_f1": 0.06037735849056604,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.06037735849056604,
+          "precision": 0.8888888888888888,
+          "recall": 0.03125
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": false
+    },
+    {
+      "batch": 5,
+      "num_rules": 6,
+      "exact_match": 0.8211708099438653,
+      "micro_f1": 0.029850746268656716,
+      "micro_precision": 0.06329113924050633,
+      "micro_recall": 0.01953125,
+      "macro_f1": 0.029850746268656716,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.029850746268656716,
+          "precision": 0.06329113924050633,
+          "recall": 0.01953125
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": false
+    },
+    {
+      "batch": 6,
+      "num_rules": 5,
+      "exact_match": 0.8380112269446672,
+      "micro_f1": 0.02857142857142857,
+      "micro_precision": 0.16666666666666666,
+      "micro_recall": 0.015625,
+      "macro_f1": 0.02857142857142857,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.02857142857142857,
+          "precision": 0.16666666666666666,
+          "recall": 0.015625
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": false
+    },
+    {
+      "batch": 7,
+      "num_rules": 5,
+      "exact_match": 0.8380112269446672,
+      "micro_f1": 0.02857142857142857,
+      "micro_precision": 0.16666666666666666,
+      "micro_recall": 0.015625,
+      "macro_f1": 0.02857142857142857,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.02857142857142857,
+          "precision": 0.16666666666666666,
+          "recall": 0.015625
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": false
+    },
+    {
+      "batch": 8,
+      "num_rules": 5,
+      "exact_match": 0.8380112269446672,
+      "micro_f1": 0.02857142857142857,
+      "micro_precision": 0.16666666666666666,
+      "micro_recall": 0.015625,
+      "macro_f1": 0.02857142857142857,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.02857142857142857,
+          "precision": 0.16666666666666666,
+          "recall": 0.015625
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": false
+    },
+    {
+      "batch": 9,
+      "num_rules": 5,
+      "exact_match": 0.8380112269446672,
+      "micro_f1": 0.02857142857142857,
+      "micro_precision": 0.16666666666666666,
+      "micro_recall": 0.015625,
+      "macro_f1": 0.02857142857142857,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.02857142857142857,
+          "precision": 0.16666666666666666,
+          "recall": 0.015625
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": false
+    },
+    {
+      "batch": 10,
+      "num_rules": 6,
+      "exact_match": 0.8364073777064955,
+      "micro_f1": 0.027491408934707907,
+      "micro_precision": 0.11428571428571428,
+      "micro_recall": 0.015625,
+      "macro_f1": 0.027491408934707907,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.027491408934707907,
+          "precision": 0.11428571428571428,
+          "recall": 0.015625
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": false
+    },
+    {
+      "batch": 11,
+      "num_rules": 6,
+      "exact_match": 0.8364073777064955,
+      "micro_f1": 0.027491408934707907,
+      "micro_precision": 0.11428571428571428,
+      "micro_recall": 0.015625,
+      "macro_f1": 0.027491408934707907,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.027491408934707907,
+          "precision": 0.11428571428571428,
+          "recall": 0.015625
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": false
+    },
+    {
+      "batch": 12,
+      "num_rules": 6,
+      "exact_match": 0.8364073777064955,
+      "micro_f1": 0.027491408934707907,
+      "micro_precision": 0.11428571428571428,
+      "micro_recall": 0.015625,
+      "macro_f1": 0.027491408934707907,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.027491408934707907,
+          "precision": 0.11428571428571428,
+          "recall": 0.015625
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": false
+    },
+    {
+      "batch": 13,
+      "num_rules": 6,
+      "exact_match": 0.8364073777064955,
+      "micro_f1": 0.027491408934707907,
+      "micro_precision": 0.11428571428571428,
+      "micro_recall": 0.015625,
+      "macro_f1": 0.027491408934707907,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.027491408934707907,
+          "precision": 0.11428571428571428,
+          "recall": 0.015625
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": false
+    },
+    {
+      "batch": 14,
+      "num_rules": 6,
+      "exact_match": 0.8364073777064955,
+      "micro_f1": 0.027491408934707907,
+      "micro_precision": 0.11428571428571428,
+      "micro_recall": 0.015625,
+      "macro_f1": 0.027491408934707907,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.027491408934707907,
+          "precision": 0.11428571428571428,
+          "recall": 0.015625
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": false
+    },
+    {
+      "batch": 15,
+      "num_rules": 6,
+      "exact_match": 0.8364073777064955,
+      "micro_f1": 0.027491408934707907,
+      "micro_precision": 0.11428571428571428,
+      "micro_recall": 0.015625,
+      "macro_f1": 0.027491408934707907,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.027491408934707907,
+          "precision": 0.11428571428571428,
+          "recall": 0.015625
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": false
+    },
+    {
+      "batch": 16,
+      "num_rules": 7,
+      "exact_match": 0.8364073777064955,
+      "micro_f1": 0.027491408934707907,
+      "micro_precision": 0.11428571428571428,
+      "micro_recall": 0.015625,
+      "macro_f1": 0.027491408934707907,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.027491408934707907,
+          "precision": 0.11428571428571428,
+          "recall": 0.015625
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": false
+    },
+    {
+      "batch": 17,
+      "num_rules": 7,
+      "exact_match": 0.8364073777064955,
+      "micro_f1": 0.027491408934707907,
+      "micro_precision": 0.11428571428571428,
+      "micro_recall": 0.015625,
+      "macro_f1": 0.027491408934707907,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.027491408934707907,
+          "precision": 0.11428571428571428,
+          "recall": 0.015625
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": false
+    },
+    {
+      "batch": 18,
+      "num_rules": 7,
+      "exact_match": 0.8364073777064955,
+      "micro_f1": 0.027491408934707907,
+      "micro_precision": 0.11428571428571428,
+      "micro_recall": 0.015625,
+      "macro_f1": 0.027491408934707907,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.027491408934707907,
+          "precision": 0.11428571428571428,
+          "recall": 0.015625
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": false
+    },
+    {
+      "batch": 19,
+      "num_rules": 8,
+      "exact_match": 0.8364073777064955,
+      "micro_f1": 0.020618556701030924,
+      "micro_precision": 0.08571428571428572,
+      "micro_recall": 0.01171875,
+      "macro_f1": 0.020618556701030924,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.020618556701030924,
+          "precision": 0.08571428571428572,
+          "recall": 0.01171875
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": false
+    },
+    {
+      "batch": 20,
+      "num_rules": 7,
+      "exact_match": 0.8364073777064955,
+      "micro_f1": 0.027491408934707907,
+      "micro_precision": 0.11428571428571428,
+      "micro_recall": 0.015625,
+      "macro_f1": 0.027491408934707907,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.027491408934707907,
+          "precision": 0.11428571428571428,
+          "recall": 0.015625
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": false
+    },
+    {
+      "batch": 21,
+      "num_rules": 6,
+      "exact_match": 0.8364073777064955,
+      "micro_f1": 0.027491408934707907,
+      "micro_precision": 0.11428571428571428,
+      "micro_recall": 0.015625,
+      "macro_f1": 0.027491408934707907,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.027491408934707907,
+          "precision": 0.11428571428571428,
+          "recall": 0.015625
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": false
+    },
+    {
+      "batch": 22,
+      "num_rules": 6,
+      "exact_match": 0.8364073777064955,
+      "micro_f1": 0.027491408934707907,
+      "micro_precision": 0.11428571428571428,
+      "micro_recall": 0.015625,
+      "macro_f1": 0.027491408934707907,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.027491408934707907,
+          "precision": 0.11428571428571428,
+          "recall": 0.015625
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": false
+    },
+    {
+      "batch": 23,
+      "num_rules": 6,
+      "exact_match": 0.8364073777064955,
+      "micro_f1": 0.027491408934707907,
+      "micro_precision": 0.11428571428571428,
+      "micro_recall": 0.015625,
+      "macro_f1": 0.027491408934707907,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.027491408934707907,
+          "precision": 0.11428571428571428,
+          "recall": 0.015625
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": false
+    },
+    {
+      "batch": 24,
+      "num_rules": 6,
+      "exact_match": 0.8476343223736968,
+      "micro_f1": 0.028985507246376812,
+      "micro_precision": 0.2,
+      "micro_recall": 0.015625,
+      "macro_f1": 0.028985507246376812,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.028985507246376812,
+          "precision": 0.2,
+          "recall": 0.015625
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": false
+    },
+    {
+      "batch": 25,
+      "num_rules": 7,
+      "exact_match": 0.8484362469927826,
+      "micro_f1": 0.036101083032490974,
+      "micro_precision": 0.23809523809523808,
+      "micro_recall": 0.01953125,
+      "macro_f1": 0.036101083032490974,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.036101083032490974,
+          "precision": 0.23809523809523808,
+          "recall": 0.01953125
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": false
+    },
+    {
+      "batch": 26,
+      "num_rules": 7,
+      "exact_match": 0.8484362469927826,
+      "micro_f1": 0.036101083032490974,
+      "micro_precision": 0.23809523809523808,
+      "micro_recall": 0.01953125,
+      "macro_f1": 0.036101083032490974,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.036101083032490974,
+          "precision": 0.23809523809523808,
+          "recall": 0.01953125
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": false
+    },
+    {
+      "batch": 27,
+      "num_rules": 7,
+      "exact_match": 0.8484362469927826,
+      "micro_f1": 0.036101083032490974,
+      "micro_precision": 0.23809523809523808,
+      "micro_recall": 0.01953125,
+      "macro_f1": 0.036101083032490974,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.036101083032490974,
+          "precision": 0.23809523809523808,
+          "recall": 0.01953125
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": false
+    },
+    {
+      "batch": 28,
+      "num_rules": 8,
+      "exact_match": 0.8484362469927826,
+      "micro_f1": 0.036101083032490974,
+      "micro_precision": 0.23809523809523808,
+      "micro_recall": 0.01953125,
+      "macro_f1": 0.036101083032490974,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.036101083032490974,
+          "precision": 0.23809523809523808,
+          "recall": 0.01953125
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": false
+    },
+    {
+      "batch": 29,
+      "num_rules": 8,
+      "exact_match": 0.8460304731355253,
+      "micro_f1": 0.5423728813559322,
+      "micro_precision": 0.5236363636363637,
+      "micro_recall": 0.5625,
+      "macro_f1": 0.5423728813559322,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.5423728813559322,
+          "precision": 0.5236363636363637,
+          "recall": 0.5625
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": true
+    },
+    {
+      "batch": 30,
+      "num_rules": 10,
+      "exact_match": 0.8500400962309543,
+      "micro_f1": 0.09027777777777778,
+      "micro_precision": 0.40625,
+      "micro_recall": 0.05078125,
+      "macro_f1": 0.09027777777777778,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.09027777777777778,
+          "precision": 0.40625,
+          "recall": 0.05078125
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": true
+    },
+    {
+      "batch": 31,
+      "num_rules": 10,
+      "exact_match": 0.9230152365677626,
+      "micro_f1": 0.6993006993006994,
+      "micro_precision": 0.8670520231213873,
+      "micro_recall": 0.5859375,
+      "macro_f1": 0.6993006993006994,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.6993006993006994,
+          "precision": 0.8670520231213873,
+          "recall": 0.5859375
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": true
+    },
+    {
+      "batch": 32,
+      "num_rules": 10,
+      "exact_match": 0.8524458700882117,
+      "micro_f1": 0.584070796460177,
+      "micro_precision": 0.5339805825242718,
+      "micro_recall": 0.64453125,
+      "macro_f1": 0.584070796460177,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.584070796460177,
+          "precision": 0.5339805825242718,
+          "recall": 0.64453125
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": true
+    },
+    {
+      "batch": 33,
+      "num_rules": 10,
+      "exact_match": 0.8492381716118684,
+      "micro_f1": 0.5764499121265377,
+      "micro_precision": 0.5239616613418531,
+      "micro_recall": 0.640625,
+      "macro_f1": 0.5764499121265377,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.5764499121265377,
+          "precision": 0.5239616613418531,
+          "recall": 0.640625
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": true
+    },
+    {
+      "batch": 34,
+      "num_rules": 10,
+      "exact_match": 0.8500400962309543,
+      "micro_f1": 0.5784832451499117,
+      "micro_precision": 0.5273311897106109,
+      "micro_recall": 0.640625,
+      "macro_f1": 0.5784832451499117,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.5784832451499117,
+          "precision": 0.5273311897106109,
+          "recall": 0.640625
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": true
+    },
+    {
+      "batch": 35,
+      "num_rules": 10,
+      "exact_match": 0.8500400962309543,
+      "micro_f1": 0.5784832451499117,
+      "micro_precision": 0.5273311897106109,
+      "micro_recall": 0.640625,
+      "macro_f1": 0.5784832451499117,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.5784832451499117,
+          "precision": 0.5273311897106109,
+          "recall": 0.640625
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": true
+    },
+    {
+      "batch": 36,
+      "num_rules": 10,
+      "exact_match": 0.8492381716118684,
+      "micro_f1": 0.5764499121265377,
+      "micro_precision": 0.5239616613418531,
+      "micro_recall": 0.640625,
+      "macro_f1": 0.5764499121265377,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.5764499121265377,
+          "precision": 0.5239616613418531,
+          "recall": 0.640625
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": true
+    },
+    {
+      "batch": 37,
+      "num_rules": 11,
+      "exact_match": 0.8484362469927826,
+      "micro_f1": 0.5759717314487632,
+      "micro_precision": 0.5258064516129032,
+      "micro_recall": 0.63671875,
+      "macro_f1": 0.5759717314487632,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.5759717314487632,
+          "precision": 0.5258064516129032,
+          "recall": 0.63671875
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": true
+    },
+    {
+      "batch": 38,
+      "num_rules": 14,
+      "exact_match": 0.8532477947072975,
+      "micro_f1": 0.5909090909090909,
+      "micro_precision": 0.5348101265822784,
+      "micro_recall": 0.66015625,
+      "macro_f1": 0.5909090909090909,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.5909090909090909,
+          "precision": 0.5348101265822784,
+          "recall": 0.66015625
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": true
+    },
+    {
+      "batch": 39,
+      "num_rules": 16,
+      "exact_match": 0.8532477947072975,
+      "micro_f1": 0.5909090909090909,
+      "micro_precision": 0.5348101265822784,
+      "micro_recall": 0.66015625,
+      "macro_f1": 0.5909090909090909,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.5909090909090909,
+          "precision": 0.5348101265822784,
+          "recall": 0.66015625
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": true
+    },
+    {
+      "batch": 40,
+      "num_rules": 21,
+      "exact_match": 0.8548516439454691,
+      "micro_f1": 0.5982608695652174,
+      "micro_precision": 0.5391849529780565,
+      "micro_recall": 0.671875,
+      "macro_f1": 0.5982608695652174,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.5982608695652174,
+          "precision": 0.5391849529780565,
+          "recall": 0.671875
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": true
+    },
+    {
+      "batch": 41,
+      "num_rules": 21,
+      "exact_match": 0.8548516439454691,
+      "micro_f1": 0.5982608695652174,
+      "micro_precision": 0.5391849529780565,
+      "micro_recall": 0.671875,
+      "macro_f1": 0.5982608695652174,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.5982608695652174,
+          "precision": 0.5391849529780565,
+          "recall": 0.671875
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": true
+    },
+    {
+      "batch": 42,
+      "num_rules": 28,
+      "exact_match": 0.8548516439454691,
+      "micro_f1": 0.5982608695652174,
+      "micro_precision": 0.5391849529780565,
+      "micro_recall": 0.671875,
+      "macro_f1": 0.5982608695652174,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.5982608695652174,
+          "precision": 0.5391849529780565,
+          "recall": 0.671875
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": true
+    },
+    {
+      "batch": 43,
+      "num_rules": 32,
+      "exact_match": 0.8548516439454691,
+      "micro_f1": 0.5982608695652174,
+      "micro_precision": 0.5391849529780565,
+      "micro_recall": 0.671875,
+      "macro_f1": 0.5982608695652174,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.5982608695652174,
+          "precision": 0.5391849529780565,
+          "recall": 0.671875
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": true
+    },
+    {
+      "batch": 44,
+      "num_rules": 31,
+      "exact_match": 0.8580593424218124,
+      "micro_f1": 0.6074600355239786,
+      "micro_precision": 0.5570032573289903,
+      "micro_recall": 0.66796875,
+      "macro_f1": 0.6074600355239786,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.6074600355239786,
+          "precision": 0.5570032573289903,
+          "recall": 0.66796875
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": true
+    },
+    {
+      "batch": 45,
+      "num_rules": 31,
+      "exact_match": 0.8580593424218124,
+      "micro_f1": 0.6151142355008788,
+      "micro_precision": 0.5591054313099042,
+      "micro_recall": 0.68359375,
+      "macro_f1": 0.6151142355008788,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.6151142355008788,
+          "precision": 0.5591054313099042,
+          "recall": 0.68359375
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": true
+    },
+    {
+      "batch": 46,
+      "num_rules": 33,
+      "exact_match": 0.8564554931836408,
+      "micro_f1": 0.6102292768959435,
+      "micro_precision": 0.5562700964630225,
+      "micro_recall": 0.67578125,
+      "macro_f1": 0.6102292768959435,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.6102292768959435,
+          "precision": 0.5562700964630225,
+          "recall": 0.67578125
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": true
+    },
+    {
+      "batch": 47,
+      "num_rules": 33,
+      "exact_match": 0.8564554931836408,
+      "micro_f1": 0.6102292768959435,
+      "micro_precision": 0.5562700964630225,
+      "micro_recall": 0.67578125,
+      "macro_f1": 0.6102292768959435,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.6102292768959435,
+          "precision": 0.5562700964630225,
+          "recall": 0.67578125
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": true
+    },
+    {
+      "batch": 48,
+      "num_rules": 34,
+      "exact_match": 0.8548516439454691,
+      "micro_f1": 0.6003552397868561,
+      "micro_precision": 0.5504885993485342,
+      "micro_recall": 0.66015625,
+      "macro_f1": 0.6003552397868561,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.6003552397868561,
+          "precision": 0.5504885993485342,
+          "recall": 0.66015625
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": true
+    },
+    {
+      "batch": 49,
+      "num_rules": 39,
+      "exact_match": 0.8532477947072975,
+      "micro_f1": 0.5878136200716845,
+      "micro_precision": 0.543046357615894,
+      "micro_recall": 0.640625,
+      "macro_f1": 0.5878136200716845,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.5878136200716845,
+          "precision": 0.543046357615894,
+          "recall": 0.640625
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": true
+    },
+    {
+      "batch": 50,
+      "num_rules": 42,
+      "exact_match": 0.8797113071371291,
+      "micro_f1": 0.41791044776119407,
+      "micro_precision": 0.8860759493670886,
+      "micro_recall": 0.2734375,
+      "macro_f1": 0.41791044776119407,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.41791044776119407,
+          "precision": 0.8860759493670886,
+          "recall": 0.2734375
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": true
+    },
+    {
+      "batch": 51,
+      "num_rules": 54,
+      "exact_match": 0.8524458700882117,
+      "micro_f1": 0.5708884688090737,
+      "micro_precision": 0.5531135531135531,
+      "micro_recall": 0.58984375,
+      "macro_f1": 0.5708884688090737,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.5708884688090737,
+          "precision": 0.5531135531135531,
+          "recall": 0.58984375
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": true
+    },
+    {
+      "batch": 52,
+      "num_rules": 59,
+      "exact_match": 0.8564554931836408,
+      "micro_f1": 0.6007067137809187,
+      "micro_precision": 0.5483870967741935,
+      "micro_recall": 0.6640625,
+      "macro_f1": 0.6007067137809187,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.6007067137809187,
+          "precision": 0.5483870967741935,
+          "recall": 0.6640625
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": true
+    },
+    {
+      "batch": 53,
+      "num_rules": 62,
+      "exact_match": 0.8572574178027266,
+      "micro_f1": 0.6031746031746031,
+      "micro_precision": 0.5498392282958199,
+      "micro_recall": 0.66796875,
+      "macro_f1": 0.6031746031746031,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.6031746031746031,
+          "precision": 0.5498392282958199,
+          "recall": 0.66796875
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": true
+    },
+    {
+      "batch": 54,
+      "num_rules": 65,
+      "exact_match": 0.8572574178027266,
+      "micro_f1": 0.6059544658493871,
+      "micro_precision": 0.5492063492063493,
+      "micro_recall": 0.67578125,
+      "macro_f1": 0.6059544658493871,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.6059544658493871,
+          "precision": 0.5492063492063493,
+          "recall": 0.67578125
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": true
+    },
+    {
+      "batch": 55,
+      "num_rules": 73,
+      "exact_match": 0.8564554931836408,
+      "micro_f1": 0.604895104895105,
+      "micro_precision": 0.5474683544303798,
+      "micro_recall": 0.67578125,
+      "macro_f1": 0.604895104895105,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.604895104895105,
+          "precision": 0.5474683544303798,
+          "recall": 0.67578125
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": true
+    },
+    {
+      "batch": 56,
+      "num_rules": 74,
+      "exact_match": 0.8564554931836408,
+      "micro_f1": 0.604895104895105,
+      "micro_precision": 0.5474683544303798,
+      "micro_recall": 0.67578125,
+      "macro_f1": 0.604895104895105,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.604895104895105,
+          "precision": 0.5474683544303798,
+          "recall": 0.67578125
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": true
+    },
+    {
+      "batch": 57,
+      "num_rules": 83,
+      "exact_match": 0.8564554931836408,
+      "micro_f1": 0.604895104895105,
+      "micro_precision": 0.5474683544303798,
+      "micro_recall": 0.67578125,
+      "macro_f1": 0.604895104895105,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.604895104895105,
+          "precision": 0.5474683544303798,
+          "recall": 0.67578125
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": true
+    },
+    {
+      "batch": 58,
+      "num_rules": 86,
+      "exact_match": 0.8580593424218124,
+      "micro_f1": 0.6097560975609756,
+      "micro_precision": 0.550314465408805,
+      "micro_recall": 0.68359375,
+      "macro_f1": 0.6097560975609756,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.6097560975609756,
+          "precision": 0.550314465408805,
+          "recall": 0.68359375
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": true
+    },
+    {
+      "batch": 59,
+      "num_rules": 89,
+      "exact_match": 0.8580593424218124,
+      "micro_f1": 0.6097560975609756,
+      "micro_precision": 0.550314465408805,
+      "micro_recall": 0.68359375,
+      "macro_f1": 0.6097560975609756,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.6097560975609756,
+          "precision": 0.550314465408805,
+          "recall": 0.68359375
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": true
+    },
+    {
+      "batch": 60,
+      "num_rules": 94,
+      "exact_match": 0.8516439454691259,
+      "micro_f1": 0.5843920145190561,
+      "micro_precision": 0.5457627118644067,
+      "micro_recall": 0.62890625,
+      "macro_f1": 0.5843920145190561,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.5843920145190561,
+          "precision": 0.5457627118644067,
+          "recall": 0.62890625
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": true
+    },
+    {
+      "batch": 61,
+      "num_rules": 98,
+      "exact_match": 0.8588612670408982,
+      "micro_f1": 0.6121739130434782,
+      "micro_precision": 0.5517241379310345,
+      "micro_recall": 0.6875,
+      "macro_f1": 0.6121739130434782,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.6121739130434782,
+          "precision": 0.5517241379310345,
+          "recall": 0.6875
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": true
+    },
+    {
+      "batch": 62,
+      "num_rules": 109,
+      "exact_match": 0.859663191659984,
+      "micro_f1": 0.6145833333333333,
+      "micro_precision": 0.553125,
+      "micro_recall": 0.69140625,
+      "macro_f1": 0.6145833333333333,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.6145833333333333,
+          "precision": 0.553125,
+          "recall": 0.69140625
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": true
+    },
+    {
+      "batch": 63,
+      "num_rules": 116,
+      "exact_match": 0.859663191659984,
+      "micro_f1": 0.6145833333333333,
+      "micro_precision": 0.553125,
+      "micro_recall": 0.69140625,
+      "macro_f1": 0.6145833333333333,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.6145833333333333,
+          "precision": 0.553125,
+          "recall": 0.69140625
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": true
+    },
+    {
+      "batch": 64,
+      "num_rules": 118,
+      "exact_match": 0.8235765838011226,
+      "micro_f1": 0.4624277456647399,
+      "micro_precision": 0.45627376425855515,
+      "micro_recall": 0.46875,
+      "macro_f1": 0.4624277456647399,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.4624277456647399,
+          "precision": 0.45627376425855515,
+          "recall": 0.46875
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": true
+    },
+    {
+      "batch": 65,
+      "num_rules": 122,
+      "exact_match": 0.8604651162790697,
+      "micro_f1": 0.618881118881119,
+      "micro_precision": 0.560126582278481,
+      "micro_recall": 0.69140625,
+      "macro_f1": 0.618881118881119,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.618881118881119,
+          "precision": 0.560126582278481,
+          "recall": 0.69140625
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": true
+    },
+    {
+      "batch": 66,
+      "num_rules": 127,
+      "exact_match": 0.8620689655172413,
+      "micro_f1": 0.6273830155979202,
+      "micro_precision": 0.5638629283489096,
+      "micro_recall": 0.70703125,
+      "macro_f1": 0.6273830155979202,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.6273830155979202,
+          "precision": 0.5638629283489096,
+          "recall": 0.70703125
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": true
+    },
+    {
+      "batch": 67,
+      "num_rules": 131,
+      "exact_match": 0.8620689655172413,
+      "micro_f1": 0.6308492201039861,
+      "micro_precision": 0.5669781931464174,
+      "micro_recall": 0.7109375,
+      "macro_f1": 0.6308492201039861,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.6308492201039861,
+          "precision": 0.5669781931464174,
+          "recall": 0.7109375
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": true
+    },
+    {
+      "batch": 68,
+      "num_rules": 132,
+      "exact_match": 0.8620689655172413,
+      "micro_f1": 0.6308492201039861,
+      "micro_precision": 0.5669781931464174,
+      "micro_recall": 0.7109375,
+      "macro_f1": 0.6308492201039861,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.6308492201039861,
+          "precision": 0.5669781931464174,
+          "recall": 0.7109375
+        }
+      ],
+      "train_manually_anno": 1584,
+      "includes_manual_anno": true
+    }
+  ],
+  "rules": [
+    {
+      "id": "061c93e2",
+      "name": "Finanzamt Full Names",
+      "description": "Matches 'Finanzamt' followed by complex location names, specifically handling 'St. Johann Tamsweg Zell am See', 'Klagenfurt St. Veit Wolfsberg', 'Braunau Ried Sch\u00e4rding', 'Gmunden V\u00f6cklabruck', 'Landeck Reutte', 'Vorarlberg', 'Wien 8/16/17', 'Kirchdorf Perg Steyr', 'Steiermark Mitte', 'Spittal Villach', 'Purkersdorf', 'Linz', etc., and newly added: 'Bruck Eisenstadt Oberwart', 'Baden M\u00f6dling', 'Salzburg-Stadt', 'Schwechat Gerasdorf', 'Oststeiermark'.",
+      "format": "regex",
+      "content": "\\bFinanzamt\\s+(?:(?:St\\.\\s+Johann\\s+Tamsweg\\s+Zell\\s+am\\s+See|Klagenfurt\\s+St\\.\\s+Veit\\s+Wolfsberg|Braunau\\s+Ried\\s+Sch\\u00e4rding|Gmunden\\s+V\\u00f6cklabruck|Landeck\\s+Reutte|Vorarlberg|Wien\\s+8/16/17|Kirchdorf\\s+Perg\\s+Steyr|Steiermark\\s+Mitte|Spittal\\s+Villach|Purkersdorf|Linz|Neunkirchen\\s+Wr\\.\\s+Neustadt|Grieskirchen\\s+Wels|St\\.\\s+Johann\\s+Tamsweg\\s+Zell\\s+am\\s+See|Bruck\\s+Eisenstadt\\s+Oberwart|Baden\\s+M\\u00f6dling|Salzburg-Stadt|Schwechat\\s+Gerasdorf|Oststeiermark))\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:10:46.491908"
+    },
+    {
+      "id": "909f8ace",
+      "name": "FA Abbreviations",
+      "description": "Matches 'FA' followed by complex location names, specifically handling 'Wien 8/16/17', 'Kirchdorf Perg Steyr', 'Steiermark Mitte', 'Spittal Villach', 'Gmunden V\u00f6cklabruck', 'Landeck Reutte', 'Vorarlberg', 'St. Johann Tamsweg Zell am See', 'Klagenfurt St. Veit Wolfsberg', 'Braunau Ried Sch\u00e4r ding', 'Purkersdorf', 'Linz', etc., and newly added: 'Nieder\u00f6sterreich Mitte', 'Tirol Ost', 'Freistadt Rohrbach Urfahr', 'Linz', 'Graz-Stadt'.",
+      "format": "regex",
+      "content": "\\bFA\\s+(?:(?:Steiermark\\s+Mitte|Vorarlberg|Gmunden\\s+V\\u00f6cklabruck|Landeck\\s+Reutte|Wien\\s+8/16/17|Kirchdorf\\s+Perg\\s+Steyr|Spittal\\s+Villach|Purkersdorf|Linz|Neunkirchen\\s+Wr\\.\\s+Neustadt|St\\.\\s+Johann\\s+Tamsweg\\s+Zell\\s+am\\s+See|Klagenfurt\\s+St\\.\\s+Veit\\s+Wolfsberg|Braunau\\s+Ried\\s+Sch\\u00e4rding|Nieder\\u00f6sterreich\\s+Mitte|Tirol\\s+Ost|Freistadt\\s+Rohrbach\\s+Urfahr|Graz-Stadt))\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:11:22.686111"
+    },
+    {
+      "id": "19b462ee",
+      "name": "Raiffeisenkasse Names",
+      "description": "Matches 'Raiffeisenkasse' followed by a location name, including hyphenated locations like 'Retz-Pulkautal'.",
+      "format": "regex",
+      "content": "\\bRaiffeisenkasse\\s+([A-Z][a-zA-Z\\u00e4\\u00f6\\u00fc\\u00c4\\u00d6\\u00dc\\u00df]+(?:\\s+-\\s+[A-Z][a-zA-Z\\u00e4\\u00f6\\u00fc\\u00c4\\u00d6\\u00dc\\u00df]+)*)\\b",
+      "priority": 7,
+      "output_template": {
+        "text": "Raiffeisenkasse $1",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T08:59:24.974437"
+    },
+    {
+      "id": "b0f2809b",
+      "name": "Court Names General",
+      "description": "Matches 'Bezirksgericht', 'Landesgericht', 'LG', 'BG' followed by location names, including 'f\u00fcr ZRS' variations.",
+      "format": "regex",
+      "content": "\\b(?:Bezirksgericht|Landesgericht|BG|LG)\\s+(?:f\u00fcr\\s+ZRS\\s+)?([A-Z][a-zA-Z\\u00e4\\u00f6\\u00fc\\u00c4\\u00d6\\u00dc\\u00df]+(?:\\s+[A-Z][a-zA-Z\\u00e4\\u00f6\\u00fc\\u00c4\\u00d6\\u00dc\\u00df]+)*)\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:05:03.082019"
+    },
+    {
+      "id": "be567a7b",
+      "name": "WWW FA Grieskirchen Wels",
+      "description": "Matches the specific known entity 'www.FA Grieskirchen Wels' including the www. prefix.",
+      "format": "regex",
+      "content": "\\bwww\\.FA\\s+Grieskirchen\\s+Wels\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T08:59:24.974461"
+    },
+    {
+      "id": "501a47ae",
+      "name": "Raiffeisenbank Names",
+      "description": "Matches 'Raiffeisenbank' followed by location names, explicitly handling the long form 'Karnische Rion Bankstelle St.Stefan' and other complex multi-word locations.",
+      "format": "regex",
+      "content": "\\bRaiffeisenbank\\s+(?:Karnische\\s+Rion\\s+Bankstelle\\s+St\\.Stefan|[A-Z][a-zA-Z\\u00e4\\u00f6\\u00fc\\u00c4\\u00d6\\u00dc\\u00df]+(?:\\s+[A-Z][a-zA-Z\\u00e4\\u00f6\\u00fc\\u00c4\\u00d6\\u00dc\\u00df]+)*(?:\\s+S\\u00fcd)?(?:\\s+-\\s+[A-Z][a-zA-Z\\u00e4\\u00f6\\u00fc\\u00c4\\u00d6\\u00dc\\u00df]+)*)\\b",
+      "priority": 7,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:07:02.302944"
+    },
+    {
+      "id": "b4faaa1b",
+      "name": "FA Wien 1/23",
+      "description": "Matches the specific abbreviation 'FA Wien 1/23' which was missed by the generic FA rule.",
+      "format": "regex",
+      "content": "\\bFA\\s+Wien\\s+1/23\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:01:27.510722"
+    },
+    {
+      "id": "fa043821",
+      "name": "Landespolizeidirektion Wien",
+      "description": "Matches the specific organization 'Landespolizeidirektion Wien'.",
+      "format": "regex",
+      "content": "\\bLandespolizeidirektion\\s+Wien\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:01:42.377868"
+    },
+    {
+      "id": "c26c0c1b",
+      "name": "Amazon Transport GmbH",
+      "description": "Matches 'Amazon Transport GmbH' including cases with double spaces.",
+      "format": "regex",
+      "content": "\\bAmazon\\s+Transport\\s+GmbH\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:01:42.377914"
+    },
+    {
+      "id": "93bb780b",
+      "name": "Post Aktiengesellschaft",
+      "description": "Matches '\u00d6sterreichischen Post Aktiengesellschaft' and similar post company names.",
+      "format": "regex",
+      "content": "\\b(?:\\u00d6sterreichischen\\s+Post|Telekom\\s+Austria)\\s+Aktiengesellschaft\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:01:42.377970"
+    },
+    {
+      "id": "9a1a76ba",
+      "name": "Insurance Companies",
+      "description": "Matches specific insurance company names found in training data, including genitive forms and full names.",
+      "format": "regex",
+      "content": "\\b(?:Wiener\\s+St\\u00e4dtische(?:n)?(?:\\s+Versicherung)?|Allianz)\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:01:55.205566"
+    },
+    {
+      "id": "562df438",
+      "name": "Universities",
+      "description": "Matches specific university names including 'Universit\u00e4t Wien', 'P\u00e4dagogische Hochschule Wien', 'Uni Wien', 'Wirtschaftsuniversit\u00e4t Wien', 'Fachhochschule Wiener Neustadt', 'FH Campus Wien', 'FH Wiener Neustadt'.",
+      "format": "regex",
+      "content": "\\b(?:Universit\\u00e4t\\s+Wien|P\\u00e4dagogische\\s+Hochschule\\s+Wien|Uni\\s+Wien|Wirtschaftsuniversit\\u00e4t\\s+Wien|Fachhochschule\\s+Wiener\\s+Neustadt|FH\\s+Campus\\s+Wien|FH\\s+Wiener\\s+Neustadt)\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:04:14.246128"
+    },
+    {
+      "id": "98204390",
+      "name": "Bankhaus Denzel",
+      "description": "Matches the specific bank name 'Bankhaus Denzel'.",
+      "format": "regex",
+      "content": "\\bBankhaus\\s+Denzel\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:02:14.780623"
+    },
+    {
+      "id": "965a510a",
+      "name": "University St Gallen",
+      "description": "Matches 'Universit\u00e4t in St. Gallen' and 'Universit\u00e4t St. Gallen' variations.",
+      "format": "regex",
+      "content": "\\bUniversit\\u00e4t\\s+(?:in\\s+)?St\\.\\s+Gallen\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:02:14.780716"
+    },
+    {
+      "id": "ec363172",
+      "name": "Finanzamt \u00d6sterreich",
+      "description": "Matches 'Finanzamt \u00d6sterreich' including the optional '(DST12)' suffix, but excludes it when followed by '(vormals des ...)' to avoid false positives in historical context references.",
+      "format": "regex",
+      "content": "\\bFinanzamt\\s+\\u00d6sterreich(?:\\s*\\(\\s*DST12\\s*\\))?\\b(?!\\s*\\(\\s*vormals\\s+des\\s+)",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:11:22.686104"
+    },
+    {
+      "id": "7cc3ecc5",
+      "name": "BMF",
+      "description": "Matches the abbreviation 'BMF' (Bundesministerium f\u00fcr Finanzen).",
+      "format": "regex",
+      "content": "\\bBMF\\b(?!\\s*[A-Z][a-z])",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:02:14.780841"
+    },
+    {
+      "id": "529a73fd",
+      "name": "Court Full Name with Abbreviation",
+      "description": "Matches court names followed by their abbreviation in parentheses, e.g., 'Verwaltungsgerichtshofes (VwGH)'.",
+      "format": "regex",
+      "content": "\\b(?:Verwaltungsgerichtshof(?:es)?|Bundesfinanzgericht(?:es)?)\\s*\\(\\s*(?:VwGH|BFG)\\s*\\)\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:02:14.780890"
+    },
+    {
+      "id": "2a4da015",
+      "name": "Garanta VersicherungsAG",
+      "description": "Matches the specific insurance company 'Garanta VersicherungsAG'.",
+      "format": "regex",
+      "content": "\\bGaranta\\s+VersicherungsAG\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:03:30.199899"
+    },
+    {
+      "id": "fc39c54c",
+      "name": "The International Sivananda Yoga Vedanta Centre",
+      "description": "Matches the specific organization 'The International Sivananda Yoga Vedanta Centre'.",
+      "format": "regex",
+      "content": "\\bThe\\s+International\\s+Sivananda\\s+Yoga\\s+Vedanta\\s+Centre\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:03:30.199972"
+    },
+    {
+      "id": "efa1e70c",
+      "name": "DA Deutsche Allgemeine Versicherung AG",
+      "description": "Matches the specific insurance company 'DA Deutsche Allgemeine Versicherung AG'.",
+      "format": "regex",
+      "content": "\\bDA\\s+Deutsche\\s+Allgemeine\\s+Versicherung\\s+AG\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:03:30.200049"
+    },
+    {
+      "id": "42dc8f5e",
+      "name": "Geschenkartikel GmbH",
+      "description": "Matches the specific company 'Geschenkartikel GmbH'.",
+      "format": "regex",
+      "content": "\\bGeschenkartikel\\s+GmbH\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:03:30.200112"
+    },
+    {
+      "id": "50c02e81",
+      "name": "AVED cosmetic",
+      "description": "Matches the specific company 'AVED cosmetic'.",
+      "format": "regex",
+      "content": "\\bAVED\\s+cosmetic\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:03:30.200150"
+    },
+    {
+      "id": "b6f03b09",
+      "name": "Yoga Vidya GmbH",
+      "description": "Matches the specific company 'Yoga Vidya GmbH'.",
+      "format": "regex",
+      "content": "\\bYoga\\s+Vidya\\s+GmbH\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:03:30.200182"
+    },
+    {
+      "id": "1e5ba40e",
+      "name": "Mittel Unisyn GMBH",
+      "description": "Matches the specific company name 'Mittel Unisyn GMBH'.",
+      "format": "regex",
+      "content": "\\bMittel\\s+Unisyn\\s+GMBH\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:03:47.915571"
+    },
+    {
+      "id": "e398050c",
+      "name": "Ober Lemostnor AG",
+      "description": "Matches the specific company name 'Ober Lemostnor AG'.",
+      "format": "regex",
+      "content": "\\bOber\\s+Lemostnor\\s+AG\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:03:47.915636"
+    },
+    {
+      "id": "1c36ae4b",
+      "name": "Vennes Recycling AG",
+      "description": "Matches the specific company name 'Vennes Recycling AG'.",
+      "format": "regex",
+      "content": "\\bVennes\\s+Recycling\\s+AG\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:03:47.915680"
+    },
+    {
+      "id": "1f1b5792",
+      "name": "B\u00e4rs & Walterscheidt Handel GMBH",
+      "description": "Matches the specific company name 'B\u00e4rs & Walterscheidt Handel GMBH'.",
+      "format": "regex",
+      "content": "\\bB\u00e4rs\\s+&\\s+Walterscheidt\\s+Handel\\s+GMBH\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:03:47.915727"
+    },
+    {
+      "id": "f48f466a",
+      "name": "COFAG Entities",
+      "description": "Matches 'COFAG' as an organization, excluding cases where it is part of a compound word like 'COFAG-NoAG'.",
+      "format": "regex",
+      "content": "\\bCOFAG\\b(?!-\\w+)",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:04:37.549141"
+    },
+    {
+      "id": "465b496d",
+      "name": "Paugger Steuerberatung GmbH",
+      "description": "Matches the specific company 'Paugger Steuerberatung GmbH' which was missed.",
+      "format": "regex",
+      "content": "\\bPaugger\\s+Steuerberatung\\s+GmbH\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:04:26.765403"
+    },
+    {
+      "id": "22d21e30",
+      "name": "FA\u00d6 Abbreviation",
+      "description": "Matches the specific abbreviation 'FA\u00d6' for Finanzamt \u00d6sterreich. Ensures it is captured even if the previous rule misses it due to ordering.",
+      "format": "regex",
+      "content": "\\bFA\\u00d6\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:04:48.259219"
+    },
+    {
+      "id": "b3e2fb20",
+      "name": "FAG Abbreviation",
+      "description": "Matches the specific abbreviation 'FAG' for Bundesfinanzgericht. Ensures it is captured even if the previous rule misses it.",
+      "format": "regex",
+      "content": "\\bFAG\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:04:48.259231"
+    },
+    {
+      "id": "21515db5",
+      "name": "Bundesministeriums f\u00fcr Justiz",
+      "description": "Matches 'Bundesministeriums f\u00fcr Justiz' in genitive form.",
+      "format": "regex",
+      "content": "\\bBundesministeriums\\s+f\\u00fcr\\s+Justiz\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:05:03.082277"
+    },
+    {
+      "id": "ddf61518",
+      "name": "SUVA Acronym",
+      "description": "Matches the standalone acronym 'SUVA' which is a frequent entity in the training data but was missing from the rules.",
+      "format": "regex",
+      "content": "\\bSUVA\\b",
+      "priority": 12,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:05:13.035756"
+    },
+    {
+      "id": "2c70c42b",
+      "name": "Steueramt Kanton Luzern",
+      "description": "Matches 'Steueramt des Kantons Luzern' and its genitive form 'Steueramtes des Kantons Luzern'.",
+      "format": "regex",
+      "content": "\\bSteuer(?:amtes)?\\s+des\\s+Kantons\\s+Luzern\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:05:13.035844"
+    },
+    {
+      "id": "c30c501d",
+      "name": "Kantonsspitals St Gallen",
+      "description": "Matches 'Kantonsspitals St. Gallen' and 'Kantonsspital St. Gallen'.",
+      "format": "regex",
+      "content": "\\bKantonsspital(?:s)?\\s+St\\.\\s+Gallen\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:05:13.035933"
+    },
+    {
+      "id": "cc4ff586",
+      "name": "Eidgen\u00f6ssische Invalidenversicherung",
+      "description": "Matches 'Eidgen\u00f6ssischen Invalidenversicherung (IV)' and the hyphenated variant 'Schweizerische Unfallversicherungsanstalt (SUVA)' variations found in training.",
+      "format": "regex",
+      "content": "\\b(?:Eidgen\u00f6ssischen\\s+Invalidenversicherung\\s*\\(\\s*IV\\s*\\)|Schweizeri(?:\\-\\s*)?schen\\s+Unfallversicherungsanstalt\\s*\\(\\s*SUVA\\s*\\))\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:05:13.036009"
+    },
+    {
+      "id": "2d63630b",
+      "name": "Schweizerische Unfallversicherungsanstalt",
+      "description": "Matches the full name 'Schweizerischen Unfallversicherungsanstalt (SUVA)' including the acronym, preventing partial matches.",
+      "format": "regex",
+      "content": "\\bSchweizeri(?:\\-\\s*)?schen\\s+Unfallversicherungsanstalt\\s*\\(\\s*SUVA\\s*\\)\\b",
+      "priority": 12,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:06:10.253316"
+    },
+    {
+      "id": "3d168562",
+      "name": "S\u00fcdVersand",
+      "description": "Matches the specific company 'S\u00fcdVersand' which was missing from the rules.",
+      "format": "regex",
+      "content": "\\bS\u00fcdVersand\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:05:28.807311"
+    },
+    {
+      "id": "b28f4fd8",
+      "name": "Frontex",
+      "description": "Matches the standalone organization name 'Frontex'.",
+      "format": "regex",
+      "content": "\\bFrontex\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:05:44.079449"
+    },
+    {
+      "id": "1cb4e3da",
+      "name": "European Border Guard Agency Full Name",
+      "description": "Matches 'Europ\u00e4ische Grenzschutzagentur Frontex' and its genitive form 'Europ\u00e4ischen Grenzschutzagentur Frontex'.",
+      "format": "regex",
+      "content": "\\bEurop(\u00e4|e)ischen?\\s+Grenzschutzagentur\\s+Frontex\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:05:44.079521"
+    },
+    {
+      "id": "f644945b",
+      "name": "BM f\u00fcr Inneres",
+      "description": "Matches the abbreviation 'BM f\u00fcr Inneres' for the Federal Ministry of the Interior.",
+      "format": "regex",
+      "content": "\\bBM\\s+f\\u00fcr\\s+Inneres\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:05:44.079623"
+    },
+    {
+      "id": "7ca9fab1",
+      "name": "BMI Abbreviation",
+      "description": "Matches the abbreviation 'BMI' for Bundesministerium f\u00fcr Inneres.",
+      "format": "regex",
+      "content": "\\bBMI\\b(?!\\s*[A-Z][a-z])",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:05:44.079677"
+    },
+    {
+      "id": "b31004b7",
+      "name": "Bundesministerium f\u00fcr Inneres",
+      "description": "Matches the full name 'Bundesministerium f\u00fcr Inneres'.",
+      "format": "regex",
+      "content": "\\bBundesministerium\\s+f\\u00fcr\\s+Inneres\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:05:44.079725"
+    },
+    {
+      "id": "41b1f56c",
+      "name": "VwGH Abbreviation",
+      "description": "Matches the abbreviation 'VwGH' for Verwaltungsgerichtshof.",
+      "format": "regex",
+      "content": "\\bVwGH\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:05:44.079777"
+    },
+    {
+      "id": "f8a5a49c",
+      "name": "Kriminalpolizei in \u00d6sterreich",
+      "description": "Matches the specific organization 'Kriminalpolizei in \u00d6sterreich'.",
+      "format": "regex",
+      "content": "\\bKriminalpolizei\\s+in\\s+\\u00d6sterreich\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:05:44.079846"
+    },
+    {
+      "id": "e92eb646",
+      "name": "EASO",
+      "description": "Matches the acronym 'EASO' (European Asylum Support Office).",
+      "format": "regex",
+      "content": "\\bEASO\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:05:44.079890"
+    },
+    {
+      "id": "491c7ed9",
+      "name": "OECD",
+      "description": "Matches the acronym 'OECD'.",
+      "format": "regex",
+      "content": "\\bOECD\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:05:44.079912"
+    },
+    {
+      "id": "d3583f31",
+      "name": "Flughafen M\u00fcnchen",
+      "description": "Matches 'Flughafen M\u00fcnchen'.",
+      "format": "regex",
+      "content": "\\bFlughafen\\s+M\\u00fcnchen\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:05:44.079931"
+    },
+    {
+      "id": "a66ecfa0",
+      "name": "UFS Abbreviation",
+      "description": "Matches the standalone acronym 'UFS' (Unabh\u00e4ngiger Finanzsenat).",
+      "format": "regex",
+      "content": "\\bUFS\\b",
+      "priority": 12,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:06:10.253481"
+    },
+    {
+      "id": "88991c56",
+      "name": "INET Internet Service GmbH",
+      "description": "Matches the specific company 'INET Internet Service GmbH'.",
+      "format": "regex",
+      "content": "\\bINET\\s+Internet\\s+Service\\s+GmbH\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:06:10.254050"
+    },
+    {
+      "id": "feec7680",
+      "name": "How to spend it Verlag GmbH",
+      "description": "Matches the specific company 'How to spend it Verlag GmbH'.",
+      "format": "regex",
+      "content": "\\bHow\\s+to\\s+spend\\s+it\\s+Verlag\\s+GmbH\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:06:10.254100"
+    },
+    {
+      "id": "a41e7f46",
+      "name": "Finanzamt \u00d6sterreich Genitive",
+      "description": "Matches 'Finanzamtes \u00d6sterreich' specifically.",
+      "format": "regex",
+      "content": "\\bFinanzamtes\\s+\\u00d6sterreich\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:06:10.254152"
+    },
+    {
+      "id": "c8369d25",
+      "name": "Achammer & Mennel Rechtsanw\u00e4lte OG",
+      "description": "Matches the specific law firm 'Achammer & Mennel Rechtsanw\u00e4lte OG'.",
+      "format": "regex",
+      "content": "\\bAchammer\\s+&\\s+Mennel\\s+Rechtsanw\u00e4lte\\s+OG\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:06:24.581894"
+    },
+    {
+      "id": "5c06cf93",
+      "name": "Finanzpolizei Feldkirch",
+      "description": "Matches the specific organization 'Finanzpolizei Feldkirch'.",
+      "format": "regex",
+      "content": "\\bFinanzpolizei\\s+Feldkirch\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:06:24.582095"
+    },
+    {
+      "id": "87ab0d22",
+      "name": "Verwaltungsgerichtshof Genitive S",
+      "description": "Matches 'Verwaltungsgerichtshof', 'Verwaltungsgerichtshofes', and 'Verwaltungsgerichtshofs'.",
+      "format": "regex",
+      "content": "\\bVerwaltungsgerichtshof(?:es|s)?\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:06:24.582189"
+    },
+    {
+      "id": "d84489fb",
+      "name": "BFH Abbreviation",
+      "description": "Matches the abbreviation 'BFH' (Bundesfinanzhof - German Federal Fiscal Court).",
+      "format": "regex",
+      "content": "\\bBFH\\b(?!\\s*[A-Z][a-z])",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:06:24.582197"
+    },
+    {
+      "id": "55de00b6",
+      "name": "London Film Academy",
+      "description": "Matches 'London Film Academy' and the common misspelling 'London Film Acadamy'.",
+      "format": "regex",
+      "content": "\\bLondon\\s+Film\\s+Acad[ae]my\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:06:36.503684"
+    },
+    {
+      "id": "94e8d9c4",
+      "name": "Bundeskanzleramt Genitive",
+      "description": "Matches 'Bundeskanzleramtes' (genitive) and 'Bundeskanzleramt' (nominative).",
+      "format": "regex",
+      "content": "\\bBundeskanzler(?:amtes)?\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:06:36.503800"
+    },
+    {
+      "id": "73dbc661",
+      "name": "Finanzamtes Wien 9/18/19 Klosterneuburg",
+      "description": "Matches the specific genitive form 'Finanzamtes Wien 9/18/19 Klosterneuburg'.",
+      "format": "regex",
+      "content": "\\bFinanzamtes\\s+Wien\\s+9/18/19\\s+Klosterneuburg\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:06:36.503856"
+    },
+    {
+      "id": "34f5c5fb",
+      "name": "VfGH Abbreviation",
+      "description": "Matches the abbreviation 'VfGH' for Verwaltungsgerichtshof.",
+      "format": "regex",
+      "content": "\\bVfGH\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:06:54.613411"
+    },
+    {
+      "id": "2bca7bee",
+      "name": "Finanzstrafsenat Wien 2",
+      "description": "Matches the specific court name 'Finanzstrafsenat Wien 2'.",
+      "format": "regex",
+      "content": "\\bFinanzstrafsenat\\s+Wien\\s+2\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:06:54.613490"
+    },
+    {
+      "id": "246c088f",
+      "name": "Finanzamts \u00d6sterreich Genitive",
+      "description": "Matches 'Finanzamts \u00d6sterreich' (genitive form).",
+      "format": "regex",
+      "content": "\\bFinanzamts\\s+\u00d6sterreich\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:06:54.613560"
+    },
+    {
+      "id": "87000439",
+      "name": "Amt f\u00fcr Betrugsbek\u00e4mpfung",
+      "description": "Matches the organization 'Amt f\u00fcr Betrugsbek\u00e4mpfung'.",
+      "format": "regex",
+      "content": "\\bAmt\\s+f\u00fcr\\s+Betrugsbek\u00e4mpfung\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:06:54.613605"
+    },
+    {
+      "id": "9156407f",
+      "name": "Reinemut + Smoch Handel",
+      "description": "Matches the specific company 'Reinemut + Smoch Handel'.",
+      "format": "regex",
+      "content": "\\bReinemut\\s+\\+\\s+Smoch\\s+Handel\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:06:54.613656"
+    },
+    {
+      "id": "482c303f",
+      "name": "Hallas & Partner GmbH",
+      "description": "Matches the specific company 'Hallas & Partner Wirtschaftspr\u00fcfung und Steuerberatung GmbH & Co KG'.",
+      "format": "regex",
+      "content": "\\bHallas\\s+&\\s+Partner\\s+Wirtschaftspr\u00fcfung\\s+und\\s+Steuerberatung\\s+GmbH\\s*&\\s*Co\\s*KG\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:06:54.613712"
+    },
+    {
+      "id": "96ff6abe",
+      "name": "HPS Hergovits Steuerberatung",
+      "description": "Matches the specific company 'HPS Hergovits, Pinkel & Schnabl Steuerberatungs GmbH'.",
+      "format": "regex",
+      "content": "\\bHPS\\s+Hergovits,\\s+Pinkel\\s+&\\s+Schnabl\\s+Steuerberatungs\\s+GmbH\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:06:54.613809"
+    },
+    {
+      "id": "852f6d10",
+      "name": "\u00d6BUG Tax Advisor Firms",
+      "description": "Matches companies starting with '\"\u00d6BUG\" DR. NIKOLAUS' or similar \u00d6BUG tax advisor firms.",
+      "format": "regex",
+      "content": "\\b\"?\u00d6BUG\"?\\s+DR\\.?\\s+[A-Z][a-zA-Z]+\\s+Wirtschaftstreuhand\\s+GmbH\\s*-\\s+Wirtschaftspr\u00fcfungs-\\s+und\\s+Steuerberatungsgesellschaft\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:06:54.613886"
+    },
+    {
+      "id": "6fc3adde",
+      "name": "Zollamt \u00d6sterreich",
+      "description": "Matches the specific organization 'Zollamt \u00d6sterreich'.",
+      "format": "regex",
+      "content": "\\bZollamt\\s+\\u00d6sterreich\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:07:02.303262"
+    },
+    {
+      "id": "e3f9116a",
+      "name": "Universit\u00e4t Innsbruck",
+      "description": "Matches 'Universit\u00e4t Innsbruck'.",
+      "format": "regex",
+      "content": "\\bUniversit\\u00e4t\\s+Innsbruck\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:07:19.760966"
+    },
+    {
+      "id": "3c36ce6e",
+      "name": "FH K\u00e4rnten",
+      "description": "Matches 'FH K\u00e4rnten'.",
+      "format": "regex",
+      "content": "\\bFH\\s+K\\u00e4rnten\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:07:19.761076"
+    },
+    {
+      "id": "c7fced9c",
+      "name": "Fachhochschule K\u00e4rnten",
+      "description": "Matches 'Fachhochschule K\u00e4rnten'.",
+      "format": "regex",
+      "content": "\\bFachhochschule\\s+K\\u00e4rnten\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:07:19.761122"
+    },
+    {
+      "id": "a0d7eab8",
+      "name": "Karl-Franzens- Universit\u00e4t Graz",
+      "description": "Matches 'Karl-Franzens- Universit\u00e4t Graz' (note the space after hyphen in training data).",
+      "format": "regex",
+      "content": "\\bKarl-Franzens-\\s+Universit\\u00e4t\\s+Graz\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:07:19.761165"
+    },
+    {
+      "id": "ff333e7c",
+      "name": "Verfassungsgerichtshof",
+      "description": "Matches 'Verfassungsgerichtshof' and its genitive form 'Verfassungsgerichtshofes'.",
+      "format": "regex",
+      "content": "\\bVerfassungsgerichtshof(?:es)?\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:07:19.761214"
+    },
+    {
+      "id": "f9cc31de",
+      "name": "Lenfeld/Leys/Sonderegger Rechtsanw\u00e4lte",
+      "description": "Matches the specific law firm 'Lenfeld/Leys/Sonderegger Rechtsanw\u00e4lte'.",
+      "format": "regex",
+      "content": "\\bLenfeld/Leys/Sonderegger\\s+Rechtsanw\\u00e4lte\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:07:19.761261"
+    },
+    {
+      "id": "742a821d",
+      "name": "H\u00f6here Lehranstalt f\u00fcr Tourismus",
+      "description": "Matches the full name 'H\u00f6here Lehranstalt f\u00fcr Tourismus, Eventmanagement, Sport und Freizeit'.",
+      "format": "regex",
+      "content": "\\bH\\u00f6here\\s+Lehranstalt\\s+f\\u00fcr\\s+Tourismus,\\s+Eventmanagement,\\s+Sport\\s+und\\s+Freizeit\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:07:19.761307"
+    },
+    {
+      "id": "e52bb4b8",
+      "name": "HLF Krems/Donau",
+      "description": "Matches the abbreviation 'HLF Krems/Donau'.",
+      "format": "regex",
+      "content": "\\bHLF\\s+Krems/Donau\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:07:19.761399"
+    },
+    {
+      "id": "75be645b",
+      "name": "TAXCOACH Wirtschaftspr\u00fcfung und Steuerberatung GmbH & Co KG",
+      "description": "Matches the specific company 'TAXCOACH Wirtschaftspr\u00fcfung und Steuerberatung GmbH & Co KG'.",
+      "format": "regex",
+      "content": "\\bTAXCOACH\\s+Wirtschaftspr\\u00fcfung\\s+und\\s+Steuerberatung\\s+GmbH\\s*&\\s*Co\\s*KG\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:07:19.761432"
+    },
+    {
+      "id": "8d113508",
+      "name": "Amt f\u00fcr Betrugsbek\u00e4mpfung Genitive",
+      "description": "Matches 'Amtes f\u00fcr Betrugsbek\u00e4mpfung' (genitive case).",
+      "format": "regex",
+      "content": "\\bAmtes\\s+f\u00fcr\\s+Betrugsbek\u00e4mpfung\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:07:29.925064"
+    },
+    {
+      "id": "92ecc76d",
+      "name": "Merkur Treuhand Steuerberatung",
+      "description": "Matches 'Merkur Treuhand Steuerberatung' without the 'GmbH' suffix.",
+      "format": "regex",
+      "content": "\\bMerkur\\s+Treuhand\\s+Steuerberatung\\b(?!\\s+GmbH)",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:07:29.925126"
+    },
+    {
+      "id": "7c5e19af",
+      "name": "UFS Salzburg",
+      "description": "Matches 'UFS Salzburg' specifically to prevent partial matching of just 'UFS'.",
+      "format": "regex",
+      "content": "\\bUFS\\s+Salzburg\\b",
+      "priority": 12,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:07:29.925191"
+    },
+    {
+      "id": "02272da5",
+      "name": "Rhein Normonkel Manufaktur GMBH",
+      "description": "Matches the specific company 'Rhein Normonkel Manufaktur GMBH'.",
+      "format": "regex",
+      "content": "\\bRhein\\s+Normonkel\\s+Manufaktur\\s+GMBH\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:07:41.480393"
+    },
+    {
+      "id": "868fe51d",
+      "name": "Grazer Treuhand Steuerberatung GmbH & Partner KG",
+      "description": "Matches the specific company 'Grazer Treuhand Steuerberatung GmbH & Partner KG'.",
+      "format": "regex",
+      "content": "\\bGrazer\\s+Treuhand\\s+Steuerberatung\\s+GmbH\\s*&\\s*Partner\\s*KG\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:07:41.480458"
+    },
+    {
+      "id": "85c84e00",
+      "name": "Finanzamts Graz-Stadt",
+      "description": "Matches 'Finanzamts Graz-Stadt' and 'Finanzamts Graz- Stadt' variations.",
+      "format": "regex",
+      "content": "\\bFinanzamts\\s+Graz\\s*-?\\s*Stadt\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:07:41.480528"
+    },
+    {
+      "id": "84f357dc",
+      "name": "\u00d6GK Abbreviation",
+      "description": "Matches the specific organization '\u00d6GK' (\u00d6sterreichische Gesundheitskasse).",
+      "format": "regex",
+      "content": "\\b\u00d6GK\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:07:53.120070"
+    },
+    {
+      "id": "52eadb54",
+      "name": "BDO Austria Full Name",
+      "description": "Matches the full company name 'BDO Austria GmbH Wirtschaftspr\u00fcfungs- und Steuerberatungsgesellschaft'.",
+      "format": "regex",
+      "content": "\\bBDO\\s+Austria\\s+GmbH\\s+Wirtschaftspr\\u00fcfungs-\\s+und\\s+Steuerberatungsgesellschaft\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:07:53.120147"
+    },
+    {
+      "id": "f000d7dc",
+      "name": "F Personalservice GmbH",
+      "description": "Matches the specific company 'F Personalservice GmbH' including variations with double spaces.",
+      "format": "regex",
+      "content": "\\bF\\s+Personalservice\\s+GmbH\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:07:53.120273"
+    },
+    {
+      "id": "93be03c5",
+      "name": "F Personal GmbH",
+      "description": "Matches the specific company 'F Personal GmbH'.",
+      "format": "regex",
+      "content": "\\bF\\s+Personal\\s+GmbH\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:07:53.120320"
+    },
+    {
+      "id": "410590b8",
+      "name": "TraunLuftfahrt Solutions",
+      "description": "Matches the specific company 'TraunLuftfahrt Solutions' which was missing.",
+      "format": "regex",
+      "content": "\\bTraunLuftfahrt\\s+Solutions\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:08:10.202848"
+    },
+    {
+      "id": "8cf2120f",
+      "name": "Fensudlog GMBH",
+      "description": "Matches the specific company 'Fensudlog GMBH' which was missing.",
+      "format": "regex",
+      "content": "\\bFensudlog\\s+GMBH\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:08:10.202859"
+    },
+    {
+      "id": "6dfe4a23",
+      "name": "Luehrig + Hundertmarck Holz GMBH",
+      "description": "Matches the specific company 'Luehrig + Hundertmarck Holz GMBH' which was missing.",
+      "format": "regex",
+      "content": "\\bLuehrig\\s+\\+\\s+Hundertmarck\\s+Holz\\s+GMBH\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:08:10.202901"
+    },
+    {
+      "id": "2ab4ae19",
+      "name": "Landespolizeidirektion Tirol",
+      "description": "Matches 'Landespolizeidirektion Tirol' and the typo 'Landespolizeidirketion Tirol'.",
+      "format": "regex",
+      "content": "\\bLandespolizei(?:direktion|direktion)\\s+Tirol\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:08:26.547133"
+    },
+    {
+      "id": "366b1cb9",
+      "name": "Bundesamt f\u00fcr Soziales und Behindertenwesen",
+      "description": "Matches 'Bundesamt f\u00fcr Soziales und Behindertenwesen' and its genitive form 'Bundesamts f\u00fcr Soziales und Behindertenwesen'.",
+      "format": "regex",
+      "content": "\\bBundes(?:amt|amts)\\s+f\\u00fcr\\s+Soziales\\s+und\\s+Behindertenwesen\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:08:26.547212"
+    },
+    {
+      "id": "18ec18f9",
+      "name": "Arbeits- und Sozialgericht Wien",
+      "description": "Matches the specific court name 'Arbeits- und Sozialgericht Wien'.",
+      "format": "regex",
+      "content": "\\bArbeits\\-\\s+und\\s+Sozialgericht\\s+Wien\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:08:26.547302"
+    },
+    {
+      "id": "6949db08",
+      "name": "PVA Abbreviation",
+      "description": "Matches the abbreviation 'PVA' (Pensionsversicherungsanstalt).",
+      "format": "regex",
+      "content": "\\bPVA\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:08:46.459720"
+    },
+    {
+      "id": "38ba81b0",
+      "name": "SVS SVB Abbreviation",
+      "description": "Matches the abbreviation 'SVS/SVB' (Sozialversicherung der Bauern).",
+      "format": "regex",
+      "content": "\\bSVS/SVB\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:08:46.459796"
+    },
+    {
+      "id": "2d439deb",
+      "name": "Wiederspan Beratung GMBH",
+      "description": "Matches the specific company 'Wiederspan Beratung GMBH'.",
+      "format": "regex",
+      "content": "\\bWiederspan\\s+Beratung\\s+GMBH\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:08:46.459840"
+    },
+    {
+      "id": "8887ab08",
+      "name": "Mur Alver OG",
+      "description": "Matches the specific company 'Mur Alver OG'.",
+      "format": "regex",
+      "content": "\\bMur\\s+Alver\\s+OG\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:08:46.459906"
+    },
+    {
+      "id": "d43438d7",
+      "name": "Steuerberater Metzler & Adelsberger OG",
+      "description": "Matches the specific law firm 'Steuerberater Metzler & Adelsberger OG'.",
+      "format": "regex",
+      "content": "\\bSteuerberater\\s+Metzler\\s+&\\s+Adelsberger\\s+OG\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:08:46.459950"
+    },
+    {
+      "id": "82e66582",
+      "name": "Furniture Retailers",
+      "description": "Matches specific furniture retailers: Ikea, Obi, Leiner, M\u00f6belix, M\u00f6maX.",
+      "format": "regex",
+      "content": "\\b(?:Ikea|Obi|Leiner|M\u00f6belix|M\u00f6maX)\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:08:46.460029"
+    },
+    {
+      "id": "91af7b2a",
+      "name": "PSD Wien",
+      "description": "Matches 'PSD Wien' and 'PSD Wien Ambulatorium Landstra\u00dfe'.",
+      "format": "regex",
+      "content": "\\bPSD\\s+Wien(?:\\s+Ambulatorium\\s+Landstra\u00dfe)?\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:08:46.460087"
+    },
+    {
+      "id": "eff5b8ef",
+      "name": "Psychiatrie Otto Wagner Spital",
+      "description": "Matches 'Psychiatrie Otto Wagner Spital' and variations with hyphens.",
+      "format": "regex",
+      "content": "\\bPsychiatrie\\s+Otto\\s+Wagner\\s+Spital(?:-)?\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:08:46.460150"
+    },
+    {
+      "id": "993e522d",
+      "name": "Sozialversicherungsanstalt der Bauern",
+      "description": "Matches 'Sozialversicherungsanstalt der Bauern'.",
+      "format": "regex",
+      "content": "\\bSozialversicherungsanstalt\\s+der\\s+Bauern\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:08:46.460207"
+    },
+    {
+      "id": "a33d0500",
+      "name": "Sozialversicherung der Bauern",
+      "description": "Matches 'Sozialversicherung der Bauern'.",
+      "format": "regex",
+      "content": "\\bSozialversicherung\\s+der\\s+Bauern\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:08:46.460257"
+    },
+    {
+      "id": "87469955",
+      "name": "Pensionsversicherungsanstalt",
+      "description": "Matches 'Pensionsversicherungsanstalt'.",
+      "format": "regex",
+      "content": "\\bPensionsversicherungsanstalt\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:08:46.460299"
+    },
+    {
+      "id": "14b1e7ff",
+      "name": "Tschurtschenthaler Walder Fister Rechtsanw\u00e4lte GmbH",
+      "description": "Matches the specific law firm 'Tschurtschenthaler, Walder, Fister Rechtsanw\u00e4lte GmbH'.",
+      "format": "regex",
+      "content": "\\bTschurtschenthaler,\\s*Walder,\\s*Fister\\s+Rechtsanw\\u00e4lte\\s+GmbH\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:09:04.553686"
+    },
+    {
+      "id": "a579f0d4",
+      "name": "Immobilienb\u00fcro Mandl",
+      "description": "Matches the specific entity 'Immobilienb\u00fcro Mandl'.",
+      "format": "regex",
+      "content": "\\bImmobilienb\\u00fcro\\s+Mandl\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:09:04.553842"
+    },
+    {
+      "id": "e4ca572a",
+      "name": "Magistrat der Stadt Klagenfurt",
+      "description": "Matches 'Magistrat der Stadt Klagenfurt' and its genitive form 'Magistrats der Stadt Klagenfurt'.",
+      "format": "regex",
+      "content": "\\bMagistrat(?:s)?\\s+der\\s+Stadt\\s+Klagenfurt\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:09:04.553895"
+    },
+    {
+      "id": "6d322f23",
+      "name": "Bundesministeriums f\u00fcr Inneres Genitive",
+      "description": "Matches 'Bundesministeriums f\u00fcr Inneres' (genitive case).",
+      "format": "regex",
+      "content": "\\bBundesministeriums\\s+f\\u00fcr\\s+Inneres\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:09:04.553979"
+    },
+    {
+      "id": "92237886",
+      "name": "\u00d6sterreichischen Gesundheitskasse",
+      "description": "Matches '\u00d6sterreichischen Gesundheitskasse'.",
+      "format": "regex",
+      "content": "\\b\\u00d6sterreichischen\\s+Gesundheitskasse\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:09:04.554033"
+    },
+    {
+      "id": "db01081f",
+      "name": "Klein-Vorholt KI GMBH",
+      "description": "Matches the specific company 'Klein-Vorholt KI GMBH'.",
+      "format": "regex",
+      "content": "\\bKlein-Vorholt\\s+KI\\s+GMBH\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:09:04.554077"
+    },
+    {
+      "id": "197e92cb",
+      "name": "Gogel Daten GMBH",
+      "description": "Matches the specific company 'Gogel Daten GMBH'.",
+      "format": "regex",
+      "content": "\\bGogel\\s+Daten\\s+GMBH\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:09:04.554113"
+    },
+    {
+      "id": "f1049187",
+      "name": "Talwerk Logistik Holding GMBH",
+      "description": "Matches the specific company 'Talwerk Logistik Holding GMBH'.",
+      "format": "regex",
+      "content": "\\bTalwerk\\s+Logistik\\s+Holding\\s+GMBH\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:09:13.567092"
+    },
+    {
+      "id": "ce2ce27d",
+      "name": "Bundesministers f\u00fcr Finanzen",
+      "description": "Matches the genitive form 'Bundesministers f\u00fcr Finanzen'.",
+      "format": "regex",
+      "content": "\\bBundesministers\\s+f\u00fcr\\s+Finanzen\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:09:13.567163"
+    },
+    {
+      "id": "40fd1033",
+      "name": "Finanzamt Neunkirchen Wr. Neustadt",
+      "description": "Matches the specific location 'Finanzamt Neunkirchen Wr. Neustadt' and its genitive form 'Finanzamtes Neunkirchen Wr. Neustadt'.",
+      "format": "regex",
+      "content": "\\bFinanz(?:amt|amtes)\\s+Neunkirchen\\s+Wr\\.\\s+Neustadt\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:09:25.914448"
+    },
+    {
+      "id": "7d6d00db",
+      "name": "InnMarine GMBH",
+      "description": "Matches the specific company 'InnMarine GMBH'.",
+      "format": "regex",
+      "content": "\\bInnMarine\\s+GMBH\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:09:25.914569"
+    },
+    {
+      "id": "299712b2",
+      "name": "X GmbH",
+      "description": "Matches the specific company 'X GmbH'.",
+      "format": "regex",
+      "content": "\\bX\\s+GmbH\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:09:25.914617"
+    },
+    {
+      "id": "58f95b2f",
+      "name": "Bundesministerium f\u00fcr Finanzen Full",
+      "description": "Matches the full name 'Bundesministerium f\u00fcr Finanzen' and 'Bundesministerin f\u00fcr Finanzen'.",
+      "format": "regex",
+      "content": "\\bBundes(?:ministerium|ministerin)\\s+f\\u00fcr\\s+Finanzen\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:09:25.914652"
+    },
+    {
+      "id": "b3749951",
+      "name": "Magistrat der Stadt Wien",
+      "description": "Matches 'Magistrat der Stadt Wien' and its genitive form 'Magistrats der Stadt Wien', including specific department suffixes like ', MA 67' or ', Magistratsabteilung 67'.",
+      "format": "regex",
+      "content": "\\bMagistrat(?:s)?\\s+der\\s+Stadt\\s+Wien(?:\\s*,\\s*(?:MA\\s+\\d+|Magistratsabteilung\\s+\\d+))?\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:09:50.862413"
+    },
+    {
+      "id": "774227d0",
+      "name": "KQPC Versand GmbH",
+      "description": "Matches the specific company 'KQPC Versand GMBH'.",
+      "format": "regex",
+      "content": "\\bKQPC\\s+Versand\\s+GMBH\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:09:40.042562"
+    },
+    {
+      "id": "d7e26936",
+      "name": "Event Sudkraftlex GmbH",
+      "description": "Matches the specific company 'Event Sudkraftlex GMBH'.",
+      "format": "regex",
+      "content": "\\bEvent\\s+Sudkraftlex\\s+GMBH\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:09:40.042617"
+    },
+    {
+      "id": "83d6d905",
+      "name": "Sudver Handel Services GmbH",
+      "description": "Matches the specific company 'Sudver Handel Services GMBH'.",
+      "format": "regex",
+      "content": "\\bSudver\\s+Handel\\s+Services\\s+GMBH\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:09:40.042664"
+    },
+    {
+      "id": "952e4508",
+      "name": "Glanznorost Institut GmbH",
+      "description": "Matches the specific company 'Glanznorost Institut GMBH'.",
+      "format": "regex",
+      "content": "\\bGlanznorost\\s+Institut\\s+GMBH\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:09:40.042711"
+    },
+    {
+      "id": "b7a87282",
+      "name": "Erste Bank",
+      "description": "Matches the specific bank name 'Erste Bank'.",
+      "format": "regex",
+      "content": "\\bErste\\s+Bank\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:09:50.862208"
+    },
+    {
+      "id": "7acade0d",
+      "name": "WKO",
+      "description": "Matches the specific organization 'WKO' (Wirtschaftskammer \u00d6sterreich).",
+      "format": "regex",
+      "content": "\\bWKO\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:09:50.862307"
+    },
+    {
+      "id": "60c943dc",
+      "name": "Bezirkshauptmannschaft Bludenz",
+      "description": "Matches the specific organization 'Bezirkshauptmannschaft Bludenz'.",
+      "format": "regex",
+      "content": "\\bBezirkshauptmannschaft\\s+Bludenz\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:09:50.862337"
+    },
+    {
+      "id": "1c9c9f6a",
+      "name": "\u00d6BB Abbreviation",
+      "description": "Matches the Austrian Federal Railways '\u00d6BB' in various contexts.",
+      "format": "regex",
+      "content": "\\b\u00d6BB\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:10:03.255533"
+    },
+    {
+      "id": "a11f3d0a",
+      "name": "SeneCura Variations",
+      "description": "Matches 'SeneCura' and its variations (SENECURA, Senecura, SeneCura Laurentius Park, etc.) with flexible spacing and hyphenation.",
+      "format": "regex",
+      "content": "\\b(?:SENECURA|SeneCura|Senecura)(?:\\s+(?:Laurentius\\s+Park|Laurentius-Park|Laurentius\\s+Park\\s+Bludenz|Laurentius-Park\\s+Bludenz))?\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:10:03.255607"
+    },
+    {
+      "id": "a71940e9",
+      "name": "Krankenpflegevereins Bludenz",
+      "description": "Matches 'Krankenpflegevereins Bludenz' and its genitive form 'Krankenpflegevereins Bludenz'.",
+      "format": "regex",
+      "content": "\\bKrankenpflegevereins\\s+Bludenz\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:10:03.255789"
+    },
+    {
+      "id": "bbb30876",
+      "name": "Generic Company Names with Titles Refined",
+      "description": "Matches company names with titles (Mag., Dr., etc.) and specific proper names ending in legal forms. Excludes generic terms like 'Steuerberatungs GmbH' or 'Rechtsanw\u00e4lte GmbH' unless preceded by a specific name. Excludes 'Partei' and other non-company prefixes.",
+      "format": "regex",
+      "content": "(?<!Firma\\s)(?<!Arbeitgeber\\s)(?<!Unternehmen\\s)(?<!Firmen\\s)(?<!Gesellschaft\\s)(?<!Partei\\s)\\b(?:Mag\\.?\\s+|Dr\\.?\\s+)?([A-Z][a-zA-Z\\u00e4\\u00f6\\u00fc\\u00c4\\u00d6\\u00dc\\u00df]+(?:\\s+[A-Z][a-zA-Z\\u00e4\\u00f6\\u00fc\\u00c4\\u00d6\\u00dc\\u00df]+)*)\\s+(GmbH|AG|KG|GmbH\\s*&\\s*Co\\s*KG)\\b(?!\\s+Wirtschaftstreuhand|\\s+Steuerberatungs|\\s+Steuerberatung|\\s+Partnerschaft|\\s+Rechtsanw\\u00e4lte|\\s+GmbH|\\s+AG|\\s+KG|\\s+Versicherung|\\s+Bank|\\s+Versand|\\s+Logistik|\\s+Services|\\s+Handel|\\s+Immobilien|\\s+Touristik|\\s+Event|\\s+Recycling|\\s+Daten|\\s+Institut|\\s+Holding|\\s+Manufaktur|\\s+Krankenpflege|\\s+Krankenhaus|\\s+Spital|\\s+Klinik|\\s+Praxis|\\s+Medizin|\\s+Pharmazeut|\\s+Chemie|\\s+Technik|\\s+Ingenieure|\\s+Architekten|\\s+Planung|\\s+Entwicklung|\\s+Software|\\s+Hardware|\\s+Netzwerk|\\s+Telekommunikation|\\s+Versicherung|\\s+Finanz|\\s+Investment|\\s+Asset|\\s+Management|\\s+Consulting|\\s+Audit|\\s+Tax|\\s+Legal|\\s+Compliance|\\s+Risk|\\s+Security|\\s+Privacy|\\s+Data|\\s+Cloud|\\s+AI|\\s+Machine|\\s+Learning|\\s+Robotics|\\s+Automation|\\s+IoT|\\s+Blockchain|\\s+Crypto|\\s+Fintech|\\s+Insurtech|\\s+Regtech|\\s+Legaltech|\\s+PropTech|\\s+EdTech|\\s+HealthTech|\\s+FoodTech|\\s+AgriTech|\\s+CleanTech|\\s+GreenTech|\\s+SmartTech|\\s+Digital|\\s+Online|\\s+Offline|\\s+Mobile|\\s+Web|\\s+App|\\s+Platform|\\s+Service|\\s+Solution|\\s+Product|\\s+System|\\s+Network|\\s+Infrastructure|\\s+Hardware|\\s+Software|\\s+Cloud|\\s+Data|\\s+Analytics|\\s+Intelligence|\\s+Security|\\s+Privacy|\\s+Compliance|\\s+Risk|\\s+Audit|\\s+Tax|\\s+Legal|\\s+Consulting|\\s+Management|\\s+Investment|\\s+Asset|\\s+Finance|\\s+Bank|\\s+Insurance|\\s+Real|\\s+Estate|\\s+Property|\\s+Construction|\\s+Engineering|\\s+Architecture|\\s+Design|\\s+Marketing|\\s+Advertising|\\s+Media|\\s+Entertainment|\\s+Sports|\\s+Leisure|\\s+Travel|\\s+Hospitality|\\s+Food|\\s+Beverage|\\s+Retail|\\s+Wholesale|\\s+Distribution|\\s+Logistics|\\s+Supply|\\s+Chain|\\s+Manufacturing|\\s+Production|\\s+Operations|\\s+Quality|\\s+Safety|\\s+Environment|\\s+Sustainability|\\s+Energy|\\s+Utilities|\\s+Transport|\\s+Shipping|\\s+Aviation|\\s+Maritime|\\s+Rail|\\s+Road|\\s+Air|\\s+Sea|\\s+Land|\\s+Space|\\s+Defense|\\s+Government|\\s+Public|\\s+Private|\\s+Nonprofit|\\s+NGO|\\s+Association|\\s+Union|\\s+Guild|\\s+Club|\\s+Society|\\s+Institute|\\s+Foundation|\\s+Trust|\\s+Fund|\\s+Grant|\\s+Scholarship|\\s+Award|\\s+Prize|\\s+Competition|\\s+Contest|\\s+Event|\\s+Conference|\\s+Seminar|\\s+Workshop|\\s+Training|\\s+Education|\\s+Learning|\\s+Development|\\s+Research|\\s+Innovation|\\s+Technology|\\s+Science|\\s+Medicine|\\s+Health|\\s+Wellness|\\s+Fitness|\\s+Beauty|\\s+Fashion|\\s+Style|\\s+Lifestyle|\\s+Home|\\s+Garden|\\s+Decor|\\s+Furniture|\\s+Appliance|\\s+Electronics|\\s+Computer|\\s+Phone|\\s+Tablet|\\s+Watch|\\s+Camera|\\s+Audio|\\s+Video|\\s+Gaming|\\s+Toy|\\s+Hobby|\\s+Sport|\\s+Equipment|\\s+Gear|\\s+Apparel|\\s+Clothing|\\s+Shoe|\\s+Accessory|\\s+Jewelry|\\s+Watch|\\s+Bag|\\s+Wallet|\\s+Keychain|\\s+Pen|\\s+Paper|\\s+Stationery|\\s+Office|\\s+School|\\s+Art|\\s+Craft|\\s+Music|\\s+Book|\\s+Magazine|\\s+Newspaper|\\s+Journal|\\s+Blog|\\s+Podcast|\\s+Video|\\s+Audio|\\s+Image|\\s+Photo|\\s+Graphic|\\s+Design|\\s+Print|\\s+Publish|\\s+Media|\\s+Content|\\s+Creative|\\s+Digital|\\s+Online|\\s+Offline|\\s+Mobile|\\s+Web|\\s+App|\\s+Platform|\\s+Service|\\s+Solution|\\s+Product|\\s+System|\\s+Network|\\s+Infrastructure|\\s+Hardware|\\s+Software|\\s+Cloud|\\s+Data|\\s+Analytics|\\s+Intelligence|\\s+Security|\\s+Privacy|\\s+Compliance|\\s+Risk|\\s+Audit|\\s+Tax|\\s+Legal|\\s+Consulting|\\s+Management|\\s+Investment|\\s+Asset|\\s+Finance|\\s+Bank|\\s+Insurance|\\s+Real|\\s+Estate|\\s+Property|\\s+Construction|\\s+Engineering|\\s+Architecture|\\s+Design|\\s+Marketing|\\s+Advertising|\\s+Media|\\s+Entertainment|\\s+Sports|\\s+Leisure|\\s+Travel|\\s+Hospitality|\\s+Food|\\s+Beverage|\\s+Retail|\\s+Wholesale|\\s+Distribution|\\s+Logistics|\\s+Supply|\\s+Chain|\\s+Manufacturing|\\s+Production|\\s+Operations|\\s+Quality|\\s+Safety|\\s+Environment|\\s+Sustainability|\\s+Energy|\\s+Utilities|\\s+Transport|\\s+Shipping|\\s+Aviation|\\s+Maritime|\\s+Rail|\\s+Road|\\s+Air|\\s+Sea|\\s+Land|\\s+Space|\\s+Defense|\\s+Government|\\s+Public|\\s+Private|\\s+Nonprofit|\\s+NGO|\\s+Association|\\s+Union|\\s+Guild|\\s+Club|\\s+Society|\\s+Institute|\\s+Foundation|\\s+Trust|\\s+Fund|\\s+Grant|\\s+Scholarship|\\s+Award|\\s+Prize|\\s+Competition|\\s+Contest|\\s+Event|\\s+Conference|\\s+Seminar|\\s+Workshop|\\s+Training|\\s+Education|\\s+Learning|\\s+Development|\\s+Research|\\s+Innovation|\\s+Technology|\\s+Science|\\s+Medicine|\\s+Health|\\s+Wellness|\\s+Fitness|\\s+Beauty|\\s+Fashion|\\s+Style|\\s+Lifestyle|\\s+Home|\\s+Garden|\\s+Decor|\\s+Furniture|\\s+Appliance|\\s+Electronics|\\s+Computer|\\s+Phone|\\s+Tablet|\\s+Watch|\\s+Camera|\\s+Audio|\\s+Video|\\s+Gaming|\\s+Toy|\\s+Hobby|\\s+Sport|\\s+Equipment|\\s+Gear|\\s+Apparel|\\s+Clothing|\\s+Shoe|\\s+Accessory|\\s+Jewelry|\\s+Watch|\\s+Bag|\\s+Wallet|\\s+Keychain|\\s+Pen|\\s+Paper|\\s+Stationery|\\s+Office|\\s+School|\\s+Art|\\s+Craft|\\s+Music|\\s+Book|\\s+Magazine|\\s+Newspaper|\\s+Journal|\\s+Blog|\\s+Podcast|\\s+Video|\\s+Audio|\\s+Image|\\s+Photo|\\s+Graphic|\\s+Design|\\s+Print|\\s+Publish|\\s+Media|\\s+Content|\\s+Creative)",
+      "priority": 6,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:11:22.681769"
+    },
+    {
+      "id": "913a2c4e",
+      "name": "Mittel-Logistik",
+      "description": "Matches the specific company 'Mittel-Logistik'.",
+      "format": "regex",
+      "content": "\\bMittel-Logistik\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:11:22.685961"
+    },
+    {
+      "id": "ac50d0a1",
+      "name": "Alessi Event GMBH",
+      "description": "Matches the specific company 'Alessi Event GMBH'.",
+      "format": "regex",
+      "content": "\\bAlessi\\s+Event\\s+GMBH\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:11:22.686008"
+    },
+    {
+      "id": "c1d9e0f9",
+      "name": "UnterRecycling Services GMBH",
+      "description": "Matches the specific company 'UnterRecycling Services GMBH'.",
+      "format": "regex",
+      "content": "\\bUnterRecycling\\s+Services\\s+GMBH\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-04-27T09:11:22.686055"
+    }
+  ]
+}
