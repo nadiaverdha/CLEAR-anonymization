@@ -66,8 +66,15 @@ class NERSentence:
         return cls(sent_id=sent_id, text=text, tokens=tokens, labels=labels)
 
     def to_conll_token(self, tok):
+        tok_id = tok["id"]
+        if isinstance(tok_id, str):
+            if "-" in tok_id:
+                a, b = tok_id.split("-")
+                tok_id = (int(a), int(b))
+            else:
+                tok_id = int(tok_id)
         return {
-            "id": tok["id"],
+            "id": tok_id,
             "text": tok["text"],
             "lemma": tok.get("lemma", "_"),
             "upos": tok.get("upos", "_"),
@@ -163,6 +170,10 @@ class NERData:
 
     def to_json(self) -> list[dict]:
         return [sample.to_json() for sample in self.samples]
+
+    @property
+    def sentences(self) -> list:
+        return [sent for sample in self.samples for sent in sample.sentences]
 
     @classmethod
     def from_conll(cls, text: str) -> "NERData":

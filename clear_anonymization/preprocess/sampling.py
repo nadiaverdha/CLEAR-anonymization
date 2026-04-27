@@ -32,79 +32,95 @@ def build_examples(text, merged_windows):
     return examples
 
 
+def _doc_sentences(doc, classes):
+    for sent in doc.sentences:
+        entities = sorted(
+            [l for l in sent.labels if l["type"] in classes],
+            key=lambda x: x["start"],
+        )
+        yield {"text": sent.text, "entities": entities}
+
+
 def sample_few_shot(
     train_data,
-    windows,
     seed=42,
     num_classes=None,
     classes=None,
-    window_size=200,
     pool_size=None,
     train_ratio=0.7,
+    shuffle=True,
+    extra_data=None,
 ):
+    """
+    train_data / extra_data: list of NERSample (document level).
+    Shuffle and train/eval split are performed at document level so sentences
+    from the same document are never split across sets.
+    """
     rng = random.Random(seed)
-    use_filter = classes is not None
 
-    doc_samples = [
-        sent
-        for s in train_data.samples
-        for sent in (s.sentences if s.sentences else [s])
-    ]
     if not classes:
-        all_labels = sorted({l["type"] for s in doc_samples for l in s.labels})
+        all_labels = sorted(
+            {
+                l["type"]
+                for doc in train_data
+                for sent in doc.sentences
+                for l in sent.labels
+            }
+        )
         if num_classes and num_classes < len(all_labels):
             rng.shuffle(all_labels)
             classes = set(all_labels[:num_classes])
-            use_filter = True
         else:
             classes = set(all_labels)
 
     classes = set(classes)
-    all_examples = []
-    negatives = []
-    seen_texts = set()
 
-    for sample in doc_samples:
-        text = sample.text
-        if use_filter:
-            entities = sorted(
-                [l for l in sample.labels if l["type"] in classes],
-                key=lambda x: x["start"],
-            )
+    pos_docs = []
+    neg_docs = []
+    for doc in train_data:
+        sents = list(_doc_sentences(doc, classes))
+        if any(s["entities"] for s in sents):
+            pos_docs.append(sents)
         else:
-            entities = list(sample.labels)
+            neg_docs.append(sents)
 
-        if text in seen_texts:
-            continue
-        seen_texts.add(text)
+    if shuffle:
+        rng.shuffle(pos_docs)
+        rng.shuffle(neg_docs)
 
-        if not entities:
-            other_entities = (
-                [l for l in sample.labels if l["type"] not in classes]
-                if use_filter
-                else []
-            )
-            negatives.append({"text": text, "entities": other_entities})
-            continue
-
-        if windows:
-            for ex in build_examples(text, select_windows(text, entities, window_size)):
-                if ex["text"] not in seen_texts:
-                    seen_texts.add(ex["text"])
-                    all_examples.append(ex)
-        else:
-            all_examples.append({"text": text, "entities": entities})
-
-    # print(f"Total positives: {len(all_examples)}, negatives: {len(negatives)}")
-
-    rng.shuffle(all_examples)
-    rng.shuffle(negatives)
-    pool = all_examples[:pool_size] if pool_size else all_examples
-
+    pool = pos_docs[:pool_size] if pool_size else pos_docs
     split_idx = int(len(pool) * train_ratio)
-    train_examples = pool[:split_idx]
-    eval_examples = pool[split_idx:]
-    for i in train_examples[:3]:
-        print(i)
 
-    return train_examples, eval_examples, negatives, classes
+    n_train_docs = split_idx
+    n_eval_docs = len(pool) - split_idx
+
+    train_examples = [s for doc in pool[:split_idx] for s in doc if s["entities"]]
+    eval_examples = [s for doc in pool[split_idx:] for s in doc if s["entities"]]
+    negatives = [s for doc in neg_docs for s in doc] + [
+        s for doc in pool for s in doc if not s["entities"]
+    ]
+
+    n_extra = 0
+    if extra_data is not None:
+        extra_docs = [
+            [s for s in _doc_sentences(doc, classes) if s["entities"]]
+            for doc in extra_data
+        ]
+        extra_docs = [doc for doc in extra_docs if doc]
+        if shuffle:
+            rng.shuffle(extra_docs)
+        pool_extra = extra_docs[:pool_size] if pool_size else extra_docs
+        extra_examples = [s for doc in pool_extra for s in doc]
+
+        n_extra = len(extra_examples)
+        train_examples = train_examples + extra_examples
+
+    return (
+        train_examples,
+        eval_examples,
+        negatives,
+        classes,
+        n_extra,
+        n_train_docs,
+        n_eval_docs,
+    )

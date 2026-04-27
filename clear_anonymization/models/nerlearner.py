@@ -89,7 +89,9 @@ class NERLearner(RuleChef):
         eval_dataset,
         batch_size=40,
         refine_per_batch=1,
+        refine_every=1,
         iteration_callback=None,
+        batch_callback=None,
         audit_interval=0,
         seed_rules=None,
     ):
@@ -110,6 +112,7 @@ class NERLearner(RuleChef):
             )
             # Clear so next batch only sees its own examples
             self.dataset.examples.clear()
+
             if batch_result:
                 result = batch_result
                 rules_so_far, _ = result
@@ -117,7 +120,7 @@ class NERLearner(RuleChef):
                     f"  Batch {batch_idx + 1}/{len(batches)}: {len(rules_so_far)} rules synthesized"
                 )
 
-                if refine_per_batch > 0:
+                if refine_per_batch > 0 and batch_idx % refine_every == 0:
                     rules_so_far, refine_eval = self.refine(
                         rules_so_far,
                         eval_dataset,
@@ -130,6 +133,8 @@ class NERLearner(RuleChef):
                     print(
                         f"  After refine: {len(rules_so_far)} rules, F1={refine_eval.micro_f1:.1%}"
                     )
+                if batch_callback is not None:
+                    batch_callback(batch_idx, rules_so_far)
         t_learn = time.time() - t0
         if result is None:
             print("ERROR: Learning failed!")

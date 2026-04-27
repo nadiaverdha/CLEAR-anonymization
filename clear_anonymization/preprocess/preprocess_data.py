@@ -266,8 +266,6 @@ def main():
                 if folder in processed:
                     continue
 
-                print(f"==== {i}/{len(folders)} Document {folder} ====")
-
                 try:
                     sample = process_folder(
                         zip_path, folder, args.split, error_path, args.verbose
