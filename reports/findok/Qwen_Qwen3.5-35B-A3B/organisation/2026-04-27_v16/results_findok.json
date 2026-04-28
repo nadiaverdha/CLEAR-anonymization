@@ -34,7 +34,7 @@
     "refine_every": 10,
     "extra_train_dir": "/share/nverdha/data/bfg/final_files/2026-04-23_findok-manually-annotated_TRAIN.conllu",
     "manually_annotated_size": 96,
-    "first_manual_batch": 132
+    "first_manual_batch": 58
   },
   "results": {
     "accuracy": 0.863672814755413,
@@ -1375,7 +1375,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 59,
@@ -1394,7 +1394,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 60,
@@ -1413,7 +1413,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 61,
@@ -1432,7 +1432,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 62,
@@ -1451,7 +1451,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 63,
@@ -1470,7 +1470,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 64,
@@ -1489,7 +1489,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 65,
@@ -1508,7 +1508,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 66,
@@ -1527,7 +1527,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 67,
@@ -1546,7 +1546,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 68,
@@ -1565,7 +1565,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 69,
@@ -1584,7 +1584,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 70,
@@ -1603,7 +1603,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 71,
@@ -1622,7 +1622,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 72,
@@ -1641,7 +1641,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 73,
@@ -1660,7 +1660,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 74,
@@ -1679,7 +1679,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 75,
@@ -1698,7 +1698,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 76,
@@ -1717,7 +1717,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 77,
@@ -1736,7 +1736,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 78,
@@ -1755,7 +1755,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 79,
@@ -1774,7 +1774,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 80,
@@ -1793,7 +1793,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 81,
@@ -1812,7 +1812,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 82,
@@ -1831,7 +1831,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 83,
@@ -1850,7 +1850,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 84,
@@ -1869,7 +1869,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 85,
@@ -1888,7 +1888,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 86,
@@ -1907,7 +1907,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 87,
@@ -1926,7 +1926,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 88,
@@ -1945,7 +1945,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 89,
@@ -1964,7 +1964,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 90,
@@ -1983,7 +1983,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 91,
@@ -2002,7 +2002,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 92,
@@ -2021,7 +2021,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 93,
@@ -2040,7 +2040,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 94,
@@ -2059,7 +2059,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 95,
@@ -2078,7 +2078,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 96,
@@ -2097,7 +2097,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 97,
@@ -2116,7 +2116,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 98,
@@ -2135,7 +2135,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 99,
@@ -2154,7 +2154,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 100,
@@ -2173,7 +2173,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 101,
@@ -2192,7 +2192,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 102,
@@ -2211,7 +2211,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 103,
@@ -2230,7 +2230,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 104,
@@ -2249,7 +2249,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 105,
@@ -2268,7 +2268,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 106,
@@ -2287,7 +2287,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 107,
@@ -2306,7 +2306,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 108,
@@ -2325,7 +2325,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 109,
@@ -2344,7 +2344,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 110,
@@ -2363,7 +2363,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 111,
@@ -2382,7 +2382,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 112,
@@ -2401,7 +2401,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 113,
@@ -2420,7 +2420,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 114,
@@ -2439,7 +2439,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 115,
@@ -2458,7 +2458,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 116,
@@ -2477,7 +2477,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 117,
@@ -2496,7 +2496,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 118,
@@ -2515,7 +2515,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 119,
@@ -2534,7 +2534,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 120,
@@ -2553,7 +2553,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 121,
@@ -2572,7 +2572,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 122,
@@ -2591,7 +2591,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 123,
@@ -2610,7 +2610,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 124,
@@ -2629,7 +2629,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 125,
@@ -2648,7 +2648,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 126,
@@ -2667,7 +2667,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 127,
@@ -2686,7 +2686,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 128,
@@ -2705,7 +2705,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 129,
@@ -2724,7 +2724,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 130,
@@ -2743,7 +2743,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 131,
@@ -2762,7 +2762,7 @@
         }
       ],
       "train_manually_anno": 96,
-      "includes_manual_anno": false
+      "includes_manual_anno": true
     },
     {
       "batch": 132,
