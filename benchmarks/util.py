@@ -2,7 +2,7 @@ import json
 import tempfile
 import time
 import uuid
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
 from typing import Any
@@ -11,6 +11,30 @@ import yaml
 from rulechef.core import Dataset, Example, Feedback, Rule, RuleFormat
 from rulechef.evaluation import evaluate_dataset, evaluate_rules_individually
 from rulechef.training_logger import TrainingDataLogger
+
+from clear_anonymization.ner_datasets import load_ner_dataset_from_conll
+from clear_anonymization.preprocess.create_train_dev_split import (
+    label_distribution_sent,
+    print_distribution,
+)
+from clear_anonymization.preprocess.sampling import sample_few_shot
+
+# ── Experiment data ──────────────────────────────────────────
+
+
+@dataclass
+class DataSplit:
+    """Sampled, train/eval/dev-split data ready for a learning phase."""
+
+    name: str
+    train: list
+    eval: list
+    dev: list
+    counter_examples: list
+    selected_classes: set
+    n_train_docs: int
+    n_eval_docs: int
+    n_test_docs: int
 
 
 @dataclass
@@ -26,11 +50,89 @@ class BenchmarkRun:
     eval_annotations: int
     test_annotations: int
     iteration_metrics: list
+    batch_test_metrics: list
     eval_results: Any
     t_learn: float
     t_eval: float
     rules: list
     selected_classes: set[str] | list[str]
+    metadata: dict = field(default_factory=dict)
+
+
+def prepare_split(
+    args,
+    *,
+    name: str,
+    train_dir: str,
+    test_dir: str | None = None,
+    classes: str | None = None,
+    fallback_dev: list | None = None,
+) -> DataSplit:
+    """Load and sample one dataset into a DataSplit ready for training."""
+    print(f"\nLoading {name} dataset...")
+    train_all = load_ner_dataset_from_conll(train_dir)
+
+    dev_all = load_ner_dataset_from_conll(test_dir) if test_dir else None
+
+    class_list = [c.strip() for c in classes.split(",")] if classes else None
+
+    (
+        train,
+        eval_,
+        counter_examples,
+        selected_classes,
+        n_train_docs,
+        n_eval_docs,
+    ) = sample_few_shot(
+        train_data=train_all.samples,
+        seed=args.seed,
+        num_classes=args.num_classes,
+        classes=class_list,
+        pool_size=args.pool_size,
+        train_ratio=args.train_ratio,
+    )
+    if dev_all:
+        dev = [
+            {
+                "doc_id": s.doc_id,
+                "sent_id": sent.sent_id,
+                "text": sent.text,
+                "entities": sent.labels,
+            }
+            for s in dev_all.samples
+            for sent in s.sentences
+        ]
+        n_test_docs = len(dev_all.samples)
+        dev_label = f"{n_test_docs} source docs"
+    elif fallback_dev is not None:
+        dev = fallback_dev
+        n_test_docs = len(dev)
+        dev_label = "reusing phase 1 dev"
+    else:
+        raise ValueError(f"prepare_split({name!r}): provide test_dir or fallback_dev")
+
+    print(f"{'─' * 70}")
+    print(f"Source docs — train: {len(train_all.samples)}, dev: {dev_label}")
+    print(f"Sampled     — train docs: {n_train_docs}, eval docs: {n_eval_docs}")
+    print(f"Sentences   — train: {len(train)}, eval: {len(eval_)}, dev: {len(dev)}")
+    print_distribution(train, "TRAIN", fn=label_distribution_sent)
+    print_distribution(eval_, "EVAL", fn=label_distribution_sent)
+    print(
+        f"Classes     — {len(selected_classes)}: {', '.join(sorted(selected_classes))}"
+    )
+    print(f"{'─' * 70}")
+
+    return DataSplit(
+        name=name,
+        train=train,
+        eval=eval_,
+        dev=dev,
+        counter_examples=counter_examples,
+        selected_classes=selected_classes,
+        n_train_docs=n_train_docs,
+        n_eval_docs=n_eval_docs,
+        n_test_docs=n_test_docs,
+    )
 
 
 def setup_output_paths(args, selected_classes):
@@ -43,20 +145,15 @@ def setup_output_paths(args, selected_classes):
     ).strip()
     num_classes = len(selected_classes)
 
-    if args.rules_json:
-        output_dir = Path(args.rules_json).parent
-    else:
-        base_dir = (
-            Path(f"reports/{args.dataset_name}/{model_name}") / selected_classes_str
-        )
-        base_name = date_str
+    base_dir = Path(f"reports/{args.dataset_name}/{model_name}") / selected_classes_str
+    base_name = date_str
 
-        output_dir = base_dir / base_name
-        if output_dir.exists():
-            version = 1
-            while (base_dir / f"{base_name}_v{version}").exists():
-                version += 1
-            output_dir = base_dir / f"{base_name}_v{version}"
+    output_dir = base_dir / base_name
+    if output_dir.exists():
+        version = 1
+        while (base_dir / f"{base_name}_v{version}").exists():
+            version += 1
+        output_dir = base_dir / f"{base_name}_v{version}"
 
     output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -94,9 +191,10 @@ def make_dataset(dataset_name, data, task):
             Example(
                 id=str(uuid.uuid4())[:8],
                 input={
+                    "doc_id": ex.get("doc_id", ""),
+                    "sent_id": ex.get("sent_id", ""),
                     "text": ex["text"],
                     "sentences": ex.get("sentences", []),
-                    "doc_id": ex.get("doc_id", ""),
                 },
                 expected_output={"entities": ex["entities"]},
                 source="benchmark",
@@ -153,7 +251,7 @@ def make_oniteration_callback(iteration_metrics: list):
     return on_iteration
 
 
-def load_human_feedback(feedback_path, rules, eval_dataset, learner):
+def load_human_feedback_v2(feedback_path, eval_dataset, learner, rules=None):
     def _norm(s):
         return s.replace("\u2011", "-").replace("\u2010", "-")
 
@@ -163,7 +261,7 @@ def load_human_feedback(feedback_path, rules, eval_dataset, learner):
         level = fb.get("level", "task")
         text = fb["text"]
         target_id = ""
-        if level == "rule":
+        if level == "rule" and rules is not None:
             rule_name = fb.get("rule_name", "")
             matched = next(
                 (r for r in rules if _norm(r.name) == _norm(rule_name)), None
@@ -181,11 +279,31 @@ def load_human_feedback(feedback_path, rules, eval_dataset, learner):
                 target_id=target_id,
             )
         )
-        learner.add_feedback(eval_dataset, text, level, target_id)
+        learner.add_feedback(text, level, target_id)
 
 
-def evaluate_test(test_data, test_dataset, rules, chef, mode="text", iou_threshold=1):
-    print(f"\nEVALUATING ON HELD-OUT TEST SET ({len(test_data)} examples)...")
+def load_human_feedback(feedback_path, eval_dataset, learner, rules=None):
+    def _norm(s):
+        return s.replace("\u2011", "-").replace("\u2010", "-")
+
+    feedback_items = json.loads(Path(feedback_path).read_text())
+    print(f"  Loading {len(feedback_items)} human feedback items")
+    for fb in feedback_items:
+        level = fb.get("level", "task")
+        text = fb["text"]
+        target_id = ""
+        eval_dataset.structured_feedback.append(
+            Feedback(
+                id=str(uuid.uuid4())[:8],
+                text=text,
+                level=level,
+                target_id=target_id,
+            )
+        )
+        learner.add_feedback(text, level, target_id)
+
+
+def evaluate_test(test_dataset, rules, chef, mode="text", iou_threshold=1):
     t0 = time.time()
     eval_results = evaluate_dataset(
         rules,
@@ -211,9 +329,9 @@ def save_results(output_path: Path, run: BenchmarkRun):
             "max_samples": args.max_samples,
             "max_iterations": args.max_iterations,
             "seed": args.seed,
-            "train_size": len(run.train_data),
-            "eval_size": len(run.eval_data),
-            "test_size": len(run.test_data),
+            "train_size": run.train_size,
+            "eval_size": run.eval_size,
+            "test_size": run.test_size,
             "train_annotations": run.train_annotations,
             "eval_annotations": run.eval_annotations,
             "test_annotations": run.test_annotations,
@@ -231,7 +349,11 @@ def save_results(output_path: Path, run: BenchmarkRun):
             "refine_per_batch": args.refine_per_batch,
             "synthesis_strategy": args.synthesis_strategy,
             "selected_classes": run.selected_classes,
+            "dataset_name": args.dataset_name,
+            "max_counter_examples": args.max_counter_examples,
+            "refine_every": args.refine_every,
         },
+        "metadata": run.metadata,
         "results": {
             "accuracy": run.eval_results.exact_match,
             "micro_precision": run.eval_results.micro_precision,
@@ -256,6 +378,7 @@ def save_results(output_path: Path, run: BenchmarkRun):
             for cm in (run.eval_results.per_class or [])
         ],
         "iteration_metrics": run.iteration_metrics,
+        "batch_test_metrics": run.batch_test_metrics,
         "rules": [
             {
                 "id": r.id,
@@ -283,7 +406,7 @@ def print_results(run: BenchmarkRun):
     print(f"{'=' * 70}")
     print("Configuration:")
     print(f"Shots per class:          {args.shots}")
-    print(f"Training examples:        {len(run.train_data)}")
+    print(f"Training examples:        {len(run.train_data)} ")
     print(f"Test examples:            {len(run.test_data)}")
     print(f"Model:                    {args.model}")
     print(f"Max rules:                {args.max_rules}")
