@@ -174,6 +174,4 @@ class TrainingSession:
         if self._learner is None:
             raise RuntimeError("Call train() before evaluate().")
 
-        return evaluate_test(
-            self._split.dev, self._dev_dataset, self.rules, self._learner
-        )
+        return evaluate_test(self._dev_dataset, self.rules, self._learner)

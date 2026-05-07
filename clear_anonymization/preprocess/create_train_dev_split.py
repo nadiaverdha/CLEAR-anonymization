@@ -70,7 +70,7 @@ def label_distribution_sent(samples) -> Counter:
 def print_distribution(samples, name: str, fn=label_distribution_doc) -> None:
     dist = fn(samples)
     total = sum(dist.values())
-    print(f"\n{name} ({len(samples)} docs, {total} entities):")
+    print(f"\n{name} ({len(samples)} sentences, {total} entities):")
     for label, count in sorted(dist.items()):
         print(f"  {label}: {count} ({count / total:.1%})")
 
