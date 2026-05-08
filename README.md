@@ -19,17 +19,16 @@ pip install -e .
 Requires Python ≥ 3.8. Key dependencies: `rulechef`, `openai`, `pydantic`, `stanza`, `spacy`.
 
 ---
----
 ## Data preparation
 
-#### LER Dataset
+### LER Dataset
 
 To download the LER dataset from HuggingFace in a json format inside the `data` folder:
 ```bash
 python clear_anonymization/preprocess/preprocess_ler.py --repository_id elenanereiss/german-ler --output_dir data/ler/ler_data.json 
 ```
 
-#### Other Datasets (Musterfall, FinDok)
+### Other Datasets (Musterfall, FinDok)
 
 To store the dataset in a ConLL format inside the `data` folder. 
 
@@ -44,11 +43,6 @@ The train dataset is further split into a train and test set which will be used 
  python clear_anonymization/preprocess/create_train_dev_split.py --train-file data/{datasetname}/{datasetname}_train.conllu --output-dir  /share/nverdha/data/{dataset_name}/ --dev-ratio 0.2 --seed 42
 ```
 ---
----
-
-
-### NER Rules
-
 
 ## Running the benchmark
 
@@ -149,10 +143,9 @@ Results are written to `reports/{dataset}/{model}/{classes}/{date}/`:
 
 
 ---
----
 
 
-### LLM Extractor
+## LLM Extractor
 
 First, serve a model locally using [vLLM](https://docs.vllm.ai/):
 ```bash
