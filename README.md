@@ -1,9 +1,10 @@
 # CLEAR-anonymization
 ## CLEAR: Comprehensible Learning for Entity Anonymization and Recognition 
 ![Alt text](assets/logo.png)
+
+
 CLEAR learns interpretable regex-based extraction rules for Named Entity Recognition (NER) in German legal documents. It builds upon [RuleChef](https://github.com/KRLabsOrg/rulechef), an LLM-powered rule synthesis framework with an iterative refinement loop to produce rules that are human-readable, auditable, and accurate.
 
-Supported datasets: **LER**, **FinDok**, **Musterfall (M2N)**, **RIS**.
 
 ## How it works
 1. **Synthesis** — given a batch of annotated sentences, an LLM generates regex rules covering the observed entity patterns
@@ -17,7 +18,8 @@ pip install -e .
 
 Requires Python ≥ 3.8. Key dependencies: `rulechef`, `openai`, `pydantic`, `stanza`, `spacy`.
 
-
+---
+---
 ## Data preparation
 
 #### LER Dataset
@@ -41,9 +43,8 @@ The train dataset is further split into a train and test set which will be used 
 ```bash
  python clear_anonymization/preprocess/create_train_dev_split.py --train-file data/{datasetname}/{datasetname}_train.conllu --output-dir  /share/nverdha/data/{dataset_name}/ --dev-ratio 0.2 --seed 42
 ```
-
-
-
+---
+---
 
 
 ### NER Rules
@@ -134,6 +135,22 @@ python -m benchmarks.benchmark \
 
 ---
 
+## Outputs
+
+Results are written to `reports/{dataset}/{model}/{classes}/{date}/`:
+
+| File | Contents |
+|---|---|
+| `results_findok.json` | Metrics, per-class breakdown, learned rules |
+| `results_findok.rules_report.md` | Human-readable rule evaluation report |
+| `results_findok.training.jsonl` | Per-iteration training log |
+| `config.yaml` | Exact config used for this run |
+| `session_summary.json` | Full training history across all phases |
+
+
+---
+---
+
 
 ### LLM Extractor
 
@@ -155,18 +172,6 @@ LLMExtractor.predict("Frau Müller arbeitet beim Bundesgericht.")
 ```
 
 ---
-
-## Outputs
-
-Results are written to `reports/{dataset}/{model}/{classes}/{date}/`:
-
-| File | Contents |
-|---|---|
-| `results_findok.json` | Metrics, per-class breakdown, learned rules |
-| `results_findok.rules_report.md` | Human-readable rule evaluation report |
-| `results_findok.training.jsonl` | Per-iteration training log |
-| `config.yaml` | Exact config used for this run |
-| `session_summary.json` | Full training history across all phases |
 
 
 ## License
