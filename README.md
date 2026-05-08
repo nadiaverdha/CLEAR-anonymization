@@ -20,17 +20,17 @@ python clear_anonymization/preprocess/preprocess_ler.py --repository_id elenaner
 
 #### Other Datasets (Musterfall, FinDok)
 
-To store the dataset in a json format inside the `data` folder. 
+To store the dataset in a ConLL format inside the `data` folder. 
 
 ```bash
-python clear_anonymization/preprocess/preprocess_data.py --input_dir {datasetname}_TRAIN.zip --output_dir data/{datasetname}/{datasetname}_train_initial.json --split train --sentences 
+python clear_anonymization/preprocess/preprocess_data.py --input_dir {datasetname}_TRAIN.zip --output_dir data/{datasetname}/{datasetname}_train.conllu --split train --verbose
 
 ```
 
 The train dataset is further split into a train and test set which will be used in our testing. The existing validation set is kept held-out for final evaluation. 
 
 ```bash
- python clear_anonymization/preprocess/create_train_test_split.py --train-file data/{datasetname}/{datasetname}_train_initial.json --output-dir  /share/nverdha/data/ris/ --test-ratio 0.2 --seed 42
+ python clear_anonymization/preprocess/create_train_dev_split.py --train-file data/{datasetname}/{datasetname}_train.conllu --output-dir  /share/nverdha/data/{dataset_name}/ --dev-ratio 0.2 --seed 42
 ```
 
 
