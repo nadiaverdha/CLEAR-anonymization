@@ -94,6 +94,7 @@ class NERLearner(RuleChef):
         batch_callback=None,
         audit_interval=0,
         seed_rules=None,
+        start_batch=0,
     ):
         if seed_rules is not None:
             self.dataset.rules = seed_rules
@@ -102,8 +103,10 @@ class NERLearner(RuleChef):
             for i in range(0, len(train_data), batch_size)
         ]
         t0 = time.time()
-        result = None
+        result = (list(seed_rules), None) if (seed_rules and start_batch > 0) else None
         for batch_idx, batch in enumerate(batches):
+            if batch_idx < start_batch:
+                continue
             for ex in batch:
                 self.add_example({"text": ex["text"]}, {"entities": ex["entities"]})
             batch_result = self.learn_rules(

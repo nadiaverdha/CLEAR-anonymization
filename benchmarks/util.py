@@ -25,7 +25,6 @@ from clear_anonymization.preprocess.sampling import sample_few_shot
 @dataclass
 class DataSplit:
     """Sampled, train/eval/dev-split data ready for a learning phase."""
-
     name: str
     train: list
     eval: list
@@ -203,8 +202,23 @@ def make_dataset(dataset_name, data, task):
     return dataset
 
 
-def load_rules_from_json(path: str | Path) -> list:
-    saved = json.loads(Path(path).read_text())
+def serialize_rules(rules) -> list:
+    return [
+        {
+            "id": r.id,
+            "name": r.name,
+            "description": r.description,
+            "format": r.format.value,
+            "content": r.content,
+            "priority": r.priority,
+            "output_template": r.output_template,
+            "output_key": r.output_key,
+        }
+        for r in rules
+    ]
+
+
+def deserialize_rules(rules_list: list) -> list:
     return [
         Rule(
             id=r["id"],
@@ -216,8 +230,23 @@ def load_rules_from_json(path: str | Path) -> list:
             output_template=r.get("output_template"),
             output_key=r.get("output_key"),
         )
-        for r in saved["rules"]
+        for r in rules_list
     ]
+
+
+def save_checkpoint(path: Path, data: dict):
+    tmp = path.with_suffix(".cp_tmp")
+    tmp.write_text(json.dumps(data, indent=2))
+    tmp.replace(path)
+
+
+def load_checkpoint(path: Path) -> dict:
+    return json.loads(path.read_text())
+
+
+def load_rules_from_json(path: str | Path) -> list:
+    saved = json.loads(Path(path).read_text())
+    return deserialize_rules(saved["rules"])
 
 
 def make_oniteration_callback(iteration_metrics: list):
@@ -396,6 +425,7 @@ def save_results(output_path: Path, run: BenchmarkRun):
     }
     output_path.write_text(json.dumps(results, indent=2))
     print(f"\nResults saved to {output_path}")
+    return results
 
 
 def print_results(run: BenchmarkRun):

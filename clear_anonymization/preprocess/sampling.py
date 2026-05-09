@@ -49,12 +49,12 @@ def sample_few_shot(
     pool_size=None,
     train_ratio=0.7,
     shuffle=True,
-    extra_data=None,
 ):
     """
-    train_data / extra_data: list of NERSample (document level).
-    Shuffle and train/eval split are performed at document level so sentences
+    train_data: list of NERSample (document level).
+    Shuffle and train/eval split are at document level so sentences
     from the same document are never split across sets.
+    Returns (train, eval, counter_examples, selected_classes, n_train_docs, n_eval_docs).
     """
     rng = random.Random(seed)
 
@@ -99,28 +99,11 @@ def sample_few_shot(
     negatives = [s for doc in neg_docs for s in doc] + [
         s for doc in pool for s in doc if not s["entities"]
     ]
-
-    n_extra = 0
-    if extra_data is not None:
-        extra_docs = [
-            [s for s in _doc_sentences(doc, classes) if s["entities"]]
-            for doc in extra_data
-        ]
-        extra_docs = [doc for doc in extra_docs if doc]
-        if shuffle:
-            rng.shuffle(extra_docs)
-        pool_extra = extra_docs[:pool_size] if pool_size else extra_docs
-        extra_examples = [s for doc in pool_extra for s in doc]
-
-        n_extra = len(extra_examples)
-        train_examples = train_examples + extra_examples
-
     return (
         train_examples,
         eval_examples,
         negatives,
         classes,
-        n_extra,
         n_train_docs,
         n_eval_docs,
     )
