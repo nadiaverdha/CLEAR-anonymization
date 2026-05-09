@@ -156,8 +156,8 @@ def main():
     print(
         f"Train: {len(train_data.samples)} samples, Test: {len(dev_data.samples)} samples"
     )
-    train_path = Path(args.output_dir + "/" + "2025-04-26_findok_train_final.conllu")
-    dev_path = Path(args.output_dir + "/" + "2025-04-26_findok_dev_final.conllu")
+    train_path = Path(args.output_dir + "/" + "2025-05-08_ris_train_final.conllu")
+    dev_path = Path(args.output_dir + "/" + "2025-05-08_ris_dev_final.conllu")
     print("Writing the splits to:", train_path, " & ", dev_path)
 
     train_path.write_text(train_data.to_conll())
