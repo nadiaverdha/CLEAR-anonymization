@@ -68,7 +68,7 @@ vllm serve Qwen/Qwen3.5-35B-A3B \
 
 Then run:
 ```bash
-python -m benchmarks.benchmark \
+python benchmarks/benchmark.py \
   --train-dir data/findok/data/{dataset_name}/{dataset_name}_train.conllu \
   --test-dir data/findok//{dataset_name}/{dataset_name}_dev.conllu \
   --dataset-name findok \
@@ -83,7 +83,7 @@ python -m benchmarks.benchmark \
 
 Or use a config file (CLI flags override config values):
 ```bash
-python -m benchmarks.benchmark --config benchmarks/config.yaml
+python benchmarks/benchmark.py --config benchmarks/config.yaml
 ```
 
 ### Key arguments
