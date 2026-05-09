@@ -25,6 +25,7 @@ from clear_anonymization.preprocess.sampling import sample_few_shot
 @dataclass
 class DataSplit:
     """Sampled, train/eval/dev-split data ready for a learning phase."""
+
     name: str
     train: list
     eval: list

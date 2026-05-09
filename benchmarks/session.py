@@ -87,10 +87,14 @@ class TrainingSession:
         iteration_metrics = (
             list(prev_iteration_metrics) if prev_iteration_metrics else []
         )
+        rules_snapshots = []
         t_learn = prev_t_learn if prev_t_learn else 0.0
         on_iteration = make_oniteration_callback(iteration_metrics)
 
         def on_batch(batch_idx, rules):
+            rules_snapshots.append(
+                {"phase": phase, "batch": batch_idx, "rules": serialize_rules(rules)}
+            )
             result, _ = evaluate_test(self._dev_dataset, rules, self._learner)
             batch_metrics.append(
                 {
@@ -164,6 +168,7 @@ class TrainingSession:
                 "num_eval_annotations": sum(len(s["entities"]) for s in split.eval),
                 "batch_metrics": batch_metrics,
                 "iteration_metrics": iteration_metrics,
+                "rules_snapshots": rules_snapshots,
             }
         )
         return batch_metrics, iteration_metrics, t_learn
