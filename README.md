@@ -112,7 +112,7 @@ python -m benchmarks.benchmark --config benchmarks/config.yaml
 
 If a run is interrupted, resume from the last completed batch:
 ```bash
-python -m benchmarks.benchmark \
+python  benchmarks/benchmark.py \
   --resume-from reports/findok/Qwen_Qwen3.5-35B-A3B/organisation/{folder_you_want_to_resume_experiment}/
 ```
 
@@ -124,7 +124,7 @@ The checkpoint file (`checkpoint.json`) is written after every batch and deleted
 
 Train on a source dataset, then continue on a target dataset seeded with the learned rules:
 ```bash
-python -m benchmarks.benchmark \
+python  benchmarks/benchmark.py \
   --train-dir data/ler/split/train.conllu \
   --test-dir data/ler/split/dev.conllu \
   --dataset-name ler \
