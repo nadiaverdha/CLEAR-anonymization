@@ -1,10 +1,19 @@
 import random
 from dataclasses import dataclass, field
 from datetime import datetime
+from pathlib import Path
 from typing import Any
 
-from benchmarks.util import evaluate_test, make_dataset, make_oniteration_callback
+from benchmarks.util import (
+    evaluate_test,
+    make_dataset,
+    make_oniteration_callback,
+    save_checkpoint,
+    serialize_rules,
+)
 from clear_anonymization.models.nerlearner import NERLearner
+
+CHECKPOINT_FILE = "checkpoint.json"
 
 
 @dataclass
@@ -13,6 +22,7 @@ class TrainingSession:
     storage_dir: str
     rules: list = field(default_factory=list)
     history: list[dict] = field(default_factory=list)
+    checkpoint_path: Path | None = None
 
     def __post_init__(self):
         self._learner = None
@@ -52,7 +62,18 @@ class TrainingSession:
             f"{split.name}_dev", split.dev, self._learner.task
         )
 
-    def train(self, split, *, logger=None, skip_synthesis=False):
+    def train(
+        self,
+        split,
+        *,
+        logger=None,
+        skip_synthesis=False,
+        start_batch=0,
+        prev_batch_metrics=None,
+        prev_iteration_metrics=None,
+        prev_t_learn=None,
+        phase: str = "phase1",
+    ):
         self._prepare_split(split, logger)
         a = self.args
 
@@ -62,8 +83,11 @@ class TrainingSession:
         else:
             train_for_chef = split.train
 
-        iteration_metrics = []
-        batch_metrics = []
+        batch_metrics = list(prev_batch_metrics) if prev_batch_metrics else []
+        iteration_metrics = (
+            list(prev_iteration_metrics) if prev_iteration_metrics else []
+        )
+        t_learn = prev_t_learn if prev_t_learn else 0.0
         on_iteration = make_oniteration_callback(iteration_metrics)
 
         def on_batch(batch_idx, rules):
@@ -92,13 +116,24 @@ class TrainingSession:
                 f"  [batch {batch_idx}] dev micro_f1={result.micro_f1:.3f}"
                 f"  P={result.micro_precision:.3f}  R={result.micro_recall:.3f}"
             )
+            if self.checkpoint_path:
+                save_checkpoint(
+                    self.checkpoint_path,
+                    {
+                        "phase": phase,
+                        "completed_batches": batch_idx + 1,
+                        "rules": serialize_rules(rules),
+                        "batch_metrics": batch_metrics,
+                        "iteration_metrics": iteration_metrics,
+                        "timestamp": datetime.now().isoformat(),
+                    },
+                )
 
-        t_learn = 0.0
         if skip_synthesis and self.rules:
             print(f"\nSkipping synthesis — using {len(self.rules)} existing rules.")
             rules = list(self.rules)
         else:
-            rules, t_learn = self._learner.fit_batched(
+            fit_result = self._learner.fit_batched(
                 train_for_chef,
                 eval_dataset=self._eval_dataset if a.refine_per_batch > 0 else None,
                 batch_size=a.batch_size,
@@ -108,7 +143,12 @@ class TrainingSession:
                 batch_callback=on_batch,
                 audit_interval=a.audit_interval,
                 seed_rules=self.rules or None,
+                start_batch=start_batch,
             )
+            if fit_result is None:
+                return batch_metrics, iteration_metrics, t_learn
+            rules, new_t_learn = fit_result
+            t_learn += new_t_learn
 
         self.rules = rules
         self.history.append(

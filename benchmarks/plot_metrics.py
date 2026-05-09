@@ -34,7 +34,6 @@ def _plot_ax(ax, metrics, final_results=None, title="Batch Metrics", xlabel="Bat
         if xlabel == "Batch"
         else list(range(len(metrics)))
     )
-    print(xlabel, steps)
     ax.plot(
         steps,
         [m["micro_f1"] for m in metrics],
@@ -200,7 +199,7 @@ def main():
     plot_single(
         phase1_data,
         label=f"phase1 ({phase1_data.get('config', {}).get('dataset_name', '')})",
-        output_path=Path(f"{prefix}_phase1.png") if prefix else None,
+        output_path=Path("phase1.png"),
     )
 
     if args.transfer:
@@ -209,13 +208,13 @@ def main():
         plot_single(
             transfer_data,
             label=f"transfer ({transfer_data.get('config', {}).get('dataset_name', '')})",
-            output_path=Path(f"{prefix}_transfer.png") if prefix else None,
+            output_path=Path(f"transfer.png"),
         )
 
         plot_combined(
             phase1_data,
             transfer_data,
-            output_path=Path(f"{prefix}_combined.png") if prefix else None,
+            output_path=Path(f"combined.png") if prefix else None,
         )
 
 
