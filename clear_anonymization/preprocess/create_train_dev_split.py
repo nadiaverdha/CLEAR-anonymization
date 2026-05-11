@@ -136,13 +136,19 @@ def main():
         help="Random seed (default: 42)",
     )
     parser.add_argument(
+        "--dataset-name",
+        type=str,
+        default="findok",
+        help="Name of the dataset (default: ris)",
+    )
+    parser.add_argument(
         "--stratified",
         action="store_true",
+        default=True,
         help="Use stratified splitting",
     )
 
     args = parser.parse_args()
-
     full_train_data = load_ner_dataset_from_conll(Path(args.train_file))
     if args.stratified:
         train_data, dev_data = split_dev_set_stratified(
@@ -156,8 +162,8 @@ def main():
     print(
         f"Train: {len(train_data.samples)} samples, Test: {len(dev_data.samples)} samples"
     )
-    train_path = Path(args.output_dir + "/" + "2025-05-08_ris_train_final.conllu")
-    dev_path = Path(args.output_dir + "/" + "2025-05-08_ris_dev_final.conllu")
+    train_path = Path(args.output_dir + "/" + f"{args.dataset_name}_train_final.conllu")
+    dev_path = Path(args.output_dir + "/" + f"{args.dataset_name}_dev_final.conllu")
     print("Writing the splits to:", train_path, " & ", dev_path)
 
     train_path.write_text(train_data.to_conll())
