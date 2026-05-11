@@ -93,15 +93,16 @@ python benchmarks/benchmark.py --config benchmarks/config.yaml
 |---|---|---|
 | `--train-dir` | — | CoNLL-U training data |
 | `--test-dir` | — | CoNLL-U dev / test data |
-| `--dataset-name` | `findok` | Dataset identifier |
+| `transfer-train-dir:` | — | CoNLL-U transfer train data  |
+| `transfer-val-dir:` | — | CoNLL-U transfer dev / test data if not provided uses test-dir  |
+| `--dataset-name` | `findok` | Dataset name |
 | `--classes` | all | Comma-separated entity classes to learn |
 | `--model` | `Qwen/Qwen3.5-35B-A3B` | vLLM model name |
 | `--base-url` | `http://localhost:8000/v1` | OpenAI-compatible endpoint |
-| `--max-rules` | 10 | Maximum number of rules to keep |
+| `--max-rules` | 10 | Maximum number of rules to generate per LLM call |
 | `--batch-size` | 20 | Training sentences per batch |
 | `--max-iterations` | 3 | Refinement iterations after synthesis |
 | `--sampling-strategy` | `balanced` | How to sample training examples |
-| `--synthesis-strategy` | `bulk` | `bulk` (all at once) or incremental |
 | `--seed` | 42 | Random seed for reproducibility |
 | `--rules-json` | — | Seed training with existing rules |
 | `--skip-synthesis` | false | Skip synthesis, only run refinement |
