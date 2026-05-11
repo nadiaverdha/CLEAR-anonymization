@@ -93,8 +93,8 @@ python benchmarks/benchmark.py --config benchmarks/config.yaml
 |---|---|---|
 | `--train-dir` | — | CoNLL-U training data |
 | `--test-dir` | — | CoNLL-U dev / test data |
-| `transfer-train-dir:` | — | CoNLL-U transfer train data  |
-| `transfer-val-dir:` | — | CoNLL-U transfer dev / test data if not provided uses test-dir  |
+| `--transfer-train-dir:` | — | CoNLL-U transfer train data  |
+| `--transfer-val-dir:` | — | CoNLL-U transfer dev / test data if not provided uses test-dir  |
 | `--dataset-name` | `findok` | Dataset name |
 | `--classes` | all | Comma-separated entity classes to learn |
 | `--model` | `Qwen/Qwen3.5-35B-A3B` | vLLM model name |
