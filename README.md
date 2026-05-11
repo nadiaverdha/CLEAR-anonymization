@@ -51,6 +51,7 @@ The train dataset is further split into a train and test set which will be used 
 --output-dir  /share/nverdha/data/{dataset_name}/ \
 --dev-ratio 0.2 \
 --seed 42
+--stratified
 ```
 ---
 
