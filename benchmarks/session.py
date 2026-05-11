@@ -71,8 +71,10 @@ class TrainingSession:
         start_batch=0,
         prev_batch_metrics=None,
         prev_iteration_metrics=None,
+        prev_rules_snapshots=None,
         prev_t_learn=None,
         phase: str = "phase1",
+        synthesize_per_batch=False,
     ):
         self._prepare_split(split, logger)
         a = self.args
@@ -87,13 +89,13 @@ class TrainingSession:
         iteration_metrics = (
             list(prev_iteration_metrics) if prev_iteration_metrics else []
         )
-        rules_snapshots = []
+        rules_snapshots = list(prev_rules_snapshots) if prev_rules_snapshots else []
         t_learn = prev_t_learn if prev_t_learn else 0.0
         on_iteration = make_oniteration_callback(iteration_metrics)
 
         def on_batch(batch_idx, rules):
             rules_snapshots.append(
-                {"phase": phase, "batch": batch_idx, "rules": serialize_rules(rules)}
+                {"batch": batch_idx, "rules": serialize_rules(rules)}
             )
             result, _ = evaluate_test(self._dev_dataset, rules, self._learner)
             batch_metrics.append(
@@ -129,6 +131,7 @@ class TrainingSession:
                         "rules": serialize_rules(rules),
                         "batch_metrics": batch_metrics,
                         "iteration_metrics": iteration_metrics,
+                        "rules_snapshots": rules_snapshots,
                         "timestamp": datetime.now().isoformat(),
                     },
                 )
@@ -148,6 +151,7 @@ class TrainingSession:
                 audit_interval=a.audit_interval,
                 seed_rules=self.rules or None,
                 start_batch=start_batch,
+                synthesize_per_batch=synthesize_per_batch,
             )
             if fit_result is None:
                 return batch_metrics, iteration_metrics, t_learn

@@ -94,9 +94,11 @@ def run_benchmark(args):
             split,
             logger=logger,
             skip_synthesis=args.skip_synthesis,
+            synthesize_per_batch=args.synthesize_per_batch,
             start_batch=start_batch,
             prev_batch_metrics=cp.get("batch_metrics"),
             prev_iteration_metrics=cp.get("iteration_metrics"),
+            prev_rules_snapshots=cp.get("rules_snapshots"),
             prev_t_learn=cp.get("t_learn"),
             phase="phase1",
         )
@@ -185,9 +187,13 @@ def run_benchmark(args):
         t_batch_metrics, t_iteration_metrics, t_learn = session.train(
             transfer,
             skip_synthesis=skip_synth,
+            synthesize_per_batch=(
+                args.transfer_continuation == "synthesize_and_refine"
+            ),
             start_batch=t_start_batch,
             prev_batch_metrics=t_prev_batch_metrics,
             prev_iteration_metrics=cp.get("iteration_metrics"),
+            prev_rules_snapshots=cp.get("rules_snapshots"),
             prev_t_learn=cp.get("t_learn"),
             phase="transfer",
         )
@@ -294,13 +300,15 @@ def main():
     # ── Phase 1 dataset ───────────────────────────────────────
     parser.add_argument("--train-dir", type=str)
     parser.add_argument("--test-dir", type=str)
-    parser.add_argument("--dataset-name", type=str, default="findok")
+    parser.add_argument("--train-name", type=str, default="findok")
+    parser.add_argument("--test-name", type=str, default="findok")
     parser.add_argument("--classes", type=str, default=None)
 
     # ── Transfer phase ────────────────────────────────────────
     parser.add_argument("--transfer-train-dir", type=str, default=None)
     parser.add_argument("--transfer-test-dir", type=str, default=None)
-    parser.add_argument("--transfer-dataset-name", type=str, default=None)
+    parser.add_argument("--transfer-name", type=str, default=None)
+    parser.add_argument("--transfer-test-name", type=str, default=None)
     parser.add_argument("--transfer-classes", type=str, default=None)
     parser.add_argument(
         "--transfer-continuation",
@@ -342,6 +350,11 @@ def main():
     parser.add_argument("--rules-json", type=str, default=None)
     parser.add_argument("--feedback", type=str, default=None)
     parser.add_argument("--skip-synthesis", action="store_true")
+    parser.add_argument(
+        "--synthesize-per-batch",
+        action="store_true",
+        help="Per batch: full synthesis + patch pass (learn new patterns and adjust existing ones)",
+    )
 
     # ── Output ────────────────────────────────────────────────
     parser.add_argument("--output", type=str, default="results_findok.json")
