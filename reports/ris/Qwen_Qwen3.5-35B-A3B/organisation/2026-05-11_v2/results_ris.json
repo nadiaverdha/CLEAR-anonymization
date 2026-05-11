@@ -1,0 +1,1161 @@
+{
+  "config": {
+    "shots": null,
+    "model": "Qwen/Qwen3.5-35B-A3B",
+    "format": "regex",
+    "max_rules": 30,
+    "max_samples": 60,
+    "max_iterations": 0,
+    "seed": 42,
+    "train_size": 600,
+    "eval_size": 151,
+    "test_size": 476,
+    "train_annotations": 912,
+    "eval_annotations": 238,
+    "test_annotations": 23285,
+    "use_grex": true,
+    "agentic": false,
+    "enable_critic": false,
+    "enable_prune": false,
+    "critic_interval": 10,
+    "audit_interval": 0,
+    "windows": false,
+    "sampling_strategy": "balanced",
+    "train_ratio": 0.8,
+    "pool_size": null,
+    "batch_size": 20,
+    "refine_per_batch": 1,
+    "synthesis_strategy": "bulk",
+    "selected_classes": [
+      "organisation"
+    ],
+    "train_name": "findok",
+    "test_name": "findok",
+    "transfer_name": null,
+    "transfer_test_name": null,
+    "max_counter_examples": 10,
+    "refine_every": 10
+  },
+  "metadata": {},
+  "results": {
+    "accuracy": 0.987030277002362,
+    "micro_precision": 0.13358778625954199,
+    "micro_recall": 0.10144927536231885,
+    "micro_f1": 0.11532125205930807,
+    "macro_f1": 0.11532125205930807,
+    "num_rules": 15,
+    "learning_time_s": 2488.8,
+    "eval_time_s": 9.735,
+    "per_query_ms": 0.42
+  },
+  "per_class": [
+    {
+      "label": "organisation",
+      "precision": 0.13358778625954199,
+      "recall": 0.10144927536231885,
+      "f1": 0.11532125205930807,
+      "tp": 35,
+      "fp": 227,
+      "fn": 310
+    }
+  ],
+  "iteration_metrics": [
+    {
+      "iteration": 1,
+      "num_rules": 10,
+      "exact_match": 0.046218487394957986,
+      "micro_precision": 0.08984375,
+      "micro_recall": 0.0782312925170068,
+      "micro_f1": 0.08363636363636363,
+      "macro_f1": 0.08363636363636363,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.08363636363636363,
+          "precision": 0.08984375,
+          "recall": 0.0782312925170068
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 1,
+      "exact_match": 0.025210084033613446,
+      "micro_precision": 0.1111111111111111,
+      "micro_recall": 0.023809523809523808,
+      "micro_f1": 0.0392156862745098,
+      "macro_f1": 0.0392156862745098,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.0392156862745098,
+          "precision": 0.1111111111111111,
+          "recall": 0.023809523809523808
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 3,
+      "exact_match": 0.1092436974789916,
+      "micro_precision": 0.17110266159695817,
+      "micro_recall": 0.15306122448979592,
+      "micro_f1": 0.16157989228007183,
+      "macro_f1": 0.16157989228007183,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.16157989228007183,
+          "precision": 0.17110266159695817,
+          "recall": 0.15306122448979592
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 15,
+      "exact_match": 0.10084033613445378,
+      "micro_precision": 0.20704845814977973,
+      "micro_recall": 0.1598639455782313,
+      "micro_f1": 0.1804222648752399,
+      "macro_f1": 0.1804222648752399,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.1804222648752399,
+          "precision": 0.20704845814977973,
+          "recall": 0.1598639455782313
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 14,
+      "exact_match": 0.06722689075630252,
+      "micro_precision": 0.16304347826086957,
+      "micro_recall": 0.10204081632653061,
+      "micro_f1": 0.12552301255230125,
+      "macro_f1": 0.12552301255230125,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.12552301255230125,
+          "precision": 0.16304347826086957,
+          "recall": 0.10204081632653061
+        }
+      ]
+    }
+  ],
+  "batch_test_metrics": [
+    {
+      "batch": 0,
+      "num_rules": 16,
+      "exact_match": 0.9728151170281297,
+      "micro_f1": 0.06811731315042573,
+      "micro_precision": 0.05056179775280899,
+      "micro_recall": 0.10434782608695652,
+      "macro_f1": 0.06811731315042573,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.06811731315042573,
+          "precision": 0.05056179775280899,
+          "recall": 0.10434782608695652
+        }
+      ]
+    },
+    {
+      "batch": 1,
+      "num_rules": 28,
+      "exact_match": 0.9760790208288598,
+      "micro_f1": 0.0028368794326241137,
+      "micro_precision": 0.002777777777777778,
+      "micro_recall": 0.002898550724637681,
+      "macro_f1": 0.0028368794326241137,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.0028368794326241137,
+          "precision": 0.002777777777777778,
+          "recall": 0.002898550724637681
+        }
+      ]
+    },
+    {
+      "batch": 2,
+      "num_rules": 28,
+      "exact_match": 0.9760790208288598,
+      "micro_f1": 0.0028368794326241137,
+      "micro_precision": 0.002777777777777778,
+      "micro_recall": 0.002898550724637681,
+      "macro_f1": 0.0028368794326241137,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.0028368794326241137,
+          "precision": 0.002777777777777778,
+          "recall": 0.002898550724637681
+        }
+      ]
+    },
+    {
+      "batch": 3,
+      "num_rules": 36,
+      "exact_match": 0.9729869014386945,
+      "micro_f1": 0.0667302192564347,
+      "micro_precision": 0.04971590909090909,
+      "micro_recall": 0.10144927536231885,
+      "macro_f1": 0.0667302192564347,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.0667302192564347,
+          "precision": 0.04971590909090909,
+          "recall": 0.10144927536231885
+        }
+      ]
+    },
+    {
+      "batch": 4,
+      "num_rules": 58,
+      "exact_match": 0.974060554004724,
+      "micro_f1": 0.09477756286266925,
+      "micro_precision": 0.07111756168359942,
+      "micro_recall": 0.14202898550724638,
+      "macro_f1": 0.09477756286266925,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.09477756286266925,
+          "precision": 0.07111756168359942,
+          "recall": 0.14202898550724638
+        }
+      ]
+    },
+    {
+      "batch": 5,
+      "num_rules": 70,
+      "exact_match": 0.9766373201631952,
+      "micro_f1": 0.0030030030030030025,
+      "micro_precision": 0.003115264797507788,
+      "micro_recall": 0.002898550724637681,
+      "macro_f1": 0.0030030030030030025,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.0030030030030030025,
+          "precision": 0.003115264797507788,
+          "recall": 0.002898550724637681
+        }
+      ]
+    },
+    {
+      "batch": 6,
+      "num_rules": 85,
+      "exact_match": 0.9766373201631952,
+      "micro_f1": 0.0030030030030030025,
+      "micro_precision": 0.003115264797507788,
+      "micro_recall": 0.002898550724637681,
+      "macro_f1": 0.0030030030030030025,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.0030030030030030025,
+          "precision": 0.003115264797507788,
+          "recall": 0.002898550724637681
+        }
+      ]
+    },
+    {
+      "batch": 7,
+      "num_rules": 85,
+      "exact_match": 0.9766373201631952,
+      "micro_f1": 0.0030030030030030025,
+      "micro_precision": 0.003115264797507788,
+      "micro_recall": 0.002898550724637681,
+      "macro_f1": 0.0030030030030030025,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.0030030030030030025,
+          "precision": 0.003115264797507788,
+          "recall": 0.002898550724637681
+        }
+      ]
+    },
+    {
+      "batch": 8,
+      "num_rules": 1,
+      "exact_match": 0.9855701095125617,
+      "micro_f1": 0.1318373071528752,
+      "micro_precision": 0.12771739130434784,
+      "micro_recall": 0.13623188405797101,
+      "macro_f1": 0.1318373071528752,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.1318373071528752,
+          "precision": 0.12771739130434784,
+          "recall": 0.13623188405797101
+        }
+      ]
+    },
+    {
+      "batch": 9,
+      "num_rules": 1,
+      "exact_match": 0.9855701095125617,
+      "micro_f1": 0.1318373071528752,
+      "micro_precision": 0.12771739130434784,
+      "micro_recall": 0.13623188405797101,
+      "macro_f1": 0.1318373071528752,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.1318373071528752,
+          "precision": 0.12771739130434784,
+          "recall": 0.13623188405797101
+        }
+      ]
+    },
+    {
+      "batch": 10,
+      "num_rules": 2,
+      "exact_match": 0.9878462529525446,
+      "micro_f1": 0.0,
+      "micro_precision": 0.0,
+      "micro_recall": 0.0,
+      "macro_f1": 0.0,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0
+        }
+      ]
+    },
+    {
+      "batch": 11,
+      "num_rules": 3,
+      "exact_match": 0.9844535108438909,
+      "micro_f1": 0.13020833333333334,
+      "micro_precision": 0.1182033096926714,
+      "micro_recall": 0.14492753623188406,
+      "macro_f1": 0.13020833333333334,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.13020833333333334,
+          "precision": 0.1182033096926714,
+          "recall": 0.14492753623188406
+        }
+      ]
+    },
+    {
+      "batch": 12,
+      "num_rules": 3,
+      "exact_match": 0.9843676186386086,
+      "micro_f1": 0.10596026490066227,
+      "micro_precision": 0.0975609756097561,
+      "micro_recall": 0.11594202898550725,
+      "macro_f1": 0.10596026490066227,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.10596026490066227,
+          "precision": 0.0975609756097561,
+          "recall": 0.11594202898550725
+        }
+      ]
+    },
+    {
+      "batch": 13,
+      "num_rules": 3,
+      "exact_match": 0.9843676186386086,
+      "micro_f1": 0.10596026490066227,
+      "micro_precision": 0.0975609756097561,
+      "micro_recall": 0.11594202898550725,
+      "macro_f1": 0.10596026490066227,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.10596026490066227,
+          "precision": 0.0975609756097561,
+          "recall": 0.11594202898550725
+        }
+      ]
+    },
+    {
+      "batch": 14,
+      "num_rules": 3,
+      "exact_match": 0.9843676186386086,
+      "micro_f1": 0.10596026490066227,
+      "micro_precision": 0.0975609756097561,
+      "micro_recall": 0.11594202898550725,
+      "macro_f1": 0.10596026490066227,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.10596026490066227,
+          "precision": 0.0975609756097561,
+          "recall": 0.11594202898550725
+        }
+      ]
+    },
+    {
+      "batch": 15,
+      "num_rules": 3,
+      "exact_match": 0.9862143010521796,
+      "micro_f1": 0.11169284467713787,
+      "micro_precision": 0.14035087719298245,
+      "micro_recall": 0.0927536231884058,
+      "macro_f1": 0.11169284467713787,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.11169284467713787,
+          "precision": 0.14035087719298245,
+          "recall": 0.0927536231884058
+        }
+      ]
+    },
+    {
+      "batch": 16,
+      "num_rules": 3,
+      "exact_match": 0.9872020614129268,
+      "micro_f1": 0.058558558558558564,
+      "micro_precision": 0.13131313131313133,
+      "micro_recall": 0.03768115942028986,
+      "macro_f1": 0.058558558558558564,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.058558558558558564,
+          "precision": 0.13131313131313133,
+          "recall": 0.03768115942028986
+        }
+      ]
+    },
+    {
+      "batch": 17,
+      "num_rules": 3,
+      "exact_match": 0.9844535108438909,
+      "micro_f1": 0.13020833333333334,
+      "micro_precision": 0.1182033096926714,
+      "micro_recall": 0.14492753623188406,
+      "macro_f1": 0.13020833333333334,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.13020833333333334,
+          "precision": 0.1182033096926714,
+          "recall": 0.14492753623188406
+        }
+      ]
+    },
+    {
+      "batch": 18,
+      "num_rules": 3,
+      "exact_match": 0.9844535108438909,
+      "micro_f1": 0.13020833333333334,
+      "micro_precision": 0.1182033096926714,
+      "micro_recall": 0.14492753623188406,
+      "macro_f1": 0.13020833333333334,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.13020833333333334,
+          "precision": 0.1182033096926714,
+          "recall": 0.14492753623188406
+        }
+      ]
+    },
+    {
+      "batch": 19,
+      "num_rules": 3,
+      "exact_match": 0.9844535108438909,
+      "micro_f1": 0.13020833333333334,
+      "micro_precision": 0.1182033096926714,
+      "micro_recall": 0.14492753623188406,
+      "macro_f1": 0.13020833333333334,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.13020833333333334,
+          "precision": 0.1182033096926714,
+          "recall": 0.14492753623188406
+        }
+      ]
+    },
+    {
+      "batch": 20,
+      "num_rules": 3,
+      "exact_match": 0.9844535108438909,
+      "micro_f1": 0.13020833333333334,
+      "micro_precision": 0.1182033096926714,
+      "micro_recall": 0.14492753623188406,
+      "macro_f1": 0.13020833333333334,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.13020833333333334,
+          "precision": 0.1182033096926714,
+          "recall": 0.14492753623188406
+        }
+      ]
+    },
+    {
+      "batch": 21,
+      "num_rules": 2,
+      "exact_match": 1.0,
+      "micro_f1": 0.0,
+      "micro_precision": 0.0,
+      "micro_recall": 0.0,
+      "macro_f1": 0.0,
+      "per_class": []
+    },
+    {
+      "batch": 22,
+      "num_rules": 2,
+      "exact_match": 0.9871161692076444,
+      "micro_f1": 0.1293103448275862,
+      "micro_precision": 0.1282051282051282,
+      "micro_recall": 0.13043478260869565,
+      "macro_f1": 0.1293103448275862,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.1293103448275862,
+          "precision": 0.1282051282051282,
+          "recall": 0.13043478260869565
+        }
+      ]
+    },
+    {
+      "batch": 23,
+      "num_rules": 0,
+      "exact_match": 1.0,
+      "micro_f1": 0.0,
+      "micro_precision": 0.0,
+      "micro_recall": 0.0,
+      "macro_f1": 0.0,
+      "per_class": []
+    },
+    {
+      "batch": 24,
+      "num_rules": 10,
+      "exact_match": 0.9853553789993558,
+      "micro_f1": 0.13908205841446453,
+      "micro_precision": 0.13368983957219252,
+      "micro_recall": 0.14492753623188406,
+      "macro_f1": 0.13908205841446453,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.13908205841446453,
+          "precision": 0.13368983957219252,
+          "recall": 0.14492753623188406
+        }
+      ]
+    },
+    {
+      "batch": 25,
+      "num_rules": 4,
+      "exact_match": 0.07751771526733948,
+      "micro_f1": 0.0015164485752721046,
+      "micro_precision": 0.0007614369051274179,
+      "micro_recall": 0.17971014492753623,
+      "macro_f1": 0.0015164485752721046,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.0015164485752721046,
+          "precision": 0.0007614369051274179,
+          "recall": 0.17971014492753623
+        }
+      ]
+    },
+    {
+      "batch": 26,
+      "num_rules": 4,
+      "exact_match": 0.07751771526733948,
+      "micro_f1": 0.0015164485752721046,
+      "micro_precision": 0.0007614369051274179,
+      "micro_recall": 0.17971014492753623,
+      "macro_f1": 0.0015164485752721046,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.0015164485752721046,
+          "precision": 0.0007614369051274179,
+          "recall": 0.17971014492753623
+        }
+      ]
+    },
+    {
+      "batch": 27,
+      "num_rules": 5,
+      "exact_match": 0.9875026841314151,
+      "micro_f1": 0.06944444444444445,
+      "micro_precision": 0.1724137931034483,
+      "micro_recall": 0.043478260869565216,
+      "macro_f1": 0.06944444444444445,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.06944444444444445,
+          "precision": 0.1724137931034483,
+          "recall": 0.043478260869565216
+        }
+      ]
+    },
+    {
+      "batch": 28,
+      "num_rules": 9,
+      "exact_match": 0.9878462529525446,
+      "micro_f1": 0.07594936708860758,
+      "micro_precision": 0.3,
+      "micro_recall": 0.043478260869565216,
+      "macro_f1": 0.07594936708860758,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.07594936708860758,
+          "precision": 0.3,
+          "recall": 0.043478260869565216
+        }
+      ]
+    },
+    {
+      "batch": 29,
+      "num_rules": 11,
+      "exact_match": 0.986085462744256,
+      "micro_f1": 0.1466275659824047,
+      "micro_precision": 0.14836795252225518,
+      "micro_recall": 0.14492753623188406,
+      "macro_f1": 0.1466275659824047,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.1466275659824047,
+          "precision": 0.14836795252225518,
+          "recall": 0.14492753623188406
+        }
+      ]
+    },
+    {
+      "batch": 30,
+      "num_rules": 15,
+      "exact_match": 0.9859136783336913,
+      "micro_f1": 0.14534883720930233,
+      "micro_precision": 0.1457725947521866,
+      "micro_recall": 0.14492753623188406,
+      "macro_f1": 0.14534883720930233,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.14534883720930233,
+          "precision": 0.1457725947521866,
+          "recall": 0.14492753623188406
+        }
+      ]
+    },
+    {
+      "batch": 31,
+      "num_rules": 9,
+      "exact_match": 0.9861713549495383,
+      "micro_f1": 0.1485884101040119,
+      "micro_precision": 0.1524390243902439,
+      "micro_recall": 0.14492753623188406,
+      "macro_f1": 0.1485884101040119,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.1485884101040119,
+          "precision": 0.1524390243902439,
+          "recall": 0.14492753623188406
+        }
+      ]
+    },
+    {
+      "batch": 32,
+      "num_rules": 11,
+      "exact_match": 0.9859136783336913,
+      "micro_f1": 0.14450867052023122,
+      "micro_precision": 0.1440922190201729,
+      "micro_recall": 0.14492753623188406,
+      "macro_f1": 0.14450867052023122,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.14450867052023122,
+          "precision": 0.1440922190201729,
+          "recall": 0.14492753623188406
+        }
+      ]
+    },
+    {
+      "batch": 33,
+      "num_rules": 12,
+      "exact_match": 0.98587073223105,
+      "micro_f1": 0.12536443148688045,
+      "micro_precision": 0.12609970674486803,
+      "micro_recall": 0.1246376811594203,
+      "macro_f1": 0.12536443148688045,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.12536443148688045,
+          "precision": 0.12609970674486803,
+          "recall": 0.1246376811594203
+        }
+      ]
+    },
+    {
+      "batch": 34,
+      "num_rules": 13,
+      "exact_match": 0.9867726003865149,
+      "micro_f1": 0.11954765751211631,
+      "micro_precision": 0.13503649635036497,
+      "micro_recall": 0.1072463768115942,
+      "macro_f1": 0.11954765751211631,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.11954765751211631,
+          "precision": 0.13503649635036497,
+          "recall": 0.1072463768115942
+        }
+      ]
+    },
+    {
+      "batch": 35,
+      "num_rules": 13,
+      "exact_match": 0.9868155464891561,
+      "micro_f1": 0.11935483870967742,
+      "micro_precision": 0.13454545454545455,
+      "micro_recall": 0.1072463768115942,
+      "macro_f1": 0.11935483870967742,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.11935483870967742,
+          "precision": 0.13454545454545455,
+          "recall": 0.1072463768115942
+        }
+      ]
+    },
+    {
+      "batch": 36,
+      "num_rules": 13,
+      "exact_match": 0.9868155464891561,
+      "micro_f1": 0.11935483870967742,
+      "micro_precision": 0.13454545454545455,
+      "micro_recall": 0.1072463768115942,
+      "macro_f1": 0.11935483870967742,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.11935483870967742,
+          "precision": 0.13454545454545455,
+          "recall": 0.1072463768115942
+        }
+      ]
+    },
+    {
+      "batch": 37,
+      "num_rules": 13,
+      "exact_match": 0.9868584925917973,
+      "micro_f1": 0.11954765751211631,
+      "micro_precision": 0.13503649635036497,
+      "micro_recall": 0.1072463768115942,
+      "macro_f1": 0.11954765751211631,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.11954765751211631,
+          "precision": 0.13503649635036497,
+          "recall": 0.1072463768115942
+        }
+      ]
+    },
+    {
+      "batch": 38,
+      "num_rules": 13,
+      "exact_match": 0.9870732231050032,
+      "micro_f1": 0.12171052631578948,
+      "micro_precision": 0.14068441064638784,
+      "micro_recall": 0.1072463768115942,
+      "macro_f1": 0.12171052631578948,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.12171052631578948,
+          "precision": 0.14068441064638784,
+          "recall": 0.1072463768115942
+        }
+      ]
+    },
+    {
+      "batch": 39,
+      "num_rules": 13,
+      "exact_match": 0.9870732231050032,
+      "micro_f1": 0.12171052631578948,
+      "micro_precision": 0.14068441064638784,
+      "micro_recall": 0.1072463768115942,
+      "macro_f1": 0.12171052631578948,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.12171052631578948,
+          "precision": 0.14068441064638784,
+          "recall": 0.1072463768115942
+        }
+      ]
+    },
+    {
+      "batch": 40,
+      "num_rules": 14,
+      "exact_match": 0.987030277002362,
+      "micro_f1": 0.11532125205930807,
+      "micro_precision": 0.13358778625954199,
+      "micro_recall": 0.10144927536231885,
+      "macro_f1": 0.11532125205930807,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.11532125205930807,
+          "precision": 0.13358778625954199,
+          "recall": 0.10144927536231885
+        }
+      ]
+    },
+    {
+      "batch": 41,
+      "num_rules": 15,
+      "exact_match": 0.9862572471548207,
+      "micro_f1": 0.009884678747940691,
+      "micro_precision": 0.011450381679389313,
+      "micro_recall": 0.008695652173913044,
+      "macro_f1": 0.009884678747940691,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.009884678747940691,
+          "precision": 0.011450381679389313,
+          "recall": 0.008695652173913044
+        }
+      ]
+    },
+    {
+      "batch": 42,
+      "num_rules": 15,
+      "exact_match": 0.987030277002362,
+      "micro_f1": 0.11532125205930807,
+      "micro_precision": 0.13358778625954199,
+      "micro_recall": 0.10144927536231885,
+      "macro_f1": 0.11532125205930807,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.11532125205930807,
+          "precision": 0.13358778625954199,
+          "recall": 0.10144927536231885
+        }
+      ]
+    },
+    {
+      "batch": 43,
+      "num_rules": 15,
+      "exact_match": 0.987030277002362,
+      "micro_f1": 0.11532125205930807,
+      "micro_precision": 0.13358778625954199,
+      "micro_recall": 0.10144927536231885,
+      "macro_f1": 0.11532125205930807,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.11532125205930807,
+          "precision": 0.13358778625954199,
+          "recall": 0.10144927536231885
+        }
+      ]
+    },
+    {
+      "batch": 44,
+      "num_rules": 15,
+      "exact_match": 0.987030277002362,
+      "micro_f1": 0.11532125205930807,
+      "micro_precision": 0.13358778625954199,
+      "micro_recall": 0.10144927536231885,
+      "macro_f1": 0.11532125205930807,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.11532125205930807,
+          "precision": 0.13358778625954199,
+          "recall": 0.10144927536231885
+        }
+      ]
+    },
+    {
+      "batch": 45,
+      "num_rules": 15,
+      "exact_match": 0.987030277002362,
+      "micro_f1": 0.11532125205930807,
+      "micro_precision": 0.13358778625954199,
+      "micro_recall": 0.10144927536231885,
+      "macro_f1": 0.11532125205930807,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.11532125205930807,
+          "precision": 0.13358778625954199,
+          "recall": 0.10144927536231885
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "a44dc287",
+      "name": "German Ltd Entity",
+      "description": "Matches entities ending in 'Ltd.'",
+      "format": "regex",
+      "content": "(?<![\\w])(?<!Partei\\s)(?<!der\\s)(?<!die\\s)(?<!den\\s)(?<!bei\\s)(?<!von\\s)(?<!Antragsgegnerin\\s)(?<!Antragsteller\\s)(?<!Rechtsanwalt\\s)(?<!Vertreten\\s)([A-Z][A-Za-z0-9\\s&+\\-]*[A-Z][A-Za-z0-9\\s&+\\-]*\\s+Ltd\\.|[A-Z][A-Za-z0-9\\s&+\\-]*\\s+Ltd\\.)(?=[,\\s]|$)",
+      "priority": 4,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-11T12:41:37.144683"
+    },
+    {
+      "id": "d61157cf",
+      "name": "German E-Commerce Entity",
+      "description": "Matches entities containing 'E\u2011Commerce' (en-dash) followed by GmbH or Limited.",
+      "format": "regex",
+      "content": "(?<![\\w])(?<!Partei\\s)(?<!der\\s)(?<!die\\s)(?<!den\\s)(?<!bei\\s)(?<!von\\s)(?<!Antragsgegnerin\\s)(?<!Antragsteller\\s)(?<!Rechtsanwalt\\s)(?<!Vertreten\\s)([A-Z][A-Za-z0-9\\s&+\\-]*E\\u2011Commerce\\s+(?:GmbH|Limited))(?=[,\\s]|\\.|$)",
+      "priority": 5,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-11T12:41:37.144695"
+    },
+    {
+      "id": "42e8ddd5",
+      "name": "German u. Kirchmann Entity",
+      "description": "Matches specific pattern 'u.' (und) in company names like Guggemos u. Kirchmann M\u00f6bel GmbH.",
+      "format": "regex",
+      "content": "(?<![\\w])(?<!Partei\\s)(?<!der\\s)(?<!die\\s)(?<!den\\s)(?<!bei\\s)(?<!von\\s)(?<!Antragsgegnerin\\s)(?<!Antragsteller\\s)(?<!Rechtsanwalt\\s)(?<!Vertreten\\s)([A-Z][A-Za-z0-9\\s&+\\-]*\\s+u\\.\\s+[A-Z][A-Za-z0-9\\s&+\\-]*\\s+M\\u00f6bel\\s+GmbH)(?=[,\\s]|\\.|$)",
+      "priority": 5,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-11T12:41:37.144707"
+    },
+    {
+      "id": "06db502a",
+      "name": "German Bezirksgericht Entity",
+      "description": "Matches specific court entities 'Bezirksgericht [City]'.",
+      "format": "regex",
+      "content": "(?<![\\w])(?<!Partei\\s)(?<!der\\s)(?<!die\\s)(?<!den\\s)(?<!bei\\s)(?<!von\\s)(?<!Antragsgegnerin\\s)(?<!Antragsteller\\s)(?<!Rechtsanwalt\\s)(?<!Vertreten\\s)(Bezirksgericht\\s+(?:St\\.\\s*P\\u00f6lten|Meidling))(?=[,\\s]|\\.|$)",
+      "priority": 7,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-11T12:41:37.144718"
+    },
+    {
+      "id": "e6e85e4c",
+      "name": "German Tal-Gastronomie Entity",
+      "description": "Matches specific entity 'TalFenbruckbruckGastronomie GmbH'.",
+      "format": "regex",
+      "content": "(?<![\\w])(?<!Partei\\s)(?<!der\\s)(?<!die\\s)(?<!den\\s)(?<!bei\\s)(?<!von\\s)(?<!Antragsgegnerin\\s)(?<!Antragsteller\\s)(?<!Rechtsanwalt\\s)(?<!Vertreten\\s)(TalFenbruckbruckGastronomie\\s+GmbH)(?=[,\\s]|\\.|$)",
+      "priority": 5,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-11T12:41:37.144730"
+    },
+    {
+      "id": "c0544481",
+      "name": "German GmbH & Co KG Entity",
+      "description": "Matches entities ending in 'GmbH & Co KG' with strict boundary.",
+      "format": "regex",
+      "content": "(?<![\\w])(?<!Partei\\s)(?<!der\\s)(?<!die\\s)(?<!den\\s)(?<!bei\\s)(?<!von\\s)(?<!Antragsgegnerin\\s)(?<!Antragsteller\\s)(?<!Rechtsanwalt\\s)(?<!Vertreten\\s)(?<!Richter\\s)(?<!Richterin\\s)(?<!Senatspr\\u00e4sident\\s)(?<!Senatspr\\u00e4sidentin\\s)(?<!Hofrat\\s)(?<!Hofr\\u00e4tin\\s)(?<!Hofr\\u00e4t\\s)(?<!Mag\\.\\s)(?<!Dr\\.\\s)(?<!Prof\\.\\s)(?<!Hon\\.\\s)(?<!Kanzlei\\s)(?<!Anwalt\\s)(?<!Gesellschafter\\s)(?<!der\\s)(?<!die\\s)(?<!den\\s)(?<!bei\\s)(?<!von\\s)(?<!Antragsgegnerin\\s)(?<!Antragsteller\\s)(?<!Rechtsanwalt\\s)(?<!Vertreten\\s)(?<!klagenden\\s)(?<!beklagten\\s)(?<!Nebenintervenient\\s)(?<!Nebenintervenientin\\s)(?<!Nebenintervenienten\\s)(?<!Nebenintervenientinnen\\s)(?<!der\\s)(?<!die\\s)(?<!den\\s)(?<!bei\\s)(?<!von\\s)(?<!Antragsgegnerin\\s)(?<!Antragsteller\\s)(?<!Rechtsanwalt\\s)(?<!Vertreten\\s)([A-Z][A-Za-z0-9\\s&+\\-]*[A-Z][A-Za-z0-9\\s&+\\-]*\\s+GmbH\\s+&\\s+Co\\s+KG)(?=[,\\s]|\\.|$)",
+      "priority": 7,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-11T12:41:37.144637"
+    },
+    {
+      "id": "c18553e8",
+      "name": "German Bank AG Entity",
+      "description": "Matches specific bank names followed by 'Bank AG' to capture only the company name part.",
+      "format": "regex",
+      "content": "(?<![\\w])(?<!Partei\\s)(?<!der\\s)(?<!die\\s)(?<!den\\s)(?<!bei\\s)(?<!von\\s)(?<!Antragsgegnerin\\s)(?<!Antragsteller\\s)(?<!Rechtsanwalt\\s)(?<!Vertreten\\s)([A-Z][A-Za-z0-9\\s&+\\-]*[A-Z][A-Za-z0-9\\s&+\\-]*\\s+Bank\\s+AG)(?=[,\\s]|\\.|$)",
+      "priority": 5,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-11T12:41:37.144669"
+    },
+    {
+      "id": "575becca",
+      "name": "German Limited Entity",
+      "description": "Matches entities ending in 'Limited' with strict boundary, excluding preceding legal terms.",
+      "format": "regex",
+      "content": "(?<![\\w])(?<!Partei\\s)(?<!der\\s)(?<!die\\s)(?<!den\\s)(?<!bei\\s)(?<!von\\s)(?<!Antragsgegnerin\\s)(?<!Antragsteller\\s)(?<!Rechtsanwalt\\s)(?<!Vertreten\\s)(?<!Richter\\s)(?<!Richterin\\s)(?<!Senatspr\\u00e4sident\\s)(?<!Senatspr\\u00e4sidentin\\s)(?<!Hofrat\\s)(?<!Hofr\\u00e4tin\\s)(?<!Hofr\\u00e4t\\s)(?<!Mag\\.\\s)(?<!Dr\\.\\s)(?<!Prof\\.\\s)(?<!Hon\\.\\s)(?<!Kanzlei\\s)(?<!Anwalt\\s)(?<!Gesellschafter\\s)(?<!klagenden\\s)(?<!beklagten\\s)(?<!Nebenintervenient\\s)(?<!Nebenintervenientin\\s)(?<!Nebenintervenienten\\s)(?<!Nebenintervenientinnen\\s)(?<!der\\s)(?<!die\\s)(?<!den\\s)(?<!bei\\s)(?<!von\\s)(?<!Antragsgegnerin\\s)(?<!Antragsteller\\s)(?<!Rechtsanwalt\\s)(?<!Vertreten\\s)([A-Z][A-Za-z0-9\\s&+\\-]*[A-Z][A-Za-z0-9\\s&+\\-]*\\s+Limited)(?=[,\\s]|\\.|$)",
+      "priority": 6,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-11T12:41:37.143002"
+    },
+    {
+      "id": "417125ad",
+      "name": "German Gesellschaft mbH Entity",
+      "description": "Matches entities ending in 'Gesellschaft mbH' or 'gesmbH' with flexible spacing.",
+      "format": "regex",
+      "content": "(?<![\\w])(?<!Partei\\s)(?<!der\\s)(?<!die\\s)(?<!den\\s)(?<!bei\\s)(?<!von\\s)(?<!Antragsgegnerin\\s)(?<!Antragsteller\\s)(?<!Rechtsanwalt\\s)(?<!Vertreten\\s)(?<!Richter\\s)(?<!Richterin\\s)(?<!Senatspr\\u00e4sident\\s)(?<!Senatspr\\u00e4sidentin\\s)(?<!Hofrat\\s)(?<!Hofr\\u00e4tin\\s)(?<!Hofr\\u00e4t\\s)(?<!Mag\\.\\s)(?<!Dr\\.\\s)(?<!Prof\\.\\s)(?<!Hon\\.\\s)(?<!Kanzlei\\s)(?<!Anwalt\\s)(?<!Gesellschafter\\s)(?<!der\\s)(?<!die\\s)(?<!den\\s)(?<!bei\\s)(?<!von\\s)(?<!Antragsgegnerin\\s)(?<!Antragsteller\\s)(?<!Rechtsanwalt\\s)(?<!Vertreten\\s)(?<!klagenden\\s)(?<!beklagten\\s)(?<!Nebenintervenient\\s)(?<!Nebenintervenientin\\s)(?<!Nebenintervenienten\\s)(?<!Nebenintervenientinnen\\s)(?<!der\\s)(?<!die\\s)(?<!den\\s)(?<!bei\\s)(?<!von\\s)(?<!Antragsgegnerin\\s)(?<!Antragsteller\\s)(?<!Rechtsanwalt\\s)(?<!Vertreten\\s)([A-Z][A-Za-z0-9\\s&+\\-]*\\s+Gesellschaft\\s+mbH|[A-Z][A-Za-z0-9\\s&+\\-]*\\s+gesmbH)(?=[,\\s]|\\.|$)",
+      "priority": 4,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-11T12:41:37.144655"
+    },
+    {
+      "id": "bad01d8e",
+      "name": "German Aktiengesellschaft Entity",
+      "description": "Matches entities ending in 'Aktiengesellschaft' with strict boundary.",
+      "format": "regex",
+      "content": "(?<![\\w])(?<!Partei\\s)(?<!der\\s)(?<!die\\s)(?<!den\\s)(?<!bei\\s)(?<!von\\s)(?<!Antragsgegnerin\\s)(?<!Antragsteller\\s)(?<!Rechtsanwalt\\s)(?<!Vertreten\\s)(?<!Richter\\s)(?<!Richterin\\s)(?<!Senatspr\\u00e4sident\\s)(?<!Senatspr\\u00e4sidentin\\s)(?<!Hofrat\\s)(?<!Hofr\\u00e4tin\\s)(?<!Hofr\\u00e4t\\s)(?<!Mag\\.\\s)(?<!Dr\\.\\s)(?<!Prof\\.\\s)(?<!Hon\\.\\s)(?<!Kanzlei\\s)(?<!Anwalt\\s)(?<!Gesellschafter\\s)(?<!der\\s)(?<!die\\s)(?<!den\\s)(?<!bei\\s)(?<!von\\s)(?<!Antragsgegnerin\\s)(?<!Antragsteller\\s)(?<!Rechtsanwalt\\s)(?<!Vertreten\\s)([A-Z][A-Za-z0-9\\s&+\\-]*[A-Z][A-Za-z0-9\\s&+\\-]*\\s+Aktiengesellschaft)(?=[,\\s]|\\.|$)",
+      "priority": 6,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-11T12:41:37.143013"
+    },
+    {
+      "id": "5f8112aa",
+      "name": "German GmbH Entity",
+      "description": "Matches entities ending in 'GmbH' with strict boundary, excluding preceding legal terms and ensuring the name starts with a capital letter not preceded by 'Partei' or 'der'.",
+      "format": "regex",
+      "content": "(?<![\\w])(?<!Partei\\s)(?<!der\\s)(?<!die\\s)(?<!den\\s)(?<!bei\\s)(?<!von\\s)(?<!Antragsgegnerin\\s)(?<!Antragsteller\\s)(?<!Rechtsanwalt\\s)(?<!Vertreten\\s)(?<!Richter\\s)(?<!Richterin\\s)(?<!Senatspr\\u00e4sident\\s)(?<!Senatspr\\u00e4sidentin\\s)(?<!Hofrat\\s)(?<!Hofr\\u00e4tin\\s)(?<!Hofr\\u00e4t\\s)(?<!Mag\\.\\s)(?<!Dr\\.\\s)(?<!Prof\\.\\s)(?<!Hon\\.\\s)(?<!Kanzlei\\s)(?<!Anwalt\\s)(?<!Gesellschafter\\s)(?<!klagenden\\s)(?<!beklagten\\s)(?<!Nebenintervenient\\s)(?<!Nebenintervenientin\\s)(?<!Nebenintervenienten\\s)(?<!Nebenintervenientinnen\\s)(?<!Rechtssache\\s)(?<!Firmenbuchsache\\s)(?<!im\\s)(?<!der\\s)(?<!die\\s)(?<!den\\s)(?<!bei\\s)(?<!von\\s)(?<!Antragsgegnerin\\s)(?<!Antragsteller\\s)(?<!Rechtsanwalt\\s)(?<!Vertreten\\s)(?<!der\\s)(?<!die\\s)(?<!den\\s)(?<!bei\\s)(?<!von\\s)(?<!Antragsgegnerin\\s)(?<!Antragsteller\\s)(?<!Rechtsanwalt\\s)(?<!Vertreten\\s)(?<!der\\s)(?<!die\\s)(?<!den\\s)(?<!bei\\s)(?<!von\\s)(?<!Antragsgegnerin\\s)(?<!Antragsteller\\s)(?<!Rechtsanwalt\\s)(?<!Vertreten\\s)([A-Z][A-Za-z0-9\\s&+\\-]*[A-Z][A-Za-z0-9\\s&+\\-]*\\s+GmbH|[A-Z][A-Z][A-Za-z0-9\\s&+\\-]*\\s+GmbH)(?=[,\\s]|$)",
+      "priority": 6,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-11T12:41:37.142966"
+    },
+    {
+      "id": "49bcfe70",
+      "name": "German AG Entity",
+      "description": "Matches entities ending in 'AG' with strict boundary, excluding preceding legal terms and ensuring the name starts with a capital letter not preceded by 'Partei' or 'der'.",
+      "format": "regex",
+      "content": "(?<![\\w])(?<!Partei\\s)(?<!der\\s)(?<!die\\s)(?<!den\\s)(?<!bei\\s)(?<!von\\s)(?<!Antragsgegnerin\\s)(?<!Antragsteller\\s)(?<!Rechtsanwalt\\s)(?<!Vertreten\\s)(?<!Richter\\s)(?<!Richterin\\s)(?<!Senatspr\\u00e4sident\\s)(?<!Senatspr\\u00e4sidentin\\s)(?<!Hofrat\\s)(?<!Hofr\\u00e4tin\\s)(?<!Hofr\\u00e4t\\s)(?<!Mag\\.\\s)(?<!Dr\\.\\s)(?<!Prof\\.\\s)(?<!Hon\\.\\s)(?<!Kanzlei\\s)(?<!Anwalt\\s)(?<!Gesellschafter\\s)(?<!klagenden\\s)(?<!beklagten\\s)(?<!Nebenintervenient\\s)(?<!Nebenintervenientin\\s)(?<!Nebenintervenienten\\s)(?<!Nebenintervenientinnen\\s)(?<!Rechtssache\\s)(?<!der\\s)(?<!die\\s)(?<!den\\s)(?<!bei\\s)(?<!von\\s)(?<!Antragsgegnerin\\s)(?<!Antragsteller\\s)(?<!Rechtsanwalt\\s)(?<!Vertreten\\s)(?<!der\\s)(?<!die\\s)(?<!den\\s)(?<!bei\\s)(?<!von\\s)(?<!Antragsgegnerin\\s)(?<!Antragsteller\\s)(?<!Rechtsanwalt\\s)(?<!Vertreten\\s)(?<!der\\s)(?<!die\\s)(?<!den\\s)(?<!bei\\s)(?<!von\\s)(?<!Antragsgegnerin\\s)(?<!Antragsteller\\s)(?<!Rechtsanwalt\\s)(?<!Vertreten\\s)([A-Z][A-Za-z0-9\\s&+\\-]*[A-Z][A-Za-z0-9\\s&+\\-]*\\s+AG|[A-Z][A-Z][A-Za-z0-9\\s&+\\-]*\\s+AG)(?=[,\\s]|$)",
+      "priority": 6,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-11T12:41:37.142990"
+    },
+    {
+      "id": "e3ab493b",
+      "name": "German Specific NoSuffix Entity",
+      "description": "Matches specific entities without standard suffixes or with unique structures found in training data.",
+      "format": "regex",
+      "content": "(?<![\\w])(?<!Partei\\s)(?<!der\\s)(?<!die\\s)(?<!den\\s)(?<!bei\\s)(?<!von\\s)(?<!Antragsgegnerin\\s)(?<!Antragsteller\\s)(?<!Rechtsanwalt\\s)(?<!Vertreten\\s)(?<!Richter\\s)(?<!Richterin\\s)(?<!Senatspr\\u00e4sident\\s)(?<!Senatspr\\u00e4sidentin\\s)(?<!Hofrat\\s)(?<!Hofr\\u00e4tin\\s)(?<!Hofr\\u00e4t\\s)(?<!Mag\\.\\s)(?<!Dr\\.\\s)(?<!Prof\\.\\s)(?<!Hon\\.\\s)(?<!Kanzlei\\s)(?<!Anwalt\\s)(?<!Gesellschafter\\s)(?<!klagenden\\s)(?<!beklagten\\s)(?<!Nebenintervenient\\s)(?<!Nebenintervenientin\\s)(?<!Nebenintervenienten\\s)(?<!Nebenintervenientinnen\\s)(?<!der\\s)(?<!die\\s)(?<!den\\s)(?<!bei\\s)(?<!von\\s)(?<!Antragsgegnerin\\s)(?<!Antragsteller\\s)(?<!Rechtsanwalt\\s)(?<!Vertreten\\s)(NordSicherheit|Druck\\s+Glanzfen|Kupferberg\\s+\\+\\s+Kleinen\\s+Finanzen|NUSA\\s+Analyse\\s+Vertrieb|Spendler\\s+Maschinenbau|Dontraost\\s+Marine|Mur\\s+Brucktridon|SeeDruck\\s+Gruppe|NiederPflege|EnnsVersicherung|Sevki\\s+Event|HochDigital|Pietruszak\\s+Recycling|BergMedien|Talal-Energie|Tempel\\s+Logistik|Unitradon-Telekom|Vertra-Elektro|Schmerschneider\\s+Transport)(?=[,\\s]|\\.|$)",
+      "priority": 5,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-11T12:41:37.143023"
+    },
+    {
+      "id": "19db293e",
+      "name": "German Trilog Institut Entity",
+      "description": "Matches specific entity 'Trilog Institut gesellschaft mbH'.",
+      "format": "regex",
+      "content": "(?<![\\w])(?<!Partei\\s)(?<!der\\s)(?<!die\\s)(?<!den\\s)(?<!bei\\s)(?<!von\\s)(?<!Antragsgegnerin\\s)(?<!Antragsteller\\s)(?<!Rechtsanwalt\\s)(?<!Vertreten\\s)(?<!Richter\\s)(?<!Richterin\\s)(?<!Senatspr\\u00e4sident\\s)(?<!Senatspr\\u00e4sidentin\\s)(?<!Hofrat\\s)(?<!Hofr\\u00e4tin\\s)(?<!Hofr\\u00e4t\\s)(?<!Mag\\.\\s)(?<!Dr\\.\\s)(?<!Prof\\.\\s)(?<!Hon\\.\\s)(?<!Kanzlei\\s)(?<!Anwalt\\s)(?<!Gesellschafter\\s)(?<!der\\s)(?<!die\\s)(?<!den\\s)(?<!bei\\s)(?<!von\\s)(?<!Antragsgegnerin\\s)(?<!Antragsteller\\s)(?<!Rechtsanwalt\\s)(?<!Vertreten\\s)(?<!klagenden\\s)(?<!beklagten\\s)(?<!Nebenintervenient\\s)(?<!Nebenintervenientin\\s)(?<!Nebenintervenienten\\s)(?<!Nebenintervenientinnen\\s)(?<!der\\s)(?<!die\\s)(?<!den\\s)(?<!bei\\s)(?<!von\\s)(?<!Antragsgegnerin\\s)(?<!Antragsteller\\s)(?<!Rechtsanwalt\\s)(?<!Vertreten\\s)(Trilog\\s+Institut\\s+gesellschaft\\s+mbH)(?=[,\\s]|\\.|$)",
+      "priority": 5,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-11T12:41:37.144757"
+    },
+    {
+      "id": "08fcb0cd",
+      "name": "German Specific GmbH Entity",
+      "description": "Matches specific GmbH entities that were missed.",
+      "format": "regex",
+      "content": "(?<![\\w])(?<!Partei\\s)(?<!der\\s)(?<!die\\s)(?<!den\\s)(?<!bei\\s)(?<!von\\s)(?<!Antragsgegnerin\\s)(?<!Antragsteller\\s)(?<!Rechtsanwalt\\s)(?<!Vertreten\\s)(?<!Richter\\s)(?<!Richterin\\s)(?<!Senatspr\\u00e4sident\\s)(?<!Senatspr\\u00e4sidentin\\s)(?<!Hofrat\\s)(?<!Hofr\\u00e4tin\\s)(?<!Hofr\\u00e4t\\s)(?<!Mag\\.\\s)(?<!Dr\\.\\s)(?<!Prof\\.\\s)(?<!Hon\\.\\s)(?<!Kanzlei\\s)(?<!Anwalt\\s)(?<!Gesellschafter\\s)(?<!der\\s)(?<!die\\s)(?<!den\\s)(?<!bei\\s)(?<!von\\s)(?<!Antragsgegnerin\\s)(?<!Antragsteller\\s)(?<!Rechtsanwalt\\s)(?<!Vertreten\\s)(?<!klagenden\\s)(?<!beklagten\\s)(?<!Nebenintervenient\\s)(?<!Nebenintervenientin\\s)(?<!Nebenintervenienten\\s)(?<!Nebenintervenientinnen\\s)(?<!der\\s)(?<!die\\s)(?<!den\\s)(?<!bei\\s)(?<!von\\s)(?<!Antragsgegnerin\\s)(?<!Antragsteller\\s)(?<!Rechtsanwalt\\s)(?<!Vertreten\\s)(Hoffschroer\\s+Sanit\\u00e4r\\s+gesellschaft\\s+mbH|Trinorglanz\\s+Landwirtschaft\\s+Gesellschaft\\s+mbH|G\\u00e4bel\\s+Druck\\s+GmbH|Schiffl\\s+Bau\\s+Limited|Unter\\s+Bachlog\\s+AG|Transport\\s+Fenwald\\s+GmbH|Sudalost-Immobilien\\s+AG|Beckm\\u00f6ller\\s+Textil\\s+AG|S\\u00fcd\\s+Monnex\\s+Entwicklung\\s+GmbH|Seegartnex-Marine|Wien\\s+Donostuni\\s+GmbH|Ost-Bildung\\s+Werke|IQSW\\s+Druck\\s+GmbH|Stockhorst\\s+und\\s+Welfle\\s+Verlag\\s+GmbH)(?=[,\\s]|\\.|$)",
+      "priority": 5,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-11T12:41:37.144744"
+    }
+  ]
+}
