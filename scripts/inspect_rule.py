@@ -1,16 +1,3 @@
-"""
-Evaluate a single rule and print unique TPs / FPs to the terminal.
-
-Usage:
-    python scripts/inspect_rule.py \
-        --rules-json path/to/results.json \
-        --test-dir   path/to/test/conll \
-        --rule-name  "My Rule Name"
-
-    # or match by partial name (case-insensitive):
-    python scripts/inspect_rule.py ... --rule-name "gmbh"
-"""
-
 import argparse
 import json
 import sys
