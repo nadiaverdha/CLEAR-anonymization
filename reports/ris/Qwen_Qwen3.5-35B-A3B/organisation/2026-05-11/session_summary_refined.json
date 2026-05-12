@@ -1,0 +1,30 @@
+{
+  "phases": [
+    "ris"
+  ],
+  "history": [
+    {
+      "phase": "train",
+      "dataset": "ris",
+      "num_rules": 16,
+      "t_learn": 0.0,
+      "timestamp": "2026-05-12T22:07:01.560677",
+      "num_train_docs": 912,
+      "num_eval_docs": 238,
+      "num_train_annotations": 1149,
+      "num_eval_annotations": 294,
+      "batch_metrics": [],
+      "iteration_metrics": [],
+      "rules_snapshots": []
+    },
+    {
+      "phase": "feedback",
+      "dataset": "ris",
+      "feedback_path": "reports/ris/Qwen_Qwen3.5-35B-A3B/organisation/2026-05-11/feedback.json",
+      "num_items": 1,
+      "task_level": 0,
+      "rule_level": 1,
+      "timestamp": "2026-05-12T22:07:13.779386"
+    }
+  ]
+}
