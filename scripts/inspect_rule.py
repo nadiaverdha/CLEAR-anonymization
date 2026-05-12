@@ -109,10 +109,7 @@ def main() -> None:
 
     # Load rules
     rules = load_rules_from_json(args.rules_json)
-
-    args.rule_name = "7e1bbfcb"
-
-    matched = [r for r in rules if args.rule_name in r.id]
+    matched = [r for r in rules if args.rule_id in r.id]
     if not matched:
         print(f"No rule matching '{args.rule_name}'. Available rules:")
         for r in rules:
