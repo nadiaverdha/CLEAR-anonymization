@@ -304,9 +304,8 @@ def load_human_feedback_v2(feedback_path, eval_dataset, learner, rules=None):
         target_id = ""
         if level == "rule" and rules is not None:
             rule_name = fb.get("rule_name", "")
-            matched = next(
-                (r for r in rules if _norm(r.name) == _norm(rule_name)), None
-            )
+            rule_id = fb.get("rule_id", "")
+            matched = next((r for r in rules if r.id == rule_id), None)
             if matched:
                 target_id = matched.id
             else:

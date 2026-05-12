@@ -1,3 +1,4 @@
+import json
 import random
 from dataclasses import dataclass, field
 from datetime import datetime
@@ -79,6 +80,14 @@ class TrainingSession:
     ):
         self._prepare_split(split, logger)
         a = self.args
+
+        if getattr(a, "feedback", None) and not skip_synthesis:
+            load_human_feedback_v2(
+                a.feedback,
+                eval_dataset=self._eval_dataset,
+                learner=self._learner,
+                rules=self.rules,
+            )
 
         if a.synthesis_strategy != "bulk":
             train_for_chef = split.train + split.counter_examples
@@ -220,11 +229,24 @@ class TrainingSession:
     def inject_feedback(self, feedback_path: str) -> None:
         if self._learner is None:
             raise RuntimeError("Call train() before inject_feedback().")
+        items = json.loads(Path(feedback_path).read_text())
         load_human_feedback_v2(
             feedback_path,
             eval_dataset=self._eval_dataset,
             learner=self._learner,
             rules=self.rules,
+        )
+        self.rules = self._learner.apply_feedback_patch(self.rules, self._eval_dataset)
+        self.history.append(
+            {
+                "phase": "feedback",
+                "dataset": self._split.name,
+                "feedback_path": str(feedback_path),
+                "num_items": len(items),
+                "task_level": sum(1 for f in items if f.get("level", "task") == "task"),
+                "rule_level": sum(1 for f in items if f.get("level") == "rule"),
+                "timestamp": datetime.now().isoformat(),
+            }
         )
 
     def evaluate(self, split=None):

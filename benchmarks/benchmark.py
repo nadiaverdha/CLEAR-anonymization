@@ -32,7 +32,7 @@ def run_benchmark(args):
     # 1. Load and sample phase 1 data
     split = prepare_split(
         args,
-        name=args.dataset_name,
+        name=args.train_name,
         train_dir=args.train_dir,
         test_dir=args.test_dir,
         classes=args.classes,
@@ -102,7 +102,7 @@ def run_benchmark(args):
             prev_t_learn=cp.get("t_learn"),
             phase="phase1",
         )
-        if args.feedback:
+        if args.feedback and args.skip_synthesis:
             session.inject_feedback(args.feedback)
         if args.max_iterations > 0:
             session.refine(split)
