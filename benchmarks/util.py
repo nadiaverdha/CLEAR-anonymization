@@ -145,20 +145,26 @@ def setup_output_paths(args, selected_classes):
     ).strip()
     num_classes = len(selected_classes)
 
-    base_dir = Path(f"reports/{args.dataset_name}/{model_name}") / selected_classes_str
-    base_name = date_str
+    if args.rules_json:
+        output_dir = Path(args.rules_json).parent
+        output_dir.mkdir(parents=True, exist_ok=True)
+    else:
+        base_dir = (
+            Path(f"reports/{args.dataset_name}/{model_name}") / selected_classes_str
+        )
+        base_name = date_str
 
-    output_dir = base_dir / base_name
-    if output_dir.exists():
-        version = 1
-        while (base_dir / f"{base_name}_v{version}").exists():
-            version += 1
-        output_dir = base_dir / f"{base_name}_v{version}"
+        output_dir = base_dir / base_name
+        if output_dir.exists():
+            version = 1
+            while (base_dir / f"{base_name}_v{version}").exists():
+                version += 1
+            output_dir = base_dir / f"{base_name}_v{version}"
 
-    output_dir.mkdir(parents=True, exist_ok=True)
+        output_dir.mkdir(parents=True, exist_ok=True)
 
     out_name = Path(args.output)
-    if args.rules_json:
+    if args.rules_json or getattr(args, "feedback", None):
         out_name = out_name.with_stem(out_name.stem + "_refined")
 
     log_path = (output_dir / out_name).with_suffix(".training.jsonl")
@@ -173,7 +179,12 @@ def setup_output_paths(args, selected_classes):
     )
     print(f"Training log: {log_path}")
 
-    config_path = output_dir / "config.yaml"
+    config_name = (
+        "config_refined.yaml"
+        if (args.rules_json or getattr(args, "feedback", None))
+        else "config.yaml"
+    )
+    config_path = output_dir / config_name
     config_dict = {
         k.replace("_", "-"): v for k, v in vars(args).items() if k not in ("config",)
     }

@@ -6,6 +6,7 @@ from typing import Any
 
 from benchmarks.util import (
     evaluate_test,
+    load_human_feedback_v2,
     make_dataset,
     make_oniteration_callback,
     save_checkpoint,
@@ -215,6 +216,16 @@ class TrainingSession:
 
         if refine_eval:
             print(f"  Eval micro F1: {refine_eval.micro_f1:.1%}")
+
+    def inject_feedback(self, feedback_path: str) -> None:
+        if self._learner is None:
+            raise RuntimeError("Call train() before inject_feedback().")
+        load_human_feedback_v2(
+            feedback_path,
+            eval_dataset=self._eval_dataset,
+            learner=self._learner,
+            rules=self.rules,
+        )
 
     def evaluate(self, split=None):
         if split is not None and split is not self._split:

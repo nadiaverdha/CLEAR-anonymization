@@ -102,6 +102,8 @@ def run_benchmark(args):
             prev_t_learn=cp.get("t_learn"),
             phase="phase1",
         )
+        if args.feedback:
+            session.inject_feedback(args.feedback)
         if args.max_iterations > 0:
             session.refine(split)
 
@@ -148,10 +150,11 @@ def run_benchmark(args):
             )
 
         # 8. Plots for phase 1 (and transfer phase if applicable)
+        plot_suffix = "_refined" if (args.rules_json or args.feedback) else ""
         plot_single(
             results,
             label=f"phase1 {args.dataset_name}",
-            output_path=output_dir / f"phase1_{args.dataset_name}.png",
+            output_path=output_dir / f"phase1_{args.dataset_name}{plot_suffix}.png",
         )
 
     # 8. Transfer phase (optional) — seeds with phase 1 rules automatically
@@ -197,6 +200,8 @@ def run_benchmark(args):
             prev_t_learn=cp.get("t_learn"),
             phase="transfer",
         )
+        if args.feedback:
+            session.inject_feedback(args.feedback)
         if args.max_iterations > 0:
             session.refine(transfer)
 
@@ -270,7 +275,8 @@ def run_benchmark(args):
     phases = [args.dataset_name]
     if args.transfer_train_dir:
         phases.append(args.transfer_dataset_name)
-    summary_path = output_dir / "session_summary.json"
+    run_suffix = "_refined" if (args.rules_json or args.feedback) else ""
+    summary_path = output_dir / f"session_summary{run_suffix}.json"
     summary_path.write_text(
         json.dumps(
             {
