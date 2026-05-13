@@ -1,7 +1,7 @@
 agentic: false
 audit-interval: 0
 base-url: http://localhost:8000/v1
-batch-size: 50
+batch-size: 30
 classes: organisation
 critic-interval: 10
 dataset-name: ris
@@ -12,7 +12,7 @@ extra-train-negatives: false
 feedback: reports/ris/Qwen_Qwen3.5-35B-A3B/organisation/2026-05-11/feedback.json
 format: regex
 max-counter-examples: 10
-max-iterations: 0
+max-iterations: 3
 max-rules: 30
 max-samples: 60
 model: Qwen/Qwen3.5-35B-A3B

@@ -2,6 +2,6 @@
     {
       "level": "rule",
       "rule_id": "c92054be",
-      "text": "Too broad in Austrian legal text, acronyms like UVG Rz, PD Dr, II Abs  not organisations. Restrict to acronyms that are followed by a known organisation term or legal suffix."
+      "text": "Too broad. Restrict to acronyms that are followed by a known organisation term or legal suffix like AG, GMBH, IT."
     }
   ]

@@ -8,7 +8,7 @@
       "dataset": "ris",
       "num_rules": 16,
       "t_learn": 0.0,
-      "timestamp": "2026-05-12T22:07:01.560677",
+      "timestamp": "2026-05-13T08:04:03.639585",
       "num_train_docs": 912,
       "num_eval_docs": 238,
       "num_train_annotations": 1149,
@@ -24,7 +24,69 @@
       "num_items": 1,
       "task_level": 0,
       "rule_level": 1,
-      "timestamp": "2026-05-12T22:07:13.779386"
+      "timestamp": "2026-05-13T08:04:15.019092"
+    },
+    {
+      "phase": "refine",
+      "dataset": "ris",
+      "num_rules": 17,
+      "micro_f1": 0.3079315707620529,
+      "micro_precision": 0.2836676217765043,
+      "micro_recall": 0.336734693877551,
+      "iteration_metrics": [
+        {
+          "iteration": 1,
+          "num_rules": 17,
+          "exact_match": 0.15126050420168066,
+          "micro_precision": 0.2836676217765043,
+          "micro_recall": 0.336734693877551,
+          "micro_f1": 0.3079315707620529,
+          "macro_f1": 0.3079315707620529,
+          "per_class": [
+            {
+              "label": "organisation",
+              "f1": 0.3079315707620529,
+              "precision": 0.2836676217765043,
+              "recall": 0.336734693877551
+            }
+          ]
+        },
+        {
+          "iteration": 2,
+          "num_rules": 17,
+          "exact_match": 0.07142857142857142,
+          "micro_precision": 0.3925925925925926,
+          "micro_recall": 0.18027210884353742,
+          "micro_f1": 0.24708624708624713,
+          "macro_f1": 0.24708624708624713,
+          "per_class": [
+            {
+              "label": "organisation",
+              "f1": 0.24708624708624713,
+              "precision": 0.3925925925925926,
+              "recall": 0.18027210884353742
+            }
+          ]
+        },
+        {
+          "iteration": 3,
+          "num_rules": 17,
+          "exact_match": 0.07142857142857142,
+          "micro_precision": 0.3925925925925926,
+          "micro_recall": 0.18027210884353742,
+          "micro_f1": 0.24708624708624713,
+          "macro_f1": 0.24708624708624713,
+          "per_class": [
+            {
+              "label": "organisation",
+              "f1": 0.24708624708624713,
+              "precision": 0.3925925925925926,
+              "recall": 0.18027210884353742
+            }
+          ]
+        }
+      ],
+      "timestamp": "2026-05-13T08:06:35.116350"
     }
   ]
 }
