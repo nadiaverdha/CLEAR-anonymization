@@ -1,0 +1,674 @@
+{
+  "config": {
+    "shots": null,
+    "model": "Qwen/Qwen3.5-35B-A3B",
+    "format": "regex",
+    "max_rules": 20,
+    "max_samples": 60,
+    "max_iterations": 0,
+    "seed": 42,
+    "train_size": 2549,
+    "eval_size": 639,
+    "test_size": 1247,
+    "train_annotations": 4268,
+    "eval_annotations": 968,
+    "test_annotations": 1247,
+    "use_grex": true,
+    "agentic": false,
+    "enable_critic": true,
+    "enable_prune": false,
+    "critic_interval": 10,
+    "audit_interval": 0,
+    "windows": false,
+    "sampling_strategy": "balanced",
+    "train_ratio": 0.8,
+    "pool_size": null,
+    "batch_size": 50,
+    "refine_per_batch": 1,
+    "synthesis_strategy": "bulk",
+    "selected_classes": [
+      "person"
+    ],
+    "train_name": "findok",
+    "test_name": "findok",
+    "transfer_name": null,
+    "transfer_test_name": null,
+    "max_counter_examples": 10,
+    "refine_every": 5
+  },
+  "metadata": {
+    "seeded_from": "findok",
+    "seed_rule_count": 27,
+    "new_rules_added": 5,
+    "continuation": "synthesize_and_refine",
+    "phase1_train_sentences": 4080,
+    "phase1_eval_sentences": 927,
+    "transfer_train_sentences": 188,
+    "transfer_eval_sentences": 41
+  },
+  "results": {
+    "accuracy": 0.7770649558941459,
+    "micro_precision": 0.051630434782608696,
+    "micro_recall": 0.2111111111111111,
+    "micro_f1": 0.0829694323144105,
+    "macro_f1": 0.0829694323144105,
+    "num_rules": 32,
+    "learning_time_s": 341.2,
+    "eval_time_s": 0.754,
+    "per_query_ms": 0.6
+  },
+  "per_class": [
+    {
+      "label": "person",
+      "precision": 0.051630434782608696,
+      "recall": 0.2111111111111111,
+      "f1": 0.0829694323144105,
+      "tp": 19,
+      "fp": 349,
+      "fn": 71
+    }
+  ],
+  "iteration_metrics": [
+    {
+      "iteration": 1,
+      "num_rules": 29,
+      "exact_match": 0.0975609756097561,
+      "micro_precision": 0.4230769230769231,
+      "micro_recall": 0.3548387096774194,
+      "micro_f1": 0.3859649122807018,
+      "macro_f1": 0.3859649122807018,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.3859649122807018,
+          "precision": 0.4230769230769231,
+          "recall": 0.3548387096774194
+        }
+      ]
+    }
+  ],
+  "batch_test_metrics": [
+    {
+      "batch": 0,
+      "num_rules": 29,
+      "exact_match": 0.8396150761828388,
+      "micro_f1": 0.13333333333333333,
+      "micro_precision": 0.09333333333333334,
+      "micro_recall": 0.23333333333333334,
+      "macro_f1": 0.13333333333333333,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.13333333333333333,
+          "precision": 0.09333333333333334,
+          "recall": 0.23333333333333334
+        }
+      ]
+    },
+    {
+      "batch": 1,
+      "num_rules": 29,
+      "exact_match": 0.8396150761828388,
+      "micro_f1": 0.13333333333333333,
+      "micro_precision": 0.09333333333333334,
+      "micro_recall": 0.23333333333333334,
+      "macro_f1": 0.13333333333333333,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.13333333333333333,
+          "precision": 0.09333333333333334,
+          "recall": 0.23333333333333334
+        }
+      ]
+    },
+    {
+      "batch": 2,
+      "num_rules": 29,
+      "exact_match": 0.8027265437048917,
+      "micro_f1": 0.09424083769633508,
+      "micro_precision": 0.06164383561643835,
+      "micro_recall": 0.2,
+      "macro_f1": 0.09424083769633508,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.09424083769633508,
+          "precision": 0.06164383561643835,
+          "recall": 0.2
+        }
+      ]
+    },
+    {
+      "batch": 3,
+      "num_rules": 32,
+      "exact_match": 0.7770649558941459,
+      "micro_f1": 0.0829694323144105,
+      "micro_precision": 0.051630434782608696,
+      "micro_recall": 0.2111111111111111,
+      "macro_f1": 0.0829694323144105,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.0829694323144105,
+          "precision": 0.051630434782608696,
+          "recall": 0.2111111111111111
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "37b4ab2a",
+      "name": "HR_Person",
+      "description": "Captures 'HR' (Hauptreferent) followed by a name, including titles like KzlR and multi-word names. Updated to handle 'Techn R' prefix.",
+      "format": "regex",
+      "content": "\\b(?:Techn\\s+R\\s+)?HR\\s+(?:[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]*\\.?\\s+)*[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)*",
+      "priority": 6,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-14T02:55:02.862582"
+    },
+    {
+      "id": "e1796ab3",
+      "name": "RgR_Person",
+      "description": "Specifically captures 'RgR' (Regierungsrat) followed by a name, excluding cases where HR follows (handled by HR_Person).",
+      "format": "regex",
+      "content": "\\bRgR\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)+)(?!\\s+HR)",
+      "priority": 6,
+      "output_template": {
+        "text": "RgR $1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-14T02:51:59.672405"
+    },
+    {
+      "id": "52d6e364",
+      "name": "Herrn_Frau_Person",
+      "description": "Captures names following 'Herrn' or 'Frau', allowing for optional titles including 'Techn R'.",
+      "format": "regex",
+      "content": "\\b(Herrn|Frau)\\s+(?:OSR|OMedR|DDr\\.?|OStR|Dr\\.in|Dr\\.|Mag\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|MedR|StR|Univ\\.-Prof\\.in|Priv\\.-Doz\\.in|Hon\\.-Prof\\.in|Dr\\. Dr\\. Priv\\.-Doz\\.|Techn R)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)+)(?=[,\\s]|$)",
+      "priority": 6,
+      "output_template": {
+        "text": "$2",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-14T02:08:05.148977"
+    },
+    {
+      "id": "7291254b",
+      "name": "Dr_in_Person",
+      "description": "Captures 'Dr.in' followed by a name, including the title in the output. Fixed to handle 'Dr.in Mag.a' patterns and trim trailing spaces.",
+      "format": "regex",
+      "content": "\\bDr\\.in\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)+)(?=[,\\s]|$)",
+      "priority": 6,
+      "output_template": {
+        "text": "Dr.in $1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-14T02:51:11.742562"
+    },
+    {
+      "id": "cdfde13a",
+      "name": "Nach_Person",
+      "description": "Captures person names appearing after 'nach' (e.g., 'Verlassenschaft nach dem...'). Requires a second capitalized word to ensure it's a name, not a legal term.",
+      "format": "regex",
+      "content": "\\b(?:nach|Nach)\\s+(?:dem|der|den)\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)(?=[,\\s]|$)",
+      "priority": 4,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-14T03:34:18.067486"
+    },
+    {
+      "id": "8ae7f35e",
+      "name": "Mandantin_Person",
+      "description": "Captures person names appearing after 'Mandantin' or 'Mandant' (e.g., 'meiner Mandantin, Frau Livia Roux').",
+      "format": "regex",
+      "content": "(?:Mandantin|Mandant)(?:,\\s+)?(?:Frau|Herr)?\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*)(?=[,\\s]|$)",
+      "priority": 3,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-14T01:58:01.655492"
+    },
+    {
+      "id": "80d664cc",
+      "name": "Nachname_Wie_Bf_Person",
+      "description": "Captures person names appearing after the specific legal marker '(Nachname wie Bf.)'.",
+      "format": "regex",
+      "content": "\\(Nachname wie Bf\\.\\)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*)",
+      "priority": 9,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-14T01:58:18.774667"
+    },
+    {
+      "id": "e6354b47",
+      "name": "Sohn_Person",
+      "description": "Captures person names appearing after 'Sohn' (son) in contexts like 'meinem Sohn', 'Ihr Sohn'.",
+      "format": "regex",
+      "content": "(?:meinem|Ihr|sein|unser|deinem)\\s+Sohn,?\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*)",
+      "priority": 8,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-14T01:58:18.774920"
+    },
+    {
+      "id": "c990e528",
+      "name": "Gegen_Person_Fixed",
+      "description": "Captures person names after 'gegen'. Updated to include suffixes like ', MA' and exclude legal entities and common nouns.",
+      "format": "regex",
+      "content": "\\b(?:gegen|Gegen)\\s+(?:die|der|den|dem|einer|einem|eine)\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)*(?:\\s*,\\s*[A-Z][A-Z]+)?)\\s*(?=[,\\s]|$)(?!\\s*(?:Firma|Gesellschaft|AG|GmbH|KG|mbH|UG|OHG|PartG|Stiftung|Verein|Verband|Richter|Richterin|Bescheid|Finanzamt|Amt|Beh\\u00f6rde|Verfahren|Antrag|Antragsteller|Bestraften|Beschuldigten|Gesch\\u00e4ftsf\\u00fchrer|Schriftf\\u00fchrerin|Amtsbeauftragten|Spruchsenat|Finanzvergehen|Finanzstrafgesetz|Strafvollzugsgesetz|Widerruf|Strafaufschubes|Vollzuges|Vollzug|Bestrafte|Vereins|Neustart|Finanzstrafbeh\\u00f6rden|Finanzstrafbeh\\u00f6rde|Finanzstrafverfahren|Strafnummern|Verdachtes|Gesch\\u00e4ftsf\\u00fchrers|belangten Verb\\u00e4nde|Beschuldigten|Amtsbeauftragten|Schriftf\\u00fchrerin|Spruchsenates|M\\u00f6dling|\\d+|\\d{1,2}\\s*[a-zA-Z]{1,3}\\s*\\d{1,2}|\\d{1,2}\\s*[a-zA-Z]{1,3}\\s*\\d{1,2}\\s*,|\\d{1,2}\\s*[a-zA-Z]{1,3}\\s*\\d{1,2}\\s*$|Januar|Februar|M\\u00e4rz|April|Mai|Juni|Juli|August|September|Oktober|November|Dezember))",
+      "priority": 6,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-14T03:39:07.112163"
+    },
+    {
+      "id": "4942a9ad",
+      "name": "Party_Name_No_Title",
+      "description": "Captures person names following 'f\u00fcr' (for) or 'Kinder' (children) in family contexts, handling un-titled names.",
+      "format": "regex",
+      "content": "(?:f\u00fcr\\s+die\\s+Kinder|Kinder\\s+|f\u00fcr\\s+Kinder)\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)+)",
+      "priority": 8,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-14T02:55:02.862219"
+    },
+    {
+      "id": "6bfe947b",
+      "name": "Von_Person",
+      "description": "Captures person names following 'von' (of/from) to handle cases like 'von Hademar Peschek'.",
+      "format": "regex",
+      "content": "\\b(?:von|Von)\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)*(?:\\s*,\\s*[A-Z][A-Z]+)?)\\s*(?=,|\\s|$)(?!\\\\s*(?:Firma|Gesellschaft|AG|GmbH|KG|mbH|UG|OHG|PartG|Stiftung|Verein|Verband|Richter|Richterin|Bescheid|Finanzamt|Amt|Beh\\\\u00f6rde|Verfahren|Antrag|Antragsteller|Bestraften|Beschuldigten|Gesch\\\\u00e4ftsf\\\\u00fchrer|Schriftf\\\\u00fchrerin|Amtsbeauftragten|Spruchsenat|Finanzvergehen|Finanzstrafgesetz|Strafvollzugsgesetz|Widerruf|Strafaufschubes|Vollzuges|Vollzug|Bestrafte|Vereins|Neustart|Finanzstrafbeh\\\\u00f6rden|Finanzstrafbeh\\\\u00f6rde|Finanzstrafverfahren|Strafnummern|Verdachtes|Gesch\\\\u00e4ftsf\\\\u00fchrers|belangten Verb\\\\u00e4nde|Beschuldigten|Amtsbeauftragten|Schriftf\\\\u00fchrerin|Spruchsenates|M\\\\u00f6dling|Stadt|Magistrat|\\\\d+|\\\\d{1,2}\\\\s*[a-zA-Z]{1,3}\\\\s*\\\\d{1,2}|\\\\d{1,2}\\\\s*[a-zA-Z]{1,3}\\\\s*\\\\d{1,2}\\\\s*,|\\\\d{1,2}\\\\s*[a-zA-Z]{1,3}\\\\s*\\\\d{1,2}\\\\s*$))",
+      "priority": 8,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-14T03:38:35.056426"
+    },
+    {
+      "id": "610969a9",
+      "name": "Fuer_Person_Fixed",
+      "description": "Captures person names after 'f\\u00fcr', strictly requiring a capitalized name to filter out common nouns. Excludes the trigger word 'f\\u00fcr'.",
+      "format": "regex",
+      "content": "\\b(?:fuer|f\\u00fcr)\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)+)(?=[,\\s]|$)(?!\\s*(?:Firma|Gesellschaft|AG|GmbH|KG|mbH|UG|OHG|PartG|Stiftung|Verein|Verband|Richter|Richterin|Bescheid|Finanzamt|Amt|Beh\\u00f6rde|Verfahren|Antrag|Antragsteller|Bestraften|Beschuldigten|Gesch\\u00e4ftsf\\u00fchrer|Schriftf\\u00fchrerin|Amtsbeauftragten|Spruchsenat|Finanzvergehen|Finanzstrafgesetz|Strafvollzugsgesetz|Widerruf|Strafaufschubes|Vollzuges|Vollzug|Bestrafte|Vereins|Neustart|Finanzstrafbeh\\u00f6rden|Finanzstrafbeh\\u00f6rde|Finanzstrafverfahren|Strafnummern|Verdachtes|Gesch\\u00e4ftsf\\u00fchrers|belangten Verb\\u00e4nde|Beschuldigten|Amtsbeauftragten|Schriftf\\u00fchrerin|Spruchsenates|M\\u00f6dling|Strafnummern|Verdachtes|Gesch\\u00e4ftsf\\u00fchrers|belangten Verb\\u00e4nde|Beschuldigten|Amtsbeauftragten|Schriftf\\u00fchrerin|Spruchsenates|M\\u00f6dling))",
+      "priority": 5,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-14T02:56:29.333904"
+    },
+    {
+      "id": "042bc11f",
+      "name": "Title_Person_General_Fixed",
+      "description": "Captures names with academic/professional titles. Enhanced to handle complex title combinations and ensure full name capture.",
+      "format": "regex",
+      "content": "\\b(?:Dr\\.|Dr\\.in|Mag\\.|Mag\\.a|Prof\\.|Prof\\.in|Univ\\.-Prof\\.|Univ\\.-Prof\\.in|Priv\\.-Doz\\.|Priv\\.-Doz\\.in|Hon\\.-Prof\\.|Hon\\.-Prof\\.in|Bakk\\.\\s+iur\\.|Dipl\\.-Ing\\.|\\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|MedR|StR|Bakk\\.\\s+rer\\.\\s+nat\\.\\s+MBA|HR|VetR|Techn\\s+R|OStR\\s+Ing\\.|Ing\\.|Hon\\.-Prof\\s+Univ\\.-Prof\\.|Univ\\.-Prof\\s+Hon\\.-Prof\\.|Hon\\.-Prof\\.in\\s+Priv\\.-Doz\\.in|Priv\\.-Doz\\.in\\s+Hon\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Univ\\.-Prof\\.in|DDr\\.in|Mag\\.\\s+Ing\\.|Mag\\.\\s+Dipl\\.|Ri|OSR|OMedR|DDr\\.?|OStR|OStR\\.?|RgR|PhD\\s+Ing\\.|KzlR\\s+DDr\\.|OStR\\s+Dipl\\.|Hon\\.-Prof\\.\\s+Hon\\.-Prof\\.)\\s+(?:Dr\\.|Dr\\.in|Mag\\.|Mag\\.a|Prof\\.|Prof\\.in|Univ\\.-Prof\\.|Univ\\.-Prof\\.in|Priv\\.-Doz\\.|Priv\\.-Doz\\.in|Hon\\.-Prof\\.|Hon\\.-Prof\\.in|Bakk\\.\\s+iur\\.|Dipl\\.-Ing\\.|\\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|MedR|StR|Bakk\\.\\s+rer\\.\\s+nat\\.\\s+MBA|HR|VetR|Techn\\s+R|OStR\\s+Ing\\.|Ing\\.|Hon\\.-Prof\\s+Univ\\.-Prof\\.|Univ\\.-Prof\\s+Hon\\.-Prof\\.|Hon\\.-Prof\\.in\\s+Priv\\.-Doz\\.in|Priv\\.-Doz\\.in\\s+Hon\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Univ\\.-Prof\\.in|DDr\\.in|Mag\\.\\s+Ing\\.|Mag\\.\\s+Dipl\\.|Ri|OSR|OMedR|DDr\\.?|OStR|OStR\\.?|RgR|PhD\\s+Ing\\.|KzlR\\s+DDr\\.|OStR\\s+Dipl\\.|Hon\\.-Prof\\.\\s+Hon\\.-Prof\\.)?\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)*(?:\\s*,\\s*[A-Z][A-Z]+)?)",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-14T03:38:35.054997"
+    },
+    {
+      "id": "de172153",
+      "name": "StR_Person",
+      "description": "Captures names with 'StR' (Strafrecht) title. Fixed to stop capturing addresses.",
+      "format": "regex",
+      "content": "\\bStR\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)+)(?=[,\\s]|$)(?!\\s*(?:\\d+|\\d{1,2}\\s*[a-zA-Z]{1,3}\\s*\\d{1,2}|\\d{1,2}\\s*[a-zA-Z]{1,3}\\s*\\d{1,2}\\s*,|\\d{1,2}\\s*[a-zA-Z]{1,3}\\s*\\d{1,2}\\s*$))",
+      "priority": 6,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-14T02:34:57.445952"
+    },
+    {
+      "id": "03605b7b",
+      "name": "Party_Person_CaseContext",
+      "description": "Captures person names following case context words. Fixed to exclude the trigger word and capture only the name.",
+      "format": "regex",
+      "content": "(?:Beschwerdesache|Rechtssache|Revisionssache|Verfahren|Sache|in\\s+der|gegen)\\s+(?:der\\s+|des\\s+|die\\s+|den\\s+)?([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)*(?:\\s*,\\s*[A-Z][A-Z]+)?)\\s*(?=,|\\s+\\d+|\\s*$)",
+      "priority": 10,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-14T03:39:07.111656"
+    },
+    {
+      "id": "fea05d42",
+      "name": "Herr_Person",
+      "description": "Captures names following 'Herr' or 'Herrn'. Extracts only the name (group 1), excluding the title.",
+      "format": "regex",
+      "content": "\\b(?:Herr|Herrn)\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)+)(?=[,\\s]|$)(?!\\s*(?:Firma|Gesellschaft|AG|GmbH|KG|mbH|UG|OHG|PartG|Stiftung|Verein|Verband|Richter|Richterin|Bescheid|Finanzamt|Amt|Beh\\u00f6rde|Verfahren|Antrag|Antragsteller|Bestraften|Beschuldigten|Gesch\\u00e4ftsf\\u00fchrer|Schriftf\\u00fchrerin|Amtsbeauftragten|Spruchsenat|Finanzvergehen|Finanzstrafgesetz|Strafvollzugsgesetz|Widerruf|Strafaufschubes|Vollzuges|Vollzug|Bestrafte|Vereins|Neustart|Finanzstrafbeh\\u00f6rden|Finanzstrafbeh\\u00f6rde|Finanzstrafverfahren|Strafnummern|Verdachtes|Gesch\\u00e4ftsf\\u00fchrers|belangten Verb\\u00e4nde|Beschuldigten|Amtsbeauftragten|Schriftf\\u00fchrerin|Spruchsenates|M\\u00f6dling|Stadt|Magistrat|\\d+|\\d{1,2}\\s*[a-zA-Z]{1,3}\\s*\\d{1,2}|\\d{1,2}\\s*[a-zA-Z]{1,3}\\s*\\d{1,2}\\s*,|\\d{1,2}\\s*[a-zA-Z]{1,3}\\s*\\d{1,2}\\s*$))",
+      "priority": 8,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-14T03:22:32.240063"
+    },
+    {
+      "id": "0ced15e2",
+      "name": "General_Person_Context",
+      "description": "Captures person names following common legal verbs or prepositions that are not covered by specific title rules. Tightened to exclude non-persons.",
+      "format": "regex",
+      "content": "\\b(?:ist|habe|sei|war|wurde|hat|konnte|musste|wollte|sollte|konnte|d\u00fcrfte|k\u00f6nnte|wird|werden|wurde|sind|seien|soll|sollen|haben|hatte|hatten|ist|ist|beschwerdef\u00fchrende Partei)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)+)(?=[,\\s]|$)(?!\\s*(?:Firma|Gesellschaft|AG|GmbH|KG|mbH|UG|OHG|PartG|Stiftung|Verein|Verband|Richter|Richterin|Bescheid|Finanzamt|Amt|Beh\u00f6rde|Verfahren|Antrag|Antragsteller|Bestraften|Beschuldigten|Gesch\u00e4ftsf\u00fchrer|Schriftf\u00fchrerin|Amtsbeauftragten|Spruchsenat|Finanzvergehen|Finanzstrafgesetz|Strafvollzugsgesetz|Widerruf|Strafaufschubes|Vollzuges|Vollzug|Bestrafte|Vereins|Neustart|Finanzstrafbeh\u00f6rden|Finanzstrafbeh\u00f6rde|Finanzstrafverfahren|Strafnummern|Verdachtes|Gesch\u00e4ftsf\u00fchrers|belangten Verb\u00e4nde|Beschuldigten|Amtsbeauftragten|Schriftf\u00fchrerin|Spruchsenates|M\u00f6dling|Stadt|Magistrat|\\d+|\\d{1,2}\\s*[a-zA-Z]{1,3}\\s*\\d{1,2}|\\d{1,2}\\s*[a-zA-Z]{1,3}\\s*\\d{1,2}\\s*,|\\d{1,2}\\s*[a-zA-Z]{1,3}\\s*\\d{1,2}\\s*$))",
+      "priority": 6,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-14T03:21:05.426472"
+    },
+    {
+      "id": "79b8a11e",
+      "name": "Frau_Person",
+      "description": "Captures names following 'Frau' to extract the name without the title. Refined to avoid matching 'Frau' as part of a title like 'Frau Rechtsanw\u00e4ltin'.",
+      "format": "regex",
+      "content": "\\bFrau\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)+)(?=[,\\s]|$)(?!\\s*(?:Rechtsanw\\u00e4ltin|Anwalt|Vertreter|Vertreterin|Schriftf\\u00fchrer|Schriftf\\u00fchrerin|Gesch\\u00e4ftsf\\u00fchrer|Gesch\\u00e4ftsf\\u00fchrerin|Vorsitzender|Vorsitzende|Richter|Richterin|Professor|Professoren|Dozent|Dozentin|Lehrer|Lehrerin|Arzt|\\u00c4rztin|Ingenieur|Ingenieurin|Architekt|Architektin|Notar|Notarin|Steuerberater|Steuerberaterin|Wirtschaftspr\\u00fcfer|Wirtschaftspr\\u00fcferin|Banker|Bankerin|Manager|Managerin|Direktor|Direktorin|Pr\\u00e4sident|Pr\\u00e4sidentin|Sekret\\u00e4r|Sekret\\u00e4rin|Assistent|Assistentin|Mitarbeiter|Mitarbeiterin|Kollege|Kollegin|Freund|Freundin|Vater|Mutter|Bruder|Schwester|Onkel|Tante|Neffe|Nichte|Enkel|Kind|Leute|Personen|Behauptung|Mitteilung|Antrag|Bescheid|Entscheidung|Verfahren|Gericht|Finanzamt|Amt|Beh\\u00f6rde|Firma|Gesellschaft|AG|GmbH|KG|mbH|UG|OHG|PartG|Stiftung|Verein|Verband|Spruchsenat|Finanzvergehen|Finanzstrafgesetz|Strafvollzugsgesetz|Widerruf|Strafaufschubes|Vollzuges|Vollzug|Bestrafte|Vereins|Neustart|Finanzstrafbeh\\u00f6rden|Finanzstrafbeh\\u00f6rde|Finanzstrafverfahren|Strafnummern|Verdachtes|Gesch\\u00e4ftsf\\u00fchrers|belangten Verb\\u00e4nde|Beschuldigten|Amtsbeauftragten|Schriftf\\u00fchrerin|Spruchsenates|M\\u00f6dling|Stadt|Magistrat|Tod|\\d+|\\d{1,2}\\s*[a-zA-Z]{1,3}\\s*\\d{1,2}|\\d{1,2}\\s*[a-zA-Z]{1,3}\\s*\\d{1,2}\\s*,|\\d{1,2}\\s*[a-zA-Z]{1,3}\\s*\\d{1,2}\\s*$))",
+      "priority": 9,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-14T03:28:33.384111"
+    },
+    {
+      "id": "2ca4e60d",
+      "name": "Preposition_Person",
+      "description": "Captures person names following other prepositions. Updated to include suffixes and exclude legal entities and common nouns.",
+      "format": "regex",
+      "content": "\\b(?:aus|mit|bei|nach|ohne|durch|gegen\\u00fcber)\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)*(?:\\s*,\\s*[A-Z][A-Z]+)?)\\s*(?=[,\\s]|$)(?!\\s*(?:Firma|Gesellschaft|AG|GmbH|KG|mbH|UG|OHG|PartG|Stiftung|Verein|Verband|Richter|Richterin|Bescheid|Finanzamt|Amt|Beh\\u00f6rde|Verfahren|Antrag|Antragsteller|Bestraften|Beschuldigten|Gesch\\u00e4ftsf\\u00fchrer|Schriftf\\u00fchrerin|Amtsbeauftragten|Spruchsenat|Finanzvergehen|Finanzstrafgesetz|Strafvollzugsgesetz|Widerruf|Strafaufschubes|Vollzuges|Vollzug|Bestrafte|Vereins|Neustart|Finanzstrafbeh\\u00f6rden|Finanzstrafbeh\\u00f6rde|Finanzstrafverfahren|Strafnummern|Verdachtes|Gesch\\u00e4ftsf\\u00fchrers|belangten Verb\\u00e4nde|Beschuldigten|Amtsbeauftragten|Schriftf\\u00fchrerin|Spruchsenates|M\\u00f6dling|Steuerberatungsgesellschaft|Wirtschaftstreuhand|Grant\\s+Thornton|Ernst\\s+&\\s+Young|Djuric\\s+&\\s+Oberger|Nowothnig|Depp|Wind|\\d+|\\d{1,2}\\s*[a-zA-Z]{1,3}\\s*\\d{1,2}|\\d{1,2}\\s*[a-zA-Z]{1,3}\\s*\\d{1,2}\\s*,|\\d{1,2}\\s*[a-zA-Z]{1,3}\\s*\\d{1,2}\\s*$|Januar|Februar|M\\u00e4rz|April|Mai|Juni|Juli|August|September|Oktober|November|Dezember))(?!\\s*(?:Herr|Herrn|Frau|Frauen|Sohn|Tochter|Vater|Mutter|Bruder|Schwester|Onkel|Tante|Neffe|Nichte|Enkel|Kind|Leute|Personen|Behauptung|Mitteilung|Antrag|Bescheid|Entscheidung|Verfahren|Gericht|Finanzamt|Amt|Beh\\u00f6rde|Firma|Gesellschaft|AG|GmbH|KG|mbH|UG|OHG|PartG|Stiftung|Verein|Verband|Spruchsenat|Finanzvergehen|Finanzstrafgesetz|Strafvollzugsgesetz|Widerruf|Strafaufschubes|Vollzuges|Vollzug|Bestrafte|Vereins|Neustart|Finanzstrafbeh\\u00f6rden|Finanzstrafbeh\\u00f6rde|Finanzstrafverfahren|Strafnummern|Verdachtes|Gesch\\u00e4ftsf\\u00fchrers|belangten Verb\\u00e4nde|Beschuldigten|Amtsbeauftragten|Schriftf\\u00fchrerin|Spruchsenates|M\\u00f6dling|Stadt|Magistrat|Tod|\\d+|\\d{1,2}\\s*[a-zA-Z]{1,3}\\s*\\d{1,2}|\\d{1,2}\\s*[a-zA-Z]{1,3}\\s*\\d{1,2}\\s*,|\\d{1,2}\\s*[a-zA-Z]{1,3}\\s*\\d{1,2}\\s*$))",
+      "priority": 8,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-14T03:39:07.113223"
+    },
+    {
+      "id": "9ac27b86",
+      "name": "Role_Person",
+      "description": "Captures person names following specific legal roles or abbreviations. Excludes 'Herr', 'Herrn', 'Frau', 'Frauen' and legal entities. Excludes cases where a title precedes the name.",
+      "format": "regex",
+      "content": "\\b(?:Gesch\\u00e4ftsf\\u00fchrerin|Gesch\\u00e4ftsf\\u00fchrer|Bf\\.?|Kl\\.?|Bekl\\.?|Antragsteller|Antragstellerin|Beschwerdef\\u00fchrer|Beschwerdef\\u00fchrerin|Vertreter|Vertreterin|Ehegatte|Ehegatten|Ehepartner|Gattin|Kindesvater|Kindesmutterschaft|Mag\\.|Dr\\.|Prof\\.)\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)+)(?=[,\\s]|$)(?!\\s*(?:GmbH|AG|KG|mbH|UG|OHG|PartG|Steuerberatungsgesellschaft|Wirtschaftstreuhand|Grant\\s+Thornton|Ernst\\s+&\\s+Young|Djuric\\s+&\\s+Oberger))(?!\\s*(?:Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|OMedR|OSR|OStR|DDr\\.|RgR|PhD|KzlR|StB|RA|MedR|StR|Bakk\\.|Dipl\\.-Ing\\.|Ing\\.|Techn R|Mag\\.a|Mag\\.|Dr\\.in|Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Univ\\.-Prof\\.in|DDr\\.in|OStR\\.?|RgR|PhD\\s+Ing\\.|KzlR\\s+DDr\\.|OStR\\s+Dipl\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|MedR|StR|Bakk\\.\\s+iur\\.|Dipl\\.-Ing\\.\\s+)?\\s+)",
+      "priority": 6,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-14T03:26:41.479052"
+    },
+    {
+      "id": "10fa854f",
+      "name": "Name_With_Suffix",
+      "description": "Captures names with academic or professional suffixes like ', BA', ', Bakk. art.', ', MBA' that appear after a title or in case contexts. Includes title prefix if present.",
+      "format": "regex",
+      "content": "\\b(?!(?:Frau|Herr)\\s)(?:([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)+)\\s*,\\s*)?(?:([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)+))(?:\\s*,\\s*(?:BA|B\\.A\\.|B\\.A\\.\\s+iur\\.|Bakk\\.\\s+art\\.|Bakk\\.\\s+rer\\.\\s+nat\\.|MBA|LL\\.M\\.|LL\\.B\\.))",
+      "priority": 6,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-14T03:27:18.917526"
+    },
+    {
+      "id": "21b00ea5",
+      "name": "Date_Person",
+      "description": "Captures person names immediately following a date pattern (e.g., '22.9.2016 Ida Vetterlin').",
+      "format": "regex",
+      "content": "(?:^|\\s)(\\d{1,2}\\.\\d{1,2}\\.\\d{2,4})\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)+)(?=[,\\s]|$)(?!\\s*(?:Firma|Gesellschaft|AG|GmbH|KG|mbH|UG|OHG|PartG|Stiftung|Verein|Verband|Richter|Richterin|Bescheid|Finanzamt|Amt|Beh\\u00f6rde|Verfahren|Antrag|Antragsteller|Bestraften|Beschuldigten|Gesch\\u00e4ftsf\\u00fchrer|Schriftf\\u00fchrerin|Amtsbeauftragten|Spruchsenat|Finanzvergehen|Finanzstrafgesetz|Strafvollzugsgesetz|Widerruf|Strafaufschubes|Vollzuges|Vollzug|Bestrafte|Vereins|Neustart|Finanzstrafbeh\\u00f6rden|Finanzstrafbeh\\u00f6rde|Finanzstrafverfahren|Strafnummern|Verdachtes|Gesch\\u00e4ftsf\\u00fchrers|belangten Verb\\u00e4nde|Beschuldigten|Amtsbeauftragten|Schriftf\\u00fchrerin|Spruchsenates|M\\u00f6dling|Stadt|Magistrat|\\d+|\\d{1,2}\\s*[a-zA-Z]{1,3}\\s*\\d{1,2}|\\d{1,2}\\s*[a-zA-Z]{1,3}\\s*\\d{1,2}\\s*,|\\d{1,2}\\s*[a-zA-Z]{1,3}\\s*\\d{1,2}\\s*$))",
+      "priority": 7,
+      "output_template": {
+        "text": "$2",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-14T02:34:21.812451"
+    },
+    {
+      "id": "0d68b929",
+      "name": "Pronoun_Person",
+      "description": "Captures person names following pronouns like 'Er', 'Sie', 'Es' or in parentheses. Refined to avoid matching common nouns.",
+      "format": "regex",
+      "content": "(?:^|\\.|\\?|\\!|\\(|,)\\s*([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)+)(?:\\s*,\\s*|\\s*\\)|\\s*$)(?!\\s*(?:Firma|Gesellschaft|AG|GmbH|KG|mbH|UG|OHG|PartG|Stiftung|Verein|Verband|Richter|Richterin|Bescheid|Finanzamt|Amt|Beh\\u00f6rde|Verfahren|Antrag|Antragsteller|Bestraften|Beschuldigten|Gesch\\u00e4ftsf\\u00fchrer|Schriftf\\u00fchrerin|Amtsbeauftragten|Spruchsenat|Finanzvergehen|Finanzstrafgesetz|Strafvollzugsgesetz|Widerruf|Strafaufschubes|Vollzuges|Vollzug|Bestrafte|Vereins|Neustart|Finanzstrafbeh\\u00f6rden|Finanzstrafbeh\\u00f6rde|Finanzstrafverfahren|Strafnummern|Verdachtes|Gesch\\u00e4ftsf\\u00fchrers|belangten Verb\\u00e4nde|Beschuldigten|Amtsbeauftragten|Schriftf\\u00fchrerin|Spruchsenates|M\\u00f6dling|Stadt|Magistrat|Tod|Sohn|Tochter|Vater|Mutter|Bruder|Schwester|Onkel|Tante|Neffe|Nichte|Enkel|Kind|Leute|Personen|Behauptung|Mitteilung|Antrag|Bescheid|Entscheidung|Verfahren|Gericht|Finanzamt|Amt|Beh\\u00f6rde|Firma|Gesellschaft|AG|GmbH|KG|mbH|UG|OHG|PartG|Stiftung|Verein|Verband|Spruchsenat|Finanzvergehen|Finanzstrafgesetz|Strafvollzugsgesetz|Widerruf|Strafaufschubes|Vollzuges|Vollzug|Bestrafte|Vereins|Neustart|Finanzstrafbeh\\u00f6rden|Finanzstrafbeh\\u00f6rde|Finanzstrafverfahren|Strafnummern|Verdachtes|Gesch\\u00e4ftsf\\u00fchrers|belangten Verb\\u00e4nde|Beschuldigten|Amtsbeauftragten|Schriftf\\u00fchrerin|Spruchsenates|M\\u00f6dling|Stadt|Magistrat|Tod|\\d+|\\d{1,2}\\s*[a-zA-Z]{1,3}\\s*\\d{1,2}|\\d{1,2}\\s*[a-zA-Z]{1,3}\\s*\\d{1,2}\\s*,|\\d{1,2}\\s*[a-zA-Z]{1,3}\\s*\\d{1,2}\\s*$))",
+      "priority": 7,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-14T03:26:41.482155"
+    },
+    {
+      "id": "c8f20461",
+      "name": "Zu_Person",
+      "description": "Captures person names following the preposition 'zu' (to) in contexts like 'Zu Pascal Tiessen'.",
+      "format": "regex",
+      "content": "\\bzu\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)+)(?=[,\\s]|$)(?!\\s*(?:Firma|Gesellschaft|AG|GmbH|KG|mbH|UG|OHG|PartG|Stiftung|Verein|Verband|Richter|Richterin|Bescheid|Finanzamt|Amt|Beh\\u00f6rde|Verfahren|Antrag|Antragsteller|Bestraften|Beschuldigten|Gesch\\u00e4ftsf\\u00fchrer|Schriftf\\u00fchrerin|Amtsbeauftragten|Spruchsenat|Finanzvergehen|Finanzstrafgesetz|Strafvollzugsgesetz|Widerruf|Strafaufschubes|Vollzuges|Vollzug|Bestrafte|Vereins|Neustart|Finanzstrafbeh\\u00f6rden|Finanzstrafbeh\\u00f6rde|Finanzstrafverfahren|Strafnummern|Verdachtes|Gesch\\u00e4ftsf\\u00fchrers|belangten Verb\\u00e4nde|Beschuldigten|Amtsbeauftragten|Schriftf\\u00fchrerin|Spruchsenates|M\\u00f6dling|Stadt|Magistrat|\\d+|\\d{1,2}\\s*[a-zA-Z]{1,3}\\s*\\d{1,2}|\\d{1,2}\\s*[a-zA-Z]{1,3}\\s*\\d{1,2}\\s*,|\\d{1,2}\\s*[a-zA-Z]{1,3}\\s*\\d{1,2}\\s*$))",
+      "priority": 6,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-14T02:58:32.336315"
+    },
+    {
+      "id": "c268c629",
+      "name": "Herr_Abbrev_Person",
+      "description": "Captures names following the abbreviation 'Hr.' (Herr).",
+      "format": "regex",
+      "content": "\\bHr\\.\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)+)(?=[,\\s]|$)(?!\\s*(?:Firma|Gesellschaft|AG|GmbH|KG|mbH|UG|OHG|PartG|Stiftung|Verein|Verband|Richter|Richterin|Bescheid|Finanzamt|Amt|Beh\u00f6rde|Verfahren|Antrag|Antragsteller|Bestraften|Beschuldigten|Gesch\u00e4ftsf\u00fchrer|Schriftf\u00fchrerin|Amtsbeauftragten|Spruchsenat|Finanzvergehen|Finanzstrafgesetz|Strafvollzugsgesetz|Widerruf|Strafaufschubes|Vollzuges|Vollzug|Bestrafte|Vereins|Neustart|Finanzstrafbeh\u00f6rden|Finanzstrafbeh\u00f6rde|Finanzstrafverfahren|Strafnummern|Verdachtes|Gesch\u00e4ftsf\u00fchrers|belangten Verb\u00e4nde|Beschuldigten|Amtsbeauftragten|Schriftf\u00fchrerin|Spruchsenates|M\u00f6dling|Stadt|Magistrat|\\d+|\\d{1,2}\\s*[a-zA-Z]{1,3}\\s*\\d{1,2}|\\d{1,2}\\s*[a-zA-Z]{1,3}\\s*\\d{1,2}\\s*,|\\d{1,2}\\s*[a-zA-Z]{1,3}\\s*\\d{1,2}\\s*$))",
+      "priority": 8,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-14T03:06:15.392188"
+    },
+    {
+      "id": "98ee50c3",
+      "name": "KzlR_Title_Person",
+      "description": "Specifically captures names with the 'KzlR' title, which is often associated with tax advisors or auditors.",
+      "format": "regex",
+      "content": "\\bKzlR\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)+)",
+      "priority": 7,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-14T03:09:35.814246"
+    },
+    {
+      "id": "853b6262",
+      "name": "Mag_Person",
+      "description": "Captures 'Mag.' or 'Mag.a' titles followed by names, including suffixes like ', Bakk. rer. nat.'",
+      "format": "regex",
+      "content": "\\bMag\\.(?:a)?\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)*(?:\\s*,\\s*[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)*)*)",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-14T03:39:07.111277"
+    },
+    {
+      "id": "5573d07e",
+      "name": "Prof_in_Person",
+      "description": "Specifically captures 'Prof.in' titles followed by names to ensure the full title is included in the output.",
+      "format": "regex",
+      "content": "\\bProf\\.in\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)+)(?=[,\\s]|$)",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-14T03:33:53.095314"
+    },
+    {
+      "id": "cf589c82",
+      "name": "Univ_Prof_Person",
+      "description": "Specifically captures 'Univ.-Prof.' and complex academic titles followed by names.",
+      "format": "regex",
+      "content": "\\b(?:Univ\\.-Prof\\.(?:\\s+Dr\\.(?:\\s+Priv\\.-Doz\\.)?)?|Dr\\.(?:\\s+Priv\\.-Doz\\.)?\\s+Univ\\.-Prof\\.)\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)+)(?=[,\\s]|$)",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-14T03:33:53.095643"
+    },
+    {
+      "id": "d28ba9b2",
+      "name": "Von_Frau_Person",
+      "description": "Captures person names following 'von Frau' to handle cases like 'von Frau Mag. Janosch Moehrle, Bakk. rer. nat.'",
+      "format": "regex",
+      "content": "\\b(?:von|Von)\\s+Frau\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)*(?:\\s*,\\s*[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)*)*)",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-14T03:39:07.111673"
+    },
+    {
+      "id": "826696e0",
+      "name": "Genitive_Person",
+      "description": "Captures person names following genitive articles 'der', 'des', 'die', 'den' (e.g., 'der Othmar Arvanitidis').",
+      "format": "regex",
+      "content": "\\b(?:der|des|die|den)\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)+)(?=\\s|,|\\.|$)",
+      "priority": 7,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-14T03:39:07.111940"
+    },
+    {
+      "id": "9192a71b",
+      "name": "Sentence_Start_Person",
+      "description": "Captures person names at the start of a sentence or after specific punctuation if they are capitalized and followed by a period or comma.",
+      "format": "regex",
+      "content": "(?:^|\\.|\\?|\\!|\\(|,)\\s*([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)+)(?:\\s*,\\s*|\\s*\\)|\\s*$)(?!\\s*(?:Firma|Gesellschaft|AG|GmbH|KG|mbH|UG|OHG|PartG|Stiftung|Verein|Verband|Richter|Richterin|Bescheid|Finanzamt|Amt|Beh\\u00f6rde|Verfahren|Antrag|Antragsteller|Bestraften|Beschuldigten|Gesch\\u00e4ftsf\\u00fchrer|Schriftf\\u00fchrerin|Amtsbeauftragten|Spruchsenat|Finanzvergehen|Finanzstrafgesetz|Strafvollzugsgesetz|Widerruf|Strafaufschubes|Vollzuges|Vollzug|Bestrafte|Vereins|Neustart|Finanzstrafbeh\\u00f6rden|Finanzstrafbeh\\u00f6rde|Finanzstrafverfahren|Strafnummern|Verdachtes|Gesch\\u00e4ftsf\\u00fchrers|belangten Verb\\u00e4nde|Beschuldigten|Amtsbeauftragten|Schriftf\\u00fchrerin|Spruchsenates|M\\u00f6dling|Stadt|Magistrat|Tod|Sohn|Tochter|Vater|Mutter|Bruder|Schwester|Onkel|Tante|Neffe|Nichte|Enkel|Kind|Leute|Personen|Behauptung|Mitteilung|Antrag|Bescheid|Entscheidung|Verfahren|Gericht|Finanzamt|Amt|Beh\\u00f6rde|Firma|Gesellschaft|AG|GmbH|KG|mbH|UG|OHG|PartG|Stiftung|Verein|Verband|Spruchsenat|Finanzvergehen|Finanzstrafgesetz|Strafvollzugsgesetz|Widerruf|Strafaufschubes|Vollzuges|Vollzug|Bestrafte|Vereins|Neustart|Finanzstrafbeh\\u00f6rden|Finanzstrafbeh\\u00f6rde|Finanzstrafverfahren|Strafnummern|Verdachtes|Gesch\\u00e4ftsf\\u00fchrers|belangten Verb\\u00e4nde|Beschuldigten|Amtsbeauftragten|Schriftf\\u00fchrerin|Spruchsenates|M\\u00f6dling|Stadt|Magistrat|Tod|\\d+|\\d{1,2}\\s*[a-zA-Z]{1,3}\\s*\\d{1,2}|\\d{1,2}\\s*[a-zA-Z]{1,3}\\s*\\d{1,2}\\s*,|\\d{1,2}\\s*[a-zA-Z]{1,3}\\s*\\d{1,2}\\s*$))",
+      "priority": 7,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-14T03:39:07.112147"
+    }
+  ]
+}
