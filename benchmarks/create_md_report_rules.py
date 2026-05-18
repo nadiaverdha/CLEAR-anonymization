@@ -1,17 +1,12 @@
 import argparse
 import json
 import os
-import re
-import tempfile
-import uuid
-from asyncio import run
-from asyncio.log import logger
+from concurrent.futures import ProcessPoolExecutor
 from contextlib import contextmanager
 from datetime import datetime
 from pathlib import Path
 from types import SimpleNamespace
 
-from openai import OpenAI
 from rulechef import RuleChef
 from rulechef.core import (
     Dataset,
@@ -21,7 +16,7 @@ from rulechef.core import (
     Task,
     TaskType,
 )
-from rulechef.evaluation import evaluate_dataset, evaluate_rules_individually
+from rulechef.evaluation import evaluate_dataset
 from rulechef.executor import RuleExecutor
 
 from benchmarks.util import BenchmarkRun, make_dataset
@@ -34,19 +29,37 @@ from clear_anonymization.ner_datasets import (
 from clear_anonymization.ner_datasets.ner_dataset import NERData
 from clear_anonymization.preprocess.sampling import sample_few_shot
 
+_worker_state = {}
+
+
+def _init_worker(dataset, mode, max_samples, iou_threshold):
+    from rulechef.executor import RuleExecutor
+
+    _worker_state["dataset"] = dataset
+    _worker_state["mode"] = mode
+    _worker_state["max_samples"] = max_samples
+    _worker_state["iou_threshold"] = iou_threshold
+    _worker_state["executor"] = RuleExecutor()
+
+
+def _eval_rule_worker(rule):
+    from rulechef.evaluation import evaluate_rules_individually
+
+    return evaluate_rules_individually(
+        rules=[rule],
+        dataset=_worker_state["dataset"],
+        apply_rules_fn=_worker_state["executor"].apply_rules,
+        mode=_worker_state["mode"],
+        max_samples=_worker_state["max_samples"],
+        iou_threshold=_worker_state["iou_threshold"],
+    )[0]
+
 
 @contextmanager
 def _details_block(f, summary: str):
     f.write(f"<details>\n<summary>{summary}</summary>\n\n")
     yield
     f.write("</details>\n\n---\n\n")
-
-
-@contextmanager
-def _normal_block(f, summary: str):
-    f.write(f"\n<summary>{summary}</summary>\n\n")
-    yield
-    f.write("\n\n---\n\n")
 
 
 def _write_table(f, headers: list[str], rows: list[list[str]]) -> None:
@@ -88,11 +101,15 @@ def write_summary_table(file_path: Path, metrics_list):
             )
 
 
-def append_overall_metrics(md_path, chef, test_dataset, run, results_folder):
+def append_overall_metrics(
+    md_path, chef, test_dataset, run, results_folder, rules=None
+):
     config = run.args
+    if rules is None:
+        rules = run.rules
 
     test_eval = evaluate_dataset(
-        run.rules,
+        rules,
         test_dataset,
         chef.learner._apply_rules,
         mode="text",
@@ -111,12 +128,12 @@ def append_overall_metrics(md_path, chef, test_dataset, run, results_folder):
                     ["Train ratio", f"{config.train_ratio:.2f}"],
                     ["Validation ratio", f"{1.0 - config.train_ratio:.2f}"],
                     ["Shots per class", config.shots],
-                    ["Training examples", run.train_size],
-                    ["Validation examples", run.eval_size],
-                    ["Test examples", run.test_size],
-                    ["Train annotations", run.train_annotations],
-                    ["Validation annotations", run.eval_annotations],
-                    ["Test annotations", run.test_annotations],
+                    ["Training documents", run.train_size],
+                    ["Validation documents", run.eval_size],
+                    ["Test documents", run.test_size],
+                    ["Train sentences", run.train_annotations],
+                    ["Validation sentences", run.eval_annotations],
+                    ["Test sentences", run.test_annotations],
                     ["Model", config.model],
                     ["Max rules", config.max_rules],
                     ["Max samples in prompt", config.max_samples],
@@ -127,11 +144,29 @@ def append_overall_metrics(md_path, chef, test_dataset, run, results_folder):
                     ["Enable Prune", config.enable_prune],
                     ["Critic Interval", config.critic_interval],
                     ["Audit Interval", config.audit_interval],
+                    ["Use GREX", not config.no_grex],
+                    ["Format", config.format],
+                    ["Synthesis strategy", config.synthesis_strategy],
+                    ["Sampling strategy", config.sampling_strategy],
+                    ["Batch size", config.batch_size],
+                    ["Refine per batch", config.refine_per_batch],
                     [
-                        "Use GREX",
-                        not config.no_grex,
+                        "Manually annotated examples",
+                        getattr(run, "manually_annotated_size", 0),
+                    ],
+                    [
+                        "First batch with manual data",
+                        getattr(run, "first_manual_batch", None),
                     ],
                 ],
+            )
+
+        if run.metadata:
+            f.write("**Transfer Learning**\n\n")
+            _write_table(
+                f,
+                ["Property", "Value"],
+                [[k.replace("_", " ").title(), v] for k, v in run.metadata.items()],
             )
 
         with _details_block(f, "Results"):
@@ -142,6 +177,8 @@ def append_overall_metrics(md_path, chef, test_dataset, run, results_folder):
                     ["Accuracy (exact match)", f"{test_eval.exact_match:.1%}"],
                     ["True Positives", test_eval.total_tp],
                     ["False Positives", test_eval.total_fp],
+                    ["False Negatives", test_eval.total_fn],
+                    ["Total Gold Entities", test_eval.total_tp + test_eval.total_fn],
                     ["Micro Precision", f"{test_eval.micro_precision:.1%}"],
                     ["Micro Recall", f"{test_eval.micro_recall:.1%}"],
                     ["Micro F1", f"{test_eval.micro_f1:.1%}"],
@@ -190,82 +227,103 @@ def _write_rule_detail(f, metric, rules_by_id: dict, top_n_examples: int = 5) ->
     if metric.sample_matches:
         _write_sample_blocks(f, metric, top_n_examples)
 
-    # f.write("---\n\n")
+
+def _classify_fp(pred: dict, gold_entities: list[dict]) -> str:
+    pt = pred["text"].lower()
+    ps, pe = pred.get("start"), pred.get("end")
+    ps = int(ps) if ps not in (None, "") else None
+    pe = int(pe) if pe not in (None, "") else None
+    for g in gold_entities:
+        gt = g["text"].lower()
+        gs, ge = g.get("start"), g.get("end")
+        gs = int(gs) if gs not in (None, "") else None
+        ge = int(ge) if ge not in (None, "") else None
+        pos_overlap = None not in (ps, pe, gs, ge) and ps < ge and pe > gs
+        if pos_overlap:
+            if pt == gt:
+                return f"type mismatch — same span as gold: `{g['text']}`"
+            if pt in gt:
+                return f"partial — pred is substring of gold: `{g['text']}`"
+            if gt in pt:
+                return f"partial — gold is substring of pred: `{g['text']}`"
+            return f"positional overlap with gold: `{g['text']}`"
+        if pt == gt or pt in gt or gt in pt:
+            return f"similar text (different position): `{g['text']}`"
+    return "no gold match — likely missing annotation"
 
 
-def _expand_to_word_boundary(text: str, left: int, right: int) -> tuple[int, int]:
-    while left > 0 and text[left] not in " \n\t":
-        left -= 1
-    while right < len(text) and text[right - 1] not in " \n\t":
-        right += 1
-
-    return left, right
-
-
-def _context_window(text: str, start: int, end: int, window: int = 60) -> str:
-    left = max(0, start - window)
-    right = min(len(text), end + window)
-    left, right = _expand_to_word_boundary(text, left, right)
-
-    snippet = text[left:right]
-
-    entity = text[start:end]
-    snippet = snippet.replace(entity, f"<<<{entity}>>>")
-
-    if left > 0:
-        snippet = "..." + snippet
-    if right < len(text):
-        snippet = snippet + "..."
-
-    return snippet
+def _dedup_samples(samples):
+    seen = set()
+    result = []
+    for s in samples:
+        key = s.input.get("sent_id") or s.input.get("text", "")
+        if key not in seen:
+            seen.add(key)
+            result.append(s)
+    return result
 
 
 def _write_sample_blocks(f, metric, top_n: int):
-
-    hits = [s for s in metric.sample_matches if s.tp > 0]
-    fps = [s for s in metric.sample_matches if s.fp > 0]
+    hits = _dedup_samples([s for s in metric.sample_matches if s.tp > 0])[:top_n]
+    fps = _dedup_samples([s for s in metric.sample_matches if s.fp > 0])[:top_n]
 
     def _block(title, samples, render_fn):
         if not samples:
             return
         with _details_block(f, f"{title}"):
-            for i, sample in enumerate(samples[:top_n]):
+            for i, sample in enumerate(samples):
                 render_fn(i, sample)
 
     def render_hit(i, sample):
         doc_id = sample.input.get("doc_id", "")
-        f.write(f"**Example {i}** (doc_id: `{doc_id}`)\n\n")
-        text = sample.input["text"]
-
-        for pred, gold in sample.matched_pairs[:top_n]:
-            f.write(
-                f"```\n{_context_window(text, pred['start'], pred['end'])}\n```\n\n"
-            )
+        sent_id = sample.input.get("sent_id", "")
+        f.write(f"**Example {i}** (doc_id: `{doc_id}`) (sent_id: `{sent_id}`)\n\n")
+        f.write(f"\n{sample.input['text']}\n\n")
+        matched_gold_texts = {gold["text"] for _, gold in (sample.matched_pairs or [])}
         _write_table(
             f,
             ["Predicted", "Gold"],
             [
                 [f"`{pred['text']}`", f"`{gold['text']}`"]
-                for pred, gold in sample.matched_pairs[:top_n]
+                for pred, gold in sample.matched_pairs
             ],
         )
+        missed = [
+            g for g in (sample.expected or []) if g["text"] not in matched_gold_texts
+        ]
+        if missed:
+            f.write("**Missed by this rule (FN):**\n\n")
+            for g in missed:
+                f.write(f"- `{g['text']}` ({g.get('type', '')})\n")
+            f.write("\n")
 
     def render_fp(i, sample):
         doc_id = sample.input.get("doc_id", "")
-        f.write(f"**Example {i}** (doc_id: `{doc_id}`)\n\n")
-        text = sample.input["text"]
+        sent_id = sample.input.get("sent_id", "")
+        f.write(f"**Example {i}** (doc_id: `{doc_id}`) (sent_id: `{sent_id}`)\n\n")
+        f.write(f"\n{sample.input['text']}\n\n")
 
+        counts = {"overlap": 0, "missing annotation": 0}
         f.write("**False Positives:**\n\n")
-        for e in sample.false_positives[:top_n]:
-            f.write(f"```\n{_context_window(text, e['start'], e['end'])}\n```\n\n")
+        for e in sample.false_positives:
+            reason = _classify_fp(e, sample.expected)
+            if reason.startswith("no gold match"):
+                counts["missing annotation"] += 1
+            else:
+                counts["overlap"] += 1
+            f.write(f"- `{e['text']}` — {reason}\n")
 
-            f.write(f"FP: `{e['text']}` ({e.get('type', '')})\n\n")
+        f.write(
+            f"\n> overlaps gold: {counts['overlap']}  |  "
+            f"likely missing annotation: {counts['missing annotation']}\n\n"
+        )
 
-        f.write("**✅ Gold Entities:**\n")
-        for g in sample.expected:
-            f.write(f"- `{g['text']}` ({g.get('type', '')})\n")
-
-        f.write("\n")
+        matched_gold_texts = {gold["text"] for _, gold in (sample.matched_pairs or [])}
+        if sample.expected:
+            f.write("**Gold Entities:**\n\n")
+            for g in sample.expected:
+                f.write(f"- `{g['text']}`({g.get('type', '')})\n")
+            f.write("\n")
 
     _block("✅ Worked", hits, render_hit)
     _block("⚠️ False Positives", fps, render_fp)
@@ -310,7 +368,7 @@ def append_rule_metrics(
     file_path: Path,
     metrics_list,
     rules=None,
-    top_n_examples: int = 5,
+    top_n_examples: int = 15,
 ) -> None:
     rules_by_id = {r.id: r for r in rules} if rules else {}
     sorted_metrics = sorted(metrics_list, key=lambda m: m.f1, reverse=True)
@@ -328,6 +386,7 @@ def create_md_report(
     test_dataset,
     results_folder,
     title="Rule Evaluation Report",
+    exclude_rule_ids: set[str] | None = None,
 ):
     file_path.parent.mkdir(parents=True, exist_ok=True)
     file_path.write_text(
@@ -335,24 +394,28 @@ def create_md_report(
         encoding="utf-8",
     )
 
-    append_overall_metrics(file_path, chef, test_dataset, run, results_folder)
+    exclude = exclude_rule_ids or set()
+    rules = [r for r in run.rules if r.id not in exclude]
 
-    rule_metrics = evaluate_rules_individually(
-        rules=run.rules,
-        dataset=test_dataset,
-        apply_rules_fn=chef.learner._apply_rules,
-        mode="text",
-        max_samples=run.args.max_samples,
-        iou_threshold=0.5,
+    append_overall_metrics(
+        file_path, chef, test_dataset, run, results_folder, rules=rules
     )
+
+    with ProcessPoolExecutor(
+        max_workers=16,
+        initializer=_init_worker,
+        initargs=(test_dataset, "text", 100, 0.5),
+    ) as pool:
+        rule_metrics = list(pool.map(_eval_rule_worker, rules))
+
     write_summary_table(file_path, rule_metrics)
-    append_influential_rules(file_path, rule_metrics, run.rules, top_n=5)
+    append_influential_rules(file_path, rule_metrics, rules, top_n=10)
 
     append_rule_metrics(
         file_path,
         rule_metrics,
-        top_n_examples=5,
-        rules=run.rules,
+        top_n_examples=100,
+        rules=rules,
     )
 
     print(f"Report saved to {file_path}")
@@ -378,13 +441,20 @@ def main():
         help="Output .md path (default: <rules-json>.rules_report.md)",
     )
     parser.add_argument(
-        "--dataset_name",
+        "--dataset-name",
         type=str,
         default="findok",
         help="Name of the dataset",
     )
 
     parser.add_argument("--base-url", type=str, default="http://localhost:8000/v1")
+    parser.add_argument(
+        "--exclude-rule-ids",
+        type=str,
+        nargs="*",
+        default=[],
+        help="Rule IDs to exclude from the report",
+    )
     args = parser.parse_args()
 
     # 1. Load rules
@@ -406,40 +476,39 @@ def main():
 
     config = saved.get("config", {})
 
-    selected_classes = "organisation"
+    selected_classes = config.get("selected_classes", ["organisation"])
     learner = NERLearner(
         model=config.get("model"),
         dataset_name=config.get("dataset_name"),
-        base_url=config.get("base_url"),
+        base_url=config.get("base_url", "http://localhost:8000/v1"),
         use_grex=not config.get("no_grex"),
         max_rules=config.get("max_rules"),
         max_samples=config.get("max_samples"),
         max_counter_examples=config.get("max_counter_examples"),
-        logger=logger,
+        logger=None,
         sampling_strategy=config.get("sampling_strategy"),
         synthesis_strategy=config.get("synthesis_strategy"),
         selected_classes=selected_classes,
     )
 
     results_folder = os.path.dirname(args.rules_json)
-    test_data_raw = load_ner_dataset(
+    test_data_raw = load_ner_dataset_from_conll(
         args.test_dir,
     )
-
     test_data = [
         {
-            "text": s.text,
-            "entities": s.labels,
+            "text": sent.text,
+            "entities": sent.labels,
+            "sent_id": sent.sent_id,
             "doc_id": s.doc_id,
-            "sentences": [
-                {"text": sent.text, "labels": sent.labels}
-                for sent in (s.sentences or [])
-            ],
         }
         for s in test_data_raw.samples
+        for sent in s.sentences
     ]
+
     test_dataset = make_dataset(f"{args.dataset_name}_eval", test_data, learner.task)
-    print(f"Loaded {len(test_data)} test examples")
+    print(f"Loaded {len(test_data_raw.samples)} test documents")
+    print(f"Loaded {len(test_data)} test annotations")
 
     md_path = (
         Path(args.output)
@@ -450,7 +519,7 @@ def main():
     run_args = SimpleNamespace(
         **{**config, "no_grex": not config.get("use_grex", True)}
     )
-    test_annotations = sum(len(ex["entities"]) for ex in test_data)
+
     benchmark_run = BenchmarkRun(
         args=run_args,
         train_data=[],
@@ -458,17 +527,19 @@ def main():
         test_data=test_data,
         train_size=config.get("train_size", 0),
         eval_size=config.get("eval_size", 0),
-        test_size=len(test_data),
+        test_size=len(test_data_raw.samples),
         train_annotations=config.get("train_annotations", 0),
         eval_annotations=config.get("eval_annotations", 0),
-        test_annotations=test_annotations,
+        test_annotations=len(test_data),
         iteration_metrics=[],
+        batch_test_metrics=[],
         eval_results=None,
         t_learn=0.0,
         t_eval=0.0,
         selected_classes=config.get("selected_classes", []),
         rules=rules,
     )
+    print("Creating now")
 
     create_md_report(
         md_path,
@@ -477,6 +548,7 @@ def main():
         test_dataset=test_dataset,
         results_folder=results_folder,
         title=f"Rule Evaluation Report — {config.get('model', 'unknown')}",
+        exclude_rule_ids=set(args.exclude_rule_ids),
     )
 
 
