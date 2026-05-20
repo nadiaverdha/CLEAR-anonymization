@@ -1,0 +1,1685 @@
+{
+  "phase": "phase1",
+  "completed_batches": 14,
+  "rules": [
+    {
+      "id": "364957f7",
+      "name": "Party_Person",
+      "description": "Extracts person names specifically after 'Beschwerdesache' (standalone), ensuring the name is followed by an address or comma, and excluding common false positives.",
+      "format": "regex",
+      "content": "Beschwerdesache\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)*(?:\\s*,\\s*(?:LL\\.M\\.|LL\\.B\\.|MSc\\.|BEd\\.|LLB\\.|LLM|BEd|LLB|LLM|StB|RA|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|MA|Bakk\\. art\\.)?)?)(?=\\s*,|\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+\\s+\\d+|\\s+\\d+)",
+      "priority": 9,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities"
+    },
+    {
+      "id": "84dbf8f8",
+      "name": "Nachname_Wie_Bf_Person",
+      "description": "Captures person names appearing immediately after '(Nachname wie Bf.)' or similar parenthetical name placeholders.",
+      "format": "regex",
+      "content": "\\(Nachname wie Bf\\.\\)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+)*(?:\\s*,\\s*(?:LL\\.M\\.|LL\\.B\\.|MSc\\.|BEd\\.|LLB\\.|LLM|BEd|LLB|LLM|StB|RA|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|MA|Bakk\\. art\\.)?)?)",
+      "priority": 10,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities"
+    },
+    {
+      "id": "8fcbd442",
+      "name": "Beschwerdesache_Person",
+      "description": "Captures person names appearing after 'in der Beschwerdesache' or 'gegen den Bescheid ... betreffend', ensuring the name is followed by an address or comma, excluding the comma.",
+      "format": "regex",
+      "content": "(?:in der Beschwerdesache|gegen den Bescheid des [A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)*\\s+vom|betreffend [A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)*\\s+vom)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)*(?:\\s*,\\s*(?:LL\\.M\\.|LL\\.B\\.|MSc\\.|BEd\\.|LLB\\.|LLM|BEd|LLB|LLM|StB|RA|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|MA|Bakk\\. art\\.)?)?)(?=\\s*,|\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+\\s+\\d+|\\s+\\d+|\\s+\\w+\\s+\\d+|\\s*$)",
+      "priority": 9,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities"
+    },
+    {
+      "id": "d01c6882",
+      "name": "Title_Person_General",
+      "description": "Captures person names starting with a known title, handling multiple consecutive titles and ensuring the full name is captured, including degrees.",
+      "format": "regex",
+      "content": "\\b((?:Dr\\.|Mag\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|KzlR|VetR|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Univ\\.-Prof\\.in|HR|RgR|PhD|Ing\\.)(?:\\s+(?:Dr\\.|Mag\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|KzlR|VetR|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Univ\\.-Prof\\.in|HR|RgR|PhD|Ing\\.)?)*\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)*(?:\\s*,\\s*(?:LL\\.M\\.|LL\\.B\\.|MSc\\.|BEd\\.|LLB\\.|LLM|BEd|LLB|LLM|StB|RA|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR)?)*)",
+      "priority": 9,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities"
+    },
+    {
+      "id": "9bf16434",
+      "name": "Frau_Name_Context_Person",
+      "description": "Captures person names appearing after 'Frau' or 'Herr' (without degree) or in contexts like 'Frau [Name] (Beschwerdef\u00fchrerin)', ensuring it's a name and not a noun.",
+      "format": "regex",
+      "content": "(?:Frau|Herr)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+)*)(?=\\s*(?:\\(|,|\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+\\s+\\d+|\\s*$))",
+      "priority": 8,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities"
+    },
+    {
+      "id": "4bfbd2b9",
+      "name": "Context_Person_Strict",
+      "description": "Captures person names appearing after context phrases like 'des', 'der', 'von', 'gegen', ensuring the full name and optional degree are captured, but strictly filtering out common legal nouns.",
+      "format": "regex",
+      "content": "(?:des\\s+|der\\s+|von\\s+|gegen\\s+den|gegen\\s+die|gegen\\s+dem|mit\\s+dem|mit\\s+der)\\s+(?!(?:Beschwerdesache|Bescheid|Finanzamt|Richter|Richterin|Gericht|Beh\u00f6rde|Amt|Kammer|Abteilung|Sektion|Referat|Partei|Klage|Rechtsmittel|Verfahren|Verf\u00fcgung|Entscheidung|Urteil|Beschluss|Festsetzung|Zahlung|Steuer|Abgabe|Geb\u00fchr|Strafe|Bu\u00dfe|Verwarnung|Verwarnungsgeld|Verfahrenshilfe|Verfahrenskosten|Verfahrensbeihilfe|Verfahrensbeistand|Verfahrensbevollm\u00e4chtigte|Verfahrensbevollm\u00e4chtigter|Verfahrensbevollm\u00e4chtigten|Bundesfinanzgericht|Einkommensteuer|Umsatzsteuer|Arbeitnehmerveranlagung|Stadt|GmbH|GmbH|Gesellschaft))(?=[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)*(?:\\s*,\\s*(?:LL\\.M\\.|LL\\.B\\.|MSc\\.|BEd\\.|LLB\\.|LLM|BEd|LLB|LLM|StB|RA|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|MA|Bakk\\. art\\.)?)?)(?=\\s*,|\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+\\s+\\d+|\\s+\\d+|\\s+\\w+\\s+\\d+|\\s*$)",
+      "priority": 8,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities"
+    },
+    {
+      "id": "2daddaa9",
+      "name": "Party_Name_Context",
+      "description": "Captures party names following context phrases like 'in der Beschwerdesache', 'des', 'der', 'von', 'gegen', ensuring the match stops before the comma and handles complex degrees. Excludes common legal nouns/departments.",
+      "format": "regex",
+      "content": "(?:in der Beschwerdesache|des\\s+|der\\s+|von\\s+|gegen\\s+den|gegen\\s+die|gegen\\s+dem|mit\\s+dem|mit\\s+der)\\s+(?!(?:Beschwerdesache|Bescheid|Finanzamt|Richter|Richterin|Gericht|Beh\u00f6rde|Amt|Kammer|Abteilung|Sektion|Referat|Partei|Klage|Rechtsmittel|Verfahren|Verf\u00fcgung|Entscheidung|Urteil|Beschluss|Festsetzung|Zahlung|Steuer|Abgabe|Geb\u00fchr|Strafe|Bu\u00dfe|Verwarnung|Verwarnungsgeld|Verfahrenshilfe|Verfahrenskosten|Verfahrensbeihilfe|Verfahrensbeistand|Verfahrensbevollm\u00e4chtigte|Verfahrensbevollm\u00e4chtigter|Verfahrensbevollm\u00e4chtigten|Bundesfinanzgericht|Einkommensteuer|Umsatzsteuer|Arbeitnehmerveranlagung|Stadt|GmbH|GmbH|Gesellschaft|Magistratsabteilung|Magistrat))(?=[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)*(?:\\s*,\\s*(?:LL\\.M\\.|LL\\.B\\.|MSc\\.|BEd\\.|LLB\\.|LLM|BEd|LLB|LLM|StB|RA|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|MA|Bakk\\. art\\.)?)?)(?=\\s*,|\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+\\s+\\d+|\\s+\\d+|\\s+\\w+\\s+\\d+|\\s*$)",
+      "priority": 9,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities"
+    },
+    {
+      "id": "9152df84",
+      "name": "Herr_Name_Context",
+      "description": "Captures names following 'Herrn' (accusative) or 'von Herrn', handling cases without degrees or with degrees, ensuring no trailing spaces.",
+      "format": "regex",
+      "content": "(?:von\\s+)?Herrn\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)*(?:\\s*,\\s*(?:LL\\.M\\.|LL\\.B\\.|MSc\\.|BEd\\.|LLB\\.|LLM|BEd|LLB|LLM|StB|RA|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|MA|Bakk\\. art\\.)?)?)(?=\\s*(?:,|\\(|\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+\\s+\\d+|\\s*$))",
+      "priority": 10,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities"
+    },
+    {
+      "id": "f6afca28",
+      "name": "Gegen_Person",
+      "description": "Captures person names appearing immediately after 'gegen' (accusative) in contexts like 'gegen Ivan F\u00e4rbers', excluding departments.",
+      "format": "regex",
+      "content": "(?:gegen\\s+den|gegen\\s+die|gegen\\s+dem|gegen\\s+)(?!(?:Bescheid|Finanzamt|Richter|Richterin|Gericht|Beh\u00f6rde|Amt|Kammer|Abteilung|Sektion|Referat|Partei|Klage|Rechtsmittel|Verfahren|Verf\u00fcgung|Entscheidung|Urteil|Beschluss|Festsetzung|Zahlung|Steuer|Abgabe|Geb\u00fchr|Strafe|Bu\u00dfe|Verwarnung|Verwarnungsgeld|Verfahrenshilfe|Verfahrenskosten|Verfahrensbeihilfe|Verfahrensbeistand|Verfahrensbevollm\u00e4chtigte|Verfahrensbevollm\u00e4chtigter|Verfahrensbevollm\u00e4chtigten|Bundesfinanzgericht|Einkommensteuer|Umsatzsteuer|Arbeitnehmerveranlagung|Stadt|GmbH|GmbH|Gesellschaft|Magistratsabteilung|Magistrat))(?=[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)*(?:\\s*,\\s*(?:LL\\.M\\.|LL\\.B\\.|MSc\\.|BEd\\.|LLB\\.|LLM|BEd|LLB|LLM|StB|RA|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|MA|Bakk\\. art\\.)?)?)(?=\\s*,|\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+\\s+\\d+|\\s+\\d+|\\s+\\w+\\s+\\d+|\\s*$)",
+      "priority": 9,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities"
+    }
+  ],
+  "batch_metrics": [
+    {
+      "batch": 0,
+      "num_rules": 3,
+      "exact_match": 0.9470729751403368,
+      "micro_f1": 0.2857142857142857,
+      "micro_precision": 0.5862068965517241,
+      "micro_recall": 0.18888888888888888,
+      "macro_f1": 0.2857142857142857,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.2857142857142857,
+          "precision": 0.5862068965517241,
+          "recall": 0.18888888888888888
+        }
+      ]
+    },
+    {
+      "batch": 1,
+      "num_rules": 3,
+      "exact_match": 0.8243785084202085,
+      "micro_f1": 0.06578947368421052,
+      "micro_precision": 0.04672897196261682,
+      "micro_recall": 0.1111111111111111,
+      "macro_f1": 0.06578947368421052,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.06578947368421052,
+          "precision": 0.04672897196261682,
+          "recall": 0.1111111111111111
+        }
+      ]
+    },
+    {
+      "batch": 2,
+      "num_rules": 3,
+      "exact_match": 0.8243785084202085,
+      "micro_f1": 0.06578947368421052,
+      "micro_precision": 0.04672897196261682,
+      "micro_recall": 0.1111111111111111,
+      "macro_f1": 0.06578947368421052,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.06578947368421052,
+          "precision": 0.04672897196261682,
+          "recall": 0.1111111111111111
+        }
+      ]
+    },
+    {
+      "batch": 3,
+      "num_rules": 3,
+      "exact_match": 0.8243785084202085,
+      "micro_f1": 0.06535947712418301,
+      "micro_precision": 0.046296296296296294,
+      "micro_recall": 0.1111111111111111,
+      "macro_f1": 0.06535947712418301,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.06535947712418301,
+          "precision": 0.046296296296296294,
+          "recall": 0.1111111111111111
+        }
+      ]
+    },
+    {
+      "batch": 4,
+      "num_rules": 4,
+      "exact_match": 0.8700882117080995,
+      "micro_f1": 0.0900900900900901,
+      "micro_precision": 0.07575757575757576,
+      "micro_recall": 0.1111111111111111,
+      "macro_f1": 0.0900900900900901,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.0900900900900901,
+          "precision": 0.07575757575757576,
+          "recall": 0.1111111111111111
+        }
+      ]
+    },
+    {
+      "batch": 5,
+      "num_rules": 4,
+      "exact_match": 0.8700882117080995,
+      "micro_f1": 0.0900900900900901,
+      "micro_precision": 0.07575757575757576,
+      "micro_recall": 0.1111111111111111,
+      "macro_f1": 0.0900900900900901,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.0900900900900901,
+          "precision": 0.07575757575757576,
+          "recall": 0.1111111111111111
+        }
+      ]
+    },
+    {
+      "batch": 6,
+      "num_rules": 4,
+      "exact_match": 0.8436246992782679,
+      "micro_f1": 0.0,
+      "micro_precision": 0.0,
+      "micro_recall": 0.0,
+      "macro_f1": 0.0,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0
+        }
+      ]
+    },
+    {
+      "batch": 7,
+      "num_rules": 7,
+      "exact_match": 0.6455493183640738,
+      "micro_f1": 0.0,
+      "micro_precision": 0.0,
+      "micro_recall": 0.0,
+      "macro_f1": 0.0,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0
+        }
+      ]
+    },
+    {
+      "batch": 8,
+      "num_rules": 6,
+      "exact_match": 0.7995188452285485,
+      "micro_f1": 0.07777777777777778,
+      "micro_precision": 0.05185185185185185,
+      "micro_recall": 0.15555555555555556,
+      "macro_f1": 0.07777777777777778,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.07777777777777778,
+          "precision": 0.05185185185185185,
+          "recall": 0.15555555555555556
+        }
+      ]
+    },
+    {
+      "batch": 9,
+      "num_rules": 6,
+      "exact_match": 0.7995188452285485,
+      "micro_f1": 0.07777777777777778,
+      "micro_precision": 0.05185185185185185,
+      "micro_recall": 0.15555555555555556,
+      "macro_f1": 0.07777777777777778,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.07777777777777778,
+          "precision": 0.05185185185185185,
+          "recall": 0.15555555555555556
+        }
+      ]
+    },
+    {
+      "batch": 10,
+      "num_rules": 7,
+      "exact_match": 0.9278267842822775,
+      "micro_f1": 0.24161073825503357,
+      "micro_precision": 0.3050847457627119,
+      "micro_recall": 0.2,
+      "macro_f1": 0.24161073825503357,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.24161073825503357,
+          "precision": 0.3050847457627119,
+          "recall": 0.2
+        }
+      ]
+    },
+    {
+      "batch": 11,
+      "num_rules": 7,
+      "exact_match": 0.9278267842822775,
+      "micro_f1": 0.24161073825503357,
+      "micro_precision": 0.3050847457627119,
+      "micro_recall": 0.2,
+      "macro_f1": 0.24161073825503357,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.24161073825503357,
+          "precision": 0.3050847457627119,
+          "recall": 0.2
+        }
+      ]
+    },
+    {
+      "batch": 12,
+      "num_rules": 8,
+      "exact_match": 0.9278267842822775,
+      "micro_f1": 0.24161073825503357,
+      "micro_precision": 0.3050847457627119,
+      "micro_recall": 0.2,
+      "macro_f1": 0.24161073825503357,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.24161073825503357,
+          "precision": 0.3050847457627119,
+          "recall": 0.2
+        }
+      ]
+    },
+    {
+      "batch": 13,
+      "num_rules": 9,
+      "exact_match": 0.9278267842822775,
+      "micro_f1": 0.24161073825503357,
+      "micro_precision": 0.3050847457627119,
+      "micro_recall": 0.2,
+      "macro_f1": 0.24161073825503357,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.24161073825503357,
+          "precision": 0.3050847457627119,
+          "recall": 0.2
+        }
+      ]
+    }
+  ],
+  "iteration_metrics": [
+    {
+      "iteration": 1,
+      "num_rules": 3,
+      "exact_match": 0.07982740021574973,
+      "micro_precision": 0.2936857562408223,
+      "micro_recall": 0.3276003276003276,
+      "micro_f1": 0.3097173828881146,
+      "macro_f1": 0.3097173828881146,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.3097173828881146,
+          "precision": 0.2936857562408223,
+          "recall": 0.3276003276003276
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 3,
+      "exact_match": 0.003236245954692557,
+      "micro_precision": 0.10814304179233089,
+      "micro_recall": 0.20556920556920558,
+      "micro_f1": 0.1417278373800113,
+      "macro_f1": 0.1417278373800113,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.1417278373800113,
+          "precision": 0.10814304179233089,
+          "recall": 0.20556920556920558
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 4,
+      "exact_match": 0.05717367853290183,
+      "micro_precision": 0.2575640031031808,
+      "micro_recall": 0.2719082719082719,
+      "micro_f1": 0.2645418326693227,
+      "macro_f1": 0.2645418326693227,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.2645418326693227,
+          "precision": 0.2575640031031808,
+          "recall": 0.2719082719082719
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 4,
+      "exact_match": 0.005393743257820928,
+      "micro_precision": 0.017754569190600523,
+      "micro_recall": 0.027846027846027847,
+      "micro_f1": 0.021683673469387755,
+      "macro_f1": 0.021683673469387755,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.021683673469387755,
+          "precision": 0.017754569190600523,
+          "recall": 0.027846027846027847
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 8,
+      "exact_match": 0.02912621359223301,
+      "micro_precision": 0.10237892948173322,
+      "micro_recall": 0.39475839475839475,
+      "micro_f1": 0.1625906560971496,
+      "macro_f1": 0.1625906560971496,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.1625906560971496,
+          "precision": 0.10237892948173322,
+          "recall": 0.39475839475839475
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 7,
+      "exact_match": 0.07766990291262135,
+      "micro_precision": 0.2557221783741121,
+      "micro_recall": 0.26535626535626533,
+      "micro_f1": 0.2604501607717042,
+      "macro_f1": 0.2604501607717042,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.2604501607717042,
+          "precision": 0.2557221783741121,
+          "recall": 0.26535626535626533
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 7,
+      "exact_match": 0.104638619201726,
+      "micro_precision": 0.32184873949579834,
+      "micro_recall": 0.31367731367731366,
+      "micro_f1": 0.31771049357113235,
+      "macro_f1": 0.31771049357113235,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.31771049357113235,
+          "precision": 0.32184873949579834,
+          "recall": 0.31367731367731366
+        }
+      ]
+    }
+  ],
+  "rules_snapshots": [
+    {
+      "batch": 0,
+      "rules": [
+        {
+          "id": "302035e7",
+          "name": "Judge_Ruler_Person",
+          "description": "Extracts person names of judges/rulers, often preceded by titles like Richter, Richterin, Mag., Dr., Prof.",
+          "format": "regex",
+          "content": "(?:Richter(?:in)?|Mag\\.|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+LL\\.M\\.)?(?:\\s+LL\\.B\\.)?)",
+          "priority": 9,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "ce1c7eb9",
+          "name": "Party_Person",
+          "description": "Extracts person names of parties involved in the case, following phrases like Beschwerdesache, Beschwerde der/des",
+          "format": "regex",
+          "content": "(?:Beschwerdesache|Beschwerde der|Beschwerde des|Antrag von|Vertreten durch|vertreten durch)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+(?:LL\\.M\\.|LL\\.B\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|StB|RA|Steuermann|Wirtschaftspr\u00fcfer|KommR|Univ.-Prof\\.in|Hon.-Prof\\.in|Priv.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.))?)",
+          "priority": 8,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "0d639ff5",
+          "name": "Title_Person_General",
+          "description": "Captures any person name that starts with a known title (Dr., Mag., Prof., etc.) even without specific context, to catch edge cases.",
+          "format": "regex",
+          "content": "(?:Dr\\.|Mag\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+          "priority": 5,
+          "output_template": {
+            "text": "$0",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        }
+      ]
+    },
+    {
+      "batch": 1,
+      "rules": [
+        {
+          "id": "28f802b1",
+          "name": "Party_Person",
+          "description": "Extracts person names of parties involved in the case, following phrases like Beschwerdesache, Beschwerde der/des, des, der, gegen den, etc. Handles multi-title names.",
+          "format": "regex",
+          "content": "(?:Beschwerdesache|Beschwerde der|Beschwerde des|Antrag von|Vertreten durch|vertreten durch|des\\s+|der\\s+|gegen\\s+den|gegen\\s+die|gegen\\s+dem)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+(?:LL\\.M\\.|LL\\.B\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|StB|RA|Steuermann|Wirtschaftspr\u00fcfer|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|KzlR|VetR|Mag\\.|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR)?)*)",
+          "priority": 8,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "5f9ff917",
+          "name": "Title_Person_General",
+          "description": "Captures person names starting with a known title, ensuring full name capture with word boundaries to avoid partial matches.",
+          "format": "regex",
+          "content": "\\b(?:Dr\\.|Mag\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|KzlR|VetR|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Univ\\.-Prof\\.in)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+(?:LL\\.M\\.|LL\\.B\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|StB|RA|Steuermann|Wirtschaftspr\u00fcfer|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.)?)*)",
+          "priority": 5,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "a482ca09",
+          "name": "Name_After_Context",
+          "description": "Captures person names appearing after context phrases like 'des', 'der', 'gegen den' without a preceding title, to catch names like 'Oswald Altmann' or 'Wigand H\u00f6rmann'.",
+          "format": "regex",
+          "content": "(?:des\\s+|der\\s+|gegen\\s+den|gegen\\s+die|gegen\\s+dem|mit\\s+dem|mit\\s+der)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+          "priority": 6,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        }
+      ]
+    },
+    {
+      "batch": 2,
+      "rules": [
+        {
+          "id": "28f802b1",
+          "name": "Party_Person",
+          "description": "Extracts person names of parties involved in the case, following phrases like Beschwerdesache, Beschwerde der/des, des, der, gegen den, etc. Handles multi-title names.",
+          "format": "regex",
+          "content": "(?:Beschwerdesache|Beschwerde der|Beschwerde des|Antrag von|Vertreten durch|vertreten durch|des\\s+|der\\s+|gegen\\s+den|gegen\\s+die|gegen\\s+dem)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+(?:LL\\.M\\.|LL\\.B\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|StB|RA|Steuermann|Wirtschaftspr\u00fcfer|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|KzlR|VetR|Mag\\.|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR)?)*)",
+          "priority": 8,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "5f9ff917",
+          "name": "Title_Person_General",
+          "description": "Captures person names starting with a known title, ensuring full name capture with word boundaries to avoid partial matches.",
+          "format": "regex",
+          "content": "\\b(?:Dr\\.|Mag\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|KzlR|VetR|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Univ\\.-Prof\\.in)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+(?:LL\\.M\\.|LL\\.B\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|StB|RA|Steuermann|Wirtschaftspr\u00fcfer|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.)?)*)",
+          "priority": 5,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "a482ca09",
+          "name": "Name_After_Context",
+          "description": "Captures person names appearing after context phrases like 'des', 'der', 'gegen den' without a preceding title, to catch names like 'Oswald Altmann' or 'Wigand H\u00f6rmann'.",
+          "format": "regex",
+          "content": "(?:des\\s+|der\\s+|gegen\\s+den|gegen\\s+die|gegen\\s+dem|mit\\s+dem|mit\\s+der)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+          "priority": 6,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        }
+      ]
+    },
+    {
+      "batch": 3,
+      "rules": [
+        {
+          "id": "27120755",
+          "name": "Title_Person_General",
+          "description": "Captures person names starting with a known title, ensuring the full title and name are captured as a single entity.",
+          "format": "regex",
+          "content": "\\b((?:Dr\\.|Mag\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|KzlR|VetR|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Univ\\.-Prof\\.in|HR)\\s+[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+(?:LL\\.M\\.|LL\\.B\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|StB|RA|Steuermann|Wirtschaftspr\u00fcfer|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR)?)*)",
+          "priority": 8,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "1c8205ce",
+          "name": "Party_Person",
+          "description": "Extracts person names of parties involved in the case, following phrases like Beschwerdesache, Beschwerde der/des, des, der, gegen den, etc. Handles multi-title names and stops at punctuation.",
+          "format": "regex",
+          "content": "(?:Beschwerdesache|Beschwerde der|Beschwerde des|Antrag von|Vertreten durch|vertreten durch|des\\s+|der\\s+|gegen\\s+den|gegen\\s+die|gegen\\s+dem)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+(?:LL\\.M\\.|LL\\.B\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|StB|RA|Steuermann|Wirtschaftspr\u00fcfer|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR)?)*)",
+          "priority": 9,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "5d572818",
+          "name": "Name_After_Context",
+          "description": "Captures person names appearing after context phrases like 'des', 'der', 'gegen den' without a preceding title, ensuring at least two words and excluding common false positives.",
+          "format": "regex",
+          "content": "(?:des\\s+|der\\s+|gegen\\s+den|gegen\\s+die|gegen\\s+dem|mit\\s+dem|mit\\s+der)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)(?![\\s,]*(?:Bescheid|Schreibens|Ordination|Patienten|Schriftf|Finanzamtes|Bescheide|Haftungsbescheide|Beschwerdef|S\u00e4umnisbeschwerde|Verfahren|Verwaltungs\u00fcbertretung|Einkommensteuer|Steuernummer|Zahl|Zl\\.|Jahr|Jahre|Abs\\.|lit\\.|Bf|Bf\\.)\\b)",
+          "priority": 7,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        }
+      ]
+    },
+    {
+      "batch": 4,
+      "rules": [
+        {
+          "id": "76bf96e3",
+          "name": "Title_Person_General",
+          "description": "Captures person names starting with a known title, ensuring the full title and name are captured as a single entity, stopping at punctuation or whitespace.",
+          "format": "regex",
+          "content": "\\b((?:Dr\\.|Mag\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|KzlR|VetR|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Univ\\.-Prof\\.in|HR)\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+)*(?:\\s+(?:LL\\.M\\.|LL\\.B\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|StB|RA|Steuermann|Wirtschaftspr\u00fcfer|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR)?)*)",
+          "priority": 8,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "67d03c25",
+          "name": "Party_Person",
+          "description": "Extracts person names specifically after 'Beschwerdesache', ensuring the name is followed by an address or comma, and excluding common false positives.",
+          "format": "regex",
+          "content": "Beschwerdesache\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+)+)(?=\\s*,|\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+\\s+\\d+|\\s+\\d+)",
+          "priority": 9,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "c4badba3",
+          "name": "Context_Person",
+          "description": "Captures person names appearing after context phrases like 'Frau', 'Herrn', 'des', 'der', 'gegen den', or at the start of a sentence, ensuring at least two words and excluding common false positives.",
+          "format": "regex",
+          "content": "(?:^|\\s)(?:Frau\\s+|Herrn\\s+|des\\s+|der\\s+|gegen\\s+den|gegen\\s+die|gegen\\s+dem|mit\\s+dem|mit\\s+der)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+)+)(?![\\s,]*(?:Bescheid|Schreibens|Ordination|Patienten|Schriftf|Finanzamtes|Bescheide|Haftungsbescheide|Beschwerdef|S\u00e4umnisbeschwerde|Verfahren|Verwaltungs\u00fcbertretung|Einkommensteuer|Steuernummer|Zahl|Zl\\.|Jahr|Jahre|Abs\\.|lit\\.|Bf|Bf\\.)\\b)",
+          "priority": 7,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "af6327aa",
+          "name": "Sentence_Start_Person",
+          "description": "Captures person names appearing at the very start of a sentence or after a newline, ensuring at least two words.",
+          "format": "regex",
+          "content": "^(?:\\s*)([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+)+)(?=\\s*,|\\s+der|\\s+des|\\s+ist|\\s+war|\\s+hat)",
+          "priority": 6,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        }
+      ]
+    },
+    {
+      "batch": 5,
+      "rules": [
+        {
+          "id": "76bf96e3",
+          "name": "Title_Person_General",
+          "description": "Captures person names starting with a known title, ensuring the full title and name are captured as a single entity, stopping at punctuation or whitespace.",
+          "format": "regex",
+          "content": "\\b((?:Dr\\.|Mag\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|KzlR|VetR|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Univ\\.-Prof\\.in|HR)\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+)*(?:\\s+(?:LL\\.M\\.|LL\\.B\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|StB|RA|Steuermann|Wirtschaftspr\u00fcfer|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR)?)*)",
+          "priority": 8,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "67d03c25",
+          "name": "Party_Person",
+          "description": "Extracts person names specifically after 'Beschwerdesache', ensuring the name is followed by an address or comma, and excluding common false positives.",
+          "format": "regex",
+          "content": "Beschwerdesache\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+)+)(?=\\s*,|\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+\\s+\\d+|\\s+\\d+)",
+          "priority": 9,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "c4badba3",
+          "name": "Context_Person",
+          "description": "Captures person names appearing after context phrases like 'Frau', 'Herrn', 'des', 'der', 'gegen den', or at the start of a sentence, ensuring at least two words and excluding common false positives.",
+          "format": "regex",
+          "content": "(?:^|\\s)(?:Frau\\s+|Herrn\\s+|des\\s+|der\\s+|gegen\\s+den|gegen\\s+die|gegen\\s+dem|mit\\s+dem|mit\\s+der)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+)+)(?![\\s,]*(?:Bescheid|Schreibens|Ordination|Patienten|Schriftf|Finanzamtes|Bescheide|Haftungsbescheide|Beschwerdef|S\u00e4umnisbeschwerde|Verfahren|Verwaltungs\u00fcbertretung|Einkommensteuer|Steuernummer|Zahl|Zl\\.|Jahr|Jahre|Abs\\.|lit\\.|Bf|Bf\\.)\\b)",
+          "priority": 7,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "af6327aa",
+          "name": "Sentence_Start_Person",
+          "description": "Captures person names appearing at the very start of a sentence or after a newline, ensuring at least two words.",
+          "format": "regex",
+          "content": "^(?:\\s*)([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+)+)(?=\\s*,|\\s+der|\\s+des|\\s+ist|\\s+war|\\s+hat)",
+          "priority": 6,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        }
+      ]
+    },
+    {
+      "batch": 6,
+      "rules": [
+        {
+          "id": "76bf96e3",
+          "name": "Title_Person_General",
+          "description": "Captures person names starting with a known title, ensuring the full title and name are captured as a single entity, stopping strictly at punctuation or whitespace.",
+          "format": "regex",
+          "content": "\\b((?:Dr\\.|Mag\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|KzlR|VetR|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Univ\\.-Prof\\.in|HR)\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+)*(?:\\s+(?:LL\\.M\\.|LL\\.B\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|StB|RA|Steuermann|Wirtschaftspr\u00fcfer|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR)?)*)",
+          "priority": 8,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "67d03c25",
+          "name": "Party_Person",
+          "description": "Extracts person names specifically after 'Beschwerdesache', ensuring the name is followed by an address or comma, and excluding common false positives.",
+          "format": "regex",
+          "content": "Beschwerdesache\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+)+)(?=\\s*,|\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+\\s+\\d+|\\s+\\d+)",
+          "priority": 9,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "d1a85684",
+          "name": "Context_Person",
+          "description": "Captures person names appearing after context phrases like 'Frau', 'Herrn', 'des', 'der', 'gegen den', 'von', or at the start of a sentence, ensuring at least two words and excluding common false positives.",
+          "format": "regex",
+          "content": "(?:^|\\s)(?:Frau\\s+|Herrn\\s+|des\\s+|der\\s+|gegen\\s+den|gegen\\s+die|gegen\\s+dem|mit\\s+dem|mit\\s+der|von\\s+)(?P<name>[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)+)(?![\\s,]*(?:Bescheid|Schreibens|Ordination|Patienten|Schriftf|Finanzamtes|Bescheide|Haftungsbescheide|Beschwerdef|S\u00e4umnisbeschwerde|Verfahren|Verwaltungs\u00fcbertretung|Einkommensteuer|Steuernummer|Zahl|Zl\\.|Jahr|Jahre|Abs\\.|lit\\.|Bf|Bf\\.)\\b)",
+          "priority": 7,
+          "output_template": {
+            "text": "$name",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "a4a78573",
+          "name": "Sentence_Start_Person",
+          "description": "Captures person names appearing at the very start of a sentence or after a newline, ensuring at least two words and strict word boundaries.",
+          "format": "regex",
+          "content": "^(?:\\s*)(?P<name>[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)+)(?=\\s*,|\\s+der|\\s+des|\\s+ist|\\s+war|\\s+hat|\\s+hatte|\\s+wurde|\\s+ist\\s+der|\\s+ist\\s+die)",
+          "priority": 6,
+          "output_template": {
+            "text": "$name",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        }
+      ]
+    },
+    {
+      "batch": 7,
+      "rules": [
+        {
+          "id": "76bf96e3",
+          "name": "Title_Person_General",
+          "description": "Captures person names starting with a known title, ensuring the full title and name are captured as a single entity, stopping strictly at punctuation or whitespace.",
+          "format": "regex",
+          "content": "\\b((?:Dr\\.|Mag\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|KzlR|VetR|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Univ\\.-Prof\\.in|HR)\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+)*(?:\\s+(?:LL\\.M\\.|LL\\.B\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|StB|RA|Steuermann|Wirtschaftspr\u00fcfer|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR)?)*)",
+          "priority": 8,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "67d03c25",
+          "name": "Party_Person",
+          "description": "Extracts person names specifically after 'Beschwerdesache', ensuring the name is followed by an address or comma, and excluding common false positives.",
+          "format": "regex",
+          "content": "Beschwerdesache\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+)+)(?=\\s*,|\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+\\s+\\d+|\\s+\\d+)",
+          "priority": 9,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "d1a85684",
+          "name": "Context_Person",
+          "description": "Captures person names appearing after context phrases like 'Frau', 'Herrn', 'des', 'der', 'gegen den', 'von', or at the start of a sentence, ensuring at least two words and excluding common false positives.",
+          "format": "regex",
+          "content": "(?:^|\\s)(?:Frau\\s+|Herrn\\s+|des\\s+|der\\s+|gegen\\s+den|gegen\\s+die|gegen\\s+dem|mit\\s+dem|mit\\s+der|von\\s+)(?P<name>[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)+)(?![\\s,]*(?:Bescheid|Schreibens|Ordination|Patienten|Schriftf|Finanzamtes|Bescheide|Haftungsbescheide|Beschwerdef|S\u00e4umnisbeschwerde|Verfahren|Verwaltungs\u00fcbertretung|Einkommensteuer|Steuernummer|Zahl|Zl\\.|Jahr|Jahre|Abs\\.|lit\\.|Bf|Bf\\.)\\b)",
+          "priority": 7,
+          "output_template": {
+            "text": "$name",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "a4a78573",
+          "name": "Sentence_Start_Person",
+          "description": "Captures person names appearing at the very start of a sentence or after a newline, ensuring at least two words and strict word boundaries.",
+          "format": "regex",
+          "content": "^(?:\\s*)(?P<name>[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)+)(?=\\s*,|\\s+der|\\s+des|\\s+ist|\\s+war|\\s+hat|\\s+hatte|\\s+wurde|\\s+ist\\s+der|\\s+ist\\s+die)",
+          "priority": 6,
+          "output_template": {
+            "text": "$name",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "78762cda",
+          "name": "Nachname_Wie_Bf_Person",
+          "description": "Captures person names appearing immediately after '(Nachname wie Bf.)' or similar parenthetical name placeholders.",
+          "format": "regex",
+          "content": "\\(Nachname wie Bf\\.\\)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+)+)",
+          "priority": 10,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "9d5eb6c4",
+          "name": "Beschwerdesache_Person",
+          "description": "Captures person names appearing after 'in der Beschwerdesache' or 'gegen den Bescheid des ... betreffend ...', ensuring the name is followed by an address or comma.",
+          "format": "regex",
+          "content": "(?:in der Beschwerdesache|gegen den Bescheid des [A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+)*\\s+vom|betreffend [A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+)*\\s+vom)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+)+)(?=\\s*,|\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+\\s+\\d+|\\s+\\d+|\\s+\\w+\\s+\\d+)",
+          "priority": 9,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "62ac2cec",
+          "name": "Generic_Person_Name",
+          "description": "Captures two-word capitalized names that are not preceded by titles or specific context but appear in legal text where a person is likely (e.g., after 'gegen', 'von', 'des', 'der' without the specific title).",
+          "format": "regex",
+          "content": "(?:\\s|^)(?P<name>[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+)+)(?=\\s*(?:,|\\.|\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+\\s+\\d+|\\s+\\d+|\\s+\\w+\\s+\\d+|\\s+\\w+\\s+\\w+\\s+\\d+|\\s+\\w+\\s+\\w+\\s+\\w+))",
+          "priority": 5,
+          "output_template": {
+            "text": "$name",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        }
+      ]
+    },
+    {
+      "batch": 8,
+      "rules": [
+        {
+          "id": "d651c943",
+          "name": "Party_Person",
+          "description": "Extracts person names specifically after 'Beschwerdesache' (standalone), ensuring the name is followed by an address or comma, and excluding common false positives.",
+          "format": "regex",
+          "content": "Beschwerdesache\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+)*(?:\\s*,\\s*(?:LL\\.M\\.|LL\\.B\\.|MSc\\.|BEd\\.|LLB\\.|LLM|BEd|LLB|LLM|StB|RA|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|MA|Bakk\\. art\\.)?)?)(?=\\s*,|\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+\\s+\\d+|\\s+\\d+)",
+          "priority": 9,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "84dbf8f8",
+          "name": "Nachname_Wie_Bf_Person",
+          "description": "Captures person names appearing immediately after '(Nachname wie Bf.)' or similar parenthetical name placeholders.",
+          "format": "regex",
+          "content": "\\(Nachname wie Bf\\.\\)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+)*(?:\\s*,\\s*(?:LL\\.M\\.|LL\\.B\\.|MSc\\.|BEd\\.|LLB\\.|LLM|BEd|LLB|LLM|StB|RA|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|MA|Bakk\\. art\\.)?)?)",
+          "priority": 10,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "0702aaf3",
+          "name": "Beschwerdesache_Person",
+          "description": "Captures person names appearing after 'in der Beschwerdesache' or 'gegen den Bescheid ... betreffend', ensuring the name is followed by an address or comma, and includes suffixes.",
+          "format": "regex",
+          "content": "(?:in der Beschwerdesache|gegen den Bescheid des [A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+)*\\s+vom|betreffend [A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+)*\\s+vom)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+)*(?:\\s*,\\s*(?:LL\\.M\\.|LL\\.B\\.|MSc\\.|BEd\\.|LLB\\.|LLM|BEd|LLB|LLM|StB|RA|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|MA|Bakk\\. art\\.)?)?)(?=\\s*,|\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+\\s+\\d+|\\s+\\d+|\\s+\\w+\\s+\\d+)",
+          "priority": 9,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "a73d7a9c",
+          "name": "Title_Person_General",
+          "description": "Captures person names starting with a known title, ensuring the full title, name, and optional degree are captured. Updated to include degree suffixes in the capture group.",
+          "format": "regex",
+          "content": "\\b((?:Dr\\.|Mag\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|KzlR|VetR|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Univ\\.-Prof\\.in|HR)\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)*(?:\\s*,\\s*(?:LL\\.M\\.|LL\\.B\\.|MSc\\.|BEd\\.|LLB\\.|LLM|BEd|LLB|LLM|StB|RA|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR)?)*)",
+          "priority": 9,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "d26ea582",
+          "name": "Herrn_Name_Degree_Person",
+          "description": "Specifically captures 'Herrn [Name], [Degree]' patterns which were failing in the training data.",
+          "format": "regex",
+          "content": "Herrn\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+)*\\s*,\\s*(?:LL\\.M\\.|LL\\.B\\.|MSc\\.|BEd\\.|LLB\\.|LLM|BEd|LLB|LLM|StB|RA|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|MA|Bakk\\. art\\.)?)",
+          "priority": 10,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "7f141806",
+          "name": "Context_Person",
+          "description": "Captures person names appearing after context phrases like 'des', 'der', 'von', 'gegen', ensuring the full name and optional degree are captured.",
+          "format": "regex",
+          "content": "(?:des\\s+|der\\s+|von\\s+|gegen\\s+den|gegen\\s+die|gegen\\s+dem|mit\\s+dem|mit\\s+der)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+)*(?:\\s*,\\s*(?:LL\\.M\\.|LL\\.B\\.|MSc\\.|BEd\\.|LLB\\.|LLM|BEd|LLB|LLM|StB|RA|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|MA|Bakk\\. art\\.)?)?)",
+          "priority": 8,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        }
+      ]
+    },
+    {
+      "batch": 9,
+      "rules": [
+        {
+          "id": "d651c943",
+          "name": "Party_Person",
+          "description": "Extracts person names specifically after 'Beschwerdesache' (standalone), ensuring the name is followed by an address or comma, and excluding common false positives.",
+          "format": "regex",
+          "content": "Beschwerdesache\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+)*(?:\\s*,\\s*(?:LL\\.M\\.|LL\\.B\\.|MSc\\.|BEd\\.|LLB\\.|LLM|BEd|LLB|LLM|StB|RA|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|MA|Bakk\\. art\\.)?)?)(?=\\s*,|\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+\\s+\\d+|\\s+\\d+)",
+          "priority": 9,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "84dbf8f8",
+          "name": "Nachname_Wie_Bf_Person",
+          "description": "Captures person names appearing immediately after '(Nachname wie Bf.)' or similar parenthetical name placeholders.",
+          "format": "regex",
+          "content": "\\(Nachname wie Bf\\.\\)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+)*(?:\\s*,\\s*(?:LL\\.M\\.|LL\\.B\\.|MSc\\.|BEd\\.|LLB\\.|LLM|BEd|LLB|LLM|StB|RA|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|MA|Bakk\\. art\\.)?)?)",
+          "priority": 10,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "0702aaf3",
+          "name": "Beschwerdesache_Person",
+          "description": "Captures person names appearing after 'in der Beschwerdesache' or 'gegen den Bescheid ... betreffend', ensuring the name is followed by an address or comma, and includes suffixes.",
+          "format": "regex",
+          "content": "(?:in der Beschwerdesache|gegen den Bescheid des [A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+)*\\s+vom|betreffend [A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+)*\\s+vom)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+)*(?:\\s*,\\s*(?:LL\\.M\\.|LL\\.B\\.|MSc\\.|BEd\\.|LLB\\.|LLM|BEd|LLB|LLM|StB|RA|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|MA|Bakk\\. art\\.)?)?)(?=\\s*,|\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+\\s+\\d+|\\s+\\d+|\\s+\\w+\\s+\\d+)",
+          "priority": 9,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "a73d7a9c",
+          "name": "Title_Person_General",
+          "description": "Captures person names starting with a known title, ensuring the full title, name, and optional degree are captured. Updated to include degree suffixes in the capture group.",
+          "format": "regex",
+          "content": "\\b((?:Dr\\.|Mag\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|KzlR|VetR|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Univ\\.-Prof\\.in|HR)\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)*(?:\\s*,\\s*(?:LL\\.M\\.|LL\\.B\\.|MSc\\.|BEd\\.|LLB\\.|LLM|BEd|LLB|LLM|StB|RA|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR)?)*)",
+          "priority": 9,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "d26ea582",
+          "name": "Herrn_Name_Degree_Person",
+          "description": "Specifically captures 'Herrn [Name], [Degree]' patterns which were failing in the training data.",
+          "format": "regex",
+          "content": "Herrn\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+)*\\s*,\\s*(?:LL\\.M\\.|LL\\.B\\.|MSc\\.|BEd\\.|LLB\\.|LLM|BEd|LLB|LLM|StB|RA|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|MA|Bakk\\. art\\.)?)",
+          "priority": 10,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "7f141806",
+          "name": "Context_Person",
+          "description": "Captures person names appearing after context phrases like 'des', 'der', 'von', 'gegen', ensuring the full name and optional degree are captured.",
+          "format": "regex",
+          "content": "(?:des\\s+|der\\s+|von\\s+|gegen\\s+den|gegen\\s+die|gegen\\s+dem|mit\\s+dem|mit\\s+der)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+)*(?:\\s*,\\s*(?:LL\\.M\\.|LL\\.B\\.|MSc\\.|BEd\\.|LLB\\.|LLM|BEd|LLB|LLM|StB|RA|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|MA|Bakk\\. art\\.)?)?)",
+          "priority": 8,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        }
+      ]
+    },
+    {
+      "batch": 10,
+      "rules": [
+        {
+          "id": "364957f7",
+          "name": "Party_Person",
+          "description": "Extracts person names specifically after 'Beschwerdesache' (standalone), ensuring the name is followed by an address or comma, and excluding common false positives.",
+          "format": "regex",
+          "content": "Beschwerdesache\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)*(?:\\s*,\\s*(?:LL\\.M\\.|LL\\.B\\.|MSc\\.|BEd\\.|LLB\\.|LLM|BEd|LLB|LLM|StB|RA|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|MA|Bakk\\. art\\.)?)?)(?=\\s*,|\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+\\s+\\d+|\\s+\\d+)",
+          "priority": 9,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "84dbf8f8",
+          "name": "Nachname_Wie_Bf_Person",
+          "description": "Captures person names appearing immediately after '(Nachname wie Bf.)' or similar parenthetical name placeholders.",
+          "format": "regex",
+          "content": "\\(Nachname wie Bf\\.\\)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+)*(?:\\s*,\\s*(?:LL\\.M\\.|LL\\.B\\.|MSc\\.|BEd\\.|LLB\\.|LLM|BEd|LLB|LLM|StB|RA|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|MA|Bakk\\. art\\.)?)?)",
+          "priority": 10,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "8fcbd442",
+          "name": "Beschwerdesache_Person",
+          "description": "Captures person names appearing after 'in der Beschwerdesache' or 'gegen den Bescheid ... betreffend', ensuring the name is followed by an address or comma, excluding the comma.",
+          "format": "regex",
+          "content": "(?:in der Beschwerdesache|gegen den Bescheid des [A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)*\\s+vom|betreffend [A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)*\\s+vom)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)*(?:\\s*,\\s*(?:LL\\.M\\.|LL\\.B\\.|MSc\\.|BEd\\.|LLB\\.|LLM|BEd|LLB|LLM|StB|RA|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|MA|Bakk\\. art\\.)?)?)(?=\\s*,|\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+\\s+\\d+|\\s+\\d+|\\s+\\w+\\s+\\d+|\\s*$)",
+          "priority": 9,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "d01c6882",
+          "name": "Title_Person_General",
+          "description": "Captures person names starting with a known title, handling multiple consecutive titles (e.g., Mag. Mag. Hon.-Prof.) and ensuring the full name is captured.",
+          "format": "regex",
+          "content": "\\b((?:Dr\\.|Mag\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|KzlR|VetR|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Univ\\.-Prof\\.in|HR|RgR|PhD|Ing\\.)(?:\\s+(?:Dr\\.|Mag\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|KzlR|VetR|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Univ\\.-Prof\\.in|HR|RgR|PhD|Ing\\.)?)*\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)*(?:\\s*,\\s*(?:LL\\.M\\.|LL\\.B\\.|MSc\\.|BEd\\.|LLB\\.|LLM|BEd|LLB|LLM|StB|RA|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR)?)*)",
+          "priority": 9,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "d26ea582",
+          "name": "Herrn_Name_Degree_Person",
+          "description": "Specifically captures 'Herrn [Name], [Degree]' patterns which were failing in the training data.",
+          "format": "regex",
+          "content": "Herrn\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+)*\\s*,\\s*(?:LL\\.M\\.|LL\\.B\\.|MSc\\.|BEd\\.|LLB\\.|LLM|BEd|LLB|LLM|StB|RA|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|MA|Bakk\\. art\\.)?)",
+          "priority": 10,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "9bf16434",
+          "name": "Frau_Name_Context_Person",
+          "description": "Captures person names appearing after 'Frau' or 'Herr' (without degree) or in contexts like 'Frau [Name] (Beschwerdef\u00fchrerin)', ensuring it's a name and not a noun.",
+          "format": "regex",
+          "content": "(?:Frau|Herr)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+)*)(?=\\s*(?:\\(|,|\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+\\s+\\d+|\\s*$))",
+          "priority": 8,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "82791d38",
+          "name": "Context_Person_Strict",
+          "description": "Captures person names appearing after context phrases like 'des', 'der', 'von', 'gegen', ensuring the full name and optional degree are captured, but strictly filtering out common legal nouns.",
+          "format": "regex",
+          "content": "(?:des\\s+|der\\s+|von\\s+|gegen\\s+den|gegen\\s+die|gegen\\s+dem|mit\\s+dem|mit\\s+der)\\s+(?!(?:Beschwerdesache|Bescheid|Finanzamt|Richter|Richterin|Gericht|Beh\u00f6rde|Amt|Kammer|Abteilung|Sektion|Referat|Partei|Klage|Rechtsmittel|Verfahren|Verf\u00fcgung|Entscheidung|Urteil|Beschluss|Festsetzung|Zahlung|Steuer|Abgabe|Geb\u00fchr|Strafe|Bu\u00dfe|Verwarnung|Verwarnungsgeld|Verfahrenshilfe|Verfahrenskosten|Verfahrensbeihilfe|Verfahrensbeistand|Verfahrensbevollm\u00e4chtigte|Verfahrensbevollm\u00e4chtigter|Verfahrensbevollm\u00e4chtigten|Bundesfinanzgericht|Einkommensteuer|Umsatzsteuer))(?=[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)*(?:\\s*,\\s*(?:LL\\.M\\.|LL\\.B\\.|MSc\\.|BEd\\.|LLB\\.|LLM|BEd|LLB|LLM|StB|RA|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|MA|Bakk\\. art\\.)?)?)(?=\\s*,|\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+\\s+\\d+|\\s+\\d+|\\s+\\w+\\s+\\d+|\\s*$)",
+          "priority": 8,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        }
+      ]
+    },
+    {
+      "batch": 11,
+      "rules": [
+        {
+          "id": "364957f7",
+          "name": "Party_Person",
+          "description": "Extracts person names specifically after 'Beschwerdesache' (standalone), ensuring the name is followed by an address or comma, and excluding common false positives.",
+          "format": "regex",
+          "content": "Beschwerdesache\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)*(?:\\s*,\\s*(?:LL\\.M\\.|LL\\.B\\.|MSc\\.|BEd\\.|LLB\\.|LLM|BEd|LLB|LLM|StB|RA|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|MA|Bakk\\. art\\.)?)?)(?=\\s*,|\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+\\s+\\d+|\\s+\\d+)",
+          "priority": 9,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "84dbf8f8",
+          "name": "Nachname_Wie_Bf_Person",
+          "description": "Captures person names appearing immediately after '(Nachname wie Bf.)' or similar parenthetical name placeholders.",
+          "format": "regex",
+          "content": "\\(Nachname wie Bf\\.\\)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+)*(?:\\s*,\\s*(?:LL\\.M\\.|LL\\.B\\.|MSc\\.|BEd\\.|LLB\\.|LLM|BEd|LLB|LLM|StB|RA|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|MA|Bakk\\. art\\.)?)?)",
+          "priority": 10,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "8fcbd442",
+          "name": "Beschwerdesache_Person",
+          "description": "Captures person names appearing after 'in der Beschwerdesache' or 'gegen den Bescheid ... betreffend', ensuring the name is followed by an address or comma, excluding the comma.",
+          "format": "regex",
+          "content": "(?:in der Beschwerdesache|gegen den Bescheid des [A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)*\\s+vom|betreffend [A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)*\\s+vom)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)*(?:\\s*,\\s*(?:LL\\.M\\.|LL\\.B\\.|MSc\\.|BEd\\.|LLB\\.|LLM|BEd|LLB|LLM|StB|RA|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|MA|Bakk\\. art\\.)?)?)(?=\\s*,|\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+\\s+\\d+|\\s+\\d+|\\s+\\w+\\s+\\d+|\\s*$)",
+          "priority": 9,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "d01c6882",
+          "name": "Title_Person_General",
+          "description": "Captures person names starting with a known title, handling multiple consecutive titles (e.g., Mag. Mag. Hon.-Prof.) and ensuring the full name is captured.",
+          "format": "regex",
+          "content": "\\b((?:Dr\\.|Mag\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|KzlR|VetR|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Univ\\.-Prof\\.in|HR|RgR|PhD|Ing\\.)(?:\\s+(?:Dr\\.|Mag\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|KzlR|VetR|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Univ\\.-Prof\\.in|HR|RgR|PhD|Ing\\.)?)*\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)*(?:\\s*,\\s*(?:LL\\.M\\.|LL\\.B\\.|MSc\\.|BEd\\.|LLB\\.|LLM|BEd|LLB|LLM|StB|RA|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR)?)*)",
+          "priority": 9,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "d26ea582",
+          "name": "Herrn_Name_Degree_Person",
+          "description": "Specifically captures 'Herrn [Name], [Degree]' patterns which were failing in the training data.",
+          "format": "regex",
+          "content": "Herrn\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+)*\\s*,\\s*(?:LL\\.M\\.|LL\\.B\\.|MSc\\.|BEd\\.|LLB\\.|LLM|BEd|LLB|LLM|StB|RA|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|MA|Bakk\\. art\\.)?)",
+          "priority": 10,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "9bf16434",
+          "name": "Frau_Name_Context_Person",
+          "description": "Captures person names appearing after 'Frau' or 'Herr' (without degree) or in contexts like 'Frau [Name] (Beschwerdef\u00fchrerin)', ensuring it's a name and not a noun.",
+          "format": "regex",
+          "content": "(?:Frau|Herr)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+)*)(?=\\s*(?:\\(|,|\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+\\s+\\d+|\\s*$))",
+          "priority": 8,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "82791d38",
+          "name": "Context_Person_Strict",
+          "description": "Captures person names appearing after context phrases like 'des', 'der', 'von', 'gegen', ensuring the full name and optional degree are captured, but strictly filtering out common legal nouns.",
+          "format": "regex",
+          "content": "(?:des\\s+|der\\s+|von\\s+|gegen\\s+den|gegen\\s+die|gegen\\s+dem|mit\\s+dem|mit\\s+der)\\s+(?!(?:Beschwerdesache|Bescheid|Finanzamt|Richter|Richterin|Gericht|Beh\u00f6rde|Amt|Kammer|Abteilung|Sektion|Referat|Partei|Klage|Rechtsmittel|Verfahren|Verf\u00fcgung|Entscheidung|Urteil|Beschluss|Festsetzung|Zahlung|Steuer|Abgabe|Geb\u00fchr|Strafe|Bu\u00dfe|Verwarnung|Verwarnungsgeld|Verfahrenshilfe|Verfahrenskosten|Verfahrensbeihilfe|Verfahrensbeistand|Verfahrensbevollm\u00e4chtigte|Verfahrensbevollm\u00e4chtigter|Verfahrensbevollm\u00e4chtigten|Bundesfinanzgericht|Einkommensteuer|Umsatzsteuer))(?=[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)*(?:\\s*,\\s*(?:LL\\.M\\.|LL\\.B\\.|MSc\\.|BEd\\.|LLB\\.|LLM|BEd|LLB|LLM|StB|RA|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|MA|Bakk\\. art\\.)?)?)(?=\\s*,|\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+\\s+\\d+|\\s+\\d+|\\s+\\w+\\s+\\d+|\\s*$)",
+          "priority": 8,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        }
+      ]
+    },
+    {
+      "batch": 12,
+      "rules": [
+        {
+          "id": "364957f7",
+          "name": "Party_Person",
+          "description": "Extracts person names specifically after 'Beschwerdesache' (standalone), ensuring the name is followed by an address or comma, and excluding common false positives.",
+          "format": "regex",
+          "content": "Beschwerdesache\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)*(?:\\s*,\\s*(?:LL\\.M\\.|LL\\.B\\.|MSc\\.|BEd\\.|LLB\\.|LLM|BEd|LLB|LLM|StB|RA|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|MA|Bakk\\. art\\.)?)?)(?=\\s*,|\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+\\s+\\d+|\\s+\\d+)",
+          "priority": 9,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "84dbf8f8",
+          "name": "Nachname_Wie_Bf_Person",
+          "description": "Captures person names appearing immediately after '(Nachname wie Bf.)' or similar parenthetical name placeholders.",
+          "format": "regex",
+          "content": "\\(Nachname wie Bf\\.\\)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+)*(?:\\s*,\\s*(?:LL\\.M\\.|LL\\.B\\.|MSc\\.|BEd\\.|LLB\\.|LLM|BEd|LLB|LLM|StB|RA|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|MA|Bakk\\. art\\.)?)?)",
+          "priority": 10,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "e6fbeb3a",
+          "name": "Beschwerdesache_Person",
+          "description": "Captures person names appearing after 'in der Beschwerdesache' or 'gegen den Bescheid ... betreffend', ensuring the name is followed by an address or comma, excluding the comma.",
+          "format": "regex",
+          "content": "(?:in der Beschwerdesache|gegen den Bescheid des [A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)*\\s+vom|betreffend [A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)*\\s+vom)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)*(?:\\s*,\\s*(?:LL\\\\.M\\\\.|LL\\\\.B\\\\.|MSc\\\\.|BEd\\\\.|LLB\\\\.|LLM|BEd|LLB|LLM|StB|RA|KommR|Univ\\\\.-Prof\\\\.in|Hon\\\\.-Prof\\\\.in|Priv\\\\.-Doz\\\\.in|Mag\\\\.a|Dr\\\\.in|Dr\\\\.|Prof\\\\.|Hon\\\\.-Prof\\\\.|Priv\\\\.-Doz\\\\.|Univ\\\\.-Prof\\\\.|Bakk\\\\. iur\\\\.|Dipl\\\\.-Ing\\\\.|\u00d6kR|LL\\\\.M\\\\.|LL\\\\.B\\\\.|StB|RA|KommR|MA|Bakk\\\\. art\\\\.)?)?)(?=\\s*,|\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+\\s+\\d+|\\s+\\d+|\\s+\\w+\\s+\\d+|\\s*$)",
+          "priority": 9,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "d01c6882",
+          "name": "Title_Person_General",
+          "description": "Captures person names starting with a known title, handling multiple consecutive titles (e.g., Mag. Mag. Hon.-Prof.) and ensuring the full name is captured.",
+          "format": "regex",
+          "content": "\\b((?:Dr\\.|Mag\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|KzlR|VetR|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Univ\\.-Prof\\.in|HR|RgR|PhD|Ing\\.)(?:\\s+(?:Dr\\.|Mag\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|KzlR|VetR|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Univ\\.-Prof\\.in|HR|RgR|PhD|Ing\\.)?)*\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)*(?:\\s*,\\s*(?:LL\\.M\\.|LL\\.B\\.|MSc\\.|BEd\\.|LLB\\.|LLM|BEd|LLB|LLM|StB|RA|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR)?)*)",
+          "priority": 9,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "d26ea582",
+          "name": "Herrn_Name_Degree_Person",
+          "description": "Specifically captures 'Herrn [Name], [Degree]' patterns which were failing in the training data.",
+          "format": "regex",
+          "content": "Herrn\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+)*\\s*,\\s*(?:LL\\.M\\.|LL\\.B\\.|MSc\\.|BEd\\.|LLB\\.|LLM|BEd|LLB|LLM|StB|RA|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|MA|Bakk\\. art\\.)?)",
+          "priority": 10,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "9bf16434",
+          "name": "Frau_Name_Context_Person",
+          "description": "Captures person names appearing after 'Frau' or 'Herr' (without degree) or in contexts like 'Frau [Name] (Beschwerdef\u00fchrerin)', ensuring it's a name and not a noun.",
+          "format": "regex",
+          "content": "(?:Frau|Herr)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+)*)(?=\\s*(?:\\(|,|\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+\\s+\\d+|\\s*$))",
+          "priority": 8,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "4bfbd2b9",
+          "name": "Context_Person_Strict",
+          "description": "Captures person names appearing after context phrases like 'des', 'der', 'von', 'gegen', ensuring the full name and optional degree are captured, but strictly filtering out common legal nouns.",
+          "format": "regex",
+          "content": "(?:des\\s+|der\\s+|von\\s+|gegen\\s+den|gegen\\s+die|gegen\\s+dem|mit\\s+dem|mit\\s+der)\\s+(?!(?:Beschwerdesache|Bescheid|Finanzamt|Richter|Richterin|Gericht|Beh\u00f6rde|Amt|Kammer|Abteilung|Sektion|Referat|Partei|Klage|Rechtsmittel|Verfahren|Verf\u00fcgung|Entscheidung|Urteil|Beschluss|Festsetzung|Zahlung|Steuer|Abgabe|Geb\u00fchr|Strafe|Bu\u00dfe|Verwarnung|Verwarnungsgeld|Verfahrenshilfe|Verfahrenskosten|Verfahrensbeihilfe|Verfahrensbeistand|Verfahrensbevollm\u00e4chtigte|Verfahrensbevollm\u00e4chtigter|Verfahrensbevollm\u00e4chtigten|Bundesfinanzgericht|Einkommensteuer|Umsatzsteuer|Arbeitnehmerveranlagung|Stadt|GmbH|GmbH|Gesellschaft))(?=[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)*(?:\\s*,\\s*(?:LL\\.M\\.|LL\\.B\\.|MSc\\.|BEd\\.|LLB\\.|LLM|BEd|LLB|LLM|StB|RA|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|MA|Bakk\\. art\\.)?)?)(?=\\s*,|\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+\\s+\\d+|\\s+\\d+|\\s+\\w+\\s+\\d+|\\s*$)",
+          "priority": 8,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "08179d8f",
+          "name": "Party_Name_Context",
+          "description": "Captures party names following context phrases like 'in der Beschwerdesache', 'des', 'der', 'gegen', ensuring the match stops before the comma and handles complex degrees.",
+          "format": "regex",
+          "content": "(?:in der Beschwerdesache|des\\s+|der\\s+|von\\s+|gegen\\s+den|gegen\\s+die|gegen\\s+dem|mit\\s+dem|mit\\s+der)\\s+(?!(?:Beschwerdesache|Bescheid|Finanzamt|Richter|Richterin|Gericht|Beh\u00f6rde|Amt|Kammer|Abteilung|Sektion|Referat|Partei|Klage|Rechtsmittel|Verfahren|Verf\u00fcgung|Entscheidung|Urteil|Beschluss|Festsetzung|Zahlung|Steuer|Abgabe|Geb\u00fchr|Strafe|Bu\u00dfe|Verwarnung|Verwarnungsgeld|Verfahrenshilfe|Verfahrenskosten|Verfahrensbeihilfe|Verfahrensbeistand|Verfahrensbevollm\u00e4chtigte|Verfahrensbevollm\u00e4chtigter|Verfahrensbevollm\u00e4chtigten|Bundesfinanzgericht|Einkommensteuer|Umsatzsteuer|Arbeitnehmerveranlagung|Stadt|GmbH|GmbH|Gesellschaft))(?=[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)*(?:\\s*,\\s*(?:LL\\.M\\.|LL\\.B\\.|MSc\\.|BEd\\.|LLB\\.|LLM|BEd|LLB|LLM|StB|RA|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|MA|Bakk\\. art\\.)?)?)(?=\\s*,|\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+\\s+\\d+|\\s+\\d+|\\s+\\w+\\s+\\d+|\\s*$)",
+          "priority": 9,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        }
+      ]
+    },
+    {
+      "batch": 13,
+      "rules": [
+        {
+          "id": "364957f7",
+          "name": "Party_Person",
+          "description": "Extracts person names specifically after 'Beschwerdesache' (standalone), ensuring the name is followed by an address or comma, and excluding common false positives.",
+          "format": "regex",
+          "content": "Beschwerdesache\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)*(?:\\s*,\\s*(?:LL\\.M\\.|LL\\.B\\.|MSc\\.|BEd\\.|LLB\\.|LLM|BEd|LLB|LLM|StB|RA|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|MA|Bakk\\. art\\.)?)?)(?=\\s*,|\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+\\s+\\d+|\\s+\\d+)",
+          "priority": 9,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "84dbf8f8",
+          "name": "Nachname_Wie_Bf_Person",
+          "description": "Captures person names appearing immediately after '(Nachname wie Bf.)' or similar parenthetical name placeholders.",
+          "format": "regex",
+          "content": "\\(Nachname wie Bf\\.\\)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+)*(?:\\s*,\\s*(?:LL\\.M\\.|LL\\.B\\.|MSc\\.|BEd\\.|LLB\\.|LLM|BEd|LLB|LLM|StB|RA|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|MA|Bakk\\. art\\.)?)?)",
+          "priority": 10,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "8fcbd442",
+          "name": "Beschwerdesache_Person",
+          "description": "Captures person names appearing after 'in der Beschwerdesache' or 'gegen den Bescheid ... betreffend', ensuring the name is followed by an address or comma, excluding the comma.",
+          "format": "regex",
+          "content": "(?:in der Beschwerdesache|gegen den Bescheid des [A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)*\\s+vom|betreffend [A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)*\\s+vom)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)*(?:\\s*,\\s*(?:LL\\.M\\.|LL\\.B\\.|MSc\\.|BEd\\.|LLB\\.|LLM|BEd|LLB|LLM|StB|RA|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|MA|Bakk\\. art\\.)?)?)(?=\\s*,|\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+\\s+\\d+|\\s+\\d+|\\s+\\w+\\s+\\d+|\\s*$)",
+          "priority": 9,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "d01c6882",
+          "name": "Title_Person_General",
+          "description": "Captures person names starting with a known title, handling multiple consecutive titles and ensuring the full name is captured, including degrees.",
+          "format": "regex",
+          "content": "\\b((?:Dr\\.|Mag\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|KzlR|VetR|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Univ\\.-Prof\\.in|HR|RgR|PhD|Ing\\.)(?:\\s+(?:Dr\\.|Mag\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|KzlR|VetR|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Univ\\.-Prof\\.in|HR|RgR|PhD|Ing\\.)?)*\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)*(?:\\s*,\\s*(?:LL\\.M\\.|LL\\.B\\.|MSc\\.|BEd\\.|LLB\\.|LLM|BEd|LLB|LLM|StB|RA|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR)?)*)",
+          "priority": 9,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "9bf16434",
+          "name": "Frau_Name_Context_Person",
+          "description": "Captures person names appearing after 'Frau' or 'Herr' (without degree) or in contexts like 'Frau [Name] (Beschwerdef\u00fchrerin)', ensuring it's a name and not a noun.",
+          "format": "regex",
+          "content": "(?:Frau|Herr)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+)*)(?=\\s*(?:\\(|,|\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00dfe]+\\s+\\d+|\\s*$))",
+          "priority": 8,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "4bfbd2b9",
+          "name": "Context_Person_Strict",
+          "description": "Captures person names appearing after context phrases like 'des', 'der', 'von', 'gegen', ensuring the full name and optional degree are captured, but strictly filtering out common legal nouns.",
+          "format": "regex",
+          "content": "(?:des\\s+|der\\s+|von\\s+|gegen\\s+den|gegen\\s+die|gegen\\s+dem|mit\\s+dem|mit\\s+der)\\s+(?!(?:Beschwerdesache|Bescheid|Finanzamt|Richter|Richterin|Gericht|Beh\u00f6rde|Amt|Kammer|Abteilung|Sektion|Referat|Partei|Klage|Rechtsmittel|Verfahren|Verf\u00fcgung|Entscheidung|Urteil|Beschluss|Festsetzung|Zahlung|Steuer|Abgabe|Geb\u00fchr|Strafe|Bu\u00dfe|Verwarnung|Verwarnungsgeld|Verfahrenshilfe|Verfahrenskosten|Verfahrensbeihilfe|Verfahrensbeistand|Verfahrensbevollm\u00e4chtigte|Verfahrensbevollm\u00e4chtigter|Verfahrensbevollm\u00e4chtigten|Bundesfinanzgericht|Einkommensteuer|Umsatzsteuer|Arbeitnehmerveranlagung|Stadt|GmbH|GmbH|Gesellschaft))(?=[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)*(?:\\s*,\\s*(?:LL\\.M\\.|LL\\.B\\.|MSc\\.|BEd\\.|LLB\\.|LLM|BEd|LLB|LLM|StB|RA|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|MA|Bakk\\. art\\.)?)?)(?=\\s*,|\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+\\s+\\d+|\\s+\\d+|\\s+\\w+\\s+\\d+|\\s*$)",
+          "priority": 8,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "2daddaa9",
+          "name": "Party_Name_Context",
+          "description": "Captures party names following context phrases like 'in der Beschwerdesache', 'des', 'der', 'von', 'gegen', ensuring the match stops before the comma and handles complex degrees. Excludes common legal nouns/departments.",
+          "format": "regex",
+          "content": "(?:in der Beschwerdesache|des\\s+|der\\s+|von\\s+|gegen\\s+den|gegen\\s+die|gegen\\s+dem|mit\\s+dem|mit\\s+der)\\s+(?!(?:Beschwerdesache|Bescheid|Finanzamt|Richter|Richterin|Gericht|Beh\u00f6rde|Amt|Kammer|Abteilung|Sektion|Referat|Partei|Klage|Rechtsmittel|Verfahren|Verf\u00fcgung|Entscheidung|Urteil|Beschluss|Festsetzung|Zahlung|Steuer|Abgabe|Geb\u00fchr|Strafe|Bu\u00dfe|Verwarnung|Verwarnungsgeld|Verfahrenshilfe|Verfahrenskosten|Verfahrensbeihilfe|Verfahrensbeistand|Verfahrensbevollm\u00e4chtigte|Verfahrensbevollm\u00e4chtigter|Verfahrensbevollm\u00e4chtigten|Bundesfinanzgericht|Einkommensteuer|Umsatzsteuer|Arbeitnehmerveranlagung|Stadt|GmbH|GmbH|Gesellschaft|Magistratsabteilung|Magistrat))(?=[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)*(?:\\s*,\\s*(?:LL\\.M\\.|LL\\.B\\.|MSc\\.|BEd\\.|LLB\\.|LLM|BEd|LLB|LLM|StB|RA|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|MA|Bakk\\. art\\.)?)?)(?=\\s*,|\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+\\s+\\d+|\\s+\\d+|\\s+\\w+\\s+\\d+|\\s*$)",
+          "priority": 9,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "9152df84",
+          "name": "Herr_Name_Context",
+          "description": "Captures names following 'Herrn' (accusative) or 'von Herrn', handling cases without degrees or with degrees, ensuring no trailing spaces.",
+          "format": "regex",
+          "content": "(?:von\\s+)?Herrn\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)*(?:\\s*,\\s*(?:LL\\.M\\.|LL\\.B\\.|MSc\\.|BEd\\.|LLB\\.|LLM|BEd|LLB|LLM|StB|RA|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|MA|Bakk\\. art\\.)?)?)(?=\\s*(?:,|\\(|\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+\\s+\\d+|\\s*$))",
+          "priority": 10,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "f6afca28",
+          "name": "Gegen_Person",
+          "description": "Captures person names appearing immediately after 'gegen' (accusative) in contexts like 'gegen Ivan F\u00e4rbers', excluding departments.",
+          "format": "regex",
+          "content": "(?:gegen\\s+den|gegen\\s+die|gegen\\s+dem|gegen\\s+)(?!(?:Bescheid|Finanzamt|Richter|Richterin|Gericht|Beh\u00f6rde|Amt|Kammer|Abteilung|Sektion|Referat|Partei|Klage|Rechtsmittel|Verfahren|Verf\u00fcgung|Entscheidung|Urteil|Beschluss|Festsetzung|Zahlung|Steuer|Abgabe|Geb\u00fchr|Strafe|Bu\u00dfe|Verwarnung|Verwarnungsgeld|Verfahrenshilfe|Verfahrenskosten|Verfahrensbeihilfe|Verfahrensbeistand|Verfahrensbevollm\u00e4chtigte|Verfahrensbevollm\u00e4chtigter|Verfahrensbevollm\u00e4chtigten|Bundesfinanzgericht|Einkommensteuer|Umsatzsteuer|Arbeitnehmerveranlagung|Stadt|GmbH|GmbH|Gesellschaft|Magistratsabteilung|Magistrat))(?=[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+)*(?:\\s*,\\s*(?:LL\\.M\\.|LL\\.B\\.|MSc\\.|BEd\\.|LLB\\.|LLM|BEd|LLB|LLM|StB|RA|KommR|Univ\\.-Prof\\.in|Hon\\.-Prof\\.in|Priv\\.-Doz\\.in|Mag\\.a|Dr\\.in|Dr\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Bakk\\. iur\\.|Dipl\\.-Ing\\.|\u00d6kR|LL\\.M\\.|LL\\.B\\.|StB|RA|KommR|MA|Bakk\\. art\\.)?)?)(?=\\s*,|\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00e9]+\\s+\\d+|\\s+\\d+|\\s+\\w+\\s+\\d+|\\s*$)",
+          "priority": 9,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        }
+      ]
+    }
+  ],
+  "timestamp": "2026-05-20T05:05:43.308091"
+}
