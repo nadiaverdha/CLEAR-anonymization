@@ -1,0 +1,13 @@
+ [
+    {
+      "level": "rule",
+      "rule_id": "2a1ea4ba",
+      "text": "Generates 81 false positives by matching single capitalized words after 'von' that are not person names (months like Oktober/November, legal terms). Make the pattern like following: von + title + any name."},
+      {
+      "level": "rule",
+      "rule_id": "4d247c0c",
+      "text": "Too broad. Require a ':' directly after the person's name."}
+  ]
+
+
+  

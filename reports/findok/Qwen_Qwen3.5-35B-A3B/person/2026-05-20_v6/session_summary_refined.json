@@ -1,0 +1,30 @@
+{
+  "phases": [
+    "findok"
+  ],
+  "history": [
+    {
+      "phase": "train",
+      "dataset": "findok",
+      "num_rules": 8,
+      "t_learn": 0.0,
+      "timestamp": "2026-05-20T19:52:41.514091",
+      "num_train_docs": 4080,
+      "num_eval_docs": 927,
+      "num_train_annotations": 5237,
+      "num_eval_annotations": 1221,
+      "batch_metrics": [],
+      "iteration_metrics": [],
+      "rules_snapshots": []
+    },
+    {
+      "phase": "feedback",
+      "dataset": "findok",
+      "feedback_path": "reports/findok/Qwen_Qwen3.5-35B-A3B/person/2026-05-20_v6/feedback.json",
+      "num_items": 2,
+      "task_level": 0,
+      "rule_level": 2,
+      "timestamp": "2026-05-20T19:52:59.907390"
+    }
+  ]
+}

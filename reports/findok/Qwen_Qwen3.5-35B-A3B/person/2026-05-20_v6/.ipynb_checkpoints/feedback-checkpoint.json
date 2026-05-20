@@ -1,0 +1,13 @@
+ [
+    {
+      "level": "rule",
+      "rule_id": "2a1ea4ba",
+      "text": "Too broad. In German also a simple word can be preceeded by 'von'. Make the title after von mandatory. Create a new rule to handle just the 'von Viktoria Immohr' case."},
+      {
+      "level": "rule",
+      "rule_id": "4d247c0c",
+      "text": "Too broad. Require a ':' directly after the person's name."}
+  ]
+
+
+  
