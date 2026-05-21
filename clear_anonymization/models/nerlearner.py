@@ -97,6 +97,7 @@ class NERLearner(RuleChef):
             sampling_strategy=sampling_strategy,
             synthesis_strategy=synthesis_strategy,
         )
+        self._max_counter_examples = max_counter_examples
         self._patch_regex_timeout()
 
     def _patch_regex_timeout(self, timeout_secs: int = 5) -> None:
@@ -151,26 +152,19 @@ class NERLearner(RuleChef):
                 continue
             for ex in batch:
                 self.add_example({"text": ex["text"]}, {"entities": ex["entities"]})
-            if synthesize_per_batch:
-                existing_rules = list(self.dataset.rules) if self.dataset.rules else []
-                batch_result = self.learn_rules(
-                    run_evaluation=False, incremental_only=False
-                )
-                if batch_result:
-                    new_rules, _ = batch_result
-                    merged = self.learner._merge_patch(existing_rules, new_rules)
-                    self.dataset.rules = merged
-                    batch_result = (merged, _)
-                    print(
-                        f"  Merged: {len(existing_rules)} existing + {len(new_rules)} new = {len(merged)} rules"
-                    )
+            batch_result = self.learn_rules(
+                run_evaluation=False,
+                incremental_only=(batch_idx > 0 or seed_rules is not None),
+            )
+            # current batch should see its own examples but also some previous ones for the full picture
+            # old self.dataset.examples.clear()
+            if self.dataset.rules:
+                MAX_EXAMPLES = 200
+                if len(self.dataset.examples) > MAX_EXAMPLES:
+                    self.dataset.examples = self.dataset.examples[-MAX_EXAMPLES:]
             else:
-                batch_result = self.learn_rules(
-                    run_evaluation=False,
-                    incremental_only=(batch_idx > 0 or seed_rules is not None),
-                )
-            # Clear so next batch only sees its own examples
-            self.dataset.examples.clear()
+                # no rules yet — full synthesis path, must stay within token budget
+                self.dataset.examples.clear()
 
             if batch_result:
                 result = batch_result
@@ -205,10 +199,12 @@ class NERLearner(RuleChef):
         return rules, t_learn
 
     def apply_feedback_patch(self, rules, eval_dataset):
+        print("Applying feedback")
         eval_result = self.learner._evaluate_rules(rules, eval_dataset)
         f1_before = eval_result.micro_f1 if eval_result else 0.0
-        failures = eval_result.failures if eval_result and eval_result.failures else []
+        failures = (eval_result.failures or [])[: self._max_counter_examples]
         # Only send rules that have feedback to keep the prompt small and focused
+
         targeted_ids = {
             f.target_id
             for f in eval_dataset.structured_feedback
@@ -217,7 +213,6 @@ class NERLearner(RuleChef):
         rules_for_prompt = (
             [r for r in rules if r.id in targeted_ids] if targeted_ids else rules
         )
-
         print(
             f"  Feedback patch: {len(rules_for_prompt)} targeted rule(s), "
             f"{len(failures)} failures, F1 before={f1_before:.1%}"
@@ -263,4 +258,5 @@ class NERLearner(RuleChef):
             max_iterations=max_iterations,
             coordinator=self.coordinator,
             iteration_callback=iteration_callback,
+            audit_interval=audit_interval,
         )
