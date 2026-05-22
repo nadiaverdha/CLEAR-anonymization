@@ -198,6 +198,7 @@ def _write_rule_detail(f, metric, rules_by_id: dict, top_n_examples: int = 5) ->
     rule = rules_by_id.get(metric.rule_id)
     if rule:
         f.write(f"**Format:** `{rule.format.value}`  \n")
+        f.write(f"**Rule ID:** `{rule.id}`  \n")
         f.write(f"**Description:**\n{rule.description}\n\n")
         f.write(f"**Content:**\n```\n{rule.content}\n```\n\n")
 

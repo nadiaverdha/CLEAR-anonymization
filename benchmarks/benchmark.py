@@ -21,6 +21,7 @@ from benchmarks.util import (
     print_results,
     print_rule_summary,
     save_results,
+    serialize_rules,
     setup_output_paths,
 )
 
@@ -105,7 +106,7 @@ def run_benchmark(args):
         if args.feedback and args.skip_synthesis:
             session.inject_feedback(args.feedback)
         if args.max_iterations > 0:
-            session.refine(split)
+            session.refine(split, args.feedback)
 
         # 5. Evaluate on held-out dev set
         print_rule_summary(session.rules)
@@ -129,6 +130,13 @@ def run_benchmark(args):
             t_eval=t_eval,
             rules=session.rules,
             selected_classes=sorted(split.selected_classes),
+            metadata={
+                "best_batch_idx": getattr(session, "_best_batch_idx", -1),
+                "best_batch_f1": getattr(session, "_best_batch_f1", 0.0),
+                "best_rules_serialized": serialize_rules(
+                    getattr(session, "_best_rules", [])
+                ),
+            },
         )
 
         # 6. Print and save phase 1 results
@@ -238,6 +246,11 @@ def run_benchmark(args):
                 "phase1_eval_sentences": len(split.eval),
                 "transfer_train_sentences": len(transfer.train),
                 "transfer_eval_sentences": len(transfer.eval),
+                "best_batch_idx": getattr(session, "_best_batch_idx", -1),
+                "best_batch_f1": getattr(session, "_best_batch_f1", 0.0),
+                "best_rules_serialized": serialize_rules(session._best_rules)
+                if getattr(session, "_best_rules", None)
+                else [],
             },
         )
 
