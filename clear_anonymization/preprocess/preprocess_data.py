@@ -91,7 +91,6 @@ def annotate_sentence(full_text: str, labels: list, doc_id: str, split: str):
         sent_start = tok_sent.tokens[0].start_char
         sent_end = tok_sent.tokens[-1].end_char
         analysed = nlp.additional(tok_sent.text)
-        ann_sent = analysed.sentences[0]
         sent_labels = (
             collect_annos_in_sentence(labels, Sent(sent_start, sent_end, tok_sent.text))
             if labels
@@ -99,25 +98,28 @@ def annotate_sentence(full_text: str, labels: list, doc_id: str, split: str):
         )
 
         token_dicts = []
+        tok_offset = 0
 
-        for token in ann_sent.tokens:
-            tag = assign_bio_tag(token, sent_labels)
-            doc_start = token.start_char + sent_start
-            doc_end = token.end_char + sent_start
-            token_dicts.append(
-                {
-                    "id": token.id,
-                    "text": token.text,
-                    "lemma": token.words[0].lemma,
-                    "upos": token.words[0].upos,
-                    "xpos": token.words[0].xpos,
-                    "feats": token.words[0].feats,
-                    "misc": f"NER={tag}|DocStart={doc_start}|DocEnd={doc_end}|SentStart={token.start_char}|SentEnd={token.end_char}",
-                }
-            )
+        for ann_sent in analysed.sentences:
+            for token in ann_sent.tokens:
+                tag = assign_bio_tag(token, sent_labels)
+                doc_start = token.start_char + sent_start
+                doc_end = token.end_char + sent_start
+                token_dicts.append(
+                    {
+                        "id": (tok_offset + token.id[0],),
+                        "text": token.text,
+                        "lemma": token.words[0].lemma,
+                        "upos": token.words[0].upos,
+                        "xpos": token.words[0].xpos,
+                        "feats": token.words[0].feats,
+                        "misc": f"NER={tag}|DocStart={doc_start}|DocEnd={doc_end}|SentStart={token.start_char}|SentEnd={token.end_char}",
+                    }
+                )
+            tok_offset += len(ann_sent.tokens)
         ner_sentences.append(
             NERSentence(
-                sent_id=f"{doc_id}_{i}",
+                sent_id=f"{doc_id}_{i}n",
                 text=tok_sent.text,
                 tokens=token_dicts,
                 labels=sent_labels,

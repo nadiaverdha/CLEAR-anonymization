@@ -76,7 +76,10 @@ def print_distribution(samples, name: str, fn=label_distribution_doc) -> None:
 
 
 def split_dev_set_stratified(data, dev_ratio=0.2, seed=42):
+    print("HERE")
     samples = list(data.samples)
+  
+    samples.sort(key=lambda s: s.doc_id)  # matches sorted zip folder order
 
     all_types = sorted(
         {
@@ -149,8 +152,12 @@ def main():
     )
 
     args = parser.parse_args()
+    print("loading data")
     full_train_data = load_ner_dataset_from_conll(Path(args.train_file))
+    print("loading finished.")
+
     if args.stratified:
+        print("am here")
         train_data, dev_data = split_dev_set_stratified(
             full_train_data, dev_ratio=args.dev_ratio, seed=args.seed
         )

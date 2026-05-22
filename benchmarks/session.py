@@ -102,8 +102,12 @@ class TrainingSession:
         rules_snapshots = list(prev_rules_snapshots) if prev_rules_snapshots else []
         t_learn = prev_t_learn if prev_t_learn else 0.0
         on_iteration = make_oniteration_callback(iteration_metrics)
+        best_f1 = 0.0
+        best_rules: list | None = None
+        best_batch_idx = -1
 
         def on_batch(batch_idx, rules):
+            nonlocal best_f1, best_rules, best_batch_idx
             rules_snapshots.append(
                 {"batch": batch_idx, "rules": serialize_rules(rules)}
             )
@@ -128,6 +132,12 @@ class TrainingSession:
                     ],
                 }
             )
+
+            if result.micro_f1 > best_f1:
+                best_f1 = result.micro_f1
+                best_rules = list(rules)
+                best_batch_idx = batch_idx
+
             print(
                 f"  [batch {batch_idx}] dev micro_f1={result.micro_f1:.3f}"
                 f"  P={result.micro_precision:.3f}  R={result.micro_recall:.3f}"
@@ -163,10 +173,14 @@ class TrainingSession:
                 start_batch=start_batch,
                 synthesize_per_batch=synthesize_per_batch,
             )
+
             if fit_result is None:
                 return batch_metrics, iteration_metrics, t_learn
             rules, new_t_learn = fit_result
             t_learn += new_t_learn
+            self._best_rules = best_rules
+            self._best_batch_f1 = best_f1
+            self._best_batch_idx = best_batch_idx
 
         self.rules = rules
         self.history.append(
@@ -187,7 +201,7 @@ class TrainingSession:
         )
         return batch_metrics, iteration_metrics, t_learn
 
-    def refine(self, split=None):
+    def refine(self, split=None, feedback=None):
         if split is not None and split is not self._split:
             self._prepare_split(split)
 
@@ -197,18 +211,28 @@ class TrainingSession:
         a = self.args
         iteration_metrics = []
         on_iteration = make_oniteration_callback(iteration_metrics)
-
+        rules_to_refine = getattr(self, "_best_rules", None) or self.rules
         print(
-            f"\nRefining {len(self.rules)} rules"
+            f"\nRefining best {len(rules_to_refine)} rules"
             f" ({len(self._split.eval)} eval examples,"
             f" max {a.max_iterations} iterations)..."
         )
-        rules, refine_eval = self._learner.refine(
-            self.rules,
-            self._eval_dataset,
-            max_iterations=a.max_iterations,
-            iteration_callback=on_iteration,
-        )
+
+        if not feedback:
+            rules, refine_eval = self._learner.refine(
+                rules_to_refine,
+                self._eval_dataset,
+                max_iterations=a.max_iterations,
+                iteration_callback=on_iteration,
+            )
+        else:
+            rules, refine_eval = self._learner.refine(
+                rules_to_refine,
+                self._dev_dataset,
+                max_iterations=a.max_iterations,
+                iteration_callback=on_iteration,
+            )
+
         self.rules = rules
         self.history.append(
             {
@@ -232,11 +256,11 @@ class TrainingSession:
         items = json.loads(Path(feedback_path).read_text())
         load_human_feedback_v2(
             feedback_path,
-            eval_dataset=self._eval_dataset,
+            eval_dataset=self._dev_dataset,
             learner=self._learner,
             rules=self.rules,
         )
-        self.rules = self._learner.apply_feedback_patch(self.rules, self._eval_dataset)
+        self.rules = self._learner.apply_feedback_patch(self.rules, self._dev_dataset)
         self.history.append(
             {
                 "phase": "feedback",
@@ -250,10 +274,11 @@ class TrainingSession:
         )
 
     def evaluate(self, split=None):
+        rules_to_evaluate = getattr(self, "_best_rules", None) or self.rules
         if split is not None and split is not self._split:
             self._prepare_split(split)
 
         if self._learner is None:
             raise RuntimeError("Call train() before evaluate().")
 
-        return evaluate_test(self._dev_dataset, self.rules, self._learner)
+        return evaluate_test(self._dev_dataset, rules_to_evaluate, self._learner)

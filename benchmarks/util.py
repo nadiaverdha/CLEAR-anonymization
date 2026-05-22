@@ -215,6 +215,8 @@ def make_dataset(dataset_name, data, task):
 
 
 def serialize_rules(rules) -> list:
+    if not rules:
+        return []
     return [
         {
             "id": r.id,
@@ -436,6 +438,11 @@ def save_results(output_path: Path, run: BenchmarkRun):
             }
             for r in run.rules
         ],
+        "best_rules": {
+            "batch": run.metadata.get("best_batch_idx"),
+            "micro_f1": run.metadata.get("best_batch_f1"),
+            "rules": run.metadata.get("best_rules_serialized", []),
+        },
     }
     output_path.write_text(json.dumps(results, indent=2))
     print(f"\nResults saved to {output_path}")
