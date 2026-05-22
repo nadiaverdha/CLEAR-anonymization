@@ -1,0 +1,724 @@
+{
+  "config": {
+    "shots": null,
+    "model": "Qwen/Qwen3.5-35B-A3B",
+    "format": "regex",
+    "max_rules": 20,
+    "max_samples": 200,
+    "max_iterations": 6,
+    "seed": 42,
+    "train_size": 2549,
+    "eval_size": 639,
+    "test_size": 1247,
+    "train_annotations": 4268,
+    "eval_annotations": 968,
+    "test_annotations": 1247,
+    "use_grex": true,
+    "agentic": true,
+    "enable_critic": true,
+    "enable_prune": false,
+    "critic_interval": 10,
+    "audit_interval": 0,
+    "windows": false,
+    "sampling_strategy": "balanced",
+    "train_ratio": 0.8,
+    "pool_size": null,
+    "batch_size": 50,
+    "refine_per_batch": 1,
+    "synthesis_strategy": "bulk",
+    "selected_classes": [
+      "person"
+    ],
+    "train_name": "findok",
+    "test_name": "findok",
+    "transfer_name": "findok_manual",
+    "transfer_test_name": null,
+    "max_counter_examples": 10,
+    "refine_every": 10
+  },
+  "metadata": {
+    "seeded_from": "findok",
+    "seed_rule_count": 10,
+    "new_rules_added": 2,
+    "continuation": "synthesize_and_refine",
+    "phase1_train_sentences": 4080,
+    "phase1_eval_sentences": 927,
+    "transfer_train_sentences": 188,
+    "transfer_eval_sentences": 41,
+    "best_batch_idx": 2,
+    "best_batch_f1": 0.27972027972027974,
+    "best_rules_serialized": [
+      {
+        "id": "ec6abf56",
+        "name": "extract_german_legal_person_mandantin",
+        "description": "Extracts person names following 'Mandantin, Frau' or 'Mandant, Herr' patterns common in legal letters.",
+        "format": "regex",
+        "content": "(?:Mandantin,\\s+Frau\\s+|Mandant,\\s+Herr\\s+)([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)*)",
+        "priority": 8,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "76006b7f",
+        "name": "extract_german_legal_person_nachname_wie_bf",
+        "description": "Extracts person names following the specific legal context marker '(Nachname wie Bf.)'. This handles cases where the name is explicitly listed after this marker.",
+        "format": "regex",
+        "content": "\\(Nachname\\s+wie\\s+Bf\\.\\)\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)*)",
+        "priority": 10,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "f0f54feb",
+        "name": "extract_german_legal_person_children_context",
+        "description": "Extracts person names following 'f\u00fcr die Kinder' or 'Kinder' in a list context, capturing the full name without assuming a title.",
+        "format": "regex",
+        "content": "(?:f\u00fcr\\s+die\\s+Kinder\\s+|Kinder\\s+)([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*(?:,\\s*(?:geboren|und|und\\s+|\\))?)?)(?=\\s|,|\\(|\\)|$)",
+        "priority": 8,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "44fe6684",
+        "name": "extract_german_legal_person_direct_context",
+        "description": "Extracts person names directly following 'in der Beschwerdesache' or 'Beschwerde der/des'. Captures the full name including any title (e.g., OSR, Prof.in). Strictly stops at comma to avoid capturing addresses.",
+        "format": "regex",
+        "content": "(?:in\\s+der\\s+Beschwerdesache\\s+(?:des\\s+|der\\s+)?|Beschwerde\\s+der\\s+|Beschwerde\\s+des\\s+)([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)*(?:\\s+(?:di|van|von|del|de|la|le|da|d'|d\\s+)[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)*(?:\\s+(?:Dr\\.|Mag\\.|Mag\\.a|Hon\\.-Prof\\.|Hon\\.-Prof\\.in|Univ\\.-Prof\\.|Univ\\.-Prof\\.in|Priv\\.-Doz\\.|Priv\\.-Doz\\.in|KzlR|KommR|Ing\\.|RgR|PhD|LL\\.M|LL\\.B|Bakk\\.\\s+iur|BA|\\u00d6kR|Dipl\\.-Ing\\.|Richter|Richterin|Ri\\s|IBV|M\\.?|R\\.?|Prof\\.|St\\.?B\\.?|Stb\\.|VetR|OSR|EURAX|OStR|HR|OMedR|MedR|Priv\\.-Doz\\.|DDr\\.|Dr\\.in|Dr\\.in\\s+Dr\\.in|Univ\\.-Prof\\.in|Priv\\.-Doz\\.in|Techn\\s+R|Techn\\.\\s+R|KommR\\s+VetR|VetR\\s+KommR)\\s+)?([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)+)(?:\\s*,\\s*(?:LL\\.M|LL\\.B|MSc|BEd|PhD|Dr\\.in|Mag\\.a|OMedR|MedR|Priv\\.-Doz\\.|Univ\\.-Prof\\.)?)?)\\s*(?=,|\\.|\\)|\\s|$)",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "65de81ba",
+        "name": "extract_german_legal_person_frau_herr",
+        "description": "Extracts full names following 'Frau' or 'Herr'. Captures first and last name, and optional suffixes. Stops at non-name words.",
+        "format": "regex",
+        "content": "\\b(?:Frau(?:n)?\\s+|Herr(?:n|s)?\\s+)([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)*(?:\\s*,\\s*(?:LL\\.M|LL\\.B|MSc|BEd|PhD|Dr\\.in|Mag\\.a|OMedR|MedR|Priv\\.-Doz\\.|Univ\\.-Prof\\.)?)?)",
+        "priority": 10,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "cb54a318",
+        "name": "extract_german_legal_person_kinship",
+        "description": "Extracts person names following kinship terms like 'Gattin' (wife) or 'Ehemann' (husband).",
+        "format": "regex",
+        "content": "(?:Gattin|Ehemann|Sohn|Tochter|Vater|Mutter)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*(?:\\s+(?:di|van|von|del|de|la|le|da|d'|d\\s+)[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)+)(?=,|\\.|\\)|\\s|$)",
+        "priority": 8,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "6b50df2b",
+        "name": "extract_german_legal_person_role_context",
+        "description": "Extracts person names following specific legal roles like 'durch den Richter' or 'durch die Richterin'. Requires full name (first + last) to avoid partial title matches.",
+        "format": "regex",
+        "content": "(?:durch\\s+(?:den\\s+|die\\s+)?(?:Richter|Richterin)\\s+)([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)+)(?:\\s+(?:LL\\.M|LL\\.B|MSc|BEd|PhD|Dr\\.in|Mag\\.a|OMedR|MedR|Priv\\.-Doz\\.|Univ\\.-Prof\\.)?)?",
+        "priority": 10,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "d18d5c6d",
+        "name": "extract_german_legal_person_title_complex",
+        "description": "Extracts person names with titles. Captures the full title sequence and name. Handles multiple titles (e.g., Univ.-Prof. Dr. Priv.-Doz.) and stops before commas or addresses.",
+        "format": "regex",
+        "content": "\\b(?:Dr\\.|Mag\\.|Mag\\.a|Hon\\.-Prof\\.|Hon\\.-Prof\\.in|Univ\\.-Prof\\.|Univ\\.-Prof\\.in|Priv\\.-Doz\\.|Priv\\.-Doz\\.in|KzlR|KommR|Ing\\.|RgR|PhD|LL\\.M|LL\\.B|Bakk\\.\\s+iur|BA|\\u00d6kR|Dipl\\.-Ing\\.|Richter|Richterin|Ri\\s|IBV|M\\.?|R\\.?|Prof\\.|St\\.?B\\.?|Stb\\.|VetR|OSR|EURAX|OStR|HR|OMedR|MedR|Priv\\.-Doz\\.|DDr\\.|Dr\\.in|Dr\\.in\\s+Dr\\.in|Univ\\.-Prof\\.in|Priv\\.-Doz\\.in|Techn\\s+R|Techn\\.\\s+R|KommR\\s+VetR|VetR\\s+KommR)(?:\\s+(?:Dr\\.|Mag\\.|Mag\\.a|Hon\\.-Prof\\.|Hon\\.-Prof\\.in|Univ\\.-Prof\\.|Univ\\.-Prof\\.in|Priv\\.-Doz\\.|Priv\\.-Doz\\.in|KzlR|KommR|Ing\\.|RgR|PhD|LL\\.M|LL\\.B|Bakk\\.\\s+iur|BA|\\u00d6kR|Dipl\\.-Ing\\.|Richter|Richterin|Ri\\s|IBV|M\\.?|R\\.?|Prof\\.|St\\.?B\\.?|Stb\\.|VetR|OSR|EURAX|OStR|HR|OMedR|MedR|Priv\\.-Doz\\.|DDr\\.|Dr\\.in|Dr\\.in\\s+Dr\\.in|Univ\\.-Prof\\.in|Priv\\.-Doz\\.in|Techn\\s+R|Techn\\.\\s+R|KommR\\s+VetR|VetR\\s+KommR))*\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)+)",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "f99b13f6",
+        "name": "extract_german_legal_person_context",
+        "description": "Extracts person names following specific legal context markers. Excludes organization prefixes and 'Herr/Frau' from the capture. Handles 'bei der/den' context.",
+        "format": "regex",
+        "content": "(?:von\\s+|gegen\\s+|in\\s+der\\s+Beschwerdesache\\s+(?:des\\s+|der\\s+)?|Beschwerde\\s+der\\s+|Beschwerde\\s+des\\s+|des\\s+Bf\\.|dem\\s+(?:Bf\\.|Bf\\.in)?|an\\s+Herrn\\s+|an\\s+Frau\\s+|des\\s+Beschwerdef\u00fchrers\\s+|der\\s+Beschwerdef\u00fchrerin\\s+|des\\s+Beschuldigten\\s+|der\\s+Beschuldigten\\s+|erhoben\\s+von\\s+|eingebracht\\s+von\\s+|im\\s+Zuge\\s+der\\s+|in\\s+der\\s+Revisionssache\\s+|in\\s+der\\s+Rechtssache\\s+|bei\\s+der\\s+|bei\\s+den\\s+|zur\\s+|durch\\s+die\\s+|durch\\s+den\\s+)(?:(?:Herr\\s+|Frau\\s+)?)(?!Verein\\s+|Klub\\s+|GmbH\\s+|AG\\s+|KG\\s+|mbH\\s+)([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)+)",
+        "priority": 10,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "11edda00",
+        "name": "extract_german_legal_person_generic",
+        "description": "Extracts person names in generic legal contexts where no title is present, such as after 'Versicherungsnehmer' or 'Bf'.",
+        "format": "regex",
+        "content": "(?:Versicherungsnehmer\\s+|Bf\\.\\s+|Bf\\.in\\s+|des\\s+Beschwerdef\u00fchrers\\s+|der\\s+Beschwerdef\u00fchrerin\\s+)([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)+)",
+        "priority": 10,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "38a57ea3",
+        "name": "extract_german_legal_person_prof_in",
+        "description": "Extracts person names starting with 'Prof.in' or 'Univ.-Prof.in'. Captures the full title and name.",
+        "format": "regex",
+        "content": "\\b(?:Univ\\.-Prof\\.in|Prof\\.in)\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)+",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "5c6770d4",
+        "name": "extract_german_legal_person_generic_no_context",
+        "description": "Extracts standalone person names (First Last) that appear in specific contexts like parentheses or after 'bei der' without titles, to catch cases like 'Hugo Buring'.",
+        "format": "regex",
+        "content": "(?:\\(|bei\\s+der\\s+|bei\\s+den\\s+|und\\s+)([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)+)(?:\\)|,|\\s|$)",
+        "priority": 5,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      }
+    ]
+  },
+  "results": {
+    "accuracy": 0.9446672012830793,
+    "micro_precision": 0.37735849056603776,
+    "micro_recall": 0.2222222222222222,
+    "micro_f1": 0.27972027972027974,
+    "macro_f1": 0.27972027972027974,
+    "num_rules": 12,
+    "learning_time_s": 222.8,
+    "eval_time_s": 0.218,
+    "per_query_ms": 0.17
+  },
+  "per_class": [
+    {
+      "label": "person",
+      "precision": 0.37735849056603776,
+      "recall": 0.2222222222222222,
+      "f1": 0.27972027972027974,
+      "tp": 20,
+      "fp": 33,
+      "fn": 70
+    }
+  ],
+  "iteration_metrics": [
+    {
+      "iteration": 1,
+      "num_rules": 10,
+      "exact_match": 0.04878048780487805,
+      "micro_precision": 0.3333333333333333,
+      "micro_recall": 0.2903225806451613,
+      "micro_f1": 0.3103448275862069,
+      "macro_f1": 0.3103448275862069,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.3103448275862069,
+          "precision": 0.3333333333333333,
+          "recall": 0.2903225806451613
+        }
+      ]
+    }
+  ],
+  "batch_test_metrics": [
+    {
+      "batch": 0,
+      "num_rules": 10,
+      "exact_match": 0.9470729751403368,
+      "micro_f1": 0.24806201550387594,
+      "micro_precision": 0.41025641025641024,
+      "micro_recall": 0.17777777777777778,
+      "macro_f1": 0.24806201550387594,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.24806201550387594,
+          "precision": 0.41025641025641024,
+          "recall": 0.17777777777777778
+        }
+      ]
+    },
+    {
+      "batch": 1,
+      "num_rules": 11,
+      "exact_match": 0.9470729751403368,
+      "micro_f1": 0.24806201550387594,
+      "micro_precision": 0.41025641025641024,
+      "micro_recall": 0.17777777777777778,
+      "macro_f1": 0.24806201550387594,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.24806201550387594,
+          "precision": 0.41025641025641024,
+          "recall": 0.17777777777777778
+        }
+      ]
+    },
+    {
+      "batch": 2,
+      "num_rules": 12,
+      "exact_match": 0.9446672012830793,
+      "micro_f1": 0.27972027972027974,
+      "micro_precision": 0.37735849056603776,
+      "micro_recall": 0.2222222222222222,
+      "macro_f1": 0.27972027972027974,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.27972027972027974,
+          "precision": 0.37735849056603776,
+          "recall": 0.2222222222222222
+        }
+      ]
+    },
+    {
+      "batch": 3,
+      "num_rules": 12,
+      "exact_match": 0.921411387329591,
+      "micro_f1": 0.10869565217391305,
+      "micro_precision": 0.10638297872340426,
+      "micro_recall": 0.1111111111111111,
+      "macro_f1": 0.10869565217391305,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.10869565217391305,
+          "precision": 0.10638297872340426,
+          "recall": 0.1111111111111111
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "ec6abf56",
+      "name": "extract_german_legal_person_mandantin",
+      "description": "Extracts person names following 'Mandantin, Frau' or 'Mandant, Herr' patterns common in legal letters.",
+      "format": "regex",
+      "content": "(?:Mandantin,\\s+Frau\\s+|Mandant,\\s+Herr\\s+)([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)*)",
+      "priority": 8,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-21T22:11:31.486525"
+    },
+    {
+      "id": "76006b7f",
+      "name": "extract_german_legal_person_nachname_wie_bf",
+      "description": "Extracts person names following the specific legal context marker '(Nachname wie Bf.)'. This handles cases where the name is explicitly listed after this marker.",
+      "format": "regex",
+      "content": "\\(Nachname\\s+wie\\s+Bf\\.\\)\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)*)",
+      "priority": 10,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-21T22:14:08.573920"
+    },
+    {
+      "id": "f0f54feb",
+      "name": "extract_german_legal_person_children_context",
+      "description": "Extracts person names following 'f\u00fcr die Kinder' or 'Kinder' in a list context, capturing the full name without assuming a title.",
+      "format": "regex",
+      "content": "(?:f\u00fcr\\s+die\\s+Kinder\\s+|Kinder\\s+)([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*(?:,\\s*(?:geboren|und|und\\s+|\\))?)?)(?=\\s|,|\\(|\\)|$)",
+      "priority": 8,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-21T22:14:40.891837"
+    },
+    {
+      "id": "44fe6684",
+      "name": "extract_german_legal_person_direct_context",
+      "description": "Extracts person names directly following 'in der Beschwerdesache' or 'Beschwerde der/des'. Captures the full name including any title (e.g., OSR, Prof.in). Strictly stops at comma to avoid capturing addresses.",
+      "format": "regex",
+      "content": "(?:in\\s+der\\s+Beschwerdesache\\s+(?:des\\s+|der\\s+)?|Beschwerde\\s+der\\s+|Beschwerde\\s+des\\s+)([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)*(?:\\s+(?:di|van|von|del|de|la|le|da|d'|d\\s+)[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)*(?:\\s+(?:Dr\\.|Mag\\.|Mag\\.a|Hon\\.-Prof\\.|Hon\\.-Prof\\.in|Univ\\.-Prof\\.|Univ\\.-Prof\\.in|Priv\\.-Doz\\.|Priv\\.-Doz\\.in|KzlR|KommR|Ing\\.|RgR|PhD|LL\\.M|LL\\.B|Bakk\\.\\s+iur|BA|\\u00d6kR|Dipl\\.-Ing\\.|Richter|Richterin|Ri\\s|IBV|M\\.?|R\\.?|Prof\\.|St\\.?B\\.?|Stb\\.|VetR|OSR|EURAX|OStR|HR|OMedR|MedR|Priv\\.-Doz\\.|DDr\\.|Dr\\.in|Dr\\.in\\s+Dr\\.in|Univ\\.-Prof\\.in|Priv\\.-Doz\\.in|Techn\\s+R|Techn\\.\\s+R|KommR\\s+VetR|VetR\\s+KommR)\\s+)?([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)+)(?:\\s*,\\s*(?:LL\\.M|LL\\.B|MSc|BEd|PhD|Dr\\.in|Mag\\.a|OMedR|MedR|Priv\\.-Doz\\.|Univ\\.-Prof\\.)?)?)\\s*(?=,|\\.|\\)|\\s|$)",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-21T22:25:10.829979"
+    },
+    {
+      "id": "65de81ba",
+      "name": "extract_german_legal_person_frau_herr",
+      "description": "Extracts full names following 'Frau' or 'Herr'. Captures first and last name, and optional suffixes. Stops at non-name words.",
+      "format": "regex",
+      "content": "\\b(?:Frau(?:n)?\\s+|Herr(?:n|s)?\\s+)([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)*(?:\\s*,\\s*(?:LL\\.M|LL\\.B|MSc|BEd|PhD|Dr\\.in|Mag\\.a|OMedR|MedR|Priv\\.-Doz\\.|Univ\\.-Prof\\.)?)?)",
+      "priority": 10,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-21T23:30:57.254558"
+    },
+    {
+      "id": "cb54a318",
+      "name": "extract_german_legal_person_kinship",
+      "description": "Extracts person names following kinship terms like 'Gattin' (wife) or 'Ehemann' (husband).",
+      "format": "regex",
+      "content": "(?:Gattin|Ehemann|Sohn|Tochter|Vater|Mutter)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*(?:\\s+(?:di|van|von|del|de|la|le|da|d'|d\\s+)[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)+)(?=,|\\.|\\)|\\s|$)",
+      "priority": 8,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-21T22:22:07.834102"
+    },
+    {
+      "id": "6b50df2b",
+      "name": "extract_german_legal_person_role_context",
+      "description": "Extracts person names following specific legal roles like 'durch den Richter' or 'durch die Richterin'. Requires full name (first + last) to avoid partial title matches.",
+      "format": "regex",
+      "content": "(?:durch\\s+(?:den\\s+|die\\s+)?(?:Richter|Richterin)\\s+)([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)+)(?:\\s+(?:LL\\.M|LL\\.B|MSc|BEd|PhD|Dr\\.in|Mag\\.a|OMedR|MedR|Priv\\.-Doz\\.|Univ\\.-Prof\\.)?)?",
+      "priority": 10,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-21T22:24:52.381914"
+    },
+    {
+      "id": "d18d5c6d",
+      "name": "extract_german_legal_person_title_complex",
+      "description": "Extracts person names with titles. Captures the full title sequence and name. Handles multiple titles (e.g., Univ.-Prof. Dr. Priv.-Doz.) and stops before commas or addresses.",
+      "format": "regex",
+      "content": "\\b(?:Dr\\.|Mag\\.|Mag\\.a|Hon\\.-Prof\\.|Hon\\.-Prof\\.in|Univ\\.-Prof\\.|Univ\\.-Prof\\.in|Priv\\.-Doz\\.|Priv\\.-Doz\\.in|KzlR|KommR|Ing\\.|RgR|PhD|LL\\.M|LL\\.B|Bakk\\.\\s+iur|BA|\\u00d6kR|Dipl\\.-Ing\\.|Richter|Richterin|Ri\\s|IBV|M\\.?|R\\.?|Prof\\.|St\\.?B\\.?|Stb\\.|VetR|OSR|EURAX|OStR|HR|OMedR|MedR|Priv\\.-Doz\\.|DDr\\.|Dr\\.in|Dr\\.in\\s+Dr\\.in|Univ\\.-Prof\\.in|Priv\\.-Doz\\.in|Techn\\s+R|Techn\\.\\s+R|KommR\\s+VetR|VetR\\s+KommR)(?:\\s+(?:Dr\\.|Mag\\.|Mag\\.a|Hon\\.-Prof\\.|Hon\\.-Prof\\.in|Univ\\.-Prof\\.|Univ\\.-Prof\\.in|Priv\\.-Doz\\.|Priv\\.-Doz\\.in|KzlR|KommR|Ing\\.|RgR|PhD|LL\\.M|LL\\.B|Bakk\\.\\s+iur|BA|\\u00d6kR|Dipl\\.-Ing\\.|Richter|Richterin|Ri\\s|IBV|M\\.?|R\\.?|Prof\\.|St\\.?B\\.?|Stb\\.|VetR|OSR|EURAX|OStR|HR|OMedR|MedR|Priv\\.-Doz\\.|DDr\\.|Dr\\.in|Dr\\.in\\s+Dr\\.in|Univ\\.-Prof\\.in|Priv\\.-Doz\\.in|Techn\\s+R|Techn\\.\\s+R|KommR\\s+VetR|VetR\\s+KommR))*\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)+)",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-21T23:28:06.469475"
+    },
+    {
+      "id": "f99b13f6",
+      "name": "extract_german_legal_person_context",
+      "description": "Extracts person names following specific legal context markers. Excludes organization prefixes and 'Herr/Frau' from the capture. Handles 'bei der/den' context.",
+      "format": "regex",
+      "content": "(?:von\\s+|gegen\\s+|in\\s+der\\s+Beschwerdesache\\s+(?:des\\s+|der\\s+)?|Beschwerde\\s+der\\s+|Beschwerde\\s+des\\s+|des\\s+Bf\\.|dem\\s+(?:Bf\\.|Bf\\.in)?|an\\s+Herrn\\s+|an\\s+Frau\\s+|des\\s+Beschwerdef\u00fchrers\\s+|der\\s+Beschwerdef\u00fchrerin\\s+|des\\s+Beschuldigten\\s+|der\\s+Beschuldigten\\s+|erhoben\\s+von\\s+|eingebracht\\s+von\\s+|im\\s+Zuge\\s+der\\s+|in\\s+der\\s+Revisionssache\\s+|in\\s+der\\s+Rechtssache\\s+|bei\\s+der\\s+|bei\\s+den\\s+|zur\\s+|durch\\s+die\\s+|durch\\s+den\\s+)(?:(?:Herr\\s+|Frau\\s+)?)(?!Verein\\s+|Klub\\s+|GmbH\\s+|AG\\s+|KG\\s+|mbH\\s+)([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)+)",
+      "priority": 10,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-21T23:31:13.456038"
+    },
+    {
+      "id": "11edda00",
+      "name": "extract_german_legal_person_generic",
+      "description": "Extracts person names in generic legal contexts where no title is present, such as after 'Versicherungsnehmer' or 'Bf'.",
+      "format": "regex",
+      "content": "(?:Versicherungsnehmer\\s+|Bf\\.\\s+|Bf\\.in\\s+|des\\s+Beschwerdef\u00fchrers\\s+|der\\s+Beschwerdef\u00fchrerin\\s+)([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)+)",
+      "priority": 10,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-21T22:24:52.384226"
+    },
+    {
+      "id": "38a57ea3",
+      "name": "extract_german_legal_person_prof_in",
+      "description": "Extracts person names starting with 'Prof.in' or 'Univ.-Prof.in'. Captures the full title and name.",
+      "format": "regex",
+      "content": "\\b(?:Univ\\.-Prof\\.in|Prof\\.in)\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)+",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-21T23:31:13.455824"
+    },
+    {
+      "id": "5c6770d4",
+      "name": "extract_german_legal_person_generic_no_context",
+      "description": "Extracts standalone person names (First Last) that appear in specific contexts like parentheses or after 'bei der' without titles, to catch cases like 'Hugo Buring'.",
+      "format": "regex",
+      "content": "(?:\\(|bei\\s+der\\s+|bei\\s+den\\s+|und\\s+)([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)+)(?:\\)|,|\\s|$)",
+      "priority": 5,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-21T23:31:13.456053"
+    }
+  ],
+  "best_rules": {
+    "batch": 2,
+    "micro_f1": 0.27972027972027974,
+    "rules": [
+      {
+        "id": "ec6abf56",
+        "name": "extract_german_legal_person_mandantin",
+        "description": "Extracts person names following 'Mandantin, Frau' or 'Mandant, Herr' patterns common in legal letters.",
+        "format": "regex",
+        "content": "(?:Mandantin,\\s+Frau\\s+|Mandant,\\s+Herr\\s+)([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)*)",
+        "priority": 8,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "76006b7f",
+        "name": "extract_german_legal_person_nachname_wie_bf",
+        "description": "Extracts person names following the specific legal context marker '(Nachname wie Bf.)'. This handles cases where the name is explicitly listed after this marker.",
+        "format": "regex",
+        "content": "\\(Nachname\\s+wie\\s+Bf\\.\\)\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)*)",
+        "priority": 10,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "f0f54feb",
+        "name": "extract_german_legal_person_children_context",
+        "description": "Extracts person names following 'f\u00fcr die Kinder' or 'Kinder' in a list context, capturing the full name without assuming a title.",
+        "format": "regex",
+        "content": "(?:f\u00fcr\\s+die\\s+Kinder\\s+|Kinder\\s+)([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*(?:,\\s*(?:geboren|und|und\\s+|\\))?)?)(?=\\s|,|\\(|\\)|$)",
+        "priority": 8,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "44fe6684",
+        "name": "extract_german_legal_person_direct_context",
+        "description": "Extracts person names directly following 'in der Beschwerdesache' or 'Beschwerde der/des'. Captures the full name including any title (e.g., OSR, Prof.in). Strictly stops at comma to avoid capturing addresses.",
+        "format": "regex",
+        "content": "(?:in\\s+der\\s+Beschwerdesache\\s+(?:des\\s+|der\\s+)?|Beschwerde\\s+der\\s+|Beschwerde\\s+des\\s+)([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)*(?:\\s+(?:di|van|von|del|de|la|le|da|d'|d\\s+)[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)*(?:\\s+(?:Dr\\.|Mag\\.|Mag\\.a|Hon\\.-Prof\\.|Hon\\.-Prof\\.in|Univ\\.-Prof\\.|Univ\\.-Prof\\.in|Priv\\.-Doz\\.|Priv\\.-Doz\\.in|KzlR|KommR|Ing\\.|RgR|PhD|LL\\.M|LL\\.B|Bakk\\.\\s+iur|BA|\\u00d6kR|Dipl\\.-Ing\\.|Richter|Richterin|Ri\\s|IBV|M\\.?|R\\.?|Prof\\.|St\\.?B\\.?|Stb\\.|VetR|OSR|EURAX|OStR|HR|OMedR|MedR|Priv\\.-Doz\\.|DDr\\.|Dr\\.in|Dr\\.in\\s+Dr\\.in|Univ\\.-Prof\\.in|Priv\\.-Doz\\.in|Techn\\s+R|Techn\\.\\s+R|KommR\\s+VetR|VetR\\s+KommR)\\s+)?([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)+)(?:\\s*,\\s*(?:LL\\.M|LL\\.B|MSc|BEd|PhD|Dr\\.in|Mag\\.a|OMedR|MedR|Priv\\.-Doz\\.|Univ\\.-Prof\\.)?)?)\\s*(?=,|\\.|\\)|\\s|$)",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "65de81ba",
+        "name": "extract_german_legal_person_frau_herr",
+        "description": "Extracts full names following 'Frau' or 'Herr'. Captures first and last name, and optional suffixes. Stops at non-name words.",
+        "format": "regex",
+        "content": "\\b(?:Frau(?:n)?\\s+|Herr(?:n|s)?\\s+)([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)*(?:\\s*,\\s*(?:LL\\.M|LL\\.B|MSc|BEd|PhD|Dr\\.in|Mag\\.a|OMedR|MedR|Priv\\.-Doz\\.|Univ\\.-Prof\\.)?)?)",
+        "priority": 10,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "cb54a318",
+        "name": "extract_german_legal_person_kinship",
+        "description": "Extracts person names following kinship terms like 'Gattin' (wife) or 'Ehemann' (husband).",
+        "format": "regex",
+        "content": "(?:Gattin|Ehemann|Sohn|Tochter|Vater|Mutter)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*(?:\\s+(?:di|van|von|del|de|la|le|da|d'|d\\s+)[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)+)(?=,|\\.|\\)|\\s|$)",
+        "priority": 8,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "6b50df2b",
+        "name": "extract_german_legal_person_role_context",
+        "description": "Extracts person names following specific legal roles like 'durch den Richter' or 'durch die Richterin'. Requires full name (first + last) to avoid partial title matches.",
+        "format": "regex",
+        "content": "(?:durch\\s+(?:den\\s+|die\\s+)?(?:Richter|Richterin)\\s+)([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)+)(?:\\s+(?:LL\\.M|LL\\.B|MSc|BEd|PhD|Dr\\.in|Mag\\.a|OMedR|MedR|Priv\\.-Doz\\.|Univ\\.-Prof\\.)?)?",
+        "priority": 10,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "d18d5c6d",
+        "name": "extract_german_legal_person_title_complex",
+        "description": "Extracts person names with titles. Captures the full title sequence and name. Handles multiple titles (e.g., Univ.-Prof. Dr. Priv.-Doz.) and stops before commas or addresses.",
+        "format": "regex",
+        "content": "\\b(?:Dr\\.|Mag\\.|Mag\\.a|Hon\\.-Prof\\.|Hon\\.-Prof\\.in|Univ\\.-Prof\\.|Univ\\.-Prof\\.in|Priv\\.-Doz\\.|Priv\\.-Doz\\.in|KzlR|KommR|Ing\\.|RgR|PhD|LL\\.M|LL\\.B|Bakk\\.\\s+iur|BA|\\u00d6kR|Dipl\\.-Ing\\.|Richter|Richterin|Ri\\s|IBV|M\\.?|R\\.?|Prof\\.|St\\.?B\\.?|Stb\\.|VetR|OSR|EURAX|OStR|HR|OMedR|MedR|Priv\\.-Doz\\.|DDr\\.|Dr\\.in|Dr\\.in\\s+Dr\\.in|Univ\\.-Prof\\.in|Priv\\.-Doz\\.in|Techn\\s+R|Techn\\.\\s+R|KommR\\s+VetR|VetR\\s+KommR)(?:\\s+(?:Dr\\.|Mag\\.|Mag\\.a|Hon\\.-Prof\\.|Hon\\.-Prof\\.in|Univ\\.-Prof\\.|Univ\\.-Prof\\.in|Priv\\.-Doz\\.|Priv\\.-Doz\\.in|KzlR|KommR|Ing\\.|RgR|PhD|LL\\.M|LL\\.B|Bakk\\.\\s+iur|BA|\\u00d6kR|Dipl\\.-Ing\\.|Richter|Richterin|Ri\\s|IBV|M\\.?|R\\.?|Prof\\.|St\\.?B\\.?|Stb\\.|VetR|OSR|EURAX|OStR|HR|OMedR|MedR|Priv\\.-Doz\\.|DDr\\.|Dr\\.in|Dr\\.in\\s+Dr\\.in|Univ\\.-Prof\\.in|Priv\\.-Doz\\.in|Techn\\s+R|Techn\\.\\s+R|KommR\\s+VetR|VetR\\s+KommR))*\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)+)",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "f99b13f6",
+        "name": "extract_german_legal_person_context",
+        "description": "Extracts person names following specific legal context markers. Excludes organization prefixes and 'Herr/Frau' from the capture. Handles 'bei der/den' context.",
+        "format": "regex",
+        "content": "(?:von\\s+|gegen\\s+|in\\s+der\\s+Beschwerdesache\\s+(?:des\\s+|der\\s+)?|Beschwerde\\s+der\\s+|Beschwerde\\s+des\\s+|des\\s+Bf\\.|dem\\s+(?:Bf\\.|Bf\\.in)?|an\\s+Herrn\\s+|an\\s+Frau\\s+|des\\s+Beschwerdef\u00fchrers\\s+|der\\s+Beschwerdef\u00fchrerin\\s+|des\\s+Beschuldigten\\s+|der\\s+Beschuldigten\\s+|erhoben\\s+von\\s+|eingebracht\\s+von\\s+|im\\s+Zuge\\s+der\\s+|in\\s+der\\s+Revisionssache\\s+|in\\s+der\\s+Rechtssache\\s+|bei\\s+der\\s+|bei\\s+den\\s+|zur\\s+|durch\\s+die\\s+|durch\\s+den\\s+)(?:(?:Herr\\s+|Frau\\s+)?)(?!Verein\\s+|Klub\\s+|GmbH\\s+|AG\\s+|KG\\s+|mbH\\s+)([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)+)",
+        "priority": 10,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "11edda00",
+        "name": "extract_german_legal_person_generic",
+        "description": "Extracts person names in generic legal contexts where no title is present, such as after 'Versicherungsnehmer' or 'Bf'.",
+        "format": "regex",
+        "content": "(?:Versicherungsnehmer\\s+|Bf\\.\\s+|Bf\\.in\\s+|des\\s+Beschwerdef\u00fchrers\\s+|der\\s+Beschwerdef\u00fchrerin\\s+)([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)+)",
+        "priority": 10,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "38a57ea3",
+        "name": "extract_german_legal_person_prof_in",
+        "description": "Extracts person names starting with 'Prof.in' or 'Univ.-Prof.in'. Captures the full title and name.",
+        "format": "regex",
+        "content": "\\b(?:Univ\\.-Prof\\.in|Prof\\.in)\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)+",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "5c6770d4",
+        "name": "extract_german_legal_person_generic_no_context",
+        "description": "Extracts standalone person names (First Last) that appear in specific contexts like parentheses or after 'bei der' without titles, to catch cases like 'Hugo Buring'.",
+        "format": "regex",
+        "content": "(?:\\(|bei\\s+der\\s+|bei\\s+den\\s+|und\\s+)([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)+)(?:\\)|,|\\s|$)",
+        "priority": 5,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      }
+    ]
+  }
+}
