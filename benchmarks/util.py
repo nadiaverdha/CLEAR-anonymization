@@ -8,7 +8,7 @@ from pathlib import Path
 from typing import Any
 
 import yaml
-from rulechef.core import Dataset, Example, Feedback, Rule, RuleFormat
+from rulechef.core import Correction, Dataset, Example, Feedback, Rule, RuleFormat
 from rulechef.evaluation import evaluate_dataset, evaluate_rules_individually
 from rulechef.training_logger import TrainingDataLogger
 
@@ -302,6 +302,17 @@ def load_human_feedback_v2(feedback_path, eval_dataset, learner, rules=None):
     print(f"  Loading {len(feedback_items)} human feedback items")
     for fb in feedback_items:
         level = fb.get("level", "task")
+        if level == "correction":
+            correction = Correction(
+                id=str(uuid.uuid4())[:8],
+                input=fb["input"],
+                model_output=fb.get("model_output", {}),
+                expected_output=fb["expected_output"],
+                feedback=fb.get("text"),
+            )
+            eval_dataset.corrections.append(correction)
+            print(f"✓ Added correction to eval dataset")
+            continue
         text = fb["text"]
         target_id = ""
         if level == "rule" and rules is not None:

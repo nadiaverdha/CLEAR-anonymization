@@ -234,16 +234,19 @@ class TrainingSession:
             )
 
         self.rules = rules
+        self._best_rules = rules 
         self.history.append(
             {
                 "phase": "refine",
                 "dataset": self._split.name,
                 "num_rules": len(rules),
+                
                 "micro_f1": refine_eval.micro_f1 if refine_eval else None,
                 "micro_precision": refine_eval.micro_precision if refine_eval else None,
                 "micro_recall": refine_eval.micro_recall if refine_eval else None,
                 "iteration_metrics": iteration_metrics,
                 "timestamp": datetime.now().isoformat(),
+
             }
         )
 

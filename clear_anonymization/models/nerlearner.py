@@ -202,7 +202,7 @@ class NERLearner(RuleChef):
         print("Applying feedback")
         eval_result = self.learner._evaluate_rules(rules, eval_dataset)
         f1_before = eval_result.micro_f1 if eval_result else 0.0
-        failures = (eval_result.failures or [])[: self._max_counter_examples]
+        all_failures = eval_result.failures or []
         # Only send rules that have feedback to keep the prompt small and focused
 
         targeted_ids = {
@@ -213,22 +213,91 @@ class NERLearner(RuleChef):
         rules_for_prompt = (
             [r for r in rules if r.id in targeted_ids] if targeted_ids else rules
         )
+        # Correction failures are the highest-priority signal — if any exist,
+        # use only those so the LLM has one focused task and the prompt stays small.
+        correction_failures = [f for f in all_failures if f.get("is_correction")]
+        if correction_failures:
+            failures = correction_failures
+        elif targeted_ids:
+            # Filter to failures whose input text the targeted rule could plausibly
+            # match, so the LLM sees relevant examples instead of the whole dataset.
+            import re as _re
+            trigger_res = []
+            for r in rules_for_prompt:
+                if getattr(r, "format", None) and r.format.value == "regex":
+                    try:
+                        trigger_res.append(_re.compile(r.content))
+                    except _re.error:
+                        pass
+
+            def _input_text(f):
+                inp = f.get("input", {})
+                return inp.get("text", "") if isinstance(inp, dict) else str(inp)
+
+            failures = (
+                [f for f in all_failures if any(rx.search(_input_text(f)) for rx in trigger_res)]
+                if trigger_res else all_failures
+            )
+        else:
+            failures = all_failures
+
         print(
             f"  Feedback patch: {len(rules_for_prompt)} targeted rule(s), "
             f"{len(failures)} failures, F1 before={f1_before:.1%}"
         )
-        patch = self.learner.synthesize_patch_ruleset(
-            rules_for_prompt,
-            failures=failures,
-            dataset=eval_dataset,
+        targeted_names = [r.name for r in rules_for_prompt]
+        base_guidance = (
+            f"Only modify or replace the following rule(s): {', '.join(targeted_names)}. "
+            "Do NOT create new rules or touch any other rules."
+            if targeted_ids else ""
         )
-        if isinstance(patch, tuple):
-            patch = patch[0]
+
+        validation_errors: list[str] = []
+        original_validate = self.learner._validate_rule
+
+        def _capturing_validate(rule):
+            import re as _re
+            if rule.format.value == "regex":
+                try:
+                    _re.compile(rule.content)
+                except _re.error as e:
+                    validation_errors.append(f"Rule '{rule.name}': {e}")
+                    return False
+            return original_validate(rule)
+
+        patch = None
+        prev_errors: list[str] = []
+        for attempt in range(2):
+            validation_errors.clear()
+            self.learner._validate_rule = _capturing_validate
+            extra = (
+                f" Previous attempt produced invalid regex — errors: {'; '.join(prev_errors)}. "
+                "Fix these specific errors. Count every opening parenthesis and ensure it has a matching closing parenthesis."
+                if attempt > 0 and prev_errors else ""
+            )
+            try:
+                patch = self.learner.synthesize_patch_ruleset(
+                    rules_for_prompt,
+                    failures=failures,
+                    dataset=eval_dataset,
+                    guidance=base_guidance + extra,
+                )
+            finally:
+                self.learner._validate_rule = original_validate
+            if isinstance(patch, tuple):
+                patch = patch[0]
+            if patch:
+                break
+            prev_errors = list(validation_errors)
+            if attempt == 0 and prev_errors:
+                print(f"  Retrying with validation errors in prompt...")
         if not patch:
+            
             print("No feedback patches generated.")
             return rules
         merged = self.learner._merge_patch(rules, patch)
         original_by_name = {r.name: r.id for r in rules}
+        print(merged)
         for r in merged:
             if r.name in original_by_name:
                 r.id = original_by_name[r.name]
