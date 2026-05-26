@@ -1,0 +1,509 @@
+{
+  "config": {
+    "shots": null,
+    "model": "Qwen/Qwen3.5-35B-A3B",
+    "format": "regex",
+    "max_rules": 30,
+    "max_samples": 200,
+    "max_iterations": 6,
+    "seed": 42,
+    "train_size": 76,
+    "eval_size": 20,
+    "test_size": 476,
+    "train_annotations": 185,
+    "eval_annotations": 45,
+    "test_annotations": 21234,
+    "use_grex": true,
+    "agentic": false,
+    "enable_critic": false,
+    "enable_prune": false,
+    "critic_interval": 0,
+    "audit_interval": 0,
+    "windows": false,
+    "sampling_strategy": "balanced",
+    "train_ratio": 0.8,
+    "pool_size": null,
+    "batch_size": 100,
+    "refine_per_batch": 0,
+    "synthesis_strategy": "bulk",
+    "selected_classes": [
+      "person"
+    ],
+    "train_name": "findok_manual",
+    "test_name": "ris",
+    "transfer_name": "ris",
+    "transfer_test_name": "ris",
+    "max_counter_examples": 10,
+    "refine_every": 0
+  },
+  "metadata": {
+    "best_batch_idx": 1,
+    "best_batch_f1": 0.05811450710288419,
+    "best_rules_serialized": [
+      {
+        "id": "cfc661f1",
+        "name": "Person after 'Schriftf\u00fchrer' (Court Clerk)",
+        "description": "Captures the name of the court clerk mentioned after the title.",
+        "format": "regex",
+        "content": "(?:Schriftf\u00fchrer)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+        "priority": 6,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "6e3cfc1d",
+        "name": "Person after 'fachkundiger Laienrichter'",
+        "description": "Captures lay judges mentioned with their specific title.",
+        "format": "regex",
+        "content": "(?:fachkundiger\\s+Laienrichter|fachkundige\\s+Laienrichterin)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+        "priority": 5,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "4677ce2b",
+        "name": "Person with Academic/Professional Titles",
+        "description": "Captures names preceded by German academic/professional titles, handling repeated titles and optional 'in' suffixes.",
+        "format": "regex",
+        "content": "\\b(?:Dr\\.(?:in)?|Mag\\.(?:Dr\\.)?|Univ\\.-Prof\\.(?:in)?|Priv\\.-Doz\\.(?:in)?|Hon\\.-Prof\\.(?:in)?|Ing\\.(?:Mag\\.)?|PhD|LL\\.M\\.|Bakk\\. rer\\. nat\\.|OStR|MR|\u00d6kR|KommR|VetR|PhD OMedR)(?:\\s+(?:Dr\\.(?:in)?|Mag\\.(?:Dr\\.)?|Univ\\.-Prof\\.(?:in)?|Priv\\.-Doz\\.(?:in)?|Hon\\.-Prof\\.(?:in)?|Ing\\.(?:Mag\\.)?|PhD|LL\\.M\\.|Bakk\\. rer\\. nat\\.|OStR|MR|\u00d6kR|KommR|VetR|PhD OMedR))?\\s+[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "9b474dd4",
+        "name": "Person after Judicial Role",
+        "description": "Captures the full name (including title) appearing immediately after judicial role indicators, excluding the role text.",
+        "format": "regex",
+        "content": "(?:die\\s+Richterin|der\\s+Richter|die\\s+Senatsvorsitzende)\\s+(?:Dr\\.(?:in)?|Mag\\.(?:Dr\\.)?|Univ\\.-Prof\\.(?:in)?|Priv\\.-Doz\\.(?:in)?|Hon\\.-Prof\\.(?:in)?|Ing\\.(?:Mag\\.)?|PhD|LL\\.M\\.|Bakk\\. rer\\. nat\\.|OStR|MR|\u00d6kR|KommR|VetR|PhD OMedR)?\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+        "priority": 9,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "dd884f7b",
+        "name": "Person in Legal Case Context",
+        "description": "Captures names appearing after 'Beschwerdesache' or similar case introductions, ensuring full name is captured.",
+        "format": "regex",
+        "content": "(?:in\\s+der\\s+Beschwerdesache|der\\s+Beschwerdesache|in\\s+der\\s+Verwaltungsstrafsache|gegen\\s+Herrn|gegen\\s+Frau|gegen\\s+die)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+        "priority": 8,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "4499bf7e",
+        "name": "Person after 'vertreten durch' (represented by)",
+        "description": "Captures names of legal representatives following 'vertreten durch', ensuring full name is captured.",
+        "format": "regex",
+        "content": "(?:vertreten\\s+durch)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+        "priority": 7,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "78d78435",
+        "name": "Standalone Person Name in Legal Context",
+        "description": "Captures standalone capitalized names in legal contexts where no title or specific role precedes them.",
+        "format": "regex",
+        "content": "(?:eingetragenen|f\u00fcr\\s+seine\\s+Kinder|f\u00fcr\\s+das\\s+Kind|der\\s+Beschwerdef\u00fchrerin|der\\s+Beschwerdef\u00fchrer|der\\s+Beschuldigte|der\\s+Abgabepflichtige|der\\s+Bf\\.)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+        "priority": 5,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "79232d4e",
+        "name": "Person after 'Herrn' or 'Frau'",
+        "description": "Captures names preceded by 'Herrn' or 'Frau' in legal texts.",
+        "format": "regex",
+        "content": "(?:Herrn|Frau)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+        "priority": 4,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "23bbc7f9",
+        "name": "Person after 'Gattin' or 'Kinder'",
+        "description": "Captures names of spouses or children mentioned in legal contexts.",
+        "format": "regex",
+        "content": "(?:und\\s+dessen\\s+Gattin|und\\s+deren\\s+Gattin|f\u00fcr\\s+seine\\s+Kinder|f\u00fcr\\s+das\\s+Kind|f\u00fcr\\s+ihre\\s+Tochter|f\u00fcr\\s+seinen\\s+Sohn)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+        "priority": 6,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      }
+    ]
+  },
+  "results": {
+    "accuracy": 0.9609588395968729,
+    "micro_precision": 0.16464088397790055,
+    "micro_recall": 0.10836363636363637,
+    "micro_f1": 0.13070175438596493,
+    "macro_f1": 0.13070175438596493,
+    "num_rules": 9,
+    "learning_time_s": 24.9,
+    "eval_time_s": 2.916,
+    "per_query_ms": 0.14
+  },
+  "per_class": [
+    {
+      "label": "person",
+      "precision": 0.16464088397790055,
+      "recall": 0.10836363636363637,
+      "f1": 0.13070175438596493,
+      "tp": 149,
+      "fp": 756,
+      "fn": 1226
+    }
+  ],
+  "iteration_metrics": [],
+  "batch_test_metrics": [
+    {
+      "batch": 1,
+      "num_rules": 6,
+      "exact_match": 0.9550720542526138,
+      "micro_f1": 0.05811450710288419,
+      "micro_precision": 0.04127178232956282,
+      "micro_recall": 0.09818181818181818,
+      "macro_f1": 0.05811450710288419,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.05811450710288419,
+          "precision": 0.04127178232956282,
+          "recall": 0.09818181818181818
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "cfc661f1",
+      "name": "Person after 'Schriftf\u00fchrer' (Court Clerk)",
+      "description": "Captures the name of the court clerk mentioned after the title.",
+      "format": "regex",
+      "content": "(?:Schriftf\u00fchrer)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+      "priority": 6,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-25T14:11:07.781437"
+    },
+    {
+      "id": "6e3cfc1d",
+      "name": "Person after 'fachkundiger Laienrichter'",
+      "description": "Captures lay judges mentioned with their specific title.",
+      "format": "regex",
+      "content": "(?:fachkundiger\\s+Laienrichter|fachkundige\\s+Laienrichterin)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+      "priority": 5,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-25T14:11:07.781605"
+    },
+    {
+      "id": "4677ce2b",
+      "name": "Person with Academic/Professional Titles",
+      "description": "Captures names preceded by German academic/professional titles, handling repeated titles and optional 'in' suffixes.",
+      "format": "regex",
+      "content": "\\b(?:Dr\\.(?:in)?|Mag\\.(?:Dr\\.)?|Univ\\.-Prof\\.(?:in)?|Priv\\.-Doz\\.(?:in)?|Hon\\.-Prof\\.(?:in)?|Ing\\.(?:Mag\\.)?|PhD|LL\\.M\\.|Bakk\\. rer\\. nat\\.|OStR|MR|\u00d6kR|KommR|VetR|PhD OMedR)(?:\\s+(?:Dr\\.(?:in)?|Mag\\.(?:Dr\\.)?|Univ\\.-Prof\\.(?:in)?|Priv\\.-Doz\\.(?:in)?|Hon\\.-Prof\\.(?:in)?|Ing\\.(?:Mag\\.)?|PhD|LL\\.M\\.|Bakk\\. rer\\. nat\\.|OStR|MR|\u00d6kR|KommR|VetR|PhD OMedR))?\\s+[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-25T14:11:39.168942"
+    },
+    {
+      "id": "9b474dd4",
+      "name": "Person after Judicial Role",
+      "description": "Captures the full name (including title) appearing immediately after judicial role indicators, excluding the role text.",
+      "format": "regex",
+      "content": "(?:die\\s+Richterin|der\\s+Richter|die\\s+Senatsvorsitzende)\\s+(?:Dr\\.(?:in)?|Mag\\.(?:Dr\\.)?|Univ\\.-Prof\\.(?:in)?|Priv\\.-Doz\\.(?:in)?|Hon\\.-Prof\\.(?:in)?|Ing\\.(?:Mag\\.)?|PhD|LL\\.M\\.|Bakk\\. rer\\. nat\\.|OStR|MR|\u00d6kR|KommR|VetR|PhD OMedR)?\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+      "priority": 9,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-25T14:11:39.169818"
+    },
+    {
+      "id": "dd884f7b",
+      "name": "Person in Legal Case Context",
+      "description": "Captures names appearing after 'Beschwerdesache' or similar case introductions, ensuring full name is captured.",
+      "format": "regex",
+      "content": "(?:in\\s+der\\s+Beschwerdesache|der\\s+Beschwerdesache|in\\s+der\\s+Verwaltungsstrafsache|gegen\\s+Herrn|gegen\\s+Frau|gegen\\s+die)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+      "priority": 8,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-25T14:11:39.170405"
+    },
+    {
+      "id": "4499bf7e",
+      "name": "Person after 'vertreten durch' (represented by)",
+      "description": "Captures names of legal representatives following 'vertreten durch', ensuring full name is captured.",
+      "format": "regex",
+      "content": "(?:vertreten\\s+durch)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+      "priority": 7,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-25T14:11:39.170425"
+    },
+    {
+      "id": "78d78435",
+      "name": "Standalone Person Name in Legal Context",
+      "description": "Captures standalone capitalized names in legal contexts where no title or specific role precedes them.",
+      "format": "regex",
+      "content": "(?:eingetragenen|f\u00fcr\\s+seine\\s+Kinder|f\u00fcr\\s+das\\s+Kind|der\\s+Beschwerdef\u00fchrerin|der\\s+Beschwerdef\u00fchrer|der\\s+Beschuldigte|der\\s+Abgabepflichtige|der\\s+Bf\\.)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+      "priority": 5,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-25T14:11:39.170851"
+    },
+    {
+      "id": "79232d4e",
+      "name": "Person after 'Herrn' or 'Frau'",
+      "description": "Captures names preceded by 'Herrn' or 'Frau' in legal texts.",
+      "format": "regex",
+      "content": "(?:Herrn|Frau)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+      "priority": 4,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-25T14:11:39.170870"
+    },
+    {
+      "id": "23bbc7f9",
+      "name": "Person after 'Gattin' or 'Kinder'",
+      "description": "Captures names of spouses or children mentioned in legal contexts.",
+      "format": "regex",
+      "content": "(?:und\\s+dessen\\s+Gattin|und\\s+deren\\s+Gattin|f\u00fcr\\s+seine\\s+Kinder|f\u00fcr\\s+das\\s+Kind|f\u00fcr\\s+ihre\\s+Tochter|f\u00fcr\\s+seinen\\s+Sohn)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+      "priority": 6,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-25T14:11:39.170443"
+    }
+  ],
+  "best_rules": {
+    "batch": 1,
+    "micro_f1": 0.05811450710288419,
+    "rules": [
+      {
+        "id": "cfc661f1",
+        "name": "Person after 'Schriftf\u00fchrer' (Court Clerk)",
+        "description": "Captures the name of the court clerk mentioned after the title.",
+        "format": "regex",
+        "content": "(?:Schriftf\u00fchrer)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+        "priority": 6,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "6e3cfc1d",
+        "name": "Person after 'fachkundiger Laienrichter'",
+        "description": "Captures lay judges mentioned with their specific title.",
+        "format": "regex",
+        "content": "(?:fachkundiger\\s+Laienrichter|fachkundige\\s+Laienrichterin)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+        "priority": 5,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "4677ce2b",
+        "name": "Person with Academic/Professional Titles",
+        "description": "Captures names preceded by German academic/professional titles, handling repeated titles and optional 'in' suffixes.",
+        "format": "regex",
+        "content": "\\b(?:Dr\\.(?:in)?|Mag\\.(?:Dr\\.)?|Univ\\.-Prof\\.(?:in)?|Priv\\.-Doz\\.(?:in)?|Hon\\.-Prof\\.(?:in)?|Ing\\.(?:Mag\\.)?|PhD|LL\\.M\\.|Bakk\\. rer\\. nat\\.|OStR|MR|\u00d6kR|KommR|VetR|PhD OMedR)(?:\\s+(?:Dr\\.(?:in)?|Mag\\.(?:Dr\\.)?|Univ\\.-Prof\\.(?:in)?|Priv\\.-Doz\\.(?:in)?|Hon\\.-Prof\\.(?:in)?|Ing\\.(?:Mag\\.)?|PhD|LL\\.M\\.|Bakk\\. rer\\. nat\\.|OStR|MR|\u00d6kR|KommR|VetR|PhD OMedR))?\\s+[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "9b474dd4",
+        "name": "Person after Judicial Role",
+        "description": "Captures the full name (including title) appearing immediately after judicial role indicators, excluding the role text.",
+        "format": "regex",
+        "content": "(?:die\\s+Richterin|der\\s+Richter|die\\s+Senatsvorsitzende)\\s+(?:Dr\\.(?:in)?|Mag\\.(?:Dr\\.)?|Univ\\.-Prof\\.(?:in)?|Priv\\.-Doz\\.(?:in)?|Hon\\.-Prof\\.(?:in)?|Ing\\.(?:Mag\\.)?|PhD|LL\\.M\\.|Bakk\\. rer\\. nat\\.|OStR|MR|\u00d6kR|KommR|VetR|PhD OMedR)?\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+        "priority": 9,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "dd884f7b",
+        "name": "Person in Legal Case Context",
+        "description": "Captures names appearing after 'Beschwerdesache' or similar case introductions, ensuring full name is captured.",
+        "format": "regex",
+        "content": "(?:in\\s+der\\s+Beschwerdesache|der\\s+Beschwerdesache|in\\s+der\\s+Verwaltungsstrafsache|gegen\\s+Herrn|gegen\\s+Frau|gegen\\s+die)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+        "priority": 8,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "4499bf7e",
+        "name": "Person after 'vertreten durch' (represented by)",
+        "description": "Captures names of legal representatives following 'vertreten durch', ensuring full name is captured.",
+        "format": "regex",
+        "content": "(?:vertreten\\s+durch)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+        "priority": 7,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "78d78435",
+        "name": "Standalone Person Name in Legal Context",
+        "description": "Captures standalone capitalized names in legal contexts where no title or specific role precedes them.",
+        "format": "regex",
+        "content": "(?:eingetragenen|f\u00fcr\\s+seine\\s+Kinder|f\u00fcr\\s+das\\s+Kind|der\\s+Beschwerdef\u00fchrerin|der\\s+Beschwerdef\u00fchrer|der\\s+Beschuldigte|der\\s+Abgabepflichtige|der\\s+Bf\\.)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+        "priority": 5,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "79232d4e",
+        "name": "Person after 'Herrn' or 'Frau'",
+        "description": "Captures names preceded by 'Herrn' or 'Frau' in legal texts.",
+        "format": "regex",
+        "content": "(?:Herrn|Frau)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+        "priority": 4,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "23bbc7f9",
+        "name": "Person after 'Gattin' or 'Kinder'",
+        "description": "Captures names of spouses or children mentioned in legal contexts.",
+        "format": "regex",
+        "content": "(?:und\\s+dessen\\s+Gattin|und\\s+deren\\s+Gattin|f\u00fcr\\s+seine\\s+Kinder|f\u00fcr\\s+das\\s+Kind|f\u00fcr\\s+ihre\\s+Tochter|f\u00fcr\\s+seinen\\s+Sohn)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+        "priority": 6,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      }
+    ]
+  }
+}

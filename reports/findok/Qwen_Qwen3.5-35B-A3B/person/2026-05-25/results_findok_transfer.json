@@ -1,0 +1,1298 @@
+{
+  "config": {
+    "shots": null,
+    "model": "Qwen/Qwen3.5-35B-A3B",
+    "format": "regex",
+    "max_rules": 30,
+    "max_samples": 200,
+    "max_iterations": 6,
+    "seed": 42,
+    "train_size": 1571,
+    "eval_size": 394,
+    "test_size": 21234,
+    "train_annotations": 2935,
+    "eval_annotations": 780,
+    "test_annotations": 21234,
+    "use_grex": true,
+    "agentic": false,
+    "enable_critic": false,
+    "enable_prune": false,
+    "critic_interval": 0,
+    "audit_interval": 0,
+    "windows": false,
+    "sampling_strategy": "balanced",
+    "train_ratio": 0.8,
+    "pool_size": null,
+    "batch_size": 100,
+    "refine_per_batch": 0,
+    "synthesis_strategy": "bulk",
+    "selected_classes": [
+      "person"
+    ],
+    "train_name": "findok_manual",
+    "test_name": "ris",
+    "transfer_name": "ris",
+    "transfer_test_name": "ris",
+    "max_counter_examples": 10,
+    "refine_every": 0
+  },
+  "metadata": {
+    "seeded_from": "findok",
+    "seed_rule_count": 9,
+    "new_rules_added": 7,
+    "continuation": "synthesize_and_refine",
+    "phase1_train_sentences": 185,
+    "phase1_eval_sentences": 45,
+    "transfer_train_sentences": 2750,
+    "transfer_eval_sentences": 735,
+    "best_batch_idx": 8,
+    "best_batch_f1": 0.3276570757486788,
+    "best_rules_serialized": [
+      {
+        "id": "cfc661f1",
+        "name": "Person after 'Schriftf\u00fchrer' (Court Clerk)",
+        "description": "Captures the name of the court clerk mentioned after the title.",
+        "format": "regex",
+        "content": "(?:Schriftf\u00fchrer)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+        "priority": 6,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "6e3cfc1d",
+        "name": "Person after 'fachkundiger Laienrichter'",
+        "description": "Captures lay judges mentioned with their specific title.",
+        "format": "regex",
+        "content": "(?:fachkundiger\\s+Laienrichter|fachkundige\\s+Laienrichterin)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+        "priority": 5,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "9b474dd4",
+        "name": "Person after Judicial Role",
+        "description": "Captures the full name (including title) appearing immediately after judicial role indicators, excluding the role text.",
+        "format": "regex",
+        "content": "(?:die\\s+Richterin|der\\s+Richter|die\\s+Senatsvorsitzende)\\s+(?:Dr\\.(?:in)?|Mag\\.(?:Dr\\.)?|Univ\\.-Prof\\.(?:in)?|Priv\\.-Doz\\.(?:in)?|Hon\\.-Prof\\.(?:in)?|Ing\\.(?:Mag\\.)?|PhD|LL\\.M\\.|Bakk\\. rer\\. nat\\.|OStR|MR|\u00d6kR|KommR|VetR|PhD OMedR)?\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+        "priority": 9,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "79232d4e",
+        "name": "Person after 'Herrn' or 'Frau'",
+        "description": "Captures names preceded by 'Herrn' or 'Frau' in legal texts.",
+        "format": "regex",
+        "content": "(?:Herrn|Frau)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+        "priority": 4,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "23bbc7f9",
+        "name": "Person after 'Gattin' or 'Kinder'",
+        "description": "Captures names of spouses or children mentioned in legal contexts.",
+        "format": "regex",
+        "content": "(?:und\\s+dessen\\s+Gattin|und\\s+deren\\s+Gattin|f\u00fcr\\s+seine\\s+Kinder|f\u00fcr\\s+das\\s+Kind|f\u00fcr\\s+ihre\\s+Tochter|f\u00fcr\\s+seinen\\s+Sohn)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+        "priority": 6,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "4c8cbe8f",
+        "name": "Person after 'klagenden Partei' (Plaintiff)",
+        "description": "Captures the name of the plaintiff appearing after 'klagenden Partei', explicitly excluding company names and handling titles.",
+        "format": "regex",
+        "content": "klagenden\\s+Partei\\s+(?:[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*\\s+)?([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s*,\\s*[A-Z][a-z]+)*)(?!\\s+(?:GmbH|AG|Co\\.|Ltd|Inc|LLC|Rechtsanwalts?\\s+GmbH|Rechtsanwalts?\\s+AG))",
+        "priority": 12,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "e25ebe36",
+        "name": "Person in 'gegen' or 'von' context",
+        "description": "Captures names appearing after 'gegen' (against) or 'von' (of/from) in legal contexts, often without titles.",
+        "format": "regex",
+        "content": "(?:gegen\\s+|von\\s+)([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+        "priority": 8,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "1fcb9e35",
+        "name": "Person after 'vertreten durch' (Refined)",
+        "description": "Captures names of legal representatives following 'vertreten durch', strictly excluding law firm names and ensuring the match ends before company suffixes or 'Rechtsanwalt'.",
+        "format": "regex",
+        "content": "vertreten\\s+durch\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)+)(?:\\s+Rechtsanwalt|\\s+Rechtsanw\u00e4ltin|\\s+GmbH|\\s+AG|\\s+KG|\\s+mbH|\\s+Co\\.?|\\s+Ltd|\\s+Inc|\\s+LLC|\\s+Stadtgemeinde|\\s+Gemeinde|\\s+Verein|\\s+Gesellschaft|\\s+Unternehmen|\\s+Firma|\\s+Werk|\\s+Bank|\\s+Pharma|\\s+Energie|\\s+Versand|\\s+Handel|\\s+Technik|\\s+Bau|\\s+Immobilien|\\s+Consulting|\\s+Management|\\s+Group|\\s+Holdings|\\s+Partners|\\s+&|\\.|$)",
+        "priority": 14,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "e45b5272",
+        "name": "Person in List Context (Numbered)",
+        "description": "Captures names in numbered lists (1., 2., 3.) or comma-separated lists where a name is followed by a number or comma, ensuring full name capture.",
+        "format": "regex",
+        "content": "(?:^|,\\s+|\\d+\\.\\s+)([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)+)(?:,|\\s+\\d+\\.\\s+|\\s+und\\s+|\\s+und\\s+|\\s+\\.|$)",
+        "priority": 12,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "3e083246",
+        "name": "Person after 'gegen' or 'von' (Contextual)",
+        "description": "Captures names appearing after 'gegen' (against) or 'von' (of/from) in legal contexts, ensuring full name capture including 'von' prefixes and handling multi-word names.",
+        "format": "regex",
+        "content": "(?:gegen\\s+|von\\s+)([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)+)(?:\\s+(?:von|vertreten\\s+durch))?\\s*(?!GmbH|AG|KG|mbH|Co\\.?|Ltd|Inc|LLC|\\s+GmbH|\\s+AG|\\s+KG|\\s+mbH|\\s+Co\\.?|\\s+Ltd|\\s+Inc|\\s+LLC|Stadtgemeinde|Gemeinde|Verein|Gesellschaft|Unternehmen|Firma|Werk|Bank|Pharma|Energie|Versand|Handel|Technik|Bau|Immobilien|Consulting|Management|Group|Holdings|Partners|&|\\.|$)",
+        "priority": 14,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "1182fd38",
+        "name": "Person in Parenthetical Context",
+        "description": "Captures names appearing within parentheses, often used for clarification or full names in legal texts.",
+        "format": "regex",
+        "content": "\\(\\s*([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)*)\\s*\\)",
+        "priority": 11,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "ea02f06b",
+        "name": "Person after 'Partei' (Plaintiff/Defendant)",
+        "description": "Captures person names immediately following 'Partei' (party), explicitly excluding company names by checking for suffixes like GmbH, AG, KG, mbH, etc., and prefixes like Stadtgemeinde, Gemeinde, Verein. Requires at least two words or a known title pattern to avoid partial matches.",
+        "format": "regex",
+        "content": "(?:der\\s+klagenden\\s+Partei\\s+|der\\s+beklagten\\s+Partei\\s+|der\\s+betreibenden\\s+Partei\\s+|der\\s+verpflichteten\\s+Partei\\s+|Partei\\s+|der\\s+Partei\\s+)([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)+)(?:\\s+(?:von|vertreten\\s+durch))?\\s*(?!GmbH|AG|KG|mbH|Co\\.?|Ltd|Inc|LLC|\\s+GmbH|\\s+AG|\\s+KG|\\s+mbH|\\s+Co\\.?|\\s+Ltd|\\s+Inc|\\s+LLC|Stadtgemeinde|Gemeinde|Verein|Gesellschaft|Unternehmen|Firma|Werk|Bank|Pharma|Energie|Versand|Handel|Technik|Bau|Immobilien|Consulting|Management|Group|Holdings|Partners|&|\\.|$)",
+        "priority": 15,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "f96ee46b",
+        "name": "Person with Complex Academic Titles",
+        "description": "Captures names preceded by complex German academic titles, ensuring the full name including the title is captured if it's a compound entity, or just the name if the title is separate. Handles specific complex suffixes like 'Bakk. rer. nat. Bakk. iur..net'.",
+        "format": "regex",
+        "content": "(?:Dr\\.|Mag\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Dipl\\.-Ing\\.|Ing\\.|Techn\\sR|StR|OStR|MR|\\u00d6kR|KommR|VetR|LLM|LLB|Bakk\\.\\s+rer\\.\\s+nat\\.|Bakk\\.\\s+techn\\.|Bakk\\.\\s+phil\\.|MSc|MA|BA|PhD|PhD\\s+OMedR|Mag\\.\\s+a|Dr\\.\\s+a|Hon\\.-Prof\\.\\s+in|Priv\\.-Doz\\.\\s+in|DDr\\.|RgR|MMM\\.?|MMM\\.\\s+a|DI\\.|MMag\\.|MMag\\.\\s+a|OSR\\.|KzlR\\.|MedR\\.|BEd\\.|Bakk\\.\\s+art\\.|Dr\\.\\s+in|Mag\\.\\s+in|Prof\\.\\s+in|Univ\\.-Prof\\.\\s+in|Priv\\.-Doz\\.\\s+in|Dipl\\.-Ing\\.\\s+in|Ing\\.\\s+in|Techn\\sR\\s+in|StR\\s+in|OStR\\s+in|MR\\s+in|\\u00d6kR\\s+in|KommR\\s+in|VetR\\s+in|LLM\\s+in|LLB\\s+in|Bakk\\.\\s+rer\\.\\s+nat\\.\\s+in|Bakk\\.\\s+techn\\.\\s+in|Bakk\\.\\s+phil\\.\\s+in|MSc\\s+in|MA\\s+in|BA\\s+in|PhD\\s+in|PhD\\s+OMedR\\s+in|Mag\\.\\s+a\\s+in|Dr\\.\\s+a\\s+in|Hon\\.-Prof\\.\\s+in\\s+in|Priv\\.-Doz\\.\\s+in\\s+in|DDr\\.\\s+in|RgR\\s+in|MMM\\.?\\s+in|MMM\\.\\s+a\\s+in|DI\\.\\s+in|MMag\\.\\s+in|MMag\\.\\s+a\\s+in|OSR\\.\\s+in|KzlR\\.\\s+in|MedR\\.\\s+in|BEd\\.\\s+in|Bakk\\.\\s+art\\.\\s+in)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)+)(?:\\s+von\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)?(?:\\s+Bakk\\.\\s+rer\\.\\s+nat\\.\\s+Bakk\\.\\s+iur\\.\\.net)?\\s*(?!Inhaber|Bank|GmbH|AG|KG|mbH|Co\\.?|Ltd|Inc|LLC|\\s+Inhaber|\\s+Bank|\\s+GmbH|\\s+AG|\\s+KG|\\s+mbH|\\s+Co\\.?|\\s+Ltd|\\s+Inc|\\s+LLC|\\.|$)",
+        "priority": 15,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "d05f9629",
+        "name": "Person after 'geboren am' (Born On)",
+        "description": "Captures names appearing after 'geboren am' (born on) in legal texts, typically identifying the subject of the case. Excludes month names.",
+        "format": "regex",
+        "content": "geboren\\s+am\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)+)(?:\\s+in\\s+|\\s+zu\\s+|\\s+der\\s+|\\s+des\\s+|\\s+am\\s+|\\s+im\\s+|\\s+|\\.|$)",
+        "priority": 13,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "10c10e06",
+        "name": "Person after 'gegen' (Defendant)",
+        "description": "Captures person names appearing after 'gegen' (against) in legal contexts, ensuring full name capture and excluding company names. Prioritizes this for cases where the name follows 'gegen' directly.",
+        "format": "regex",
+        "content": "(?:gegen\\s+|der\\s+gegen\\s+)(?:Herrn\\s+|Frau\\s+)?([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)+)(?:\\s+von\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)?\\s*(?!GmbH|AG|KG|mbH|Co\\.?|Ltd|Inc|LLC|\\s+GmbH|\\s+AG|\\s+KG|\\s+mbH|\\s+Co\\.?|\\s+Ltd|\\s+Inc|\\s+LLC|Stadtgemeinde|Gemeinde|Verein|Gesellschaft|Unternehmen|Firma|Werk|Bank|Pharma|Energie|Versand|Handel|Technik|Bau|Immobilien|Consulting|Management|Group|Holdings|Partners|&|\\.|$)",
+        "priority": 10,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "0e41d831",
+        "name": "Person in Legal Case Context",
+        "description": "Captures names appearing after 'Beschwerdesache', 'Strafsache', 'Rechtssache', or 'gegen' (against) in legal contexts, ensuring full name capture. Handles standalone surnames and multi-word names.",
+        "format": "regex",
+        "content": "(?:in\\s+der\\s+(?:Beschwerdesache|Strafsache|Rechtssache|Verwaltungsstrafsache|Arbeitsrechtssache|Familienrechtssache)|der\\s+(?:Beschwerdesache|Strafsache|Rechtssache|Verwaltungsstrafsache|Arbeitsrechtssache|Familienrechtssache)|gegen\\s+)(?:Herrn\\s+|Frau\\s+)?([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)+)(?:\\s+von\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)?\\s*(?!GmbH|AG|KG|mbH|Co\\.?|Ltd|Inc|LLC|\\s+GmbH|\\s+AG|\\s+KG|\\s+mbH|\\s+Co\\.?|\\s+Ltd|\\s+Inc|\\s+LLC|Stadtgemeinde|Gemeinde|Verein|Gesellschaft|Unternehmen|Firma|Werk|Bank|Pharma|Energie|Versand|Handel|Technik|Bau|Immobilien|Consulting|Management|Group|Holdings|Partners|&|\\.|$)",
+        "priority": 12,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      }
+    ]
+  },
+  "results": {
+    "accuracy": 0.9437694263916361,
+    "micro_precision": 0.27474150664697194,
+    "micro_recall": 0.4058181818181818,
+    "micro_f1": 0.3276570757486788,
+    "macro_f1": 0.3276570757486788,
+    "num_rules": 16,
+    "learning_time_s": 3574.3,
+    "eval_time_s": 5.294,
+    "per_query_ms": 0.25
+  },
+  "per_class": [
+    {
+      "label": "person",
+      "precision": 0.27474150664697194,
+      "recall": 0.4058181818181818,
+      "f1": 0.3276570757486788,
+      "tp": 558,
+      "fp": 1473,
+      "fn": 817
+    }
+  ],
+  "iteration_metrics": [],
+  "batch_test_metrics": [
+    {
+      "batch": 0,
+      "num_rules": 13,
+      "exact_match": 0.962277479513987,
+      "micro_f1": 0.23693740300051735,
+      "micro_precision": 0.4103942652329749,
+      "micro_recall": 0.16654545454545455,
+      "macro_f1": 0.23693740300051735,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.23693740300051735,
+          "precision": 0.4103942652329749,
+          "recall": 0.16654545454545455
+        }
+      ]
+    },
+    {
+      "batch": 1,
+      "num_rules": 14,
+      "exact_match": 0.09051521145332957,
+      "micro_f1": 0.0055864001237602495,
+      "micro_precision": 0.002826603118830395,
+      "micro_recall": 0.23636363636363636,
+      "macro_f1": 0.0055864001237602495,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.0055864001237602495,
+          "precision": 0.002826603118830395,
+          "recall": 0.23636363636363636
+        }
+      ]
+    },
+    {
+      "batch": 2,
+      "num_rules": 15,
+      "exact_match": 0.9128284826222096,
+      "micro_f1": 0.06729518855656698,
+      "micro_precision": 0.04333263554532133,
+      "micro_recall": 0.15054545454545454,
+      "macro_f1": 0.06729518855656698,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.06729518855656698,
+          "precision": 0.04333263554532133,
+          "recall": 0.15054545454545454
+        }
+      ]
+    },
+    {
+      "batch": 3,
+      "num_rules": 14,
+      "exact_match": 0.9128284826222096,
+      "micro_f1": 0.06728727747836029,
+      "micro_precision": 0.04338668913226622,
+      "micro_recall": 0.14981818181818182,
+      "macro_f1": 0.06728727747836029,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.06728727747836029,
+          "precision": 0.04338668913226622,
+          "recall": 0.14981818181818182
+        }
+      ]
+    },
+    {
+      "batch": 4,
+      "num_rules": 14,
+      "exact_match": 0.9133936140152585,
+      "micro_f1": 0.13352638352638352,
+      "micro_precision": 0.08572608965089858,
+      "micro_recall": 0.3018181818181818,
+      "macro_f1": 0.13352638352638352,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.13352638352638352,
+          "precision": 0.08572608965089858,
+          "recall": 0.3018181818181818
+        }
+      ]
+    },
+    {
+      "batch": 5,
+      "num_rules": 16,
+      "exact_match": 0.9141942168220778,
+      "micro_f1": 0.21136638452237,
+      "micro_precision": 0.15833333333333333,
+      "micro_recall": 0.31781818181818183,
+      "macro_f1": 0.21136638452237,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.21136638452237,
+          "precision": 0.15833333333333333,
+          "recall": 0.31781818181818183
+        }
+      ]
+    },
+    {
+      "batch": 6,
+      "num_rules": 16,
+      "exact_match": 0.907318451539983,
+      "micro_f1": 0.12146629388008698,
+      "micro_precision": 0.07722694054908157,
+      "micro_recall": 0.2843636363636364,
+      "macro_f1": 0.12146629388008698,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.12146629388008698,
+          "precision": 0.07722694054908157,
+          "recall": 0.2843636363636364
+        }
+      ]
+    },
+    {
+      "batch": 7,
+      "num_rules": 16,
+      "exact_match": 0.913016859753226,
+      "micro_f1": 0.1930558975621768,
+      "micro_precision": 0.14594192107222637,
+      "micro_recall": 0.2850909090909091,
+      "macro_f1": 0.1930558975621768,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.1930558975621768,
+          "precision": 0.14594192107222637,
+          "recall": 0.2850909090909091
+        }
+      ]
+    },
+    {
+      "batch": 8,
+      "num_rules": 16,
+      "exact_match": 0.9437694263916361,
+      "micro_f1": 0.3276570757486788,
+      "micro_precision": 0.27474150664697194,
+      "micro_recall": 0.4058181818181818,
+      "macro_f1": 0.3276570757486788,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.3276570757486788,
+          "precision": 0.27474150664697194,
+          "recall": 0.4058181818181818
+        }
+      ]
+    },
+    {
+      "batch": 9,
+      "num_rules": 17,
+      "exact_match": 0.8985118206649713,
+      "micro_f1": 0.17255968570565125,
+      "micro_precision": 0.10890711424756819,
+      "micro_recall": 0.4152727272727273,
+      "macro_f1": 0.17255968570565125,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.17255968570565125,
+          "precision": 0.10890711424756819,
+          "recall": 0.4152727272727273
+        }
+      ]
+    },
+    {
+      "batch": 10,
+      "num_rules": 17,
+      "exact_match": 0.905387585947066,
+      "micro_f1": 0.20247711362412493,
+      "micro_precision": 0.16075245831551946,
+      "micro_recall": 0.27345454545454545,
+      "macro_f1": 0.20247711362412493,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.20247711362412493,
+          "precision": 0.16075245831551946,
+          "recall": 0.27345454545454545
+        }
+      ]
+    },
+    {
+      "batch": 11,
+      "num_rules": 15,
+      "exact_match": 0.19741923330507677,
+      "micro_f1": 0.03462477120195241,
+      "micro_precision": 0.018270352931707513,
+      "micro_recall": 0.3301818181818182,
+      "macro_f1": 0.03462477120195241,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.03462477120195241,
+          "precision": 0.018270352931707513,
+          "recall": 0.3301818181818182
+        }
+      ]
+    },
+    {
+      "batch": 12,
+      "num_rules": 16,
+      "exact_match": 0.19746632758783084,
+      "micro_f1": 0.02619362143800717,
+      "micro_precision": 0.013813694267515924,
+      "micro_recall": 0.25236363636363635,
+      "macro_f1": 0.02619362143800717,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.02619362143800717,
+          "precision": 0.013813694267515924,
+          "recall": 0.25236363636363635
+        }
+      ]
+    },
+    {
+      "batch": 13,
+      "num_rules": 16,
+      "exact_match": 0.9121691626636527,
+      "micro_f1": 0.05193075898801598,
+      "micro_precision": 0.03367148715734945,
+      "micro_recall": 0.11345454545454546,
+      "macro_f1": 0.05193075898801598,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.05193075898801598,
+          "precision": 0.03367148715734945,
+          "recall": 0.11345454545454546
+        }
+      ]
+    },
+    {
+      "batch": 14,
+      "num_rules": 16,
+      "exact_match": 0.9113685598568334,
+      "micro_f1": 0.05066967887687591,
+      "micro_precision": 0.03255910410618001,
+      "micro_recall": 0.11418181818181818,
+      "macro_f1": 0.05066967887687591,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.05066967887687591,
+          "precision": 0.03255910410618001,
+          "recall": 0.11418181818181818
+        }
+      ]
+    },
+    {
+      "batch": 15,
+      "num_rules": 17,
+      "exact_match": 0.912404634077423,
+      "micro_f1": 0.054045359498150244,
+      "micro_precision": 0.03469640644361834,
+      "micro_recall": 0.12218181818181818,
+      "macro_f1": 0.054045359498150244,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.054045359498150244,
+          "precision": 0.03469640644361834,
+          "recall": 0.12218181818181818
+        }
+      ]
+    },
+    {
+      "batch": 16,
+      "num_rules": 17,
+      "exact_match": 0.912404634077423,
+      "micro_f1": 0.054045359498150244,
+      "micro_precision": 0.03469640644361834,
+      "micro_recall": 0.12218181818181818,
+      "macro_f1": 0.054045359498150244,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.054045359498150244,
+          "precision": 0.03469640644361834,
+          "recall": 0.12218181818181818
+        }
+      ]
+    },
+    {
+      "batch": 17,
+      "num_rules": 17,
+      "exact_match": 0.912404634077423,
+      "micro_f1": 0.05534382767191383,
+      "micro_precision": 0.03583690987124463,
+      "micro_recall": 0.12145454545454545,
+      "macro_f1": 0.05534382767191383,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.05534382767191383,
+          "precision": 0.03583690987124463,
+          "recall": 0.12145454545454545
+        }
+      ]
+    },
+    {
+      "batch": 18,
+      "num_rules": 17,
+      "exact_match": 0.9135348968635207,
+      "micro_f1": 0.10231788079470198,
+      "micro_precision": 0.06623794212218649,
+      "micro_recall": 0.22472727272727272,
+      "macro_f1": 0.10231788079470198,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.10231788079470198,
+          "precision": 0.06623794212218649,
+          "recall": 0.22472727272727272
+        }
+      ]
+    },
+    {
+      "batch": 19,
+      "num_rules": 18,
+      "exact_match": 0.9135348968635207,
+      "micro_f1": 0.09964641594342655,
+      "micro_precision": 0.06395708685785022,
+      "micro_recall": 0.22545454545454546,
+      "macro_f1": 0.09964641594342655,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.09964641594342655,
+          "precision": 0.06395708685785022,
+          "recall": 0.22545454545454546
+        }
+      ]
+    },
+    {
+      "batch": 20,
+      "num_rules": 19,
+      "exact_match": 0.9133936140152585,
+      "micro_f1": 0.12684595056738693,
+      "micro_precision": 0.08066429418742586,
+      "micro_recall": 0.29672727272727273,
+      "macro_f1": 0.12684595056738693,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.12684595056738693,
+          "precision": 0.08066429418742586,
+          "recall": 0.29672727272727273
+        }
+      ]
+    },
+    {
+      "batch": 21,
+      "num_rules": 19,
+      "exact_match": 0.9190449279457474,
+      "micro_f1": 0.208871989860583,
+      "micro_precision": 0.16031128404669262,
+      "micro_recall": 0.29963636363636365,
+      "macro_f1": 0.208871989860583,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.208871989860583,
+          "precision": 0.16031128404669262,
+          "recall": 0.29963636363636365
+        }
+      ]
+    },
+    {
+      "batch": 22,
+      "num_rules": 23,
+      "exact_match": 0.42893472732410287,
+      "micro_f1": 0.028343488066785605,
+      "micro_precision": 0.014859522801072991,
+      "micro_recall": 0.30618181818181817,
+      "macro_f1": 0.028343488066785605,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.028343488066785605,
+          "precision": 0.014859522801072991,
+          "recall": 0.30618181818181817
+        }
+      ]
+    },
+    {
+      "batch": 23,
+      "num_rules": 23,
+      "exact_match": 0.4288876330413488,
+      "micro_f1": 0.029899996632883265,
+      "micro_precision": 0.015675752012427623,
+      "micro_recall": 0.3229090909090909,
+      "macro_f1": 0.029899996632883265,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.029899996632883265,
+          "precision": 0.015675752012427623,
+          "recall": 0.3229090909090909
+        }
+      ]
+    },
+    {
+      "batch": 24,
+      "num_rules": 23,
+      "exact_match": 0.9198926250353208,
+      "micro_f1": 0.22820335863814123,
+      "micro_precision": 0.16689098250336473,
+      "micro_recall": 0.36072727272727273,
+      "macro_f1": 0.22820335863814123,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.22820335863814123,
+          "precision": 0.16689098250336473,
+          "recall": 0.36072727272727273
+        }
+      ]
+    },
+    {
+      "batch": 25,
+      "num_rules": 23,
+      "exact_match": 0.9199868136008289,
+      "micro_f1": 0.2339986235375086,
+      "micro_precision": 0.17091152815013405,
+      "micro_recall": 0.3709090909090909,
+      "macro_f1": 0.2339986235375086,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.2339986235375086,
+          "precision": 0.17091152815013405,
+          "recall": 0.3709090909090909
+        }
+      ]
+    },
+    {
+      "batch": 26,
+      "num_rules": 23,
+      "exact_match": 0.4567203541490063,
+      "micro_f1": 0.0326278659611993,
+      "micro_precision": 0.017181997600712047,
+      "micro_recall": 0.3229090909090909,
+      "macro_f1": 0.0326278659611993,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.0326278659611993,
+          "precision": 0.017181997600712047,
+          "recall": 0.3229090909090909
+        }
+      ]
+    },
+    {
+      "batch": 27,
+      "num_rules": 23,
+      "exact_match": 0.4567203541490063,
+      "micro_f1": 0.0326278659611993,
+      "micro_precision": 0.017181997600712047,
+      "micro_recall": 0.3229090909090909,
+      "macro_f1": 0.0326278659611993,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.0326278659611993,
+          "precision": 0.017181997600712047,
+          "recall": 0.3229090909090909
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "cfc661f1",
+      "name": "Person after 'Schriftf\u00fchrer' (Court Clerk)",
+      "description": "Captures the name of the court clerk mentioned after the title.",
+      "format": "regex",
+      "content": "(?:Schriftf\u00fchrer)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+      "priority": 6,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-25T14:11:07.781437"
+    },
+    {
+      "id": "6e3cfc1d",
+      "name": "Person after 'fachkundiger Laienrichter'",
+      "description": "Captures lay judges mentioned with their specific title.",
+      "format": "regex",
+      "content": "(?:fachkundiger\\s+Laienrichter|fachkundige\\s+Laienrichterin)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+      "priority": 5,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-25T14:11:07.781605"
+    },
+    {
+      "id": "9b474dd4",
+      "name": "Person after Judicial Role",
+      "description": "Captures the full name (including title) appearing immediately after judicial role indicators, excluding the role text.",
+      "format": "regex",
+      "content": "(?:die\\s+Richterin|der\\s+Richter|die\\s+Senatsvorsitzende)\\s+(?:Dr\\.(?:in)?|Mag\\.(?:Dr\\.)?|Univ\\.-Prof\\.(?:in)?|Priv\\.-Doz\\.(?:in)?|Hon\\.-Prof\\.(?:in)?|Ing\\.(?:Mag\\.)?|PhD|LL\\.M\\.|Bakk\\. rer\\. nat\\.|OStR|MR|\u00d6kR|KommR|VetR|PhD OMedR)?\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+      "priority": 9,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-25T14:11:39.169818"
+    },
+    {
+      "id": "79232d4e",
+      "name": "Person after 'Herrn' or 'Frau'",
+      "description": "Captures names preceded by 'Herrn' or 'Frau' in legal texts.",
+      "format": "regex",
+      "content": "(?:Herrn|Frau)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+      "priority": 4,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-25T14:11:39.170870"
+    },
+    {
+      "id": "23bbc7f9",
+      "name": "Person after 'Gattin' or 'Kinder'",
+      "description": "Captures names of spouses or children mentioned in legal contexts.",
+      "format": "regex",
+      "content": "(?:und\\s+dessen\\s+Gattin|und\\s+deren\\s+Gattin|f\u00fcr\\s+seine\\s+Kinder|f\u00fcr\\s+das\\s+Kind|f\u00fcr\\s+ihre\\s+Tochter|f\u00fcr\\s+seinen\\s+Sohn)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+      "priority": 6,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-25T14:11:39.170443"
+    },
+    {
+      "id": "4c8cbe8f",
+      "name": "Person after 'klagenden Partei' (Plaintiff)",
+      "description": "Captures the name of the plaintiff appearing after 'klagenden Partei', explicitly excluding company names and handling titles.",
+      "format": "regex",
+      "content": "klagenden\\s+Partei\\s+(?:[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*\\s+)?([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s*,\\s*[A-Z][a-z]+)*)(?!\\s+(?:GmbH|AG|Co\\.|Ltd|Inc|LLC|Rechtsanwalts?\\s+GmbH|Rechtsanwalts?\\s+AG))",
+      "priority": 12,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-25T14:19:23.646403"
+    },
+    {
+      "id": "e25ebe36",
+      "name": "Person in 'gegen' or 'von' context",
+      "description": "Captures names appearing after 'gegen' (against) or 'von' (of/from) in legal contexts, often without titles.",
+      "format": "regex",
+      "content": "(?:gegen\\s+|von\\s+)([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+      "priority": 8,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-25T14:14:38.700492"
+    },
+    {
+      "id": "1fcb9e35",
+      "name": "Person after 'vertreten durch' (Refined)",
+      "description": "Captures names of legal representatives following 'vertreten durch', strictly excluding law firm names and ensuring the match ends before company suffixes or 'Rechtsanwalt'.",
+      "format": "regex",
+      "content": "vertreten\\s+durch\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)+)(?:\\s+Rechtsanwalt|\\s+Rechtsanw\u00e4ltin|\\s+GmbH|\\s+AG|\\s+KG|\\s+mbH|\\s+Co\\.?|\\s+Ltd|\\s+Inc|\\s+LLC|\\s+Stadtgemeinde|\\s+Gemeinde|\\s+Verein|\\s+Gesellschaft|\\s+Unternehmen|\\s+Firma|\\s+Werk|\\s+Bank|\\s+Pharma|\\s+Energie|\\s+Versand|\\s+Handel|\\s+Technik|\\s+Bau|\\s+Immobilien|\\s+Consulting|\\s+Management|\\s+Group|\\s+Holdings|\\s+Partners|\\s+&|\\.|$)",
+      "priority": 14,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-25T14:33:15.947733"
+    },
+    {
+      "id": "e45b5272",
+      "name": "Person in List Context (Numbered)",
+      "description": "Captures names in numbered lists (1., 2., 3.) or comma-separated lists where a name is followed by a number or comma, ensuring full name capture.",
+      "format": "regex",
+      "content": "(?:^|,\\s+|\\d+\\.\\s+)([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)+)(?:,|\\s+\\d+\\.\\s+|\\s+und\\s+|\\s+und\\s+|\\s+\\.|$)",
+      "priority": 12,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-25T14:33:15.944167"
+    },
+    {
+      "id": "3e083246",
+      "name": "Person after 'gegen' or 'von' (Contextual)",
+      "description": "Captures names appearing after 'gegen' (against) or 'von' (of/from) in legal contexts, ensuring full name capture including 'von' prefixes and handling multi-word names.",
+      "format": "regex",
+      "content": "(?:gegen\\s+|von\\s+)([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)+)(?:\\s+(?:von|vertreten\\s+durch))?\\s*(?!GmbH|AG|KG|mbH|Co\\.?|Ltd|Inc|LLC|\\s+GmbH|\\s+AG|\\s+KG|\\s+mbH|\\s+Co\\.?|\\s+Ltd|\\s+Inc|\\s+LLC|Stadtgemeinde|Gemeinde|Verein|Gesellschaft|Unternehmen|Firma|Werk|Bank|Pharma|Energie|Versand|Handel|Technik|Bau|Immobilien|Consulting|Management|Group|Holdings|Partners|&|\\.|$)",
+      "priority": 14,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-25T14:33:15.944604"
+    },
+    {
+      "id": "1182fd38",
+      "name": "Person in Parenthetical Context",
+      "description": "Captures names appearing within parentheses, often used for clarification or full names in legal texts.",
+      "format": "regex",
+      "content": "\\(\\s*([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)*)\\s*\\)",
+      "priority": 11,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-25T14:21:05.412587"
+    },
+    {
+      "id": "ea02f06b",
+      "name": "Person after 'Partei' (Plaintiff/Defendant)",
+      "description": "Captures person names immediately following 'Partei' (party), explicitly excluding company names by checking for suffixes like GmbH, AG, KG, mbH, etc., and prefixes like Stadtgemeinde, Gemeinde, Verein. Requires at least two words or a known title pattern to avoid partial matches.",
+      "format": "regex",
+      "content": "(?:der\\s+klagenden\\s+Partei\\s+|der\\s+beklagten\\s+Partei\\s+|der\\s+betreibenden\\s+Partei\\s+|der\\s+verpflichteten\\s+Partei\\s+|Partei\\s+|der\\s+Partei\\s+)([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)+)(?:\\s+(?:von|vertreten\\s+durch))?\\s*(?!GmbH|AG|KG|mbH|Co\\.?|Ltd|Inc|LLC|\\s+GmbH|\\s+AG|\\s+KG|\\s+mbH|\\s+Co\\.?|\\s+Ltd|\\s+Inc|\\s+LLC|Stadtgemeinde|Gemeinde|Verein|Gesellschaft|Unternehmen|Firma|Werk|Bank|Pharma|Energie|Versand|Handel|Technik|Bau|Immobilien|Consulting|Management|Group|Holdings|Partners|&|\\.|$)",
+      "priority": 15,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-25T14:26:29.294585"
+    },
+    {
+      "id": "f96ee46b",
+      "name": "Person with Complex Academic Titles",
+      "description": "Captures names preceded by complex German academic titles, ensuring the full name including the title is captured if it's a compound entity, or just the name if the title is separate. Handles specific complex suffixes like 'Bakk. rer. nat. Bakk. iur..net'.",
+      "format": "regex",
+      "content": "(?:Dr\\.|Mag\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Dipl\\.-Ing\\.|Ing\\.|Techn\\sR|StR|OStR|MR|\\u00d6kR|KommR|VetR|LLM|LLB|Bakk\\.\\s+rer\\.\\s+nat\\.|Bakk\\.\\s+techn\\.|Bakk\\.\\s+phil\\.|MSc|MA|BA|PhD|PhD\\s+OMedR|Mag\\.\\s+a|Dr\\.\\s+a|Hon\\.-Prof\\.\\s+in|Priv\\.-Doz\\.\\s+in|DDr\\.|RgR|MMM\\.?|MMM\\.\\s+a|DI\\.|MMag\\.|MMag\\.\\s+a|OSR\\.|KzlR\\.|MedR\\.|BEd\\.|Bakk\\.\\s+art\\.|Dr\\.\\s+in|Mag\\.\\s+in|Prof\\.\\s+in|Univ\\.-Prof\\.\\s+in|Priv\\.-Doz\\.\\s+in|Dipl\\.-Ing\\.\\s+in|Ing\\.\\s+in|Techn\\sR\\s+in|StR\\s+in|OStR\\s+in|MR\\s+in|\\u00d6kR\\s+in|KommR\\s+in|VetR\\s+in|LLM\\s+in|LLB\\s+in|Bakk\\.\\s+rer\\.\\s+nat\\.\\s+in|Bakk\\.\\s+techn\\.\\s+in|Bakk\\.\\s+phil\\.\\s+in|MSc\\s+in|MA\\s+in|BA\\s+in|PhD\\s+in|PhD\\s+OMedR\\s+in|Mag\\.\\s+a\\s+in|Dr\\.\\s+a\\s+in|Hon\\.-Prof\\.\\s+in\\s+in|Priv\\.-Doz\\.\\s+in\\s+in|DDr\\.\\s+in|RgR\\s+in|MMM\\.?\\s+in|MMM\\.\\s+a\\s+in|DI\\.\\s+in|MMag\\.\\s+in|MMag\\.\\s+a\\s+in|OSR\\.\\s+in|KzlR\\.\\s+in|MedR\\.\\s+in|BEd\\.\\s+in|Bakk\\.\\s+art\\.\\s+in)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)+)(?:\\s+von\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)?(?:\\s+Bakk\\.\\s+rer\\.\\s+nat\\.\\s+Bakk\\.\\s+iur\\.\\.net)?\\s*(?!Inhaber|Bank|GmbH|AG|KG|mbH|Co\\.?|Ltd|Inc|LLC|\\s+Inhaber|\\s+Bank|\\s+GmbH|\\s+AG|\\s+KG|\\s+mbH|\\s+Co\\.?|\\s+Ltd|\\s+Inc|\\s+LLC|\\.|$)",
+      "priority": 15,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-25T14:33:15.945279"
+    },
+    {
+      "id": "d05f9629",
+      "name": "Person after 'geboren am' (Born On)",
+      "description": "Captures names appearing after 'geboren am' (born on) in legal texts, typically identifying the subject of the case. Excludes month names.",
+      "format": "regex",
+      "content": "geboren\\s+am\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)+)(?:\\s+in\\s+|\\s+zu\\s+|\\s+der\\s+|\\s+des\\s+|\\s+am\\s+|\\s+im\\s+|\\s+|\\.|$)",
+      "priority": 13,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-25T14:26:29.301118"
+    },
+    {
+      "id": "10c10e06",
+      "name": "Person after 'gegen' (Defendant)",
+      "description": "Captures person names appearing after 'gegen' (against) in legal contexts, ensuring full name capture and excluding company names. Prioritizes this for cases where the name follows 'gegen' directly.",
+      "format": "regex",
+      "content": "(?:gegen\\s+|der\\s+gegen\\s+)(?:Herrn\\s+|Frau\\s+)?([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)+)(?:\\s+von\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)?\\s*(?!GmbH|AG|KG|mbH|Co\\.?|Ltd|Inc|LLC|\\s+GmbH|\\s+AG|\\s+KG|\\s+mbH|\\s+Co\\.?|\\s+Ltd|\\s+Inc|\\s+LLC|Stadtgemeinde|Gemeinde|Verein|Gesellschaft|Unternehmen|Firma|Werk|Bank|Pharma|Energie|Versand|Handel|Technik|Bau|Immobilien|Consulting|Management|Group|Holdings|Partners|&|\\.|$)",
+      "priority": 10,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-25T14:26:29.299795"
+    },
+    {
+      "id": "0e41d831",
+      "name": "Person in Legal Case Context",
+      "description": "Captures names appearing after 'Beschwerdesache', 'Strafsache', 'Rechtssache', or 'gegen' (against) in legal contexts, ensuring full name capture. Handles standalone surnames and multi-word names.",
+      "format": "regex",
+      "content": "(?:in\\s+der\\s+(?:Beschwerdesache|Strafsache|Rechtssache|Verwaltungsstrafsache|Arbeitsrechtssache|Familienrechtssache)|der\\s+(?:Beschwerdesache|Strafsache|Rechtssache|Verwaltungsstrafsache|Arbeitsrechtssache|Familienrechtssache)|gegen\\s+)(?:Herrn\\s+|Frau\\s+)?([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)+)(?:\\s+von\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)?\\s*(?!GmbH|AG|KG|mbH|Co\\.?|Ltd|Inc|LLC|\\s+GmbH|\\s+AG|\\s+KG|\\s+mbH|\\s+Co\\.?|\\s+Ltd|\\s+Inc|\\s+LLC|Stadtgemeinde|Gemeinde|Verein|Gesellschaft|Unternehmen|Firma|Werk|Bank|Pharma|Energie|Versand|Handel|Technik|Bau|Immobilien|Consulting|Management|Group|Holdings|Partners|&|\\.|$)",
+      "priority": 12,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-25T14:26:29.298341"
+    }
+  ],
+  "best_rules": {
+    "batch": 8,
+    "micro_f1": 0.3276570757486788,
+    "rules": [
+      {
+        "id": "cfc661f1",
+        "name": "Person after 'Schriftf\u00fchrer' (Court Clerk)",
+        "description": "Captures the name of the court clerk mentioned after the title.",
+        "format": "regex",
+        "content": "(?:Schriftf\u00fchrer)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+        "priority": 6,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "6e3cfc1d",
+        "name": "Person after 'fachkundiger Laienrichter'",
+        "description": "Captures lay judges mentioned with their specific title.",
+        "format": "regex",
+        "content": "(?:fachkundiger\\s+Laienrichter|fachkundige\\s+Laienrichterin)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+        "priority": 5,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "9b474dd4",
+        "name": "Person after Judicial Role",
+        "description": "Captures the full name (including title) appearing immediately after judicial role indicators, excluding the role text.",
+        "format": "regex",
+        "content": "(?:die\\s+Richterin|der\\s+Richter|die\\s+Senatsvorsitzende)\\s+(?:Dr\\.(?:in)?|Mag\\.(?:Dr\\.)?|Univ\\.-Prof\\.(?:in)?|Priv\\.-Doz\\.(?:in)?|Hon\\.-Prof\\.(?:in)?|Ing\\.(?:Mag\\.)?|PhD|LL\\.M\\.|Bakk\\. rer\\. nat\\.|OStR|MR|\u00d6kR|KommR|VetR|PhD OMedR)?\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+        "priority": 9,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "79232d4e",
+        "name": "Person after 'Herrn' or 'Frau'",
+        "description": "Captures names preceded by 'Herrn' or 'Frau' in legal texts.",
+        "format": "regex",
+        "content": "(?:Herrn|Frau)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+        "priority": 4,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "23bbc7f9",
+        "name": "Person after 'Gattin' or 'Kinder'",
+        "description": "Captures names of spouses or children mentioned in legal contexts.",
+        "format": "regex",
+        "content": "(?:und\\s+dessen\\s+Gattin|und\\s+deren\\s+Gattin|f\u00fcr\\s+seine\\s+Kinder|f\u00fcr\\s+das\\s+Kind|f\u00fcr\\s+ihre\\s+Tochter|f\u00fcr\\s+seinen\\s+Sohn)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+        "priority": 6,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "4c8cbe8f",
+        "name": "Person after 'klagenden Partei' (Plaintiff)",
+        "description": "Captures the name of the plaintiff appearing after 'klagenden Partei', explicitly excluding company names and handling titles.",
+        "format": "regex",
+        "content": "klagenden\\s+Partei\\s+(?:[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*\\s+)?([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s*,\\s*[A-Z][a-z]+)*)(?!\\s+(?:GmbH|AG|Co\\.|Ltd|Inc|LLC|Rechtsanwalts?\\s+GmbH|Rechtsanwalts?\\s+AG))",
+        "priority": 12,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "e25ebe36",
+        "name": "Person in 'gegen' or 'von' context",
+        "description": "Captures names appearing after 'gegen' (against) or 'von' (of/from) in legal contexts, often without titles.",
+        "format": "regex",
+        "content": "(?:gegen\\s+|von\\s+)([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+        "priority": 8,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "1fcb9e35",
+        "name": "Person after 'vertreten durch' (Refined)",
+        "description": "Captures names of legal representatives following 'vertreten durch', strictly excluding law firm names and ensuring the match ends before company suffixes or 'Rechtsanwalt'.",
+        "format": "regex",
+        "content": "vertreten\\s+durch\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)+)(?:\\s+Rechtsanwalt|\\s+Rechtsanw\u00e4ltin|\\s+GmbH|\\s+AG|\\s+KG|\\s+mbH|\\s+Co\\.?|\\s+Ltd|\\s+Inc|\\s+LLC|\\s+Stadtgemeinde|\\s+Gemeinde|\\s+Verein|\\s+Gesellschaft|\\s+Unternehmen|\\s+Firma|\\s+Werk|\\s+Bank|\\s+Pharma|\\s+Energie|\\s+Versand|\\s+Handel|\\s+Technik|\\s+Bau|\\s+Immobilien|\\s+Consulting|\\s+Management|\\s+Group|\\s+Holdings|\\s+Partners|\\s+&|\\.|$)",
+        "priority": 14,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "e45b5272",
+        "name": "Person in List Context (Numbered)",
+        "description": "Captures names in numbered lists (1., 2., 3.) or comma-separated lists where a name is followed by a number or comma, ensuring full name capture.",
+        "format": "regex",
+        "content": "(?:^|,\\s+|\\d+\\.\\s+)([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)+)(?:,|\\s+\\d+\\.\\s+|\\s+und\\s+|\\s+und\\s+|\\s+\\.|$)",
+        "priority": 12,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "3e083246",
+        "name": "Person after 'gegen' or 'von' (Contextual)",
+        "description": "Captures names appearing after 'gegen' (against) or 'von' (of/from) in legal contexts, ensuring full name capture including 'von' prefixes and handling multi-word names.",
+        "format": "regex",
+        "content": "(?:gegen\\s+|von\\s+)([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)+)(?:\\s+(?:von|vertreten\\s+durch))?\\s*(?!GmbH|AG|KG|mbH|Co\\.?|Ltd|Inc|LLC|\\s+GmbH|\\s+AG|\\s+KG|\\s+mbH|\\s+Co\\.?|\\s+Ltd|\\s+Inc|\\s+LLC|Stadtgemeinde|Gemeinde|Verein|Gesellschaft|Unternehmen|Firma|Werk|Bank|Pharma|Energie|Versand|Handel|Technik|Bau|Immobilien|Consulting|Management|Group|Holdings|Partners|&|\\.|$)",
+        "priority": 14,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "1182fd38",
+        "name": "Person in Parenthetical Context",
+        "description": "Captures names appearing within parentheses, often used for clarification or full names in legal texts.",
+        "format": "regex",
+        "content": "\\(\\s*([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)*)\\s*\\)",
+        "priority": 11,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "ea02f06b",
+        "name": "Person after 'Partei' (Plaintiff/Defendant)",
+        "description": "Captures person names immediately following 'Partei' (party), explicitly excluding company names by checking for suffixes like GmbH, AG, KG, mbH, etc., and prefixes like Stadtgemeinde, Gemeinde, Verein. Requires at least two words or a known title pattern to avoid partial matches.",
+        "format": "regex",
+        "content": "(?:der\\s+klagenden\\s+Partei\\s+|der\\s+beklagten\\s+Partei\\s+|der\\s+betreibenden\\s+Partei\\s+|der\\s+verpflichteten\\s+Partei\\s+|Partei\\s+|der\\s+Partei\\s+)([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)+)(?:\\s+(?:von|vertreten\\s+durch))?\\s*(?!GmbH|AG|KG|mbH|Co\\.?|Ltd|Inc|LLC|\\s+GmbH|\\s+AG|\\s+KG|\\s+mbH|\\s+Co\\.?|\\s+Ltd|\\s+Inc|\\s+LLC|Stadtgemeinde|Gemeinde|Verein|Gesellschaft|Unternehmen|Firma|Werk|Bank|Pharma|Energie|Versand|Handel|Technik|Bau|Immobilien|Consulting|Management|Group|Holdings|Partners|&|\\.|$)",
+        "priority": 15,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "f96ee46b",
+        "name": "Person with Complex Academic Titles",
+        "description": "Captures names preceded by complex German academic titles, ensuring the full name including the title is captured if it's a compound entity, or just the name if the title is separate. Handles specific complex suffixes like 'Bakk. rer. nat. Bakk. iur..net'.",
+        "format": "regex",
+        "content": "(?:Dr\\.|Mag\\.|Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Dipl\\.-Ing\\.|Ing\\.|Techn\\sR|StR|OStR|MR|\\u00d6kR|KommR|VetR|LLM|LLB|Bakk\\.\\s+rer\\.\\s+nat\\.|Bakk\\.\\s+techn\\.|Bakk\\.\\s+phil\\.|MSc|MA|BA|PhD|PhD\\s+OMedR|Mag\\.\\s+a|Dr\\.\\s+a|Hon\\.-Prof\\.\\s+in|Priv\\.-Doz\\.\\s+in|DDr\\.|RgR|MMM\\.?|MMM\\.\\s+a|DI\\.|MMag\\.|MMag\\.\\s+a|OSR\\.|KzlR\\.|MedR\\.|BEd\\.|Bakk\\.\\s+art\\.|Dr\\.\\s+in|Mag\\.\\s+in|Prof\\.\\s+in|Univ\\.-Prof\\.\\s+in|Priv\\.-Doz\\.\\s+in|Dipl\\.-Ing\\.\\s+in|Ing\\.\\s+in|Techn\\sR\\s+in|StR\\s+in|OStR\\s+in|MR\\s+in|\\u00d6kR\\s+in|KommR\\s+in|VetR\\s+in|LLM\\s+in|LLB\\s+in|Bakk\\.\\s+rer\\.\\s+nat\\.\\s+in|Bakk\\.\\s+techn\\.\\s+in|Bakk\\.\\s+phil\\.\\s+in|MSc\\s+in|MA\\s+in|BA\\s+in|PhD\\s+in|PhD\\s+OMedR\\s+in|Mag\\.\\s+a\\s+in|Dr\\.\\s+a\\s+in|Hon\\.-Prof\\.\\s+in\\s+in|Priv\\.-Doz\\.\\s+in\\s+in|DDr\\.\\s+in|RgR\\s+in|MMM\\.?\\s+in|MMM\\.\\s+a\\s+in|DI\\.\\s+in|MMag\\.\\s+in|MMag\\.\\s+a\\s+in|OSR\\.\\s+in|KzlR\\.\\s+in|MedR\\.\\s+in|BEd\\.\\s+in|Bakk\\.\\s+art\\.\\s+in)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)+)(?:\\s+von\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)?(?:\\s+Bakk\\.\\s+rer\\.\\s+nat\\.\\s+Bakk\\.\\s+iur\\.\\.net)?\\s*(?!Inhaber|Bank|GmbH|AG|KG|mbH|Co\\.?|Ltd|Inc|LLC|\\s+Inhaber|\\s+Bank|\\s+GmbH|\\s+AG|\\s+KG|\\s+mbH|\\s+Co\\.?|\\s+Ltd|\\s+Inc|\\s+LLC|\\.|$)",
+        "priority": 15,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "d05f9629",
+        "name": "Person after 'geboren am' (Born On)",
+        "description": "Captures names appearing after 'geboren am' (born on) in legal texts, typically identifying the subject of the case. Excludes month names.",
+        "format": "regex",
+        "content": "geboren\\s+am\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)+)(?:\\s+in\\s+|\\s+zu\\s+|\\s+der\\s+|\\s+des\\s+|\\s+am\\s+|\\s+im\\s+|\\s+|\\.|$)",
+        "priority": 13,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "10c10e06",
+        "name": "Person after 'gegen' (Defendant)",
+        "description": "Captures person names appearing after 'gegen' (against) in legal contexts, ensuring full name capture and excluding company names. Prioritizes this for cases where the name follows 'gegen' directly.",
+        "format": "regex",
+        "content": "(?:gegen\\s+|der\\s+gegen\\s+)(?:Herrn\\s+|Frau\\s+)?([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)+)(?:\\s+von\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)?\\s*(?!GmbH|AG|KG|mbH|Co\\.?|Ltd|Inc|LLC|\\s+GmbH|\\s+AG|\\s+KG|\\s+mbH|\\s+Co\\.?|\\s+Ltd|\\s+Inc|\\s+LLC|Stadtgemeinde|Gemeinde|Verein|Gesellschaft|Unternehmen|Firma|Werk|Bank|Pharma|Energie|Versand|Handel|Technik|Bau|Immobilien|Consulting|Management|Group|Holdings|Partners|&|\\.|$)",
+        "priority": 10,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "0e41d831",
+        "name": "Person in Legal Case Context",
+        "description": "Captures names appearing after 'Beschwerdesache', 'Strafsache', 'Rechtssache', or 'gegen' (against) in legal contexts, ensuring full name capture. Handles standalone surnames and multi-word names.",
+        "format": "regex",
+        "content": "(?:in\\s+der\\s+(?:Beschwerdesache|Strafsache|Rechtssache|Verwaltungsstrafsache|Arbeitsrechtssache|Familienrechtssache)|der\\s+(?:Beschwerdesache|Strafsache|Rechtssache|Verwaltungsstrafsache|Arbeitsrechtssache|Familienrechtssache)|gegen\\s+)(?:Herrn\\s+|Frau\\s+)?([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)+)(?:\\s+von\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)?\\s*(?!GmbH|AG|KG|mbH|Co\\.?|Ltd|Inc|LLC|\\s+GmbH|\\s+AG|\\s+KG|\\s+mbH|\\s+Co\\.?|\\s+Ltd|\\s+Inc|\\s+LLC|Stadtgemeinde|Gemeinde|Verein|Gesellschaft|Unternehmen|Firma|Werk|Bank|Pharma|Energie|Versand|Handel|Technik|Bau|Immobilien|Consulting|Management|Group|Holdings|Partners|&|\\.|$)",
+        "priority": 12,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      }
+    ]
+  }
+}
