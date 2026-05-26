@@ -1,6 +1,6 @@
 # Rule Evaluation Report — Qwen/Qwen3.5-35B-A3B
 
-Generated on: 2026-05-26T18:18:36.279863
+Generated on: 2026-05-26T18:25:09.038487
 
 ---
 
@@ -52,14 +52,14 @@ Results can be reproduced by running this command:
 | Metric | Value |
 |---|---|
 | Accuracy (exact match) | 97.6% |
-| True Positives | 274 |
-| False Positives | 333 |
-| False Negatives | 375 |
-| Total Gold Entities | 649 |
-| Micro Precision | 45.1% |
-| Micro Recall | 42.2% |
-| Micro F1 | 43.6% |
-| Macro F1 | 43.6% |
+| True Positives | 278 |
+| False Positives | 329 |
+| False Negatives | 383 |
+| Total Gold Entities | 661 |
+| Micro Precision | 45.8% |
+| Micro Recall | 42.1% |
+| Micro F1 | 43.8% |
+| Macro F1 | 43.8% |
 
 </details>
 
@@ -73,16 +73,17 @@ Results can be reproduced by running this command:
 | `Administrative Court` | 1.8% | 100.0% | 0.9% | 6 | 6 | 0 |
 | `Vienna Magistrate` | 2.1% | 100.0% | 1.1% | 7 | 7 | 0 |
 | `Constitutional Court` | 2.4% | 100.0% | 1.2% | 8 | 8 | 0 |
-| `Labor Court Vienna` | 10.0% | 100.0% | 5.2% | 34 | 34 | 0 |
-| `Court with Location` | 5.4% | 100.0% | 2.8% | 18 | 18 | 0 |
+| `Labor Court Vienna` | 9.8% | 100.0% | 5.1% | 34 | 34 | 0 |
+| `Court with Location` | 5.3% | 100.0% | 2.7% | 18 | 18 | 0 |
 | `Verwaltungsgerichtshof Genitive` | 1.5% | 100.0% | 0.8% | 5 | 5 | 0 |
 | `Magistrate City Pattern` | 2.1% | 100.0% | 1.1% | 7 | 7 | 0 |
-| `District Court Pattern` | 30.3% | 73.4% | 19.1% | 169 | 124 | 45 |
-| `Regional Court Pattern` | 17.0% | 67.0% | 9.7% | 94 | 63 | 31 |
-| `Bank and Other Org` | 4.2% | 66.7% | 2.2% | 21 | 14 | 7 |
+| `Federal Ministry of Justice` | 1.2% | 100.0% | 0.6% | 4 | 4 | 0 |
+| `District Court Pattern` | 29.9% | 73.4% | 18.8% | 169 | 124 | 45 |
+| `Regional Court Pattern` | 16.7% | 67.0% | 9.5% | 94 | 63 | 31 |
+| `Bank and Other Org` | 4.1% | 66.7% | 2.1% | 21 | 14 | 7 |
 | `Hyphenated Company Names` | 0.3% | 50.0% | 0.2% | 2 | 1 | 1 |
-| `Generic GmbH Entity` | 5.3% | 14.5% | 3.2% | 145 | 21 | 124 |
-| `Company Name Without Suffix` | 4.7% | 8.6% | 3.2% | 244 | 21 | 223 |
+| `Generic GmbH Entity` | 5.2% | 14.5% | 3.2% | 145 | 21 | 124 |
+| `Company Name Without Suffix` | 4.6% | 8.6% | 3.2% | 244 | 21 | 223 |
 | `Federal Tax Court` | 0.0% | 0.0% | 0.0% | 0 | 0 | 0 |
 | `Tax Authority Austria` | 0.0% | 0.0% | 0.0% | 0 | 0 | 0 |
 | `Ministry of Finance` | 0.0% | 0.0% | 0.0% | 0 | 0 | 0 |
@@ -164,7 +165,6 @@ Results can be reproduced by running this command:
 | `Steueramt Kanton` | 0.0% | 0.0% | 0.0% | 0 | 0 | 0 |
 | `Higher Technical School` | 0.0% | 0.0% | 0.0% | 0 | 0 | 0 |
 | `Real Estate Office` | 0.0% | 0.0% | 0.0% | 0 | 0 | 0 |
-| `Federal Ministry of Justice` | 0.0% | 0.0% | 0.0% | 4 | 0 | 4 |
 | `Austrian Society for European Politics` | 0.0% | 0.0% | 0.0% | 0 | 0 | 0 |
 | `BM für Finanzen` | 0.0% | 0.0% | 0.0% | 0 | 0 | 0 |
 | `Retailers List` | 0.0% | 0.0% | 0.0% | 0 | 0 | 0 |
@@ -195,7 +195,7 @@ Results can be reproduced by running this command:
 
 ## `Labor Court Vienna`
 
-**F1:** 0.100 | **Precision:** 1.000 | **Recall:** 0.052  
+**F1:** 0.098 | **Precision:** 1.000 | **Recall:** 0.051  
 
 **Format:** `regex`  
 **Rule ID:** `dee27985`  
@@ -212,13 +212,13 @@ Matches Arbeits- und Sozialgericht Wien and variations.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 1.000 | 0.052 | 0.100 | 34 | 34 | 0 |
+| 1.000 | 0.051 | 0.098 | 34 | 34 | 0 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 34 | 0 | 509 |
+| `organisation` | 34 | 0 | 521 |
 
 </details>
 
@@ -635,7 +635,7 @@ Kopf Der Oberste Gerichtshof hat als Revisions- und Rekursgericht in Arbeits- un
 
 ## `Court with Location`
 
-**F1:** 0.054 | **Precision:** 1.000 | **Recall:** 0.028  
+**F1:** 0.053 | **Precision:** 1.000 | **Recall:** 0.027  
 
 **Format:** `regex`  
 **Rule ID:** `971aef3b`  
@@ -652,13 +652,13 @@ Matches court names followed by location suffixes like 'Außenstelle Linz'.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 1.000 | 0.028 | 0.054 | 18 | 18 | 0 |
+| 1.000 | 0.027 | 0.053 | 18 | 18 | 0 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 18 | 0 | 548 |
+| `organisation` | 18 | 0 | 560 |
 
 </details>
 
@@ -826,7 +826,7 @@ Matches Verfassungsgerichtshof and its genitive form.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 8 | 0 | 367 |
+| `organisation` | 8 | 0 | 374 |
 
 </details>
 
@@ -952,7 +952,7 @@ Matches Magistrat der Stadt Wien with department codes, ensuring the full entity
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 7 | 0 | 570 |
+| `organisation` | 7 | 0 | 582 |
 
 </details>
 
@@ -1093,7 +1093,7 @@ Matches Magistrat der Stadt followed by city name, including genitive forms and 
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 7 | 0 | 570 |
+| `organisation` | 7 | 0 | 582 |
 
 </details>
 
@@ -1234,7 +1234,7 @@ Matches Verwaltungsgerichtshof and all its case endings, including optional (VwG
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 6 | 0 | 267 |
+| `organisation` | 6 | 0 | 272 |
 
 </details>
 
@@ -1315,7 +1315,7 @@ Von dieser Sachlage ausgehend wies der von der Beklagten in diesem Verfahren mit
 
 ## `District Court Pattern`
 
-**F1:** 0.303 | **Precision:** 0.734 | **Recall:** 0.191  
+**F1:** 0.299 | **Precision:** 0.734 | **Recall:** 0.188  
 
 **Format:** `regex`  
 **Rule ID:** `4a197a40`  
@@ -1332,13 +1332,13 @@ Matches Bezirksgericht followed by location, handling 'BG' abbreviation.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.734 | 0.191 | 0.303 | 169 | 124 | 45 |
+| 0.734 | 0.188 | 0.299 | 169 | 124 | 45 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 124 | 45 | 525 |
+| `organisation` | 124 | 45 | 537 |
 
 </details>
 
@@ -1970,7 +1970,7 @@ Dem Ordinationsantrag ist somit stattzugeben und zweckmäßigerweise das Bezirks
 
 ## `Regional Court Pattern`
 
-**F1:** 0.170 | **Precision:** 0.670 | **Recall:** 0.097  
+**F1:** 0.167 | **Precision:** 0.670 | **Recall:** 0.095  
 
 **Format:** `regex`  
 **Rule ID:** `8426a1d3`  
@@ -1987,13 +1987,13 @@ Matches Landesgericht (LG) followed by location.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.670 | 0.097 | 0.170 | 94 | 63 | 31 |
+| 0.670 | 0.095 | 0.167 | 94 | 63 | 31 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 63 | 31 | 521 |
+| `organisation` | 63 | 31 | 533 |
 
 </details>
 
@@ -2729,7 +2729,7 @@ Das Oberlandesgericht Wien als Rekursgericht stellte mit Beschluss vom 22. 10. 2
 
 ## `Bank and Other Org`
 
-**F1:** 0.042 | **Precision:** 0.667 | **Recall:** 0.022  
+**F1:** 0.041 | **Precision:** 0.667 | **Recall:** 0.021  
 
 **Format:** `regex`  
 **Rule ID:** `53220dfe`  
@@ -2746,13 +2746,13 @@ Matches specific bank names and other organizations like 'Reinemut + Smoch Hande
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.667 | 0.022 | 0.042 | 21 | 14 | 7 |
+| 0.667 | 0.021 | 0.041 | 21 | 14 | 7 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 14 | 7 | 555 |
+| `organisation` | 14 | 7 | 567 |
 
 </details>
 
@@ -3034,7 +3034,7 @@ Wenn das Erstgericht - dem Sachverständigengutachten folgend - zu der Einschät
 
 ## `Generic GmbH Entity`
 
-**F1:** 0.053 | **Precision:** 0.145 | **Recall:** 0.032  
+**F1:** 0.052 | **Precision:** 0.145 | **Recall:** 0.032  
 
 **Format:** `regex`  
 **Rule ID:** `0d4e88c9`  
@@ -3051,13 +3051,13 @@ Matches company names ending in GmbH, AG, KG, etc., with strict word boundaries 
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.145 | 0.032 | 0.053 | 145 | 21 | 124 |
+| 0.145 | 0.032 | 0.052 | 145 | 21 | 124 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 21 | 124 | 626 |
+| `organisation` | 21 | 124 | 638 |
 
 </details>
 
@@ -3785,7 +3785,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 
 ## `Company Name Without Suffix`
 
-**F1:** 0.047 | **Precision:** 0.086 | **Recall:** 0.032  
+**F1:** 0.046 | **Precision:** 0.086 | **Recall:** 0.032  
 
 **Format:** `regex`  
 **Rule ID:** `c8608e27`  
@@ -3802,13 +3802,13 @@ Matches company names that do not end in a standard suffix like GmbH/AG but are 
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.086 | 0.032 | 0.047 | 244 | 21 | 223 |
+| 0.086 | 0.032 | 0.046 | 244 | 21 | 223 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 21 | 223 | 626 |
+| `organisation` | 21 | 223 | 638 |
 
 </details>
 
@@ -4442,7 +4442,7 @@ Matches VfGH acronym.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 12 | 523 |
+| `organisation` | 0 | 12 | 535 |
 
 </details>
 
@@ -4616,7 +4616,7 @@ Matches law firms ending in Rechtsanwälte GmbH/OG with names, ensuring no prece
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 10 | 472 |
+| `organisation` | 0 | 10 | 483 |
 
 </details>
 
@@ -4632,9 +4632,9 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Univ.-Prof. Dr. By
 
 **False Positives:**
 
-- `Nagele & Partner Rechtsanwälte GmbH` — no gold match — likely missing annotation
+- `Nagele & Partner Rechtsanwälte GmbH` — partial — pred is substring of gold: `Haslinger/Nagele & Partner Rechtsanwälte GmbH`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
 
 **Gold Entities:**
 
@@ -4643,6 +4643,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Univ.-Prof. Dr. By
 - `Mag. Lilia Anderßon`(person)
 - `Vanek und Eloy Analyse GmbH`(organisation)
 - `Kanischaberg 21, 4742 Kornrödt, Österreich`(address)
+- `Haslinger/Nagele & Partner Rechtsanwälte GmbH`(organisation)
 
 **Example 1** (doc_id: `deanon_TRAIN/1Ob38_21a`) (sent_id: `deanon_TRAIN/1Ob38_21a_3`)
 
@@ -4678,13 +4679,14 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Hofrat des Obers
 
 **False Positives:**
 
-- `Gründl Rechtsanwälte OG` — no gold match — likely missing annotation
+- `Gründl Rechtsanwälte OG` — partial — pred is substring of gold: `Eger/Gründl Rechtsanwälte OG`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
 
 **Gold Entities:**
 
 - `Andreas Clösges`(person)
+- `Eger/Gründl Rechtsanwälte OG`(organisation)
 - `Chemie Valtri GmbH`(organisation)
 - `Niels Niefeldt`(person)
 
@@ -4695,9 +4697,9 @@ Logdercon-Digital, Dänemark, 2. Fengart GmbH, Oberer Weinweg 87, 9020 Klagenfur
 
 **False Positives:**
 
-- `Rohrwig Hainz Rechtsanwälte GmbH` — no gold match — likely missing annotation
+- `Rohrwig Hainz Rechtsanwälte GmbH` — partial — pred is substring of gold: `CMS Reich-Rohrwig Hainz Rechtsanwälte GmbH`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
 
 **Gold Entities:**
 
@@ -4708,6 +4710,7 @@ Logdercon-Digital, Dänemark, 2. Fengart GmbH, Oberer Weinweg 87, 9020 Klagenfur
 - `OVX Finanzen`(organisation)
 - `Analyse Kelunizor AG`(organisation)
 - `Fahnberg 42, 4100 Großamberg, Österreich`(address)
+- `CMS Reich-Rohrwig Hainz Rechtsanwälte GmbH`(organisation)
 
 **Example 5** (doc_id: `deanon_TRAIN/6Ob145_21y`) (sent_id: `deanon_TRAIN/6Ob145_21y_3`)
 
@@ -4716,14 +4719,15 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Hon.-Prof. Dr. Git
 
 **False Positives:**
 
-- `Rohrwig Hainz Rechtsanwälte GmbH` — no gold match — likely missing annotation
+- `Rohrwig Hainz Rechtsanwälte GmbH` — partial — pred is substring of gold: `CMS Reich-Rohrwig Hainz Rechtsanwälte GmbH`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
 
 **Gold Entities:**
 
 - `Dipl.-Ing. Kirstin Iseler, MA Bakk. rer. nat.`(person)
 - `Wilfried Pawell`(person)
+- `CMS Reich-Rohrwig Hainz Rechtsanwälte GmbH`(organisation)
 
 **Example 6** (doc_id: `deanon_TRAIN/8ObA18_17f`) (sent_id: `deanon_TRAIN/8ObA18_17f_3`)
 
@@ -4732,15 +4736,16 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrech
 
 **False Positives:**
 
-- `Tessbach Rechtsanwälte GmbH` — no gold match — likely missing annotation
+- `Tessbach Rechtsanwälte GmbH` — partial — pred is substring of gold: `DLA Piper Weiss-Tessbach Rechtsanwälte GmbH`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
 
 **Gold Entities:**
 
 - `Cassandra Hennel`(person)
 - `SeeTextil AG`(organisation)
 - `Othmar Dempewolf`(person)
+- `DLA Piper Weiss-Tessbach Rechtsanwälte GmbH`(organisation)
 - `Arbeits- und Sozialgerichts`(organisation)
 
 **Example 7** (doc_id: `deanon_TRAIN/8ObA47_20z`) (sent_id: `deanon_TRAIN/8ObA47_20z_4`)
@@ -4750,14 +4755,15 @@ Sabine Duminger (aus dem Kreis der Arbeitgeber) und Robert Hauser (aus dem Kreis
 
 **False Positives:**
 
-- `Koch & Partner Rechtsanwälte GmbH` — no gold match — likely missing annotation
+- `Koch & Partner Rechtsanwälte GmbH` — partial — pred is substring of gold: `Wildmoser/Koch & Partner Rechtsanwälte GmbH`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
 
 **Gold Entities:**
 
 - `Ilse Rzeznitzek`(person)
 - `Alva Kaulfuß, Bakk. iur.`(person)
+- `Wildmoser/Koch & Partner Rechtsanwälte GmbH`(organisation)
 
 **Example 8** (doc_id: `deanon_TRAIN/8ObA71_14w`) (sent_id: `deanon_TRAIN/8ObA71_14w_3`)
 
@@ -4766,15 +4772,16 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrech
 
 **False Positives:**
 
-- `Rohrwig Hainz Rechtsanwälte GmbH` — no gold match — likely missing annotation
+- `Rohrwig Hainz Rechtsanwälte GmbH` — partial — pred is substring of gold: `CMS Reich-Rohrwig Hainz Rechtsanwälte GmbH`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
 
 **Gold Entities:**
 
 - `Karl Höroldt`(person)
 - `Rhein-Lebensmittel Manufaktur AG`(organisation)
 - `David Gideon`(person)
+- `CMS Reich-Rohrwig Hainz Rechtsanwälte GmbH`(organisation)
 
 **Example 9** (doc_id: `deanon_TRAIN/8ObA72_19z`) (sent_id: `deanon_TRAIN/8ObA72_19z_3`)
 
@@ -4783,15 +4790,16 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrech
 
 **False Positives:**
 
-- `Rohrwig Hainz Rechtsanwälte GmbH` — no gold match — likely missing annotation
+- `Rohrwig Hainz Rechtsanwälte GmbH` — partial — pred is substring of gold: `CMS Reich-Rohrwig Hainz Rechtsanwälte GmbH`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
 
 **Gold Entities:**
 
 - `Hermine Thom`(person)
 - `Mur Brucktridon AG`(organisation)
 - `Dipl.-Ing. Griselda Lamberty, Bakk. rer. nat.`(person)
+- `CMS Reich-Rohrwig Hainz Rechtsanwälte GmbH`(organisation)
 
 </details>
 
@@ -4822,7 +4830,7 @@ Matches law firms ending in KG, excluding GmbH & Co KG patterns.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 10 | 552 |
+| `organisation` | 0 | 10 | 564 |
 
 </details>
 
@@ -5005,7 +5013,7 @@ Matches VwGH acronym, but only when it appears as a standalone entity reference,
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 7 | 523 |
+| `organisation` | 0 | 7 | 535 |
 
 </details>
 
@@ -5361,7 +5369,7 @@ Matches the specific retailer Billa.
 
 ## `District Court Pattern`
 
-**F1:** 0.303 | **Precision:** 0.734 | **Recall:** 0.191  
+**F1:** 0.299 | **Precision:** 0.734 | **Recall:** 0.188  
 
 **Format:** `regex`  
 **Rule ID:** `4a197a40`  
@@ -5378,13 +5386,13 @@ Matches Bezirksgericht followed by location, handling 'BG' abbreviation.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.734 | 0.191 | 0.303 | 169 | 124 | 45 |
+| 0.734 | 0.188 | 0.299 | 169 | 124 | 45 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 124 | 45 | 525 |
+| `organisation` | 124 | 45 | 537 |
 
 </details>
 
@@ -6544,7 +6552,7 @@ Dem Ordinationsantrag ist somit stattzugeben und zweckmäßigerweise das Bezirks
 
 ## `Regional Court Pattern`
 
-**F1:** 0.170 | **Precision:** 0.670 | **Recall:** 0.097  
+**F1:** 0.167 | **Precision:** 0.670 | **Recall:** 0.095  
 
 **Format:** `regex`  
 **Rule ID:** `8426a1d3`  
@@ -6561,13 +6569,13 @@ Matches Landesgericht (LG) followed by location.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.670 | 0.097 | 0.170 | 94 | 63 | 31 |
+| 0.670 | 0.095 | 0.167 | 94 | 63 | 31 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 63 | 31 | 521 |
+| `organisation` | 63 | 31 | 533 |
 
 </details>
 
@@ -7675,7 +7683,7 @@ Das Landesgericht für Zivilrechtssachen Wien trug dem Beklagten mit Beschluss v
 
 ## `Labor Court Vienna`
 
-**F1:** 0.100 | **Precision:** 1.000 | **Recall:** 0.052  
+**F1:** 0.098 | **Precision:** 1.000 | **Recall:** 0.051  
 
 **Format:** `regex`  
 **Rule ID:** `dee27985`  
@@ -7692,13 +7700,13 @@ Matches Arbeits- und Sozialgericht Wien and variations.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 1.000 | 0.052 | 0.100 | 34 | 34 | 0 |
+| 1.000 | 0.051 | 0.098 | 34 | 34 | 0 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 34 | 0 | 509 |
+| `organisation` | 34 | 0 | 521 |
 
 </details>
 
@@ -8130,7 +8138,7 @@ Brigitte Augustin und Mag. Andreas Hach als weitere Richter in der Arbeitsrechts
 
 ## `Court with Location`
 
-**F1:** 0.054 | **Precision:** 1.000 | **Recall:** 0.028  
+**F1:** 0.053 | **Precision:** 1.000 | **Recall:** 0.027  
 
 **Format:** `regex`  
 **Rule ID:** `971aef3b`  
@@ -8147,13 +8155,13 @@ Matches court names followed by location suffixes like 'Außenstelle Linz'.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 1.000 | 0.028 | 0.054 | 18 | 18 | 0 |
+| 1.000 | 0.027 | 0.053 | 18 | 18 | 0 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 18 | 0 | 548 |
+| `organisation` | 18 | 0 | 560 |
 
 </details>
 
@@ -8298,7 +8306,7 @@ Ihr Antrag auf Gesetzesprüfung hinsichtlich der inzwischen aufgelösten Berufun
 
 ## `Generic GmbH Entity`
 
-**F1:** 0.053 | **Precision:** 0.145 | **Recall:** 0.032  
+**F1:** 0.052 | **Precision:** 0.145 | **Recall:** 0.032  
 
 **Format:** `regex`  
 **Rule ID:** `0d4e88c9`  
@@ -8315,13 +8323,13 @@ Matches company names ending in GmbH, AG, KG, etc., with strict word boundaries 
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.145 | 0.032 | 0.053 | 145 | 21 | 124 |
+| 0.145 | 0.032 | 0.052 | 145 | 21 | 124 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 21 | 124 | 626 |
+| `organisation` | 21 | 124 | 638 |
 
 </details>
 
@@ -9282,13 +9290,14 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Hofrat des Obers
 
 **False Positives:**
 
-- `Gründl Rechtsanwälte OG` — no gold match — likely missing annotation
+- `Gründl Rechtsanwälte OG` — partial — pred is substring of gold: `Eger/Gründl Rechtsanwälte OG`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
 
 **Gold Entities:**
 
 - `Andreas Clösges`(person)
+- `Eger/Gründl Rechtsanwälte OG`(organisation)
 - `Chemie Valtri GmbH`(organisation)
 - `Niels Niefeldt`(person)
 
@@ -9316,9 +9325,9 @@ Logdercon-Digital, Dänemark, 2. Fengart GmbH, Oberer Weinweg 87, 9020 Klagenfur
 
 **False Positives:**
 
-- `Rohrwig Hainz Rechtsanwälte GmbH` — no gold match — likely missing annotation
+- `Rohrwig Hainz Rechtsanwälte GmbH` — partial — pred is substring of gold: `CMS Reich-Rohrwig Hainz Rechtsanwälte GmbH`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
 
 **Gold Entities:**
 
@@ -9329,6 +9338,7 @@ Logdercon-Digital, Dänemark, 2. Fengart GmbH, Oberer Weinweg 87, 9020 Klagenfur
 - `OVX Finanzen`(organisation)
 - `Analyse Kelunizor AG`(organisation)
 - `Fahnberg 42, 4100 Großamberg, Österreich`(address)
+- `CMS Reich-Rohrwig Hainz Rechtsanwälte GmbH`(organisation)
 
 **Example 49** (doc_id: `deanon_TRAIN/4Ob136_11w`) (sent_id: `deanon_TRAIN/4Ob136_11w_5`)
 
@@ -9671,14 +9681,15 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Hon.-Prof. Dr. Git
 
 **False Positives:**
 
-- `Rohrwig Hainz Rechtsanwälte GmbH` — no gold match — likely missing annotation
+- `Rohrwig Hainz Rechtsanwälte GmbH` — partial — pred is substring of gold: `CMS Reich-Rohrwig Hainz Rechtsanwälte GmbH`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
 
 **Gold Entities:**
 
 - `Dipl.-Ing. Kirstin Iseler, MA Bakk. rer. nat.`(person)
 - `Wilfried Pawell`(person)
+- `CMS Reich-Rohrwig Hainz Rechtsanwälte GmbH`(organisation)
 
 **Example 71** (doc_id: `deanon_TRAIN/6Ob16_20a`) (sent_id: `deanon_TRAIN/6Ob16_20a_58`)
 
@@ -9805,7 +9816,7 @@ Wenn nun kraft ausdrücklicher gesetzlicher Vorschrift gemeinnützige Bauvereini
 
 ## `Company Name Without Suffix`
 
-**F1:** 0.047 | **Precision:** 0.086 | **Recall:** 0.032  
+**F1:** 0.046 | **Precision:** 0.086 | **Recall:** 0.032  
 
 **Format:** `regex`  
 **Rule ID:** `c8608e27`  
@@ -9822,13 +9833,13 @@ Matches company names that do not end in a standard suffix like GmbH/AG but are 
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.086 | 0.032 | 0.047 | 244 | 21 | 223 |
+| 0.086 | 0.032 | 0.046 | 244 | 21 | 223 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 21 | 223 | 626 |
+| `organisation` | 21 | 223 | 638 |
 
 </details>
 
@@ -10893,13 +10904,14 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Hofrat des Obers
 
 **False Positives:**
 
-- `Gründl Rechtsanwälte OG` — no gold match — likely missing annotation
+- `Gründl Rechtsanwälte OG` — partial — pred is substring of gold: `Eger/Gründl Rechtsanwälte OG`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
 
 **Gold Entities:**
 
 - `Andreas Clösges`(person)
+- `Eger/Gründl Rechtsanwälte OG`(organisation)
 - `Chemie Valtri GmbH`(organisation)
 - `Niels Niefeldt`(person)
 
@@ -10927,9 +10939,9 @@ Logdercon-Digital, Dänemark, 2. Fengart GmbH, Oberer Weinweg 87, 9020 Klagenfur
 
 **False Positives:**
 
-- `Rohrwig Hainz Rechtsanwälte GmbH` — no gold match — likely missing annotation
+- `Rohrwig Hainz Rechtsanwälte GmbH` — partial — pred is substring of gold: `CMS Reich-Rohrwig Hainz Rechtsanwälte GmbH`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
 
 **Gold Entities:**
 
@@ -10940,6 +10952,7 @@ Logdercon-Digital, Dänemark, 2. Fengart GmbH, Oberer Weinweg 87, 9020 Klagenfur
 - `OVX Finanzen`(organisation)
 - `Analyse Kelunizor AG`(organisation)
 - `Fahnberg 42, 4100 Großamberg, Österreich`(address)
+- `CMS Reich-Rohrwig Hainz Rechtsanwälte GmbH`(organisation)
 
 **Example 66** (doc_id: `deanon_TRAIN/4Ob136_11w`) (sent_id: `deanon_TRAIN/4Ob136_11w_5`)
 
@@ -11280,7 +11293,7 @@ Aber selbst wenn die Beklagte die Gesellschaft aufgrund eines aus der gleichzeit
 
 ## `Bank and Other Org`
 
-**F1:** 0.042 | **Precision:** 0.667 | **Recall:** 0.022  
+**F1:** 0.041 | **Precision:** 0.667 | **Recall:** 0.021  
 
 **Format:** `regex`  
 **Rule ID:** `53220dfe`  
@@ -11297,13 +11310,13 @@ Matches specific bank names and other organizations like 'Reinemut + Smoch Hande
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.667 | 0.022 | 0.042 | 21 | 14 | 7 |
+| 0.667 | 0.021 | 0.041 | 21 | 14 | 7 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 14 | 7 | 555 |
+| `organisation` | 14 | 7 | 567 |
 
 </details>
 
@@ -11608,7 +11621,7 @@ Matches Verfassungsgerichtshof and its genitive form.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 8 | 0 | 367 |
+| `organisation` | 8 | 0 | 374 |
 
 </details>
 
@@ -11734,7 +11747,7 @@ Matches Magistrat der Stadt Wien with department codes, ensuring the full entity
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 7 | 0 | 570 |
+| `organisation` | 7 | 0 | 582 |
 
 </details>
 
@@ -11875,7 +11888,7 @@ Matches Magistrat der Stadt followed by city name, including genitive forms and 
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 7 | 0 | 570 |
+| `organisation` | 7 | 0 | 582 |
 
 </details>
 
@@ -12016,7 +12029,7 @@ Matches Verwaltungsgerichtshof and all its case endings, including optional (VwG
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 6 | 0 | 267 |
+| `organisation` | 6 | 0 | 272 |
 
 </details>
 
@@ -12120,7 +12133,7 @@ Matches Verwaltungsgerichtshof and its genitive form Verwaltungsgerichtshofes.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 5 | 0 | 268 |
+| `organisation` | 5 | 0 | 273 |
 
 </details>
 
@@ -12186,6 +12199,80 @@ Weil in der Folge abermals ein abweisender Bescheid erging, der sodann in Rechts
 
 ---
 
+## `Federal Ministry of Justice`
+
+**F1:** 0.012 | **Precision:** 1.000 | **Recall:** 0.006  
+
+**Format:** `regex`  
+**Rule ID:** `e4ecd3f6`  
+**Description:**
+Matches Bundesministeriums für Justiz.
+
+**Content:**
+```
+(?i)\b(Bundesministeriums\s+für\s+Justiz)\b
+```
+
+<details>
+<summary>📊 Detailed Metrics</summary>
+
+| Precision | Recall | F1 | Total Predicted | TP | FP |
+|---|---|---|---|---|---|
+| 1.000 | 0.006 | 0.012 | 4 | 4 | 0 |
+
+**Per-Class Breakdown**
+
+| Class | TP | FP | FN |
+|---|---|---|---|
+| `organisation` | 4 | 0 | 507 |
+
+</details>
+
+---
+
+<details>
+<summary>✅ Worked</summary>
+
+**Example 0** (doc_id: `deanon_TRAIN/15Os35_19i_15Os36_19m_`) (sent_id: `deanon_TRAIN/15Os35_19i_15Os36_19m__6`)
+
+
+Eine Bewilligung der Auslieferung gemäß § 34 Abs 1 ARHG ist nach Auskunft des Bundesministeriums für Justiz bislang nicht erfolgt, mit einer solchen wird bis zur Entscheidung über einen allfälligen Erneuerungsantragzugewartetwerden.
+
+| Predicted | Gold |
+|---|---|
+| `Bundesministeriums für Justiz` | `Bundesministeriums für Justiz` |
+
+**Example 1** (doc_id: `deanon_TRAIN/2Ob179_15k`) (sent_id: `deanon_TRAIN/2Ob179_15k_22`)
+
+
+Das fremde Recht habe aber durch die Mitwirkung der Parteien und die Rechtsauskunft des Bundesministeriums für Justiz nur begrenzt und nicht zu allen relevanten Rechtsfragen ermittelt werden können.
+
+| Predicted | Gold |
+|---|---|
+| `Bundesministeriums für Justiz` | `Bundesministeriums für Justiz` |
+
+**Example 2** (doc_id: `deanon_TRAIN/2Ob179_15k`) (sent_id: `deanon_TRAIN/2Ob179_15k_74`)
+
+
+Es ist gemäß § 4 Abs 1 IPRG von Amts wegen zu ermitteln, wobei nach der demonstrativen Aufzählung in dieser Bestimmung zulässige Hilfsmittel dafür auch die Mitwirkung der Beteiligten, Auskünfte des Bundesministeriums für Justiz und Sachverständigengutachten sind.
+
+| Predicted | Gold |
+|---|---|
+| `Bundesministeriums für Justiz` | `Bundesministeriums für Justiz` |
+
+**Example 3** (doc_id: `deanon_TRAIN/2Ob179_15k`) (sent_id: `deanon_TRAIN/2Ob179_15k_93`)
+
+
+Ob das Erstgericht im fortgesetzten Verfahren gemäß der Empfehlung des Bundesministeriums für Justiz doch noch ein Rechtsgutachten einholt oder sich die erforderlichen Kenntnisse auf anderem Weg zu verschaffen versucht, steht in seinem Ermessen und ist nicht entscheidend.
+
+| Predicted | Gold |
+|---|---|
+| `Bundesministeriums für Justiz` | `Bundesministeriums für Justiz` |
+
+</details>
+
+---
+
 ## `Hyphenated Company Names`
 
 **F1:** 0.003 | **Precision:** 0.500 | **Recall:** 0.002  
@@ -12211,7 +12298,7 @@ Specifically targets hyphenated company names that might be split by the generic
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 1 | 1 | 470 |
+| `organisation` | 1 | 1 | 480 |
 
 </details>
 
@@ -12363,7 +12450,7 @@ Matches VwGH acronym, but only when it appears as a standalone entity reference,
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 7 | 523 |
+| `organisation` | 0 | 7 | 535 |
 
 </details>
 
@@ -12953,7 +13040,7 @@ Matches VfGH acronym.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 12 | 523 |
+| `organisation` | 0 | 12 | 535 |
 
 </details>
 
@@ -13352,7 +13439,7 @@ Matches the specific organization Pensionsversicherungsanstalt.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 1 | 538 |
+| `organisation` | 0 | 1 | 550 |
 
 </details>
 
@@ -13831,7 +13918,7 @@ Matches Sozialversicherungsanstalt der Bauern.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 2 | 543 |
+| `organisation` | 0 | 2 | 555 |
 
 </details>
 
@@ -14171,7 +14258,7 @@ Matches law firms ending in Rechtsanwält... GmbH/OG.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 4 | 472 |
+| `organisation` | 0 | 4 | 483 |
 
 </details>
 
@@ -14187,9 +14274,9 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Univ.-Prof. Dr. By
 
 **False Positives:**
 
-- `Nagele & Partner Rechtsanwälte GmbH` — no gold match — likely missing annotation
+- `Nagele & Partner Rechtsanwälte GmbH` — partial — pred is substring of gold: `Haslinger/Nagele & Partner Rechtsanwälte GmbH`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
 
 **Gold Entities:**
 
@@ -14198,6 +14285,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Univ.-Prof. Dr. By
 - `Mag. Lilia Anderßon`(person)
 - `Vanek und Eloy Analyse GmbH`(organisation)
 - `Kanischaberg 21, 4742 Kornrödt, Österreich`(address)
+- `Haslinger/Nagele & Partner Rechtsanwälte GmbH`(organisation)
 
 **Example 1** (doc_id: `deanon_TRAIN/1Ob38_21a`) (sent_id: `deanon_TRAIN/1Ob38_21a_3`)
 
@@ -14222,15 +14310,16 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrech
 
 **False Positives:**
 
-- `Tessbach Rechtsanwälte GmbH` — no gold match — likely missing annotation
+- `Tessbach Rechtsanwälte GmbH` — partial — pred is substring of gold: `DLA Piper Weiss-Tessbach Rechtsanwälte GmbH`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
 
 **Gold Entities:**
 
 - `Cassandra Hennel`(person)
 - `SeeTextil AG`(organisation)
 - `Othmar Dempewolf`(person)
+- `DLA Piper Weiss-Tessbach Rechtsanwälte GmbH`(organisation)
 - `Arbeits- und Sozialgerichts`(organisation)
 
 **Example 3** (doc_id: `deanon_TRAIN/8ObA47_20z`) (sent_id: `deanon_TRAIN/8ObA47_20z_4`)
@@ -14240,14 +14329,15 @@ Sabine Duminger (aus dem Kreis der Arbeitgeber) und Robert Hauser (aus dem Kreis
 
 **False Positives:**
 
-- `Koch & Partner Rechtsanwälte GmbH` — no gold match — likely missing annotation
+- `Koch & Partner Rechtsanwälte GmbH` — partial — pred is substring of gold: `Wildmoser/Koch & Partner Rechtsanwälte GmbH`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
 
 **Gold Entities:**
 
 - `Ilse Rzeznitzek`(person)
 - `Alva Kaulfuß, Bakk. iur.`(person)
+- `Wildmoser/Koch & Partner Rechtsanwälte GmbH`(organisation)
 
 </details>
 
@@ -14503,7 +14593,7 @@ Matches law firms ending in Rechtsanwälte GmbH/OG with names, ensuring no prece
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 10 | 472 |
+| `organisation` | 0 | 10 | 483 |
 
 </details>
 
@@ -14519,9 +14609,9 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Univ.-Prof. Dr. By
 
 **False Positives:**
 
-- `Nagele & Partner Rechtsanwälte GmbH` — no gold match — likely missing annotation
+- `Nagele & Partner Rechtsanwälte GmbH` — partial — pred is substring of gold: `Haslinger/Nagele & Partner Rechtsanwälte GmbH`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
 
 **Gold Entities:**
 
@@ -14530,6 +14620,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Univ.-Prof. Dr. By
 - `Mag. Lilia Anderßon`(person)
 - `Vanek und Eloy Analyse GmbH`(organisation)
 - `Kanischaberg 21, 4742 Kornrödt, Österreich`(address)
+- `Haslinger/Nagele & Partner Rechtsanwälte GmbH`(organisation)
 
 **Example 1** (doc_id: `deanon_TRAIN/1Ob38_21a`) (sent_id: `deanon_TRAIN/1Ob38_21a_3`)
 
@@ -14565,13 +14656,14 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Hofrat des Obers
 
 **False Positives:**
 
-- `Gründl Rechtsanwälte OG` — no gold match — likely missing annotation
+- `Gründl Rechtsanwälte OG` — partial — pred is substring of gold: `Eger/Gründl Rechtsanwälte OG`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
 
 **Gold Entities:**
 
 - `Andreas Clösges`(person)
+- `Eger/Gründl Rechtsanwälte OG`(organisation)
 - `Chemie Valtri GmbH`(organisation)
 - `Niels Niefeldt`(person)
 
@@ -14582,9 +14674,9 @@ Logdercon-Digital, Dänemark, 2. Fengart GmbH, Oberer Weinweg 87, 9020 Klagenfur
 
 **False Positives:**
 
-- `Rohrwig Hainz Rechtsanwälte GmbH` — no gold match — likely missing annotation
+- `Rohrwig Hainz Rechtsanwälte GmbH` — partial — pred is substring of gold: `CMS Reich-Rohrwig Hainz Rechtsanwälte GmbH`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
 
 **Gold Entities:**
 
@@ -14595,6 +14687,7 @@ Logdercon-Digital, Dänemark, 2. Fengart GmbH, Oberer Weinweg 87, 9020 Klagenfur
 - `OVX Finanzen`(organisation)
 - `Analyse Kelunizor AG`(organisation)
 - `Fahnberg 42, 4100 Großamberg, Österreich`(address)
+- `CMS Reich-Rohrwig Hainz Rechtsanwälte GmbH`(organisation)
 
 **Example 5** (doc_id: `deanon_TRAIN/6Ob145_21y`) (sent_id: `deanon_TRAIN/6Ob145_21y_3`)
 
@@ -14603,14 +14696,15 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Hon.-Prof. Dr. Git
 
 **False Positives:**
 
-- `Rohrwig Hainz Rechtsanwälte GmbH` — no gold match — likely missing annotation
+- `Rohrwig Hainz Rechtsanwälte GmbH` — partial — pred is substring of gold: `CMS Reich-Rohrwig Hainz Rechtsanwälte GmbH`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
 
 **Gold Entities:**
 
 - `Dipl.-Ing. Kirstin Iseler, MA Bakk. rer. nat.`(person)
 - `Wilfried Pawell`(person)
+- `CMS Reich-Rohrwig Hainz Rechtsanwälte GmbH`(organisation)
 
 **Example 6** (doc_id: `deanon_TRAIN/8ObA18_17f`) (sent_id: `deanon_TRAIN/8ObA18_17f_3`)
 
@@ -14619,15 +14713,16 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrech
 
 **False Positives:**
 
-- `Tessbach Rechtsanwälte GmbH` — no gold match — likely missing annotation
+- `Tessbach Rechtsanwälte GmbH` — partial — pred is substring of gold: `DLA Piper Weiss-Tessbach Rechtsanwälte GmbH`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
 
 **Gold Entities:**
 
 - `Cassandra Hennel`(person)
 - `SeeTextil AG`(organisation)
 - `Othmar Dempewolf`(person)
+- `DLA Piper Weiss-Tessbach Rechtsanwälte GmbH`(organisation)
 - `Arbeits- und Sozialgerichts`(organisation)
 
 **Example 7** (doc_id: `deanon_TRAIN/8ObA47_20z`) (sent_id: `deanon_TRAIN/8ObA47_20z_4`)
@@ -14637,14 +14732,15 @@ Sabine Duminger (aus dem Kreis der Arbeitgeber) und Robert Hauser (aus dem Kreis
 
 **False Positives:**
 
-- `Koch & Partner Rechtsanwälte GmbH` — no gold match — likely missing annotation
+- `Koch & Partner Rechtsanwälte GmbH` — partial — pred is substring of gold: `Wildmoser/Koch & Partner Rechtsanwälte GmbH`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
 
 **Gold Entities:**
 
 - `Ilse Rzeznitzek`(person)
 - `Alva Kaulfuß, Bakk. iur.`(person)
+- `Wildmoser/Koch & Partner Rechtsanwälte GmbH`(organisation)
 
 **Example 8** (doc_id: `deanon_TRAIN/8ObA71_14w`) (sent_id: `deanon_TRAIN/8ObA71_14w_3`)
 
@@ -14653,15 +14749,16 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrech
 
 **False Positives:**
 
-- `Rohrwig Hainz Rechtsanwälte GmbH` — no gold match — likely missing annotation
+- `Rohrwig Hainz Rechtsanwälte GmbH` — partial — pred is substring of gold: `CMS Reich-Rohrwig Hainz Rechtsanwälte GmbH`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
 
 **Gold Entities:**
 
 - `Karl Höroldt`(person)
 - `Rhein-Lebensmittel Manufaktur AG`(organisation)
 - `David Gideon`(person)
+- `CMS Reich-Rohrwig Hainz Rechtsanwälte GmbH`(organisation)
 
 **Example 9** (doc_id: `deanon_TRAIN/8ObA72_19z`) (sent_id: `deanon_TRAIN/8ObA72_19z_3`)
 
@@ -14670,15 +14767,16 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrech
 
 **False Positives:**
 
-- `Rohrwig Hainz Rechtsanwälte GmbH` — no gold match — likely missing annotation
+- `Rohrwig Hainz Rechtsanwälte GmbH` — partial — pred is substring of gold: `CMS Reich-Rohrwig Hainz Rechtsanwälte GmbH`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
 
 **Gold Entities:**
 
 - `Hermine Thom`(person)
 - `Mur Brucktridon AG`(organisation)
 - `Dipl.-Ing. Griselda Lamberty, Bakk. rer. nat.`(person)
+- `CMS Reich-Rohrwig Hainz Rechtsanwälte GmbH`(organisation)
 
 </details>
 
@@ -14854,88 +14952,6 @@ Matches Immobilienbüro followed by name.
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
 | 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
-
-</details>
-
----
-
-## `Federal Ministry of Justice`
-
-**F1:** 0.000 | **Precision:** 0.000 | **Recall:** 0.000  
-
-**Format:** `regex`  
-**Rule ID:** `e4ecd3f6`  
-**Description:**
-Matches Bundesministeriums für Justiz.
-
-**Content:**
-```
-(?i)\b(Bundesministeriums\s+für\s+Justiz)\b
-```
-
-<details>
-<summary>📊 Detailed Metrics</summary>
-
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 4 | 0 | 4 |
-
-**Per-Class Breakdown**
-
-| Class | TP | FP | FN |
-|---|---|---|---|
-| `organisation` | 0 | 4 | 499 |
-
-</details>
-
----
-
-<details>
-<summary>⚠️ False Positives</summary>
-
-**Example 0** (doc_id: `deanon_TRAIN/15Os35_19i_15Os36_19m_`) (sent_id: `deanon_TRAIN/15Os35_19i_15Os36_19m__6`)
-
-
-Eine Bewilligung der Auslieferung gemäß § 34 Abs 1 ARHG ist nach Auskunft des Bundesministeriums für Justiz bislang nicht erfolgt, mit einer solchen wird bis zur Entscheidung über einen allfälligen Erneuerungsantragzugewartetwerden.
-
-**False Positives:**
-
-- `Bundesministeriums für Justiz` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 1** (doc_id: `deanon_TRAIN/2Ob179_15k`) (sent_id: `deanon_TRAIN/2Ob179_15k_22`)
-
-
-Das fremde Recht habe aber durch die Mitwirkung der Parteien und die Rechtsauskunft des Bundesministeriums für Justiz nur begrenzt und nicht zu allen relevanten Rechtsfragen ermittelt werden können.
-
-**False Positives:**
-
-- `Bundesministeriums für Justiz` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 2** (doc_id: `deanon_TRAIN/2Ob179_15k`) (sent_id: `deanon_TRAIN/2Ob179_15k_74`)
-
-
-Es ist gemäß § 4 Abs 1 IPRG von Amts wegen zu ermitteln, wobei nach der demonstrativen Aufzählung in dieser Bestimmung zulässige Hilfsmittel dafür auch die Mitwirkung der Beteiligten, Auskünfte des Bundesministeriums für Justiz und Sachverständigengutachten sind.
-
-**False Positives:**
-
-- `Bundesministeriums für Justiz` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 3** (doc_id: `deanon_TRAIN/2Ob179_15k`) (sent_id: `deanon_TRAIN/2Ob179_15k_93`)
-
-
-Ob das Erstgericht im fortgesetzten Verfahren gemäß der Empfehlung des Bundesministeriums für Justiz doch noch ein Rechtsgutachten einholt oder sich die erforderlichen Kenntnisse auf anderem Weg zu verschaffen versucht, steht in seinem Ermessen und ist nicht entscheidend.
-
-**False Positives:**
-
-- `Bundesministeriums für Justiz` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
 
 </details>
 
@@ -15416,7 +15432,7 @@ Matches law firms ending in KG, excluding GmbH & Co KG patterns.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 10 | 552 |
+| `organisation` | 0 | 10 | 564 |
 
 </details>
 
@@ -15599,7 +15615,7 @@ Matches entities ending in 'gesellschaft mbH' or 'Gesellschaft mbH' which are co
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 2 | 333 |
+| `organisation` | 0 | 2 | 338 |
 
 </details>
 
