@@ -1,6 +1,6 @@
 # Rule Evaluation Report — Qwen/Qwen3.5-35B-A3B
 
-Generated on: 2026-05-26T18:04:58.090732
+Generated on: 2026-05-26T18:09:31.138053
 
 ---
 
@@ -51,15 +51,15 @@ Results can be reproduced by running this command:
 
 | Metric | Value |
 |---|---|
-| Accuracy (exact match) | 97.5% |
-| True Positives | 238 |
-| False Positives | 369 |
-| False Negatives | 368 |
-| Total Gold Entities | 606 |
-| Micro Precision | 39.2% |
-| Micro Recall | 39.3% |
-| Micro F1 | 39.2% |
-| Macro F1 | 39.2% |
+| Accuracy (exact match) | 97.6% |
+| True Positives | 267 |
+| False Positives | 340 |
+| False Negatives | 380 |
+| Total Gold Entities | 647 |
+| Micro Precision | 44.0% |
+| Micro Recall | 41.3% |
+| Micro F1 | 42.6% |
+| Macro F1 | 42.6% |
 
 </details>
 
@@ -70,18 +70,19 @@ Results can be reproduced by running this command:
 
 | Rule | F1 | Precision | Recall | Total Predicted | True Positives | False Positives |
 |---|---|---|---|---|---|---|
-| `Administrative Court` | 2.0% | 100.0% | 1.0% | 6 | 6 | 0 |
-| `Vienna Magistrate` | 2.3% | 100.0% | 1.2% | 7 | 7 | 0 |
-| `Constitutional Court` | 2.6% | 100.0% | 1.3% | 8 | 8 | 0 |
-| `Court with Location` | 5.8% | 100.0% | 3.0% | 18 | 18 | 0 |
-| `Verwaltungsgerichtshof Genitive` | 1.6% | 100.0% | 0.8% | 5 | 5 | 0 |
-| `Magistrate City Pattern` | 2.3% | 100.0% | 1.2% | 7 | 7 | 0 |
-| `District Court Pattern` | 31.5% | 72.2% | 20.1% | 169 | 122 | 47 |
-| `Regional Court Pattern` | 18.0% | 67.0% | 10.4% | 94 | 63 | 31 |
-| `Bank and Other Org` | 4.5% | 66.7% | 2.3% | 21 | 14 | 7 |
+| `Administrative Court` | 1.8% | 100.0% | 0.9% | 6 | 6 | 0 |
+| `Vienna Magistrate` | 2.1% | 100.0% | 1.1% | 7 | 7 | 0 |
+| `Constitutional Court` | 2.4% | 100.0% | 1.2% | 8 | 8 | 0 |
+| `Court with Location` | 5.4% | 100.0% | 2.8% | 18 | 18 | 0 |
+| `Verwaltungsgerichtshof Genitive` | 1.5% | 100.0% | 0.8% | 5 | 5 | 0 |
+| `Magistrate City Pattern` | 2.1% | 100.0% | 1.1% | 7 | 7 | 0 |
+| `Labor Court Vienna` | 8.5% | 85.3% | 4.5% | 34 | 29 | 5 |
+| `District Court Pattern` | 29.9% | 72.2% | 18.9% | 169 | 122 | 47 |
+| `Regional Court Pattern` | 17.0% | 67.0% | 9.7% | 94 | 63 | 31 |
+| `Bank and Other Org` | 4.2% | 66.7% | 2.2% | 21 | 14 | 7 |
 | `Hyphenated Company Names` | 0.3% | 50.0% | 0.2% | 2 | 1 | 1 |
-| `Generic GmbH Entity` | 5.6% | 14.5% | 3.5% | 145 | 21 | 124 |
-| `Company Name Without Suffix` | 4.9% | 8.6% | 3.5% | 244 | 21 | 223 |
+| `Generic GmbH Entity` | 5.3% | 14.5% | 3.2% | 145 | 21 | 124 |
+| `Company Name Without Suffix` | 4.7% | 8.6% | 3.2% | 244 | 21 | 223 |
 | `Federal Tax Court` | 0.0% | 0.0% | 0.0% | 0 | 0 | 0 |
 | `Tax Authority Austria` | 0.0% | 0.0% | 0.0% | 0 | 0 | 0 |
 | `Ministry of Finance` | 0.0% | 0.0% | 0.0% | 0 | 0 | 0 |
@@ -107,7 +108,6 @@ Results can be reproduced by running this command:
 | `Tax Office Acronym FAÖ` | 0.0% | 0.0% | 0.0% | 0 | 0 | 0 |
 | `Constitutional Court Acronym` | 0.0% | 0.0% | 0.0% | 12 | 0 | 12 |
 | `Gözcü Getränke` | 0.0% | 0.0% | 0.0% | 0 | 0 | 0 |
-| `Labor Court Vienna` | 0.0% | 0.0% | 0.0% | 34 | 0 | 34 |
 | `Bank Full Name` | 0.0% | 0.0% | 0.0% | 0 | 0 | 0 |
 | `FAÖ Acronym` | 0.0% | 0.0% | 0.0% | 0 | 0 | 0 |
 | `Tax Office Full Name` | 0.0% | 0.0% | 0.0% | 0 | 0 | 0 |
@@ -195,7 +195,7 @@ Results can be reproduced by running this command:
 
 ## `Court with Location`
 
-**F1:** 0.058 | **Precision:** 1.000 | **Recall:** 0.030  
+**F1:** 0.054 | **Precision:** 1.000 | **Recall:** 0.028  
 
 **Format:** `regex`  
 **Rule ID:** `971aef3b`  
@@ -212,13 +212,13 @@ Matches court names followed by location suffixes like 'Außenstelle Linz'.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 1.000 | 0.030 | 0.058 | 18 | 18 | 0 |
+| 1.000 | 0.028 | 0.054 | 18 | 18 | 0 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 18 | 0 | 505 |
+| `organisation` | 18 | 0 | 546 |
 
 </details>
 
@@ -363,7 +363,7 @@ Ihr Antrag auf Gesetzesprüfung hinsichtlich der inzwischen aufgelösten Berufun
 
 ## `Constitutional Court`
 
-**F1:** 0.026 | **Precision:** 1.000 | **Recall:** 0.013  
+**F1:** 0.024 | **Precision:** 1.000 | **Recall:** 0.012  
 
 **Format:** `regex`  
 **Rule ID:** `0bbc25f5`  
@@ -380,13 +380,13 @@ Matches Verfassungsgerichtshof and its genitive form.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 1.000 | 0.013 | 0.026 | 8 | 8 | 0 |
+| 1.000 | 0.012 | 0.024 | 8 | 8 | 0 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 8 | 0 | 331 |
+| `organisation` | 8 | 0 | 367 |
 
 </details>
 
@@ -489,7 +489,7 @@ Ihr Antrag auf Gesetzesprüfung hinsichtlich der inzwischen aufgelösten Berufun
 
 ## `Vienna Magistrate`
 
-**F1:** 0.023 | **Precision:** 1.000 | **Recall:** 0.012  
+**F1:** 0.021 | **Precision:** 1.000 | **Recall:** 0.011  
 
 **Format:** `regex`  
 **Rule ID:** `923cbdfe`  
@@ -506,13 +506,13 @@ Matches Magistrat der Stadt Wien with department codes, ensuring the full entity
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 1.000 | 0.012 | 0.023 | 7 | 7 | 0 |
+| 1.000 | 0.011 | 0.021 | 7 | 7 | 0 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 7 | 0 | 527 |
+| `organisation` | 7 | 0 | 568 |
 
 </details>
 
@@ -630,7 +630,7 @@ Matzka als weitere Richter in der Pflegschaftssache der Minderjährigen Silke Wi
 
 ## `Magistrate City Pattern`
 
-**F1:** 0.023 | **Precision:** 1.000 | **Recall:** 0.012  
+**F1:** 0.021 | **Precision:** 1.000 | **Recall:** 0.011  
 
 **Format:** `regex`  
 **Rule ID:** `5b8b1658`  
@@ -647,13 +647,13 @@ Matches Magistrat der Stadt followed by city name, including genitive forms and 
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 1.000 | 0.012 | 0.023 | 7 | 7 | 0 |
+| 1.000 | 0.011 | 0.021 | 7 | 7 | 0 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 7 | 0 | 527 |
+| `organisation` | 7 | 0 | 568 |
 
 </details>
 
@@ -771,7 +771,7 @@ Matzka als weitere Richter in der Pflegschaftssache der Minderjährigen Silke Wi
 
 ## `Administrative Court`
 
-**F1:** 0.020 | **Precision:** 1.000 | **Recall:** 0.010  
+**F1:** 0.018 | **Precision:** 1.000 | **Recall:** 0.009  
 
 **Format:** `regex`  
 **Rule ID:** `cbaa7335`  
@@ -788,13 +788,13 @@ Matches Verwaltungsgerichtshof and all its case endings, including optional (VwG
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 1.000 | 0.010 | 0.020 | 6 | 6 | 0 |
+| 1.000 | 0.009 | 0.018 | 6 | 6 | 0 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 6 | 0 | 231 |
+| `organisation` | 6 | 0 | 267 |
 
 </details>
 
@@ -873,9 +873,527 @@ Von dieser Sachlage ausgehend wies der von der Beklagten in diesem Verfahren mit
 
 ---
 
+## `Labor Court Vienna`
+
+**F1:** 0.085 | **Precision:** 0.853 | **Recall:** 0.045  
+
+**Format:** `regex`  
+**Rule ID:** `dee27985`  
+**Description:**
+Matches Arbeits- und Sozialgericht Wien and variations.
+
+**Content:**
+```
+(?i)\b(Arbeits-\s+und\s+Sozialgericht(?:\s+Wien)?)\b
+```
+
+<details>
+<summary>📊 Detailed Metrics</summary>
+
+| Precision | Recall | F1 | Total Predicted | TP | FP |
+|---|---|---|---|---|---|
+| 0.853 | 0.045 | 0.085 | 34 | 29 | 5 |
+
+**Per-Class Breakdown**
+
+| Class | TP | FP | FN |
+|---|---|---|---|
+| `organisation` | 29 | 5 | 512 |
+
+</details>
+
+---
+
+<details>
+<summary>✅ Worked</summary>
+
+**Example 0** (doc_id: `deanon_TRAIN/10ObS150_17g`) (sent_id: `deanon_TRAIN/10ObS150_17g_3`)
+
+
+Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrechtssachen durch den Senatspräsidenten Univ.-Prof. Dr. Neumayr als Vorsitzenden, den Senatspräsidenten Dr. Schramm und die Hofrätin Dr. Fichtenau sowie die fachkundigen Laienrichter Ing. Christian Stangl-Brachnik, MA BA und Mag. Claudia Gründel (beide aus dem Kreis der Arbeitgeber) als weitere Richter in der Sozialrechtssache der klagenden Partei OStR Esra Jakubait, vertreten durch Dr. Thomas Stampfer und Dr. Christoph Orgler, Rechtsanwälte in Graz, gegen die beklagte Partei Sozialversicherungsanstalt der Bauern, 1031 Wien, Ghegastraße 1, vertreten durch Dr. Michael Stögerer, Rechtsanwalt in Wien, wegen Ausgleichszulage, infolge Revision der beklagten Partei gegen das Urteil des Oberlandesgerichts Graz als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 20. September 2017, GZ 7 Rs 37/17s-11, womit infolge Berufung der klagenden Partei das Urteil des Landesgerichts für Zivilrechtssachen Graz als Arbeits- und Sozialgericht vom 27. April 2017, GZ 43 Cgs 113/17p-7, teils bestätigt und teils abgeändert wurde, in nichtöffentlicher Sitzung zu Recht erkannt:  Spruch
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `OStR Esra Jakubait` (person)
+
+**Example 1** (doc_id: `deanon_TRAIN/10ObS21_10a`) (sent_id: `deanon_TRAIN/10ObS21_10a_3`)
+
+
+Kopf Der Oberste Gerichtshof hat als Rekursgericht in Arbeits- und Sozialrechtssachen durch den Senatspräsidenten Dr. Schinko als Vorsitzenden, die Hofräte Dr. Fellinger und Dr. Hoch sowie die fachkundigen Laienrichter Mag. Irene Kienzl (aus dem Kreis der Arbeitgeber) und Eva-Maria Florianschütz (aus dem Kreis der Arbeitnehmer) als weitere Richter in der Sozialrechtssache der klagenden Partei Gertrud Johanna Ostrovska, gegen die beklagte Partei Steiermärkische Gebietskrankenkasse, 8011 Graz, Josef-Pongratz-Platz 1, vertreten durch Das Haus des Rechts Rechtsanwälte Destaller-Mader in Graz, wegen Kostenübernahme, infolge Rekurses der beklagten Partei gegen den Beschluss des Oberlandesgerichts Graz als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 19. November 2009, GZ 8 Rs 73/09f-10, womit infolge Berufung der klagenden Partei das Urteil des Landesgerichts für Zivilrechtssachen Graz als Arbeits- und Sozialgericht vom 1. September 2009, GZ 29 Cgs 90/09s-6, aufgehoben wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Dem Rekurs wird nicht Folge gegeben.
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `Ostrovska` (person)
+
+**Example 2** (doc_id: `deanon_TRAIN/10ObS21_10a`) (sent_id: `deanon_TRAIN/10ObS21_10a_133`)
+
+
+Auch dieser Umstand spricht dafür, dass auch die Ablehnung der Kostenübernahme für ein verordnetes Heilmittel durch eine Feststellungsklage beim Arbeits- und Sozialgericht bekämpft werden kann.
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Example 3** (doc_id: `deanon_TRAIN/10ObS49_15a`) (sent_id: `deanon_TRAIN/10ObS49_15a_4`)
+
+
+Brigitte Augustin (aus dem Kreis der Arbeitgeber) und Peter Schönhofer (aus dem Kreis der Arbeitnehmer) als weitere Richter in der Sozialrechtssache der klagenden Partei Samantha Neunteufl, Deutschland, vertreten durch Mahringer Steinwender Bestebner Rechtsanwälte OG in Salzburg, gegen die beklagte Partei Vorarlberger Gebietskrankenkasse, Jahngasse 4, 6850 Dornbirn, vertreten durch Hoffmann & Brandstätter Rechtsanwälte KG in Innsbruck, wegen Kinderbetreuungsgeld, infolge Revision der beklagten Partei gegen das Urteil des Oberlandesgerichts Linz als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 12. Februar 2015, GZ 11 Rs 4/15k-10, womit infolge Berufung der beklagten Partei das Urteil des Landesgerichts Salzburg als Arbeits- und Sozialgericht vom 28. Oktober 2014, GZ 20 Cgs 71/14k-6, bestätigt wurde, in nichtöffentlicher Sitzung zu Recht erkannt:  Spruch
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `Samantha Neunteufl` (person)
+
+**Example 4** (doc_id: `deanon_TRAIN/10ObS92_17b`) (sent_id: `deanon_TRAIN/10ObS92_17b_3`)
+
+
+Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrechtssachen durch den Senatspräsidenten Univ.-Prof. Dr. Neumayr als Vorsitzenden, den Hofrat Dr. Schramm und die Hofrätin Dr. Fichtenau sowie die fachkundigen Laienrichter Dr. Gabriele Griehsel (aus dem Kreis der Arbeitgeber) und Dr. Wolfgang Kozak (aus dem Kreis der Arbeitnehmer) als weitere Richter in der Sozialrechtssache der klagenden Partei Dr.in Gerlinde Saltzmann, vertreten durch Mahringer Steinwender Bestebner Rechtsanwälte OG in Salzburg, gegen die beklagte Partei Pensionsversicherungsanstalt, 1021 Wien, Friedrich-Hillegeist-Straße 1, wegen Berufsunfähigkeitspension, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Linz als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 15. Mai 2017, GZ 11 Rs 22/17k-36, mit dem das Urteil des Landesgerichts Salzburg als Arbeits- und Sozialgericht vom 21. Dezember 2016, GZ 18 Cgs 62/15y-32, bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Der Revision wird Folge gegeben.
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `Dr.in Gerlinde Saltzmann` (person)
+
+**Example 5** (doc_id: `deanon_TRAIN/8Nc31_13w`) (sent_id: `deanon_TRAIN/8Nc31_13w_3`)
+
+
+Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten des Obersten Gerichtshofs Dr. Spenling als Vorsitzenden sowie die Hofräte des Obersten Gerichtshofs Hon.-Prof. Dr. Kuras und Dr. Brenn als weitere Richter in der beim Landesgericht Salzburg als Arbeits- und Sozialgericht anhängigen Rechtssache der klagenden Partei Buth Analyse GmbH, Anabel Traudtmann, vertreten durch Dr. Ernst Kohlbacher, Rechtsanwalt in Salzburg, gegen die beklagte Partei Christine Schwemmer, vertreten durch Plankel Mayrhofer & Partner, Rechtsanwälte in Dornbirn, wegen 213,52 EUR sA, über den Delegierungsantrag der beklagten Partei den Beschluss gefasst:  Spruch Der Antrag der beklagten Partei, die Rechtssache an das Arbeits- und Sozialgericht Wien zu delegieren, wird abgewiesen.
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `Landesgericht Salzburg` (organisation)
+- `Buth Analyse GmbH` (organisation)
+- `Anabel Traudtmann` (person)
+- `Christine Schwemmer` (person)
+
+**Example 6** (doc_id: `deanon_TRAIN/8Nc31_13w`) (sent_id: `deanon_TRAIN/8Nc31_13w_4`)
+
+
+Text Begründung: Mit der am 14. 12. 2012 beim Landesgericht Salzburg als Arbeits- und Sozialgericht eingebrachten Mahnklage begehrte die Klägerin, eine Finanzvermittlungsgesellschaft mit Sitz in Salzburg, von dem im Bundesland Burgenland wohnhaften Beklagten die Rückzahlung von Provisionen aus einem Agentenvertrag.
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `Landesgericht Salzburg` (organisation)
+
+**Example 7** (doc_id: `deanon_TRAIN/8ObA10_21k`) (sent_id: `deanon_TRAIN/8ObA10_21k_3`)
+
+
+Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrechtssachen durch den Senatspräsidenten Hon.-Prof. Dr. Kuras als Vorsitzenden, die Hofrätinnen Dr. Tarmann-Prentner und Mag. Wessely-Kristöfel als weitere Richter sowie die fachkundigen Laienrichter Mag. Dr. Rolf Gleißner (aus dem Kreis der Arbeitgeber) und Wolfgang Jelinek (aus dem Kreis der Arbeitnehmer) in der Arbeitsrechtssache der klagenden Partei Thebuss + Großekemper Bildung AG, Univ.-Prof.in Anna Helffer, vertreten durch Dr. Raimund Gehart, Rechtsanwalt in Wien, gegen die beklagte Partei Paulina Strnadl, vertreten durch Dr. Franz Josef Hofer Rechtsanwalt GmbH in Friesach, wegen 5.625,88 EUR sA, über die Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Graz als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 10. Dezember 2020, GZ 6 Ra 69/20v-19, mit dem das Urteil des Landesgerichts Klagenfurt als Arbeits- und Sozialgericht vom 15. Mai 2020, GZ 35 Cga 90/19x-11, abgeändert wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die Revision wird zurückgewiesen.
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `Thebuss + Großekemper Bildung AG` (organisation)
+- `Univ.-Prof.in Anna Helffer` (person)
+- `Paulina Strnadl` (person)
+- `Franz Josef Hofer Rechtsanwalt GmbH` (organisation)
+
+**Example 8** (doc_id: `deanon_TRAIN/8ObA1_13z`) (sent_id: `deanon_TRAIN/8ObA1_13z_3`)
+
+
+Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrechtssachen durch den Senatspräsidenten Dr. Spenling als Vorsitzenden, den Hofrat Hon.-Prof. Dr. Kuras, die Hofrätin Dr. Tarmann-Prentner sowie die fachkundigen Laienrichter Dr. Christoph Kainz und Horst Nurschinger als weitere Richter in der Arbeitsrechtssache der klagenden Partei Heinz Hennerich, vertreten durch Dr. Gerhard Hiebler, Dr. Gerd Grebenjak, Rechtsanwälte in Leoben, wider die beklagte Partei Verein DDr. Holger Müllegger, vertreten durch Dr. Dieter Neger, Rechtsanwalt in Graz, wegen Entlassungsanfechtung, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Graz als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 25. Oktober 2012, GZ 6 Ra 67/12p-12, mit dem über Berufung der klagenden Partei das Urteil des Landesgerichts Leoben als Arbeits- und Sozialgericht vom 2. Juli 2012, GZ 20 Cga 23/11v-7, bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Der Revision wird Folge gegeben.
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `Hennerich` (person)
+- `DDr. Holger Müllegger` (person)
+
+**Example 9** (doc_id: `deanon_TRAIN/8ObS8_22t`) (sent_id: `deanon_TRAIN/8ObS8_22t_3`)
+
+
+Kopf Der Oberste Gerichtshof hat als Rekursgericht in Arbeits- und Sozialrechtssachen durch den Senatspräsidenten Hon.-Prof. Dr. Kuras als Vorsitzenden sowie die Hofrätin Dr. Tarmann-Prentner und den Hofrat Dr. Stefula als weitere Richter (Senat gemäß § 11a Abs 3 Z 2 ASGG) in der Sozialrechtssache der klagenden Partei Holger Sykorski, vertreten durch Dr. Herbert Marschitz und andere Rechtsanwälte in Kufstein, gegen die beklagte Partei IEF-Service GmbH, 6020 Innsbruck, Meraner Straße 1, vertreten durch die Finanzprokuratur in Wien, wegen 34.726 EUR sA (Insolvenzentgelt), über den Rekurs der klagenden Partei gegen den Beschluss des Oberlandesgerichts Innsbruck als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 18. Oktober 2022, GZ 25 Rs 56/22d-34, mit dem das Urteil des Landesgerichts Innsbruck als Arbeits- und Sozialgericht vom 9. Juni 2022, GZ 44 Cgs 43/21m-27, samt dem ihm vorangegangenen Verfahren für nichtig erklärt und die Klage zurückgewiesen wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Dem Rekurs wird Folge gegeben.
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `Holger Sykorski` (person)
+
+**Example 10** (doc_id: `deanon_TRAIN/9Nc5_16h`) (sent_id: `deanon_TRAIN/9Nc5_16h_3`)
+
+
+Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten des Obersten Gerichtshofs Dr. Hopf als Vorsitzenden, die Hofrätin des Obersten Gerichtshofs Dr. Dehn und den Hofrat des Obersten Gerichtshofs Dr. Hargassner als weitere Richter in der Arbeitsrechtssache der klagenden Partei WestSicherheit GmbH, OMedR Paulina von Tietzen, vertreten durch Dr. Ernst Kohlbacher, Rechtsanwalt in Salzburg, gegen die beklagte Partei Amber Landscheid, vertreten durch Dr. Karl-Heinz Plankel, Dr. Herwig Mayrhofer ua, Rechtsanwälte in Dornbirn, wegen 15.600 EUR sA, über den Delegierungsantrag der beklagten Partei den Beschluss gefasst:  Spruch Der Antrag der beklagten Partei, anstelle des Landesgerichts Salzburg als Arbeits- und Sozialgericht das Arbeits- und Sozialgericht Wien zur Verhandlung und Entscheidung der Rechtssache des Landesgerichts Salzburg als Arbeits- und Sozialgericht AZ 15 Cga 88/15d zu bestimmen, wird abgewiesen.
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `WestSicherheit GmbH` (organisation)
+- `OMedR Paulina von Tietzen` (person)
+- `Amber Landscheid` (person)
+
+**Example 11** (doc_id: `deanon_TRAIN/9Nc5_16h`) (sent_id: `deanon_TRAIN/9Nc5_16h_4`)
+
+
+Text Begründung: Mit ihrer am 22. 12. 2015 beim Landesgericht Salzburg als Arbeits- und Sozialgericht eingebrachten Klage begehrt die in Kagraner Anger 19, 4943 Nonsbach, Österreich (Sbg) ansässige Klägerin vom in Wien wohnhaften Beklagten die Zahlung einer Vertragsstrafe wegen mehrfacher Verstöße gegen das in seinem Agentenvertrag vereinbarte Wettbewerbsverbot.
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `Landesgericht Salzburg` (organisation)
+- `Kagraner Anger 19, 4943 Nonsbach, Österreich` (address)
+
+**Example 12** (doc_id: `deanon_TRAIN/9Nc5_16h`) (sent_id: `deanon_TRAIN/9Nc5_16h_14`)
+
+
+Das Landesgericht Salzburg als Arbeits- und Sozialgericht sei auch mit den Rechtsangelegenheiten und regelmäßig gleichlautenden Vertragsgrundlagen und Provisions-abrechnungen der Klägerin seit Jahren vertraut.
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `Landesgericht Salzburg` (organisation)
+
+**Example 13** (doc_id: `deanon_TRAIN/9Nc5_16h`) (sent_id: `deanon_TRAIN/9Nc5_16h_15`)
+
+
+Auch das Landesgericht Salzburg als Arbeits- und Sozialgericht gab im Ergebnis nach Abwägung von Für und Wider eine negative Stellungnahme ab.
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `Landesgericht Salzburg` (organisation)
+
+**Example 14** (doc_id: `deanon_TRAIN/9Nc5_16h`) (sent_id: `deanon_TRAIN/9Nc5_16h_18`)
+
+
+Am 15. 2. 2016 übermittelte das Landesgericht Salzburg als Arbeits- und Sozialgericht im Nachhang eine von der Klägerin am 8.
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `Landesgericht Salzburg` (organisation)
+
+**Example 15** (doc_id: `deanon_TRAIN/9Nc5_16h`) (sent_id: `deanon_TRAIN/9Nc5_16h_35`)
+
+
+Zu bedenken ist auch, dass das Landesgericht Salzburg als Arbeits- und Sozialgericht bereits eine Tagsatzung abgehalten und das Prozessprogramm festgelegt hat und mit der Problematik auch aus einem anderen Verfahren vertraut ist, während sich ein Wiener Gericht neu in die Sache einzuarbeiten hätte.
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `Landesgericht Salzburg` (organisation)
+
+**Example 16** (doc_id: `deanon_TRAIN/9ObA118_18w`) (sent_id: `deanon_TRAIN/9ObA118_18w_4`)
+
+
+Gabriele Svirak in der Arbeitsrechtssache der klagenden Partei Evelyn Lichtwer, vertreten durch Dr. Gerhard Hiebler, Dr. Gerd Grebenjak, Rechtsanwälte in Leoben, gegen die beklagte Partei Inn Wiltri Systeme GmbH, DDr. Johann Gerkens, vertreten durch Dr. Helmut Fetz, Dr. Birgit Fetz ua, Rechtsanwälte in Leoben, wegen 500 EUR sA, über die Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Graz als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 29. August 2018, GZ 7 Ra 23/18h-12, mit dem der Berufung der klagenden Partei gegen das Urteil des Landesgerichts Leoben als Arbeits- und Sozialgericht vom 14. Dezember 2017, GZ 23 Cga 75/17x-7, nicht Folge gegeben wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die Revision der klagenden Partei wird zurückgewiesen.
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `Evelyn Lichtwer` (person)
+- `Inn Wiltri Systeme GmbH` (organisation)
+- `DDr. Johann Gerkens` (person)
+
+**Example 17** (doc_id: `deanon_TRAIN/9ObA118_19x`) (sent_id: `deanon_TRAIN/9ObA118_19x_5`)
+
+
+Text Begründung: Mit Beschluss vom 15. Mai 2019, 9 ObA 41/19y, wies der Oberste Gerichtshof die außerordentliche Revision des Klägers in der beim Landesgericht Linz als Arbeits- und Sozialgericht anhängigen Arbeitsrechtssache gegen die beklagte Partei als seine frühere Arbeitgeberin mangels Vorliegens einer Rechtsfrage von erheblicher Bedeutung im Sinne des § 502 Abs 1 ZPO zurück.
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `Landesgericht Linz` (organisation)
+
+**Example 18** (doc_id: `deanon_TRAIN/9ObA120_12f`) (sent_id: `deanon_TRAIN/9ObA120_12f_4`)
+
+
+Dr. Helwig Aubauer und Mag. Regina Bauer-Albrecht als weitere Richter in der Arbeitsrechtssache der klagenden Partei Heidelinde Hobl, vertreten durch Dr. Dieter Gallistl, Rechtsanwalt in Linz, wider die beklagte Partei Elvira Vacha, vertreten durch Dr. Andreas Grassl, Rechtsanwalt in Wien, wegen Feststellung (Streitwert 174,77 EUR), über die Revision der beklagten Partei gegen das Urteil des Oberlandesgerichts Linz als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 27. Juni 2012, GZ 12 Ra 48/12h-15, womit infolge Berufung der beklagten Partei das Urteil des Landesgerichts Wels als Arbeits- und Sozialgericht vom 31. Jänner 2012, GZ 16 Cga 154/11i-11, bestätigt wurde, in nichtöffentlicher Sitzung zu Recht erkannt:  Spruch
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `Hobl` (person)
+- `Elvira Vacha` (person)
+
+**Example 19** (doc_id: `deanon_TRAIN/9ObA151_09k`) (sent_id: `deanon_TRAIN/9ObA151_09k_3`)
+
+
+Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrechtssachen durch den Vizepräsidenten des Obersten Gerichtshofs Dr. Rohrer als Vorsitzenden und die Hofräte des Obersten Gerichtshofs Dr. Hradil und Dr. Hopf sowie die fachkundigen Laienrichter KR Mag. Paul Kunsky und Franz Boindl als weitere Richter in der Arbeitsrechtssache der klagenden Partei PhD Ottfried Leonhardi, vertreten durch Dr. Charlotte Lindenberger, Rechtsanwältin in Steyr, gegen die beklagte Partei Baltromei Wind GmbH, Petra Ditrich, vertreten durch Dr. Otto Hauck, Rechtsanwalt in Kirchdorf, wegen 1.028,19 EUR sA, über die Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Linz als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 16. Oktober 2009, GZ 11 Ra 88/09d-10, womit das Urteil des Landesgerichts Steyr als Arbeits- und Sozialgericht vom 2. Juli 2009, GZ 24 Cga 9/09p-6, bestätigt wurde, in nichtöffentlicher Sitzung zu Recht erkannt:  Spruch Der Revision wird nicht Folge gegeben.
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `PhD Ottfried Leonhardi` (person)
+- `Baltromei Wind GmbH` (organisation)
+- `Petra Ditrich` (person)
+
+**Example 20** (doc_id: `deanon_TRAIN/9ObA41_16v`) (sent_id: `deanon_TRAIN/9ObA41_16v_3`)
+
+
+Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrechtssachen durch den Senatspräsidenten des Obersten Gerichtshofs Dr. Hopf als Vorsitzenden, die Hofrätinnen des Obersten Gerichtshofs Hon.-Prof. Dr. Dehn und Mag. Korn sowie die fachkundigen Laienrichter Dr. Johannes Pflug und Mag. Robert Brunner als weitere Richter in der Arbeitsrechtssache der klagenden Partei Mag. Joseph Mehl, vertreten durch Dr. Stephan Rainer und Dr. Andreas Ruetz, Rechtsanwälte in Innsbruck, gegen die beklagte Partei Heiko Ayna, vertreten durch Korn Rechtsanwälte OG in Wien, wegen 40.647,29 EUR brutto sA über die Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Innsbruck als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 29. Jänner 2016, GZ 15 Ra 16/16i-31, mit dem der Berufung der klagenden Partei gegen das Urteil des Landesgerichts Innsbruck als Arbeits- und Sozialgericht vom 11. November 2015, GZ 43 Cga 118/14b-26, nicht Folge gegeben wurde, den Beschluss gefasst:  Spruch Die Revision wird zurückgewiesen.
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `Mag. Joseph Mehl` (person)
+- `Heiko Ayna` (person)
+
+**Example 21** (doc_id: `deanon_TRAIN/9ObA43_12g`) (sent_id: `deanon_TRAIN/9ObA43_12g_4`)
+
+
+Werner Keyzers, 4. Jaromir Heinrichson, alle vertreten durch die Advokaturbüro Jelenik & Partner AG, Landstraße 60, FL-9490 Vaduz (Zustellungsbevollmächtigter gemäß § 6 EIRAG: Mag. Norbert Wanker, Wasenweg 23, 6800 Feldkirch), gegen die beklagte Partei Wichtmann u. Staneck Energie GmbH, Dimitri Brunemann, vertreten durch Dr. Andreas Grundei, Rechtsanwalt in Wien, wegen Feststellung (Streitwert 10.000 EUR), über die außerordentliche Revision der klagenden Parteien gegen das Urteil des Oberlandesgerichts Innsbruck als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 21. Februar 2012, GZ 15 Ra 13/12t-16, womit das Urteil des Landesgerichts Feldkirch als Arbeits- und Sozialgericht vom 4. Oktober 2011, GZ 35 Cga 85/11p-10, bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die außerordentliche Revision der klagenden Parteien wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `Werner Keyzers` (person)
+- `Jaromir Heinrichson` (person)
+- `Partner AG` (organisation)
+- `Wichtmann u. Staneck Energie GmbH` (organisation)
+- `Dimitri Brunemann` (person)
+
+**Example 22** (doc_id: `deanon_TRAIN/9ObA44_11b`) (sent_id: `deanon_TRAIN/9ObA44_11b_5`)
+
+
+Dr. Wolfgang List, Rechtsanwalt in Wien, wider die beklagte Partei und Gegnerin der gefährdeten Partei Valerian Urbahn, vertreten durch Dr. J. Pfurtscheller, Dr. Orgler, Mag. Huber, Rechtsanwälte in Innsbruck, wegen Feststellung des Fortbestands eines Arbeitsverhältnisses, in eventu Anfechtung einer Kündigung nach § 105 ArbVG (Streitwert jeweils 31.000 EUR), in eventu 18.957 EUR sA, hier Erlassung einer einstweiligen Verfügung, über den Revisionsrekurs der klagenden und gefährdeten Partei gegen den Beschluss des Oberlandesgerichts Innsbruck als Rekursgericht in Arbeits- und Sozialrechtssachen vom 24. Februar 2011, GZ 15 Ra 11/11x-15, mit dem infolge Rekurses der klagenden und gefährdeten Partei der Beschluss des Landesgerichts Innsbruck als Arbeits- und Sozialgericht vom 9. Dezember 2010, GZ 43 Cga 126/10y-8, bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Der Revisionsrekurs wird zurückgewiesen.
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `Valerian Urbahn` (person)
+
+**Example 23** (doc_id: `deanon_TRAIN/9ObA4_13y`) (sent_id: `deanon_TRAIN/9ObA4_13y_3`)
+
+
+Kopf Der Oberste Gerichtshof hat als Rekursgericht in Arbeits- und Sozialrechtssachen durch den Senatspräsidenten des Obersten Gerichtshofs Dr. Hopf als Vorsitzenden, den Hofrat des Obersten Gerichtshofs Hon.-Prof. Dr. Kuras und die Hofrätin des Obersten Gerichtshofs Dr. Dehn sowie die fachkundigen Laienrichter Werner Rodlauer und Mag. Robert Brunner als weitere Richter in der Arbeitsrechtssache der klagenden Partei Maria Maritz, vertreten durch Dr. Susanne Kuen, Rechtsanwältin in Wien, gegen die beklagte Partei PHG Möbel Dienstleistungen GmbH, Zeno Speckl, vertreten durch Fellner Wratzfeld & Partner Rechtsanwälte GmbH in Wien, wegen 125.731,44 EUR sA, über den Rekurs der beklagten Partei gegen den Beschluss des Oberlandesgerichts Linz als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 30. Oktober 2012, GZ 11 Ra 82/12a-74, mit dem das Urteil des Landesgerichts Steyr als Arbeits- und Sozialgericht vom 31. Juli 2012, GZ 9 Cga 245/08g-70, aufgehoben und die Rechtssache an das Erstgericht zurückverwiesen wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Der Rekurs wird zurückgewiesen.
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `Maria Maritz` (person)
+- `PHG Möbel Dienstleistungen GmbH` (organisation)
+- `Zeno Speckl` (person)
+
+**Example 24** (doc_id: `deanon_TRAIN/9ObA78_21t`) (sent_id: `deanon_TRAIN/9ObA78_21t_3`)
+
+
+Kopf Der Oberste Gerichtshof hat als Revisionsrekursgericht in Arbeits- und Sozialrechtssachen durch den Senatspräsidenten des Obersten Gerichtshofs Dr. Hopf als Vorsitzenden, die Hofrätin des Obersten Gerichtshofs Dr. Fichtenau und den Hofrat des Obersten Gerichtshofs Dr. Hargassner als weitere Richter in der Arbeitsrechtssache der klagenden Partei Ing. DI (FH) Griselda Eicholz, nunmehr vertreten durch Mag. Dr. Helmut Blum, Rechtsanwalt in Linz, gegen die beklagte Partei HochLuftfahrt GmbH, Saphira Thiehle, wegen Leistung, über den außerordentlichen Revisionsrekurs der klagenden Partei gegen den Beschluss des Oberlandesgerichts Linz als Rekursgericht in Arbeits- und Sozialrechtssachen vom 13. Mai 2019, GZ 11 Ra 33/19f-23, mit dem der Rekurs des Klägers gegen den Beschluss des Landesgerichts Linz als Arbeits- und Sozialgericht vom 8. April 2019, GZ 7 Cga 25/19k-9, zurückgewiesen wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Dem Revisionsrekurs wird Folge gegeben.
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `Griselda Eicholz` (person)
+- `HochLuftfahrt GmbH` (organisation)
+- `Saphira Thiehle` (person)
+
+**Example 25** (doc_id: `deanon_TRAIN/9ObA78_21t`) (sent_id: `deanon_TRAIN/9ObA78_21t_7`)
+
+
+2. 2019 brachte der Kläger beim Landesgericht Linz als Arbeits- und Sozialgericht eine Klage gegen die Beklagte ein.
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `Landesgericht Linz` (organisation)
+
+**Example 26** (doc_id: `deanon_TRAIN/9ObA82_20d`) (sent_id: `deanon_TRAIN/9ObA82_20d_3`)
+
+
+Kopf Der Oberste Gerichtshof hat als Revisions- und Rekursgericht in Arbeits- und Sozialrechtssachen durch den Senatspräsidenten des Obersten Gerichtshofs Dr. Hopf als Vorsitzenden, die Hofrätin des Obersten Gerichtshofs Dr. Fichtenau und den Hofrat des Obersten Gerichtshofs Dr. Hargassner sowie die fachkundigen Laienrichter Mag. Dr. Bernhard Gruber (aus dem Kreis der Arbeitgeber) und Angela Taschek (aus dem Kreis der Arbeitnehmer) als weitere Richter in der Arbeitsrechtssache der klagenden Partei Marktgemeinde Andrea Wiggering, vertreten durch Ehrenhöfer & Häusler Rechtsanwälte GmbH in Wiener Neustadt, gegen die beklagte Partei Cassandra Noldens, vertreten durch Kosch & Partner Rechtsanwälte GmbH in Wiener Neustadt, wegen 28.428,01 EUR sA, über den Rekurs und die außerordentliche Revision der klagenden Partei gegen den Beschluss (I.) und das Urteil (II.) des Oberlandesgerichts Wien als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 22. Juli 2020, GZ 9 Ra 111/19p-25, mit dem das Urteil des Landesgerichts Wiener Neustadt als Arbeits- und Sozialgericht vom 17. September 2019, GZ 9 Cga 126/18g-21, aus Anlass der Berufung der beklagten Partei hinsichtlich der Rückforderung einer Zahlung als nichtig aufgehoben und die Klage zurückgewiesen wurde und über Berufung der beklagen Partei hinsichtlich des Anspruchs nach dem OrgHG abgeändert wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Dem Rekurs wird teilweise Folge gegeben und der angefochtene Beschluss des Berufungsgerichts ersatzlos aufgehoben.
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `Andrea Wiggering` (person)
+- `Cassandra Noldens` (person)
+
+**Example 27** (doc_id: `deanon_TRAIN/9ObA96_13b`) (sent_id: `deanon_TRAIN/9ObA96_13b_4`)
+
+
+Brigitte Augustin und Mag. Andreas Hach als weitere Richter in der Arbeitsrechtssache der klagenden Partei DI Anita Crämer, vertreten durch Dr. Gerhard Hiebler und Dr. Gerd Grebenjak, Rechtsanwälte in Leoben, gegen die beklagte Partei, GQG E‑Commerce Gesellschaft mbH, Franz-Cäsar-Weg 5, 4115 Gumpesberg, Österreich, vertreten durch Siemer-Siegel-Füreder & Partner, Rechtsanwälte in Wien, wegen Feststellung, über die Revision der beklagten Partei gegen das Urteil des Oberlandesgerichts Graz als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 18. April 2013, GZ 6 Ra 18/13h-10, mit dem der Berufung der beklagten Partei gegen das Urteil des Landesgerichts Leoben als Arbeits- und Sozialgericht vom 7. November 2012, GZ 23 Cga 115/12x-6, nicht Folge gegeben wurde, in nichtöffentlicher Sitzung zu Recht erkannt:  Spruch
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `DI Anita Crämer` (person)
+- `GQG E‑Commerce Gesellschaft mbH` (organisation)
+- `Franz-Cäsar-Weg 5, 4115 Gumpesberg, Österreich` (address)
+
+</details>
+
+---
+
+<details>
+<summary>⚠️ False Positives</summary>
+
+**Example 0** (doc_id: `deanon_TRAIN/8Nc31_13w`) (sent_id: `deanon_TRAIN/8Nc31_13w_3`)
+
+
+Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten des Obersten Gerichtshofs Dr. Spenling als Vorsitzenden sowie die Hofräte des Obersten Gerichtshofs Hon.-Prof. Dr. Kuras und Dr. Brenn als weitere Richter in der beim Landesgericht Salzburg als Arbeits- und Sozialgericht anhängigen Rechtssache der klagenden Partei Buth Analyse GmbH, Anabel Traudtmann, vertreten durch Dr. Ernst Kohlbacher, Rechtsanwalt in Salzburg, gegen die beklagte Partei Christine Schwemmer, vertreten durch Plankel Mayrhofer & Partner, Rechtsanwälte in Dornbirn, wegen 213,52 EUR sA, über den Delegierungsantrag der beklagten Partei den Beschluss gefasst:  Spruch Der Antrag der beklagten Partei, die Rechtssache an das Arbeits- und Sozialgericht Wien zu delegieren, wird abgewiesen.
+
+**False Positives:**
+
+- `Arbeits- und Sozialgericht Wien` — similar text (different position): `Arbeits- und Sozialgericht`
+
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Landesgericht Salzburg`(organisation)
+- `Arbeits- und Sozialgericht`(organisation)
+- `Buth Analyse GmbH`(organisation)
+- `Anabel Traudtmann`(person)
+- `Christine Schwemmer`(person)
+- `Arbeits- und Sozialgericht`(organisation)
+
+**Example 1** (doc_id: `deanon_TRAIN/8Nc31_13w`) (sent_id: `deanon_TRAIN/8Nc31_13w_6`)
+
+
+Gleichzeitig beantragte er die Delegierung der Rechtssache an das Arbeits- und Sozialgericht Wien.
+
+**False Positives:**
+
+- `Arbeits- und Sozialgericht Wien` — partial — gold is substring of pred: `Arbeits- und Sozialgericht`
+
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Arbeits- und Sozialgericht`(organisation)
+
+**Example 2** (doc_id: `deanon_TRAIN/9Nc5_16h`) (sent_id: `deanon_TRAIN/9Nc5_16h_3`)
+
+
+Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten des Obersten Gerichtshofs Dr. Hopf als Vorsitzenden, die Hofrätin des Obersten Gerichtshofs Dr. Dehn und den Hofrat des Obersten Gerichtshofs Dr. Hargassner als weitere Richter in der Arbeitsrechtssache der klagenden Partei WestSicherheit GmbH, OMedR Paulina von Tietzen, vertreten durch Dr. Ernst Kohlbacher, Rechtsanwalt in Salzburg, gegen die beklagte Partei Amber Landscheid, vertreten durch Dr. Karl-Heinz Plankel, Dr. Herwig Mayrhofer ua, Rechtsanwälte in Dornbirn, wegen 15.600 EUR sA, über den Delegierungsantrag der beklagten Partei den Beschluss gefasst:  Spruch Der Antrag der beklagten Partei, anstelle des Landesgerichts Salzburg als Arbeits- und Sozialgericht das Arbeits- und Sozialgericht Wien zur Verhandlung und Entscheidung der Rechtssache des Landesgerichts Salzburg als Arbeits- und Sozialgericht AZ 15 Cga 88/15d zu bestimmen, wird abgewiesen.
+
+**False Positives:**
+
+- `Arbeits- und Sozialgericht Wien` — similar text (different position): `Arbeits- und Sozialgericht`
+
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `WestSicherheit GmbH`(organisation)
+- `OMedR Paulina von Tietzen`(person)
+- `Amber Landscheid`(person)
+- `Arbeits- und Sozialgericht`(organisation)
+- `Arbeits- und Sozialgericht`(organisation)
+- `Arbeits- und Sozialgericht`(organisation)
+
+**Example 3** (doc_id: `deanon_TRAIN/9Nc5_16h`) (sent_id: `deanon_TRAIN/9Nc5_16h_8`)
+
+
+Es werde die Delegierung der Rechtssache an das Arbeits- und Sozialgericht Wien beantragt, weil der Beklagte dort seinen Lebensmittelpunkt habe und der Großteil der im Verfahren beantragten Zeugen aus dem Bereich Wien und Wien-Umgebung komme.
+
+**False Positives:**
+
+- `Arbeits- und Sozialgericht Wien` — partial — gold is substring of pred: `Arbeits- und Sozialgericht`
+
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Arbeits- und Sozialgericht`(organisation)
+
+**Example 4** (doc_id: `deanon_TRAIN/9Ob59_20x`) (sent_id: `deanon_TRAIN/9Ob59_20x_17`)
+
+
+Weiters begehrt der Kläger die Feststellung der Haftung des Beklagten für die ihm künftig aus der unrichtigen Gutachtenserstellung durch den Beklagten im Verfahren vor dem Arbeits- und Sozialgericht Wien zur AZ 25 Cgs 77/16w entstehenden Schaden.
+
+**False Positives:**
+
+- `Arbeits- und Sozialgericht Wien` — partial — gold is substring of pred: `Arbeits- und Sozialgericht`
+
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Arbeits- und Sozialgericht`(organisation)
+
+</details>
+
+---
+
 ## `District Court Pattern`
 
-**F1:** 0.315 | **Precision:** 0.722 | **Recall:** 0.201  
+**F1:** 0.299 | **Precision:** 0.722 | **Recall:** 0.189  
 
 **Format:** `regex`  
 **Rule ID:** `4a197a40`  
@@ -892,13 +1410,13 @@ Matches Bezirksgericht followed by location, handling 'BG' abbreviation.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.722 | 0.201 | 0.315 | 169 | 122 | 47 |
+| 0.722 | 0.189 | 0.299 | 169 | 122 | 47 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 122 | 47 | 484 |
+| `organisation` | 122 | 47 | 525 |
 
 </details>
 
@@ -1560,7 +2078,7 @@ Dem Ordinationsantrag ist somit stattzugeben und zweckmäßigerweise das Bezirks
 
 ## `Regional Court Pattern`
 
-**F1:** 0.180 | **Precision:** 0.670 | **Recall:** 0.104  
+**F1:** 0.170 | **Precision:** 0.670 | **Recall:** 0.097  
 
 **Format:** `regex`  
 **Rule ID:** `8426a1d3`  
@@ -1577,13 +2095,13 @@ Matches Landesgericht (LG) followed by location.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.670 | 0.104 | 0.180 | 94 | 63 | 31 |
+| 0.670 | 0.097 | 0.170 | 94 | 63 | 31 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 63 | 31 | 478 |
+| `organisation` | 63 | 31 | 519 |
 
 </details>
 
@@ -2319,7 +2837,7 @@ Das Oberlandesgericht Wien als Rekursgericht stellte mit Beschluss vom 22. 10. 2
 
 ## `Bank and Other Org`
 
-**F1:** 0.045 | **Precision:** 0.667 | **Recall:** 0.023  
+**F1:** 0.042 | **Precision:** 0.667 | **Recall:** 0.022  
 
 **Format:** `regex`  
 **Rule ID:** `53220dfe`  
@@ -2336,13 +2854,13 @@ Matches specific bank names and other organizations like 'Reinemut + Smoch Hande
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.667 | 0.023 | 0.045 | 21 | 14 | 7 |
+| 0.667 | 0.022 | 0.042 | 21 | 14 | 7 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 14 | 7 | 512 |
+| `organisation` | 14 | 7 | 553 |
 
 </details>
 
@@ -2624,7 +3142,7 @@ Wenn das Erstgericht - dem Sachverständigengutachten folgend - zu der Einschät
 
 ## `Generic GmbH Entity`
 
-**F1:** 0.056 | **Precision:** 0.145 | **Recall:** 0.035  
+**F1:** 0.053 | **Precision:** 0.145 | **Recall:** 0.032  
 
 **Format:** `regex`  
 **Rule ID:** `0d4e88c9`  
@@ -2641,13 +3159,13 @@ Matches company names ending in GmbH, AG, KG, etc., with strict word boundaries 
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.145 | 0.035 | 0.056 | 145 | 21 | 124 |
+| 0.145 | 0.032 | 0.053 | 145 | 21 | 124 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 21 | 124 | 583 |
+| `organisation` | 21 | 124 | 624 |
 
 </details>
 
@@ -3366,9 +3884,16 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 
 ---
 
+</details>
+
+---
+
+<details>
+<summary>💣 Least Precise Rules</summary>
+
 ## `Company Name Without Suffix`
 
-**F1:** 0.049 | **Precision:** 0.086 | **Recall:** 0.035  
+**F1:** 0.047 | **Precision:** 0.086 | **Recall:** 0.032  
 
 **Format:** `regex`  
 **Rule ID:** `c8608e27`  
@@ -3385,13 +3910,13 @@ Matches company names that do not end in a standard suffix like GmbH/AG but are 
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.086 | 0.035 | 0.049 | 244 | 21 | 223 |
+| 0.086 | 0.032 | 0.047 | 244 | 21 | 223 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 21 | 223 | 583 |
+| `organisation` | 21 | 223 | 624 |
 
 </details>
 
@@ -4000,513 +4525,6 @@ Außerdem wird die Valwalduni-Handel AG eine Gegenüberstellung über die von de
 
 ---
 
-</details>
-
----
-
-<details>
-<summary>💣 Least Precise Rules</summary>
-
-## `Labor Court Vienna`
-
-**F1:** 0.000 | **Precision:** 0.000 | **Recall:** 0.000  
-
-**Format:** `regex`  
-**Rule ID:** `dee27985`  
-**Description:**
-Matches Arbeits- und Sozialgericht Wien and variations.
-
-**Content:**
-```
-(?i)\b(Arbeits-\s+und\s+Sozialgericht(?:\s+Wien)?)\b
-```
-
-<details>
-<summary>📊 Detailed Metrics</summary>
-
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 34 | 0 | 34 |
-
-**Per-Class Breakdown**
-
-| Class | TP | FP | FN |
-|---|---|---|---|
-| `organisation` | 0 | 34 | 500 |
-
-</details>
-
----
-
-<details>
-<summary>⚠️ False Positives</summary>
-
-**Example 0** (doc_id: `deanon_TRAIN/10ObS150_17g`) (sent_id: `deanon_TRAIN/10ObS150_17g_3`)
-
-
-Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrechtssachen durch den Senatspräsidenten Univ.-Prof. Dr. Neumayr als Vorsitzenden, den Senatspräsidenten Dr. Schramm und die Hofrätin Dr. Fichtenau sowie die fachkundigen Laienrichter Ing. Christian Stangl-Brachnik, MA BA und Mag. Claudia Gründel (beide aus dem Kreis der Arbeitgeber) als weitere Richter in der Sozialrechtssache der klagenden Partei OStR Esra Jakubait, vertreten durch Dr. Thomas Stampfer und Dr. Christoph Orgler, Rechtsanwälte in Graz, gegen die beklagte Partei Sozialversicherungsanstalt der Bauern, 1031 Wien, Ghegastraße 1, vertreten durch Dr. Michael Stögerer, Rechtsanwalt in Wien, wegen Ausgleichszulage, infolge Revision der beklagten Partei gegen das Urteil des Oberlandesgerichts Graz als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 20. September 2017, GZ 7 Rs 37/17s-11, womit infolge Berufung der klagenden Partei das Urteil des Landesgerichts für Zivilrechtssachen Graz als Arbeits- und Sozialgericht vom 27. April 2017, GZ 43 Cgs 113/17p-7, teils bestätigt und teils abgeändert wurde, in nichtöffentlicher Sitzung zu Recht erkannt:  Spruch
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `OStR Esra Jakubait`(person)
-
-**Example 1** (doc_id: `deanon_TRAIN/10ObS21_10a`) (sent_id: `deanon_TRAIN/10ObS21_10a_3`)
-
-
-Kopf Der Oberste Gerichtshof hat als Rekursgericht in Arbeits- und Sozialrechtssachen durch den Senatspräsidenten Dr. Schinko als Vorsitzenden, die Hofräte Dr. Fellinger und Dr. Hoch sowie die fachkundigen Laienrichter Mag. Irene Kienzl (aus dem Kreis der Arbeitgeber) und Eva-Maria Florianschütz (aus dem Kreis der Arbeitnehmer) als weitere Richter in der Sozialrechtssache der klagenden Partei Gertrud Johanna Ostrovska, gegen die beklagte Partei Steiermärkische Gebietskrankenkasse, 8011 Graz, Josef-Pongratz-Platz 1, vertreten durch Das Haus des Rechts Rechtsanwälte Destaller-Mader in Graz, wegen Kostenübernahme, infolge Rekurses der beklagten Partei gegen den Beschluss des Oberlandesgerichts Graz als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 19. November 2009, GZ 8 Rs 73/09f-10, womit infolge Berufung der klagenden Partei das Urteil des Landesgerichts für Zivilrechtssachen Graz als Arbeits- und Sozialgericht vom 1. September 2009, GZ 29 Cgs 90/09s-6, aufgehoben wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Dem Rekurs wird nicht Folge gegeben.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Ostrovska`(person)
-
-**Example 2** (doc_id: `deanon_TRAIN/10ObS21_10a`) (sent_id: `deanon_TRAIN/10ObS21_10a_133`)
-
-
-Auch dieser Umstand spricht dafür, dass auch die Ablehnung der Kostenübernahme für ein verordnetes Heilmittel durch eine Feststellungsklage beim Arbeits- und Sozialgericht bekämpft werden kann.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 3** (doc_id: `deanon_TRAIN/10ObS49_15a`) (sent_id: `deanon_TRAIN/10ObS49_15a_4`)
-
-
-Brigitte Augustin (aus dem Kreis der Arbeitgeber) und Peter Schönhofer (aus dem Kreis der Arbeitnehmer) als weitere Richter in der Sozialrechtssache der klagenden Partei Samantha Neunteufl, Deutschland, vertreten durch Mahringer Steinwender Bestebner Rechtsanwälte OG in Salzburg, gegen die beklagte Partei Vorarlberger Gebietskrankenkasse, Jahngasse 4, 6850 Dornbirn, vertreten durch Hoffmann & Brandstätter Rechtsanwälte KG in Innsbruck, wegen Kinderbetreuungsgeld, infolge Revision der beklagten Partei gegen das Urteil des Oberlandesgerichts Linz als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 12. Februar 2015, GZ 11 Rs 4/15k-10, womit infolge Berufung der beklagten Partei das Urteil des Landesgerichts Salzburg als Arbeits- und Sozialgericht vom 28. Oktober 2014, GZ 20 Cgs 71/14k-6, bestätigt wurde, in nichtöffentlicher Sitzung zu Recht erkannt:  Spruch
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Samantha Neunteufl`(person)
-
-**Example 4** (doc_id: `deanon_TRAIN/10ObS92_17b`) (sent_id: `deanon_TRAIN/10ObS92_17b_3`)
-
-
-Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrechtssachen durch den Senatspräsidenten Univ.-Prof. Dr. Neumayr als Vorsitzenden, den Hofrat Dr. Schramm und die Hofrätin Dr. Fichtenau sowie die fachkundigen Laienrichter Dr. Gabriele Griehsel (aus dem Kreis der Arbeitgeber) und Dr. Wolfgang Kozak (aus dem Kreis der Arbeitnehmer) als weitere Richter in der Sozialrechtssache der klagenden Partei Dr.in Gerlinde Saltzmann, vertreten durch Mahringer Steinwender Bestebner Rechtsanwälte OG in Salzburg, gegen die beklagte Partei Pensionsversicherungsanstalt, 1021 Wien, Friedrich-Hillegeist-Straße 1, wegen Berufsunfähigkeitspension, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Linz als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 15. Mai 2017, GZ 11 Rs 22/17k-36, mit dem das Urteil des Landesgerichts Salzburg als Arbeits- und Sozialgericht vom 21. Dezember 2016, GZ 18 Cgs 62/15y-32, bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Der Revision wird Folge gegeben.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Dr.in Gerlinde Saltzmann`(person)
-
-**Example 5** (doc_id: `deanon_TRAIN/8Nc31_13w`) (sent_id: `deanon_TRAIN/8Nc31_13w_3`)
-
-
-Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten des Obersten Gerichtshofs Dr. Spenling als Vorsitzenden sowie die Hofräte des Obersten Gerichtshofs Hon.-Prof. Dr. Kuras und Dr. Brenn als weitere Richter in der beim Landesgericht Salzburg als Arbeits- und Sozialgericht anhängigen Rechtssache der klagenden Partei Buth Analyse GmbH, Anabel Traudtmann, vertreten durch Dr. Ernst Kohlbacher, Rechtsanwalt in Salzburg, gegen die beklagte Partei Christine Schwemmer, vertreten durch Plankel Mayrhofer & Partner, Rechtsanwälte in Dornbirn, wegen 213,52 EUR sA, über den Delegierungsantrag der beklagten Partei den Beschluss gefasst:  Spruch Der Antrag der beklagten Partei, die Rechtssache an das Arbeits- und Sozialgericht Wien zu delegieren, wird abgewiesen.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-- `Arbeits- und Sozialgericht Wien` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 2
-
-**Gold Entities:**
-
-- `Landesgericht Salzburg`(organisation)
-- `Buth Analyse GmbH`(organisation)
-- `Anabel Traudtmann`(person)
-- `Christine Schwemmer`(person)
-
-**Example 6** (doc_id: `deanon_TRAIN/8Nc31_13w`) (sent_id: `deanon_TRAIN/8Nc31_13w_4`)
-
-
-Text Begründung: Mit der am 14. 12. 2012 beim Landesgericht Salzburg als Arbeits- und Sozialgericht eingebrachten Mahnklage begehrte die Klägerin, eine Finanzvermittlungsgesellschaft mit Sitz in Salzburg, von dem im Bundesland Burgenland wohnhaften Beklagten die Rückzahlung von Provisionen aus einem Agentenvertrag.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Landesgericht Salzburg`(organisation)
-
-**Example 7** (doc_id: `deanon_TRAIN/8Nc31_13w`) (sent_id: `deanon_TRAIN/8Nc31_13w_6`)
-
-
-Gleichzeitig beantragte er die Delegierung der Rechtssache an das Arbeits- und Sozialgericht Wien.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht Wien` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 8** (doc_id: `deanon_TRAIN/8ObA10_21k`) (sent_id: `deanon_TRAIN/8ObA10_21k_3`)
-
-
-Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrechtssachen durch den Senatspräsidenten Hon.-Prof. Dr. Kuras als Vorsitzenden, die Hofrätinnen Dr. Tarmann-Prentner und Mag. Wessely-Kristöfel als weitere Richter sowie die fachkundigen Laienrichter Mag. Dr. Rolf Gleißner (aus dem Kreis der Arbeitgeber) und Wolfgang Jelinek (aus dem Kreis der Arbeitnehmer) in der Arbeitsrechtssache der klagenden Partei Thebuss + Großekemper Bildung AG, Univ.-Prof.in Anna Helffer, vertreten durch Dr. Raimund Gehart, Rechtsanwalt in Wien, gegen die beklagte Partei Paulina Strnadl, vertreten durch Dr. Franz Josef Hofer Rechtsanwalt GmbH in Friesach, wegen 5.625,88 EUR sA, über die Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Graz als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 10. Dezember 2020, GZ 6 Ra 69/20v-19, mit dem das Urteil des Landesgerichts Klagenfurt als Arbeits- und Sozialgericht vom 15. Mai 2020, GZ 35 Cga 90/19x-11, abgeändert wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die Revision wird zurückgewiesen.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Thebuss + Großekemper Bildung AG`(organisation)
-- `Univ.-Prof.in Anna Helffer`(person)
-- `Paulina Strnadl`(person)
-- `Franz Josef Hofer Rechtsanwalt GmbH`(organisation)
-
-**Example 9** (doc_id: `deanon_TRAIN/8ObA1_13z`) (sent_id: `deanon_TRAIN/8ObA1_13z_3`)
-
-
-Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrechtssachen durch den Senatspräsidenten Dr. Spenling als Vorsitzenden, den Hofrat Hon.-Prof. Dr. Kuras, die Hofrätin Dr. Tarmann-Prentner sowie die fachkundigen Laienrichter Dr. Christoph Kainz und Horst Nurschinger als weitere Richter in der Arbeitsrechtssache der klagenden Partei Heinz Hennerich, vertreten durch Dr. Gerhard Hiebler, Dr. Gerd Grebenjak, Rechtsanwälte in Leoben, wider die beklagte Partei Verein DDr. Holger Müllegger, vertreten durch Dr. Dieter Neger, Rechtsanwalt in Graz, wegen Entlassungsanfechtung, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Graz als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 25. Oktober 2012, GZ 6 Ra 67/12p-12, mit dem über Berufung der klagenden Partei das Urteil des Landesgerichts Leoben als Arbeits- und Sozialgericht vom 2. Juli 2012, GZ 20 Cga 23/11v-7, bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Der Revision wird Folge gegeben.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Hennerich`(person)
-- `DDr. Holger Müllegger`(person)
-
-**Example 10** (doc_id: `deanon_TRAIN/8ObS8_22t`) (sent_id: `deanon_TRAIN/8ObS8_22t_3`)
-
-
-Kopf Der Oberste Gerichtshof hat als Rekursgericht in Arbeits- und Sozialrechtssachen durch den Senatspräsidenten Hon.-Prof. Dr. Kuras als Vorsitzenden sowie die Hofrätin Dr. Tarmann-Prentner und den Hofrat Dr. Stefula als weitere Richter (Senat gemäß § 11a Abs 3 Z 2 ASGG) in der Sozialrechtssache der klagenden Partei Holger Sykorski, vertreten durch Dr. Herbert Marschitz und andere Rechtsanwälte in Kufstein, gegen die beklagte Partei IEF-Service GmbH, 6020 Innsbruck, Meraner Straße 1, vertreten durch die Finanzprokuratur in Wien, wegen 34.726 EUR sA (Insolvenzentgelt), über den Rekurs der klagenden Partei gegen den Beschluss des Oberlandesgerichts Innsbruck als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 18. Oktober 2022, GZ 25 Rs 56/22d-34, mit dem das Urteil des Landesgerichts Innsbruck als Arbeits- und Sozialgericht vom 9. Juni 2022, GZ 44 Cgs 43/21m-27, samt dem ihm vorangegangenen Verfahren für nichtig erklärt und die Klage zurückgewiesen wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Dem Rekurs wird Folge gegeben.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Holger Sykorski`(person)
-
-**Example 11** (doc_id: `deanon_TRAIN/9Nc5_16h`) (sent_id: `deanon_TRAIN/9Nc5_16h_3`)
-
-
-Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten des Obersten Gerichtshofs Dr. Hopf als Vorsitzenden, die Hofrätin des Obersten Gerichtshofs Dr. Dehn und den Hofrat des Obersten Gerichtshofs Dr. Hargassner als weitere Richter in der Arbeitsrechtssache der klagenden Partei WestSicherheit GmbH, OMedR Paulina von Tietzen, vertreten durch Dr. Ernst Kohlbacher, Rechtsanwalt in Salzburg, gegen die beklagte Partei Amber Landscheid, vertreten durch Dr. Karl-Heinz Plankel, Dr. Herwig Mayrhofer ua, Rechtsanwälte in Dornbirn, wegen 15.600 EUR sA, über den Delegierungsantrag der beklagten Partei den Beschluss gefasst:  Spruch Der Antrag der beklagten Partei, anstelle des Landesgerichts Salzburg als Arbeits- und Sozialgericht das Arbeits- und Sozialgericht Wien zur Verhandlung und Entscheidung der Rechtssache des Landesgerichts Salzburg als Arbeits- und Sozialgericht AZ 15 Cga 88/15d zu bestimmen, wird abgewiesen.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-- `Arbeits- und Sozialgericht Wien` — no gold match — likely missing annotation
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 3
-
-**Gold Entities:**
-
-- `WestSicherheit GmbH`(organisation)
-- `OMedR Paulina von Tietzen`(person)
-- `Amber Landscheid`(person)
-
-**Example 12** (doc_id: `deanon_TRAIN/9Nc5_16h`) (sent_id: `deanon_TRAIN/9Nc5_16h_4`)
-
-
-Text Begründung: Mit ihrer am 22. 12. 2015 beim Landesgericht Salzburg als Arbeits- und Sozialgericht eingebrachten Klage begehrt die in Kagraner Anger 19, 4943 Nonsbach, Österreich (Sbg) ansässige Klägerin vom in Wien wohnhaften Beklagten die Zahlung einer Vertragsstrafe wegen mehrfacher Verstöße gegen das in seinem Agentenvertrag vereinbarte Wettbewerbsverbot.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Landesgericht Salzburg`(organisation)
-- `Kagraner Anger 19, 4943 Nonsbach, Österreich`(address)
-
-**Example 13** (doc_id: `deanon_TRAIN/9Nc5_16h`) (sent_id: `deanon_TRAIN/9Nc5_16h_8`)
-
-
-Es werde die Delegierung der Rechtssache an das Arbeits- und Sozialgericht Wien beantragt, weil der Beklagte dort seinen Lebensmittelpunkt habe und der Großteil der im Verfahren beantragten Zeugen aus dem Bereich Wien und Wien-Umgebung komme.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht Wien` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 14** (doc_id: `deanon_TRAIN/9Nc5_16h`) (sent_id: `deanon_TRAIN/9Nc5_16h_14`)
-
-
-Das Landesgericht Salzburg als Arbeits- und Sozialgericht sei auch mit den Rechtsangelegenheiten und regelmäßig gleichlautenden Vertragsgrundlagen und Provisions-abrechnungen der Klägerin seit Jahren vertraut.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Landesgericht Salzburg`(organisation)
-
-**Example 15** (doc_id: `deanon_TRAIN/9Nc5_16h`) (sent_id: `deanon_TRAIN/9Nc5_16h_15`)
-
-
-Auch das Landesgericht Salzburg als Arbeits- und Sozialgericht gab im Ergebnis nach Abwägung von Für und Wider eine negative Stellungnahme ab.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Landesgericht Salzburg`(organisation)
-
-**Example 16** (doc_id: `deanon_TRAIN/9Nc5_16h`) (sent_id: `deanon_TRAIN/9Nc5_16h_18`)
-
-
-Am 15. 2. 2016 übermittelte das Landesgericht Salzburg als Arbeits- und Sozialgericht im Nachhang eine von der Klägerin am 8.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Landesgericht Salzburg`(organisation)
-
-**Example 17** (doc_id: `deanon_TRAIN/9Nc5_16h`) (sent_id: `deanon_TRAIN/9Nc5_16h_35`)
-
-
-Zu bedenken ist auch, dass das Landesgericht Salzburg als Arbeits- und Sozialgericht bereits eine Tagsatzung abgehalten und das Prozessprogramm festgelegt hat und mit der Problematik auch aus einem anderen Verfahren vertraut ist, während sich ein Wiener Gericht neu in die Sache einzuarbeiten hätte.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Landesgericht Salzburg`(organisation)
-
-**Example 18** (doc_id: `deanon_TRAIN/9Ob59_20x`) (sent_id: `deanon_TRAIN/9Ob59_20x_17`)
-
-
-Weiters begehrt der Kläger die Feststellung der Haftung des Beklagten für die ihm künftig aus der unrichtigen Gutachtenserstellung durch den Beklagten im Verfahren vor dem Arbeits- und Sozialgericht Wien zur AZ 25 Cgs 77/16w entstehenden Schaden.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht Wien` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 19** (doc_id: `deanon_TRAIN/9ObA118_18w`) (sent_id: `deanon_TRAIN/9ObA118_18w_4`)
-
-
-Gabriele Svirak in der Arbeitsrechtssache der klagenden Partei Evelyn Lichtwer, vertreten durch Dr. Gerhard Hiebler, Dr. Gerd Grebenjak, Rechtsanwälte in Leoben, gegen die beklagte Partei Inn Wiltri Systeme GmbH, DDr. Johann Gerkens, vertreten durch Dr. Helmut Fetz, Dr. Birgit Fetz ua, Rechtsanwälte in Leoben, wegen 500 EUR sA, über die Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Graz als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 29. August 2018, GZ 7 Ra 23/18h-12, mit dem der Berufung der klagenden Partei gegen das Urteil des Landesgerichts Leoben als Arbeits- und Sozialgericht vom 14. Dezember 2017, GZ 23 Cga 75/17x-7, nicht Folge gegeben wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die Revision der klagenden Partei wird zurückgewiesen.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Evelyn Lichtwer`(person)
-- `Inn Wiltri Systeme GmbH`(organisation)
-- `DDr. Johann Gerkens`(person)
-
-**Example 20** (doc_id: `deanon_TRAIN/9ObA118_19x`) (sent_id: `deanon_TRAIN/9ObA118_19x_5`)
-
-
-Text Begründung: Mit Beschluss vom 15. Mai 2019, 9 ObA 41/19y, wies der Oberste Gerichtshof die außerordentliche Revision des Klägers in der beim Landesgericht Linz als Arbeits- und Sozialgericht anhängigen Arbeitsrechtssache gegen die beklagte Partei als seine frühere Arbeitgeberin mangels Vorliegens einer Rechtsfrage von erheblicher Bedeutung im Sinne des § 502 Abs 1 ZPO zurück.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Landesgericht Linz`(organisation)
-
-**Example 21** (doc_id: `deanon_TRAIN/9ObA120_12f`) (sent_id: `deanon_TRAIN/9ObA120_12f_4`)
-
-
-Dr. Helwig Aubauer und Mag. Regina Bauer-Albrecht als weitere Richter in der Arbeitsrechtssache der klagenden Partei Heidelinde Hobl, vertreten durch Dr. Dieter Gallistl, Rechtsanwalt in Linz, wider die beklagte Partei Elvira Vacha, vertreten durch Dr. Andreas Grassl, Rechtsanwalt in Wien, wegen Feststellung (Streitwert 174,77 EUR), über die Revision der beklagten Partei gegen das Urteil des Oberlandesgerichts Linz als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 27. Juni 2012, GZ 12 Ra 48/12h-15, womit infolge Berufung der beklagten Partei das Urteil des Landesgerichts Wels als Arbeits- und Sozialgericht vom 31. Jänner 2012, GZ 16 Cga 154/11i-11, bestätigt wurde, in nichtöffentlicher Sitzung zu Recht erkannt:  Spruch
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Hobl`(person)
-- `Elvira Vacha`(person)
-
-**Example 22** (doc_id: `deanon_TRAIN/9ObA151_09k`) (sent_id: `deanon_TRAIN/9ObA151_09k_3`)
-
-
-Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrechtssachen durch den Vizepräsidenten des Obersten Gerichtshofs Dr. Rohrer als Vorsitzenden und die Hofräte des Obersten Gerichtshofs Dr. Hradil und Dr. Hopf sowie die fachkundigen Laienrichter KR Mag. Paul Kunsky und Franz Boindl als weitere Richter in der Arbeitsrechtssache der klagenden Partei PhD Ottfried Leonhardi, vertreten durch Dr. Charlotte Lindenberger, Rechtsanwältin in Steyr, gegen die beklagte Partei Baltromei Wind GmbH, Petra Ditrich, vertreten durch Dr. Otto Hauck, Rechtsanwalt in Kirchdorf, wegen 1.028,19 EUR sA, über die Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Linz als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 16. Oktober 2009, GZ 11 Ra 88/09d-10, womit das Urteil des Landesgerichts Steyr als Arbeits- und Sozialgericht vom 2. Juli 2009, GZ 24 Cga 9/09p-6, bestätigt wurde, in nichtöffentlicher Sitzung zu Recht erkannt:  Spruch Der Revision wird nicht Folge gegeben.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `PhD Ottfried Leonhardi`(person)
-- `Baltromei Wind GmbH`(organisation)
-- `Petra Ditrich`(person)
-
-**Example 23** (doc_id: `deanon_TRAIN/9ObA41_16v`) (sent_id: `deanon_TRAIN/9ObA41_16v_3`)
-
-
-Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrechtssachen durch den Senatspräsidenten des Obersten Gerichtshofs Dr. Hopf als Vorsitzenden, die Hofrätinnen des Obersten Gerichtshofs Hon.-Prof. Dr. Dehn und Mag. Korn sowie die fachkundigen Laienrichter Dr. Johannes Pflug und Mag. Robert Brunner als weitere Richter in der Arbeitsrechtssache der klagenden Partei Mag. Joseph Mehl, vertreten durch Dr. Stephan Rainer und Dr. Andreas Ruetz, Rechtsanwälte in Innsbruck, gegen die beklagte Partei Heiko Ayna, vertreten durch Korn Rechtsanwälte OG in Wien, wegen 40.647,29 EUR brutto sA über die Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Innsbruck als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 29. Jänner 2016, GZ 15 Ra 16/16i-31, mit dem der Berufung der klagenden Partei gegen das Urteil des Landesgerichts Innsbruck als Arbeits- und Sozialgericht vom 11. November 2015, GZ 43 Cga 118/14b-26, nicht Folge gegeben wurde, den Beschluss gefasst:  Spruch Die Revision wird zurückgewiesen.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Mag. Joseph Mehl`(person)
-- `Heiko Ayna`(person)
-
-**Example 24** (doc_id: `deanon_TRAIN/9ObA43_12g`) (sent_id: `deanon_TRAIN/9ObA43_12g_4`)
-
-
-Werner Keyzers, 4. Jaromir Heinrichson, alle vertreten durch die Advokaturbüro Jelenik & Partner AG, Landstraße 60, FL-9490 Vaduz (Zustellungsbevollmächtigter gemäß § 6 EIRAG: Mag. Norbert Wanker, Wasenweg 23, 6800 Feldkirch), gegen die beklagte Partei Wichtmann u. Staneck Energie GmbH, Dimitri Brunemann, vertreten durch Dr. Andreas Grundei, Rechtsanwalt in Wien, wegen Feststellung (Streitwert 10.000 EUR), über die außerordentliche Revision der klagenden Parteien gegen das Urteil des Oberlandesgerichts Innsbruck als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 21. Februar 2012, GZ 15 Ra 13/12t-16, womit das Urteil des Landesgerichts Feldkirch als Arbeits- und Sozialgericht vom 4. Oktober 2011, GZ 35 Cga 85/11p-10, bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die außerordentliche Revision der klagenden Parteien wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Werner Keyzers`(person)
-- `Jaromir Heinrichson`(person)
-- `Partner AG`(organisation)
-- `Wichtmann u. Staneck Energie GmbH`(organisation)
-- `Dimitri Brunemann`(person)
-
-**Example 25** (doc_id: `deanon_TRAIN/9ObA44_11b`) (sent_id: `deanon_TRAIN/9ObA44_11b_5`)
-
-
-Dr. Wolfgang List, Rechtsanwalt in Wien, wider die beklagte Partei und Gegnerin der gefährdeten Partei Valerian Urbahn, vertreten durch Dr. J. Pfurtscheller, Dr. Orgler, Mag. Huber, Rechtsanwälte in Innsbruck, wegen Feststellung des Fortbestands eines Arbeitsverhältnisses, in eventu Anfechtung einer Kündigung nach § 105 ArbVG (Streitwert jeweils 31.000 EUR), in eventu 18.957 EUR sA, hier Erlassung einer einstweiligen Verfügung, über den Revisionsrekurs der klagenden und gefährdeten Partei gegen den Beschluss des Oberlandesgerichts Innsbruck als Rekursgericht in Arbeits- und Sozialrechtssachen vom 24. Februar 2011, GZ 15 Ra 11/11x-15, mit dem infolge Rekurses der klagenden und gefährdeten Partei der Beschluss des Landesgerichts Innsbruck als Arbeits- und Sozialgericht vom 9. Dezember 2010, GZ 43 Cga 126/10y-8, bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Der Revisionsrekurs wird zurückgewiesen.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Valerian Urbahn`(person)
-
-**Example 26** (doc_id: `deanon_TRAIN/9ObA4_13y`) (sent_id: `deanon_TRAIN/9ObA4_13y_3`)
-
-
-Kopf Der Oberste Gerichtshof hat als Rekursgericht in Arbeits- und Sozialrechtssachen durch den Senatspräsidenten des Obersten Gerichtshofs Dr. Hopf als Vorsitzenden, den Hofrat des Obersten Gerichtshofs Hon.-Prof. Dr. Kuras und die Hofrätin des Obersten Gerichtshofs Dr. Dehn sowie die fachkundigen Laienrichter Werner Rodlauer und Mag. Robert Brunner als weitere Richter in der Arbeitsrechtssache der klagenden Partei Maria Maritz, vertreten durch Dr. Susanne Kuen, Rechtsanwältin in Wien, gegen die beklagte Partei PHG Möbel Dienstleistungen GmbH, Zeno Speckl, vertreten durch Fellner Wratzfeld & Partner Rechtsanwälte GmbH in Wien, wegen 125.731,44 EUR sA, über den Rekurs der beklagten Partei gegen den Beschluss des Oberlandesgerichts Linz als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 30. Oktober 2012, GZ 11 Ra 82/12a-74, mit dem das Urteil des Landesgerichts Steyr als Arbeits- und Sozialgericht vom 31. Juli 2012, GZ 9 Cga 245/08g-70, aufgehoben und die Rechtssache an das Erstgericht zurückverwiesen wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Der Rekurs wird zurückgewiesen.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Maria Maritz`(person)
-- `PHG Möbel Dienstleistungen GmbH`(organisation)
-- `Zeno Speckl`(person)
-
-**Example 27** (doc_id: `deanon_TRAIN/9ObA78_21t`) (sent_id: `deanon_TRAIN/9ObA78_21t_3`)
-
-
-Kopf Der Oberste Gerichtshof hat als Revisionsrekursgericht in Arbeits- und Sozialrechtssachen durch den Senatspräsidenten des Obersten Gerichtshofs Dr. Hopf als Vorsitzenden, die Hofrätin des Obersten Gerichtshofs Dr. Fichtenau und den Hofrat des Obersten Gerichtshofs Dr. Hargassner als weitere Richter in der Arbeitsrechtssache der klagenden Partei Ing. DI (FH) Griselda Eicholz, nunmehr vertreten durch Mag. Dr. Helmut Blum, Rechtsanwalt in Linz, gegen die beklagte Partei HochLuftfahrt GmbH, Saphira Thiehle, wegen Leistung, über den außerordentlichen Revisionsrekurs der klagenden Partei gegen den Beschluss des Oberlandesgerichts Linz als Rekursgericht in Arbeits- und Sozialrechtssachen vom 13. Mai 2019, GZ 11 Ra 33/19f-23, mit dem der Rekurs des Klägers gegen den Beschluss des Landesgerichts Linz als Arbeits- und Sozialgericht vom 8. April 2019, GZ 7 Cga 25/19k-9, zurückgewiesen wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Dem Revisionsrekurs wird Folge gegeben.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Griselda Eicholz`(person)
-- `HochLuftfahrt GmbH`(organisation)
-- `Saphira Thiehle`(person)
-
-**Example 28** (doc_id: `deanon_TRAIN/9ObA78_21t`) (sent_id: `deanon_TRAIN/9ObA78_21t_7`)
-
-
-2. 2019 brachte der Kläger beim Landesgericht Linz als Arbeits- und Sozialgericht eine Klage gegen die Beklagte ein.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Landesgericht Linz`(organisation)
-
-**Example 29** (doc_id: `deanon_TRAIN/9ObA82_20d`) (sent_id: `deanon_TRAIN/9ObA82_20d_3`)
-
-
-Kopf Der Oberste Gerichtshof hat als Revisions- und Rekursgericht in Arbeits- und Sozialrechtssachen durch den Senatspräsidenten des Obersten Gerichtshofs Dr. Hopf als Vorsitzenden, die Hofrätin des Obersten Gerichtshofs Dr. Fichtenau und den Hofrat des Obersten Gerichtshofs Dr. Hargassner sowie die fachkundigen Laienrichter Mag. Dr. Bernhard Gruber (aus dem Kreis der Arbeitgeber) und Angela Taschek (aus dem Kreis der Arbeitnehmer) als weitere Richter in der Arbeitsrechtssache der klagenden Partei Marktgemeinde Andrea Wiggering, vertreten durch Ehrenhöfer & Häusler Rechtsanwälte GmbH in Wiener Neustadt, gegen die beklagte Partei Cassandra Noldens, vertreten durch Kosch & Partner Rechtsanwälte GmbH in Wiener Neustadt, wegen 28.428,01 EUR sA, über den Rekurs und die außerordentliche Revision der klagenden Partei gegen den Beschluss (I.) und das Urteil (II.) des Oberlandesgerichts Wien als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 22. Juli 2020, GZ 9 Ra 111/19p-25, mit dem das Urteil des Landesgerichts Wiener Neustadt als Arbeits- und Sozialgericht vom 17. September 2019, GZ 9 Cga 126/18g-21, aus Anlass der Berufung der beklagten Partei hinsichtlich der Rückforderung einer Zahlung als nichtig aufgehoben und die Klage zurückgewiesen wurde und über Berufung der beklagen Partei hinsichtlich des Anspruchs nach dem OrgHG abgeändert wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Dem Rekurs wird teilweise Folge gegeben und der angefochtene Beschluss des Berufungsgerichts ersatzlos aufgehoben.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Andrea Wiggering`(person)
-- `Cassandra Noldens`(person)
-
-</details>
-
----
-
 ## `Constitutional Court Acronym`
 
 **F1:** 0.000 | **Precision:** 0.000 | **Recall:** 0.000  
@@ -4532,7 +4550,7 @@ Matches VfGH acronym.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 12 | 485 |
+| `organisation` | 0 | 12 | 521 |
 
 </details>
 
@@ -4706,7 +4724,7 @@ Matches law firms ending in Rechtsanwälte GmbH/OG with names, ensuring no prece
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 10 | 434 |
+| `organisation` | 0 | 10 | 470 |
 
 </details>
 
@@ -4831,6 +4849,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrech
 - `Cassandra Hennel`(person)
 - `SeeTextil AG`(organisation)
 - `Othmar Dempewolf`(person)
+- `Arbeits- und Sozialgerichts`(organisation)
 
 **Example 7** (doc_id: `deanon_TRAIN/8ObA47_20z`) (sent_id: `deanon_TRAIN/8ObA47_20z_4`)
 
@@ -4911,7 +4930,7 @@ Matches law firms ending in KG, excluding GmbH & Co KG patterns.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 10 | 509 |
+| `organisation` | 0 | 10 | 550 |
 
 </details>
 
@@ -5094,7 +5113,7 @@ Matches VwGH acronym, but only when it appears as a standalone entity reference,
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 7 | 485 |
+| `organisation` | 0 | 7 | 521 |
 
 </details>
 
@@ -5450,7 +5469,7 @@ Matches the specific retailer Billa.
 
 ## `District Court Pattern`
 
-**F1:** 0.315 | **Precision:** 0.722 | **Recall:** 0.201  
+**F1:** 0.299 | **Precision:** 0.722 | **Recall:** 0.189  
 
 **Format:** `regex`  
 **Rule ID:** `4a197a40`  
@@ -5467,13 +5486,13 @@ Matches Bezirksgericht followed by location, handling 'BG' abbreviation.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.722 | 0.201 | 0.315 | 169 | 122 | 47 |
+| 0.722 | 0.189 | 0.299 | 169 | 122 | 47 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 122 | 47 | 484 |
+| `organisation` | 122 | 47 | 525 |
 
 </details>
 
@@ -6661,7 +6680,7 @@ Dem Ordinationsantrag ist somit stattzugeben und zweckmäßigerweise das Bezirks
 
 ## `Regional Court Pattern`
 
-**F1:** 0.180 | **Precision:** 0.670 | **Recall:** 0.104  
+**F1:** 0.170 | **Precision:** 0.670 | **Recall:** 0.097  
 
 **Format:** `regex`  
 **Rule ID:** `8426a1d3`  
@@ -6678,13 +6697,13 @@ Matches Landesgericht (LG) followed by location.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.670 | 0.104 | 0.180 | 94 | 63 | 31 |
+| 0.670 | 0.097 | 0.170 | 94 | 63 | 31 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 63 | 31 | 478 |
+| `organisation` | 63 | 31 | 519 |
 
 </details>
 
@@ -7248,9 +7267,11 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten des Obersten Geric
 
 **Missed by this rule (FN):**
 
+- `Arbeits- und Sozialgericht` (organisation)
 - `Buth Analyse GmbH` (organisation)
 - `Anabel Traudtmann` (person)
 - `Christine Schwemmer` (person)
+- `Arbeits- und Sozialgericht` (organisation)
 
 **Example 50** (doc_id: `deanon_TRAIN/8Nc31_13w`) (sent_id: `deanon_TRAIN/8Nc31_13w_4`)
 
@@ -7260,6 +7281,10 @@ Text Begründung: Mit der am 14. 12. 2012 beim Landesgericht Salzburg als Arbeit
 | Predicted | Gold |
 |---|---|
 | `Landesgericht Salzburg` | `Landesgericht Salzburg` |
+
+**Missed by this rule (FN):**
+
+- `Arbeits- und Sozialgericht` (organisation)
 
 **Example 51** (doc_id: `deanon_TRAIN/8Ob29_19a`) (sent_id: `deanon_TRAIN/8Ob29_19a_3`)
 
@@ -7290,6 +7315,7 @@ Text Begründung: Mit ihrer am 22. 12. 2015 beim Landesgericht Salzburg als Arbe
 
 **Missed by this rule (FN):**
 
+- `Arbeits- und Sozialgericht` (organisation)
 - `Kagraner Anger 19, 4943 Nonsbach, Österreich` (address)
 
 **Example 54** (doc_id: `deanon_TRAIN/9Nc5_16h`) (sent_id: `deanon_TRAIN/9Nc5_16h_14`)
@@ -7301,6 +7327,10 @@ Das Landesgericht Salzburg als Arbeits- und Sozialgericht sei auch mit den Recht
 |---|---|
 | `Landesgericht Salzburg` | `Landesgericht Salzburg` |
 
+**Missed by this rule (FN):**
+
+- `Arbeits- und Sozialgericht` (organisation)
+
 **Example 55** (doc_id: `deanon_TRAIN/9Nc5_16h`) (sent_id: `deanon_TRAIN/9Nc5_16h_15`)
 
 
@@ -7309,6 +7339,10 @@ Auch das Landesgericht Salzburg als Arbeits- und Sozialgericht gab im Ergebnis n
 | Predicted | Gold |
 |---|---|
 | `Landesgericht Salzburg` | `Landesgericht Salzburg` |
+
+**Missed by this rule (FN):**
+
+- `Arbeits- und Sozialgericht` (organisation)
 
 **Example 56** (doc_id: `deanon_TRAIN/9Nc5_16h`) (sent_id: `deanon_TRAIN/9Nc5_16h_18`)
 
@@ -7319,6 +7353,10 @@ Am 15. 2. 2016 übermittelte das Landesgericht Salzburg als Arbeits- und Sozialg
 |---|---|
 | `Landesgericht Salzburg` | `Landesgericht Salzburg` |
 
+**Missed by this rule (FN):**
+
+- `Arbeits- und Sozialgericht` (organisation)
+
 **Example 57** (doc_id: `deanon_TRAIN/9Nc5_16h`) (sent_id: `deanon_TRAIN/9Nc5_16h_35`)
 
 
@@ -7327,6 +7365,10 @@ Zu bedenken ist auch, dass das Landesgericht Salzburg als Arbeits- und Sozialger
 | Predicted | Gold |
 |---|---|
 | `Landesgericht Salzburg` | `Landesgericht Salzburg` |
+
+**Missed by this rule (FN):**
+
+- `Arbeits- und Sozialgericht` (organisation)
 
 **Example 58** (doc_id: `deanon_TRAIN/9ObA118_19x`) (sent_id: `deanon_TRAIN/9ObA118_19x_5`)
 
@@ -7337,6 +7379,10 @@ Text Begründung: Mit Beschluss vom 15. Mai 2019, 9 ObA 41/19y, wies der Oberste
 |---|---|
 | `Landesgericht Linz` | `Landesgericht Linz` |
 
+**Missed by this rule (FN):**
+
+- `Arbeits- und Sozialgericht` (organisation)
+
 **Example 59** (doc_id: `deanon_TRAIN/9ObA78_21t`) (sent_id: `deanon_TRAIN/9ObA78_21t_7`)
 
 
@@ -7345,6 +7391,10 @@ Text Begründung: Mit Beschluss vom 15. Mai 2019, 9 ObA 41/19y, wies der Oberste
 | Predicted | Gold |
 |---|---|
 | `Landesgericht Linz` | `Landesgericht Linz` |
+
+**Missed by this rule (FN):**
+
+- `Arbeits- und Sozialgericht` (organisation)
 
 </details>
 
@@ -7759,9 +7809,527 @@ Das Landesgericht für Zivilrechtssachen Wien trug dem Beklagten mit Beschluss v
 
 ---
 
+## `Labor Court Vienna`
+
+**F1:** 0.085 | **Precision:** 0.853 | **Recall:** 0.045  
+
+**Format:** `regex`  
+**Rule ID:** `dee27985`  
+**Description:**
+Matches Arbeits- und Sozialgericht Wien and variations.
+
+**Content:**
+```
+(?i)\b(Arbeits-\s+und\s+Sozialgericht(?:\s+Wien)?)\b
+```
+
+<details>
+<summary>📊 Detailed Metrics</summary>
+
+| Precision | Recall | F1 | Total Predicted | TP | FP |
+|---|---|---|---|---|---|
+| 0.853 | 0.045 | 0.085 | 34 | 29 | 5 |
+
+**Per-Class Breakdown**
+
+| Class | TP | FP | FN |
+|---|---|---|---|
+| `organisation` | 29 | 5 | 512 |
+
+</details>
+
+---
+
+<details>
+<summary>✅ Worked</summary>
+
+**Example 0** (doc_id: `deanon_TRAIN/10ObS150_17g`) (sent_id: `deanon_TRAIN/10ObS150_17g_3`)
+
+
+Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrechtssachen durch den Senatspräsidenten Univ.-Prof. Dr. Neumayr als Vorsitzenden, den Senatspräsidenten Dr. Schramm und die Hofrätin Dr. Fichtenau sowie die fachkundigen Laienrichter Ing. Christian Stangl-Brachnik, MA BA und Mag. Claudia Gründel (beide aus dem Kreis der Arbeitgeber) als weitere Richter in der Sozialrechtssache der klagenden Partei OStR Esra Jakubait, vertreten durch Dr. Thomas Stampfer und Dr. Christoph Orgler, Rechtsanwälte in Graz, gegen die beklagte Partei Sozialversicherungsanstalt der Bauern, 1031 Wien, Ghegastraße 1, vertreten durch Dr. Michael Stögerer, Rechtsanwalt in Wien, wegen Ausgleichszulage, infolge Revision der beklagten Partei gegen das Urteil des Oberlandesgerichts Graz als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 20. September 2017, GZ 7 Rs 37/17s-11, womit infolge Berufung der klagenden Partei das Urteil des Landesgerichts für Zivilrechtssachen Graz als Arbeits- und Sozialgericht vom 27. April 2017, GZ 43 Cgs 113/17p-7, teils bestätigt und teils abgeändert wurde, in nichtöffentlicher Sitzung zu Recht erkannt:  Spruch
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `OStR Esra Jakubait` (person)
+
+**Example 1** (doc_id: `deanon_TRAIN/10ObS21_10a`) (sent_id: `deanon_TRAIN/10ObS21_10a_3`)
+
+
+Kopf Der Oberste Gerichtshof hat als Rekursgericht in Arbeits- und Sozialrechtssachen durch den Senatspräsidenten Dr. Schinko als Vorsitzenden, die Hofräte Dr. Fellinger und Dr. Hoch sowie die fachkundigen Laienrichter Mag. Irene Kienzl (aus dem Kreis der Arbeitgeber) und Eva-Maria Florianschütz (aus dem Kreis der Arbeitnehmer) als weitere Richter in der Sozialrechtssache der klagenden Partei Gertrud Johanna Ostrovska, gegen die beklagte Partei Steiermärkische Gebietskrankenkasse, 8011 Graz, Josef-Pongratz-Platz 1, vertreten durch Das Haus des Rechts Rechtsanwälte Destaller-Mader in Graz, wegen Kostenübernahme, infolge Rekurses der beklagten Partei gegen den Beschluss des Oberlandesgerichts Graz als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 19. November 2009, GZ 8 Rs 73/09f-10, womit infolge Berufung der klagenden Partei das Urteil des Landesgerichts für Zivilrechtssachen Graz als Arbeits- und Sozialgericht vom 1. September 2009, GZ 29 Cgs 90/09s-6, aufgehoben wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Dem Rekurs wird nicht Folge gegeben.
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `Ostrovska` (person)
+
+**Example 2** (doc_id: `deanon_TRAIN/10ObS21_10a`) (sent_id: `deanon_TRAIN/10ObS21_10a_133`)
+
+
+Auch dieser Umstand spricht dafür, dass auch die Ablehnung der Kostenübernahme für ein verordnetes Heilmittel durch eine Feststellungsklage beim Arbeits- und Sozialgericht bekämpft werden kann.
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Example 3** (doc_id: `deanon_TRAIN/10ObS49_15a`) (sent_id: `deanon_TRAIN/10ObS49_15a_4`)
+
+
+Brigitte Augustin (aus dem Kreis der Arbeitgeber) und Peter Schönhofer (aus dem Kreis der Arbeitnehmer) als weitere Richter in der Sozialrechtssache der klagenden Partei Samantha Neunteufl, Deutschland, vertreten durch Mahringer Steinwender Bestebner Rechtsanwälte OG in Salzburg, gegen die beklagte Partei Vorarlberger Gebietskrankenkasse, Jahngasse 4, 6850 Dornbirn, vertreten durch Hoffmann & Brandstätter Rechtsanwälte KG in Innsbruck, wegen Kinderbetreuungsgeld, infolge Revision der beklagten Partei gegen das Urteil des Oberlandesgerichts Linz als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 12. Februar 2015, GZ 11 Rs 4/15k-10, womit infolge Berufung der beklagten Partei das Urteil des Landesgerichts Salzburg als Arbeits- und Sozialgericht vom 28. Oktober 2014, GZ 20 Cgs 71/14k-6, bestätigt wurde, in nichtöffentlicher Sitzung zu Recht erkannt:  Spruch
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `Samantha Neunteufl` (person)
+
+**Example 4** (doc_id: `deanon_TRAIN/10ObS92_17b`) (sent_id: `deanon_TRAIN/10ObS92_17b_3`)
+
+
+Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrechtssachen durch den Senatspräsidenten Univ.-Prof. Dr. Neumayr als Vorsitzenden, den Hofrat Dr. Schramm und die Hofrätin Dr. Fichtenau sowie die fachkundigen Laienrichter Dr. Gabriele Griehsel (aus dem Kreis der Arbeitgeber) und Dr. Wolfgang Kozak (aus dem Kreis der Arbeitnehmer) als weitere Richter in der Sozialrechtssache der klagenden Partei Dr.in Gerlinde Saltzmann, vertreten durch Mahringer Steinwender Bestebner Rechtsanwälte OG in Salzburg, gegen die beklagte Partei Pensionsversicherungsanstalt, 1021 Wien, Friedrich-Hillegeist-Straße 1, wegen Berufsunfähigkeitspension, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Linz als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 15. Mai 2017, GZ 11 Rs 22/17k-36, mit dem das Urteil des Landesgerichts Salzburg als Arbeits- und Sozialgericht vom 21. Dezember 2016, GZ 18 Cgs 62/15y-32, bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Der Revision wird Folge gegeben.
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `Dr.in Gerlinde Saltzmann` (person)
+
+**Example 5** (doc_id: `deanon_TRAIN/8Nc31_13w`) (sent_id: `deanon_TRAIN/8Nc31_13w_3`)
+
+
+Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten des Obersten Gerichtshofs Dr. Spenling als Vorsitzenden sowie die Hofräte des Obersten Gerichtshofs Hon.-Prof. Dr. Kuras und Dr. Brenn als weitere Richter in der beim Landesgericht Salzburg als Arbeits- und Sozialgericht anhängigen Rechtssache der klagenden Partei Buth Analyse GmbH, Anabel Traudtmann, vertreten durch Dr. Ernst Kohlbacher, Rechtsanwalt in Salzburg, gegen die beklagte Partei Christine Schwemmer, vertreten durch Plankel Mayrhofer & Partner, Rechtsanwälte in Dornbirn, wegen 213,52 EUR sA, über den Delegierungsantrag der beklagten Partei den Beschluss gefasst:  Spruch Der Antrag der beklagten Partei, die Rechtssache an das Arbeits- und Sozialgericht Wien zu delegieren, wird abgewiesen.
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `Landesgericht Salzburg` (organisation)
+- `Buth Analyse GmbH` (organisation)
+- `Anabel Traudtmann` (person)
+- `Christine Schwemmer` (person)
+
+**Example 6** (doc_id: `deanon_TRAIN/8Nc31_13w`) (sent_id: `deanon_TRAIN/8Nc31_13w_4`)
+
+
+Text Begründung: Mit der am 14. 12. 2012 beim Landesgericht Salzburg als Arbeits- und Sozialgericht eingebrachten Mahnklage begehrte die Klägerin, eine Finanzvermittlungsgesellschaft mit Sitz in Salzburg, von dem im Bundesland Burgenland wohnhaften Beklagten die Rückzahlung von Provisionen aus einem Agentenvertrag.
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `Landesgericht Salzburg` (organisation)
+
+**Example 7** (doc_id: `deanon_TRAIN/8ObA10_21k`) (sent_id: `deanon_TRAIN/8ObA10_21k_3`)
+
+
+Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrechtssachen durch den Senatspräsidenten Hon.-Prof. Dr. Kuras als Vorsitzenden, die Hofrätinnen Dr. Tarmann-Prentner und Mag. Wessely-Kristöfel als weitere Richter sowie die fachkundigen Laienrichter Mag. Dr. Rolf Gleißner (aus dem Kreis der Arbeitgeber) und Wolfgang Jelinek (aus dem Kreis der Arbeitnehmer) in der Arbeitsrechtssache der klagenden Partei Thebuss + Großekemper Bildung AG, Univ.-Prof.in Anna Helffer, vertreten durch Dr. Raimund Gehart, Rechtsanwalt in Wien, gegen die beklagte Partei Paulina Strnadl, vertreten durch Dr. Franz Josef Hofer Rechtsanwalt GmbH in Friesach, wegen 5.625,88 EUR sA, über die Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Graz als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 10. Dezember 2020, GZ 6 Ra 69/20v-19, mit dem das Urteil des Landesgerichts Klagenfurt als Arbeits- und Sozialgericht vom 15. Mai 2020, GZ 35 Cga 90/19x-11, abgeändert wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die Revision wird zurückgewiesen.
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `Thebuss + Großekemper Bildung AG` (organisation)
+- `Univ.-Prof.in Anna Helffer` (person)
+- `Paulina Strnadl` (person)
+- `Franz Josef Hofer Rechtsanwalt GmbH` (organisation)
+
+**Example 8** (doc_id: `deanon_TRAIN/8ObA1_13z`) (sent_id: `deanon_TRAIN/8ObA1_13z_3`)
+
+
+Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrechtssachen durch den Senatspräsidenten Dr. Spenling als Vorsitzenden, den Hofrat Hon.-Prof. Dr. Kuras, die Hofrätin Dr. Tarmann-Prentner sowie die fachkundigen Laienrichter Dr. Christoph Kainz und Horst Nurschinger als weitere Richter in der Arbeitsrechtssache der klagenden Partei Heinz Hennerich, vertreten durch Dr. Gerhard Hiebler, Dr. Gerd Grebenjak, Rechtsanwälte in Leoben, wider die beklagte Partei Verein DDr. Holger Müllegger, vertreten durch Dr. Dieter Neger, Rechtsanwalt in Graz, wegen Entlassungsanfechtung, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Graz als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 25. Oktober 2012, GZ 6 Ra 67/12p-12, mit dem über Berufung der klagenden Partei das Urteil des Landesgerichts Leoben als Arbeits- und Sozialgericht vom 2. Juli 2012, GZ 20 Cga 23/11v-7, bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Der Revision wird Folge gegeben.
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `Hennerich` (person)
+- `DDr. Holger Müllegger` (person)
+
+**Example 9** (doc_id: `deanon_TRAIN/8ObS8_22t`) (sent_id: `deanon_TRAIN/8ObS8_22t_3`)
+
+
+Kopf Der Oberste Gerichtshof hat als Rekursgericht in Arbeits- und Sozialrechtssachen durch den Senatspräsidenten Hon.-Prof. Dr. Kuras als Vorsitzenden sowie die Hofrätin Dr. Tarmann-Prentner und den Hofrat Dr. Stefula als weitere Richter (Senat gemäß § 11a Abs 3 Z 2 ASGG) in der Sozialrechtssache der klagenden Partei Holger Sykorski, vertreten durch Dr. Herbert Marschitz und andere Rechtsanwälte in Kufstein, gegen die beklagte Partei IEF-Service GmbH, 6020 Innsbruck, Meraner Straße 1, vertreten durch die Finanzprokuratur in Wien, wegen 34.726 EUR sA (Insolvenzentgelt), über den Rekurs der klagenden Partei gegen den Beschluss des Oberlandesgerichts Innsbruck als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 18. Oktober 2022, GZ 25 Rs 56/22d-34, mit dem das Urteil des Landesgerichts Innsbruck als Arbeits- und Sozialgericht vom 9. Juni 2022, GZ 44 Cgs 43/21m-27, samt dem ihm vorangegangenen Verfahren für nichtig erklärt und die Klage zurückgewiesen wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Dem Rekurs wird Folge gegeben.
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `Holger Sykorski` (person)
+
+**Example 10** (doc_id: `deanon_TRAIN/9Nc5_16h`) (sent_id: `deanon_TRAIN/9Nc5_16h_3`)
+
+
+Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten des Obersten Gerichtshofs Dr. Hopf als Vorsitzenden, die Hofrätin des Obersten Gerichtshofs Dr. Dehn und den Hofrat des Obersten Gerichtshofs Dr. Hargassner als weitere Richter in der Arbeitsrechtssache der klagenden Partei WestSicherheit GmbH, OMedR Paulina von Tietzen, vertreten durch Dr. Ernst Kohlbacher, Rechtsanwalt in Salzburg, gegen die beklagte Partei Amber Landscheid, vertreten durch Dr. Karl-Heinz Plankel, Dr. Herwig Mayrhofer ua, Rechtsanwälte in Dornbirn, wegen 15.600 EUR sA, über den Delegierungsantrag der beklagten Partei den Beschluss gefasst:  Spruch Der Antrag der beklagten Partei, anstelle des Landesgerichts Salzburg als Arbeits- und Sozialgericht das Arbeits- und Sozialgericht Wien zur Verhandlung und Entscheidung der Rechtssache des Landesgerichts Salzburg als Arbeits- und Sozialgericht AZ 15 Cga 88/15d zu bestimmen, wird abgewiesen.
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `WestSicherheit GmbH` (organisation)
+- `OMedR Paulina von Tietzen` (person)
+- `Amber Landscheid` (person)
+
+**Example 11** (doc_id: `deanon_TRAIN/9Nc5_16h`) (sent_id: `deanon_TRAIN/9Nc5_16h_4`)
+
+
+Text Begründung: Mit ihrer am 22. 12. 2015 beim Landesgericht Salzburg als Arbeits- und Sozialgericht eingebrachten Klage begehrt die in Kagraner Anger 19, 4943 Nonsbach, Österreich (Sbg) ansässige Klägerin vom in Wien wohnhaften Beklagten die Zahlung einer Vertragsstrafe wegen mehrfacher Verstöße gegen das in seinem Agentenvertrag vereinbarte Wettbewerbsverbot.
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `Landesgericht Salzburg` (organisation)
+- `Kagraner Anger 19, 4943 Nonsbach, Österreich` (address)
+
+**Example 12** (doc_id: `deanon_TRAIN/9Nc5_16h`) (sent_id: `deanon_TRAIN/9Nc5_16h_14`)
+
+
+Das Landesgericht Salzburg als Arbeits- und Sozialgericht sei auch mit den Rechtsangelegenheiten und regelmäßig gleichlautenden Vertragsgrundlagen und Provisions-abrechnungen der Klägerin seit Jahren vertraut.
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `Landesgericht Salzburg` (organisation)
+
+**Example 13** (doc_id: `deanon_TRAIN/9Nc5_16h`) (sent_id: `deanon_TRAIN/9Nc5_16h_15`)
+
+
+Auch das Landesgericht Salzburg als Arbeits- und Sozialgericht gab im Ergebnis nach Abwägung von Für und Wider eine negative Stellungnahme ab.
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `Landesgericht Salzburg` (organisation)
+
+**Example 14** (doc_id: `deanon_TRAIN/9Nc5_16h`) (sent_id: `deanon_TRAIN/9Nc5_16h_18`)
+
+
+Am 15. 2. 2016 übermittelte das Landesgericht Salzburg als Arbeits- und Sozialgericht im Nachhang eine von der Klägerin am 8.
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `Landesgericht Salzburg` (organisation)
+
+**Example 15** (doc_id: `deanon_TRAIN/9Nc5_16h`) (sent_id: `deanon_TRAIN/9Nc5_16h_35`)
+
+
+Zu bedenken ist auch, dass das Landesgericht Salzburg als Arbeits- und Sozialgericht bereits eine Tagsatzung abgehalten und das Prozessprogramm festgelegt hat und mit der Problematik auch aus einem anderen Verfahren vertraut ist, während sich ein Wiener Gericht neu in die Sache einzuarbeiten hätte.
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `Landesgericht Salzburg` (organisation)
+
+**Example 16** (doc_id: `deanon_TRAIN/9ObA118_18w`) (sent_id: `deanon_TRAIN/9ObA118_18w_4`)
+
+
+Gabriele Svirak in der Arbeitsrechtssache der klagenden Partei Evelyn Lichtwer, vertreten durch Dr. Gerhard Hiebler, Dr. Gerd Grebenjak, Rechtsanwälte in Leoben, gegen die beklagte Partei Inn Wiltri Systeme GmbH, DDr. Johann Gerkens, vertreten durch Dr. Helmut Fetz, Dr. Birgit Fetz ua, Rechtsanwälte in Leoben, wegen 500 EUR sA, über die Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Graz als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 29. August 2018, GZ 7 Ra 23/18h-12, mit dem der Berufung der klagenden Partei gegen das Urteil des Landesgerichts Leoben als Arbeits- und Sozialgericht vom 14. Dezember 2017, GZ 23 Cga 75/17x-7, nicht Folge gegeben wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die Revision der klagenden Partei wird zurückgewiesen.
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `Evelyn Lichtwer` (person)
+- `Inn Wiltri Systeme GmbH` (organisation)
+- `DDr. Johann Gerkens` (person)
+
+**Example 17** (doc_id: `deanon_TRAIN/9ObA118_19x`) (sent_id: `deanon_TRAIN/9ObA118_19x_5`)
+
+
+Text Begründung: Mit Beschluss vom 15. Mai 2019, 9 ObA 41/19y, wies der Oberste Gerichtshof die außerordentliche Revision des Klägers in der beim Landesgericht Linz als Arbeits- und Sozialgericht anhängigen Arbeitsrechtssache gegen die beklagte Partei als seine frühere Arbeitgeberin mangels Vorliegens einer Rechtsfrage von erheblicher Bedeutung im Sinne des § 502 Abs 1 ZPO zurück.
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `Landesgericht Linz` (organisation)
+
+**Example 18** (doc_id: `deanon_TRAIN/9ObA120_12f`) (sent_id: `deanon_TRAIN/9ObA120_12f_4`)
+
+
+Dr. Helwig Aubauer und Mag. Regina Bauer-Albrecht als weitere Richter in der Arbeitsrechtssache der klagenden Partei Heidelinde Hobl, vertreten durch Dr. Dieter Gallistl, Rechtsanwalt in Linz, wider die beklagte Partei Elvira Vacha, vertreten durch Dr. Andreas Grassl, Rechtsanwalt in Wien, wegen Feststellung (Streitwert 174,77 EUR), über die Revision der beklagten Partei gegen das Urteil des Oberlandesgerichts Linz als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 27. Juni 2012, GZ 12 Ra 48/12h-15, womit infolge Berufung der beklagten Partei das Urteil des Landesgerichts Wels als Arbeits- und Sozialgericht vom 31. Jänner 2012, GZ 16 Cga 154/11i-11, bestätigt wurde, in nichtöffentlicher Sitzung zu Recht erkannt:  Spruch
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `Hobl` (person)
+- `Elvira Vacha` (person)
+
+**Example 19** (doc_id: `deanon_TRAIN/9ObA151_09k`) (sent_id: `deanon_TRAIN/9ObA151_09k_3`)
+
+
+Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrechtssachen durch den Vizepräsidenten des Obersten Gerichtshofs Dr. Rohrer als Vorsitzenden und die Hofräte des Obersten Gerichtshofs Dr. Hradil und Dr. Hopf sowie die fachkundigen Laienrichter KR Mag. Paul Kunsky und Franz Boindl als weitere Richter in der Arbeitsrechtssache der klagenden Partei PhD Ottfried Leonhardi, vertreten durch Dr. Charlotte Lindenberger, Rechtsanwältin in Steyr, gegen die beklagte Partei Baltromei Wind GmbH, Petra Ditrich, vertreten durch Dr. Otto Hauck, Rechtsanwalt in Kirchdorf, wegen 1.028,19 EUR sA, über die Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Linz als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 16. Oktober 2009, GZ 11 Ra 88/09d-10, womit das Urteil des Landesgerichts Steyr als Arbeits- und Sozialgericht vom 2. Juli 2009, GZ 24 Cga 9/09p-6, bestätigt wurde, in nichtöffentlicher Sitzung zu Recht erkannt:  Spruch Der Revision wird nicht Folge gegeben.
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `PhD Ottfried Leonhardi` (person)
+- `Baltromei Wind GmbH` (organisation)
+- `Petra Ditrich` (person)
+
+**Example 20** (doc_id: `deanon_TRAIN/9ObA41_16v`) (sent_id: `deanon_TRAIN/9ObA41_16v_3`)
+
+
+Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrechtssachen durch den Senatspräsidenten des Obersten Gerichtshofs Dr. Hopf als Vorsitzenden, die Hofrätinnen des Obersten Gerichtshofs Hon.-Prof. Dr. Dehn und Mag. Korn sowie die fachkundigen Laienrichter Dr. Johannes Pflug und Mag. Robert Brunner als weitere Richter in der Arbeitsrechtssache der klagenden Partei Mag. Joseph Mehl, vertreten durch Dr. Stephan Rainer und Dr. Andreas Ruetz, Rechtsanwälte in Innsbruck, gegen die beklagte Partei Heiko Ayna, vertreten durch Korn Rechtsanwälte OG in Wien, wegen 40.647,29 EUR brutto sA über die Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Innsbruck als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 29. Jänner 2016, GZ 15 Ra 16/16i-31, mit dem der Berufung der klagenden Partei gegen das Urteil des Landesgerichts Innsbruck als Arbeits- und Sozialgericht vom 11. November 2015, GZ 43 Cga 118/14b-26, nicht Folge gegeben wurde, den Beschluss gefasst:  Spruch Die Revision wird zurückgewiesen.
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `Mag. Joseph Mehl` (person)
+- `Heiko Ayna` (person)
+
+**Example 21** (doc_id: `deanon_TRAIN/9ObA43_12g`) (sent_id: `deanon_TRAIN/9ObA43_12g_4`)
+
+
+Werner Keyzers, 4. Jaromir Heinrichson, alle vertreten durch die Advokaturbüro Jelenik & Partner AG, Landstraße 60, FL-9490 Vaduz (Zustellungsbevollmächtigter gemäß § 6 EIRAG: Mag. Norbert Wanker, Wasenweg 23, 6800 Feldkirch), gegen die beklagte Partei Wichtmann u. Staneck Energie GmbH, Dimitri Brunemann, vertreten durch Dr. Andreas Grundei, Rechtsanwalt in Wien, wegen Feststellung (Streitwert 10.000 EUR), über die außerordentliche Revision der klagenden Parteien gegen das Urteil des Oberlandesgerichts Innsbruck als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 21. Februar 2012, GZ 15 Ra 13/12t-16, womit das Urteil des Landesgerichts Feldkirch als Arbeits- und Sozialgericht vom 4. Oktober 2011, GZ 35 Cga 85/11p-10, bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die außerordentliche Revision der klagenden Parteien wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `Werner Keyzers` (person)
+- `Jaromir Heinrichson` (person)
+- `Partner AG` (organisation)
+- `Wichtmann u. Staneck Energie GmbH` (organisation)
+- `Dimitri Brunemann` (person)
+
+**Example 22** (doc_id: `deanon_TRAIN/9ObA44_11b`) (sent_id: `deanon_TRAIN/9ObA44_11b_5`)
+
+
+Dr. Wolfgang List, Rechtsanwalt in Wien, wider die beklagte Partei und Gegnerin der gefährdeten Partei Valerian Urbahn, vertreten durch Dr. J. Pfurtscheller, Dr. Orgler, Mag. Huber, Rechtsanwälte in Innsbruck, wegen Feststellung des Fortbestands eines Arbeitsverhältnisses, in eventu Anfechtung einer Kündigung nach § 105 ArbVG (Streitwert jeweils 31.000 EUR), in eventu 18.957 EUR sA, hier Erlassung einer einstweiligen Verfügung, über den Revisionsrekurs der klagenden und gefährdeten Partei gegen den Beschluss des Oberlandesgerichts Innsbruck als Rekursgericht in Arbeits- und Sozialrechtssachen vom 24. Februar 2011, GZ 15 Ra 11/11x-15, mit dem infolge Rekurses der klagenden und gefährdeten Partei der Beschluss des Landesgerichts Innsbruck als Arbeits- und Sozialgericht vom 9. Dezember 2010, GZ 43 Cga 126/10y-8, bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Der Revisionsrekurs wird zurückgewiesen.
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `Valerian Urbahn` (person)
+
+**Example 23** (doc_id: `deanon_TRAIN/9ObA4_13y`) (sent_id: `deanon_TRAIN/9ObA4_13y_3`)
+
+
+Kopf Der Oberste Gerichtshof hat als Rekursgericht in Arbeits- und Sozialrechtssachen durch den Senatspräsidenten des Obersten Gerichtshofs Dr. Hopf als Vorsitzenden, den Hofrat des Obersten Gerichtshofs Hon.-Prof. Dr. Kuras und die Hofrätin des Obersten Gerichtshofs Dr. Dehn sowie die fachkundigen Laienrichter Werner Rodlauer und Mag. Robert Brunner als weitere Richter in der Arbeitsrechtssache der klagenden Partei Maria Maritz, vertreten durch Dr. Susanne Kuen, Rechtsanwältin in Wien, gegen die beklagte Partei PHG Möbel Dienstleistungen GmbH, Zeno Speckl, vertreten durch Fellner Wratzfeld & Partner Rechtsanwälte GmbH in Wien, wegen 125.731,44 EUR sA, über den Rekurs der beklagten Partei gegen den Beschluss des Oberlandesgerichts Linz als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 30. Oktober 2012, GZ 11 Ra 82/12a-74, mit dem das Urteil des Landesgerichts Steyr als Arbeits- und Sozialgericht vom 31. Juli 2012, GZ 9 Cga 245/08g-70, aufgehoben und die Rechtssache an das Erstgericht zurückverwiesen wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Der Rekurs wird zurückgewiesen.
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `Maria Maritz` (person)
+- `PHG Möbel Dienstleistungen GmbH` (organisation)
+- `Zeno Speckl` (person)
+
+**Example 24** (doc_id: `deanon_TRAIN/9ObA78_21t`) (sent_id: `deanon_TRAIN/9ObA78_21t_3`)
+
+
+Kopf Der Oberste Gerichtshof hat als Revisionsrekursgericht in Arbeits- und Sozialrechtssachen durch den Senatspräsidenten des Obersten Gerichtshofs Dr. Hopf als Vorsitzenden, die Hofrätin des Obersten Gerichtshofs Dr. Fichtenau und den Hofrat des Obersten Gerichtshofs Dr. Hargassner als weitere Richter in der Arbeitsrechtssache der klagenden Partei Ing. DI (FH) Griselda Eicholz, nunmehr vertreten durch Mag. Dr. Helmut Blum, Rechtsanwalt in Linz, gegen die beklagte Partei HochLuftfahrt GmbH, Saphira Thiehle, wegen Leistung, über den außerordentlichen Revisionsrekurs der klagenden Partei gegen den Beschluss des Oberlandesgerichts Linz als Rekursgericht in Arbeits- und Sozialrechtssachen vom 13. Mai 2019, GZ 11 Ra 33/19f-23, mit dem der Rekurs des Klägers gegen den Beschluss des Landesgerichts Linz als Arbeits- und Sozialgericht vom 8. April 2019, GZ 7 Cga 25/19k-9, zurückgewiesen wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Dem Revisionsrekurs wird Folge gegeben.
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `Griselda Eicholz` (person)
+- `HochLuftfahrt GmbH` (organisation)
+- `Saphira Thiehle` (person)
+
+**Example 25** (doc_id: `deanon_TRAIN/9ObA78_21t`) (sent_id: `deanon_TRAIN/9ObA78_21t_7`)
+
+
+2. 2019 brachte der Kläger beim Landesgericht Linz als Arbeits- und Sozialgericht eine Klage gegen die Beklagte ein.
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `Landesgericht Linz` (organisation)
+
+**Example 26** (doc_id: `deanon_TRAIN/9ObA82_20d`) (sent_id: `deanon_TRAIN/9ObA82_20d_3`)
+
+
+Kopf Der Oberste Gerichtshof hat als Revisions- und Rekursgericht in Arbeits- und Sozialrechtssachen durch den Senatspräsidenten des Obersten Gerichtshofs Dr. Hopf als Vorsitzenden, die Hofrätin des Obersten Gerichtshofs Dr. Fichtenau und den Hofrat des Obersten Gerichtshofs Dr. Hargassner sowie die fachkundigen Laienrichter Mag. Dr. Bernhard Gruber (aus dem Kreis der Arbeitgeber) und Angela Taschek (aus dem Kreis der Arbeitnehmer) als weitere Richter in der Arbeitsrechtssache der klagenden Partei Marktgemeinde Andrea Wiggering, vertreten durch Ehrenhöfer & Häusler Rechtsanwälte GmbH in Wiener Neustadt, gegen die beklagte Partei Cassandra Noldens, vertreten durch Kosch & Partner Rechtsanwälte GmbH in Wiener Neustadt, wegen 28.428,01 EUR sA, über den Rekurs und die außerordentliche Revision der klagenden Partei gegen den Beschluss (I.) und das Urteil (II.) des Oberlandesgerichts Wien als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 22. Juli 2020, GZ 9 Ra 111/19p-25, mit dem das Urteil des Landesgerichts Wiener Neustadt als Arbeits- und Sozialgericht vom 17. September 2019, GZ 9 Cga 126/18g-21, aus Anlass der Berufung der beklagten Partei hinsichtlich der Rückforderung einer Zahlung als nichtig aufgehoben und die Klage zurückgewiesen wurde und über Berufung der beklagen Partei hinsichtlich des Anspruchs nach dem OrgHG abgeändert wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Dem Rekurs wird teilweise Folge gegeben und der angefochtene Beschluss des Berufungsgerichts ersatzlos aufgehoben.
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `Andrea Wiggering` (person)
+- `Cassandra Noldens` (person)
+
+**Example 27** (doc_id: `deanon_TRAIN/9ObA96_13b`) (sent_id: `deanon_TRAIN/9ObA96_13b_4`)
+
+
+Brigitte Augustin und Mag. Andreas Hach als weitere Richter in der Arbeitsrechtssache der klagenden Partei DI Anita Crämer, vertreten durch Dr. Gerhard Hiebler und Dr. Gerd Grebenjak, Rechtsanwälte in Leoben, gegen die beklagte Partei, GQG E‑Commerce Gesellschaft mbH, Franz-Cäsar-Weg 5, 4115 Gumpesberg, Österreich, vertreten durch Siemer-Siegel-Füreder & Partner, Rechtsanwälte in Wien, wegen Feststellung, über die Revision der beklagten Partei gegen das Urteil des Oberlandesgerichts Graz als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 18. April 2013, GZ 6 Ra 18/13h-10, mit dem der Berufung der beklagten Partei gegen das Urteil des Landesgerichts Leoben als Arbeits- und Sozialgericht vom 7. November 2012, GZ 23 Cga 115/12x-6, nicht Folge gegeben wurde, in nichtöffentlicher Sitzung zu Recht erkannt:  Spruch
+
+| Predicted | Gold |
+|---|---|
+| `Arbeits- und Sozialgericht` | `Arbeits- und Sozialgericht` |
+
+**Missed by this rule (FN):**
+
+- `DI Anita Crämer` (person)
+- `GQG E‑Commerce Gesellschaft mbH` (organisation)
+- `Franz-Cäsar-Weg 5, 4115 Gumpesberg, Österreich` (address)
+
+</details>
+
+---
+
+<details>
+<summary>⚠️ False Positives</summary>
+
+**Example 0** (doc_id: `deanon_TRAIN/8Nc31_13w`) (sent_id: `deanon_TRAIN/8Nc31_13w_3`)
+
+
+Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten des Obersten Gerichtshofs Dr. Spenling als Vorsitzenden sowie die Hofräte des Obersten Gerichtshofs Hon.-Prof. Dr. Kuras und Dr. Brenn als weitere Richter in der beim Landesgericht Salzburg als Arbeits- und Sozialgericht anhängigen Rechtssache der klagenden Partei Buth Analyse GmbH, Anabel Traudtmann, vertreten durch Dr. Ernst Kohlbacher, Rechtsanwalt in Salzburg, gegen die beklagte Partei Christine Schwemmer, vertreten durch Plankel Mayrhofer & Partner, Rechtsanwälte in Dornbirn, wegen 213,52 EUR sA, über den Delegierungsantrag der beklagten Partei den Beschluss gefasst:  Spruch Der Antrag der beklagten Partei, die Rechtssache an das Arbeits- und Sozialgericht Wien zu delegieren, wird abgewiesen.
+
+**False Positives:**
+
+- `Arbeits- und Sozialgericht Wien` — similar text (different position): `Arbeits- und Sozialgericht`
+
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Landesgericht Salzburg`(organisation)
+- `Arbeits- und Sozialgericht`(organisation)
+- `Buth Analyse GmbH`(organisation)
+- `Anabel Traudtmann`(person)
+- `Christine Schwemmer`(person)
+- `Arbeits- und Sozialgericht`(organisation)
+
+**Example 1** (doc_id: `deanon_TRAIN/8Nc31_13w`) (sent_id: `deanon_TRAIN/8Nc31_13w_6`)
+
+
+Gleichzeitig beantragte er die Delegierung der Rechtssache an das Arbeits- und Sozialgericht Wien.
+
+**False Positives:**
+
+- `Arbeits- und Sozialgericht Wien` — partial — gold is substring of pred: `Arbeits- und Sozialgericht`
+
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Arbeits- und Sozialgericht`(organisation)
+
+**Example 2** (doc_id: `deanon_TRAIN/9Nc5_16h`) (sent_id: `deanon_TRAIN/9Nc5_16h_3`)
+
+
+Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten des Obersten Gerichtshofs Dr. Hopf als Vorsitzenden, die Hofrätin des Obersten Gerichtshofs Dr. Dehn und den Hofrat des Obersten Gerichtshofs Dr. Hargassner als weitere Richter in der Arbeitsrechtssache der klagenden Partei WestSicherheit GmbH, OMedR Paulina von Tietzen, vertreten durch Dr. Ernst Kohlbacher, Rechtsanwalt in Salzburg, gegen die beklagte Partei Amber Landscheid, vertreten durch Dr. Karl-Heinz Plankel, Dr. Herwig Mayrhofer ua, Rechtsanwälte in Dornbirn, wegen 15.600 EUR sA, über den Delegierungsantrag der beklagten Partei den Beschluss gefasst:  Spruch Der Antrag der beklagten Partei, anstelle des Landesgerichts Salzburg als Arbeits- und Sozialgericht das Arbeits- und Sozialgericht Wien zur Verhandlung und Entscheidung der Rechtssache des Landesgerichts Salzburg als Arbeits- und Sozialgericht AZ 15 Cga 88/15d zu bestimmen, wird abgewiesen.
+
+**False Positives:**
+
+- `Arbeits- und Sozialgericht Wien` — similar text (different position): `Arbeits- und Sozialgericht`
+
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `WestSicherheit GmbH`(organisation)
+- `OMedR Paulina von Tietzen`(person)
+- `Amber Landscheid`(person)
+- `Arbeits- und Sozialgericht`(organisation)
+- `Arbeits- und Sozialgericht`(organisation)
+- `Arbeits- und Sozialgericht`(organisation)
+
+**Example 3** (doc_id: `deanon_TRAIN/9Nc5_16h`) (sent_id: `deanon_TRAIN/9Nc5_16h_8`)
+
+
+Es werde die Delegierung der Rechtssache an das Arbeits- und Sozialgericht Wien beantragt, weil der Beklagte dort seinen Lebensmittelpunkt habe und der Großteil der im Verfahren beantragten Zeugen aus dem Bereich Wien und Wien-Umgebung komme.
+
+**False Positives:**
+
+- `Arbeits- und Sozialgericht Wien` — partial — gold is substring of pred: `Arbeits- und Sozialgericht`
+
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Arbeits- und Sozialgericht`(organisation)
+
+**Example 4** (doc_id: `deanon_TRAIN/9Ob59_20x`) (sent_id: `deanon_TRAIN/9Ob59_20x_17`)
+
+
+Weiters begehrt der Kläger die Feststellung der Haftung des Beklagten für die ihm künftig aus der unrichtigen Gutachtenserstellung durch den Beklagten im Verfahren vor dem Arbeits- und Sozialgericht Wien zur AZ 25 Cgs 77/16w entstehenden Schaden.
+
+**False Positives:**
+
+- `Arbeits- und Sozialgericht Wien` — partial — gold is substring of pred: `Arbeits- und Sozialgericht`
+
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Arbeits- und Sozialgericht`(organisation)
+
+</details>
+
+---
+
 ## `Court with Location`
 
-**F1:** 0.058 | **Precision:** 1.000 | **Recall:** 0.030  
+**F1:** 0.054 | **Precision:** 1.000 | **Recall:** 0.028  
 
 **Format:** `regex`  
 **Rule ID:** `971aef3b`  
@@ -7778,13 +8346,13 @@ Matches court names followed by location suffixes like 'Außenstelle Linz'.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 1.000 | 0.030 | 0.058 | 18 | 18 | 0 |
+| 1.000 | 0.028 | 0.054 | 18 | 18 | 0 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 18 | 0 | 505 |
+| `organisation` | 18 | 0 | 546 |
 
 </details>
 
@@ -7929,7 +8497,7 @@ Ihr Antrag auf Gesetzesprüfung hinsichtlich der inzwischen aufgelösten Berufun
 
 ## `Generic GmbH Entity`
 
-**F1:** 0.056 | **Precision:** 0.145 | **Recall:** 0.035  
+**F1:** 0.053 | **Precision:** 0.145 | **Recall:** 0.032  
 
 **Format:** `regex`  
 **Rule ID:** `0d4e88c9`  
@@ -7946,13 +8514,13 @@ Matches company names ending in GmbH, AG, KG, etc., with strict word boundaries 
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.145 | 0.035 | 0.056 | 145 | 21 | 124 |
+| 0.145 | 0.032 | 0.053 | 145 | 21 | 124 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 21 | 124 | 583 |
+| `organisation` | 21 | 124 | 624 |
 
 </details>
 
@@ -9436,7 +10004,7 @@ Wenn nun kraft ausdrücklicher gesetzlicher Vorschrift gemeinnützige Bauvereini
 
 ## `Company Name Without Suffix`
 
-**F1:** 0.049 | **Precision:** 0.086 | **Recall:** 0.035  
+**F1:** 0.047 | **Precision:** 0.086 | **Recall:** 0.032  
 
 **Format:** `regex`  
 **Rule ID:** `c8608e27`  
@@ -9453,13 +10021,13 @@ Matches company names that do not end in a standard suffix like GmbH/AG but are 
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.086 | 0.035 | 0.049 | 244 | 21 | 223 |
+| 0.086 | 0.032 | 0.047 | 244 | 21 | 223 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 21 | 223 | 583 |
+| `organisation` | 21 | 223 | 624 |
 
 </details>
 
@@ -10911,7 +11479,7 @@ Aber selbst wenn die Beklagte die Gesellschaft aufgrund eines aus der gleichzeit
 
 ## `Bank and Other Org`
 
-**F1:** 0.045 | **Precision:** 0.667 | **Recall:** 0.023  
+**F1:** 0.042 | **Precision:** 0.667 | **Recall:** 0.022  
 
 **Format:** `regex`  
 **Rule ID:** `53220dfe`  
@@ -10928,13 +11496,13 @@ Matches specific bank names and other organizations like 'Reinemut + Smoch Hande
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.667 | 0.023 | 0.045 | 21 | 14 | 7 |
+| 0.667 | 0.022 | 0.042 | 21 | 14 | 7 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 14 | 7 | 512 |
+| `organisation` | 14 | 7 | 553 |
 
 </details>
 
@@ -11216,7 +11784,7 @@ Wenn das Erstgericht - dem Sachverständigengutachten folgend - zu der Einschät
 
 ## `Constitutional Court`
 
-**F1:** 0.026 | **Precision:** 1.000 | **Recall:** 0.013  
+**F1:** 0.024 | **Precision:** 1.000 | **Recall:** 0.012  
 
 **Format:** `regex`  
 **Rule ID:** `0bbc25f5`  
@@ -11233,13 +11801,13 @@ Matches Verfassungsgerichtshof and its genitive form.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 1.000 | 0.013 | 0.026 | 8 | 8 | 0 |
+| 1.000 | 0.012 | 0.024 | 8 | 8 | 0 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 8 | 0 | 331 |
+| `organisation` | 8 | 0 | 367 |
 
 </details>
 
@@ -11342,7 +11910,7 @@ Ihr Antrag auf Gesetzesprüfung hinsichtlich der inzwischen aufgelösten Berufun
 
 ## `Vienna Magistrate`
 
-**F1:** 0.023 | **Precision:** 1.000 | **Recall:** 0.012  
+**F1:** 0.021 | **Precision:** 1.000 | **Recall:** 0.011  
 
 **Format:** `regex`  
 **Rule ID:** `923cbdfe`  
@@ -11359,13 +11927,13 @@ Matches Magistrat der Stadt Wien with department codes, ensuring the full entity
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 1.000 | 0.012 | 0.023 | 7 | 7 | 0 |
+| 1.000 | 0.011 | 0.021 | 7 | 7 | 0 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 7 | 0 | 527 |
+| `organisation` | 7 | 0 | 568 |
 
 </details>
 
@@ -11483,7 +12051,7 @@ Matzka als weitere Richter in der Pflegschaftssache der Minderjährigen Silke Wi
 
 ## `Magistrate City Pattern`
 
-**F1:** 0.023 | **Precision:** 1.000 | **Recall:** 0.012  
+**F1:** 0.021 | **Precision:** 1.000 | **Recall:** 0.011  
 
 **Format:** `regex`  
 **Rule ID:** `5b8b1658`  
@@ -11500,13 +12068,13 @@ Matches Magistrat der Stadt followed by city name, including genitive forms and 
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 1.000 | 0.012 | 0.023 | 7 | 7 | 0 |
+| 1.000 | 0.011 | 0.021 | 7 | 7 | 0 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 7 | 0 | 527 |
+| `organisation` | 7 | 0 | 568 |
 
 </details>
 
@@ -11624,7 +12192,7 @@ Matzka als weitere Richter in der Pflegschaftssache der Minderjährigen Silke Wi
 
 ## `Administrative Court`
 
-**F1:** 0.020 | **Precision:** 1.000 | **Recall:** 0.010  
+**F1:** 0.018 | **Precision:** 1.000 | **Recall:** 0.009  
 
 **Format:** `regex`  
 **Rule ID:** `cbaa7335`  
@@ -11641,13 +12209,13 @@ Matches Verwaltungsgerichtshof and all its case endings, including optional (VwG
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 1.000 | 0.010 | 0.020 | 6 | 6 | 0 |
+| 1.000 | 0.009 | 0.018 | 6 | 6 | 0 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 6 | 0 | 231 |
+| `organisation` | 6 | 0 | 267 |
 
 </details>
 
@@ -11728,7 +12296,7 @@ Von dieser Sachlage ausgehend wies der von der Beklagten in diesem Verfahren mit
 
 ## `Verwaltungsgerichtshof Genitive`
 
-**F1:** 0.016 | **Precision:** 1.000 | **Recall:** 0.008  
+**F1:** 0.015 | **Precision:** 1.000 | **Recall:** 0.008  
 
 **Format:** `regex`  
 **Rule ID:** `6c39efd8`  
@@ -11745,13 +12313,13 @@ Matches Verwaltungsgerichtshof and its genitive form Verwaltungsgerichtshofes.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 1.000 | 0.008 | 0.016 | 5 | 5 | 0 |
+| 1.000 | 0.008 | 0.015 | 5 | 5 | 0 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 5 | 0 | 232 |
+| `organisation` | 5 | 0 | 268 |
 
 </details>
 
@@ -11842,7 +12410,7 @@ Specifically targets hyphenated company names that might be split by the generic
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 1 | 1 | 432 |
+| `organisation` | 1 | 1 | 468 |
 
 </details>
 
@@ -11994,7 +12562,7 @@ Matches VwGH acronym, but only when it appears as a standalone entity reference,
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 7 | 485 |
+| `organisation` | 0 | 7 | 521 |
 
 </details>
 
@@ -12584,7 +13152,7 @@ Matches VfGH acronym.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 12 | 485 |
+| `organisation` | 0 | 12 | 521 |
 
 </details>
 
@@ -12753,523 +13321,6 @@ Matches the specific organization Gözcü Getränke.
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
 | 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
-
-</details>
-
----
-
-## `Labor Court Vienna`
-
-**F1:** 0.000 | **Precision:** 0.000 | **Recall:** 0.000  
-
-**Format:** `regex`  
-**Rule ID:** `dee27985`  
-**Description:**
-Matches Arbeits- und Sozialgericht Wien and variations.
-
-**Content:**
-```
-(?i)\b(Arbeits-\s+und\s+Sozialgericht(?:\s+Wien)?)\b
-```
-
-<details>
-<summary>📊 Detailed Metrics</summary>
-
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 34 | 0 | 34 |
-
-**Per-Class Breakdown**
-
-| Class | TP | FP | FN |
-|---|---|---|---|
-| `organisation` | 0 | 34 | 500 |
-
-</details>
-
----
-
-<details>
-<summary>⚠️ False Positives</summary>
-
-**Example 0** (doc_id: `deanon_TRAIN/10ObS150_17g`) (sent_id: `deanon_TRAIN/10ObS150_17g_3`)
-
-
-Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrechtssachen durch den Senatspräsidenten Univ.-Prof. Dr. Neumayr als Vorsitzenden, den Senatspräsidenten Dr. Schramm und die Hofrätin Dr. Fichtenau sowie die fachkundigen Laienrichter Ing. Christian Stangl-Brachnik, MA BA und Mag. Claudia Gründel (beide aus dem Kreis der Arbeitgeber) als weitere Richter in der Sozialrechtssache der klagenden Partei OStR Esra Jakubait, vertreten durch Dr. Thomas Stampfer und Dr. Christoph Orgler, Rechtsanwälte in Graz, gegen die beklagte Partei Sozialversicherungsanstalt der Bauern, 1031 Wien, Ghegastraße 1, vertreten durch Dr. Michael Stögerer, Rechtsanwalt in Wien, wegen Ausgleichszulage, infolge Revision der beklagten Partei gegen das Urteil des Oberlandesgerichts Graz als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 20. September 2017, GZ 7 Rs 37/17s-11, womit infolge Berufung der klagenden Partei das Urteil des Landesgerichts für Zivilrechtssachen Graz als Arbeits- und Sozialgericht vom 27. April 2017, GZ 43 Cgs 113/17p-7, teils bestätigt und teils abgeändert wurde, in nichtöffentlicher Sitzung zu Recht erkannt:  Spruch
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `OStR Esra Jakubait`(person)
-
-**Example 1** (doc_id: `deanon_TRAIN/10ObS21_10a`) (sent_id: `deanon_TRAIN/10ObS21_10a_3`)
-
-
-Kopf Der Oberste Gerichtshof hat als Rekursgericht in Arbeits- und Sozialrechtssachen durch den Senatspräsidenten Dr. Schinko als Vorsitzenden, die Hofräte Dr. Fellinger und Dr. Hoch sowie die fachkundigen Laienrichter Mag. Irene Kienzl (aus dem Kreis der Arbeitgeber) und Eva-Maria Florianschütz (aus dem Kreis der Arbeitnehmer) als weitere Richter in der Sozialrechtssache der klagenden Partei Gertrud Johanna Ostrovska, gegen die beklagte Partei Steiermärkische Gebietskrankenkasse, 8011 Graz, Josef-Pongratz-Platz 1, vertreten durch Das Haus des Rechts Rechtsanwälte Destaller-Mader in Graz, wegen Kostenübernahme, infolge Rekurses der beklagten Partei gegen den Beschluss des Oberlandesgerichts Graz als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 19. November 2009, GZ 8 Rs 73/09f-10, womit infolge Berufung der klagenden Partei das Urteil des Landesgerichts für Zivilrechtssachen Graz als Arbeits- und Sozialgericht vom 1. September 2009, GZ 29 Cgs 90/09s-6, aufgehoben wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Dem Rekurs wird nicht Folge gegeben.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Ostrovska`(person)
-
-**Example 2** (doc_id: `deanon_TRAIN/10ObS21_10a`) (sent_id: `deanon_TRAIN/10ObS21_10a_133`)
-
-
-Auch dieser Umstand spricht dafür, dass auch die Ablehnung der Kostenübernahme für ein verordnetes Heilmittel durch eine Feststellungsklage beim Arbeits- und Sozialgericht bekämpft werden kann.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 3** (doc_id: `deanon_TRAIN/10ObS49_15a`) (sent_id: `deanon_TRAIN/10ObS49_15a_4`)
-
-
-Brigitte Augustin (aus dem Kreis der Arbeitgeber) und Peter Schönhofer (aus dem Kreis der Arbeitnehmer) als weitere Richter in der Sozialrechtssache der klagenden Partei Samantha Neunteufl, Deutschland, vertreten durch Mahringer Steinwender Bestebner Rechtsanwälte OG in Salzburg, gegen die beklagte Partei Vorarlberger Gebietskrankenkasse, Jahngasse 4, 6850 Dornbirn, vertreten durch Hoffmann & Brandstätter Rechtsanwälte KG in Innsbruck, wegen Kinderbetreuungsgeld, infolge Revision der beklagten Partei gegen das Urteil des Oberlandesgerichts Linz als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 12. Februar 2015, GZ 11 Rs 4/15k-10, womit infolge Berufung der beklagten Partei das Urteil des Landesgerichts Salzburg als Arbeits- und Sozialgericht vom 28. Oktober 2014, GZ 20 Cgs 71/14k-6, bestätigt wurde, in nichtöffentlicher Sitzung zu Recht erkannt:  Spruch
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Samantha Neunteufl`(person)
-
-**Example 4** (doc_id: `deanon_TRAIN/10ObS92_17b`) (sent_id: `deanon_TRAIN/10ObS92_17b_3`)
-
-
-Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrechtssachen durch den Senatspräsidenten Univ.-Prof. Dr. Neumayr als Vorsitzenden, den Hofrat Dr. Schramm und die Hofrätin Dr. Fichtenau sowie die fachkundigen Laienrichter Dr. Gabriele Griehsel (aus dem Kreis der Arbeitgeber) und Dr. Wolfgang Kozak (aus dem Kreis der Arbeitnehmer) als weitere Richter in der Sozialrechtssache der klagenden Partei Dr.in Gerlinde Saltzmann, vertreten durch Mahringer Steinwender Bestebner Rechtsanwälte OG in Salzburg, gegen die beklagte Partei Pensionsversicherungsanstalt, 1021 Wien, Friedrich-Hillegeist-Straße 1, wegen Berufsunfähigkeitspension, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Linz als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 15. Mai 2017, GZ 11 Rs 22/17k-36, mit dem das Urteil des Landesgerichts Salzburg als Arbeits- und Sozialgericht vom 21. Dezember 2016, GZ 18 Cgs 62/15y-32, bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Der Revision wird Folge gegeben.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Dr.in Gerlinde Saltzmann`(person)
-
-**Example 5** (doc_id: `deanon_TRAIN/8Nc31_13w`) (sent_id: `deanon_TRAIN/8Nc31_13w_3`)
-
-
-Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten des Obersten Gerichtshofs Dr. Spenling als Vorsitzenden sowie die Hofräte des Obersten Gerichtshofs Hon.-Prof. Dr. Kuras und Dr. Brenn als weitere Richter in der beim Landesgericht Salzburg als Arbeits- und Sozialgericht anhängigen Rechtssache der klagenden Partei Buth Analyse GmbH, Anabel Traudtmann, vertreten durch Dr. Ernst Kohlbacher, Rechtsanwalt in Salzburg, gegen die beklagte Partei Christine Schwemmer, vertreten durch Plankel Mayrhofer & Partner, Rechtsanwälte in Dornbirn, wegen 213,52 EUR sA, über den Delegierungsantrag der beklagten Partei den Beschluss gefasst:  Spruch Der Antrag der beklagten Partei, die Rechtssache an das Arbeits- und Sozialgericht Wien zu delegieren, wird abgewiesen.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-- `Arbeits- und Sozialgericht Wien` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 2
-
-**Gold Entities:**
-
-- `Landesgericht Salzburg`(organisation)
-- `Buth Analyse GmbH`(organisation)
-- `Anabel Traudtmann`(person)
-- `Christine Schwemmer`(person)
-
-**Example 6** (doc_id: `deanon_TRAIN/8Nc31_13w`) (sent_id: `deanon_TRAIN/8Nc31_13w_4`)
-
-
-Text Begründung: Mit der am 14. 12. 2012 beim Landesgericht Salzburg als Arbeits- und Sozialgericht eingebrachten Mahnklage begehrte die Klägerin, eine Finanzvermittlungsgesellschaft mit Sitz in Salzburg, von dem im Bundesland Burgenland wohnhaften Beklagten die Rückzahlung von Provisionen aus einem Agentenvertrag.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Landesgericht Salzburg`(organisation)
-
-**Example 7** (doc_id: `deanon_TRAIN/8Nc31_13w`) (sent_id: `deanon_TRAIN/8Nc31_13w_6`)
-
-
-Gleichzeitig beantragte er die Delegierung der Rechtssache an das Arbeits- und Sozialgericht Wien.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht Wien` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 8** (doc_id: `deanon_TRAIN/8ObA10_21k`) (sent_id: `deanon_TRAIN/8ObA10_21k_3`)
-
-
-Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrechtssachen durch den Senatspräsidenten Hon.-Prof. Dr. Kuras als Vorsitzenden, die Hofrätinnen Dr. Tarmann-Prentner und Mag. Wessely-Kristöfel als weitere Richter sowie die fachkundigen Laienrichter Mag. Dr. Rolf Gleißner (aus dem Kreis der Arbeitgeber) und Wolfgang Jelinek (aus dem Kreis der Arbeitnehmer) in der Arbeitsrechtssache der klagenden Partei Thebuss + Großekemper Bildung AG, Univ.-Prof.in Anna Helffer, vertreten durch Dr. Raimund Gehart, Rechtsanwalt in Wien, gegen die beklagte Partei Paulina Strnadl, vertreten durch Dr. Franz Josef Hofer Rechtsanwalt GmbH in Friesach, wegen 5.625,88 EUR sA, über die Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Graz als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 10. Dezember 2020, GZ 6 Ra 69/20v-19, mit dem das Urteil des Landesgerichts Klagenfurt als Arbeits- und Sozialgericht vom 15. Mai 2020, GZ 35 Cga 90/19x-11, abgeändert wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die Revision wird zurückgewiesen.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Thebuss + Großekemper Bildung AG`(organisation)
-- `Univ.-Prof.in Anna Helffer`(person)
-- `Paulina Strnadl`(person)
-- `Franz Josef Hofer Rechtsanwalt GmbH`(organisation)
-
-**Example 9** (doc_id: `deanon_TRAIN/8ObA1_13z`) (sent_id: `deanon_TRAIN/8ObA1_13z_3`)
-
-
-Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrechtssachen durch den Senatspräsidenten Dr. Spenling als Vorsitzenden, den Hofrat Hon.-Prof. Dr. Kuras, die Hofrätin Dr. Tarmann-Prentner sowie die fachkundigen Laienrichter Dr. Christoph Kainz und Horst Nurschinger als weitere Richter in der Arbeitsrechtssache der klagenden Partei Heinz Hennerich, vertreten durch Dr. Gerhard Hiebler, Dr. Gerd Grebenjak, Rechtsanwälte in Leoben, wider die beklagte Partei Verein DDr. Holger Müllegger, vertreten durch Dr. Dieter Neger, Rechtsanwalt in Graz, wegen Entlassungsanfechtung, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Graz als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 25. Oktober 2012, GZ 6 Ra 67/12p-12, mit dem über Berufung der klagenden Partei das Urteil des Landesgerichts Leoben als Arbeits- und Sozialgericht vom 2. Juli 2012, GZ 20 Cga 23/11v-7, bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Der Revision wird Folge gegeben.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Hennerich`(person)
-- `DDr. Holger Müllegger`(person)
-
-**Example 10** (doc_id: `deanon_TRAIN/8ObS8_22t`) (sent_id: `deanon_TRAIN/8ObS8_22t_3`)
-
-
-Kopf Der Oberste Gerichtshof hat als Rekursgericht in Arbeits- und Sozialrechtssachen durch den Senatspräsidenten Hon.-Prof. Dr. Kuras als Vorsitzenden sowie die Hofrätin Dr. Tarmann-Prentner und den Hofrat Dr. Stefula als weitere Richter (Senat gemäß § 11a Abs 3 Z 2 ASGG) in der Sozialrechtssache der klagenden Partei Holger Sykorski, vertreten durch Dr. Herbert Marschitz und andere Rechtsanwälte in Kufstein, gegen die beklagte Partei IEF-Service GmbH, 6020 Innsbruck, Meraner Straße 1, vertreten durch die Finanzprokuratur in Wien, wegen 34.726 EUR sA (Insolvenzentgelt), über den Rekurs der klagenden Partei gegen den Beschluss des Oberlandesgerichts Innsbruck als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 18. Oktober 2022, GZ 25 Rs 56/22d-34, mit dem das Urteil des Landesgerichts Innsbruck als Arbeits- und Sozialgericht vom 9. Juni 2022, GZ 44 Cgs 43/21m-27, samt dem ihm vorangegangenen Verfahren für nichtig erklärt und die Klage zurückgewiesen wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Dem Rekurs wird Folge gegeben.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Holger Sykorski`(person)
-
-**Example 11** (doc_id: `deanon_TRAIN/9Nc5_16h`) (sent_id: `deanon_TRAIN/9Nc5_16h_3`)
-
-
-Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten des Obersten Gerichtshofs Dr. Hopf als Vorsitzenden, die Hofrätin des Obersten Gerichtshofs Dr. Dehn und den Hofrat des Obersten Gerichtshofs Dr. Hargassner als weitere Richter in der Arbeitsrechtssache der klagenden Partei WestSicherheit GmbH, OMedR Paulina von Tietzen, vertreten durch Dr. Ernst Kohlbacher, Rechtsanwalt in Salzburg, gegen die beklagte Partei Amber Landscheid, vertreten durch Dr. Karl-Heinz Plankel, Dr. Herwig Mayrhofer ua, Rechtsanwälte in Dornbirn, wegen 15.600 EUR sA, über den Delegierungsantrag der beklagten Partei den Beschluss gefasst:  Spruch Der Antrag der beklagten Partei, anstelle des Landesgerichts Salzburg als Arbeits- und Sozialgericht das Arbeits- und Sozialgericht Wien zur Verhandlung und Entscheidung der Rechtssache des Landesgerichts Salzburg als Arbeits- und Sozialgericht AZ 15 Cga 88/15d zu bestimmen, wird abgewiesen.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-- `Arbeits- und Sozialgericht Wien` — no gold match — likely missing annotation
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 3
-
-**Gold Entities:**
-
-- `WestSicherheit GmbH`(organisation)
-- `OMedR Paulina von Tietzen`(person)
-- `Amber Landscheid`(person)
-
-**Example 12** (doc_id: `deanon_TRAIN/9Nc5_16h`) (sent_id: `deanon_TRAIN/9Nc5_16h_4`)
-
-
-Text Begründung: Mit ihrer am 22. 12. 2015 beim Landesgericht Salzburg als Arbeits- und Sozialgericht eingebrachten Klage begehrt die in Kagraner Anger 19, 4943 Nonsbach, Österreich (Sbg) ansässige Klägerin vom in Wien wohnhaften Beklagten die Zahlung einer Vertragsstrafe wegen mehrfacher Verstöße gegen das in seinem Agentenvertrag vereinbarte Wettbewerbsverbot.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Landesgericht Salzburg`(organisation)
-- `Kagraner Anger 19, 4943 Nonsbach, Österreich`(address)
-
-**Example 13** (doc_id: `deanon_TRAIN/9Nc5_16h`) (sent_id: `deanon_TRAIN/9Nc5_16h_8`)
-
-
-Es werde die Delegierung der Rechtssache an das Arbeits- und Sozialgericht Wien beantragt, weil der Beklagte dort seinen Lebensmittelpunkt habe und der Großteil der im Verfahren beantragten Zeugen aus dem Bereich Wien und Wien-Umgebung komme.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht Wien` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 14** (doc_id: `deanon_TRAIN/9Nc5_16h`) (sent_id: `deanon_TRAIN/9Nc5_16h_14`)
-
-
-Das Landesgericht Salzburg als Arbeits- und Sozialgericht sei auch mit den Rechtsangelegenheiten und regelmäßig gleichlautenden Vertragsgrundlagen und Provisions-abrechnungen der Klägerin seit Jahren vertraut.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Landesgericht Salzburg`(organisation)
-
-**Example 15** (doc_id: `deanon_TRAIN/9Nc5_16h`) (sent_id: `deanon_TRAIN/9Nc5_16h_15`)
-
-
-Auch das Landesgericht Salzburg als Arbeits- und Sozialgericht gab im Ergebnis nach Abwägung von Für und Wider eine negative Stellungnahme ab.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Landesgericht Salzburg`(organisation)
-
-**Example 16** (doc_id: `deanon_TRAIN/9Nc5_16h`) (sent_id: `deanon_TRAIN/9Nc5_16h_18`)
-
-
-Am 15. 2. 2016 übermittelte das Landesgericht Salzburg als Arbeits- und Sozialgericht im Nachhang eine von der Klägerin am 8.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Landesgericht Salzburg`(organisation)
-
-**Example 17** (doc_id: `deanon_TRAIN/9Nc5_16h`) (sent_id: `deanon_TRAIN/9Nc5_16h_35`)
-
-
-Zu bedenken ist auch, dass das Landesgericht Salzburg als Arbeits- und Sozialgericht bereits eine Tagsatzung abgehalten und das Prozessprogramm festgelegt hat und mit der Problematik auch aus einem anderen Verfahren vertraut ist, während sich ein Wiener Gericht neu in die Sache einzuarbeiten hätte.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Landesgericht Salzburg`(organisation)
-
-**Example 18** (doc_id: `deanon_TRAIN/9Ob59_20x`) (sent_id: `deanon_TRAIN/9Ob59_20x_17`)
-
-
-Weiters begehrt der Kläger die Feststellung der Haftung des Beklagten für die ihm künftig aus der unrichtigen Gutachtenserstellung durch den Beklagten im Verfahren vor dem Arbeits- und Sozialgericht Wien zur AZ 25 Cgs 77/16w entstehenden Schaden.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht Wien` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 19** (doc_id: `deanon_TRAIN/9ObA118_18w`) (sent_id: `deanon_TRAIN/9ObA118_18w_4`)
-
-
-Gabriele Svirak in der Arbeitsrechtssache der klagenden Partei Evelyn Lichtwer, vertreten durch Dr. Gerhard Hiebler, Dr. Gerd Grebenjak, Rechtsanwälte in Leoben, gegen die beklagte Partei Inn Wiltri Systeme GmbH, DDr. Johann Gerkens, vertreten durch Dr. Helmut Fetz, Dr. Birgit Fetz ua, Rechtsanwälte in Leoben, wegen 500 EUR sA, über die Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Graz als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 29. August 2018, GZ 7 Ra 23/18h-12, mit dem der Berufung der klagenden Partei gegen das Urteil des Landesgerichts Leoben als Arbeits- und Sozialgericht vom 14. Dezember 2017, GZ 23 Cga 75/17x-7, nicht Folge gegeben wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die Revision der klagenden Partei wird zurückgewiesen.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Evelyn Lichtwer`(person)
-- `Inn Wiltri Systeme GmbH`(organisation)
-- `DDr. Johann Gerkens`(person)
-
-**Example 20** (doc_id: `deanon_TRAIN/9ObA118_19x`) (sent_id: `deanon_TRAIN/9ObA118_19x_5`)
-
-
-Text Begründung: Mit Beschluss vom 15. Mai 2019, 9 ObA 41/19y, wies der Oberste Gerichtshof die außerordentliche Revision des Klägers in der beim Landesgericht Linz als Arbeits- und Sozialgericht anhängigen Arbeitsrechtssache gegen die beklagte Partei als seine frühere Arbeitgeberin mangels Vorliegens einer Rechtsfrage von erheblicher Bedeutung im Sinne des § 502 Abs 1 ZPO zurück.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Landesgericht Linz`(organisation)
-
-**Example 21** (doc_id: `deanon_TRAIN/9ObA120_12f`) (sent_id: `deanon_TRAIN/9ObA120_12f_4`)
-
-
-Dr. Helwig Aubauer und Mag. Regina Bauer-Albrecht als weitere Richter in der Arbeitsrechtssache der klagenden Partei Heidelinde Hobl, vertreten durch Dr. Dieter Gallistl, Rechtsanwalt in Linz, wider die beklagte Partei Elvira Vacha, vertreten durch Dr. Andreas Grassl, Rechtsanwalt in Wien, wegen Feststellung (Streitwert 174,77 EUR), über die Revision der beklagten Partei gegen das Urteil des Oberlandesgerichts Linz als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 27. Juni 2012, GZ 12 Ra 48/12h-15, womit infolge Berufung der beklagten Partei das Urteil des Landesgerichts Wels als Arbeits- und Sozialgericht vom 31. Jänner 2012, GZ 16 Cga 154/11i-11, bestätigt wurde, in nichtöffentlicher Sitzung zu Recht erkannt:  Spruch
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Hobl`(person)
-- `Elvira Vacha`(person)
-
-**Example 22** (doc_id: `deanon_TRAIN/9ObA151_09k`) (sent_id: `deanon_TRAIN/9ObA151_09k_3`)
-
-
-Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrechtssachen durch den Vizepräsidenten des Obersten Gerichtshofs Dr. Rohrer als Vorsitzenden und die Hofräte des Obersten Gerichtshofs Dr. Hradil und Dr. Hopf sowie die fachkundigen Laienrichter KR Mag. Paul Kunsky und Franz Boindl als weitere Richter in der Arbeitsrechtssache der klagenden Partei PhD Ottfried Leonhardi, vertreten durch Dr. Charlotte Lindenberger, Rechtsanwältin in Steyr, gegen die beklagte Partei Baltromei Wind GmbH, Petra Ditrich, vertreten durch Dr. Otto Hauck, Rechtsanwalt in Kirchdorf, wegen 1.028,19 EUR sA, über die Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Linz als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 16. Oktober 2009, GZ 11 Ra 88/09d-10, womit das Urteil des Landesgerichts Steyr als Arbeits- und Sozialgericht vom 2. Juli 2009, GZ 24 Cga 9/09p-6, bestätigt wurde, in nichtöffentlicher Sitzung zu Recht erkannt:  Spruch Der Revision wird nicht Folge gegeben.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `PhD Ottfried Leonhardi`(person)
-- `Baltromei Wind GmbH`(organisation)
-- `Petra Ditrich`(person)
-
-**Example 23** (doc_id: `deanon_TRAIN/9ObA41_16v`) (sent_id: `deanon_TRAIN/9ObA41_16v_3`)
-
-
-Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrechtssachen durch den Senatspräsidenten des Obersten Gerichtshofs Dr. Hopf als Vorsitzenden, die Hofrätinnen des Obersten Gerichtshofs Hon.-Prof. Dr. Dehn und Mag. Korn sowie die fachkundigen Laienrichter Dr. Johannes Pflug und Mag. Robert Brunner als weitere Richter in der Arbeitsrechtssache der klagenden Partei Mag. Joseph Mehl, vertreten durch Dr. Stephan Rainer und Dr. Andreas Ruetz, Rechtsanwälte in Innsbruck, gegen die beklagte Partei Heiko Ayna, vertreten durch Korn Rechtsanwälte OG in Wien, wegen 40.647,29 EUR brutto sA über die Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Innsbruck als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 29. Jänner 2016, GZ 15 Ra 16/16i-31, mit dem der Berufung der klagenden Partei gegen das Urteil des Landesgerichts Innsbruck als Arbeits- und Sozialgericht vom 11. November 2015, GZ 43 Cga 118/14b-26, nicht Folge gegeben wurde, den Beschluss gefasst:  Spruch Die Revision wird zurückgewiesen.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Mag. Joseph Mehl`(person)
-- `Heiko Ayna`(person)
-
-**Example 24** (doc_id: `deanon_TRAIN/9ObA43_12g`) (sent_id: `deanon_TRAIN/9ObA43_12g_4`)
-
-
-Werner Keyzers, 4. Jaromir Heinrichson, alle vertreten durch die Advokaturbüro Jelenik & Partner AG, Landstraße 60, FL-9490 Vaduz (Zustellungsbevollmächtigter gemäß § 6 EIRAG: Mag. Norbert Wanker, Wasenweg 23, 6800 Feldkirch), gegen die beklagte Partei Wichtmann u. Staneck Energie GmbH, Dimitri Brunemann, vertreten durch Dr. Andreas Grundei, Rechtsanwalt in Wien, wegen Feststellung (Streitwert 10.000 EUR), über die außerordentliche Revision der klagenden Parteien gegen das Urteil des Oberlandesgerichts Innsbruck als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 21. Februar 2012, GZ 15 Ra 13/12t-16, womit das Urteil des Landesgerichts Feldkirch als Arbeits- und Sozialgericht vom 4. Oktober 2011, GZ 35 Cga 85/11p-10, bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die außerordentliche Revision der klagenden Parteien wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Werner Keyzers`(person)
-- `Jaromir Heinrichson`(person)
-- `Partner AG`(organisation)
-- `Wichtmann u. Staneck Energie GmbH`(organisation)
-- `Dimitri Brunemann`(person)
-
-**Example 25** (doc_id: `deanon_TRAIN/9ObA44_11b`) (sent_id: `deanon_TRAIN/9ObA44_11b_5`)
-
-
-Dr. Wolfgang List, Rechtsanwalt in Wien, wider die beklagte Partei und Gegnerin der gefährdeten Partei Valerian Urbahn, vertreten durch Dr. J. Pfurtscheller, Dr. Orgler, Mag. Huber, Rechtsanwälte in Innsbruck, wegen Feststellung des Fortbestands eines Arbeitsverhältnisses, in eventu Anfechtung einer Kündigung nach § 105 ArbVG (Streitwert jeweils 31.000 EUR), in eventu 18.957 EUR sA, hier Erlassung einer einstweiligen Verfügung, über den Revisionsrekurs der klagenden und gefährdeten Partei gegen den Beschluss des Oberlandesgerichts Innsbruck als Rekursgericht in Arbeits- und Sozialrechtssachen vom 24. Februar 2011, GZ 15 Ra 11/11x-15, mit dem infolge Rekurses der klagenden und gefährdeten Partei der Beschluss des Landesgerichts Innsbruck als Arbeits- und Sozialgericht vom 9. Dezember 2010, GZ 43 Cga 126/10y-8, bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Der Revisionsrekurs wird zurückgewiesen.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Valerian Urbahn`(person)
-
-**Example 26** (doc_id: `deanon_TRAIN/9ObA4_13y`) (sent_id: `deanon_TRAIN/9ObA4_13y_3`)
-
-
-Kopf Der Oberste Gerichtshof hat als Rekursgericht in Arbeits- und Sozialrechtssachen durch den Senatspräsidenten des Obersten Gerichtshofs Dr. Hopf als Vorsitzenden, den Hofrat des Obersten Gerichtshofs Hon.-Prof. Dr. Kuras und die Hofrätin des Obersten Gerichtshofs Dr. Dehn sowie die fachkundigen Laienrichter Werner Rodlauer und Mag. Robert Brunner als weitere Richter in der Arbeitsrechtssache der klagenden Partei Maria Maritz, vertreten durch Dr. Susanne Kuen, Rechtsanwältin in Wien, gegen die beklagte Partei PHG Möbel Dienstleistungen GmbH, Zeno Speckl, vertreten durch Fellner Wratzfeld & Partner Rechtsanwälte GmbH in Wien, wegen 125.731,44 EUR sA, über den Rekurs der beklagten Partei gegen den Beschluss des Oberlandesgerichts Linz als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 30. Oktober 2012, GZ 11 Ra 82/12a-74, mit dem das Urteil des Landesgerichts Steyr als Arbeits- und Sozialgericht vom 31. Juli 2012, GZ 9 Cga 245/08g-70, aufgehoben und die Rechtssache an das Erstgericht zurückverwiesen wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Der Rekurs wird zurückgewiesen.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Maria Maritz`(person)
-- `PHG Möbel Dienstleistungen GmbH`(organisation)
-- `Zeno Speckl`(person)
-
-**Example 27** (doc_id: `deanon_TRAIN/9ObA78_21t`) (sent_id: `deanon_TRAIN/9ObA78_21t_3`)
-
-
-Kopf Der Oberste Gerichtshof hat als Revisionsrekursgericht in Arbeits- und Sozialrechtssachen durch den Senatspräsidenten des Obersten Gerichtshofs Dr. Hopf als Vorsitzenden, die Hofrätin des Obersten Gerichtshofs Dr. Fichtenau und den Hofrat des Obersten Gerichtshofs Dr. Hargassner als weitere Richter in der Arbeitsrechtssache der klagenden Partei Ing. DI (FH) Griselda Eicholz, nunmehr vertreten durch Mag. Dr. Helmut Blum, Rechtsanwalt in Linz, gegen die beklagte Partei HochLuftfahrt GmbH, Saphira Thiehle, wegen Leistung, über den außerordentlichen Revisionsrekurs der klagenden Partei gegen den Beschluss des Oberlandesgerichts Linz als Rekursgericht in Arbeits- und Sozialrechtssachen vom 13. Mai 2019, GZ 11 Ra 33/19f-23, mit dem der Rekurs des Klägers gegen den Beschluss des Landesgerichts Linz als Arbeits- und Sozialgericht vom 8. April 2019, GZ 7 Cga 25/19k-9, zurückgewiesen wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Dem Revisionsrekurs wird Folge gegeben.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Griselda Eicholz`(person)
-- `HochLuftfahrt GmbH`(organisation)
-- `Saphira Thiehle`(person)
-
-**Example 28** (doc_id: `deanon_TRAIN/9ObA78_21t`) (sent_id: `deanon_TRAIN/9ObA78_21t_7`)
-
-
-2. 2019 brachte der Kläger beim Landesgericht Linz als Arbeits- und Sozialgericht eine Klage gegen die Beklagte ein.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Landesgericht Linz`(organisation)
-
-**Example 29** (doc_id: `deanon_TRAIN/9ObA82_20d`) (sent_id: `deanon_TRAIN/9ObA82_20d_3`)
-
-
-Kopf Der Oberste Gerichtshof hat als Revisions- und Rekursgericht in Arbeits- und Sozialrechtssachen durch den Senatspräsidenten des Obersten Gerichtshofs Dr. Hopf als Vorsitzenden, die Hofrätin des Obersten Gerichtshofs Dr. Fichtenau und den Hofrat des Obersten Gerichtshofs Dr. Hargassner sowie die fachkundigen Laienrichter Mag. Dr. Bernhard Gruber (aus dem Kreis der Arbeitgeber) und Angela Taschek (aus dem Kreis der Arbeitnehmer) als weitere Richter in der Arbeitsrechtssache der klagenden Partei Marktgemeinde Andrea Wiggering, vertreten durch Ehrenhöfer & Häusler Rechtsanwälte GmbH in Wiener Neustadt, gegen die beklagte Partei Cassandra Noldens, vertreten durch Kosch & Partner Rechtsanwälte GmbH in Wiener Neustadt, wegen 28.428,01 EUR sA, über den Rekurs und die außerordentliche Revision der klagenden Partei gegen den Beschluss (I.) und das Urteil (II.) des Oberlandesgerichts Wien als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 22. Juli 2020, GZ 9 Ra 111/19p-25, mit dem das Urteil des Landesgerichts Wiener Neustadt als Arbeits- und Sozialgericht vom 17. September 2019, GZ 9 Cga 126/18g-21, aus Anlass der Berufung der beklagten Partei hinsichtlich der Rückforderung einer Zahlung als nichtig aufgehoben und die Klage zurückgewiesen wurde und über Berufung der beklagen Partei hinsichtlich des Anspruchs nach dem OrgHG abgeändert wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Dem Rekurs wird teilweise Folge gegeben und der angefochtene Beschluss des Berufungsgerichts ersatzlos aufgehoben.
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Andrea Wiggering`(person)
-- `Cassandra Noldens`(person)
-
-**Example 30** (doc_id: `deanon_TRAIN/9ObA96_13b`) (sent_id: `deanon_TRAIN/9ObA96_13b_4`)
-
-
-Brigitte Augustin und Mag. Andreas Hach als weitere Richter in der Arbeitsrechtssache der klagenden Partei DI Anita Crämer, vertreten durch Dr. Gerhard Hiebler und Dr. Gerd Grebenjak, Rechtsanwälte in Leoben, gegen die beklagte Partei, GQG E‑Commerce Gesellschaft mbH, Franz-Cäsar-Weg 5, 4115 Gumpesberg, Österreich, vertreten durch Siemer-Siegel-Füreder & Partner, Rechtsanwälte in Wien, wegen Feststellung, über die Revision der beklagten Partei gegen das Urteil des Oberlandesgerichts Graz als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 18. April 2013, GZ 6 Ra 18/13h-10, mit dem der Berufung der beklagten Partei gegen das Urteil des Landesgerichts Leoben als Arbeits- und Sozialgericht vom 7. November 2012, GZ 23 Cga 115/12x-6, nicht Folge gegeben wurde, in nichtöffentlicher Sitzung zu Recht erkannt:  Spruch
-
-**False Positives:**
-
-- `Arbeits- und Sozialgericht` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `DI Anita Crämer`(person)
-- `GQG E‑Commerce Gesellschaft mbH`(organisation)
-- `Franz-Cäsar-Weg 5, 4115 Gumpesberg, Österreich`(address)
 
 </details>
 
@@ -13500,7 +13551,7 @@ Matches the specific organization Pensionsversicherungsanstalt.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 1 | 499 |
+| `organisation` | 0 | 1 | 536 |
 
 </details>
 
@@ -13523,6 +13574,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrech
 **Gold Entities:**
 
 - `Dr.in Gerlinde Saltzmann`(person)
+- `Arbeits- und Sozialgericht`(organisation)
 
 </details>
 
@@ -13978,7 +14030,7 @@ Matches Sozialversicherungsanstalt der Bauern.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 2 | 500 |
+| `organisation` | 0 | 2 | 541 |
 
 </details>
 
@@ -14001,6 +14053,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrech
 **Gold Entities:**
 
 - `OStR Esra Jakubait`(person)
+- `Arbeits- und Sozialgericht`(organisation)
 
 **Example 1** (doc_id: `deanon_TRAIN/10ObS150_17g`) (sent_id: `deanon_TRAIN/10ObS150_17g_8`)
 
@@ -14317,7 +14370,7 @@ Matches law firms ending in Rechtsanwält... GmbH/OG.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 4 | 434 |
+| `organisation` | 0 | 4 | 470 |
 
 </details>
 
@@ -14377,6 +14430,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrech
 - `Cassandra Hennel`(person)
 - `SeeTextil AG`(organisation)
 - `Othmar Dempewolf`(person)
+- `Arbeits- und Sozialgerichts`(organisation)
 
 **Example 3** (doc_id: `deanon_TRAIN/8ObA47_20z`) (sent_id: `deanon_TRAIN/8ObA47_20z_4`)
 
@@ -14648,7 +14702,7 @@ Matches law firms ending in Rechtsanwälte GmbH/OG with names, ensuring no prece
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 10 | 434 |
+| `organisation` | 0 | 10 | 470 |
 
 </details>
 
@@ -14773,6 +14827,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrech
 - `Cassandra Hennel`(person)
 - `SeeTextil AG`(organisation)
 - `Othmar Dempewolf`(person)
+- `Arbeits- und Sozialgerichts`(organisation)
 
 **Example 7** (doc_id: `deanon_TRAIN/8ObA47_20z`) (sent_id: `deanon_TRAIN/8ObA47_20z_4`)
 
@@ -15028,7 +15083,7 @@ Matches Bundesministeriums für Justiz.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 4 | 461 |
+| `organisation` | 0 | 4 | 497 |
 
 </details>
 
@@ -15560,7 +15615,7 @@ Matches law firms ending in KG, excluding GmbH & Co KG patterns.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 10 | 509 |
+| `organisation` | 0 | 10 | 550 |
 
 </details>
 
@@ -15743,7 +15798,7 @@ Matches entities ending in 'gesellschaft mbH' or 'Gesellschaft mbH' which are co
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 2 | 297 |
+| `organisation` | 0 | 2 | 333 |
 
 </details>
 
@@ -15784,6 +15839,7 @@ Brigitte Augustin und Mag. Andreas Hach als weitere Richter in der Arbeitsrechts
 - `DI Anita Crämer`(person)
 - `GQG E‑Commerce Gesellschaft mbH`(organisation)
 - `Franz-Cäsar-Weg 5, 4115 Gumpesberg, Österreich`(address)
+- `Arbeits- und Sozialgericht`(organisation)
 
 </details>
 
