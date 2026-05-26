@@ -1,6 +1,6 @@
 # Rule Evaluation Report — Qwen/Qwen3.5-35B-A3B
 
-Generated on: 2026-05-26T17:47:36.982453
+Generated on: 2026-05-26T18:04:58.090732
 
 ---
 
@@ -52,14 +52,14 @@ Results can be reproduced by running this command:
 | Metric | Value |
 |---|---|
 | Accuracy (exact match) | 97.5% |
-| True Positives | 219 |
-| False Positives | 388 |
-| False Negatives | 367 |
-| Total Gold Entities | 586 |
-| Micro Precision | 36.1% |
-| Micro Recall | 37.4% |
-| Micro F1 | 36.7% |
-| Macro F1 | 36.7% |
+| True Positives | 238 |
+| False Positives | 369 |
+| False Negatives | 368 |
+| Total Gold Entities | 606 |
+| Micro Precision | 39.2% |
+| Micro Recall | 39.3% |
+| Micro F1 | 39.2% |
+| Macro F1 | 39.2% |
 
 </details>
 
@@ -71,15 +71,17 @@ Results can be reproduced by running this command:
 | Rule | F1 | Precision | Recall | Total Predicted | True Positives | False Positives |
 |---|---|---|---|---|---|---|
 | `Administrative Court` | 2.0% | 100.0% | 1.0% | 6 | 6 | 0 |
-| `Vienna Magistrate` | 2.4% | 100.0% | 1.2% | 7 | 7 | 0 |
-| `Verwaltungsgerichtshof Genitive` | 1.7% | 100.0% | 0.9% | 5 | 5 | 0 |
-| `Magistrate City Pattern` | 2.4% | 100.0% | 1.2% | 7 | 7 | 0 |
-| `District Court Pattern` | 31.0% | 69.2% | 20.0% | 169 | 117 | 52 |
-| `Regional Court Pattern` | 18.5% | 67.0% | 10.8% | 94 | 63 | 31 |
-| `Court with Location` | 3.3% | 55.6% | 1.7% | 18 | 10 | 8 |
+| `Vienna Magistrate` | 2.3% | 100.0% | 1.2% | 7 | 7 | 0 |
+| `Constitutional Court` | 2.6% | 100.0% | 1.3% | 8 | 8 | 0 |
+| `Court with Location` | 5.8% | 100.0% | 3.0% | 18 | 18 | 0 |
+| `Verwaltungsgerichtshof Genitive` | 1.6% | 100.0% | 0.8% | 5 | 5 | 0 |
+| `Magistrate City Pattern` | 2.3% | 100.0% | 1.2% | 7 | 7 | 0 |
+| `District Court Pattern` | 31.5% | 72.2% | 20.1% | 169 | 122 | 47 |
+| `Regional Court Pattern` | 18.0% | 67.0% | 10.4% | 94 | 63 | 31 |
+| `Bank and Other Org` | 4.5% | 66.7% | 2.3% | 21 | 14 | 7 |
 | `Hyphenated Company Names` | 0.3% | 50.0% | 0.2% | 2 | 1 | 1 |
-| `Generic GmbH Entity` | 5.7% | 14.5% | 3.6% | 145 | 21 | 124 |
-| `Company Name Without Suffix` | 5.1% | 8.6% | 3.6% | 244 | 21 | 223 |
+| `Generic GmbH Entity` | 5.6% | 14.5% | 3.5% | 145 | 21 | 124 |
+| `Company Name Without Suffix` | 4.9% | 8.6% | 3.5% | 244 | 21 | 223 |
 | `Federal Tax Court` | 0.0% | 0.0% | 0.0% | 0 | 0 | 0 |
 | `Tax Authority Austria` | 0.0% | 0.0% | 0.0% | 0 | 0 | 0 |
 | `Ministry of Finance` | 0.0% | 0.0% | 0.0% | 0 | 0 | 0 |
@@ -90,7 +92,6 @@ Results can be reproduced by running this command:
 | `Social Ministry` | 0.0% | 0.0% | 0.0% | 0 | 0 | 0 |
 | `AMS Acronym` | 0.0% | 0.0% | 0.0% | 0 | 0 | 0 |
 | `Local Tax Office` | 0.0% | 0.0% | 0.0% | 0 | 0 | 0 |
-| `Bank and Other Org` | 0.0% | 0.0% | 0.0% | 21 | 0 | 21 |
 | `Specific Retailer Billa` | 0.0% | 0.0% | 0.0% | 0 | 0 | 0 |
 | `Amazon Transport GmbH` | 0.0% | 0.0% | 0.0% | 0 | 0 | 0 |
 | `Post and Telekom Austria` | 0.0% | 0.0% | 0.0% | 0 | 0 | 0 |
@@ -104,7 +105,6 @@ Results can be reproduced by running this command:
 | `SeneCura Full Name` | 0.0% | 0.0% | 0.0% | 0 | 0 | 0 |
 | `Lubomir Merschmeyer` | 0.0% | 0.0% | 0.0% | 0 | 0 | 0 |
 | `Tax Office Acronym FAÖ` | 0.0% | 0.0% | 0.0% | 0 | 0 | 0 |
-| `Constitutional Court` | 0.0% | 0.0% | 0.0% | 8 | 0 | 8 |
 | `Constitutional Court Acronym` | 0.0% | 0.0% | 0.0% | 12 | 0 | 12 |
 | `Gözcü Getränke` | 0.0% | 0.0% | 0.0% | 0 | 0 | 0 |
 | `Labor Court Vienna` | 0.0% | 0.0% | 0.0% | 34 | 0 | 34 |
@@ -193,9 +193,303 @@ Results can be reproduced by running this command:
 <details>
 <summary>🏆 Most Precise Rules</summary>
 
+## `Court with Location`
+
+**F1:** 0.058 | **Precision:** 1.000 | **Recall:** 0.030  
+
+**Format:** `regex`  
+**Rule ID:** `971aef3b`  
+**Description:**
+Matches court names followed by location suffixes like 'Außenstelle Linz'.
+
+**Content:**
+```
+(?i)\b((?:Bundesfinanzgericht|Verwaltungsgerichtshof|Verfassungsgerichtshof)(?:s?)(?:,\s+Außenstelle\s+[A-Za-z]+)?)\b
+```
+
+<details>
+<summary>📊 Detailed Metrics</summary>
+
+| Precision | Recall | F1 | Total Predicted | TP | FP |
+|---|---|---|---|---|---|
+| 1.000 | 0.030 | 0.058 | 18 | 18 | 0 |
+
+**Per-Class Breakdown**
+
+| Class | TP | FP | FN |
+|---|---|---|---|
+| `organisation` | 18 | 0 | 505 |
+
+</details>
+
+---
+
+<details>
+<summary>✅ Worked</summary>
+
+**Example 0** (doc_id: `deanon_TRAIN/10Ob23_18g`) (sent_id: `deanon_TRAIN/10Ob23_18g_100`)
+
+
+Die nach den Vorgaben des Verfassungsgerichtshofs gebotene steuerliche Entlastung des Geldunterhaltspflichtigen basiert auf dem Modell der getrennten Haushaltsführung (vgl RIS-Justiz RS0117015), in dem ein Elternteil seine Unterhaltspflicht durch Betreuungsleistungen und der andere durch Geldleistungen (allenfalls kombiniert mit anzurechnenden Naturalleistungen) erfüllt.
+
+| Predicted | Gold |
+|---|---|
+| `Verfassungsgerichtshofs` | `Verfassungsgerichtshofs` |
+
+**Example 1** (doc_id: `deanon_TRAIN/3Ob26_23d`) (sent_id: `deanon_TRAIN/3Ob26_23d_48`)
+
+
+Die Klägerin führt dagegen ins Treffen, dass die beschlussmäßige Umwidmung eines Grundstücks nach der Rechtsprechung des Verfassungsgerichtshofs erst dann erfolgen könne, wenn die Gemeinde bereits Eigentümerin des betroffenen Grundstücks sei; nur wenn es sich beim Grundstück um eine Privatstraße gehandelt hätte, die über Antrag des Eigentümers umgewidmet werden sollte, wäre eine Beschlussfassung nach § 27 Abs 2 Sbg LStG 1966 durch die Gemeinde vor Eigentumserwerb möglich gewesen.
+
+| Predicted | Gold |
+|---|---|
+| `Verfassungsgerichtshofs` | `Verfassungsgerichtshofs` |
+
+**Example 2** (doc_id: `deanon_TRAIN/3Ob26_23d`) (sent_id: `deanon_TRAIN/3Ob26_23d_51`)
+
+
+Der von der Klägerin in diesem Zusammenhang zitierten Entscheidung des Verfassungsgerichtshofs vom 27. September 2003, V 108/01, lag nämlich der Sachverhalt zugrunde, dass der dort streitgegenständliche (Verbindungs-)Weg im Zeitpunkt der (vor der Enteignung des Grundstücks erfolgten) Widmung als Gemeindestraße schon seit Jahren als Privatstraße diente.
+
+| Predicted | Gold |
+|---|---|
+| `Verfassungsgerichtshofs` | `Verfassungsgerichtshofs` |
+
+**Example 3** (doc_id: `deanon_TRAIN/3Ob26_23d`) (sent_id: `deanon_TRAIN/3Ob26_23d_52`)
+
+
+Vor diesem Hintergrund sprach der Verfassungsgerichtshof aus, dass durch die Öffentlicherklärung einesin der Natur schon bestehendenWeges durch Verordnung mangels Eigentumserwerbs in gesetzwidriger Weise Gemeingebrauch begründet werde.
+
+| Predicted | Gold |
+|---|---|
+| `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
+
+**Example 4** (doc_id: `deanon_TRAIN/5Ob171_22s`) (sent_id: `deanon_TRAIN/5Ob171_22s_67`)
+
+
+In den vonRohregger(aaO) zitierten Entscheidungen bejahen auch der Verfassungsgerichtshof (B 1050/09) und der Verwaltungsgerichtshof (AW 2012/01/0032) die Bedeutung des § 10 RAO und der Vorgängerbestimmung des § 10 RL-BA 2015 für das öffentliche Interesse an dem Verbot der Doppelvertretung, weil es dem Schutz der durch einen Rechtsanwalt vertretenen Parteien diene, seine Einhaltung für das zwischen Rechtsanwalt und Klient bestehende Treueverhältnis für wesentlich erachtet werde und für das allgemeine Bild der Anwaltschaft in der Öffentlichkeit von Bedeutung sei.
+
+| Predicted | Gold |
+|---|---|
+| `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
+| `Verwaltungsgerichtshof` | `Verwaltungsgerichtshof` |
+
+**Example 5** (doc_id: `deanon_TRAIN/5Ob31_16v`) (sent_id: `deanon_TRAIN/5Ob31_16v_15`)
+
+
+Weiters wolle die Rechtssache gemäß Art 89 B-VG dem Verfassungsgerichtshof sowie gemäß Art 267 AEUV dem Europäischen Gerichtshof zur Prüfung vorgelegt werden.
+
+| Predicted | Gold |
+|---|---|
+| `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
+
+**Example 6** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_14`)
+
+
+Der gesatzte Kollektivvertrag des Roten Kreuzes sei unanwendbar, da der Verwaltungsgerichtshof mit Erkenntnis vom 4. 9. 2013, 2011/08/0230 dem Österreichischen Roten Kreuz die Kollektivvertragsfähigkeit „de facto“ aberkannt habe, sodass die Verordnung des Bundeseinigungsamtes „rechtswidrig und ungültig“ sei.
+
+| Predicted | Gold |
+|---|---|
+| `Verwaltungsgerichtshof` | `Verwaltungsgerichtshof` |
+
+**Example 7** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_28`)
+
+
+3. Der Verwaltungsgerichtshof hat mit seinem Erkenntnis vom 4. 9. 2013, 2011/08/0230 = DRdA 2014/27 (Felten) = ZAS 2014/13 (Tomandl) dem Österreichischen Roten Kreuz die Kollektivvertragsfähigkeit gemäß § 5 Abs 3 ArbVG nicht aberkannt.
+
+| Predicted | Gold |
+|---|---|
+| `Verwaltungsgerichtshof` | `Verwaltungsgerichtshof` |
+
+**Example 8** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_29`)
+
+
+Der Verwaltungsgerichtshof behob allein einen Bescheid, mit dem ein Antrag auf eine solche Aberkennung abgewiesen wurde, wegen Rechtswidrigkeit seines Inhalts (worauf auch der von der Beklagten angerufene Verfassungsgerichtshof in Punkt 2.4.5.3 seines Erkenntnisses ausdrücklich hinwies).
+
+| Predicted | Gold |
+|---|---|
+| `Verwaltungsgerichtshof` | `Verwaltungsgerichtshof` |
+| `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
+
+**Example 9** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_30`)
+
+
+Weil in der Folge abermals ein abweisender Bescheid erging, der sodann in Rechtskraft erwuchs (siehe erneut in Punkt 2.4.5.3 des VfGH-Erkenntnisses), ist es letzten Endes auch unrichtig, dass der Verwaltungsgerichtshof dem Roten Kreuz „de facto“ die Kollektivvertragsfähigkeit aberkannt hätte.
+
+| Predicted | Gold |
+|---|---|
+| `Verwaltungsgerichtshof` | `Verwaltungsgerichtshof` |
+
+**Example 10** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_31`)
+
+
+Von dieser Sachlage ausgehend wies der von der Beklagten in diesem Verfahren mittels eines Parteiantrags auf Normenkontrolle angerufene Verfassungsgerichtshof den Antrag, die in BGBl II 2013/120 kundgemachte Verordnung des Bundeseinigungsamtes zur Gänze als verfassungswidrig aufzuheben, mit der Begründung ab, die Bedenken der Beklagten beruhten auf der nicht zutreffenden Prämisse, das Österreichische Rote Kreuz habe seine Kollektivvertragsfähigkeit durch das Erkenntnis des Verwaltungsgerichtshofs 2011/08/0230 „de facto“ verloren (Punkt 2.5 des Erkenntnisses).
+
+| Predicted | Gold |
+|---|---|
+| `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
+| `Verwaltungsgerichtshofs` | `Verwaltungsgerichtshofs` |
+
+**Example 11** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_33`)
+
+
+4. Die Frage, ob auch ohne Aufhebung der Verordnung BGBl II 2013/120 durch den Verfassungsgerichtshof allein dadurch, dass dem Österreichischen Roten Kreuz die Kollektivvertragsfähigkeit vom Bundeseinigungsamt mittels Bescheids aberkannt wird, die Satzung des Kollektivvertrags ihre Geltung verliert (vgl insbFriedrich, ASoK 2013, 460 f), stellt sich nicht, weil kein solcher Bescheid vorliegt.
+
+| Predicted | Gold |
+|---|---|
+| `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
+
+**Example 12** (doc_id: `deanon_TRAIN/8ObA72_19z`) (sent_id: `deanon_TRAIN/8ObA72_19z_12`)
+
+
+2. Dabei konnte sich der Oberste Gerichtshof auf einschlägige Judikatur sowohl des Verfassungsgerichtshofs als auch des EuGH stützen: 2.1 Der Verfassungsgerichtshof hat in seinem Erkenntnis G 450/2015 ua Parteianträge von ÖBB-Bediensteten (unter anderem auch des Klägers) abgewiesen, die § 53a und § 56 Abs 18 bis 24 BundesbahnG je idF BGBl I Nr 64/2015 als verfassungswidrig aufzuheben.
+
+| Predicted | Gold |
+|---|---|
+| `Verfassungsgerichtshofs` | `Verfassungsgerichtshofs` |
+| `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
+
+**Example 13** (doc_id: `deanon_TRAIN/9ObA27_15h`) (sent_id: `deanon_TRAIN/9ObA27_15h_7`)
+
+
+Ihr Antrag auf Gesetzesprüfung hinsichtlich der inzwischen aufgelösten Berufungskommission und eine Eventualbeschwerde seien beim Verfassungsgerichtshof anhängig.
+
+| Predicted | Gold |
+|---|---|
+| `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
+
+</details>
+
+---
+
+## `Constitutional Court`
+
+**F1:** 0.026 | **Precision:** 1.000 | **Recall:** 0.013  
+
+**Format:** `regex`  
+**Rule ID:** `0bbc25f5`  
+**Description:**
+Matches Verfassungsgerichtshof and its genitive form.
+
+**Content:**
+```
+(?i)\b(Verfassungsgerichtshof(?:es)?)\b
+```
+
+<details>
+<summary>📊 Detailed Metrics</summary>
+
+| Precision | Recall | F1 | Total Predicted | TP | FP |
+|---|---|---|---|---|---|
+| 1.000 | 0.013 | 0.026 | 8 | 8 | 0 |
+
+**Per-Class Breakdown**
+
+| Class | TP | FP | FN |
+|---|---|---|---|
+| `organisation` | 8 | 0 | 331 |
+
+</details>
+
+---
+
+<details>
+<summary>✅ Worked</summary>
+
+**Example 0** (doc_id: `deanon_TRAIN/3Ob26_23d`) (sent_id: `deanon_TRAIN/3Ob26_23d_52`)
+
+
+Vor diesem Hintergrund sprach der Verfassungsgerichtshof aus, dass durch die Öffentlicherklärung einesin der Natur schon bestehendenWeges durch Verordnung mangels Eigentumserwerbs in gesetzwidriger Weise Gemeingebrauch begründet werde.
+
+| Predicted | Gold |
+|---|---|
+| `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
+
+**Example 1** (doc_id: `deanon_TRAIN/5Ob171_22s`) (sent_id: `deanon_TRAIN/5Ob171_22s_67`)
+
+
+In den vonRohregger(aaO) zitierten Entscheidungen bejahen auch der Verfassungsgerichtshof (B 1050/09) und der Verwaltungsgerichtshof (AW 2012/01/0032) die Bedeutung des § 10 RAO und der Vorgängerbestimmung des § 10 RL-BA 2015 für das öffentliche Interesse an dem Verbot der Doppelvertretung, weil es dem Schutz der durch einen Rechtsanwalt vertretenen Parteien diene, seine Einhaltung für das zwischen Rechtsanwalt und Klient bestehende Treueverhältnis für wesentlich erachtet werde und für das allgemeine Bild der Anwaltschaft in der Öffentlichkeit von Bedeutung sei.
+
+| Predicted | Gold |
+|---|---|
+| `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
+
+**Missed by this rule (FN):**
+
+- `Verwaltungsgerichtshof` (organisation)
+
+**Example 2** (doc_id: `deanon_TRAIN/5Ob31_16v`) (sent_id: `deanon_TRAIN/5Ob31_16v_15`)
+
+
+Weiters wolle die Rechtssache gemäß Art 89 B-VG dem Verfassungsgerichtshof sowie gemäß Art 267 AEUV dem Europäischen Gerichtshof zur Prüfung vorgelegt werden.
+
+| Predicted | Gold |
+|---|---|
+| `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
+
+**Example 3** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_29`)
+
+
+Der Verwaltungsgerichtshof behob allein einen Bescheid, mit dem ein Antrag auf eine solche Aberkennung abgewiesen wurde, wegen Rechtswidrigkeit seines Inhalts (worauf auch der von der Beklagten angerufene Verfassungsgerichtshof in Punkt 2.4.5.3 seines Erkenntnisses ausdrücklich hinwies).
+
+| Predicted | Gold |
+|---|---|
+| `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
+
+**Missed by this rule (FN):**
+
+- `Verwaltungsgerichtshof` (organisation)
+
+**Example 4** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_31`)
+
+
+Von dieser Sachlage ausgehend wies der von der Beklagten in diesem Verfahren mittels eines Parteiantrags auf Normenkontrolle angerufene Verfassungsgerichtshof den Antrag, die in BGBl II 2013/120 kundgemachte Verordnung des Bundeseinigungsamtes zur Gänze als verfassungswidrig aufzuheben, mit der Begründung ab, die Bedenken der Beklagten beruhten auf der nicht zutreffenden Prämisse, das Österreichische Rote Kreuz habe seine Kollektivvertragsfähigkeit durch das Erkenntnis des Verwaltungsgerichtshofs 2011/08/0230 „de facto“ verloren (Punkt 2.5 des Erkenntnisses).
+
+| Predicted | Gold |
+|---|---|
+| `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
+
+**Missed by this rule (FN):**
+
+- `Verwaltungsgerichtshofs` (organisation)
+
+**Example 5** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_33`)
+
+
+4. Die Frage, ob auch ohne Aufhebung der Verordnung BGBl II 2013/120 durch den Verfassungsgerichtshof allein dadurch, dass dem Österreichischen Roten Kreuz die Kollektivvertragsfähigkeit vom Bundeseinigungsamt mittels Bescheids aberkannt wird, die Satzung des Kollektivvertrags ihre Geltung verliert (vgl insbFriedrich, ASoK 2013, 460 f), stellt sich nicht, weil kein solcher Bescheid vorliegt.
+
+| Predicted | Gold |
+|---|---|
+| `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
+
+**Example 6** (doc_id: `deanon_TRAIN/8ObA72_19z`) (sent_id: `deanon_TRAIN/8ObA72_19z_12`)
+
+
+2. Dabei konnte sich der Oberste Gerichtshof auf einschlägige Judikatur sowohl des Verfassungsgerichtshofs als auch des EuGH stützen: 2.1 Der Verfassungsgerichtshof hat in seinem Erkenntnis G 450/2015 ua Parteianträge von ÖBB-Bediensteten (unter anderem auch des Klägers) abgewiesen, die § 53a und § 56 Abs 18 bis 24 BundesbahnG je idF BGBl I Nr 64/2015 als verfassungswidrig aufzuheben.
+
+| Predicted | Gold |
+|---|---|
+| `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
+
+**Missed by this rule (FN):**
+
+- `Verfassungsgerichtshofs` (organisation)
+
+**Example 7** (doc_id: `deanon_TRAIN/9ObA27_15h`) (sent_id: `deanon_TRAIN/9ObA27_15h_7`)
+
+
+Ihr Antrag auf Gesetzesprüfung hinsichtlich der inzwischen aufgelösten Berufungskommission und eine Eventualbeschwerde seien beim Verfassungsgerichtshof anhängig.
+
+| Predicted | Gold |
+|---|---|
+| `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
+
+</details>
+
+---
+
 ## `Vienna Magistrate`
 
-**F1:** 0.024 | **Precision:** 1.000 | **Recall:** 0.012  
+**F1:** 0.023 | **Precision:** 1.000 | **Recall:** 0.012  
 
 **Format:** `regex`  
 **Rule ID:** `923cbdfe`  
@@ -212,13 +506,13 @@ Matches Magistrat der Stadt Wien with department codes, ensuring the full entity
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 1.000 | 0.012 | 0.024 | 7 | 7 | 0 |
+| 1.000 | 0.012 | 0.023 | 7 | 7 | 0 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 7 | 0 | 510 |
+| `organisation` | 7 | 0 | 527 |
 
 </details>
 
@@ -336,7 +630,7 @@ Matzka als weitere Richter in der Pflegschaftssache der Minderjährigen Silke Wi
 
 ## `Magistrate City Pattern`
 
-**F1:** 0.024 | **Precision:** 1.000 | **Recall:** 0.012  
+**F1:** 0.023 | **Precision:** 1.000 | **Recall:** 0.012  
 
 **Format:** `regex`  
 **Rule ID:** `5b8b1658`  
@@ -353,13 +647,13 @@ Matches Magistrat der Stadt followed by city name, including genitive forms and 
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 1.000 | 0.012 | 0.024 | 7 | 7 | 0 |
+| 1.000 | 0.012 | 0.023 | 7 | 7 | 0 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 7 | 0 | 510 |
+| `organisation` | 7 | 0 | 527 |
 
 </details>
 
@@ -500,7 +794,7 @@ Matches Verwaltungsgerichtshof and all its case endings, including optional (VwG
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 6 | 0 | 219 |
+| `organisation` | 6 | 0 | 231 |
 
 </details>
 
@@ -517,6 +811,10 @@ In den vonRohregger(aaO) zitierten Entscheidungen bejahen auch der Verfassungsge
 | Predicted | Gold |
 |---|---|
 | `Verwaltungsgerichtshof` | `Verwaltungsgerichtshof` |
+
+**Missed by this rule (FN):**
+
+- `Verfassungsgerichtshof` (organisation)
 
 **Example 1** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_14`)
 
@@ -545,6 +843,10 @@ Der Verwaltungsgerichtshof behob allein einen Bescheid, mit dem ein Antrag auf e
 |---|---|
 | `Verwaltungsgerichtshof` | `Verwaltungsgerichtshof` |
 
+**Missed by this rule (FN):**
+
+- `Verfassungsgerichtshof` (organisation)
+
 **Example 4** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_30`)
 
 
@@ -563,13 +865,17 @@ Von dieser Sachlage ausgehend wies der von der Beklagten in diesem Verfahren mit
 |---|---|
 | `Verwaltungsgerichtshofs` | `Verwaltungsgerichtshofs` |
 
+**Missed by this rule (FN):**
+
+- `Verfassungsgerichtshof` (organisation)
+
 </details>
 
 ---
 
 ## `District Court Pattern`
 
-**F1:** 0.310 | **Precision:** 0.692 | **Recall:** 0.200  
+**F1:** 0.315 | **Precision:** 0.722 | **Recall:** 0.201  
 
 **Format:** `regex`  
 **Rule ID:** `4a197a40`  
@@ -586,13 +892,13 @@ Matches Bezirksgericht followed by location, handling 'BG' abbreviation.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.692 | 0.200 | 0.310 | 169 | 117 | 52 |
+| 0.722 | 0.201 | 0.315 | 169 | 122 | 47 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 117 | 52 | 469 |
+| `organisation` | 122 | 47 | 484 |
 
 </details>
 
@@ -893,14 +1199,20 @@ Die Übertragung der Führung der Pflegschaftssache an das Bezirksgericht Mödli
 |---|---|
 | `Bezirksgericht Mödling` | `Bezirksgericht Mödling` |
 
-**Example 29** (doc_id: `deanon_TRAIN/10Nc2_12v`) (sent_id: `deanon_TRAIN/10Nc2_12v_9`)
+**Example 29** (doc_id: `deanon_TRAIN/10Nc2_12v`) (sent_id: `deanon_TRAIN/10Nc2_12v_3`)
 
 
-Die klagende Partei beantragt die Delegierung des Verfahrens vom Bezirksgericht Graz-West an das Bezirksgericht Fünfhaus.
+Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hradil als Vorsitzenden sowie die Hofräte Dr. Fellinger und Dr. Hoch als weitere Richter in der Rechtssache der klagenden Partei C. Dersudheim Digital GmbH, Taxlbergstraße 247, 8151 Rohrbach, Österreich, vertreten durch Dr. Carl Benkhofer, Rechtsanwalt in Wien, gegen die beklagte Partei Ingolf Grimpe, vertreten durch Greiml & Horwath Rechtsanwaltspartnerschaft in Graz, wegen 5.232 EUR sA, über den Delegierungsantrag der klagenden Partei im Verfahren AZ 14 C 1302/11a des Bezirksgerichts Graz-West in nichtöffentlicher Sitzung, den Beschluss gefasst:  Spruch Zur Verhandlung und Entscheidung in dieser Rechtssache wird anstelle des Bezirksgerichts Graz-West das Bezirksgericht Fünfhaus bestimmt.
 
 | Predicted | Gold |
 |---|---|
-| `Bezirksgericht Graz` | `Bezirksgericht Graz` |
+| `Bezirksgericht Fünfhaus` | `Bezirksgericht Fünfhaus` |
+
+**Missed by this rule (FN):**
+
+- `Dersudheim Digital GmbH` (organisation)
+- `Taxlbergstraße 247, 8151 Rohrbach, Österreich` (address)
+- `Ingolf Grimpe` (person)
 
 </details>
 
@@ -983,55 +1295,7 @@ Das bisher zuständige Bezirksgericht werde daher die Interessen der Minderjähr
 
 > overlaps gold: 0  |  likely missing annotation: 1
 
-**Example 6** (doc_id: `deanon_TRAIN/10Nc2_12v`) (sent_id: `deanon_TRAIN/10Nc2_12v_3`)
-
-
-Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hradil als Vorsitzenden sowie die Hofräte Dr. Fellinger und Dr. Hoch als weitere Richter in der Rechtssache der klagenden Partei C. Dersudheim Digital GmbH, Taxlbergstraße 247, 8151 Rohrbach, Österreich, vertreten durch Dr. Carl Benkhofer, Rechtsanwalt in Wien, gegen die beklagte Partei Ingolf Grimpe, vertreten durch Greiml & Horwath Rechtsanwaltspartnerschaft in Graz, wegen 5.232 EUR sA, über den Delegierungsantrag der klagenden Partei im Verfahren AZ 14 C 1302/11a des Bezirksgerichts Graz-West in nichtöffentlicher Sitzung, den Beschluss gefasst:  Spruch Zur Verhandlung und Entscheidung in dieser Rechtssache wird anstelle des Bezirksgerichts Graz-West das Bezirksgericht Fünfhaus bestimmt.
-
-**False Positives:**
-
-- `Bezirksgericht Fünfhaus` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Dersudheim Digital GmbH`(organisation)
-- `Taxlbergstraße 247, 8151 Rohrbach, Österreich`(address)
-- `Ingolf Grimpe`(person)
-
-**Example 7** (doc_id: `deanon_TRAIN/10Nc2_12v`) (sent_id: `deanon_TRAIN/10Nc2_12v_9`)
-
-
-Die klagende Partei beantragt die Delegierung des Verfahrens vom Bezirksgericht Graz-West an das Bezirksgericht Fünfhaus.
-
-**False Positives:**
-
-- `Bezirksgericht Fünfhaus` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Bezirksgericht Graz`(organisation)
-
-**Example 8** (doc_id: `deanon_TRAIN/10Nc3_21d`) (sent_id: `deanon_TRAIN/10Nc3_21d_21`)
-
-
-Das Bezirksgericht Villach retournierte den Akt daraufhin an das Bezirksgericht Josefstadt mit dem Hinweis, dass der Akt vom Bezirksgericht Josefstadt dem gemeinsam übergeordneten Gericht vorzulegen sei (ON 30).
-
-**False Positives:**
-
-- `Bezirksgericht Josefstadt` — similar text (different position): `Bezirksgericht Josefstadt`
-
-> overlaps gold: 1  |  likely missing annotation: 0
-
-**Gold Entities:**
-
-- `Bezirksgericht Villach`(organisation)
-- `Bezirksgericht Josefstadt`(organisation)
-
-**Example 9** (doc_id: `deanon_TRAIN/10Ob21_15h`) (sent_id: `deanon_TRAIN/10Ob21_15h_17`)
+**Example 6** (doc_id: `deanon_TRAIN/10Ob21_15h`) (sent_id: `deanon_TRAIN/10Ob21_15h_17`)
 
 
 Mit Urteil des Bezirksgerichts Bezirksgericht St. Pölten vom 21. 5. 2013 wurde die Klägerin zur Zahlung von 6.183,92 EUR sA an Sanierungskosten sowie zur Zahlung der Prozesskosten an den Betreiber eines Hoch- und Niederseilparks verurteilt.
@@ -1046,7 +1310,7 @@ Mit Urteil des Bezirksgerichts Bezirksgericht St. Pölten vom 21. 5. 2013 wurde 
 
 - `Bezirksgericht St. Pölten`(organisation)
 
-**Example 10** (doc_id: `deanon_TRAIN/10Ob21_15h`) (sent_id: `deanon_TRAIN/10Ob21_15h_28`)
+**Example 7** (doc_id: `deanon_TRAIN/10Ob21_15h`) (sent_id: `deanon_TRAIN/10Ob21_15h_28`)
 
 
 Weiters habe sie der Klägerin Zinsen und Prozesskosten, zu deren Zahlung sie im Verfahren vor dem Bezirksgericht Bezirksgericht Meidling verurteilt worden war, sowie die Kosten deren eigener Vertretung in diesem Verfahren zu ersetzen.
@@ -1061,7 +1325,7 @@ Weiters habe sie der Klägerin Zinsen und Prozesskosten, zu deren Zahlung sie im
 
 - `Bezirksgericht Meidling`(organisation)
 
-**Example 11** (doc_id: `deanon_TRAIN/10ObS150_17g`) (sent_id: `deanon_TRAIN/10ObS150_17g_10`)
+**Example 8** (doc_id: `deanon_TRAIN/10ObS150_17g`) (sent_id: `deanon_TRAIN/10ObS150_17g_10`)
 
 
 Für ihn ist ein Sachwalter bestellt, der seit 2011 alle Angelegenheiten (§ 268 Abs 3 Z 3 ABGB) zu besorgen hat (siehe den Beschluss des Bezirksgericht Bezirksgericht Mattersburg vom 15.
@@ -1076,7 +1340,7 @@ Für ihn ist ein Sachwalter bestellt, der seit 2011 alle Angelegenheiten (§ 268
 
 - `Bezirksgericht Mattersburg`(organisation)
 
-**Example 12** (doc_id: `deanon_TRAIN/12Os16_19y_12Os17_19w_12Os18_19t_12Os19_19i_`) (sent_id: `deanon_TRAIN/12Os16_19y_12Os17_19w_12Os18_19t_12Os19_19i__13`)
+**Example 9** (doc_id: `deanon_TRAIN/12Os16_19y_12Os17_19w_12Os18_19t_12Os19_19i_`) (sent_id: `deanon_TRAIN/12Os16_19y_12Os17_19w_12Os18_19t_12Os19_19i__13`)
 
 
 Mit Abwesenheitsurteil vom 26. September 2018 (ON 25) sprach das Bezirksgericht Leopoldstadt Nenad Pentzold des Vergehens der Veruntreuung nach § 133 Abs 1 StGB schuldig und verurteilte ihn zu einer Freiheitsstrafe.
@@ -1091,7 +1355,7 @@ Mit Abwesenheitsurteil vom 26. September 2018 (ON 25) sprach das Bezirksgericht 
 
 - `Pentzold`(person)
 
-**Example 13** (doc_id: `deanon_TRAIN/13Os109_17d_13Os110_17a_`) (sent_id: `deanon_TRAIN/13Os109_17d_13Os110_17a__17`)
+**Example 10** (doc_id: `deanon_TRAIN/13Os109_17d_13Os110_17a_`) (sent_id: `deanon_TRAIN/13Os109_17d_13Os110_17a__17`)
 
 
 Indem das Bezirksgericht über die Jusepeitis&Niemöller Bildung GmbH eine (das Höchstmaß von somit 55 Tagessätzen übersteigende) Verbandsgeldbuße von 70 Tagessätzen verhängte, verletzte es § 4 Abs 3 VbVG).
@@ -1106,7 +1370,7 @@ Indem das Bezirksgericht über die Jusepeitis&Niemöller Bildung GmbH eine (das 
 
 - `Jusepeitis&Niemöller Bildung GmbH`(organisation)
 
-**Example 14** (doc_id: `deanon_TRAIN/13Os7_20h_13Os8_20f_`) (sent_id: `deanon_TRAIN/13Os7_20h_13Os8_20f__11`)
+**Example 11** (doc_id: `deanon_TRAIN/13Os7_20h_13Os8_20f_`) (sent_id: `deanon_TRAIN/13Os7_20h_13Os8_20f__11`)
 
 
 Im Protokoll über die Hauptverhandlung vor dem Bezirksgericht Innere Stadt Wien ist als Tag der Hauptverhandlung „23. 11. 2018“ angeführt (ON 18 S 1).
@@ -1121,7 +1385,7 @@ Im Protokoll über die Hauptverhandlung vor dem Bezirksgericht Innere Stadt Wien
 
 - `Bezirksgericht Innere Stadt Wien`(organisation)
 
-**Example 15** (doc_id: `deanon_TRAIN/13Os99_19m`) (sent_id: `deanon_TRAIN/13Os99_19m_12`)
+**Example 12** (doc_id: `deanon_TRAIN/13Os99_19m`) (sent_id: `deanon_TRAIN/13Os99_19m_12`)
 
 
 Ein anderes Verständnis legt – entgegen der vom Berufungsgericht mit Verweis auf eine Literaturstelle (Hinterhofer/Oshidari, System des österreichischen Strafverfahrens Rz 10.89) vertretenen Ansicht – auch die historische Interpretation nicht nahe: Die im Verfahren vor dem Bezirksgericht schon in der Stammfassung der StPO vorgesehene Rechtsmittellegitimation des Privatbeteiligten (zum Nachteil des Angeklagten) wurde von der Rechtsprechung und überwiegend im Schrifttum zur früheren Rechtslage (mit Blick auf § 366 Abs 2 letzter Satz StPO idF vor BGBl 1978/169) dahin ausgelegt, dass dieser Berufung (nur) dann habe ergreifen können, wenn das Erstgericht eine Entschädigung (zumindest teilweise) zugesprochen hatte, nicht jedoch bei vollständiger Verweisung auf den Zivilrechtsweg.
@@ -1132,7 +1396,7 @@ Ein anderes Verständnis legt – entgegen der vom Berufungsgericht mit Verweis 
 
 > overlaps gold: 0  |  likely missing annotation: 1
 
-**Example 16** (doc_id: `deanon_TRAIN/18ONc1_21y`) (sent_id: `deanon_TRAIN/18ONc1_21y_16`)
+**Example 13** (doc_id: `deanon_TRAIN/18ONc1_21y`) (sent_id: `deanon_TRAIN/18ONc1_21y_16`)
 
 
 [5] Aufgrund des Verweises auf § 37 Abs 2 bis 5 JN ist für einen solchen Antrag das Bezirksgericht zuständig, in dessen Sprengel die Amtshandlung vorgenommen werden soll (HausmaningerinFasching/Konecny3§ 602 ZPO Rz 30).
@@ -1143,7 +1407,7 @@ Ein anderes Verständnis legt – entgegen der vom Berufungsgericht mit Verweis 
 
 > overlaps gold: 0  |  likely missing annotation: 1
 
-**Example 17** (doc_id: `deanon_TRAIN/1Ob55_13i`) (sent_id: `deanon_TRAIN/1Ob55_13i_6`)
+**Example 14** (doc_id: `deanon_TRAIN/1Ob55_13i`) (sent_id: `deanon_TRAIN/1Ob55_13i_6`)
 
 
 Mit der am 20. 8. 2012 beim Bezirksgericht Bezirksgericht Hallein eingebrachten Klage begehrte der Minderjährige von einem in Deutschland wohnhaften minderjährigen Beklagten Schadenersatz von 3.850 EUR sA und die Feststellung seiner Haftung für sämtliche aus dessen Steinwurf resultierenden Spät- und Dauerfolgen.
@@ -1158,7 +1422,7 @@ Mit der am 20. 8. 2012 beim Bezirksgericht Bezirksgericht Hallein eingebrachten 
 
 - `Bezirksgericht Hallein`(organisation)
 
-**Example 18** (doc_id: `deanon_TRAIN/1Ob55_13i`) (sent_id: `deanon_TRAIN/1Ob55_13i_69`)
+**Example 15** (doc_id: `deanon_TRAIN/1Ob55_13i`) (sent_id: `deanon_TRAIN/1Ob55_13i_69`)
 
 
 8. 2012 beim gemäß Art 5 Nr 3 EuGVVO zuständigen Bezirksgericht Bezirksgericht Weiz (Gericht des Ortes, an dem das schädigende Ereignis eingetreten ist) im Elektronischen Rechtsverkehr eingebracht.
@@ -1173,7 +1437,7 @@ Mit der am 20. 8. 2012 beim Bezirksgericht Bezirksgericht Hallein eingebrachten 
 
 - `Bezirksgericht Weiz`(organisation)
 
-**Example 19** (doc_id: `deanon_TRAIN/2Nc17_17y`) (sent_id: `deanon_TRAIN/2Nc17_17y_4`)
+**Example 16** (doc_id: `deanon_TRAIN/2Nc17_17y`) (sent_id: `deanon_TRAIN/2Nc17_17y_4`)
 
 
 Text Begründung: Die klagende Partei begehrt in ihrer beim Bezirksgericht Innere Stadt Wien am allgemeinen Gerichtsstand der beklagten Partei eingebrachten Klage Schadenersatz nach einem Verkehrsunfall auf der B 178 im Ortsgebiet von Going am Wilden Kaiser.
@@ -1188,7 +1452,7 @@ Text Begründung: Die klagende Partei begehrt in ihrer beim Bezirksgericht Inner
 
 - `Bezirksgericht Innere Stadt Wien`(organisation)
 
-**Example 20** (doc_id: `deanon_TRAIN/2Nc17_17y`) (sent_id: `deanon_TRAIN/2Nc17_17y_11`)
+**Example 17** (doc_id: `deanon_TRAIN/2Nc17_17y`) (sent_id: `deanon_TRAIN/2Nc17_17y_11`)
 
 
 Das Bezirksgericht Innere Stadt Wien hält die Delegierung für zweckmäßig.
@@ -1203,7 +1467,7 @@ Das Bezirksgericht Innere Stadt Wien hält die Delegierung für zweckmäßig.
 
 - `Bezirksgericht Innere Stadt Wien`(organisation)
 
-**Example 21** (doc_id: `deanon_TRAIN/3Nc11_13t`) (sent_id: `deanon_TRAIN/3Nc11_13t_10`)
+**Example 18** (doc_id: `deanon_TRAIN/3Nc11_13t`) (sent_id: `deanon_TRAIN/3Nc11_13t_10`)
 
 
 Für eine Unterlassungsexekution ist gemäß § 18 Z 4 zweiter Fall EO jenes Bezirksgericht zuständig, in dessen Sprengel die erste Exekutionshandlung, nämlich die Zustellung der Exekutionsbewilligung, zu bewirken ist.
@@ -1214,7 +1478,7 @@ Für eine Unterlassungsexekution ist gemäß § 18 Z 4 zweiter Fall EO jenes Bez
 
 > overlaps gold: 0  |  likely missing annotation: 1
 
-**Example 22** (doc_id: `deanon_TRAIN/3Nc2_19b`) (sent_id: `deanon_TRAIN/3Nc2_19b_4`)
+**Example 19** (doc_id: `deanon_TRAIN/3Nc2_19b`) (sent_id: `deanon_TRAIN/3Nc2_19b_4`)
 
 
 Text Begründung: Das Bezirksgericht Oberwart übertrug mit Beschluss vom 19. Dezember 2018 die Pflegschaftssache gemäß § 111 JN an das Bezirksgericht Fürstenfeld, weil sich das Kind nunmehr ständig in dessen Sprengel aufhalte.
@@ -1229,7 +1493,7 @@ Text Begründung: Das Bezirksgericht Oberwart übertrug mit Beschluss vom 19. De
 
 - `Bezirksgericht Oberwart`(organisation)
 
-**Example 23** (doc_id: `deanon_TRAIN/3Nc2_19b`) (sent_id: `deanon_TRAIN/3Nc2_19b_5`)
+**Example 20** (doc_id: `deanon_TRAIN/3Nc2_19b`) (sent_id: `deanon_TRAIN/3Nc2_19b_5`)
 
 
 Das Bezirksgericht Fürstenfeld lehnte die Übernahme der Zuständigkeit am 2. Jänner 2019 ab und sandte den Akt an das Bezirksgericht Oberwart zurück.
@@ -1244,7 +1508,7 @@ Das Bezirksgericht Fürstenfeld lehnte die Übernahme der Zuständigkeit am 2. J
 
 - `Bezirksgericht Oberwart`(organisation)
 
-**Example 24** (doc_id: `deanon_TRAIN/4Nc4_17a`) (sent_id: `deanon_TRAIN/4Nc4_17a_5`)
+**Example 21** (doc_id: `deanon_TRAIN/4Nc4_17a`) (sent_id: `deanon_TRAIN/4Nc4_17a_5`)
 
 
 Für die Bewilligung und die Vollziehung der beabsichtigten Exekution gegen die Zweitbeklagte auf Urteilsveröffentlichung wird das Bezirksgericht Innere Stadt Wien als örtlich zuständiges Gericht bestimmt.
@@ -1259,7 +1523,7 @@ Für die Bewilligung und die Vollziehung der beabsichtigten Exekution gegen die 
 
 - `Bezirksgericht Innere Stadt Wien`(organisation)
 
-**Example 25** (doc_id: `deanon_TRAIN/4Nc4_17a`) (sent_id: `deanon_TRAIN/4Nc4_17a_8`)
+**Example 22** (doc_id: `deanon_TRAIN/4Nc4_17a`) (sent_id: `deanon_TRAIN/4Nc4_17a_8`)
 
 
 Mit dem gegenständlichen Ordinationsantrag beantragen die Klägerinnen, der Oberste Gerichtshof möge das Bezirksgericht Innere Stadt Wien oder ein anderes Bezirksgericht als örtlich zuständiges Gericht für die Durchsetzung des Veröffentlichungsanspruchs gemäß § 354 EO gegen die Zweitbeklagte bestimmen.
@@ -1275,7 +1539,7 @@ Mit dem gegenständlichen Ordinationsantrag beantragen die Klägerinnen, der Obe
 
 - `Bezirksgericht Innere Stadt Wien`(organisation)
 
-**Example 26** (doc_id: `deanon_TRAIN/4Nc4_17a`) (sent_id: `deanon_TRAIN/4Nc4_17a_19`)
+**Example 23** (doc_id: `deanon_TRAIN/4Nc4_17a`) (sent_id: `deanon_TRAIN/4Nc4_17a_19`)
 
 
 Dem Ordinationsantrag ist somit stattzugeben und zweckmäßigerweise das Bezirksgericht Innere Stadt Wien als zuständiges Gericht zu bestimmen.
@@ -1296,7 +1560,7 @@ Dem Ordinationsantrag ist somit stattzugeben und zweckmäßigerweise das Bezirks
 
 ## `Regional Court Pattern`
 
-**F1:** 0.185 | **Precision:** 0.670 | **Recall:** 0.108  
+**F1:** 0.180 | **Precision:** 0.670 | **Recall:** 0.104  
 
 **Format:** `regex`  
 **Rule ID:** `8426a1d3`  
@@ -1313,13 +1577,13 @@ Matches Landesgericht (LG) followed by location.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.670 | 0.108 | 0.185 | 94 | 63 | 31 |
+| 0.670 | 0.104 | 0.180 | 94 | 63 | 31 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 63 | 31 | 461 |
+| `organisation` | 63 | 31 | 478 |
 
 </details>
 
@@ -1814,13 +2078,13 @@ Mit Erkenntnis des Obersten Gerichtshofs vom 30. August 2011, AZ 14 Os 48/11g (O
 
 **False Positives:**
 
-- `Landesgericht St` — partial — pred is substring of gold: `Landesgericht St.`
+- `Landesgericht St` — partial — pred is substring of gold: `Landesgericht St. Pölten`
 
 > overlaps gold: 1  |  likely missing annotation: 0
 
 **Gold Entities:**
 
-- `Landesgericht St.`(organisation)
+- `Landesgericht St. Pölten`(organisation)
 
 **Example 13** (doc_id: `deanon_TRAIN/15Os110_17s`) (sent_id: `deanon_TRAIN/15Os110_17s_10`)
 
@@ -1908,14 +2172,14 @@ Der von den Klägern aufgrund dieses Urteils beim Bezirksgericht Melk eingebrach
 
 **False Positives:**
 
-- `Landesgericht St` — partial — pred is substring of gold: `Landesgericht St.`
+- `Landesgericht St` — partial — pred is substring of gold: `Landesgericht St. Pölten`
 
 > overlaps gold: 1  |  likely missing annotation: 0
 
 **Gold Entities:**
 
 - `Bezirksgericht Melk`(organisation)
-- `Landesgericht St.`(organisation)
+- `Landesgericht St. Pölten`(organisation)
 
 **Example 20** (doc_id: `deanon_TRAIN/4Fsc1_10z`) (sent_id: `deanon_TRAIN/4Fsc1_10z_5`)
 
@@ -2053,18 +2317,18 @@ Das Oberlandesgericht Wien als Rekursgericht stellte mit Beschluss vom 22. 10. 2
 
 ---
 
-## `Court with Location`
+## `Bank and Other Org`
 
-**F1:** 0.033 | **Precision:** 0.556 | **Recall:** 0.017  
+**F1:** 0.045 | **Precision:** 0.667 | **Recall:** 0.023  
 
 **Format:** `regex`  
-**Rule ID:** `971aef3b`  
+**Rule ID:** `53220dfe`  
 **Description:**
-Matches court names followed by location suffixes like 'Außenstelle Linz'.
+Matches specific bank names and other organizations like 'Reinemut + Smoch Handel' that don't fit GmbH/AG patterns.
 
 **Content:**
 ```
-(?i)\b((?:Bundesfinanzgericht|Verwaltungsgerichtshof|Verfassungsgerichtshof)(?:s?)(?:,\s+Außenstelle\s+[A-Za-z]+)?)\b
+(?i)\b((?:Raiffeisenbank\s+[A-Za-z]+|Reinemut\s+\+\s+Smoch\s+Handel|SENECURA|SeneCura|ÖBB|PVA|Bezirkshauptmannschaft\s+[A-Za-z]+|Versorgungskasse\s+Deutscher\s+Unternehmen\s+VVaG|Deutschen\s+Rentenversicherung\s+Bund|Pensionsversicherungsanstalt\s+Wien|Krankenpflegevereins\s+Bludenz|Imre\s+\&\s+Schaffer\s+Rechtsanwälte\s+OG|TAXCOACH\s+Wirtschaftsprüfung\s+und\s+Steuerberatung\s+GmbH\s*&\s*Co\s*KG|BKS\s+Steuerberatung\s+GmbH\s*&\s*Co\s*KG|Dr\.\s+Roland\s+Gabl\s+Rechtsanwalts-\s+Kommandit-Partnerschaft|\u201e\u00d6BUG\u201c\s+DR\.\s+Nikolaus\s+Wirtschaftstreuhand\s+GmbH\s*-\s+Wirtschaftsprüfungs-\s+und\s+Steuerberatungsgesellschaft|How\s+to\s+spend\s+it\s+Verlag\s+GmbH|INET\s+Internet\s+Service\s+GmbH|INET\s+System\s+Informations\s+GmbH|Talwerk\s+Logistik\s+Holding\s+GMBH|InnMarine\s+GMBH|Mittel\s+Unisyn\s+GMBH|Bärs\s+\&\s+Walterscheidt\s+Handel\s+GMBH|Ober\s+Lemostnor\s+AG|Vennes\s+Recycling\s+AG|HPS\s+Hergovits,\s+Pinkel\s+\&\s+Schnabl\s+Steuerberatungs\s+GmbH|Reinemut\s+\+\s+Smoch\s+Handel|Zollamt\s+Österreich|Amt\s+für\s+Betrugsbekämpfung\s+als\s+Finanzstrafbehörde|Verfassungsgerichtshof))\b
 ```
 
 <details>
@@ -2072,13 +2336,13 @@ Matches court names followed by location suffixes like 'Außenstelle Linz'.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.556 | 0.017 | 0.033 | 18 | 10 | 8 |
+| 0.667 | 0.023 | 0.045 | 21 | 14 | 7 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 10 | 8 | 497 |
+| `organisation` | 14 | 7 | 512 |
 
 </details>
 
@@ -2087,95 +2351,179 @@ Matches court names followed by location suffixes like 'Außenstelle Linz'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: `deanon_TRAIN/10Ob23_18g`) (sent_id: `deanon_TRAIN/10Ob23_18g_100`)
+**Example 0** (doc_id: `deanon_TRAIN/10Ob23_14a`) (sent_id: `deanon_TRAIN/10Ob23_14a_3`)
 
 
-Die nach den Vorgaben des Verfassungsgerichtshofs gebotene steuerliche Entlastung des Geldunterhaltspflichtigen basiert auf dem Modell der getrennten Haushaltsführung (vgl RIS-Justiz RS0117015), in dem ein Elternteil seine Unterhaltspflicht durch Betreuungsleistungen und der andere durch Geldleistungen (allenfalls kombiniert mit anzurechnenden Naturalleistungen) erfüllt.
-
-| Predicted | Gold |
-|---|---|
-| `Verfassungsgerichtshofs` | `Verfassungsgerichtshofs` |
-
-**Example 1** (doc_id: `deanon_TRAIN/3Ob26_23d`) (sent_id: `deanon_TRAIN/3Ob26_23d_48`)
-
-
-Die Klägerin führt dagegen ins Treffen, dass die beschlussmäßige Umwidmung eines Grundstücks nach der Rechtsprechung des Verfassungsgerichtshofs erst dann erfolgen könne, wenn die Gemeinde bereits Eigentümerin des betroffenen Grundstücks sei; nur wenn es sich beim Grundstück um eine Privatstraße gehandelt hätte, die über Antrag des Eigentümers umgewidmet werden sollte, wäre eine Beschlussfassung nach § 27 Abs 2 Sbg LStG 1966 durch die Gemeinde vor Eigentumserwerb möglich gewesen.
+Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hradil als Vorsitzenden, die Hofräte Dr. Fellinger, Dr. Hoch, Dr. Schramm und die Hofrätin Dr. Fichtenau als weitere Richter in der Pflegschaftssache des minderjährigen Aurelia von der Lei, geboren am 10. September 1997, in Pflege und Erziehung der Mutter Univ.-Prof.in Marceline Siladji, vertreten durch das Land Oberösterreich als Kinder- und Jugendhilfeträger (Bezirkshauptmannschaft Gmunden, 4810 Gmunden, Esplanade 10), wegen Unterhaltsvorschuss, über den Revisionsrekurs des Bundes, vertreten durch den Präsidenten des Oberlandesgerichts Linz, gegen den Beschluss des Landesgerichts Wels als Rekursgericht vom 15. Jänner 2014, GZ 21 R 298/13t-38, womit der Beschluss des Bezirksgerichts Gmunden vom 18. Oktober 2013, GZ 1 Pu 223/09k-33, bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Dem Revisionsrekurs wird nicht Folge gegeben.
 
 | Predicted | Gold |
 |---|---|
-| `Verfassungsgerichtshofs` | `Verfassungsgerichtshofs` |
+| `Bezirkshauptmannschaft Gmunden` | `Bezirkshauptmannschaft Gmunden` |
 
-**Example 2** (doc_id: `deanon_TRAIN/3Ob26_23d`) (sent_id: `deanon_TRAIN/3Ob26_23d_51`)
+**Missed by this rule (FN):**
+
+- `Aurelia von der Lei` (person)
+- `Univ.-Prof.in Marceline Siladji` (person)
+
+**Example 1** (doc_id: `deanon_TRAIN/10Ob2_14p`) (sent_id: `deanon_TRAIN/10Ob2_14p_3`)
 
 
-Der von der Klägerin in diesem Zusammenhang zitierten Entscheidung des Verfassungsgerichtshofs vom 27. September 2003, V 108/01, lag nämlich der Sachverhalt zugrunde, dass der dort streitgegenständliche (Verbindungs-)Weg im Zeitpunkt der (vor der Enteignung des Grundstücks erfolgten) Widmung als Gemeindestraße schon seit Jahren als Privatstraße diente.
+Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hradil als Vorsitzenden, die Hofräte Dr. Fellinger, Dr. Hoch, Dr. Schramm und die Hofrätin Dr. Fichtenau als weitere Richter in der Pflegschaftssache der mj Calvin Mützlaff, geboren am Volker Scheffski, Jaden Jurkutaitis, geboren am 8. Dezember 1982 und PhD Karim Trieber, geboren am 11. Januar 1975, in Pflege und Erziehung der Mutter StR Lara Jungnikl, vertreten durch das Land Vorarlberg als Kinder- und Jugendhilfeträger (Bezirkshauptmannschaft Feldkirch, Schlossgraben 1, 6800 Feldkirch), wegen Gewährung von Unterhaltsvorschuss, über den Revisionsrekurs des Vaters RgR Dipl.-Ing. Quirin Bagemühl, vertreten durch Mag. Hans-Christian Obernberger, Rechtsanwalt in Feldkirch, gegen den Beschluss des Landesgerichts Feldkirch als Rekursgericht vom 12. Juli 2011, GZ 3 R 198/11g, 3 R 199/11d, 3 R 200/11a-18, womit die Beschlüsse des Bezirksgerichts Feldkirch vom 18. Mai 2011, GZ 12 Pu 141/11f-4 bis 6, bestätigt wurden, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Der Revisionsrekurs wird zurückgewiesen.
 
 | Predicted | Gold |
 |---|---|
-| `Verfassungsgerichtshofs` | `Verfassungsgerichtshofs` |
+| `Bezirkshauptmannschaft Feldkirch` | `Bezirkshauptmannschaft Feldkirch` |
 
-**Example 3** (doc_id: `deanon_TRAIN/5Ob171_22s`) (sent_id: `deanon_TRAIN/5Ob171_22s_67`)
+**Missed by this rule (FN):**
+
+- `Calvin Mützlaff` (person)
+- `Volker Scheffski` (person)
+- `Jaden Jurkutaitis` (person)
+- `8. Dezember 1982` (date)
+- `PhD Karim Trieber` (person)
+- `11. Januar 1975` (date)
+- `StR Lara Jungnikl` (person)
+- `RgR Dipl.-Ing. Quirin Bagemühl` (person)
+
+**Example 2** (doc_id: `deanon_TRAIN/10Ob30_14f`) (sent_id: `deanon_TRAIN/10Ob30_14f_3`)
+
+
+Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hradil als Vorsitzenden und die Hofräte Dr. Fellinger, Dr. Hoch und Dr. Schramm sowie die Hofrätin Dr. Fichtenau als weitere Richter in der Pflegschaftssache der minderjährigen Thobias Altroggen, geboren am 16. März 2008, vertreten durch das Land Niederösterreich als Kinder- und Jugendhilfeträger, (Bezirkshauptmannschaft Wien-Umgebung, Fachgebiet Jugendwohlfahrt), 3400 Klosterneuburg, Leopoldstraße 21, über das als „Berufung“ bezeichnete Rechtsmittel des Vaters Ignaz Dippert, gegen den Beschluss des Landesgerichts Korneuburg als Rekursgericht vom 25. März 2013, GZ 23 R 30/13v-53, womit der Beschluss des Bezirksgerichts Schwechat vom 27. August 2012, GZ 8 Pu 190/11i-39, bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Der Akt wird dem Erstgericht zurückgestellt.
+
+| Predicted | Gold |
+|---|---|
+| `Bezirkshauptmannschaft Wien` | `Bezirkshauptmannschaft Wien` |
+
+**Missed by this rule (FN):**
+
+- `Thobias Altroggen` (person)
+- `16. März 2008` (date)
+- `Ignaz Dippert` (person)
+
+**Example 3** (doc_id: `deanon_TRAIN/10Ob30_19p`) (sent_id: `deanon_TRAIN/10Ob30_19p_3`)
+
+
+Kopf Der Oberste Gerichtshof hat durch den Vizepräsidenten Univ.-Prof. Dr. Neumayr als Vorsitzenden sowie die Hofrätinnen Dr. Fichtenau und Dr. Grohmann, den Hofrat Mag. Ziegelbauer und die Hofrätin Dr. Faber als weitere Richter in der Pflegschaftssache der minderjährigen Franziska Dreikluft, geboren 3. November 2009, vertreten durch das Land Niederösterreich als Kinder- und Jugendhilfeträger (Bezirkshauptmannschaft Melk, 3390 Melk, Abt Karl-Straße 25a) wegen Unterhaltsvorschüssen, über den Revisionsrekurs des Kindes gegen den Beschluss des Landesgerichts St. Pölten als Rekursgericht vom 23. Jänner 2019, GZ 23 R 6/19h-52, mit dem der Beschluss des Bezirksgerichts Melk vom 21. November 2018, GZ 22 Pu 194/16m-42, teilweise abgeändert wurde, den Beschluss gefasst:  Spruch Dem Revisionsrekurs wird nicht Folge gegeben.
+
+| Predicted | Gold |
+|---|---|
+| `Bezirkshauptmannschaft Melk` | `Bezirkshauptmannschaft Melk` |
+
+**Missed by this rule (FN):**
+
+- `Franziska Dreikluft` (person)
+- `3. November` (date)
+
+**Example 4** (doc_id: `deanon_TRAIN/3Ob26_23d`) (sent_id: `deanon_TRAIN/3Ob26_23d_52`)
+
+
+Vor diesem Hintergrund sprach der Verfassungsgerichtshof aus, dass durch die Öffentlicherklärung einesin der Natur schon bestehendenWeges durch Verordnung mangels Eigentumserwerbs in gesetzwidriger Weise Gemeingebrauch begründet werde.
+
+| Predicted | Gold |
+|---|---|
+| `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
+
+**Example 5** (doc_id: `deanon_TRAIN/5Ob171_22s`) (sent_id: `deanon_TRAIN/5Ob171_22s_67`)
 
 
 In den vonRohregger(aaO) zitierten Entscheidungen bejahen auch der Verfassungsgerichtshof (B 1050/09) und der Verwaltungsgerichtshof (AW 2012/01/0032) die Bedeutung des § 10 RAO und der Vorgängerbestimmung des § 10 RL-BA 2015 für das öffentliche Interesse an dem Verbot der Doppelvertretung, weil es dem Schutz der durch einen Rechtsanwalt vertretenen Parteien diene, seine Einhaltung für das zwischen Rechtsanwalt und Klient bestehende Treueverhältnis für wesentlich erachtet werde und für das allgemeine Bild der Anwaltschaft in der Öffentlichkeit von Bedeutung sei.
 
 | Predicted | Gold |
 |---|---|
-| `Verwaltungsgerichtshof` | `Verwaltungsgerichtshof` |
+| `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
 
-**Example 4** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_14`)
+**Missed by this rule (FN):**
 
+- `Verwaltungsgerichtshof` (organisation)
 
-Der gesatzte Kollektivvertrag des Roten Kreuzes sei unanwendbar, da der Verwaltungsgerichtshof mit Erkenntnis vom 4. 9. 2013, 2011/08/0230 dem Österreichischen Roten Kreuz die Kollektivvertragsfähigkeit „de facto“ aberkannt habe, sodass die Verordnung des Bundeseinigungsamtes „rechtswidrig und ungültig“ sei.
-
-| Predicted | Gold |
-|---|---|
-| `Verwaltungsgerichtshof` | `Verwaltungsgerichtshof` |
-
-**Example 5** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_28`)
+**Example 6** (doc_id: `deanon_TRAIN/5Ob31_16v`) (sent_id: `deanon_TRAIN/5Ob31_16v_15`)
 
 
-3. Der Verwaltungsgerichtshof hat mit seinem Erkenntnis vom 4. 9. 2013, 2011/08/0230 = DRdA 2014/27 (Felten) = ZAS 2014/13 (Tomandl) dem Österreichischen Roten Kreuz die Kollektivvertragsfähigkeit gemäß § 5 Abs 3 ArbVG nicht aberkannt.
+Weiters wolle die Rechtssache gemäß Art 89 B-VG dem Verfassungsgerichtshof sowie gemäß Art 267 AEUV dem Europäischen Gerichtshof zur Prüfung vorgelegt werden.
 
 | Predicted | Gold |
 |---|---|
-| `Verwaltungsgerichtshof` | `Verwaltungsgerichtshof` |
+| `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
 
-**Example 6** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_29`)
+**Example 7** (doc_id: `deanon_TRAIN/8Ob141_19x`) (sent_id: `deanon_TRAIN/8Ob141_19x_3`)
+
+
+Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Hon.-Prof. Dr. Kuras als Vorsitzenden, die Hofrätinnen Dr. Tarmann-Prentner und Mag. Korn, den Hofrat Dr. Stefula und die Hofrätin Mag. Wessely-Kristöfel als weitere Richter in der Pflegschaftssache der Antragstellerin mj RgR Linn Neiheiser, geboren am 10. Februar 2008, in Unterhaltsangelegenheiten vertreten durch die Bezirkshauptmannschaft Bregenz, 6901 Bregenz, Bahnhofstraße 41, wegen Unterhalt, über den Revisionsrekurs der Antragstellerin gegen den Beschluss des Landesgerichts Feldkirch als Rekursgericht vom 7. August 2019, GZ 2 R 170/19v-33, mit dem der Beschluss des Bezirksgerichts Bregenz vom 4. Juni 2019, GZ 9 Pu 315/19d-28, teilweise bestätigt und teilweise abgeändert wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Dem Revisionsrekurs wird Folge gegeben.
+
+| Predicted | Gold |
+|---|---|
+| `Bezirkshauptmannschaft Bregenz` | `Bezirkshauptmannschaft Bregenz` |
+
+**Missed by this rule (FN):**
+
+- `RgR Linn Neiheiser` (person)
+- `10. Februar` (date)
+
+**Example 8** (doc_id: `deanon_TRAIN/8Ob141_19x`) (sent_id: `deanon_TRAIN/8Ob141_19x_8`)
+
+
+Die bis zur Rechtskraft dieses Beschlusses fällig gewordenen Beträge sind abzüglich bereits geleisteter Zahlungen binnen 14 Tagen, die hinkünftig fällig werdenden bis zum Ersten eines jeden Monats im Voraus zu Handen des jeweiligen gesetzlichen Vertreters, das ist derzeit die Bezirkshauptmannschaft Bregenz, zu leisten.
+
+| Predicted | Gold |
+|---|---|
+| `Bezirkshauptmannschaft Bregenz` | `Bezirkshauptmannschaft Bregenz` |
+
+**Example 9** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_29`)
 
 
 Der Verwaltungsgerichtshof behob allein einen Bescheid, mit dem ein Antrag auf eine solche Aberkennung abgewiesen wurde, wegen Rechtswidrigkeit seines Inhalts (worauf auch der von der Beklagten angerufene Verfassungsgerichtshof in Punkt 2.4.5.3 seines Erkenntnisses ausdrücklich hinwies).
 
 | Predicted | Gold |
 |---|---|
-| `Verwaltungsgerichtshof` | `Verwaltungsgerichtshof` |
+| `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
 
-**Example 7** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_30`)
+**Missed by this rule (FN):**
 
+- `Verwaltungsgerichtshof` (organisation)
 
-Weil in der Folge abermals ein abweisender Bescheid erging, der sodann in Rechtskraft erwuchs (siehe erneut in Punkt 2.4.5.3 des VfGH-Erkenntnisses), ist es letzten Endes auch unrichtig, dass der Verwaltungsgerichtshof dem Roten Kreuz „de facto“ die Kollektivvertragsfähigkeit aberkannt hätte.
-
-| Predicted | Gold |
-|---|---|
-| `Verwaltungsgerichtshof` | `Verwaltungsgerichtshof` |
-
-**Example 8** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_31`)
+**Example 10** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_31`)
 
 
 Von dieser Sachlage ausgehend wies der von der Beklagten in diesem Verfahren mittels eines Parteiantrags auf Normenkontrolle angerufene Verfassungsgerichtshof den Antrag, die in BGBl II 2013/120 kundgemachte Verordnung des Bundeseinigungsamtes zur Gänze als verfassungswidrig aufzuheben, mit der Begründung ab, die Bedenken der Beklagten beruhten auf der nicht zutreffenden Prämisse, das Österreichische Rote Kreuz habe seine Kollektivvertragsfähigkeit durch das Erkenntnis des Verwaltungsgerichtshofs 2011/08/0230 „de facto“ verloren (Punkt 2.5 des Erkenntnisses).
 
 | Predicted | Gold |
 |---|---|
-| `Verwaltungsgerichtshofs` | `Verwaltungsgerichtshofs` |
+| `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
 
-**Example 9** (doc_id: `deanon_TRAIN/8ObA72_19z`) (sent_id: `deanon_TRAIN/8ObA72_19z_12`)
+**Missed by this rule (FN):**
+
+- `Verwaltungsgerichtshofs` (organisation)
+
+**Example 11** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_33`)
+
+
+4. Die Frage, ob auch ohne Aufhebung der Verordnung BGBl II 2013/120 durch den Verfassungsgerichtshof allein dadurch, dass dem Österreichischen Roten Kreuz die Kollektivvertragsfähigkeit vom Bundeseinigungsamt mittels Bescheids aberkannt wird, die Satzung des Kollektivvertrags ihre Geltung verliert (vgl insbFriedrich, ASoK 2013, 460 f), stellt sich nicht, weil kein solcher Bescheid vorliegt.
+
+| Predicted | Gold |
+|---|---|
+| `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
+
+**Example 12** (doc_id: `deanon_TRAIN/8ObA72_19z`) (sent_id: `deanon_TRAIN/8ObA72_19z_12`)
 
 
 2. Dabei konnte sich der Oberste Gerichtshof auf einschlägige Judikatur sowohl des Verfassungsgerichtshofs als auch des EuGH stützen: 2.1 Der Verfassungsgerichtshof hat in seinem Erkenntnis G 450/2015 ua Parteianträge von ÖBB-Bediensteten (unter anderem auch des Klägers) abgewiesen, die § 53a und § 56 Abs 18 bis 24 BundesbahnG je idF BGBl I Nr 64/2015 als verfassungswidrig aufzuheben.
 
 | Predicted | Gold |
 |---|---|
-| `Verfassungsgerichtshofs` | `Verfassungsgerichtshofs` |
+| `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
+
+**Missed by this rule (FN):**
+
+- `Verfassungsgerichtshofs` (organisation)
+
+**Example 13** (doc_id: `deanon_TRAIN/9ObA27_15h`) (sent_id: `deanon_TRAIN/9ObA27_15h_7`)
+
+
+Ihr Antrag auf Gesetzesprüfung hinsichtlich der inzwischen aufgelösten Berufungskommission und eine Eventualbeschwerde seien beim Verfassungsgerichtshof anhängig.
+
+| Predicted | Gold |
+|---|---|
+| `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
 
 </details>
 
@@ -2184,81 +2532,73 @@ Von dieser Sachlage ausgehend wies der von der Beklagten in diesem Verfahren mit
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: `deanon_TRAIN/3Ob26_23d`) (sent_id: `deanon_TRAIN/3Ob26_23d_52`)
+**Example 0** (doc_id: `deanon_TRAIN/14Os63_17x`) (sent_id: `deanon_TRAIN/14Os63_17x_8`)
 
 
-Vor diesem Hintergrund sprach der Verfassungsgerichtshof aus, dass durch die Öffentlicherklärung einesin der Natur schon bestehendenWeges durch Verordnung mangels Eigentumserwerbs in gesetzwidriger Weise Gemeingebrauch begründet werde.
-
-**False Positives:**
-
-- `Verfassungsgerichtshof` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 1** (doc_id: `deanon_TRAIN/5Ob171_22s`) (sent_id: `deanon_TRAIN/5Ob171_22s_67`)
-
-
-In den vonRohregger(aaO) zitierten Entscheidungen bejahen auch der Verfassungsgerichtshof (B 1050/09) und der Verwaltungsgerichtshof (AW 2012/01/0032) die Bedeutung des § 10 RAO und der Vorgängerbestimmung des § 10 RL-BA 2015 für das öffentliche Interesse an dem Verbot der Doppelvertretung, weil es dem Schutz der durch einen Rechtsanwalt vertretenen Parteien diene, seine Einhaltung für das zwischen Rechtsanwalt und Klient bestehende Treueverhältnis für wesentlich erachtet werde und für das allgemeine Bild der Anwaltschaft in der Öffentlichkeit von Bedeutung sei.
+1/b durch die zu Punkt a beschriebene Handlung fremde Urkunden, über die sie nicht alleine verfügen durfte, nämlich die in der Plastikhülle befindliche E-Card und ein Jahresticket der ÖBB des Peter Bohnert, mit dem Vorsatz unterdrückt zu verhindern, dass diese Urkunden im Rechtsverkehr zum Beweis eines Rechtes gebraucht werden.
 
 **False Positives:**
 
-- `Verfassungsgerichtshof` — no gold match — likely missing annotation
+- `ÖBB` — no gold match — likely missing annotation
 
 > overlaps gold: 0  |  likely missing annotation: 1
 
 **Gold Entities:**
 
-- `Verwaltungsgerichtshof`(organisation)
+- `Bohnert`(person)
 
-**Example 2** (doc_id: `deanon_TRAIN/5Ob31_16v`) (sent_id: `deanon_TRAIN/5Ob31_16v_15`)
+**Example 1** (doc_id: `deanon_TRAIN/6Ob169_12i`) (sent_id: `deanon_TRAIN/6Ob169_12i_42`)
 
 
-Weiters wolle die Rechtssache gemäß Art 89 B-VG dem Verfassungsgerichtshof sowie gemäß Art 267 AEUV dem Europäischen Gerichtshof zur Prüfung vorgelegt werden.
+Wenn das Erstgericht - dem Sachverständigengutachten folgend - zu der Einschätzung gelangte, dass in Anbetracht des Umstands, dass Art und Ausmaß der konkret festgestellten Kontaminierung und ihre Ursache (Lkw-Unfall) bekannt waren, in der Praxis keine sogenannte Vollanalyse durchzuführen gewesen wäre, so ist darin keine vom Obersten Gerichtshof im Interesse der Rechtssicherheit aufzugreifende Fehlbeurteilung zu erblicken, zumal auch die zuständige Bezirkshauptmannschaft in Anbetracht der bekannten Ursache der Kontaminierung nur eine Untersuchung der entsprechenden Kohlenwasserstoffwerte für erforderlich hielt.
 
 **False Positives:**
 
-- `Verfassungsgerichtshof` — no gold match — likely missing annotation
+- `Bezirkshauptmannschaft in` — no gold match — likely missing annotation
 
 > overlaps gold: 0  |  likely missing annotation: 1
 
-**Example 3** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_29`)
+**Example 2** (doc_id: `deanon_TRAIN/7Ob45_24d`) (sent_id: `deanon_TRAIN/7Ob45_24d_41`)
 
 
-Der Verwaltungsgerichtshof behob allein einen Bescheid, mit dem ein Antrag auf eine solche Aberkennung abgewiesen wurde, wegen Rechtswidrigkeit seines Inhalts (worauf auch der von der Beklagten angerufene Verfassungsgerichtshof in Punkt 2.4.5.3 seines Erkenntnisses ausdrücklich hinwies).
+6. 2016 von einer Bezirkshauptmannschaft die Aufforderung gemäß § 103 Abs 2 KFG, binnen 14 Tagen nach Zustellung dieses Schreibens als Zulassungsbesitzer eines Kraftfahrzeugs dessen Lenker bekanntzugeben.
 
 **False Positives:**
 
-- `Verfassungsgerichtshof` — no gold match — likely missing annotation
+- `Bezirkshauptmannschaft die` — no gold match — likely missing annotation
 
 > overlaps gold: 0  |  likely missing annotation: 1
 
-**Gold Entities:**
-
-- `Verwaltungsgerichtshof`(organisation)
-
-**Example 4** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_31`)
+**Example 3** (doc_id: `deanon_TRAIN/7Ob45_24d`) (sent_id: `deanon_TRAIN/7Ob45_24d_51`)
 
 
-Von dieser Sachlage ausgehend wies der von der Beklagten in diesem Verfahren mittels eines Parteiantrags auf Normenkontrolle angerufene Verfassungsgerichtshof den Antrag, die in BGBl II 2013/120 kundgemachte Verordnung des Bundeseinigungsamtes zur Gänze als verfassungswidrig aufzuheben, mit der Begründung ab, die Bedenken der Beklagten beruhten auf der nicht zutreffenden Prämisse, das Österreichische Rote Kreuz habe seine Kollektivvertragsfähigkeit durch das Erkenntnis des Verwaltungsgerichtshofs 2011/08/0230 „de facto“ verloren (Punkt 2.5 des Erkenntnisses).
+[7] Mit Schreiben vom 19. 9. 2017 übermittelte der Klagevertreter der Beklagten das Straferkenntnis der Bezirkshauptmannschaft und ersuchte um Deckung für die Erhebung einer Beschwerde und sein Einschreiten in zweiter Instanz.
 
 **False Positives:**
 
-- `Verfassungsgerichtshof` — no gold match — likely missing annotation
+- `Bezirkshauptmannschaft und` — no gold match — likely missing annotation
 
 > overlaps gold: 0  |  likely missing annotation: 1
 
-**Gold Entities:**
-
-- `Verwaltungsgerichtshofs`(organisation)
-
-**Example 5** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_33`)
+**Example 4** (doc_id: `deanon_TRAIN/7Ob45_24d`) (sent_id: `deanon_TRAIN/7Ob45_24d_54`)
 
 
-4. Die Frage, ob auch ohne Aufhebung der Verordnung BGBl II 2013/120 durch den Verfassungsgerichtshof allein dadurch, dass dem Österreichischen Roten Kreuz die Kollektivvertragsfähigkeit vom Bundeseinigungsamt mittels Bescheids aberkannt wird, die Satzung des Kollektivvertrags ihre Geltung verliert (vgl insbFriedrich, ASoK 2013, 460 f), stellt sich nicht, weil kein solcher Bescheid vorliegt.
+[8] Am 19. 9. 2017 gab der Klagevertreter der Bezirkshauptmannschaft in der gegenständlichen Verwaltungsstrafsache die erteilte Vollmacht bekannt und beantragte die Übermittlung einer Aktenkopie.
 
 **False Positives:**
 
-- `Verfassungsgerichtshof` — no gold match — likely missing annotation
+- `Bezirkshauptmannschaft in` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 5** (doc_id: `deanon_TRAIN/7Ob45_24d`) (sent_id: `deanon_TRAIN/7Ob45_24d_56`)
+
+
+9. 2017 eine Beschwerde an das zuständige Landesverwaltungsgericht ein, in der er das Straferkenntnis der Bezirkshauptmannschaft sowohl dem Grunde als auch der Höhe nach anfocht.
+
+**False Positives:**
+
+- `Bezirkshauptmannschaft sowohl` — no gold match — likely missing annotation
 
 > overlaps gold: 0  |  likely missing annotation: 1
 
@@ -2269,24 +2609,14 @@ Von dieser Sachlage ausgehend wies der von der Beklagten in diesem Verfahren mit
 
 **False Positives:**
 
-- `Verfassungsgerichtshof` — similar text (different position): `Verfassungsgerichtshofs`
+- `ÖBB` — no gold match — likely missing annotation
 
-> overlaps gold: 1  |  likely missing annotation: 0
+> overlaps gold: 0  |  likely missing annotation: 1
 
 **Gold Entities:**
 
 - `Verfassungsgerichtshofs`(organisation)
-
-**Example 7** (doc_id: `deanon_TRAIN/9ObA27_15h`) (sent_id: `deanon_TRAIN/9ObA27_15h_7`)
-
-
-Ihr Antrag auf Gesetzesprüfung hinsichtlich der inzwischen aufgelösten Berufungskommission und eine Eventualbeschwerde seien beim Verfassungsgerichtshof anhängig.
-
-**False Positives:**
-
-- `Verfassungsgerichtshof` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
+- `Verfassungsgerichtshof`(organisation)
 
 </details>
 
@@ -2294,7 +2624,7 @@ Ihr Antrag auf Gesetzesprüfung hinsichtlich der inzwischen aufgelösten Berufun
 
 ## `Generic GmbH Entity`
 
-**F1:** 0.057 | **Precision:** 0.145 | **Recall:** 0.036  
+**F1:** 0.056 | **Precision:** 0.145 | **Recall:** 0.035  
 
 **Format:** `regex`  
 **Rule ID:** `0d4e88c9`  
@@ -2311,13 +2641,13 @@ Matches company names ending in GmbH, AG, KG, etc., with strict word boundaries 
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.145 | 0.036 | 0.057 | 145 | 21 | 124 |
+| 0.145 | 0.035 | 0.056 | 145 | 21 | 124 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 21 | 124 | 563 |
+| `organisation` | 21 | 124 | 583 |
 
 </details>
 
@@ -3038,7 +3368,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 
 ## `Company Name Without Suffix`
 
-**F1:** 0.051 | **Precision:** 0.086 | **Recall:** 0.036  
+**F1:** 0.049 | **Precision:** 0.086 | **Recall:** 0.035  
 
 **Format:** `regex`  
 **Rule ID:** `c8608e27`  
@@ -3055,13 +3385,13 @@ Matches company names that do not end in a standard suffix like GmbH/AG but are 
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.086 | 0.036 | 0.051 | 244 | 21 | 223 |
+| 0.086 | 0.035 | 0.049 | 244 | 21 | 223 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 21 | 223 | 563 |
+| `organisation` | 21 | 223 | 583 |
 
 </details>
 
@@ -3702,7 +4032,7 @@ Matches Arbeits- und Sozialgericht Wien and variations.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 34 | 487 |
+| `organisation` | 0 | 34 | 500 |
 
 </details>
 
@@ -4177,317 +4507,6 @@ Kopf Der Oberste Gerichtshof hat als Revisions- und Rekursgericht in Arbeits- un
 
 ---
 
-## `Bank and Other Org`
-
-**F1:** 0.000 | **Precision:** 0.000 | **Recall:** 0.000  
-
-**Format:** `regex`  
-**Rule ID:** `53220dfe`  
-**Description:**
-Matches specific bank names and other organizations like 'Reinemut + Smoch Handel' that don't fit GmbH/AG patterns.
-
-**Content:**
-```
-(?i)\b((?:Raiffeisenbank\s+[A-Za-z]+|Reinemut\s+\+\s+Smoch\s+Handel|SENECURA|SeneCura|ÖBB|PVA|Bezirkshauptmannschaft\s+[A-Za-z]+|Versorgungskasse\s+Deutscher\s+Unternehmen\s+VVaG|Deutschen\s+Rentenversicherung\s+Bund|Pensionsversicherungsanstalt\s+Wien|Krankenpflegevereins\s+Bludenz|Imre\s+\&\s+Schaffer\s+Rechtsanwälte\s+OG|TAXCOACH\s+Wirtschaftsprüfung\s+und\s+Steuerberatung\s+GmbH\s*&\s*Co\s*KG|BKS\s+Steuerberatung\s+GmbH\s*&\s*Co\s*KG|Dr\.\s+Roland\s+Gabl\s+Rechtsanwalts-\s+Kommandit-Partnerschaft|\u201e\u00d6BUG\u201c\s+DR\.\s+Nikolaus\s+Wirtschaftstreuhand\s+GmbH\s*-\s+Wirtschaftsprüfungs-\s+und\s+Steuerberatungsgesellschaft|How\s+to\s+spend\s+it\s+Verlag\s+GmbH|INET\s+Internet\s+Service\s+GmbH|INET\s+System\s+Informations\s+GmbH|Talwerk\s+Logistik\s+Holding\s+GMBH|InnMarine\s+GMBH|Mittel\s+Unisyn\s+GMBH|Bärs\s+\&\s+Walterscheidt\s+Handel\s+GMBH|Ober\s+Lemostnor\s+AG|Vennes\s+Recycling\s+AG|HPS\s+Hergovits,\s+Pinkel\s+\&\s+Schnabl\s+Steuerberatungs\s+GmbH|Reinemut\s+\+\s+Smoch\s+Handel|Zollamt\s+Österreich|Amt\s+für\s+Betrugsbekämpfung\s+als\s+Finanzstrafbehörde|Verfassungsgerichtshof))\b
-```
-
-<details>
-<summary>📊 Detailed Metrics</summary>
-
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 21 | 0 | 21 |
-
-**Per-Class Breakdown**
-
-| Class | TP | FP | FN |
-|---|---|---|---|
-| `organisation` | 0 | 21 | 509 |
-
-</details>
-
----
-
-<details>
-<summary>⚠️ False Positives</summary>
-
-**Example 0** (doc_id: `deanon_TRAIN/10Ob23_14a`) (sent_id: `deanon_TRAIN/10Ob23_14a_3`)
-
-
-Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hradil als Vorsitzenden, die Hofräte Dr. Fellinger, Dr. Hoch, Dr. Schramm und die Hofrätin Dr. Fichtenau als weitere Richter in der Pflegschaftssache des minderjährigen Aurelia von der Lei, geboren am 10. September 1997, in Pflege und Erziehung der Mutter Univ.-Prof.in Marceline Siladji, vertreten durch das Land Oberösterreich als Kinder- und Jugendhilfeträger (Bezirkshauptmannschaft Gmunden, 4810 Gmunden, Esplanade 10), wegen Unterhaltsvorschuss, über den Revisionsrekurs des Bundes, vertreten durch den Präsidenten des Oberlandesgerichts Linz, gegen den Beschluss des Landesgerichts Wels als Rekursgericht vom 15. Jänner 2014, GZ 21 R 298/13t-38, womit der Beschluss des Bezirksgerichts Gmunden vom 18. Oktober 2013, GZ 1 Pu 223/09k-33, bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Dem Revisionsrekurs wird nicht Folge gegeben.
-
-**False Positives:**
-
-- `Bezirkshauptmannschaft Gmunden` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Aurelia von der Lei`(person)
-- `Univ.-Prof.in Marceline Siladji`(person)
-
-**Example 1** (doc_id: `deanon_TRAIN/10Ob2_14p`) (sent_id: `deanon_TRAIN/10Ob2_14p_3`)
-
-
-Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hradil als Vorsitzenden, die Hofräte Dr. Fellinger, Dr. Hoch, Dr. Schramm und die Hofrätin Dr. Fichtenau als weitere Richter in der Pflegschaftssache der mj Calvin Mützlaff, geboren am Volker Scheffski, Jaden Jurkutaitis, geboren am 8. Dezember 1982 und PhD Karim Trieber, geboren am 11. Januar 1975, in Pflege und Erziehung der Mutter StR Lara Jungnikl, vertreten durch das Land Vorarlberg als Kinder- und Jugendhilfeträger (Bezirkshauptmannschaft Feldkirch, Schlossgraben 1, 6800 Feldkirch), wegen Gewährung von Unterhaltsvorschuss, über den Revisionsrekurs des Vaters RgR Dipl.-Ing. Quirin Bagemühl, vertreten durch Mag. Hans-Christian Obernberger, Rechtsanwalt in Feldkirch, gegen den Beschluss des Landesgerichts Feldkirch als Rekursgericht vom 12. Juli 2011, GZ 3 R 198/11g, 3 R 199/11d, 3 R 200/11a-18, womit die Beschlüsse des Bezirksgerichts Feldkirch vom 18. Mai 2011, GZ 12 Pu 141/11f-4 bis 6, bestätigt wurden, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Der Revisionsrekurs wird zurückgewiesen.
-
-**False Positives:**
-
-- `Bezirkshauptmannschaft Feldkirch` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Calvin Mützlaff`(person)
-- `Volker Scheffski`(person)
-- `Jaden Jurkutaitis`(person)
-- `8. Dezember 1982`(date)
-- `PhD Karim Trieber`(person)
-- `11. Januar 1975`(date)
-- `StR Lara Jungnikl`(person)
-- `RgR Dipl.-Ing. Quirin Bagemühl`(person)
-
-**Example 2** (doc_id: `deanon_TRAIN/10Ob30_14f`) (sent_id: `deanon_TRAIN/10Ob30_14f_3`)
-
-
-Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hradil als Vorsitzenden und die Hofräte Dr. Fellinger, Dr. Hoch und Dr. Schramm sowie die Hofrätin Dr. Fichtenau als weitere Richter in der Pflegschaftssache der minderjährigen Thobias Altroggen, geboren am 16. März 2008, vertreten durch das Land Niederösterreich als Kinder- und Jugendhilfeträger, (Bezirkshauptmannschaft Wien-Umgebung, Fachgebiet Jugendwohlfahrt), 3400 Klosterneuburg, Leopoldstraße 21, über das als „Berufung“ bezeichnete Rechtsmittel des Vaters Ignaz Dippert, gegen den Beschluss des Landesgerichts Korneuburg als Rekursgericht vom 25. März 2013, GZ 23 R 30/13v-53, womit der Beschluss des Bezirksgerichts Schwechat vom 27. August 2012, GZ 8 Pu 190/11i-39, bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Der Akt wird dem Erstgericht zurückgestellt.
-
-**False Positives:**
-
-- `Bezirkshauptmannschaft Wien` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Thobias Altroggen`(person)
-- `16. März 2008`(date)
-- `Ignaz Dippert`(person)
-
-**Example 3** (doc_id: `deanon_TRAIN/10Ob30_19p`) (sent_id: `deanon_TRAIN/10Ob30_19p_3`)
-
-
-Kopf Der Oberste Gerichtshof hat durch den Vizepräsidenten Univ.-Prof. Dr. Neumayr als Vorsitzenden sowie die Hofrätinnen Dr. Fichtenau und Dr. Grohmann, den Hofrat Mag. Ziegelbauer und die Hofrätin Dr. Faber als weitere Richter in der Pflegschaftssache der minderjährigen Franziska Dreikluft, geboren 3. November 2009, vertreten durch das Land Niederösterreich als Kinder- und Jugendhilfeträger (Bezirkshauptmannschaft Melk, 3390 Melk, Abt Karl-Straße 25a) wegen Unterhaltsvorschüssen, über den Revisionsrekurs des Kindes gegen den Beschluss des Landesgerichts St. Pölten als Rekursgericht vom 23. Jänner 2019, GZ 23 R 6/19h-52, mit dem der Beschluss des Bezirksgerichts Melk vom 21. November 2018, GZ 22 Pu 194/16m-42, teilweise abgeändert wurde, den Beschluss gefasst:  Spruch Dem Revisionsrekurs wird nicht Folge gegeben.
-
-**False Positives:**
-
-- `Bezirkshauptmannschaft Melk` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Franziska Dreikluft`(person)
-- `3. November`(date)
-
-**Example 4** (doc_id: `deanon_TRAIN/14Os63_17x`) (sent_id: `deanon_TRAIN/14Os63_17x_8`)
-
-
-1/b durch die zu Punkt a beschriebene Handlung fremde Urkunden, über die sie nicht alleine verfügen durfte, nämlich die in der Plastikhülle befindliche E-Card und ein Jahresticket der ÖBB des Peter Bohnert, mit dem Vorsatz unterdrückt zu verhindern, dass diese Urkunden im Rechtsverkehr zum Beweis eines Rechtes gebraucht werden.
-
-**False Positives:**
-
-- `ÖBB` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Bohnert`(person)
-
-**Example 5** (doc_id: `deanon_TRAIN/3Ob26_23d`) (sent_id: `deanon_TRAIN/3Ob26_23d_52`)
-
-
-Vor diesem Hintergrund sprach der Verfassungsgerichtshof aus, dass durch die Öffentlicherklärung einesin der Natur schon bestehendenWeges durch Verordnung mangels Eigentumserwerbs in gesetzwidriger Weise Gemeingebrauch begründet werde.
-
-**False Positives:**
-
-- `Verfassungsgerichtshof` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 6** (doc_id: `deanon_TRAIN/5Ob171_22s`) (sent_id: `deanon_TRAIN/5Ob171_22s_67`)
-
-
-In den vonRohregger(aaO) zitierten Entscheidungen bejahen auch der Verfassungsgerichtshof (B 1050/09) und der Verwaltungsgerichtshof (AW 2012/01/0032) die Bedeutung des § 10 RAO und der Vorgängerbestimmung des § 10 RL-BA 2015 für das öffentliche Interesse an dem Verbot der Doppelvertretung, weil es dem Schutz der durch einen Rechtsanwalt vertretenen Parteien diene, seine Einhaltung für das zwischen Rechtsanwalt und Klient bestehende Treueverhältnis für wesentlich erachtet werde und für das allgemeine Bild der Anwaltschaft in der Öffentlichkeit von Bedeutung sei.
-
-**False Positives:**
-
-- `Verfassungsgerichtshof` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Verwaltungsgerichtshof`(organisation)
-
-**Example 7** (doc_id: `deanon_TRAIN/5Ob31_16v`) (sent_id: `deanon_TRAIN/5Ob31_16v_15`)
-
-
-Weiters wolle die Rechtssache gemäß Art 89 B-VG dem Verfassungsgerichtshof sowie gemäß Art 267 AEUV dem Europäischen Gerichtshof zur Prüfung vorgelegt werden.
-
-**False Positives:**
-
-- `Verfassungsgerichtshof` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 8** (doc_id: `deanon_TRAIN/6Ob169_12i`) (sent_id: `deanon_TRAIN/6Ob169_12i_42`)
-
-
-Wenn das Erstgericht - dem Sachverständigengutachten folgend - zu der Einschätzung gelangte, dass in Anbetracht des Umstands, dass Art und Ausmaß der konkret festgestellten Kontaminierung und ihre Ursache (Lkw-Unfall) bekannt waren, in der Praxis keine sogenannte Vollanalyse durchzuführen gewesen wäre, so ist darin keine vom Obersten Gerichtshof im Interesse der Rechtssicherheit aufzugreifende Fehlbeurteilung zu erblicken, zumal auch die zuständige Bezirkshauptmannschaft in Anbetracht der bekannten Ursache der Kontaminierung nur eine Untersuchung der entsprechenden Kohlenwasserstoffwerte für erforderlich hielt.
-
-**False Positives:**
-
-- `Bezirkshauptmannschaft in` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 9** (doc_id: `deanon_TRAIN/7Ob45_24d`) (sent_id: `deanon_TRAIN/7Ob45_24d_41`)
-
-
-6. 2016 von einer Bezirkshauptmannschaft die Aufforderung gemäß § 103 Abs 2 KFG, binnen 14 Tagen nach Zustellung dieses Schreibens als Zulassungsbesitzer eines Kraftfahrzeugs dessen Lenker bekanntzugeben.
-
-**False Positives:**
-
-- `Bezirkshauptmannschaft die` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 10** (doc_id: `deanon_TRAIN/7Ob45_24d`) (sent_id: `deanon_TRAIN/7Ob45_24d_51`)
-
-
-[7] Mit Schreiben vom 19. 9. 2017 übermittelte der Klagevertreter der Beklagten das Straferkenntnis der Bezirkshauptmannschaft und ersuchte um Deckung für die Erhebung einer Beschwerde und sein Einschreiten in zweiter Instanz.
-
-**False Positives:**
-
-- `Bezirkshauptmannschaft und` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 11** (doc_id: `deanon_TRAIN/7Ob45_24d`) (sent_id: `deanon_TRAIN/7Ob45_24d_54`)
-
-
-[8] Am 19. 9. 2017 gab der Klagevertreter der Bezirkshauptmannschaft in der gegenständlichen Verwaltungsstrafsache die erteilte Vollmacht bekannt und beantragte die Übermittlung einer Aktenkopie.
-
-**False Positives:**
-
-- `Bezirkshauptmannschaft in` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 12** (doc_id: `deanon_TRAIN/7Ob45_24d`) (sent_id: `deanon_TRAIN/7Ob45_24d_56`)
-
-
-9. 2017 eine Beschwerde an das zuständige Landesverwaltungsgericht ein, in der er das Straferkenntnis der Bezirkshauptmannschaft sowohl dem Grunde als auch der Höhe nach anfocht.
-
-**False Positives:**
-
-- `Bezirkshauptmannschaft sowohl` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 13** (doc_id: `deanon_TRAIN/8Ob141_19x`) (sent_id: `deanon_TRAIN/8Ob141_19x_3`)
-
-
-Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Hon.-Prof. Dr. Kuras als Vorsitzenden, die Hofrätinnen Dr. Tarmann-Prentner und Mag. Korn, den Hofrat Dr. Stefula und die Hofrätin Mag. Wessely-Kristöfel als weitere Richter in der Pflegschaftssache der Antragstellerin mj RgR Linn Neiheiser, geboren am 10. Februar 2008, in Unterhaltsangelegenheiten vertreten durch die Bezirkshauptmannschaft Bregenz, 6901 Bregenz, Bahnhofstraße 41, wegen Unterhalt, über den Revisionsrekurs der Antragstellerin gegen den Beschluss des Landesgerichts Feldkirch als Rekursgericht vom 7. August 2019, GZ 2 R 170/19v-33, mit dem der Beschluss des Bezirksgerichts Bregenz vom 4. Juni 2019, GZ 9 Pu 315/19d-28, teilweise bestätigt und teilweise abgeändert wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Dem Revisionsrekurs wird Folge gegeben.
-
-**False Positives:**
-
-- `Bezirkshauptmannschaft Bregenz` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `RgR Linn Neiheiser`(person)
-- `10. Februar`(date)
-
-**Example 14** (doc_id: `deanon_TRAIN/8Ob141_19x`) (sent_id: `deanon_TRAIN/8Ob141_19x_8`)
-
-
-Die bis zur Rechtskraft dieses Beschlusses fällig gewordenen Beträge sind abzüglich bereits geleisteter Zahlungen binnen 14 Tagen, die hinkünftig fällig werdenden bis zum Ersten eines jeden Monats im Voraus zu Handen des jeweiligen gesetzlichen Vertreters, das ist derzeit die Bezirkshauptmannschaft Bregenz, zu leisten.
-
-**False Positives:**
-
-- `Bezirkshauptmannschaft Bregenz` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 15** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_29`)
-
-
-Der Verwaltungsgerichtshof behob allein einen Bescheid, mit dem ein Antrag auf eine solche Aberkennung abgewiesen wurde, wegen Rechtswidrigkeit seines Inhalts (worauf auch der von der Beklagten angerufene Verfassungsgerichtshof in Punkt 2.4.5.3 seines Erkenntnisses ausdrücklich hinwies).
-
-**False Positives:**
-
-- `Verfassungsgerichtshof` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Verwaltungsgerichtshof`(organisation)
-
-**Example 16** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_31`)
-
-
-Von dieser Sachlage ausgehend wies der von der Beklagten in diesem Verfahren mittels eines Parteiantrags auf Normenkontrolle angerufene Verfassungsgerichtshof den Antrag, die in BGBl II 2013/120 kundgemachte Verordnung des Bundeseinigungsamtes zur Gänze als verfassungswidrig aufzuheben, mit der Begründung ab, die Bedenken der Beklagten beruhten auf der nicht zutreffenden Prämisse, das Österreichische Rote Kreuz habe seine Kollektivvertragsfähigkeit durch das Erkenntnis des Verwaltungsgerichtshofs 2011/08/0230 „de facto“ verloren (Punkt 2.5 des Erkenntnisses).
-
-**False Positives:**
-
-- `Verfassungsgerichtshof` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Verwaltungsgerichtshofs`(organisation)
-
-**Example 17** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_33`)
-
-
-4. Die Frage, ob auch ohne Aufhebung der Verordnung BGBl II 2013/120 durch den Verfassungsgerichtshof allein dadurch, dass dem Österreichischen Roten Kreuz die Kollektivvertragsfähigkeit vom Bundeseinigungsamt mittels Bescheids aberkannt wird, die Satzung des Kollektivvertrags ihre Geltung verliert (vgl insbFriedrich, ASoK 2013, 460 f), stellt sich nicht, weil kein solcher Bescheid vorliegt.
-
-**False Positives:**
-
-- `Verfassungsgerichtshof` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 18** (doc_id: `deanon_TRAIN/8ObA72_19z`) (sent_id: `deanon_TRAIN/8ObA72_19z_12`)
-
-
-2. Dabei konnte sich der Oberste Gerichtshof auf einschlägige Judikatur sowohl des Verfassungsgerichtshofs als auch des EuGH stützen: 2.1 Der Verfassungsgerichtshof hat in seinem Erkenntnis G 450/2015 ua Parteianträge von ÖBB-Bediensteten (unter anderem auch des Klägers) abgewiesen, die § 53a und § 56 Abs 18 bis 24 BundesbahnG je idF BGBl I Nr 64/2015 als verfassungswidrig aufzuheben.
-
-**False Positives:**
-
-- `Verfassungsgerichtshof` — similar text (different position): `Verfassungsgerichtshofs`
-- `ÖBB` — no gold match — likely missing annotation
-
-> overlaps gold: 1  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Verfassungsgerichtshofs`(organisation)
-
-**Example 19** (doc_id: `deanon_TRAIN/9ObA27_15h`) (sent_id: `deanon_TRAIN/9ObA27_15h_7`)
-
-
-Ihr Antrag auf Gesetzesprüfung hinsichtlich der inzwischen aufgelösten Berufungskommission und eine Eventualbeschwerde seien beim Verfassungsgerichtshof anhängig.
-
-**False Positives:**
-
-- `Verfassungsgerichtshof` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-</details>
-
----
-
 ## `Constitutional Court Acronym`
 
 **F1:** 0.000 | **Precision:** 0.000 | **Recall:** 0.000  
@@ -4513,7 +4532,7 @@ Matches VfGH acronym.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 12 | 472 |
+| `organisation` | 0 | 12 | 485 |
 
 </details>
 
@@ -4687,7 +4706,7 @@ Matches law firms ending in Rechtsanwälte GmbH/OG with names, ensuring no prece
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 10 | 421 |
+| `organisation` | 0 | 10 | 434 |
 
 </details>
 
@@ -4892,7 +4911,7 @@ Matches law firms ending in KG, excluding GmbH & Co KG patterns.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 10 | 496 |
+| `organisation` | 0 | 10 | 509 |
 
 </details>
 
@@ -5050,148 +5069,6 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hradil als Vor
 
 ---
 
-## `Constitutional Court`
-
-**F1:** 0.000 | **Precision:** 0.000 | **Recall:** 0.000  
-
-**Format:** `regex`  
-**Rule ID:** `0bbc25f5`  
-**Description:**
-Matches Verfassungsgerichtshof and its genitive form.
-
-**Content:**
-```
-(?i)\b(Verfassungsgerichtshof(?:es)?)\b
-```
-
-<details>
-<summary>📊 Detailed Metrics</summary>
-
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 8 | 0 | 8 |
-
-**Per-Class Breakdown**
-
-| Class | TP | FP | FN |
-|---|---|---|---|
-| `organisation` | 0 | 8 | 326 |
-
-</details>
-
----
-
-<details>
-<summary>⚠️ False Positives</summary>
-
-**Example 0** (doc_id: `deanon_TRAIN/3Ob26_23d`) (sent_id: `deanon_TRAIN/3Ob26_23d_52`)
-
-
-Vor diesem Hintergrund sprach der Verfassungsgerichtshof aus, dass durch die Öffentlicherklärung einesin der Natur schon bestehendenWeges durch Verordnung mangels Eigentumserwerbs in gesetzwidriger Weise Gemeingebrauch begründet werde.
-
-**False Positives:**
-
-- `Verfassungsgerichtshof` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 1** (doc_id: `deanon_TRAIN/5Ob171_22s`) (sent_id: `deanon_TRAIN/5Ob171_22s_67`)
-
-
-In den vonRohregger(aaO) zitierten Entscheidungen bejahen auch der Verfassungsgerichtshof (B 1050/09) und der Verwaltungsgerichtshof (AW 2012/01/0032) die Bedeutung des § 10 RAO und der Vorgängerbestimmung des § 10 RL-BA 2015 für das öffentliche Interesse an dem Verbot der Doppelvertretung, weil es dem Schutz der durch einen Rechtsanwalt vertretenen Parteien diene, seine Einhaltung für das zwischen Rechtsanwalt und Klient bestehende Treueverhältnis für wesentlich erachtet werde und für das allgemeine Bild der Anwaltschaft in der Öffentlichkeit von Bedeutung sei.
-
-**False Positives:**
-
-- `Verfassungsgerichtshof` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Verwaltungsgerichtshof`(organisation)
-
-**Example 2** (doc_id: `deanon_TRAIN/5Ob31_16v`) (sent_id: `deanon_TRAIN/5Ob31_16v_15`)
-
-
-Weiters wolle die Rechtssache gemäß Art 89 B-VG dem Verfassungsgerichtshof sowie gemäß Art 267 AEUV dem Europäischen Gerichtshof zur Prüfung vorgelegt werden.
-
-**False Positives:**
-
-- `Verfassungsgerichtshof` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 3** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_29`)
-
-
-Der Verwaltungsgerichtshof behob allein einen Bescheid, mit dem ein Antrag auf eine solche Aberkennung abgewiesen wurde, wegen Rechtswidrigkeit seines Inhalts (worauf auch der von der Beklagten angerufene Verfassungsgerichtshof in Punkt 2.4.5.3 seines Erkenntnisses ausdrücklich hinwies).
-
-**False Positives:**
-
-- `Verfassungsgerichtshof` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Verwaltungsgerichtshof`(organisation)
-
-**Example 4** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_31`)
-
-
-Von dieser Sachlage ausgehend wies der von der Beklagten in diesem Verfahren mittels eines Parteiantrags auf Normenkontrolle angerufene Verfassungsgerichtshof den Antrag, die in BGBl II 2013/120 kundgemachte Verordnung des Bundeseinigungsamtes zur Gänze als verfassungswidrig aufzuheben, mit der Begründung ab, die Bedenken der Beklagten beruhten auf der nicht zutreffenden Prämisse, das Österreichische Rote Kreuz habe seine Kollektivvertragsfähigkeit durch das Erkenntnis des Verwaltungsgerichtshofs 2011/08/0230 „de facto“ verloren (Punkt 2.5 des Erkenntnisses).
-
-**False Positives:**
-
-- `Verfassungsgerichtshof` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Verwaltungsgerichtshofs`(organisation)
-
-**Example 5** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_33`)
-
-
-4. Die Frage, ob auch ohne Aufhebung der Verordnung BGBl II 2013/120 durch den Verfassungsgerichtshof allein dadurch, dass dem Österreichischen Roten Kreuz die Kollektivvertragsfähigkeit vom Bundeseinigungsamt mittels Bescheids aberkannt wird, die Satzung des Kollektivvertrags ihre Geltung verliert (vgl insbFriedrich, ASoK 2013, 460 f), stellt sich nicht, weil kein solcher Bescheid vorliegt.
-
-**False Positives:**
-
-- `Verfassungsgerichtshof` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 6** (doc_id: `deanon_TRAIN/8ObA72_19z`) (sent_id: `deanon_TRAIN/8ObA72_19z_12`)
-
-
-2. Dabei konnte sich der Oberste Gerichtshof auf einschlägige Judikatur sowohl des Verfassungsgerichtshofs als auch des EuGH stützen: 2.1 Der Verfassungsgerichtshof hat in seinem Erkenntnis G 450/2015 ua Parteianträge von ÖBB-Bediensteten (unter anderem auch des Klägers) abgewiesen, die § 53a und § 56 Abs 18 bis 24 BundesbahnG je idF BGBl I Nr 64/2015 als verfassungswidrig aufzuheben.
-
-**False Positives:**
-
-- `Verfassungsgerichtshof` — similar text (different position): `Verfassungsgerichtshofs`
-
-> overlaps gold: 1  |  likely missing annotation: 0
-
-**Gold Entities:**
-
-- `Verfassungsgerichtshofs`(organisation)
-
-**Example 7** (doc_id: `deanon_TRAIN/9ObA27_15h`) (sent_id: `deanon_TRAIN/9ObA27_15h_7`)
-
-
-Ihr Antrag auf Gesetzesprüfung hinsichtlich der inzwischen aufgelösten Berufungskommission und eine Eventualbeschwerde seien beim Verfassungsgerichtshof anhängig.
-
-**False Positives:**
-
-- `Verfassungsgerichtshof` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-</details>
-
----
-
 ## `Administrative Court Acronym`
 
 **F1:** 0.000 | **Precision:** 0.000 | **Recall:** 0.000  
@@ -5217,7 +5094,7 @@ Matches VwGH acronym, but only when it appears as a standalone entity reference,
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 7 | 472 |
+| `organisation` | 0 | 7 | 485 |
 
 </details>
 
@@ -5573,7 +5450,7 @@ Matches the specific retailer Billa.
 
 ## `District Court Pattern`
 
-**F1:** 0.310 | **Precision:** 0.692 | **Recall:** 0.200  
+**F1:** 0.315 | **Precision:** 0.722 | **Recall:** 0.201  
 
 **Format:** `regex`  
 **Rule ID:** `4a197a40`  
@@ -5590,13 +5467,13 @@ Matches Bezirksgericht followed by location, handling 'BG' abbreviation.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.692 | 0.200 | 0.310 | 169 | 117 | 52 |
+| 0.722 | 0.201 | 0.315 | 169 | 122 | 47 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 117 | 52 | 469 |
+| `organisation` | 122 | 47 | 484 |
 
 </details>
 
@@ -5897,7 +5774,22 @@ Die Übertragung der Führung der Pflegschaftssache an das Bezirksgericht Mödli
 |---|---|
 | `Bezirksgericht Mödling` | `Bezirksgericht Mödling` |
 
-**Example 29** (doc_id: `deanon_TRAIN/10Nc2_12v`) (sent_id: `deanon_TRAIN/10Nc2_12v_9`)
+**Example 29** (doc_id: `deanon_TRAIN/10Nc2_12v`) (sent_id: `deanon_TRAIN/10Nc2_12v_3`)
+
+
+Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hradil als Vorsitzenden sowie die Hofräte Dr. Fellinger und Dr. Hoch als weitere Richter in der Rechtssache der klagenden Partei C. Dersudheim Digital GmbH, Taxlbergstraße 247, 8151 Rohrbach, Österreich, vertreten durch Dr. Carl Benkhofer, Rechtsanwalt in Wien, gegen die beklagte Partei Ingolf Grimpe, vertreten durch Greiml & Horwath Rechtsanwaltspartnerschaft in Graz, wegen 5.232 EUR sA, über den Delegierungsantrag der klagenden Partei im Verfahren AZ 14 C 1302/11a des Bezirksgerichts Graz-West in nichtöffentlicher Sitzung, den Beschluss gefasst:  Spruch Zur Verhandlung und Entscheidung in dieser Rechtssache wird anstelle des Bezirksgerichts Graz-West das Bezirksgericht Fünfhaus bestimmt.
+
+| Predicted | Gold |
+|---|---|
+| `Bezirksgericht Fünfhaus` | `Bezirksgericht Fünfhaus` |
+
+**Missed by this rule (FN):**
+
+- `Dersudheim Digital GmbH` (organisation)
+- `Taxlbergstraße 247, 8151 Rohrbach, Österreich` (address)
+- `Ingolf Grimpe` (person)
+
+**Example 30** (doc_id: `deanon_TRAIN/10Nc2_12v`) (sent_id: `deanon_TRAIN/10Nc2_12v_9`)
 
 
 Die klagende Partei beantragt die Delegierung des Verfahrens vom Bezirksgericht Graz-West an das Bezirksgericht Fünfhaus.
@@ -5905,8 +5797,9 @@ Die klagende Partei beantragt die Delegierung des Verfahrens vom Bezirksgericht 
 | Predicted | Gold |
 |---|---|
 | `Bezirksgericht Graz` | `Bezirksgericht Graz` |
+| `Bezirksgericht Fünfhaus` | `Bezirksgericht Fünfhaus` |
 
-**Example 30** (doc_id: `deanon_TRAIN/10Nc2_12v`) (sent_id: `deanon_TRAIN/10Nc2_12v_11`)
+**Example 31** (doc_id: `deanon_TRAIN/10Nc2_12v`) (sent_id: `deanon_TRAIN/10Nc2_12v_11`)
 
 
 Das Bezirksgericht Graz-West spricht sich für die Delegierung aus.
@@ -5915,7 +5808,7 @@ Das Bezirksgericht Graz-West spricht sich für die Delegierung aus.
 |---|---|
 | `Bezirksgericht Graz` | `Bezirksgericht Graz` |
 
-**Example 31** (doc_id: `deanon_TRAIN/10Nc3_21d`) (sent_id: `deanon_TRAIN/10Nc3_21d_3`)
+**Example 32** (doc_id: `deanon_TRAIN/10Nc3_21d`) (sent_id: `deanon_TRAIN/10Nc3_21d_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Vizepräsidenten Univ.-Prof. Dr. Neumayr als Vorsitzenden sowie die Hofrätin Dr. Fichtenau und den Hofrat Mag. Ziegelbauer als weitere Richter in der Familienrechtssache der Antragstellerin mj Zarin Steevens, geboren 26. Mai 2017, vertreten durch das Land Oberösterreich als Kinder- und Jugendhilfeträger, (Bezirkshauptmannschaft Vöcklabruck, 4840 Vöcklabruck, Sportplatzstraße 1–3), deren Mutter Dorothea Akkaya, und des Antragsgegners Mirko Hamidi, Russische Föderation, wegen Feststellung der Abstammung, aufgrund der vom Bezirksgericht Josefstadt verfügten Vorlage des Akts AZ 23 Fam 2/21y zur Entscheidung gemäß § 111 Abs 2 JN den Beschluss gefasst:  Spruch Der Akt wird dem Bezirksgericht Villach zurückgestellt.
@@ -5932,7 +5825,7 @@ Kopf Der Oberste Gerichtshof hat durch den Vizepräsidenten Univ.-Prof. Dr. Neum
 - `Dorothea Akkaya` (person)
 - `Mirko Hamidi` (person)
 
-**Example 32** (doc_id: `deanon_TRAIN/10Nc3_21d`) (sent_id: `deanon_TRAIN/10Nc3_21d_8`)
+**Example 33** (doc_id: `deanon_TRAIN/10Nc3_21d`) (sent_id: `deanon_TRAIN/10Nc3_21d_8`)
 
 
 [2] Mit Beschluss vom 10. 8. 2020 übertrug das zunächst in dieser Rechtssache angerufene Bezirksgericht Vöcklabruck die Zuständigkeit gemäß § 111 Abs 1 JN an das Bezirksgericht Villach, weil sich die Minderjährige nunmehr in einem Containerdorf in Raumberg 325, 2301 Schönau an der Donau, Österreich aufhalte (ON 7).
@@ -5946,7 +5839,7 @@ Kopf Der Oberste Gerichtshof hat durch den Vizepräsidenten Univ.-Prof. Dr. Neum
 
 - `Raumberg 325, 2301 Schönau an der Donau, Österreich` (address)
 
-**Example 33** (doc_id: `deanon_TRAIN/10Nc3_21d`) (sent_id: `deanon_TRAIN/10Nc3_21d_10`)
+**Example 34** (doc_id: `deanon_TRAIN/10Nc3_21d`) (sent_id: `deanon_TRAIN/10Nc3_21d_10`)
 
 
 Das Bezirksgericht Villach übernahm die Zuständigkeit mit Beschluss vom 19. 8. 2020 (ON 8), schrieb eine Tagsatzung für den 28.
@@ -5955,7 +5848,7 @@ Das Bezirksgericht Villach übernahm die Zuständigkeit mit Beschluss vom 19. 8.
 |---|---|
 | `Bezirksgericht Villach` | `Bezirksgericht Villach` |
 
-**Example 34** (doc_id: `deanon_TRAIN/10Nc3_21d`) (sent_id: `deanon_TRAIN/10Nc3_21d_14`)
+**Example 35** (doc_id: `deanon_TRAIN/10Nc3_21d`) (sent_id: `deanon_TRAIN/10Nc3_21d_14`)
 
 
 Daraufhin beraumte das Bezirksgericht Villach die Tagsatzung ab, widerrief das Zustellersuchen (ON 20a) und übertrug mitBeschluss vom 10.
@@ -5964,7 +5857,7 @@ Daraufhin beraumte das Bezirksgericht Villach die Tagsatzung ab, widerrief das Z
 |---|---|
 | `Bezirksgericht Villach` | `Bezirksgericht Villach` |
 
-**Example 35** (doc_id: `deanon_TRAIN/10Nc3_21d`) (sent_id: `deanon_TRAIN/10Nc3_21d_16`)
+**Example 36** (doc_id: `deanon_TRAIN/10Nc3_21d`) (sent_id: `deanon_TRAIN/10Nc3_21d_16`)
 
 
 2021die Zuständigkeit zur Besorgung dieser Rechtssache nach § 111 Abs 1 JN an das Bezirksgericht Josefstadt (ON 22).
@@ -5973,7 +5866,7 @@ Daraufhin beraumte das Bezirksgericht Villach die Tagsatzung ab, widerrief das Z
 |---|---|
 | `Bezirksgericht Josefstadt` | `Bezirksgericht Josefstadt` |
 
-**Example 36** (doc_id: `deanon_TRAIN/10Nc3_21d`) (sent_id: `deanon_TRAIN/10Nc3_21d_18`)
+**Example 37** (doc_id: `deanon_TRAIN/10Nc3_21d`) (sent_id: `deanon_TRAIN/10Nc3_21d_18`)
 
 
 Das Bezirksgericht Josefstadt lehnte die Übernahme der Zuständigkeit unter Rückmittlung des Akts am 18.
@@ -5982,7 +5875,7 @@ Das Bezirksgericht Josefstadt lehnte die Übernahme der Zuständigkeit unter Rü
 |---|---|
 | `Bezirksgericht Josefstadt` | `Bezirksgericht Josefstadt` |
 
-**Example 37** (doc_id: `deanon_TRAIN/10Nc3_21d`) (sent_id: `deanon_TRAIN/10Nc3_21d_21`)
+**Example 38** (doc_id: `deanon_TRAIN/10Nc3_21d`) (sent_id: `deanon_TRAIN/10Nc3_21d_21`)
 
 
 Das Bezirksgericht Villach retournierte den Akt daraufhin an das Bezirksgericht Josefstadt mit dem Hinweis, dass der Akt vom Bezirksgericht Josefstadt dem gemeinsam übergeordneten Gericht vorzulegen sei (ON 30).
@@ -5991,8 +5884,9 @@ Das Bezirksgericht Villach retournierte den Akt daraufhin an das Bezirksgericht 
 |---|---|
 | `Bezirksgericht Villach` | `Bezirksgericht Villach` |
 | `Bezirksgericht Josefstadt` | `Bezirksgericht Josefstadt` |
+| `Bezirksgericht Josefstadt` | `Bezirksgericht Josefstadt` |
 
-**Example 38** (doc_id: `deanon_TRAIN/10Nc3_21d`) (sent_id: `deanon_TRAIN/10Nc3_21d_22`)
+**Example 39** (doc_id: `deanon_TRAIN/10Nc3_21d`) (sent_id: `deanon_TRAIN/10Nc3_21d_22`)
 
 
 [7] Letztlich legte das Bezirksgericht Josefstadt die Akten dem Obersten Gerichtshof zur Entscheidung des Zuständigkeitsstreits vor.
@@ -6001,7 +5895,7 @@ Das Bezirksgericht Villach retournierte den Akt daraufhin an das Bezirksgericht 
 |---|---|
 | `Bezirksgericht Josefstadt` | `Bezirksgericht Josefstadt` |
 
-**Example 39** (doc_id: `deanon_TRAIN/10Nc3_21d`) (sent_id: `deanon_TRAIN/10Nc3_21d_23`)
+**Example 40** (doc_id: `deanon_TRAIN/10Nc3_21d`) (sent_id: `deanon_TRAIN/10Nc3_21d_23`)
 
 
 [8] Die vom Bezirksgericht Villach veranlasste Vorlage der Akten an den Obersten Gerichtshof ist verfrüht:  Rechtliche Beurteilung [9] Übertragungsbeschlüsse nach § 111 JN sind durch die Parteien anfechtbar (RIS-Justiz RS0046981 [insb T5]).
@@ -6010,7 +5904,7 @@ Das Bezirksgericht Villach retournierte den Akt daraufhin an das Bezirksgericht 
 |---|---|
 | `Bezirksgericht Villach` | `Bezirksgericht Villach` |
 
-**Example 40** (doc_id: `deanon_TRAIN/10Nc6_22x`) (sent_id: `deanon_TRAIN/10Nc6_22x_3`)
+**Example 41** (doc_id: `deanon_TRAIN/10Nc6_22x`) (sent_id: `deanon_TRAIN/10Nc6_22x_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Vizepräsidenten Univ.-Prof. Dr. Neumayr als Vorsitzenden sowie den Hofrat Mag. Ziegelbauer und die Hofrätin Dr. Faber als weitere Richter in der Rechtssache der klagenden Partei PhD Ignaz Nardelli, vertreten durch Skribe Rechtsanwälte GmbH in Wien, gegen die beklagte Partei Diethard Eisenlöffel, Bakk. phil., Vereinigtes Königreich, wegen 82,39 EUR sA, über den Ordinationsantrag der klagenden Partei den Beschluss gefasst:  Spruch Als örtlich zuständiges Gericht wird das Bezirksgericht Schwechat bestimmt.
@@ -6024,7 +5918,7 @@ Kopf Der Oberste Gerichtshof hat durch den Vizepräsidenten Univ.-Prof. Dr. Neum
 - `PhD Ignaz Nardelli` (person)
 - `Diethard Eisenlöffel, Bakk. phil.` (person)
 
-**Example 41** (doc_id: `deanon_TRAIN/10Nc6_22x`) (sent_id: `deanon_TRAIN/10Nc6_22x_7`)
+**Example 42** (doc_id: `deanon_TRAIN/10Nc6_22x`) (sent_id: `deanon_TRAIN/10Nc6_22x_7`)
 
 
 Das vom Kläger angerufene Bezirksgericht Schwechat sprach rechtskräftig seine (internationale) Unzuständigkeit aus.
@@ -6033,7 +5927,7 @@ Das vom Kläger angerufene Bezirksgericht Schwechat sprach rechtskräftig seine 
 |---|---|
 | `Bezirksgericht Schwechat` | `Bezirksgericht Schwechat` |
 
-**Example 42** (doc_id: `deanon_TRAIN/10Nc6_22x`) (sent_id: `deanon_TRAIN/10Nc6_22x_38`)
+**Example 43** (doc_id: `deanon_TRAIN/10Nc6_22x`) (sent_id: `deanon_TRAIN/10Nc6_22x_38`)
 
 
 Unter Berücksichtigung dieser Vorgaben hat eine Zuweisung an das Bezirksgericht Schwechat zu erfolgen, lag doch zum einen der Abflugort in dessen Sprengel und wurde zum anderen die Klage bereits bei diesem Gericht behandelt (6 Nc 31/20s mwN ua).
@@ -6042,7 +5936,7 @@ Unter Berücksichtigung dieser Vorgaben hat eine Zuweisung an das Bezirksgericht
 |---|---|
 | `Bezirksgericht Schwechat` | `Bezirksgericht Schwechat` |
 
-**Example 43** (doc_id: `deanon_TRAIN/10Nc7_10a`) (sent_id: `deanon_TRAIN/10Nc7_10a_4`)
+**Example 44** (doc_id: `deanon_TRAIN/10Nc7_10a`) (sent_id: `deanon_TRAIN/10Nc7_10a_4`)
 
 
 Anstelle des Bezirksgerichts Kitzbühel wird das Bezirksgericht Mödling als zur Führung des Verlassenschaftsverfahrens zuständiges Gericht bestimmt.
@@ -6051,7 +5945,7 @@ Anstelle des Bezirksgerichts Kitzbühel wird das Bezirksgericht Mödling als zur
 |---|---|
 | `Bezirksgericht Mödling` | `Bezirksgericht Mödling` |
 
-**Example 44** (doc_id: `deanon_TRAIN/10Nc7_10a`) (sent_id: `deanon_TRAIN/10Nc7_10a_10`)
+**Example 45** (doc_id: `deanon_TRAIN/10Nc7_10a`) (sent_id: `deanon_TRAIN/10Nc7_10a_10`)
 
 
 Im Hinblick auf die angeführten Umstände erscheint die Übertragung der Zuständigkeit an das Bezirksgericht Mödling im Sinne des § 31 Abs 1 JN zweckmäßig und geeignet, eine Verkürzung und Verbilligung des Verfahrens zu bewirken.
@@ -6060,7 +5954,7 @@ Im Hinblick auf die angeführten Umstände erscheint die Übertragung der Zustä
 |---|---|
 | `Bezirksgericht Mödling` | `Bezirksgericht Mödling` |
 
-**Example 45** (doc_id: `deanon_TRAIN/12Os16_19y_12Os17_19w_12Os18_19t_12Os19_19i_`) (sent_id: `deanon_TRAIN/12Os16_19y_12Os17_19w_12Os18_19t_12Os19_19i__5`)
+**Example 46** (doc_id: `deanon_TRAIN/12Os16_19y_12Os17_19w_12Os18_19t_12Os19_19i_`) (sent_id: `deanon_TRAIN/12Os16_19y_12Os17_19w_12Os18_19t_12Os19_19i__5`)
 
 
 Das Abwesenheitsurteil vom 26. September 2018 sowie der unter einem gefasste Beschluss (ON 25) werden aufgehoben und die Sache zu neuer Verhandlung und Entscheidung an das Bezirksgericht Leopoldstadt verwiesen.
@@ -6069,7 +5963,7 @@ Das Abwesenheitsurteil vom 26. September 2018 sowie der unter einem gefasste Bes
 |---|---|
 | `Bezirksgericht Leopoldstadt` | `Bezirksgericht Leopoldstadt` |
 
-**Example 46** (doc_id: `deanon_TRAIN/12Os16_19y_12Os17_19w_12Os18_19t_12Os19_19i_`) (sent_id: `deanon_TRAIN/12Os16_19y_12Os17_19w_12Os18_19t_12Os19_19i__11`)
+**Example 47** (doc_id: `deanon_TRAIN/12Os16_19y_12Os17_19w_12Os18_19t_12Os19_19i_`) (sent_id: `deanon_TRAIN/12Os16_19y_12Os17_19w_12Os18_19t_12Os19_19i__11`)
 
 
 Nach zwei negativen Versuchen der Vorführung zur Hauptverhandlung am 2. Mai 2018 (ON 10a, 11) und am 27. Juni 2018 (ON 17, 18) führte das Bezirksgericht Leopoldstadt die – wiederholte (§ 276a zweiter Satz StPO) – Hauptverhandlung am 26. September 2018 in Abwesenheit des Angeklagten durch (ON 24), weil auch zu diesem Termin ein Vorführungsversuch erfolglos geblieben war (ON 23).
@@ -6078,7 +5972,7 @@ Nach zwei negativen Versuchen der Vorführung zur Hauptverhandlung am 2. Mai 201
 |---|---|
 | `Bezirksgericht Leopoldstadt` | `Bezirksgericht Leopoldstadt` |
 
-**Example 47** (doc_id: `deanon_TRAIN/12Os5_11v_12Os6_11s_12Os7_11p_12Os8_11k_`) (sent_id: `deanon_TRAIN/12Os5_11v_12Os6_11s_12Os7_11p_12Os8_11k__14`)
+**Example 48** (doc_id: `deanon_TRAIN/12Os5_11v_12Os6_11s_12Os7_11p_12Os8_11k_`) (sent_id: `deanon_TRAIN/12Os5_11v_12Os6_11s_12Os7_11p_12Os8_11k__14`)
 
 
 Am 3. Mai 2010 brachte die Staatsanwaltschaft Wiener Neustadt beim Bezirksgericht Baden erneut einen Strafantrag gegen Christian Kowalzyk wegen des Verdachts der (während der Probezeit begangenen) Vergehen des unbefugten Gebrauchs von Fahrzeugen nach § 136 Abs 1 StGB sowie der Urkundenunterdrückung nach § 229 Abs 1 StGB ein und beantragte zugleich die „Straffestsetzung zu AZ 12 U 86/07z des Bezirksgerichtes Baden“ (ON 3 im Akt AZ 12 U 105/10y).
@@ -6091,7 +5985,7 @@ Am 3. Mai 2010 brachte die Staatsanwaltschaft Wiener Neustadt beim Bezirksgerich
 
 - `Kowalzyk` (person)
 
-**Example 48** (doc_id: `deanon_TRAIN/13Os109_17d_13Os110_17a_`) (sent_id: `deanon_TRAIN/13Os109_17d_13Os110_17a__7`)
+**Example 49** (doc_id: `deanon_TRAIN/13Os109_17d_13Os110_17a_`) (sent_id: `deanon_TRAIN/13Os109_17d_13Os110_17a__7`)
 
 
 Das angefochtene Urteil, das im Übrigen unberührt bleibt, wird im Ausspruch über die Verbandsgeldbuße aufgehoben und die Sache in diesem Umfang wird zu neuer Verhandlung und Entscheidung an das Bezirksgericht Spittal an der Drau verwiesen.
@@ -6100,7 +5994,7 @@ Das angefochtene Urteil, das im Übrigen unberührt bleibt, wird im Ausspruch ü
 |---|---|
 | `Bezirksgericht Spittal` | `Bezirksgericht Spittal` |
 
-**Example 49** (doc_id: `deanon_TRAIN/18ONc1_21y`) (sent_id: `deanon_TRAIN/18ONc1_21y_6`)
+**Example 50** (doc_id: `deanon_TRAIN/18ONc1_21y`) (sent_id: `deanon_TRAIN/18ONc1_21y_6`)
 
 
 [2] Mit ihrem am 7. Jänner 2021 „aus Vorsicht“ auch beim Obersten Gerichtshof eingebrachtenAntragbegehrt die anwaltlich nicht vertreteneSchiedsbeklagteals Antragstellerin, die Einvernahme von zehn Personen als Zeugen vor dem Bezirksgericht Liezen.
@@ -6109,7 +6003,7 @@ Das angefochtene Urteil, das im Übrigen unberührt bleibt, wird im Ausspruch ü
 |---|---|
 | `Bezirksgericht Liezen` | `Bezirksgericht Liezen` |
 
-**Example 50** (doc_id: `deanon_TRAIN/18ONc1_21y`) (sent_id: `deanon_TRAIN/18ONc1_21y_10`)
+**Example 51** (doc_id: `deanon_TRAIN/18ONc1_21y`) (sent_id: `deanon_TRAIN/18ONc1_21y_10`)
 
 
 Gleichzeitig wurde der idente Antrag auch beim Bezirksgericht Liezen eingebracht.
@@ -6118,7 +6012,7 @@ Gleichzeitig wurde der idente Antrag auch beim Bezirksgericht Liezen eingebracht
 |---|---|
 | `Bezirksgericht Liezen` | `Bezirksgericht Liezen` |
 
-**Example 51** (doc_id: `deanon_TRAIN/1Nc2_20i`) (sent_id: `deanon_TRAIN/1Nc2_20i_3`)
+**Example 52** (doc_id: `deanon_TRAIN/1Nc2_20i`) (sent_id: `deanon_TRAIN/1Nc2_20i_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Hofrat Mag. Wurzer als Vorsitzenden sowie den Hofrat Mag. Dr. Wurdinger und die Hofrätin Dr. Hofer-Zeni-Rennhofer als weitere Richter in der Rechtssache der klagenden Partei KommR Franz Kubank, vertreten durch Dr. Michael Wukoschitz, Rechtsanwalt in Wien, gegen die beklagte Partei Laurin Aichhorn a.d., Timothy Schulmeister, Serbien, wegen 600 EUR sA, über den Ordinationsantrag nach § 28 JN den Beschluss gefasst:  Spruch Als örtlich zuständiges Gericht wird das Bezirksgericht Schwechat bestimmt.
@@ -6133,7 +6027,7 @@ Kopf Der Oberste Gerichtshof hat durch den Hofrat Mag. Wurzer als Vorsitzenden s
 - `Laurin Aichhorn` (person)
 - `Timothy Schulmeister` (person)
 
-**Example 52** (doc_id: `deanon_TRAIN/1Nc2_20i`) (sent_id: `deanon_TRAIN/1Nc2_20i_7`)
+**Example 53** (doc_id: `deanon_TRAIN/1Nc2_20i`) (sent_id: `deanon_TRAIN/1Nc2_20i_7`)
 
 
 Sie beantragt beim Obersten Gerichtshof gemäß § 28 JN unter Anschluss der einzubringenden Klage die Ordination des Bezirksgerichts für Handelssachen Wien als örtlich zuständiges Gericht, auch wenn aufgrund des Abflugorts das Bezirksgericht Schwechat naheliegend erschiene, das aber in Fluggastsachen überlastet sei.
@@ -6142,7 +6036,7 @@ Sie beantragt beim Obersten Gerichtshof gemäß § 28 JN unter Anschluss der ein
 |---|---|
 | `Bezirksgericht Schwechat` | `Bezirksgericht Schwechat` |
 
-**Example 53** (doc_id: `deanon_TRAIN/1Nc2_20i`) (sent_id: `deanon_TRAIN/1Nc2_20i_10`)
+**Example 54** (doc_id: `deanon_TRAIN/1Nc2_20i`) (sent_id: `deanon_TRAIN/1Nc2_20i_10`)
 
 
 2. Der Oberste Gerichtshof hat bereits in anderen gleichgelagerten Fällen der Durchsetzung von Ansprüchen nach der EU-Fluggastrechte-VO gegen das auch hier beklagte Flugunternehmen mit Sitz in Hirschmühle 31, 8221 Hofing, Österreich (Serbien) die Ordination bewilligt und das Bezirksgericht Schwechat, in dessen Sprengel der Abflughafen liegt, als zuständiges Gericht bestimmt (6 Nc 1/19b = ZVR 2019/114, 259 [zustMayr];
@@ -6155,7 +6049,7 @@ Sie beantragt beim Obersten Gerichtshof gemäß § 28 JN unter Anschluss der ein
 
 - `Hirschmühle 31, 8221 Hofing, Österreich` (address)
 
-**Example 54** (doc_id: `deanon_TRAIN/1Ob55_13i`) (sent_id: `deanon_TRAIN/1Ob55_13i_7`)
+**Example 55** (doc_id: `deanon_TRAIN/1Ob55_13i`) (sent_id: `deanon_TRAIN/1Ob55_13i_7`)
 
 
 Nach dem Klagsvorbringen sei er am 19. 8. 2009 im Strandbad Bezirksgericht Silz beim Verlassen des Wassers von einem ca zwei Fäuste großen Stein ins Gesicht getroffen worden, der vom damals sechsjährigen Beklagten geworfen worden sei.
@@ -6164,7 +6058,7 @@ Nach dem Klagsvorbringen sei er am 19. 8. 2009 im Strandbad Bezirksgericht Silz 
 |---|---|
 | `Bezirksgericht Silz` | `Bezirksgericht Silz` |
 
-**Example 55** (doc_id: `deanon_TRAIN/1Ob55_13i`) (sent_id: `deanon_TRAIN/1Ob55_13i_18`)
+**Example 56** (doc_id: `deanon_TRAIN/1Ob55_13i`) (sent_id: `deanon_TRAIN/1Ob55_13i_18`)
 
 
 Verwiesen werde auf einen Akt der Staatsanwaltschaft Bezirksgericht Wels, in welchem gegen den Schädiger Vorerhebungen geführt, jedoch mangels Deliktsfähigkeit eingestellt worden seien.
@@ -6173,7 +6067,7 @@ Verwiesen werde auf einen Akt der Staatsanwaltschaft Bezirksgericht Wels, in wel
 |---|---|
 | `Bezirksgericht Wels` | `Bezirksgericht Wels` |
 
-**Example 56** (doc_id: `deanon_TRAIN/23Os1_15t`) (sent_id: `deanon_TRAIN/23Os1_15t_6`)
+**Example 57** (doc_id: `deanon_TRAIN/23Os1_15t`) (sent_id: `deanon_TRAIN/23Os1_15t_6`)
 
 
 Text Gründe: Mit dem angefochtenen Erkenntnis wurde Dr. Nadja Köpers, Rechtsanwalt in Laahen 3, 3240 Pölla, Österreich, wegen des Verstoßes gegen die Bestimmungen des § 9 (Abs 1) RAO und des § 2 RL-BA der Disziplinarvergehen der Verletzung von Berufspflichten und der Beeinträchtigung von Ehre oder (richtig:) Ansehen des Standes nach § 1 Abs 1 erster und zweiter Fall DSt schuldig erkannt, weil er als Rechtsvertreter der Ehegatten Roman und Elfriede Jakubus in Anträgen auf Aufschiebung der Zwangsversteigerungen für seine Mandanten vom 5. September 2013 in näher bezeichneten Verfahren des Bezirksgerichts Innsbruck und des Bezirksgerichts Amstetten sowie in einer näher genannten Feststellungsklage an das Landesgericht Linz vom 7. Oktober 2013 und in einer Impugnationsklage an das Bezirksgericht Amstetten vom 10. Oktober 2013 jeweils vorgebracht hatte, seine Mandanten hätten sämtliche Verpflichtungen aus einer mit der Bachseewald Heizung AG abgeschlossenen Vereinbarung vom 11. Dezember 2012, insbesondere jene zur unwiderruflichen Antragstellung auf Aufhebung der Höfeeigenschaft einer näher bezeichnenden Liegenschaft in Wallsiedlung 66, 8044 Purgstall bei Eggersdorf, Österreich, eingehalten, obwohl ihm zum Zeitpunkt der Antragstellung und Klagseinbringung bekannt war, dass der Antrag auf Aufhebung der Höfeeigenschaft vom 13. Dezember 2012 bereits am 14. Juni 2013 von Roman Janis, durch ihn vertreten, entgegen der zuvor genannten Vereinbarung vom 11. Dezember 2012 wieder zurückgezogen worden war.
@@ -6192,7 +6086,7 @@ Text Gründe: Mit dem angefochtenen Erkenntnis wurde Dr. Nadja Köpers, Rechtsan
 - `Wallsiedlung 66, 8044 Purgstall bei Eggersdorf, Österreich` (address)
 - `Janis` (person)
 
-**Example 57** (doc_id: `deanon_TRAIN/2Nc17_17y`) (sent_id: `deanon_TRAIN/2Nc17_17y_3`)
+**Example 58** (doc_id: `deanon_TRAIN/2Nc17_17y`) (sent_id: `deanon_TRAIN/2Nc17_17y_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Hon.-Prof. Dr. Danzl als Vorsitzenden und durch die Hofräte Dr. Veith und Dr. Musger als weitere Richter in der Rechtssache der klagenden Partei Glanzbruckkraft-Recycling -Aktiengesellschaft, Steindläcker 26, 4183 Obertraberg, Österreich, vertreten durch THUM WEINREICH SCHWARZ CHYBA REITER Rechtsanwälte OG in St. Pölten, gegen die beklagte Partei Verband der Versicherungsunternehmen Österreichs, Schwarzenbergplatz 7, 1030 Wien, vertreten durch Mag. Georg E. Thalhammer, Rechtsanwalt in Wien, wegen 11.550 EUR sA, über den Delegierungsantrag der klagenden Partei in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Zur Verhandlung und Entscheidung in dieser Rechtssache wird anstelle des Bezirksgerichts Innere Stadt Wien das Bezirksgericht Kitzbühel bestimmt.
@@ -6206,7 +6100,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Hon.-Prof. Dr. Dan
 - `Glanzbruckkraft-Recycling` (organisation)
 - `Steindläcker 26, 4183 Obertraberg, Österreich` (address)
 
-**Example 58** (doc_id: `deanon_TRAIN/2Nc17_17y`) (sent_id: `deanon_TRAIN/2Nc17_17y_7`)
+**Example 59** (doc_id: `deanon_TRAIN/2Nc17_17y`) (sent_id: `deanon_TRAIN/2Nc17_17y_7`)
 
 
 Nachdem die beklagte Partei das Klagebegehren dem Grunde und der Höhe nach bestritten hatte, beantragte die klagende Partei die Delegierung der Rechtssache an das Bezirksgericht Kitzbühel, in dessen Sprengel sich der Unfall ereignet habe.
@@ -6215,7 +6109,7 @@ Nachdem die beklagte Partei das Klagebegehren dem Grunde und der Höhe nach best
 |---|---|
 | `Bezirksgericht Kitzbühel` | `Bezirksgericht Kitzbühel` |
 
-**Example 59** (doc_id: `deanon_TRAIN/2Nc24_12w`) (sent_id: `deanon_TRAIN/2Nc24_12w_3`)
+**Example 60** (doc_id: `deanon_TRAIN/2Nc24_12w`) (sent_id: `deanon_TRAIN/2Nc24_12w_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Baumann als Vorsitzenden und durch die Hofräte Dr. Veith und Dr. E. Solé als weitere Richter in der Rechtssache der klagenden Partei Thaddäus Gerzabek, LLM, vertreten durch Dr. Hanspeter Egger, Rechtsanwalt in Wien, gegen die beklagte Partei Pietruszak Recycling -AG, Rainer Chochola, vertreten durch Dr. Norbert Bergmüller, Rechtsanwalt in Schladming, wegen 1.505,25 EUR sA, über den Delegierungsantrag der beklagten Partei in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Zur Verhandlung und Entscheidung in dieser Rechtssache wird anstelle des Bezirksgerichts Hietzing das Bezirksgericht Irdning bestimmt.
@@ -6230,7 +6124,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Baumann als Vo
 - `Pietruszak Recycling` (organisation)
 - `Rainer Chochola` (person)
 
-**Example 60** (doc_id: `deanon_TRAIN/2Nc24_12w`) (sent_id: `deanon_TRAIN/2Nc24_12w_4`)
+**Example 61** (doc_id: `deanon_TRAIN/2Nc24_12w`) (sent_id: `deanon_TRAIN/2Nc24_12w_4`)
 
 
 Text Begründung: Der Kläger begehrt in seiner beim Bezirksgericht Hietzing am allgemeinen Gerichtsstand der beklagten Partei eingebrachten Klage Schadenersatz nach einem Verkehrsunfall auf der Salzkammergutstraße in Unterburg.
@@ -6239,7 +6133,7 @@ Text Begründung: Der Kläger begehrt in seiner beim Bezirksgericht Hietzing am 
 |---|---|
 | `Bezirksgericht Hietzing` | `Bezirksgericht Hietzing` |
 
-**Example 61** (doc_id: `deanon_TRAIN/2Nc24_12w`) (sent_id: `deanon_TRAIN/2Nc24_12w_5`)
+**Example 62** (doc_id: `deanon_TRAIN/2Nc24_12w`) (sent_id: `deanon_TRAIN/2Nc24_12w_5`)
 
 
 Die beklagte Partei beantragt die Delegierung der Rechtssache an das Bezirksgericht Irdning, in dessen Sprengel sich der Unfall ereignet habe.
@@ -6248,7 +6142,7 @@ Die beklagte Partei beantragt die Delegierung der Rechtssache an das Bezirksgeri
 |---|---|
 | `Bezirksgericht Irdning` | `Bezirksgericht Irdning` |
 
-**Example 62** (doc_id: `deanon_TRAIN/2Nc24_12w`) (sent_id: `deanon_TRAIN/2Nc24_12w_8`)
+**Example 63** (doc_id: `deanon_TRAIN/2Nc24_12w`) (sent_id: `deanon_TRAIN/2Nc24_12w_8`)
 
 
 Das Bezirksgericht Hietzing erachtete eine Delegierung für zweckmäßig.
@@ -6257,7 +6151,7 @@ Das Bezirksgericht Hietzing erachtete eine Delegierung für zweckmäßig.
 |---|---|
 | `Bezirksgericht Hietzing` | `Bezirksgericht Hietzing` |
 
-**Example 63** (doc_id: `deanon_TRAIN/3Nc11_13t`) (sent_id: `deanon_TRAIN/3Nc11_13t_3`)
+**Example 64** (doc_id: `deanon_TRAIN/3Nc11_13t`) (sent_id: `deanon_TRAIN/3Nc11_13t_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie die Hofräte Univ.-Prof Dr. Neumayr und Dr. Jensik als weitere Richter in der Ordinationssache der Antragstellerin Waldzorval Technologien GmbH, Dr.-Kühne-Gasse 29, 9560 Albern, Österreich, vertreten durch Dr. Clemens Thiele, Rechtsanwalt in Salzburg, gegen die Antragsgegnerin Pflege Allemkraft GmbH, Schirmerstraße 61, 8967 Oberhausberg, Österreich, wegen Exekutionsführung nach § 355 EO, infolge Antrags gemäß § 28 JN den Beschluss gefasst:  Spruch Für die Bewilligung und die Vollziehung der beabsichtigten Unterlassungsexekution wird das Bezirksgericht Salzburg als örtlich zuständiges Gericht bestimmt.
@@ -6273,7 +6167,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als 
 - `Pflege Allemkraft GmbH` (organisation)
 - `Schirmerstraße 61, 8967 Oberhausberg, Österreich` (address)
 
-**Example 64** (doc_id: `deanon_TRAIN/3Nc2_19b`) (sent_id: `deanon_TRAIN/3Nc2_19b_3`)
+**Example 65** (doc_id: `deanon_TRAIN/3Nc2_19b`) (sent_id: `deanon_TRAIN/3Nc2_19b_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hoch als Vorsitzenden sowie die Hofräte Dr. Roch und Dr. Rassi als weitere Richter in der Pflegschaftssache der minderjährigen Cornelius Eggerling, Mutter: Laura Schrader, LLB, Vater: Werner Pelargus, infolge Vorlage zur Entscheidung nach § 111 Abs 2 JN, den Beschluss gefasst:  Spruch Der Akt wird dem Bezirksgericht Oberwart zurückgestellt.
@@ -6288,7 +6182,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hoch als Vorsi
 - `Laura Schrader, LLB` (person)
 - `Werner Pelargus` (person)
 
-**Example 65** (doc_id: `deanon_TRAIN/3Nc2_19b`) (sent_id: `deanon_TRAIN/3Nc2_19b_4`)
+**Example 66** (doc_id: `deanon_TRAIN/3Nc2_19b`) (sent_id: `deanon_TRAIN/3Nc2_19b_4`)
 
 
 Text Begründung: Das Bezirksgericht Oberwart übertrug mit Beschluss vom 19. Dezember 2018 die Pflegschaftssache gemäß § 111 JN an das Bezirksgericht Fürstenfeld, weil sich das Kind nunmehr ständig in dessen Sprengel aufhalte.
@@ -6297,7 +6191,7 @@ Text Begründung: Das Bezirksgericht Oberwart übertrug mit Beschluss vom 19. De
 |---|---|
 | `Bezirksgericht Oberwart` | `Bezirksgericht Oberwart` |
 
-**Example 66** (doc_id: `deanon_TRAIN/3Nc2_19b`) (sent_id: `deanon_TRAIN/3Nc2_19b_5`)
+**Example 67** (doc_id: `deanon_TRAIN/3Nc2_19b`) (sent_id: `deanon_TRAIN/3Nc2_19b_5`)
 
 
 Das Bezirksgericht Fürstenfeld lehnte die Übernahme der Zuständigkeit am 2. Jänner 2019 ab und sandte den Akt an das Bezirksgericht Oberwart zurück.
@@ -6306,7 +6200,7 @@ Das Bezirksgericht Fürstenfeld lehnte die Übernahme der Zuständigkeit am 2. J
 |---|---|
 | `Bezirksgericht Oberwart` | `Bezirksgericht Oberwart` |
 
-**Example 67** (doc_id: `deanon_TRAIN/3Ob1_20y`) (sent_id: `deanon_TRAIN/3Ob1_20y_9`)
+**Example 68** (doc_id: `deanon_TRAIN/3Ob1_20y`) (sent_id: `deanon_TRAIN/3Ob1_20y_9`)
 
 
 Der von den Klägern aufgrund dieses Urteils beim Bezirksgericht Melk eingebrachte, in erster Instanz erfolgreiche Antrag auf Bewilligung der Exekution gemäß § 350 EO zur Durchsetzung der Einverleibung der Dienstbarkeit wurde vom Landesgericht St. Pölten als Rekursgericht mit Beschluss vom 1. Februar 2018 mit der Begründung abgewiesen, dass sich die dem Titel angeschlossenen Pläne (Beilage ./B1 und ON 71) nicht ohne weiteres in Übereinstimmung bringen ließen, weshalb der Verlauf des Servitutswegs dem Titel nicht eindeutig entnommen werden könne.
@@ -6317,9 +6211,9 @@ Der von den Klägern aufgrund dieses Urteils beim Bezirksgericht Melk eingebrach
 
 **Missed by this rule (FN):**
 
-- `Landesgericht St.` (organisation)
+- `Landesgericht St. Pölten` (organisation)
 
-**Example 68** (doc_id: `deanon_TRAIN/3Ob203_11s`) (sent_id: `deanon_TRAIN/3Ob203_11s_9`)
+**Example 69** (doc_id: `deanon_TRAIN/3Ob203_11s`) (sent_id: `deanon_TRAIN/3Ob203_11s_9`)
 
 
 Am selben Tag langte eine von den Antragstellern selbst verfasste Berufung per Fax beim Bezirksgericht Saalfelden ein.
@@ -6328,7 +6222,7 @@ Am selben Tag langte eine von den Antragstellern selbst verfasste Berufung per F
 |---|---|
 | `Bezirksgericht Saalfelden` | `Bezirksgericht Saalfelden` |
 
-**Example 69** (doc_id: `deanon_TRAIN/4Nc18_11a`) (sent_id: `deanon_TRAIN/4Nc18_11a_3`)
+**Example 70** (doc_id: `deanon_TRAIN/4Nc18_11a`) (sent_id: `deanon_TRAIN/4Nc18_11a_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch die Senatspräsidentin Dr. Schenk als Vorsitzende und die Hofräte Dr. Vogel und Dr. Jensik als weitere Richter in der Rechtssache der klagenden Partei HochCloud GmbH, Piedro Temur, vertreten durch Dr. Christian Fuchshuber LL.M., Rechtsanwalt in Innsbruck, gegen die beklagte Partei SUI Pharma Consulting GmbH, Nancy Herz, vertreten durch Dr. Gerhard Strobich, Rechtsanwalt in Trofaiach, wegen 5.873,18 EUR sA, über den Delegierungsantrag der beklagten Partei den Beschluss gefasst:  Spruch Der Antrag, zur Verhandlung und Entscheidung in dieser Rechtssache anstelle des Bezirksgerichts Innsbruck das Bezirksgericht Leoben zu bestimmen, wird abgewiesen.
@@ -6344,7 +6238,7 @@ Kopf Der Oberste Gerichtshof hat durch die Senatspräsidentin Dr. Schenk als Vor
 - `SUI Pharma Consulting GmbH` (organisation)
 - `Nancy Herz` (person)
 
-**Example 70** (doc_id: `deanon_TRAIN/4Nc18_11a`) (sent_id: `deanon_TRAIN/4Nc18_11a_4`)
+**Example 71** (doc_id: `deanon_TRAIN/4Nc18_11a`) (sent_id: `deanon_TRAIN/4Nc18_11a_4`)
 
 
 Text Begründung: Die Klägerin mit Sitz in Innsbruck begehrt mit ihrer beim Bezirksgericht Innsbruck eingebrachten Klage 5.873,18 EUR sA für der Beklagten vereinbarungsgemäß erbrachte Reisedienstleistungen.
@@ -6353,7 +6247,7 @@ Text Begründung: Die Klägerin mit Sitz in Innsbruck begehrt mit ihrer beim Bez
 |---|---|
 | `Bezirksgericht Innsbruck` | `Bezirksgericht Innsbruck` |
 
-**Example 71** (doc_id: `deanon_TRAIN/4Nc18_11a`) (sent_id: `deanon_TRAIN/4Nc18_11a_8`)
+**Example 72** (doc_id: `deanon_TRAIN/4Nc18_11a`) (sent_id: `deanon_TRAIN/4Nc18_11a_8`)
 
 
 Die Beklagte beantragte die Delegierung der Rechtssache an das Bezirksgericht Leoben.
@@ -6362,7 +6256,7 @@ Die Beklagte beantragte die Delegierung der Rechtssache an das Bezirksgericht Le
 |---|---|
 | `Bezirksgericht Leoben` | `Bezirksgericht Leoben` |
 
-**Example 72** (doc_id: `deanon_TRAIN/4Nc18_11a`) (sent_id: `deanon_TRAIN/4Nc18_11a_14`)
+**Example 73** (doc_id: `deanon_TRAIN/4Nc18_11a`) (sent_id: `deanon_TRAIN/4Nc18_11a_14`)
 
 
 Das Bezirksgericht Innsbruck sprach sich gleichermaßen gegen die beantragte Delegierung aus, verwies auf die Möglichkeit der Zeugenvernehmung mittels Videokonferenz nach § 277 ZPO und (deswegen) auf den fehlenden Vorteil für die Parteien, der mit einer allfälligen Delegierung verbunden wäre.
@@ -6371,7 +6265,7 @@ Das Bezirksgericht Innsbruck sprach sich gleichermaßen gegen die beantragte Del
 |---|---|
 | `Bezirksgericht Innsbruck` | `Bezirksgericht Innsbruck` |
 
-**Example 73** (doc_id: `deanon_TRAIN/5Nc13_13a`) (sent_id: `deanon_TRAIN/5Nc13_13a_14`)
+**Example 74** (doc_id: `deanon_TRAIN/5Nc13_13a`) (sent_id: `deanon_TRAIN/5Nc13_13a_14`)
 
 
 Mit dem vorliegendenOrdinationsantragbegehren die Kläger, für die Rechtssache das Bezirksgericht Imst als örtlich zuständiges Gericht zu bestimmen.
@@ -6380,7 +6274,7 @@ Mit dem vorliegendenOrdinationsantragbegehren die Kläger, für die Rechtssache 
 |---|---|
 | `Bezirksgericht Imst` | `Bezirksgericht Imst` |
 
-**Example 74** (doc_id: `deanon_TRAIN/5Nc13_13a`) (sent_id: `deanon_TRAIN/5Nc13_13a_15`)
+**Example 75** (doc_id: `deanon_TRAIN/5Nc13_13a`) (sent_id: `deanon_TRAIN/5Nc13_13a_15`)
 
 
 Sie gestehen zu, dass das angerufene Bezirksgericht Imst nicht zufolge § 83 Abs 1 JN zuständig sei, weil der Bestandgegenstand nicht im Sprengel dieses Bezirksgerichts, sondern im Fürstentum Liechtenstein liege.
@@ -6389,7 +6283,7 @@ Sie gestehen zu, dass das angerufene Bezirksgericht Imst nicht zufolge § 83 Abs
 |---|---|
 | `Bezirksgericht Imst` | `Bezirksgericht Imst` |
 
-**Example 75** (doc_id: `deanon_TRAIN/5Nc15_20f`) (sent_id: `deanon_TRAIN/5Nc15_20f_4`)
+**Example 76** (doc_id: `deanon_TRAIN/5Nc15_20f`) (sent_id: `deanon_TRAIN/5Nc15_20f_4`)
 
 
 Kirsten Falterer, MA, vertreten durch Mag. Daniel Schöpf, Mag. Christian Maurer, Mag. Daniel Maurer, Rechtsanwälte in Salzburg, gegen die beklagte Partei Mona Gronmayer, BSc, vertreten durch die Steiner Anderwald Rechtsanwälte OG in Spittal an der Drau, wegen 28.017,16 EUR sA, über Vorlage des Akts AZ 3 C 361/20p des Bezirksgerichts Spittal an der Drau zur Entscheidung eines negativen Kompetenzkonflikts, den Beschluss gefasst:  Spruch Zur Fortführung dieser Rechtssache ist das Bezirksgericht Spittal an der Drau zuständig.
@@ -6403,7 +6297,7 @@ Kirsten Falterer, MA, vertreten durch Mag. Daniel Schöpf, Mag. Christian Maurer
 - `Kirsten Falterer, MA` (person)
 - `Mona Gronmayer, BSc` (person)
 
-**Example 76** (doc_id: `deanon_TRAIN/5Nc15_20f`) (sent_id: `deanon_TRAIN/5Nc15_20f_6`)
+**Example 77** (doc_id: `deanon_TRAIN/5Nc15_20f`) (sent_id: `deanon_TRAIN/5Nc15_20f_6`)
 
 
 Text Begründung: Mit der beim Bezirksgericht Salzburg eingebrachten Mahnklage begehrte der Kläger von der Beklagten die Zahlung von 28.017,16 EUR sA.
@@ -6412,7 +6306,7 @@ Text Begründung: Mit der beim Bezirksgericht Salzburg eingebrachten Mahnklage b
 |---|---|
 | `Bezirksgericht Salzburg` | `Bezirksgericht Salzburg` |
 
-**Example 77** (doc_id: `deanon_TRAIN/5Nc15_20f`) (sent_id: `deanon_TRAIN/5Nc15_20f_9`)
+**Example 78** (doc_id: `deanon_TRAIN/5Nc15_20f`) (sent_id: `deanon_TRAIN/5Nc15_20f_9`)
 
 
 In ihrem Einspruch gegen den vom Bezirksgericht Salzburg erlassenen Zahlungsbefehl erhob die Beklagte die Einrede der sachlichen und örtlichen Unzuständigkeit mit der Begründung, die Rechnungen stünden in einem tatsächlichen und rechtlichen Zusammenhang und seien daher zusammenzurechnen.
@@ -6502,55 +6396,7 @@ Das bisher zuständige Bezirksgericht werde daher die Interessen der Minderjähr
 
 > overlaps gold: 0  |  likely missing annotation: 1
 
-**Example 6** (doc_id: `deanon_TRAIN/10Nc2_12v`) (sent_id: `deanon_TRAIN/10Nc2_12v_3`)
-
-
-Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hradil als Vorsitzenden sowie die Hofräte Dr. Fellinger und Dr. Hoch als weitere Richter in der Rechtssache der klagenden Partei C. Dersudheim Digital GmbH, Taxlbergstraße 247, 8151 Rohrbach, Österreich, vertreten durch Dr. Carl Benkhofer, Rechtsanwalt in Wien, gegen die beklagte Partei Ingolf Grimpe, vertreten durch Greiml & Horwath Rechtsanwaltspartnerschaft in Graz, wegen 5.232 EUR sA, über den Delegierungsantrag der klagenden Partei im Verfahren AZ 14 C 1302/11a des Bezirksgerichts Graz-West in nichtöffentlicher Sitzung, den Beschluss gefasst:  Spruch Zur Verhandlung und Entscheidung in dieser Rechtssache wird anstelle des Bezirksgerichts Graz-West das Bezirksgericht Fünfhaus bestimmt.
-
-**False Positives:**
-
-- `Bezirksgericht Fünfhaus` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Dersudheim Digital GmbH`(organisation)
-- `Taxlbergstraße 247, 8151 Rohrbach, Österreich`(address)
-- `Ingolf Grimpe`(person)
-
-**Example 7** (doc_id: `deanon_TRAIN/10Nc2_12v`) (sent_id: `deanon_TRAIN/10Nc2_12v_9`)
-
-
-Die klagende Partei beantragt die Delegierung des Verfahrens vom Bezirksgericht Graz-West an das Bezirksgericht Fünfhaus.
-
-**False Positives:**
-
-- `Bezirksgericht Fünfhaus` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Bezirksgericht Graz`(organisation)
-
-**Example 8** (doc_id: `deanon_TRAIN/10Nc3_21d`) (sent_id: `deanon_TRAIN/10Nc3_21d_21`)
-
-
-Das Bezirksgericht Villach retournierte den Akt daraufhin an das Bezirksgericht Josefstadt mit dem Hinweis, dass der Akt vom Bezirksgericht Josefstadt dem gemeinsam übergeordneten Gericht vorzulegen sei (ON 30).
-
-**False Positives:**
-
-- `Bezirksgericht Josefstadt` — similar text (different position): `Bezirksgericht Josefstadt`
-
-> overlaps gold: 1  |  likely missing annotation: 0
-
-**Gold Entities:**
-
-- `Bezirksgericht Villach`(organisation)
-- `Bezirksgericht Josefstadt`(organisation)
-
-**Example 9** (doc_id: `deanon_TRAIN/10Ob21_15h`) (sent_id: `deanon_TRAIN/10Ob21_15h_17`)
+**Example 6** (doc_id: `deanon_TRAIN/10Ob21_15h`) (sent_id: `deanon_TRAIN/10Ob21_15h_17`)
 
 
 Mit Urteil des Bezirksgerichts Bezirksgericht St. Pölten vom 21. 5. 2013 wurde die Klägerin zur Zahlung von 6.183,92 EUR sA an Sanierungskosten sowie zur Zahlung der Prozesskosten an den Betreiber eines Hoch- und Niederseilparks verurteilt.
@@ -6565,7 +6411,7 @@ Mit Urteil des Bezirksgerichts Bezirksgericht St. Pölten vom 21. 5. 2013 wurde 
 
 - `Bezirksgericht St. Pölten`(organisation)
 
-**Example 10** (doc_id: `deanon_TRAIN/10Ob21_15h`) (sent_id: `deanon_TRAIN/10Ob21_15h_28`)
+**Example 7** (doc_id: `deanon_TRAIN/10Ob21_15h`) (sent_id: `deanon_TRAIN/10Ob21_15h_28`)
 
 
 Weiters habe sie der Klägerin Zinsen und Prozesskosten, zu deren Zahlung sie im Verfahren vor dem Bezirksgericht Bezirksgericht Meidling verurteilt worden war, sowie die Kosten deren eigener Vertretung in diesem Verfahren zu ersetzen.
@@ -6580,7 +6426,7 @@ Weiters habe sie der Klägerin Zinsen und Prozesskosten, zu deren Zahlung sie im
 
 - `Bezirksgericht Meidling`(organisation)
 
-**Example 11** (doc_id: `deanon_TRAIN/10ObS150_17g`) (sent_id: `deanon_TRAIN/10ObS150_17g_10`)
+**Example 8** (doc_id: `deanon_TRAIN/10ObS150_17g`) (sent_id: `deanon_TRAIN/10ObS150_17g_10`)
 
 
 Für ihn ist ein Sachwalter bestellt, der seit 2011 alle Angelegenheiten (§ 268 Abs 3 Z 3 ABGB) zu besorgen hat (siehe den Beschluss des Bezirksgericht Bezirksgericht Mattersburg vom 15.
@@ -6595,7 +6441,7 @@ Für ihn ist ein Sachwalter bestellt, der seit 2011 alle Angelegenheiten (§ 268
 
 - `Bezirksgericht Mattersburg`(organisation)
 
-**Example 12** (doc_id: `deanon_TRAIN/12Os16_19y_12Os17_19w_12Os18_19t_12Os19_19i_`) (sent_id: `deanon_TRAIN/12Os16_19y_12Os17_19w_12Os18_19t_12Os19_19i__13`)
+**Example 9** (doc_id: `deanon_TRAIN/12Os16_19y_12Os17_19w_12Os18_19t_12Os19_19i_`) (sent_id: `deanon_TRAIN/12Os16_19y_12Os17_19w_12Os18_19t_12Os19_19i__13`)
 
 
 Mit Abwesenheitsurteil vom 26. September 2018 (ON 25) sprach das Bezirksgericht Leopoldstadt Nenad Pentzold des Vergehens der Veruntreuung nach § 133 Abs 1 StGB schuldig und verurteilte ihn zu einer Freiheitsstrafe.
@@ -6610,7 +6456,7 @@ Mit Abwesenheitsurteil vom 26. September 2018 (ON 25) sprach das Bezirksgericht 
 
 - `Pentzold`(person)
 
-**Example 13** (doc_id: `deanon_TRAIN/13Os109_17d_13Os110_17a_`) (sent_id: `deanon_TRAIN/13Os109_17d_13Os110_17a__17`)
+**Example 10** (doc_id: `deanon_TRAIN/13Os109_17d_13Os110_17a_`) (sent_id: `deanon_TRAIN/13Os109_17d_13Os110_17a__17`)
 
 
 Indem das Bezirksgericht über die Jusepeitis&Niemöller Bildung GmbH eine (das Höchstmaß von somit 55 Tagessätzen übersteigende) Verbandsgeldbuße von 70 Tagessätzen verhängte, verletzte es § 4 Abs 3 VbVG).
@@ -6625,7 +6471,7 @@ Indem das Bezirksgericht über die Jusepeitis&Niemöller Bildung GmbH eine (das 
 
 - `Jusepeitis&Niemöller Bildung GmbH`(organisation)
 
-**Example 14** (doc_id: `deanon_TRAIN/13Os7_20h_13Os8_20f_`) (sent_id: `deanon_TRAIN/13Os7_20h_13Os8_20f__11`)
+**Example 11** (doc_id: `deanon_TRAIN/13Os7_20h_13Os8_20f_`) (sent_id: `deanon_TRAIN/13Os7_20h_13Os8_20f__11`)
 
 
 Im Protokoll über die Hauptverhandlung vor dem Bezirksgericht Innere Stadt Wien ist als Tag der Hauptverhandlung „23. 11. 2018“ angeführt (ON 18 S 1).
@@ -6640,7 +6486,7 @@ Im Protokoll über die Hauptverhandlung vor dem Bezirksgericht Innere Stadt Wien
 
 - `Bezirksgericht Innere Stadt Wien`(organisation)
 
-**Example 15** (doc_id: `deanon_TRAIN/13Os99_19m`) (sent_id: `deanon_TRAIN/13Os99_19m_12`)
+**Example 12** (doc_id: `deanon_TRAIN/13Os99_19m`) (sent_id: `deanon_TRAIN/13Os99_19m_12`)
 
 
 Ein anderes Verständnis legt – entgegen der vom Berufungsgericht mit Verweis auf eine Literaturstelle (Hinterhofer/Oshidari, System des österreichischen Strafverfahrens Rz 10.89) vertretenen Ansicht – auch die historische Interpretation nicht nahe: Die im Verfahren vor dem Bezirksgericht schon in der Stammfassung der StPO vorgesehene Rechtsmittellegitimation des Privatbeteiligten (zum Nachteil des Angeklagten) wurde von der Rechtsprechung und überwiegend im Schrifttum zur früheren Rechtslage (mit Blick auf § 366 Abs 2 letzter Satz StPO idF vor BGBl 1978/169) dahin ausgelegt, dass dieser Berufung (nur) dann habe ergreifen können, wenn das Erstgericht eine Entschädigung (zumindest teilweise) zugesprochen hatte, nicht jedoch bei vollständiger Verweisung auf den Zivilrechtsweg.
@@ -6651,7 +6497,7 @@ Ein anderes Verständnis legt – entgegen der vom Berufungsgericht mit Verweis 
 
 > overlaps gold: 0  |  likely missing annotation: 1
 
-**Example 16** (doc_id: `deanon_TRAIN/18ONc1_21y`) (sent_id: `deanon_TRAIN/18ONc1_21y_16`)
+**Example 13** (doc_id: `deanon_TRAIN/18ONc1_21y`) (sent_id: `deanon_TRAIN/18ONc1_21y_16`)
 
 
 [5] Aufgrund des Verweises auf § 37 Abs 2 bis 5 JN ist für einen solchen Antrag das Bezirksgericht zuständig, in dessen Sprengel die Amtshandlung vorgenommen werden soll (HausmaningerinFasching/Konecny3§ 602 ZPO Rz 30).
@@ -6662,7 +6508,7 @@ Ein anderes Verständnis legt – entgegen der vom Berufungsgericht mit Verweis 
 
 > overlaps gold: 0  |  likely missing annotation: 1
 
-**Example 17** (doc_id: `deanon_TRAIN/1Ob55_13i`) (sent_id: `deanon_TRAIN/1Ob55_13i_6`)
+**Example 14** (doc_id: `deanon_TRAIN/1Ob55_13i`) (sent_id: `deanon_TRAIN/1Ob55_13i_6`)
 
 
 Mit der am 20. 8. 2012 beim Bezirksgericht Bezirksgericht Hallein eingebrachten Klage begehrte der Minderjährige von einem in Deutschland wohnhaften minderjährigen Beklagten Schadenersatz von 3.850 EUR sA und die Feststellung seiner Haftung für sämtliche aus dessen Steinwurf resultierenden Spät- und Dauerfolgen.
@@ -6677,7 +6523,7 @@ Mit der am 20. 8. 2012 beim Bezirksgericht Bezirksgericht Hallein eingebrachten 
 
 - `Bezirksgericht Hallein`(organisation)
 
-**Example 18** (doc_id: `deanon_TRAIN/1Ob55_13i`) (sent_id: `deanon_TRAIN/1Ob55_13i_69`)
+**Example 15** (doc_id: `deanon_TRAIN/1Ob55_13i`) (sent_id: `deanon_TRAIN/1Ob55_13i_69`)
 
 
 8. 2012 beim gemäß Art 5 Nr 3 EuGVVO zuständigen Bezirksgericht Bezirksgericht Weiz (Gericht des Ortes, an dem das schädigende Ereignis eingetreten ist) im Elektronischen Rechtsverkehr eingebracht.
@@ -6692,7 +6538,7 @@ Mit der am 20. 8. 2012 beim Bezirksgericht Bezirksgericht Hallein eingebrachten 
 
 - `Bezirksgericht Weiz`(organisation)
 
-**Example 19** (doc_id: `deanon_TRAIN/2Nc17_17y`) (sent_id: `deanon_TRAIN/2Nc17_17y_4`)
+**Example 16** (doc_id: `deanon_TRAIN/2Nc17_17y`) (sent_id: `deanon_TRAIN/2Nc17_17y_4`)
 
 
 Text Begründung: Die klagende Partei begehrt in ihrer beim Bezirksgericht Innere Stadt Wien am allgemeinen Gerichtsstand der beklagten Partei eingebrachten Klage Schadenersatz nach einem Verkehrsunfall auf der B 178 im Ortsgebiet von Going am Wilden Kaiser.
@@ -6707,7 +6553,7 @@ Text Begründung: Die klagende Partei begehrt in ihrer beim Bezirksgericht Inner
 
 - `Bezirksgericht Innere Stadt Wien`(organisation)
 
-**Example 20** (doc_id: `deanon_TRAIN/2Nc17_17y`) (sent_id: `deanon_TRAIN/2Nc17_17y_11`)
+**Example 17** (doc_id: `deanon_TRAIN/2Nc17_17y`) (sent_id: `deanon_TRAIN/2Nc17_17y_11`)
 
 
 Das Bezirksgericht Innere Stadt Wien hält die Delegierung für zweckmäßig.
@@ -6722,7 +6568,7 @@ Das Bezirksgericht Innere Stadt Wien hält die Delegierung für zweckmäßig.
 
 - `Bezirksgericht Innere Stadt Wien`(organisation)
 
-**Example 21** (doc_id: `deanon_TRAIN/3Nc11_13t`) (sent_id: `deanon_TRAIN/3Nc11_13t_10`)
+**Example 18** (doc_id: `deanon_TRAIN/3Nc11_13t`) (sent_id: `deanon_TRAIN/3Nc11_13t_10`)
 
 
 Für eine Unterlassungsexekution ist gemäß § 18 Z 4 zweiter Fall EO jenes Bezirksgericht zuständig, in dessen Sprengel die erste Exekutionshandlung, nämlich die Zustellung der Exekutionsbewilligung, zu bewirken ist.
@@ -6733,7 +6579,7 @@ Für eine Unterlassungsexekution ist gemäß § 18 Z 4 zweiter Fall EO jenes Bez
 
 > overlaps gold: 0  |  likely missing annotation: 1
 
-**Example 22** (doc_id: `deanon_TRAIN/3Nc2_19b`) (sent_id: `deanon_TRAIN/3Nc2_19b_4`)
+**Example 19** (doc_id: `deanon_TRAIN/3Nc2_19b`) (sent_id: `deanon_TRAIN/3Nc2_19b_4`)
 
 
 Text Begründung: Das Bezirksgericht Oberwart übertrug mit Beschluss vom 19. Dezember 2018 die Pflegschaftssache gemäß § 111 JN an das Bezirksgericht Fürstenfeld, weil sich das Kind nunmehr ständig in dessen Sprengel aufhalte.
@@ -6748,7 +6594,7 @@ Text Begründung: Das Bezirksgericht Oberwart übertrug mit Beschluss vom 19. De
 
 - `Bezirksgericht Oberwart`(organisation)
 
-**Example 23** (doc_id: `deanon_TRAIN/3Nc2_19b`) (sent_id: `deanon_TRAIN/3Nc2_19b_5`)
+**Example 20** (doc_id: `deanon_TRAIN/3Nc2_19b`) (sent_id: `deanon_TRAIN/3Nc2_19b_5`)
 
 
 Das Bezirksgericht Fürstenfeld lehnte die Übernahme der Zuständigkeit am 2. Jänner 2019 ab und sandte den Akt an das Bezirksgericht Oberwart zurück.
@@ -6763,7 +6609,7 @@ Das Bezirksgericht Fürstenfeld lehnte die Übernahme der Zuständigkeit am 2. J
 
 - `Bezirksgericht Oberwart`(organisation)
 
-**Example 24** (doc_id: `deanon_TRAIN/4Nc4_17a`) (sent_id: `deanon_TRAIN/4Nc4_17a_5`)
+**Example 21** (doc_id: `deanon_TRAIN/4Nc4_17a`) (sent_id: `deanon_TRAIN/4Nc4_17a_5`)
 
 
 Für die Bewilligung und die Vollziehung der beabsichtigten Exekution gegen die Zweitbeklagte auf Urteilsveröffentlichung wird das Bezirksgericht Innere Stadt Wien als örtlich zuständiges Gericht bestimmt.
@@ -6778,7 +6624,7 @@ Für die Bewilligung und die Vollziehung der beabsichtigten Exekution gegen die 
 
 - `Bezirksgericht Innere Stadt Wien`(organisation)
 
-**Example 25** (doc_id: `deanon_TRAIN/4Nc4_17a`) (sent_id: `deanon_TRAIN/4Nc4_17a_8`)
+**Example 22** (doc_id: `deanon_TRAIN/4Nc4_17a`) (sent_id: `deanon_TRAIN/4Nc4_17a_8`)
 
 
 Mit dem gegenständlichen Ordinationsantrag beantragen die Klägerinnen, der Oberste Gerichtshof möge das Bezirksgericht Innere Stadt Wien oder ein anderes Bezirksgericht als örtlich zuständiges Gericht für die Durchsetzung des Veröffentlichungsanspruchs gemäß § 354 EO gegen die Zweitbeklagte bestimmen.
@@ -6794,7 +6640,7 @@ Mit dem gegenständlichen Ordinationsantrag beantragen die Klägerinnen, der Obe
 
 - `Bezirksgericht Innere Stadt Wien`(organisation)
 
-**Example 26** (doc_id: `deanon_TRAIN/4Nc4_17a`) (sent_id: `deanon_TRAIN/4Nc4_17a_19`)
+**Example 23** (doc_id: `deanon_TRAIN/4Nc4_17a`) (sent_id: `deanon_TRAIN/4Nc4_17a_19`)
 
 
 Dem Ordinationsantrag ist somit stattzugeben und zweckmäßigerweise das Bezirksgericht Innere Stadt Wien als zuständiges Gericht zu bestimmen.
@@ -6815,7 +6661,7 @@ Dem Ordinationsantrag ist somit stattzugeben und zweckmäßigerweise das Bezirks
 
 ## `Regional Court Pattern`
 
-**F1:** 0.185 | **Precision:** 0.670 | **Recall:** 0.108  
+**F1:** 0.180 | **Precision:** 0.670 | **Recall:** 0.104  
 
 **Format:** `regex`  
 **Rule ID:** `8426a1d3`  
@@ -6832,13 +6678,13 @@ Matches Landesgericht (LG) followed by location.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.670 | 0.108 | 0.185 | 94 | 63 | 31 |
+| 0.670 | 0.104 | 0.180 | 94 | 63 | 31 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 63 | 31 | 461 |
+| `organisation` | 63 | 31 | 478 |
 
 </details>
 
@@ -7663,13 +7509,13 @@ Mit Erkenntnis des Obersten Gerichtshofs vom 30. August 2011, AZ 14 Os 48/11g (O
 
 **False Positives:**
 
-- `Landesgericht St` — partial — pred is substring of gold: `Landesgericht St.`
+- `Landesgericht St` — partial — pred is substring of gold: `Landesgericht St. Pölten`
 
 > overlaps gold: 1  |  likely missing annotation: 0
 
 **Gold Entities:**
 
-- `Landesgericht St.`(organisation)
+- `Landesgericht St. Pölten`(organisation)
 
 **Example 13** (doc_id: `deanon_TRAIN/15Os110_17s`) (sent_id: `deanon_TRAIN/15Os110_17s_10`)
 
@@ -7757,14 +7603,14 @@ Der von den Klägern aufgrund dieses Urteils beim Bezirksgericht Melk eingebrach
 
 **False Positives:**
 
-- `Landesgericht St` — partial — pred is substring of gold: `Landesgericht St.`
+- `Landesgericht St` — partial — pred is substring of gold: `Landesgericht St. Pölten`
 
 > overlaps gold: 1  |  likely missing annotation: 0
 
 **Gold Entities:**
 
 - `Bezirksgericht Melk`(organisation)
-- `Landesgericht St.`(organisation)
+- `Landesgericht St. Pölten`(organisation)
 
 **Example 20** (doc_id: `deanon_TRAIN/4Fsc1_10z`) (sent_id: `deanon_TRAIN/4Fsc1_10z_5`)
 
@@ -7913,9 +7759,177 @@ Das Landesgericht für Zivilrechtssachen Wien trug dem Beklagten mit Beschluss v
 
 ---
 
+## `Court with Location`
+
+**F1:** 0.058 | **Precision:** 1.000 | **Recall:** 0.030  
+
+**Format:** `regex`  
+**Rule ID:** `971aef3b`  
+**Description:**
+Matches court names followed by location suffixes like 'Außenstelle Linz'.
+
+**Content:**
+```
+(?i)\b((?:Bundesfinanzgericht|Verwaltungsgerichtshof|Verfassungsgerichtshof)(?:s?)(?:,\s+Außenstelle\s+[A-Za-z]+)?)\b
+```
+
+<details>
+<summary>📊 Detailed Metrics</summary>
+
+| Precision | Recall | F1 | Total Predicted | TP | FP |
+|---|---|---|---|---|---|
+| 1.000 | 0.030 | 0.058 | 18 | 18 | 0 |
+
+**Per-Class Breakdown**
+
+| Class | TP | FP | FN |
+|---|---|---|---|
+| `organisation` | 18 | 0 | 505 |
+
+</details>
+
+---
+
+<details>
+<summary>✅ Worked</summary>
+
+**Example 0** (doc_id: `deanon_TRAIN/10Ob23_18g`) (sent_id: `deanon_TRAIN/10Ob23_18g_100`)
+
+
+Die nach den Vorgaben des Verfassungsgerichtshofs gebotene steuerliche Entlastung des Geldunterhaltspflichtigen basiert auf dem Modell der getrennten Haushaltsführung (vgl RIS-Justiz RS0117015), in dem ein Elternteil seine Unterhaltspflicht durch Betreuungsleistungen und der andere durch Geldleistungen (allenfalls kombiniert mit anzurechnenden Naturalleistungen) erfüllt.
+
+| Predicted | Gold |
+|---|---|
+| `Verfassungsgerichtshofs` | `Verfassungsgerichtshofs` |
+
+**Example 1** (doc_id: `deanon_TRAIN/3Ob26_23d`) (sent_id: `deanon_TRAIN/3Ob26_23d_48`)
+
+
+Die Klägerin führt dagegen ins Treffen, dass die beschlussmäßige Umwidmung eines Grundstücks nach der Rechtsprechung des Verfassungsgerichtshofs erst dann erfolgen könne, wenn die Gemeinde bereits Eigentümerin des betroffenen Grundstücks sei; nur wenn es sich beim Grundstück um eine Privatstraße gehandelt hätte, die über Antrag des Eigentümers umgewidmet werden sollte, wäre eine Beschlussfassung nach § 27 Abs 2 Sbg LStG 1966 durch die Gemeinde vor Eigentumserwerb möglich gewesen.
+
+| Predicted | Gold |
+|---|---|
+| `Verfassungsgerichtshofs` | `Verfassungsgerichtshofs` |
+
+**Example 2** (doc_id: `deanon_TRAIN/3Ob26_23d`) (sent_id: `deanon_TRAIN/3Ob26_23d_51`)
+
+
+Der von der Klägerin in diesem Zusammenhang zitierten Entscheidung des Verfassungsgerichtshofs vom 27. September 2003, V 108/01, lag nämlich der Sachverhalt zugrunde, dass der dort streitgegenständliche (Verbindungs-)Weg im Zeitpunkt der (vor der Enteignung des Grundstücks erfolgten) Widmung als Gemeindestraße schon seit Jahren als Privatstraße diente.
+
+| Predicted | Gold |
+|---|---|
+| `Verfassungsgerichtshofs` | `Verfassungsgerichtshofs` |
+
+**Example 3** (doc_id: `deanon_TRAIN/3Ob26_23d`) (sent_id: `deanon_TRAIN/3Ob26_23d_52`)
+
+
+Vor diesem Hintergrund sprach der Verfassungsgerichtshof aus, dass durch die Öffentlicherklärung einesin der Natur schon bestehendenWeges durch Verordnung mangels Eigentumserwerbs in gesetzwidriger Weise Gemeingebrauch begründet werde.
+
+| Predicted | Gold |
+|---|---|
+| `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
+
+**Example 4** (doc_id: `deanon_TRAIN/5Ob171_22s`) (sent_id: `deanon_TRAIN/5Ob171_22s_67`)
+
+
+In den vonRohregger(aaO) zitierten Entscheidungen bejahen auch der Verfassungsgerichtshof (B 1050/09) und der Verwaltungsgerichtshof (AW 2012/01/0032) die Bedeutung des § 10 RAO und der Vorgängerbestimmung des § 10 RL-BA 2015 für das öffentliche Interesse an dem Verbot der Doppelvertretung, weil es dem Schutz der durch einen Rechtsanwalt vertretenen Parteien diene, seine Einhaltung für das zwischen Rechtsanwalt und Klient bestehende Treueverhältnis für wesentlich erachtet werde und für das allgemeine Bild der Anwaltschaft in der Öffentlichkeit von Bedeutung sei.
+
+| Predicted | Gold |
+|---|---|
+| `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
+| `Verwaltungsgerichtshof` | `Verwaltungsgerichtshof` |
+
+**Example 5** (doc_id: `deanon_TRAIN/5Ob31_16v`) (sent_id: `deanon_TRAIN/5Ob31_16v_15`)
+
+
+Weiters wolle die Rechtssache gemäß Art 89 B-VG dem Verfassungsgerichtshof sowie gemäß Art 267 AEUV dem Europäischen Gerichtshof zur Prüfung vorgelegt werden.
+
+| Predicted | Gold |
+|---|---|
+| `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
+
+**Example 6** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_14`)
+
+
+Der gesatzte Kollektivvertrag des Roten Kreuzes sei unanwendbar, da der Verwaltungsgerichtshof mit Erkenntnis vom 4. 9. 2013, 2011/08/0230 dem Österreichischen Roten Kreuz die Kollektivvertragsfähigkeit „de facto“ aberkannt habe, sodass die Verordnung des Bundeseinigungsamtes „rechtswidrig und ungültig“ sei.
+
+| Predicted | Gold |
+|---|---|
+| `Verwaltungsgerichtshof` | `Verwaltungsgerichtshof` |
+
+**Example 7** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_28`)
+
+
+3. Der Verwaltungsgerichtshof hat mit seinem Erkenntnis vom 4. 9. 2013, 2011/08/0230 = DRdA 2014/27 (Felten) = ZAS 2014/13 (Tomandl) dem Österreichischen Roten Kreuz die Kollektivvertragsfähigkeit gemäß § 5 Abs 3 ArbVG nicht aberkannt.
+
+| Predicted | Gold |
+|---|---|
+| `Verwaltungsgerichtshof` | `Verwaltungsgerichtshof` |
+
+**Example 8** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_29`)
+
+
+Der Verwaltungsgerichtshof behob allein einen Bescheid, mit dem ein Antrag auf eine solche Aberkennung abgewiesen wurde, wegen Rechtswidrigkeit seines Inhalts (worauf auch der von der Beklagten angerufene Verfassungsgerichtshof in Punkt 2.4.5.3 seines Erkenntnisses ausdrücklich hinwies).
+
+| Predicted | Gold |
+|---|---|
+| `Verwaltungsgerichtshof` | `Verwaltungsgerichtshof` |
+| `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
+
+**Example 9** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_30`)
+
+
+Weil in der Folge abermals ein abweisender Bescheid erging, der sodann in Rechtskraft erwuchs (siehe erneut in Punkt 2.4.5.3 des VfGH-Erkenntnisses), ist es letzten Endes auch unrichtig, dass der Verwaltungsgerichtshof dem Roten Kreuz „de facto“ die Kollektivvertragsfähigkeit aberkannt hätte.
+
+| Predicted | Gold |
+|---|---|
+| `Verwaltungsgerichtshof` | `Verwaltungsgerichtshof` |
+
+**Example 10** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_31`)
+
+
+Von dieser Sachlage ausgehend wies der von der Beklagten in diesem Verfahren mittels eines Parteiantrags auf Normenkontrolle angerufene Verfassungsgerichtshof den Antrag, die in BGBl II 2013/120 kundgemachte Verordnung des Bundeseinigungsamtes zur Gänze als verfassungswidrig aufzuheben, mit der Begründung ab, die Bedenken der Beklagten beruhten auf der nicht zutreffenden Prämisse, das Österreichische Rote Kreuz habe seine Kollektivvertragsfähigkeit durch das Erkenntnis des Verwaltungsgerichtshofs 2011/08/0230 „de facto“ verloren (Punkt 2.5 des Erkenntnisses).
+
+| Predicted | Gold |
+|---|---|
+| `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
+| `Verwaltungsgerichtshofs` | `Verwaltungsgerichtshofs` |
+
+**Example 11** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_33`)
+
+
+4. Die Frage, ob auch ohne Aufhebung der Verordnung BGBl II 2013/120 durch den Verfassungsgerichtshof allein dadurch, dass dem Österreichischen Roten Kreuz die Kollektivvertragsfähigkeit vom Bundeseinigungsamt mittels Bescheids aberkannt wird, die Satzung des Kollektivvertrags ihre Geltung verliert (vgl insbFriedrich, ASoK 2013, 460 f), stellt sich nicht, weil kein solcher Bescheid vorliegt.
+
+| Predicted | Gold |
+|---|---|
+| `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
+
+**Example 12** (doc_id: `deanon_TRAIN/8ObA72_19z`) (sent_id: `deanon_TRAIN/8ObA72_19z_12`)
+
+
+2. Dabei konnte sich der Oberste Gerichtshof auf einschlägige Judikatur sowohl des Verfassungsgerichtshofs als auch des EuGH stützen: 2.1 Der Verfassungsgerichtshof hat in seinem Erkenntnis G 450/2015 ua Parteianträge von ÖBB-Bediensteten (unter anderem auch des Klägers) abgewiesen, die § 53a und § 56 Abs 18 bis 24 BundesbahnG je idF BGBl I Nr 64/2015 als verfassungswidrig aufzuheben.
+
+| Predicted | Gold |
+|---|---|
+| `Verfassungsgerichtshofs` | `Verfassungsgerichtshofs` |
+| `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
+
+**Example 13** (doc_id: `deanon_TRAIN/9ObA27_15h`) (sent_id: `deanon_TRAIN/9ObA27_15h_7`)
+
+
+Ihr Antrag auf Gesetzesprüfung hinsichtlich der inzwischen aufgelösten Berufungskommission und eine Eventualbeschwerde seien beim Verfassungsgerichtshof anhängig.
+
+| Predicted | Gold |
+|---|---|
+| `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
+
+</details>
+
+---
+
 ## `Generic GmbH Entity`
 
-**F1:** 0.057 | **Precision:** 0.145 | **Recall:** 0.036  
+**F1:** 0.056 | **Precision:** 0.145 | **Recall:** 0.035  
 
 **Format:** `regex`  
 **Rule ID:** `0d4e88c9`  
@@ -7932,13 +7946,13 @@ Matches company names ending in GmbH, AG, KG, etc., with strict word boundaries 
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.145 | 0.036 | 0.057 | 145 | 21 | 124 |
+| 0.145 | 0.035 | 0.056 | 145 | 21 | 124 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 21 | 124 | 563 |
+| `organisation` | 21 | 124 | 583 |
 
 </details>
 
@@ -9422,7 +9436,7 @@ Wenn nun kraft ausdrücklicher gesetzlicher Vorschrift gemeinnützige Bauvereini
 
 ## `Company Name Without Suffix`
 
-**F1:** 0.051 | **Precision:** 0.086 | **Recall:** 0.036  
+**F1:** 0.049 | **Precision:** 0.086 | **Recall:** 0.035  
 
 **Format:** `regex`  
 **Rule ID:** `c8608e27`  
@@ -9439,13 +9453,13 @@ Matches company names that do not end in a standard suffix like GmbH/AG but are 
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.086 | 0.036 | 0.051 | 244 | 21 | 223 |
+| 0.086 | 0.035 | 0.049 | 244 | 21 | 223 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 21 | 223 | 563 |
+| `organisation` | 21 | 223 | 583 |
 
 </details>
 
@@ -10895,18 +10909,18 @@ Aber selbst wenn die Beklagte die Gesellschaft aufgrund eines aus der gleichzeit
 
 ---
 
-## `Court with Location`
+## `Bank and Other Org`
 
-**F1:** 0.033 | **Precision:** 0.556 | **Recall:** 0.017  
+**F1:** 0.045 | **Precision:** 0.667 | **Recall:** 0.023  
 
 **Format:** `regex`  
-**Rule ID:** `971aef3b`  
+**Rule ID:** `53220dfe`  
 **Description:**
-Matches court names followed by location suffixes like 'Außenstelle Linz'.
+Matches specific bank names and other organizations like 'Reinemut + Smoch Handel' that don't fit GmbH/AG patterns.
 
 **Content:**
 ```
-(?i)\b((?:Bundesfinanzgericht|Verwaltungsgerichtshof|Verfassungsgerichtshof)(?:s?)(?:,\s+Außenstelle\s+[A-Za-z]+)?)\b
+(?i)\b((?:Raiffeisenbank\s+[A-Za-z]+|Reinemut\s+\+\s+Smoch\s+Handel|SENECURA|SeneCura|ÖBB|PVA|Bezirkshauptmannschaft\s+[A-Za-z]+|Versorgungskasse\s+Deutscher\s+Unternehmen\s+VVaG|Deutschen\s+Rentenversicherung\s+Bund|Pensionsversicherungsanstalt\s+Wien|Krankenpflegevereins\s+Bludenz|Imre\s+\&\s+Schaffer\s+Rechtsanwälte\s+OG|TAXCOACH\s+Wirtschaftsprüfung\s+und\s+Steuerberatung\s+GmbH\s*&\s*Co\s*KG|BKS\s+Steuerberatung\s+GmbH\s*&\s*Co\s*KG|Dr\.\s+Roland\s+Gabl\s+Rechtsanwalts-\s+Kommandit-Partnerschaft|\u201e\u00d6BUG\u201c\s+DR\.\s+Nikolaus\s+Wirtschaftstreuhand\s+GmbH\s*-\s+Wirtschaftsprüfungs-\s+und\s+Steuerberatungsgesellschaft|How\s+to\s+spend\s+it\s+Verlag\s+GmbH|INET\s+Internet\s+Service\s+GmbH|INET\s+System\s+Informations\s+GmbH|Talwerk\s+Logistik\s+Holding\s+GMBH|InnMarine\s+GMBH|Mittel\s+Unisyn\s+GMBH|Bärs\s+\&\s+Walterscheidt\s+Handel\s+GMBH|Ober\s+Lemostnor\s+AG|Vennes\s+Recycling\s+AG|HPS\s+Hergovits,\s+Pinkel\s+\&\s+Schnabl\s+Steuerberatungs\s+GmbH|Reinemut\s+\+\s+Smoch\s+Handel|Zollamt\s+Österreich|Amt\s+für\s+Betrugsbekämpfung\s+als\s+Finanzstrafbehörde|Verfassungsgerichtshof))\b
 ```
 
 <details>
@@ -10914,13 +10928,13 @@ Matches court names followed by location suffixes like 'Außenstelle Linz'.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.556 | 0.017 | 0.033 | 18 | 10 | 8 |
+| 0.667 | 0.023 | 0.045 | 21 | 14 | 7 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 10 | 8 | 497 |
+| `organisation` | 14 | 7 | 512 |
 
 </details>
 
@@ -10929,95 +10943,179 @@ Matches court names followed by location suffixes like 'Außenstelle Linz'.
 <details>
 <summary>✅ Worked</summary>
 
-**Example 0** (doc_id: `deanon_TRAIN/10Ob23_18g`) (sent_id: `deanon_TRAIN/10Ob23_18g_100`)
+**Example 0** (doc_id: `deanon_TRAIN/10Ob23_14a`) (sent_id: `deanon_TRAIN/10Ob23_14a_3`)
 
 
-Die nach den Vorgaben des Verfassungsgerichtshofs gebotene steuerliche Entlastung des Geldunterhaltspflichtigen basiert auf dem Modell der getrennten Haushaltsführung (vgl RIS-Justiz RS0117015), in dem ein Elternteil seine Unterhaltspflicht durch Betreuungsleistungen und der andere durch Geldleistungen (allenfalls kombiniert mit anzurechnenden Naturalleistungen) erfüllt.
-
-| Predicted | Gold |
-|---|---|
-| `Verfassungsgerichtshofs` | `Verfassungsgerichtshofs` |
-
-**Example 1** (doc_id: `deanon_TRAIN/3Ob26_23d`) (sent_id: `deanon_TRAIN/3Ob26_23d_48`)
-
-
-Die Klägerin führt dagegen ins Treffen, dass die beschlussmäßige Umwidmung eines Grundstücks nach der Rechtsprechung des Verfassungsgerichtshofs erst dann erfolgen könne, wenn die Gemeinde bereits Eigentümerin des betroffenen Grundstücks sei; nur wenn es sich beim Grundstück um eine Privatstraße gehandelt hätte, die über Antrag des Eigentümers umgewidmet werden sollte, wäre eine Beschlussfassung nach § 27 Abs 2 Sbg LStG 1966 durch die Gemeinde vor Eigentumserwerb möglich gewesen.
+Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hradil als Vorsitzenden, die Hofräte Dr. Fellinger, Dr. Hoch, Dr. Schramm und die Hofrätin Dr. Fichtenau als weitere Richter in der Pflegschaftssache des minderjährigen Aurelia von der Lei, geboren am 10. September 1997, in Pflege und Erziehung der Mutter Univ.-Prof.in Marceline Siladji, vertreten durch das Land Oberösterreich als Kinder- und Jugendhilfeträger (Bezirkshauptmannschaft Gmunden, 4810 Gmunden, Esplanade 10), wegen Unterhaltsvorschuss, über den Revisionsrekurs des Bundes, vertreten durch den Präsidenten des Oberlandesgerichts Linz, gegen den Beschluss des Landesgerichts Wels als Rekursgericht vom 15. Jänner 2014, GZ 21 R 298/13t-38, womit der Beschluss des Bezirksgerichts Gmunden vom 18. Oktober 2013, GZ 1 Pu 223/09k-33, bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Dem Revisionsrekurs wird nicht Folge gegeben.
 
 | Predicted | Gold |
 |---|---|
-| `Verfassungsgerichtshofs` | `Verfassungsgerichtshofs` |
+| `Bezirkshauptmannschaft Gmunden` | `Bezirkshauptmannschaft Gmunden` |
 
-**Example 2** (doc_id: `deanon_TRAIN/3Ob26_23d`) (sent_id: `deanon_TRAIN/3Ob26_23d_51`)
+**Missed by this rule (FN):**
+
+- `Aurelia von der Lei` (person)
+- `Univ.-Prof.in Marceline Siladji` (person)
+
+**Example 1** (doc_id: `deanon_TRAIN/10Ob2_14p`) (sent_id: `deanon_TRAIN/10Ob2_14p_3`)
 
 
-Der von der Klägerin in diesem Zusammenhang zitierten Entscheidung des Verfassungsgerichtshofs vom 27. September 2003, V 108/01, lag nämlich der Sachverhalt zugrunde, dass der dort streitgegenständliche (Verbindungs-)Weg im Zeitpunkt der (vor der Enteignung des Grundstücks erfolgten) Widmung als Gemeindestraße schon seit Jahren als Privatstraße diente.
+Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hradil als Vorsitzenden, die Hofräte Dr. Fellinger, Dr. Hoch, Dr. Schramm und die Hofrätin Dr. Fichtenau als weitere Richter in der Pflegschaftssache der mj Calvin Mützlaff, geboren am Volker Scheffski, Jaden Jurkutaitis, geboren am 8. Dezember 1982 und PhD Karim Trieber, geboren am 11. Januar 1975, in Pflege und Erziehung der Mutter StR Lara Jungnikl, vertreten durch das Land Vorarlberg als Kinder- und Jugendhilfeträger (Bezirkshauptmannschaft Feldkirch, Schlossgraben 1, 6800 Feldkirch), wegen Gewährung von Unterhaltsvorschuss, über den Revisionsrekurs des Vaters RgR Dipl.-Ing. Quirin Bagemühl, vertreten durch Mag. Hans-Christian Obernberger, Rechtsanwalt in Feldkirch, gegen den Beschluss des Landesgerichts Feldkirch als Rekursgericht vom 12. Juli 2011, GZ 3 R 198/11g, 3 R 199/11d, 3 R 200/11a-18, womit die Beschlüsse des Bezirksgerichts Feldkirch vom 18. Mai 2011, GZ 12 Pu 141/11f-4 bis 6, bestätigt wurden, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Der Revisionsrekurs wird zurückgewiesen.
 
 | Predicted | Gold |
 |---|---|
-| `Verfassungsgerichtshofs` | `Verfassungsgerichtshofs` |
+| `Bezirkshauptmannschaft Feldkirch` | `Bezirkshauptmannschaft Feldkirch` |
 
-**Example 3** (doc_id: `deanon_TRAIN/5Ob171_22s`) (sent_id: `deanon_TRAIN/5Ob171_22s_67`)
+**Missed by this rule (FN):**
+
+- `Calvin Mützlaff` (person)
+- `Volker Scheffski` (person)
+- `Jaden Jurkutaitis` (person)
+- `8. Dezember 1982` (date)
+- `PhD Karim Trieber` (person)
+- `11. Januar 1975` (date)
+- `StR Lara Jungnikl` (person)
+- `RgR Dipl.-Ing. Quirin Bagemühl` (person)
+
+**Example 2** (doc_id: `deanon_TRAIN/10Ob30_14f`) (sent_id: `deanon_TRAIN/10Ob30_14f_3`)
+
+
+Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hradil als Vorsitzenden und die Hofräte Dr. Fellinger, Dr. Hoch und Dr. Schramm sowie die Hofrätin Dr. Fichtenau als weitere Richter in der Pflegschaftssache der minderjährigen Thobias Altroggen, geboren am 16. März 2008, vertreten durch das Land Niederösterreich als Kinder- und Jugendhilfeträger, (Bezirkshauptmannschaft Wien-Umgebung, Fachgebiet Jugendwohlfahrt), 3400 Klosterneuburg, Leopoldstraße 21, über das als „Berufung“ bezeichnete Rechtsmittel des Vaters Ignaz Dippert, gegen den Beschluss des Landesgerichts Korneuburg als Rekursgericht vom 25. März 2013, GZ 23 R 30/13v-53, womit der Beschluss des Bezirksgerichts Schwechat vom 27. August 2012, GZ 8 Pu 190/11i-39, bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Der Akt wird dem Erstgericht zurückgestellt.
+
+| Predicted | Gold |
+|---|---|
+| `Bezirkshauptmannschaft Wien` | `Bezirkshauptmannschaft Wien` |
+
+**Missed by this rule (FN):**
+
+- `Thobias Altroggen` (person)
+- `16. März 2008` (date)
+- `Ignaz Dippert` (person)
+
+**Example 3** (doc_id: `deanon_TRAIN/10Ob30_19p`) (sent_id: `deanon_TRAIN/10Ob30_19p_3`)
+
+
+Kopf Der Oberste Gerichtshof hat durch den Vizepräsidenten Univ.-Prof. Dr. Neumayr als Vorsitzenden sowie die Hofrätinnen Dr. Fichtenau und Dr. Grohmann, den Hofrat Mag. Ziegelbauer und die Hofrätin Dr. Faber als weitere Richter in der Pflegschaftssache der minderjährigen Franziska Dreikluft, geboren 3. November 2009, vertreten durch das Land Niederösterreich als Kinder- und Jugendhilfeträger (Bezirkshauptmannschaft Melk, 3390 Melk, Abt Karl-Straße 25a) wegen Unterhaltsvorschüssen, über den Revisionsrekurs des Kindes gegen den Beschluss des Landesgerichts St. Pölten als Rekursgericht vom 23. Jänner 2019, GZ 23 R 6/19h-52, mit dem der Beschluss des Bezirksgerichts Melk vom 21. November 2018, GZ 22 Pu 194/16m-42, teilweise abgeändert wurde, den Beschluss gefasst:  Spruch Dem Revisionsrekurs wird nicht Folge gegeben.
+
+| Predicted | Gold |
+|---|---|
+| `Bezirkshauptmannschaft Melk` | `Bezirkshauptmannschaft Melk` |
+
+**Missed by this rule (FN):**
+
+- `Franziska Dreikluft` (person)
+- `3. November` (date)
+
+**Example 4** (doc_id: `deanon_TRAIN/3Ob26_23d`) (sent_id: `deanon_TRAIN/3Ob26_23d_52`)
+
+
+Vor diesem Hintergrund sprach der Verfassungsgerichtshof aus, dass durch die Öffentlicherklärung einesin der Natur schon bestehendenWeges durch Verordnung mangels Eigentumserwerbs in gesetzwidriger Weise Gemeingebrauch begründet werde.
+
+| Predicted | Gold |
+|---|---|
+| `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
+
+**Example 5** (doc_id: `deanon_TRAIN/5Ob171_22s`) (sent_id: `deanon_TRAIN/5Ob171_22s_67`)
 
 
 In den vonRohregger(aaO) zitierten Entscheidungen bejahen auch der Verfassungsgerichtshof (B 1050/09) und der Verwaltungsgerichtshof (AW 2012/01/0032) die Bedeutung des § 10 RAO und der Vorgängerbestimmung des § 10 RL-BA 2015 für das öffentliche Interesse an dem Verbot der Doppelvertretung, weil es dem Schutz der durch einen Rechtsanwalt vertretenen Parteien diene, seine Einhaltung für das zwischen Rechtsanwalt und Klient bestehende Treueverhältnis für wesentlich erachtet werde und für das allgemeine Bild der Anwaltschaft in der Öffentlichkeit von Bedeutung sei.
 
 | Predicted | Gold |
 |---|---|
-| `Verwaltungsgerichtshof` | `Verwaltungsgerichtshof` |
+| `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
 
-**Example 4** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_14`)
+**Missed by this rule (FN):**
 
+- `Verwaltungsgerichtshof` (organisation)
 
-Der gesatzte Kollektivvertrag des Roten Kreuzes sei unanwendbar, da der Verwaltungsgerichtshof mit Erkenntnis vom 4. 9. 2013, 2011/08/0230 dem Österreichischen Roten Kreuz die Kollektivvertragsfähigkeit „de facto“ aberkannt habe, sodass die Verordnung des Bundeseinigungsamtes „rechtswidrig und ungültig“ sei.
-
-| Predicted | Gold |
-|---|---|
-| `Verwaltungsgerichtshof` | `Verwaltungsgerichtshof` |
-
-**Example 5** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_28`)
+**Example 6** (doc_id: `deanon_TRAIN/5Ob31_16v`) (sent_id: `deanon_TRAIN/5Ob31_16v_15`)
 
 
-3. Der Verwaltungsgerichtshof hat mit seinem Erkenntnis vom 4. 9. 2013, 2011/08/0230 = DRdA 2014/27 (Felten) = ZAS 2014/13 (Tomandl) dem Österreichischen Roten Kreuz die Kollektivvertragsfähigkeit gemäß § 5 Abs 3 ArbVG nicht aberkannt.
+Weiters wolle die Rechtssache gemäß Art 89 B-VG dem Verfassungsgerichtshof sowie gemäß Art 267 AEUV dem Europäischen Gerichtshof zur Prüfung vorgelegt werden.
 
 | Predicted | Gold |
 |---|---|
-| `Verwaltungsgerichtshof` | `Verwaltungsgerichtshof` |
+| `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
 
-**Example 6** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_29`)
+**Example 7** (doc_id: `deanon_TRAIN/8Ob141_19x`) (sent_id: `deanon_TRAIN/8Ob141_19x_3`)
+
+
+Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Hon.-Prof. Dr. Kuras als Vorsitzenden, die Hofrätinnen Dr. Tarmann-Prentner und Mag. Korn, den Hofrat Dr. Stefula und die Hofrätin Mag. Wessely-Kristöfel als weitere Richter in der Pflegschaftssache der Antragstellerin mj RgR Linn Neiheiser, geboren am 10. Februar 2008, in Unterhaltsangelegenheiten vertreten durch die Bezirkshauptmannschaft Bregenz, 6901 Bregenz, Bahnhofstraße 41, wegen Unterhalt, über den Revisionsrekurs der Antragstellerin gegen den Beschluss des Landesgerichts Feldkirch als Rekursgericht vom 7. August 2019, GZ 2 R 170/19v-33, mit dem der Beschluss des Bezirksgerichts Bregenz vom 4. Juni 2019, GZ 9 Pu 315/19d-28, teilweise bestätigt und teilweise abgeändert wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Dem Revisionsrekurs wird Folge gegeben.
+
+| Predicted | Gold |
+|---|---|
+| `Bezirkshauptmannschaft Bregenz` | `Bezirkshauptmannschaft Bregenz` |
+
+**Missed by this rule (FN):**
+
+- `RgR Linn Neiheiser` (person)
+- `10. Februar` (date)
+
+**Example 8** (doc_id: `deanon_TRAIN/8Ob141_19x`) (sent_id: `deanon_TRAIN/8Ob141_19x_8`)
+
+
+Die bis zur Rechtskraft dieses Beschlusses fällig gewordenen Beträge sind abzüglich bereits geleisteter Zahlungen binnen 14 Tagen, die hinkünftig fällig werdenden bis zum Ersten eines jeden Monats im Voraus zu Handen des jeweiligen gesetzlichen Vertreters, das ist derzeit die Bezirkshauptmannschaft Bregenz, zu leisten.
+
+| Predicted | Gold |
+|---|---|
+| `Bezirkshauptmannschaft Bregenz` | `Bezirkshauptmannschaft Bregenz` |
+
+**Example 9** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_29`)
 
 
 Der Verwaltungsgerichtshof behob allein einen Bescheid, mit dem ein Antrag auf eine solche Aberkennung abgewiesen wurde, wegen Rechtswidrigkeit seines Inhalts (worauf auch der von der Beklagten angerufene Verfassungsgerichtshof in Punkt 2.4.5.3 seines Erkenntnisses ausdrücklich hinwies).
 
 | Predicted | Gold |
 |---|---|
-| `Verwaltungsgerichtshof` | `Verwaltungsgerichtshof` |
+| `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
 
-**Example 7** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_30`)
+**Missed by this rule (FN):**
 
+- `Verwaltungsgerichtshof` (organisation)
 
-Weil in der Folge abermals ein abweisender Bescheid erging, der sodann in Rechtskraft erwuchs (siehe erneut in Punkt 2.4.5.3 des VfGH-Erkenntnisses), ist es letzten Endes auch unrichtig, dass der Verwaltungsgerichtshof dem Roten Kreuz „de facto“ die Kollektivvertragsfähigkeit aberkannt hätte.
-
-| Predicted | Gold |
-|---|---|
-| `Verwaltungsgerichtshof` | `Verwaltungsgerichtshof` |
-
-**Example 8** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_31`)
+**Example 10** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_31`)
 
 
 Von dieser Sachlage ausgehend wies der von der Beklagten in diesem Verfahren mittels eines Parteiantrags auf Normenkontrolle angerufene Verfassungsgerichtshof den Antrag, die in BGBl II 2013/120 kundgemachte Verordnung des Bundeseinigungsamtes zur Gänze als verfassungswidrig aufzuheben, mit der Begründung ab, die Bedenken der Beklagten beruhten auf der nicht zutreffenden Prämisse, das Österreichische Rote Kreuz habe seine Kollektivvertragsfähigkeit durch das Erkenntnis des Verwaltungsgerichtshofs 2011/08/0230 „de facto“ verloren (Punkt 2.5 des Erkenntnisses).
 
 | Predicted | Gold |
 |---|---|
-| `Verwaltungsgerichtshofs` | `Verwaltungsgerichtshofs` |
+| `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
 
-**Example 9** (doc_id: `deanon_TRAIN/8ObA72_19z`) (sent_id: `deanon_TRAIN/8ObA72_19z_12`)
+**Missed by this rule (FN):**
+
+- `Verwaltungsgerichtshofs` (organisation)
+
+**Example 11** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_33`)
+
+
+4. Die Frage, ob auch ohne Aufhebung der Verordnung BGBl II 2013/120 durch den Verfassungsgerichtshof allein dadurch, dass dem Österreichischen Roten Kreuz die Kollektivvertragsfähigkeit vom Bundeseinigungsamt mittels Bescheids aberkannt wird, die Satzung des Kollektivvertrags ihre Geltung verliert (vgl insbFriedrich, ASoK 2013, 460 f), stellt sich nicht, weil kein solcher Bescheid vorliegt.
+
+| Predicted | Gold |
+|---|---|
+| `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
+
+**Example 12** (doc_id: `deanon_TRAIN/8ObA72_19z`) (sent_id: `deanon_TRAIN/8ObA72_19z_12`)
 
 
 2. Dabei konnte sich der Oberste Gerichtshof auf einschlägige Judikatur sowohl des Verfassungsgerichtshofs als auch des EuGH stützen: 2.1 Der Verfassungsgerichtshof hat in seinem Erkenntnis G 450/2015 ua Parteianträge von ÖBB-Bediensteten (unter anderem auch des Klägers) abgewiesen, die § 53a und § 56 Abs 18 bis 24 BundesbahnG je idF BGBl I Nr 64/2015 als verfassungswidrig aufzuheben.
 
 | Predicted | Gold |
 |---|---|
-| `Verfassungsgerichtshofs` | `Verfassungsgerichtshofs` |
+| `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
+
+**Missed by this rule (FN):**
+
+- `Verfassungsgerichtshofs` (organisation)
+
+**Example 13** (doc_id: `deanon_TRAIN/9ObA27_15h`) (sent_id: `deanon_TRAIN/9ObA27_15h_7`)
+
+
+Ihr Antrag auf Gesetzesprüfung hinsichtlich der inzwischen aufgelösten Berufungskommission und eine Eventualbeschwerde seien beim Verfassungsgerichtshof anhängig.
+
+| Predicted | Gold |
+|---|---|
+| `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
 
 </details>
 
@@ -11026,81 +11124,73 @@ Von dieser Sachlage ausgehend wies der von der Beklagten in diesem Verfahren mit
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: `deanon_TRAIN/3Ob26_23d`) (sent_id: `deanon_TRAIN/3Ob26_23d_52`)
+**Example 0** (doc_id: `deanon_TRAIN/14Os63_17x`) (sent_id: `deanon_TRAIN/14Os63_17x_8`)
 
 
-Vor diesem Hintergrund sprach der Verfassungsgerichtshof aus, dass durch die Öffentlicherklärung einesin der Natur schon bestehendenWeges durch Verordnung mangels Eigentumserwerbs in gesetzwidriger Weise Gemeingebrauch begründet werde.
-
-**False Positives:**
-
-- `Verfassungsgerichtshof` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 1** (doc_id: `deanon_TRAIN/5Ob171_22s`) (sent_id: `deanon_TRAIN/5Ob171_22s_67`)
-
-
-In den vonRohregger(aaO) zitierten Entscheidungen bejahen auch der Verfassungsgerichtshof (B 1050/09) und der Verwaltungsgerichtshof (AW 2012/01/0032) die Bedeutung des § 10 RAO und der Vorgängerbestimmung des § 10 RL-BA 2015 für das öffentliche Interesse an dem Verbot der Doppelvertretung, weil es dem Schutz der durch einen Rechtsanwalt vertretenen Parteien diene, seine Einhaltung für das zwischen Rechtsanwalt und Klient bestehende Treueverhältnis für wesentlich erachtet werde und für das allgemeine Bild der Anwaltschaft in der Öffentlichkeit von Bedeutung sei.
+1/b durch die zu Punkt a beschriebene Handlung fremde Urkunden, über die sie nicht alleine verfügen durfte, nämlich die in der Plastikhülle befindliche E-Card und ein Jahresticket der ÖBB des Peter Bohnert, mit dem Vorsatz unterdrückt zu verhindern, dass diese Urkunden im Rechtsverkehr zum Beweis eines Rechtes gebraucht werden.
 
 **False Positives:**
 
-- `Verfassungsgerichtshof` — no gold match — likely missing annotation
+- `ÖBB` — no gold match — likely missing annotation
 
 > overlaps gold: 0  |  likely missing annotation: 1
 
 **Gold Entities:**
 
-- `Verwaltungsgerichtshof`(organisation)
+- `Bohnert`(person)
 
-**Example 2** (doc_id: `deanon_TRAIN/5Ob31_16v`) (sent_id: `deanon_TRAIN/5Ob31_16v_15`)
+**Example 1** (doc_id: `deanon_TRAIN/6Ob169_12i`) (sent_id: `deanon_TRAIN/6Ob169_12i_42`)
 
 
-Weiters wolle die Rechtssache gemäß Art 89 B-VG dem Verfassungsgerichtshof sowie gemäß Art 267 AEUV dem Europäischen Gerichtshof zur Prüfung vorgelegt werden.
+Wenn das Erstgericht - dem Sachverständigengutachten folgend - zu der Einschätzung gelangte, dass in Anbetracht des Umstands, dass Art und Ausmaß der konkret festgestellten Kontaminierung und ihre Ursache (Lkw-Unfall) bekannt waren, in der Praxis keine sogenannte Vollanalyse durchzuführen gewesen wäre, so ist darin keine vom Obersten Gerichtshof im Interesse der Rechtssicherheit aufzugreifende Fehlbeurteilung zu erblicken, zumal auch die zuständige Bezirkshauptmannschaft in Anbetracht der bekannten Ursache der Kontaminierung nur eine Untersuchung der entsprechenden Kohlenwasserstoffwerte für erforderlich hielt.
 
 **False Positives:**
 
-- `Verfassungsgerichtshof` — no gold match — likely missing annotation
+- `Bezirkshauptmannschaft in` — no gold match — likely missing annotation
 
 > overlaps gold: 0  |  likely missing annotation: 1
 
-**Example 3** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_29`)
+**Example 2** (doc_id: `deanon_TRAIN/7Ob45_24d`) (sent_id: `deanon_TRAIN/7Ob45_24d_41`)
 
 
-Der Verwaltungsgerichtshof behob allein einen Bescheid, mit dem ein Antrag auf eine solche Aberkennung abgewiesen wurde, wegen Rechtswidrigkeit seines Inhalts (worauf auch der von der Beklagten angerufene Verfassungsgerichtshof in Punkt 2.4.5.3 seines Erkenntnisses ausdrücklich hinwies).
+6. 2016 von einer Bezirkshauptmannschaft die Aufforderung gemäß § 103 Abs 2 KFG, binnen 14 Tagen nach Zustellung dieses Schreibens als Zulassungsbesitzer eines Kraftfahrzeugs dessen Lenker bekanntzugeben.
 
 **False Positives:**
 
-- `Verfassungsgerichtshof` — no gold match — likely missing annotation
+- `Bezirkshauptmannschaft die` — no gold match — likely missing annotation
 
 > overlaps gold: 0  |  likely missing annotation: 1
 
-**Gold Entities:**
-
-- `Verwaltungsgerichtshof`(organisation)
-
-**Example 4** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_31`)
+**Example 3** (doc_id: `deanon_TRAIN/7Ob45_24d`) (sent_id: `deanon_TRAIN/7Ob45_24d_51`)
 
 
-Von dieser Sachlage ausgehend wies der von der Beklagten in diesem Verfahren mittels eines Parteiantrags auf Normenkontrolle angerufene Verfassungsgerichtshof den Antrag, die in BGBl II 2013/120 kundgemachte Verordnung des Bundeseinigungsamtes zur Gänze als verfassungswidrig aufzuheben, mit der Begründung ab, die Bedenken der Beklagten beruhten auf der nicht zutreffenden Prämisse, das Österreichische Rote Kreuz habe seine Kollektivvertragsfähigkeit durch das Erkenntnis des Verwaltungsgerichtshofs 2011/08/0230 „de facto“ verloren (Punkt 2.5 des Erkenntnisses).
+[7] Mit Schreiben vom 19. 9. 2017 übermittelte der Klagevertreter der Beklagten das Straferkenntnis der Bezirkshauptmannschaft und ersuchte um Deckung für die Erhebung einer Beschwerde und sein Einschreiten in zweiter Instanz.
 
 **False Positives:**
 
-- `Verfassungsgerichtshof` — no gold match — likely missing annotation
+- `Bezirkshauptmannschaft und` — no gold match — likely missing annotation
 
 > overlaps gold: 0  |  likely missing annotation: 1
 
-**Gold Entities:**
-
-- `Verwaltungsgerichtshofs`(organisation)
-
-**Example 5** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_33`)
+**Example 4** (doc_id: `deanon_TRAIN/7Ob45_24d`) (sent_id: `deanon_TRAIN/7Ob45_24d_54`)
 
 
-4. Die Frage, ob auch ohne Aufhebung der Verordnung BGBl II 2013/120 durch den Verfassungsgerichtshof allein dadurch, dass dem Österreichischen Roten Kreuz die Kollektivvertragsfähigkeit vom Bundeseinigungsamt mittels Bescheids aberkannt wird, die Satzung des Kollektivvertrags ihre Geltung verliert (vgl insbFriedrich, ASoK 2013, 460 f), stellt sich nicht, weil kein solcher Bescheid vorliegt.
+[8] Am 19. 9. 2017 gab der Klagevertreter der Bezirkshauptmannschaft in der gegenständlichen Verwaltungsstrafsache die erteilte Vollmacht bekannt und beantragte die Übermittlung einer Aktenkopie.
 
 **False Positives:**
 
-- `Verfassungsgerichtshof` — no gold match — likely missing annotation
+- `Bezirkshauptmannschaft in` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 5** (doc_id: `deanon_TRAIN/7Ob45_24d`) (sent_id: `deanon_TRAIN/7Ob45_24d_56`)
+
+
+9. 2017 eine Beschwerde an das zuständige Landesverwaltungsgericht ein, in der er das Straferkenntnis der Bezirkshauptmannschaft sowohl dem Grunde als auch der Höhe nach anfocht.
+
+**False Positives:**
+
+- `Bezirkshauptmannschaft sowohl` — no gold match — likely missing annotation
 
 > overlaps gold: 0  |  likely missing annotation: 1
 
@@ -11111,24 +11201,140 @@ Von dieser Sachlage ausgehend wies der von der Beklagten in diesem Verfahren mit
 
 **False Positives:**
 
-- `Verfassungsgerichtshof` — similar text (different position): `Verfassungsgerichtshofs`
+- `ÖBB` — no gold match — likely missing annotation
 
-> overlaps gold: 1  |  likely missing annotation: 0
+> overlaps gold: 0  |  likely missing annotation: 1
 
 **Gold Entities:**
 
 - `Verfassungsgerichtshofs`(organisation)
+- `Verfassungsgerichtshof`(organisation)
+
+</details>
+
+---
+
+## `Constitutional Court`
+
+**F1:** 0.026 | **Precision:** 1.000 | **Recall:** 0.013  
+
+**Format:** `regex`  
+**Rule ID:** `0bbc25f5`  
+**Description:**
+Matches Verfassungsgerichtshof and its genitive form.
+
+**Content:**
+```
+(?i)\b(Verfassungsgerichtshof(?:es)?)\b
+```
+
+<details>
+<summary>📊 Detailed Metrics</summary>
+
+| Precision | Recall | F1 | Total Predicted | TP | FP |
+|---|---|---|---|---|---|
+| 1.000 | 0.013 | 0.026 | 8 | 8 | 0 |
+
+**Per-Class Breakdown**
+
+| Class | TP | FP | FN |
+|---|---|---|---|
+| `organisation` | 8 | 0 | 331 |
+
+</details>
+
+---
+
+<details>
+<summary>✅ Worked</summary>
+
+**Example 0** (doc_id: `deanon_TRAIN/3Ob26_23d`) (sent_id: `deanon_TRAIN/3Ob26_23d_52`)
+
+
+Vor diesem Hintergrund sprach der Verfassungsgerichtshof aus, dass durch die Öffentlicherklärung einesin der Natur schon bestehendenWeges durch Verordnung mangels Eigentumserwerbs in gesetzwidriger Weise Gemeingebrauch begründet werde.
+
+| Predicted | Gold |
+|---|---|
+| `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
+
+**Example 1** (doc_id: `deanon_TRAIN/5Ob171_22s`) (sent_id: `deanon_TRAIN/5Ob171_22s_67`)
+
+
+In den vonRohregger(aaO) zitierten Entscheidungen bejahen auch der Verfassungsgerichtshof (B 1050/09) und der Verwaltungsgerichtshof (AW 2012/01/0032) die Bedeutung des § 10 RAO und der Vorgängerbestimmung des § 10 RL-BA 2015 für das öffentliche Interesse an dem Verbot der Doppelvertretung, weil es dem Schutz der durch einen Rechtsanwalt vertretenen Parteien diene, seine Einhaltung für das zwischen Rechtsanwalt und Klient bestehende Treueverhältnis für wesentlich erachtet werde und für das allgemeine Bild der Anwaltschaft in der Öffentlichkeit von Bedeutung sei.
+
+| Predicted | Gold |
+|---|---|
+| `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
+
+**Missed by this rule (FN):**
+
+- `Verwaltungsgerichtshof` (organisation)
+
+**Example 2** (doc_id: `deanon_TRAIN/5Ob31_16v`) (sent_id: `deanon_TRAIN/5Ob31_16v_15`)
+
+
+Weiters wolle die Rechtssache gemäß Art 89 B-VG dem Verfassungsgerichtshof sowie gemäß Art 267 AEUV dem Europäischen Gerichtshof zur Prüfung vorgelegt werden.
+
+| Predicted | Gold |
+|---|---|
+| `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
+
+**Example 3** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_29`)
+
+
+Der Verwaltungsgerichtshof behob allein einen Bescheid, mit dem ein Antrag auf eine solche Aberkennung abgewiesen wurde, wegen Rechtswidrigkeit seines Inhalts (worauf auch der von der Beklagten angerufene Verfassungsgerichtshof in Punkt 2.4.5.3 seines Erkenntnisses ausdrücklich hinwies).
+
+| Predicted | Gold |
+|---|---|
+| `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
+
+**Missed by this rule (FN):**
+
+- `Verwaltungsgerichtshof` (organisation)
+
+**Example 4** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_31`)
+
+
+Von dieser Sachlage ausgehend wies der von der Beklagten in diesem Verfahren mittels eines Parteiantrags auf Normenkontrolle angerufene Verfassungsgerichtshof den Antrag, die in BGBl II 2013/120 kundgemachte Verordnung des Bundeseinigungsamtes zur Gänze als verfassungswidrig aufzuheben, mit der Begründung ab, die Bedenken der Beklagten beruhten auf der nicht zutreffenden Prämisse, das Österreichische Rote Kreuz habe seine Kollektivvertragsfähigkeit durch das Erkenntnis des Verwaltungsgerichtshofs 2011/08/0230 „de facto“ verloren (Punkt 2.5 des Erkenntnisses).
+
+| Predicted | Gold |
+|---|---|
+| `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
+
+**Missed by this rule (FN):**
+
+- `Verwaltungsgerichtshofs` (organisation)
+
+**Example 5** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_33`)
+
+
+4. Die Frage, ob auch ohne Aufhebung der Verordnung BGBl II 2013/120 durch den Verfassungsgerichtshof allein dadurch, dass dem Österreichischen Roten Kreuz die Kollektivvertragsfähigkeit vom Bundeseinigungsamt mittels Bescheids aberkannt wird, die Satzung des Kollektivvertrags ihre Geltung verliert (vgl insbFriedrich, ASoK 2013, 460 f), stellt sich nicht, weil kein solcher Bescheid vorliegt.
+
+| Predicted | Gold |
+|---|---|
+| `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
+
+**Example 6** (doc_id: `deanon_TRAIN/8ObA72_19z`) (sent_id: `deanon_TRAIN/8ObA72_19z_12`)
+
+
+2. Dabei konnte sich der Oberste Gerichtshof auf einschlägige Judikatur sowohl des Verfassungsgerichtshofs als auch des EuGH stützen: 2.1 Der Verfassungsgerichtshof hat in seinem Erkenntnis G 450/2015 ua Parteianträge von ÖBB-Bediensteten (unter anderem auch des Klägers) abgewiesen, die § 53a und § 56 Abs 18 bis 24 BundesbahnG je idF BGBl I Nr 64/2015 als verfassungswidrig aufzuheben.
+
+| Predicted | Gold |
+|---|---|
+| `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
+
+**Missed by this rule (FN):**
+
+- `Verfassungsgerichtshofs` (organisation)
 
 **Example 7** (doc_id: `deanon_TRAIN/9ObA27_15h`) (sent_id: `deanon_TRAIN/9ObA27_15h_7`)
 
 
 Ihr Antrag auf Gesetzesprüfung hinsichtlich der inzwischen aufgelösten Berufungskommission und eine Eventualbeschwerde seien beim Verfassungsgerichtshof anhängig.
 
-**False Positives:**
-
-- `Verfassungsgerichtshof` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
+| Predicted | Gold |
+|---|---|
+| `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
 
 </details>
 
@@ -11136,7 +11342,7 @@ Ihr Antrag auf Gesetzesprüfung hinsichtlich der inzwischen aufgelösten Berufun
 
 ## `Vienna Magistrate`
 
-**F1:** 0.024 | **Precision:** 1.000 | **Recall:** 0.012  
+**F1:** 0.023 | **Precision:** 1.000 | **Recall:** 0.012  
 
 **Format:** `regex`  
 **Rule ID:** `923cbdfe`  
@@ -11153,13 +11359,13 @@ Matches Magistrat der Stadt Wien with department codes, ensuring the full entity
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 1.000 | 0.012 | 0.024 | 7 | 7 | 0 |
+| 1.000 | 0.012 | 0.023 | 7 | 7 | 0 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 7 | 0 | 510 |
+| `organisation` | 7 | 0 | 527 |
 
 </details>
 
@@ -11277,7 +11483,7 @@ Matzka als weitere Richter in der Pflegschaftssache der Minderjährigen Silke Wi
 
 ## `Magistrate City Pattern`
 
-**F1:** 0.024 | **Precision:** 1.000 | **Recall:** 0.012  
+**F1:** 0.023 | **Precision:** 1.000 | **Recall:** 0.012  
 
 **Format:** `regex`  
 **Rule ID:** `5b8b1658`  
@@ -11294,13 +11500,13 @@ Matches Magistrat der Stadt followed by city name, including genitive forms and 
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 1.000 | 0.012 | 0.024 | 7 | 7 | 0 |
+| 1.000 | 0.012 | 0.023 | 7 | 7 | 0 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 7 | 0 | 510 |
+| `organisation` | 7 | 0 | 527 |
 
 </details>
 
@@ -11441,7 +11647,7 @@ Matches Verwaltungsgerichtshof and all its case endings, including optional (VwG
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 6 | 0 | 219 |
+| `organisation` | 6 | 0 | 231 |
 
 </details>
 
@@ -11458,6 +11664,10 @@ In den vonRohregger(aaO) zitierten Entscheidungen bejahen auch der Verfassungsge
 | Predicted | Gold |
 |---|---|
 | `Verwaltungsgerichtshof` | `Verwaltungsgerichtshof` |
+
+**Missed by this rule (FN):**
+
+- `Verfassungsgerichtshof` (organisation)
 
 **Example 1** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_14`)
 
@@ -11485,6 +11695,10 @@ Der Verwaltungsgerichtshof behob allein einen Bescheid, mit dem ein Antrag auf e
 | Predicted | Gold |
 |---|---|
 | `Verwaltungsgerichtshof` | `Verwaltungsgerichtshof` |
+
+**Missed by this rule (FN):**
+
+- `Verfassungsgerichtshof` (organisation)
 
 **Example 4** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_30`)
 
@@ -11504,13 +11718,17 @@ Von dieser Sachlage ausgehend wies der von der Beklagten in diesem Verfahren mit
 |---|---|
 | `Verwaltungsgerichtshofs` | `Verwaltungsgerichtshofs` |
 
+**Missed by this rule (FN):**
+
+- `Verfassungsgerichtshof` (organisation)
+
 </details>
 
 ---
 
 ## `Verwaltungsgerichtshof Genitive`
 
-**F1:** 0.017 | **Precision:** 1.000 | **Recall:** 0.009  
+**F1:** 0.016 | **Precision:** 1.000 | **Recall:** 0.008  
 
 **Format:** `regex`  
 **Rule ID:** `6c39efd8`  
@@ -11527,13 +11745,13 @@ Matches Verwaltungsgerichtshof and its genitive form Verwaltungsgerichtshofes.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 1.000 | 0.009 | 0.017 | 5 | 5 | 0 |
+| 1.000 | 0.008 | 0.016 | 5 | 5 | 0 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 5 | 0 | 220 |
+| `organisation` | 5 | 0 | 232 |
 
 </details>
 
@@ -11550,6 +11768,10 @@ In den vonRohregger(aaO) zitierten Entscheidungen bejahen auch der Verfassungsge
 | Predicted | Gold |
 |---|---|
 | `Verwaltungsgerichtshof` | `Verwaltungsgerichtshof` |
+
+**Missed by this rule (FN):**
+
+- `Verfassungsgerichtshof` (organisation)
 
 **Example 1** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_14`)
 
@@ -11577,6 +11799,10 @@ Der Verwaltungsgerichtshof behob allein einen Bescheid, mit dem ein Antrag auf e
 | Predicted | Gold |
 |---|---|
 | `Verwaltungsgerichtshof` | `Verwaltungsgerichtshof` |
+
+**Missed by this rule (FN):**
+
+- `Verfassungsgerichtshof` (organisation)
 
 **Example 4** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_30`)
 
@@ -11616,7 +11842,7 @@ Specifically targets hyphenated company names that might be split by the generic
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 1 | 1 | 419 |
+| `organisation` | 1 | 1 | 432 |
 
 </details>
 
@@ -11768,7 +11994,7 @@ Matches VwGH acronym, but only when it appears as a standalone entity reference,
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 7 | 472 |
+| `organisation` | 0 | 7 | 485 |
 
 </details>
 
@@ -12003,317 +12229,6 @@ Matches Finanzamt followed by city names, strictly excluding Bundesfinanzgericht
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
 | 0.000 | 0.000 | 0.000 | 0 | 0 | 0 |
-
-</details>
-
----
-
-## `Bank and Other Org`
-
-**F1:** 0.000 | **Precision:** 0.000 | **Recall:** 0.000  
-
-**Format:** `regex`  
-**Rule ID:** `53220dfe`  
-**Description:**
-Matches specific bank names and other organizations like 'Reinemut + Smoch Handel' that don't fit GmbH/AG patterns.
-
-**Content:**
-```
-(?i)\b((?:Raiffeisenbank\s+[A-Za-z]+|Reinemut\s+\+\s+Smoch\s+Handel|SENECURA|SeneCura|ÖBB|PVA|Bezirkshauptmannschaft\s+[A-Za-z]+|Versorgungskasse\s+Deutscher\s+Unternehmen\s+VVaG|Deutschen\s+Rentenversicherung\s+Bund|Pensionsversicherungsanstalt\s+Wien|Krankenpflegevereins\s+Bludenz|Imre\s+\&\s+Schaffer\s+Rechtsanwälte\s+OG|TAXCOACH\s+Wirtschaftsprüfung\s+und\s+Steuerberatung\s+GmbH\s*&\s*Co\s*KG|BKS\s+Steuerberatung\s+GmbH\s*&\s*Co\s*KG|Dr\.\s+Roland\s+Gabl\s+Rechtsanwalts-\s+Kommandit-Partnerschaft|\u201e\u00d6BUG\u201c\s+DR\.\s+Nikolaus\s+Wirtschaftstreuhand\s+GmbH\s*-\s+Wirtschaftsprüfungs-\s+und\s+Steuerberatungsgesellschaft|How\s+to\s+spend\s+it\s+Verlag\s+GmbH|INET\s+Internet\s+Service\s+GmbH|INET\s+System\s+Informations\s+GmbH|Talwerk\s+Logistik\s+Holding\s+GMBH|InnMarine\s+GMBH|Mittel\s+Unisyn\s+GMBH|Bärs\s+\&\s+Walterscheidt\s+Handel\s+GMBH|Ober\s+Lemostnor\s+AG|Vennes\s+Recycling\s+AG|HPS\s+Hergovits,\s+Pinkel\s+\&\s+Schnabl\s+Steuerberatungs\s+GmbH|Reinemut\s+\+\s+Smoch\s+Handel|Zollamt\s+Österreich|Amt\s+für\s+Betrugsbekämpfung\s+als\s+Finanzstrafbehörde|Verfassungsgerichtshof))\b
-```
-
-<details>
-<summary>📊 Detailed Metrics</summary>
-
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 21 | 0 | 21 |
-
-**Per-Class Breakdown**
-
-| Class | TP | FP | FN |
-|---|---|---|---|
-| `organisation` | 0 | 21 | 509 |
-
-</details>
-
----
-
-<details>
-<summary>⚠️ False Positives</summary>
-
-**Example 0** (doc_id: `deanon_TRAIN/10Ob23_14a`) (sent_id: `deanon_TRAIN/10Ob23_14a_3`)
-
-
-Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hradil als Vorsitzenden, die Hofräte Dr. Fellinger, Dr. Hoch, Dr. Schramm und die Hofrätin Dr. Fichtenau als weitere Richter in der Pflegschaftssache des minderjährigen Aurelia von der Lei, geboren am 10. September 1997, in Pflege und Erziehung der Mutter Univ.-Prof.in Marceline Siladji, vertreten durch das Land Oberösterreich als Kinder- und Jugendhilfeträger (Bezirkshauptmannschaft Gmunden, 4810 Gmunden, Esplanade 10), wegen Unterhaltsvorschuss, über den Revisionsrekurs des Bundes, vertreten durch den Präsidenten des Oberlandesgerichts Linz, gegen den Beschluss des Landesgerichts Wels als Rekursgericht vom 15. Jänner 2014, GZ 21 R 298/13t-38, womit der Beschluss des Bezirksgerichts Gmunden vom 18. Oktober 2013, GZ 1 Pu 223/09k-33, bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Dem Revisionsrekurs wird nicht Folge gegeben.
-
-**False Positives:**
-
-- `Bezirkshauptmannschaft Gmunden` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Aurelia von der Lei`(person)
-- `Univ.-Prof.in Marceline Siladji`(person)
-
-**Example 1** (doc_id: `deanon_TRAIN/10Ob2_14p`) (sent_id: `deanon_TRAIN/10Ob2_14p_3`)
-
-
-Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hradil als Vorsitzenden, die Hofräte Dr. Fellinger, Dr. Hoch, Dr. Schramm und die Hofrätin Dr. Fichtenau als weitere Richter in der Pflegschaftssache der mj Calvin Mützlaff, geboren am Volker Scheffski, Jaden Jurkutaitis, geboren am 8. Dezember 1982 und PhD Karim Trieber, geboren am 11. Januar 1975, in Pflege und Erziehung der Mutter StR Lara Jungnikl, vertreten durch das Land Vorarlberg als Kinder- und Jugendhilfeträger (Bezirkshauptmannschaft Feldkirch, Schlossgraben 1, 6800 Feldkirch), wegen Gewährung von Unterhaltsvorschuss, über den Revisionsrekurs des Vaters RgR Dipl.-Ing. Quirin Bagemühl, vertreten durch Mag. Hans-Christian Obernberger, Rechtsanwalt in Feldkirch, gegen den Beschluss des Landesgerichts Feldkirch als Rekursgericht vom 12. Juli 2011, GZ 3 R 198/11g, 3 R 199/11d, 3 R 200/11a-18, womit die Beschlüsse des Bezirksgerichts Feldkirch vom 18. Mai 2011, GZ 12 Pu 141/11f-4 bis 6, bestätigt wurden, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Der Revisionsrekurs wird zurückgewiesen.
-
-**False Positives:**
-
-- `Bezirkshauptmannschaft Feldkirch` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Calvin Mützlaff`(person)
-- `Volker Scheffski`(person)
-- `Jaden Jurkutaitis`(person)
-- `8. Dezember 1982`(date)
-- `PhD Karim Trieber`(person)
-- `11. Januar 1975`(date)
-- `StR Lara Jungnikl`(person)
-- `RgR Dipl.-Ing. Quirin Bagemühl`(person)
-
-**Example 2** (doc_id: `deanon_TRAIN/10Ob30_14f`) (sent_id: `deanon_TRAIN/10Ob30_14f_3`)
-
-
-Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hradil als Vorsitzenden und die Hofräte Dr. Fellinger, Dr. Hoch und Dr. Schramm sowie die Hofrätin Dr. Fichtenau als weitere Richter in der Pflegschaftssache der minderjährigen Thobias Altroggen, geboren am 16. März 2008, vertreten durch das Land Niederösterreich als Kinder- und Jugendhilfeträger, (Bezirkshauptmannschaft Wien-Umgebung, Fachgebiet Jugendwohlfahrt), 3400 Klosterneuburg, Leopoldstraße 21, über das als „Berufung“ bezeichnete Rechtsmittel des Vaters Ignaz Dippert, gegen den Beschluss des Landesgerichts Korneuburg als Rekursgericht vom 25. März 2013, GZ 23 R 30/13v-53, womit der Beschluss des Bezirksgerichts Schwechat vom 27. August 2012, GZ 8 Pu 190/11i-39, bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Der Akt wird dem Erstgericht zurückgestellt.
-
-**False Positives:**
-
-- `Bezirkshauptmannschaft Wien` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Thobias Altroggen`(person)
-- `16. März 2008`(date)
-- `Ignaz Dippert`(person)
-
-**Example 3** (doc_id: `deanon_TRAIN/10Ob30_19p`) (sent_id: `deanon_TRAIN/10Ob30_19p_3`)
-
-
-Kopf Der Oberste Gerichtshof hat durch den Vizepräsidenten Univ.-Prof. Dr. Neumayr als Vorsitzenden sowie die Hofrätinnen Dr. Fichtenau und Dr. Grohmann, den Hofrat Mag. Ziegelbauer und die Hofrätin Dr. Faber als weitere Richter in der Pflegschaftssache der minderjährigen Franziska Dreikluft, geboren 3. November 2009, vertreten durch das Land Niederösterreich als Kinder- und Jugendhilfeträger (Bezirkshauptmannschaft Melk, 3390 Melk, Abt Karl-Straße 25a) wegen Unterhaltsvorschüssen, über den Revisionsrekurs des Kindes gegen den Beschluss des Landesgerichts St. Pölten als Rekursgericht vom 23. Jänner 2019, GZ 23 R 6/19h-52, mit dem der Beschluss des Bezirksgerichts Melk vom 21. November 2018, GZ 22 Pu 194/16m-42, teilweise abgeändert wurde, den Beschluss gefasst:  Spruch Dem Revisionsrekurs wird nicht Folge gegeben.
-
-**False Positives:**
-
-- `Bezirkshauptmannschaft Melk` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Franziska Dreikluft`(person)
-- `3. November`(date)
-
-**Example 4** (doc_id: `deanon_TRAIN/14Os63_17x`) (sent_id: `deanon_TRAIN/14Os63_17x_8`)
-
-
-1/b durch die zu Punkt a beschriebene Handlung fremde Urkunden, über die sie nicht alleine verfügen durfte, nämlich die in der Plastikhülle befindliche E-Card und ein Jahresticket der ÖBB des Peter Bohnert, mit dem Vorsatz unterdrückt zu verhindern, dass diese Urkunden im Rechtsverkehr zum Beweis eines Rechtes gebraucht werden.
-
-**False Positives:**
-
-- `ÖBB` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Bohnert`(person)
-
-**Example 5** (doc_id: `deanon_TRAIN/3Ob26_23d`) (sent_id: `deanon_TRAIN/3Ob26_23d_52`)
-
-
-Vor diesem Hintergrund sprach der Verfassungsgerichtshof aus, dass durch die Öffentlicherklärung einesin der Natur schon bestehendenWeges durch Verordnung mangels Eigentumserwerbs in gesetzwidriger Weise Gemeingebrauch begründet werde.
-
-**False Positives:**
-
-- `Verfassungsgerichtshof` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 6** (doc_id: `deanon_TRAIN/5Ob171_22s`) (sent_id: `deanon_TRAIN/5Ob171_22s_67`)
-
-
-In den vonRohregger(aaO) zitierten Entscheidungen bejahen auch der Verfassungsgerichtshof (B 1050/09) und der Verwaltungsgerichtshof (AW 2012/01/0032) die Bedeutung des § 10 RAO und der Vorgängerbestimmung des § 10 RL-BA 2015 für das öffentliche Interesse an dem Verbot der Doppelvertretung, weil es dem Schutz der durch einen Rechtsanwalt vertretenen Parteien diene, seine Einhaltung für das zwischen Rechtsanwalt und Klient bestehende Treueverhältnis für wesentlich erachtet werde und für das allgemeine Bild der Anwaltschaft in der Öffentlichkeit von Bedeutung sei.
-
-**False Positives:**
-
-- `Verfassungsgerichtshof` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Verwaltungsgerichtshof`(organisation)
-
-**Example 7** (doc_id: `deanon_TRAIN/5Ob31_16v`) (sent_id: `deanon_TRAIN/5Ob31_16v_15`)
-
-
-Weiters wolle die Rechtssache gemäß Art 89 B-VG dem Verfassungsgerichtshof sowie gemäß Art 267 AEUV dem Europäischen Gerichtshof zur Prüfung vorgelegt werden.
-
-**False Positives:**
-
-- `Verfassungsgerichtshof` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 8** (doc_id: `deanon_TRAIN/6Ob169_12i`) (sent_id: `deanon_TRAIN/6Ob169_12i_42`)
-
-
-Wenn das Erstgericht - dem Sachverständigengutachten folgend - zu der Einschätzung gelangte, dass in Anbetracht des Umstands, dass Art und Ausmaß der konkret festgestellten Kontaminierung und ihre Ursache (Lkw-Unfall) bekannt waren, in der Praxis keine sogenannte Vollanalyse durchzuführen gewesen wäre, so ist darin keine vom Obersten Gerichtshof im Interesse der Rechtssicherheit aufzugreifende Fehlbeurteilung zu erblicken, zumal auch die zuständige Bezirkshauptmannschaft in Anbetracht der bekannten Ursache der Kontaminierung nur eine Untersuchung der entsprechenden Kohlenwasserstoffwerte für erforderlich hielt.
-
-**False Positives:**
-
-- `Bezirkshauptmannschaft in` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 9** (doc_id: `deanon_TRAIN/7Ob45_24d`) (sent_id: `deanon_TRAIN/7Ob45_24d_41`)
-
-
-6. 2016 von einer Bezirkshauptmannschaft die Aufforderung gemäß § 103 Abs 2 KFG, binnen 14 Tagen nach Zustellung dieses Schreibens als Zulassungsbesitzer eines Kraftfahrzeugs dessen Lenker bekanntzugeben.
-
-**False Positives:**
-
-- `Bezirkshauptmannschaft die` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 10** (doc_id: `deanon_TRAIN/7Ob45_24d`) (sent_id: `deanon_TRAIN/7Ob45_24d_51`)
-
-
-[7] Mit Schreiben vom 19. 9. 2017 übermittelte der Klagevertreter der Beklagten das Straferkenntnis der Bezirkshauptmannschaft und ersuchte um Deckung für die Erhebung einer Beschwerde und sein Einschreiten in zweiter Instanz.
-
-**False Positives:**
-
-- `Bezirkshauptmannschaft und` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 11** (doc_id: `deanon_TRAIN/7Ob45_24d`) (sent_id: `deanon_TRAIN/7Ob45_24d_54`)
-
-
-[8] Am 19. 9. 2017 gab der Klagevertreter der Bezirkshauptmannschaft in der gegenständlichen Verwaltungsstrafsache die erteilte Vollmacht bekannt und beantragte die Übermittlung einer Aktenkopie.
-
-**False Positives:**
-
-- `Bezirkshauptmannschaft in` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 12** (doc_id: `deanon_TRAIN/7Ob45_24d`) (sent_id: `deanon_TRAIN/7Ob45_24d_56`)
-
-
-9. 2017 eine Beschwerde an das zuständige Landesverwaltungsgericht ein, in der er das Straferkenntnis der Bezirkshauptmannschaft sowohl dem Grunde als auch der Höhe nach anfocht.
-
-**False Positives:**
-
-- `Bezirkshauptmannschaft sowohl` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 13** (doc_id: `deanon_TRAIN/8Ob141_19x`) (sent_id: `deanon_TRAIN/8Ob141_19x_3`)
-
-
-Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Hon.-Prof. Dr. Kuras als Vorsitzenden, die Hofrätinnen Dr. Tarmann-Prentner und Mag. Korn, den Hofrat Dr. Stefula und die Hofrätin Mag. Wessely-Kristöfel als weitere Richter in der Pflegschaftssache der Antragstellerin mj RgR Linn Neiheiser, geboren am 10. Februar 2008, in Unterhaltsangelegenheiten vertreten durch die Bezirkshauptmannschaft Bregenz, 6901 Bregenz, Bahnhofstraße 41, wegen Unterhalt, über den Revisionsrekurs der Antragstellerin gegen den Beschluss des Landesgerichts Feldkirch als Rekursgericht vom 7. August 2019, GZ 2 R 170/19v-33, mit dem der Beschluss des Bezirksgerichts Bregenz vom 4. Juni 2019, GZ 9 Pu 315/19d-28, teilweise bestätigt und teilweise abgeändert wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Dem Revisionsrekurs wird Folge gegeben.
-
-**False Positives:**
-
-- `Bezirkshauptmannschaft Bregenz` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `RgR Linn Neiheiser`(person)
-- `10. Februar`(date)
-
-**Example 14** (doc_id: `deanon_TRAIN/8Ob141_19x`) (sent_id: `deanon_TRAIN/8Ob141_19x_8`)
-
-
-Die bis zur Rechtskraft dieses Beschlusses fällig gewordenen Beträge sind abzüglich bereits geleisteter Zahlungen binnen 14 Tagen, die hinkünftig fällig werdenden bis zum Ersten eines jeden Monats im Voraus zu Handen des jeweiligen gesetzlichen Vertreters, das ist derzeit die Bezirkshauptmannschaft Bregenz, zu leisten.
-
-**False Positives:**
-
-- `Bezirkshauptmannschaft Bregenz` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 15** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_29`)
-
-
-Der Verwaltungsgerichtshof behob allein einen Bescheid, mit dem ein Antrag auf eine solche Aberkennung abgewiesen wurde, wegen Rechtswidrigkeit seines Inhalts (worauf auch der von der Beklagten angerufene Verfassungsgerichtshof in Punkt 2.4.5.3 seines Erkenntnisses ausdrücklich hinwies).
-
-**False Positives:**
-
-- `Verfassungsgerichtshof` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Verwaltungsgerichtshof`(organisation)
-
-**Example 16** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_31`)
-
-
-Von dieser Sachlage ausgehend wies der von der Beklagten in diesem Verfahren mittels eines Parteiantrags auf Normenkontrolle angerufene Verfassungsgerichtshof den Antrag, die in BGBl II 2013/120 kundgemachte Verordnung des Bundeseinigungsamtes zur Gänze als verfassungswidrig aufzuheben, mit der Begründung ab, die Bedenken der Beklagten beruhten auf der nicht zutreffenden Prämisse, das Österreichische Rote Kreuz habe seine Kollektivvertragsfähigkeit durch das Erkenntnis des Verwaltungsgerichtshofs 2011/08/0230 „de facto“ verloren (Punkt 2.5 des Erkenntnisses).
-
-**False Positives:**
-
-- `Verfassungsgerichtshof` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Verwaltungsgerichtshofs`(organisation)
-
-**Example 17** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_33`)
-
-
-4. Die Frage, ob auch ohne Aufhebung der Verordnung BGBl II 2013/120 durch den Verfassungsgerichtshof allein dadurch, dass dem Österreichischen Roten Kreuz die Kollektivvertragsfähigkeit vom Bundeseinigungsamt mittels Bescheids aberkannt wird, die Satzung des Kollektivvertrags ihre Geltung verliert (vgl insbFriedrich, ASoK 2013, 460 f), stellt sich nicht, weil kein solcher Bescheid vorliegt.
-
-**False Positives:**
-
-- `Verfassungsgerichtshof` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 18** (doc_id: `deanon_TRAIN/8ObA72_19z`) (sent_id: `deanon_TRAIN/8ObA72_19z_12`)
-
-
-2. Dabei konnte sich der Oberste Gerichtshof auf einschlägige Judikatur sowohl des Verfassungsgerichtshofs als auch des EuGH stützen: 2.1 Der Verfassungsgerichtshof hat in seinem Erkenntnis G 450/2015 ua Parteianträge von ÖBB-Bediensteten (unter anderem auch des Klägers) abgewiesen, die § 53a und § 56 Abs 18 bis 24 BundesbahnG je idF BGBl I Nr 64/2015 als verfassungswidrig aufzuheben.
-
-**False Positives:**
-
-- `Verfassungsgerichtshof` — similar text (different position): `Verfassungsgerichtshofs`
-- `ÖBB` — no gold match — likely missing annotation
-
-> overlaps gold: 1  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Verfassungsgerichtshofs`(organisation)
-
-**Example 19** (doc_id: `deanon_TRAIN/9ObA27_15h`) (sent_id: `deanon_TRAIN/9ObA27_15h_7`)
-
-
-Ihr Antrag auf Gesetzesprüfung hinsichtlich der inzwischen aufgelösten Berufungskommission und eine Eventualbeschwerde seien beim Verfassungsgerichtshof anhängig.
-
-**False Positives:**
-
-- `Verfassungsgerichtshof` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
 
 </details>
 
@@ -12644,148 +12559,6 @@ Matches FAÖ acronym for Finanzamt Österreich.
 
 ---
 
-## `Constitutional Court`
-
-**F1:** 0.000 | **Precision:** 0.000 | **Recall:** 0.000  
-
-**Format:** `regex`  
-**Rule ID:** `0bbc25f5`  
-**Description:**
-Matches Verfassungsgerichtshof and its genitive form.
-
-**Content:**
-```
-(?i)\b(Verfassungsgerichtshof(?:es)?)\b
-```
-
-<details>
-<summary>📊 Detailed Metrics</summary>
-
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 8 | 0 | 8 |
-
-**Per-Class Breakdown**
-
-| Class | TP | FP | FN |
-|---|---|---|---|
-| `organisation` | 0 | 8 | 326 |
-
-</details>
-
----
-
-<details>
-<summary>⚠️ False Positives</summary>
-
-**Example 0** (doc_id: `deanon_TRAIN/3Ob26_23d`) (sent_id: `deanon_TRAIN/3Ob26_23d_52`)
-
-
-Vor diesem Hintergrund sprach der Verfassungsgerichtshof aus, dass durch die Öffentlicherklärung einesin der Natur schon bestehendenWeges durch Verordnung mangels Eigentumserwerbs in gesetzwidriger Weise Gemeingebrauch begründet werde.
-
-**False Positives:**
-
-- `Verfassungsgerichtshof` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 1** (doc_id: `deanon_TRAIN/5Ob171_22s`) (sent_id: `deanon_TRAIN/5Ob171_22s_67`)
-
-
-In den vonRohregger(aaO) zitierten Entscheidungen bejahen auch der Verfassungsgerichtshof (B 1050/09) und der Verwaltungsgerichtshof (AW 2012/01/0032) die Bedeutung des § 10 RAO und der Vorgängerbestimmung des § 10 RL-BA 2015 für das öffentliche Interesse an dem Verbot der Doppelvertretung, weil es dem Schutz der durch einen Rechtsanwalt vertretenen Parteien diene, seine Einhaltung für das zwischen Rechtsanwalt und Klient bestehende Treueverhältnis für wesentlich erachtet werde und für das allgemeine Bild der Anwaltschaft in der Öffentlichkeit von Bedeutung sei.
-
-**False Positives:**
-
-- `Verfassungsgerichtshof` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Verwaltungsgerichtshof`(organisation)
-
-**Example 2** (doc_id: `deanon_TRAIN/5Ob31_16v`) (sent_id: `deanon_TRAIN/5Ob31_16v_15`)
-
-
-Weiters wolle die Rechtssache gemäß Art 89 B-VG dem Verfassungsgerichtshof sowie gemäß Art 267 AEUV dem Europäischen Gerichtshof zur Prüfung vorgelegt werden.
-
-**False Positives:**
-
-- `Verfassungsgerichtshof` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 3** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_29`)
-
-
-Der Verwaltungsgerichtshof behob allein einen Bescheid, mit dem ein Antrag auf eine solche Aberkennung abgewiesen wurde, wegen Rechtswidrigkeit seines Inhalts (worauf auch der von der Beklagten angerufene Verfassungsgerichtshof in Punkt 2.4.5.3 seines Erkenntnisses ausdrücklich hinwies).
-
-**False Positives:**
-
-- `Verfassungsgerichtshof` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Verwaltungsgerichtshof`(organisation)
-
-**Example 4** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_31`)
-
-
-Von dieser Sachlage ausgehend wies der von der Beklagten in diesem Verfahren mittels eines Parteiantrags auf Normenkontrolle angerufene Verfassungsgerichtshof den Antrag, die in BGBl II 2013/120 kundgemachte Verordnung des Bundeseinigungsamtes zur Gänze als verfassungswidrig aufzuheben, mit der Begründung ab, die Bedenken der Beklagten beruhten auf der nicht zutreffenden Prämisse, das Österreichische Rote Kreuz habe seine Kollektivvertragsfähigkeit durch das Erkenntnis des Verwaltungsgerichtshofs 2011/08/0230 „de facto“ verloren (Punkt 2.5 des Erkenntnisses).
-
-**False Positives:**
-
-- `Verfassungsgerichtshof` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Verwaltungsgerichtshofs`(organisation)
-
-**Example 5** (doc_id: `deanon_TRAIN/8ObA2_18d`) (sent_id: `deanon_TRAIN/8ObA2_18d_33`)
-
-
-4. Die Frage, ob auch ohne Aufhebung der Verordnung BGBl II 2013/120 durch den Verfassungsgerichtshof allein dadurch, dass dem Österreichischen Roten Kreuz die Kollektivvertragsfähigkeit vom Bundeseinigungsamt mittels Bescheids aberkannt wird, die Satzung des Kollektivvertrags ihre Geltung verliert (vgl insbFriedrich, ASoK 2013, 460 f), stellt sich nicht, weil kein solcher Bescheid vorliegt.
-
-**False Positives:**
-
-- `Verfassungsgerichtshof` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 6** (doc_id: `deanon_TRAIN/8ObA72_19z`) (sent_id: `deanon_TRAIN/8ObA72_19z_12`)
-
-
-2. Dabei konnte sich der Oberste Gerichtshof auf einschlägige Judikatur sowohl des Verfassungsgerichtshofs als auch des EuGH stützen: 2.1 Der Verfassungsgerichtshof hat in seinem Erkenntnis G 450/2015 ua Parteianträge von ÖBB-Bediensteten (unter anderem auch des Klägers) abgewiesen, die § 53a und § 56 Abs 18 bis 24 BundesbahnG je idF BGBl I Nr 64/2015 als verfassungswidrig aufzuheben.
-
-**False Positives:**
-
-- `Verfassungsgerichtshof` — similar text (different position): `Verfassungsgerichtshofs`
-
-> overlaps gold: 1  |  likely missing annotation: 0
-
-**Gold Entities:**
-
-- `Verfassungsgerichtshofs`(organisation)
-
-**Example 7** (doc_id: `deanon_TRAIN/9ObA27_15h`) (sent_id: `deanon_TRAIN/9ObA27_15h_7`)
-
-
-Ihr Antrag auf Gesetzesprüfung hinsichtlich der inzwischen aufgelösten Berufungskommission und eine Eventualbeschwerde seien beim Verfassungsgerichtshof anhängig.
-
-**False Positives:**
-
-- `Verfassungsgerichtshof` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-</details>
-
----
-
 ## `Constitutional Court Acronym`
 
 **F1:** 0.000 | **Precision:** 0.000 | **Recall:** 0.000  
@@ -12811,7 +12584,7 @@ Matches VfGH acronym.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 12 | 472 |
+| `organisation` | 0 | 12 | 485 |
 
 </details>
 
@@ -13010,7 +12783,7 @@ Matches Arbeits- und Sozialgericht Wien and variations.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 34 | 487 |
+| `organisation` | 0 | 34 | 500 |
 
 </details>
 
@@ -13727,7 +13500,7 @@ Matches the specific organization Pensionsversicherungsanstalt.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 1 | 486 |
+| `organisation` | 0 | 1 | 499 |
 
 </details>
 
@@ -14205,7 +13978,7 @@ Matches Sozialversicherungsanstalt der Bauern.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 2 | 487 |
+| `organisation` | 0 | 2 | 500 |
 
 </details>
 
@@ -14544,7 +14317,7 @@ Matches law firms ending in Rechtsanwält... GmbH/OG.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 4 | 421 |
+| `organisation` | 0 | 4 | 434 |
 
 </details>
 
@@ -14875,7 +14648,7 @@ Matches law firms ending in Rechtsanwälte GmbH/OG with names, ensuring no prece
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 10 | 421 |
+| `organisation` | 0 | 10 | 434 |
 
 </details>
 
@@ -15255,7 +15028,7 @@ Matches Bundesministeriums für Justiz.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 4 | 448 |
+| `organisation` | 0 | 4 | 461 |
 
 </details>
 
@@ -15787,7 +15560,7 @@ Matches law firms ending in KG, excluding GmbH & Co KG patterns.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 10 | 496 |
+| `organisation` | 0 | 10 | 509 |
 
 </details>
 
@@ -15970,7 +15743,7 @@ Matches entities ending in 'gesellschaft mbH' or 'Gesellschaft mbH' which are co
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 2 | 285 |
+| `organisation` | 0 | 2 | 297 |
 
 </details>
 
