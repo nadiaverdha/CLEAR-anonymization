@@ -1,6 +1,6 @@
 # Rule Evaluation Report — Qwen/Qwen3.5-35B-A3B
 
-Generated on: 2026-05-26T19:00:44.162602
+Generated on: 2026-05-26T19:07:04.775748
 
 ---
 
@@ -54,12 +54,12 @@ Results can be reproduced by running this command:
 | Accuracy (exact match) | 97.7% |
 | True Positives | 292 |
 | False Positives | 315 |
-| False Negatives | 384 |
-| Total Gold Entities | 676 |
+| False Negatives | 408 |
+| Total Gold Entities | 700 |
 | Micro Precision | 48.1% |
-| Micro Recall | 43.2% |
-| Micro F1 | 45.5% |
-| Macro F1 | 45.5% |
+| Micro Recall | 41.7% |
+| Micro F1 | 44.7% |
+| Macro F1 | 44.7% |
 
 </details>
 
@@ -70,21 +70,21 @@ Results can be reproduced by running this command:
 
 | Rule | F1 | Precision | Recall | Total Predicted | True Positives | False Positives |
 |---|---|---|---|---|---|---|
-| `Administrative Court` | 1.8% | 100.0% | 0.9% | 6 | 6 | 0 |
+| `Administrative Court` | 1.7% | 100.0% | 0.9% | 6 | 6 | 0 |
 | `Vienna Magistrate` | 2.0% | 100.0% | 1.0% | 7 | 7 | 0 |
-| `Constitutional Court` | 2.3% | 100.0% | 1.2% | 8 | 8 | 0 |
-| `Labor Court Vienna` | 9.6% | 100.0% | 5.0% | 34 | 34 | 0 |
-| `Court with Location` | 5.2% | 100.0% | 2.7% | 18 | 18 | 0 |
+| `Constitutional Court` | 2.3% | 100.0% | 1.1% | 8 | 8 | 0 |
+| `Labor Court Vienna` | 9.3% | 100.0% | 4.9% | 34 | 34 | 0 |
+| `Court with Location` | 5.0% | 100.0% | 2.6% | 18 | 18 | 0 |
 | `Pensionsversicherungsanstalt` | 0.3% | 100.0% | 0.1% | 1 | 1 | 0 |
-| `Verwaltungsgerichtshof Genitive` | 1.5% | 100.0% | 0.7% | 5 | 5 | 0 |
+| `Verwaltungsgerichtshof Genitive` | 1.4% | 100.0% | 0.7% | 5 | 5 | 0 |
 | `Magistrate City Pattern` | 2.0% | 100.0% | 1.0% | 7 | 7 | 0 |
-| `Federal Ministry of Justice` | 1.2% | 100.0% | 0.6% | 4 | 4 | 0 |
-| `District Court Pattern` | 32.4% | 81.1% | 20.3% | 169 | 137 | 32 |
-| `Regional Court Pattern` | 16.4% | 67.0% | 9.3% | 94 | 63 | 31 |
-| `Bank and Other Org` | 4.0% | 66.7% | 2.1% | 21 | 14 | 7 |
+| `Federal Ministry of Justice` | 1.1% | 100.0% | 0.6% | 4 | 4 | 0 |
+| `District Court Pattern` | 31.5% | 81.1% | 19.6% | 169 | 137 | 32 |
+| `Regional Court Pattern` | 15.9% | 67.0% | 9.0% | 94 | 63 | 31 |
+| `Bank and Other Org` | 3.9% | 66.7% | 2.0% | 21 | 14 | 7 |
 | `Hyphenated Company Names` | 0.3% | 50.0% | 0.1% | 2 | 1 | 1 |
-| `Generic GmbH Entity` | 5.1% | 14.5% | 3.1% | 145 | 21 | 124 |
-| `Company Name Without Suffix` | 4.6% | 8.6% | 3.1% | 244 | 21 | 223 |
+| `Generic GmbH Entity` | 5.0% | 14.5% | 3.0% | 145 | 21 | 124 |
+| `Company Name Without Suffix` | 4.4% | 8.6% | 3.0% | 244 | 21 | 223 |
 | `Federal Tax Court` | 0.0% | 0.0% | 0.0% | 0 | 0 | 0 |
 | `Tax Authority Austria` | 0.0% | 0.0% | 0.0% | 0 | 0 | 0 |
 | `Ministry of Finance` | 0.0% | 0.0% | 0.0% | 0 | 0 | 0 |
@@ -195,7 +195,7 @@ Results can be reproduced by running this command:
 
 ## `Labor Court Vienna`
 
-**F1:** 0.096 | **Precision:** 1.000 | **Recall:** 0.050  
+**F1:** 0.093 | **Precision:** 1.000 | **Recall:** 0.049  
 
 **Format:** `regex`  
 **Rule ID:** `dee27985`  
@@ -212,13 +212,13 @@ Matches Arbeits- und Sozialgericht Wien and variations.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 1.000 | 0.050 | 0.096 | 34 | 34 | 0 |
+| 1.000 | 0.049 | 0.093 | 34 | 34 | 0 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 34 | 0 | 535 |
+| `organisation` | 34 | 0 | 555 |
 
 </details>
 
@@ -636,7 +636,7 @@ Kopf Der Oberste Gerichtshof hat als Revisions- und Rekursgericht in Arbeits- un
 
 ## `Court with Location`
 
-**F1:** 0.052 | **Precision:** 1.000 | **Recall:** 0.027  
+**F1:** 0.050 | **Precision:** 1.000 | **Recall:** 0.026  
 
 **Format:** `regex`  
 **Rule ID:** `971aef3b`  
@@ -653,13 +653,13 @@ Matches court names followed by location suffixes like 'Außenstelle Linz'.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 1.000 | 0.027 | 0.052 | 18 | 18 | 0 |
+| 1.000 | 0.026 | 0.050 | 18 | 18 | 0 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 18 | 0 | 574 |
+| `organisation` | 18 | 0 | 594 |
 
 </details>
 
@@ -804,7 +804,7 @@ Ihr Antrag auf Gesetzesprüfung hinsichtlich der inzwischen aufgelösten Berufun
 
 ## `Constitutional Court`
 
-**F1:** 0.023 | **Precision:** 1.000 | **Recall:** 0.012  
+**F1:** 0.023 | **Precision:** 1.000 | **Recall:** 0.011  
 
 **Format:** `regex`  
 **Rule ID:** `0bbc25f5`  
@@ -821,13 +821,13 @@ Matches Verfassungsgerichtshof and its genitive form.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 1.000 | 0.012 | 0.023 | 8 | 8 | 0 |
+| 1.000 | 0.011 | 0.023 | 8 | 8 | 0 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 8 | 0 | 386 |
+| `organisation` | 8 | 0 | 394 |
 
 </details>
 
@@ -953,7 +953,7 @@ Matches Magistrat der Stadt Wien with department codes, ensuring the full entity
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 7 | 0 | 596 |
+| `organisation` | 7 | 0 | 616 |
 
 </details>
 
@@ -1094,7 +1094,7 @@ Matches Magistrat der Stadt followed by city name, including genitive forms and 
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 7 | 0 | 596 |
+| `organisation` | 7 | 0 | 616 |
 
 </details>
 
@@ -1212,7 +1212,7 @@ Matzka als weitere Richter in der Pflegschaftssache der Minderjährigen Silke Wi
 
 ## `Administrative Court`
 
-**F1:** 0.018 | **Precision:** 1.000 | **Recall:** 0.009  
+**F1:** 0.017 | **Precision:** 1.000 | **Recall:** 0.009  
 
 **Format:** `regex`  
 **Rule ID:** `cbaa7335`  
@@ -1229,13 +1229,13 @@ Matches Verwaltungsgerichtshof and all its case endings, including optional (VwG
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 1.000 | 0.009 | 0.018 | 6 | 6 | 0 |
+| 1.000 | 0.009 | 0.017 | 6 | 6 | 0 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 6 | 0 | 276 |
+| `organisation` | 6 | 0 | 282 |
 
 </details>
 
@@ -1316,7 +1316,7 @@ Von dieser Sachlage ausgehend wies der von der Beklagten in diesem Verfahren mit
 
 ## `District Court Pattern`
 
-**F1:** 0.324 | **Precision:** 0.811 | **Recall:** 0.203  
+**F1:** 0.315 | **Precision:** 0.811 | **Recall:** 0.196  
 
 **Format:** `regex`  
 **Rule ID:** `4a197a40`  
@@ -1333,13 +1333,13 @@ Matches Bezirksgericht followed by location, handling 'BG' abbreviation.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.811 | 0.203 | 0.324 | 169 | 137 | 32 |
+| 0.811 | 0.196 | 0.315 | 169 | 137 | 32 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 137 | 32 | 539 |
+| `organisation` | 137 | 32 | 563 |
 
 </details>
 
@@ -1670,9 +1670,13 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hradil als Vor
 
 **False Positives:**
 
-- `Bezirksgericht für` — no gold match — likely missing annotation
+- `Bezirksgericht für` — partial — pred is substring of gold: `Bezirksgericht für Handelssachen Wien`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Bezirksgericht für Handelssachen Wien`(organisation)
 
 **Example 1** (doc_id: `deanon_TRAIN/10Nc21_21a`) (sent_id: `deanon_TRAIN/10Nc21_21a_7`)
 
@@ -1681,9 +1685,13 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hradil als Vor
 
 **False Positives:**
 
-- `Bezirksgericht für` — no gold match — likely missing annotation
+- `Bezirksgericht für` — partial — pred is substring of gold: `Bezirksgericht für Handelssachen Wien`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Bezirksgericht für Handelssachen Wien`(organisation)
 
 **Example 2** (doc_id: `deanon_TRAIN/10Nc21_21a`) (sent_id: `deanon_TRAIN/10Nc21_21a_10`)
 
@@ -1692,9 +1700,13 @@ Das Bezirksgericht für Handelssachen Wien überwies die Rechtssache an dieses G
 
 **False Positives:**
 
-- `Bezirksgericht für` — no gold match — likely missing annotation
+- `Bezirksgericht für` — partial — pred is substring of gold: `Bezirksgericht für Handelssachen Wien`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Bezirksgericht für Handelssachen Wien`(organisation)
 
 **Example 3** (doc_id: `deanon_TRAIN/10Nc21_21a`) (sent_id: `deanon_TRAIN/10Nc21_21a_22`)
 
@@ -1703,9 +1715,13 @@ Das Bezirksgericht für Handelssachen Wien überwies die Rechtssache an dieses G
 
 **False Positives:**
 
-- `Bezirksgericht für` — no gold match — likely missing annotation
+- `Bezirksgericht für` — partial — pred is substring of gold: `Bezirksgericht für Handelssachen Wien`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Bezirksgericht für Handelssachen Wien`(organisation)
 
 **Example 4** (doc_id: `deanon_TRAIN/10Nc25_09x`) (sent_id: `deanon_TRAIN/10Nc25_09x_8`)
 
@@ -1938,7 +1954,7 @@ Dem Ordinationsantrag ist somit stattzugeben und zweckmäßigerweise das Bezirks
 
 ## `Regional Court Pattern`
 
-**F1:** 0.164 | **Precision:** 0.670 | **Recall:** 0.093  
+**F1:** 0.159 | **Precision:** 0.670 | **Recall:** 0.090  
 
 **Format:** `regex`  
 **Rule ID:** `8426a1d3`  
@@ -1955,13 +1971,13 @@ Matches Landesgericht (LG) followed by location.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.670 | 0.093 | 0.164 | 94 | 63 | 31 |
+| 0.670 | 0.090 | 0.159 | 94 | 63 | 31 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 63 | 31 | 547 |
+| `organisation` | 63 | 31 | 567 |
 
 </details>
 
@@ -2307,14 +2323,15 @@ Text Gründe: Im Ermittlungsverfahren gegen Viktor Mittermair und andere Beschul
 
 **False Positives:**
 
-- `Landesgericht für` — no gold match — likely missing annotation
+- `Landesgericht für` — partial — pred is substring of gold: `Landesgericht für Strafsachen Wien`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
 
 **Gold Entities:**
 
 - `Mittermair`(person)
 - `Tolmin`(person)
+- `Landesgericht für Strafsachen Wien`(organisation)
 
 **Example 1** (doc_id: `deanon_TRAIN/13Os22_12b_13Ns16_12z_`) (sent_id: `deanon_TRAIN/13Os22_12b_13Ns16_12z__5`)
 
@@ -2323,12 +2340,13 @@ Text Gründe: Das Landesgericht für Strafsachen Wien verhängte mit Beschluss v
 
 **False Positives:**
 
-- `Landesgericht für` — no gold match — likely missing annotation
+- `Landesgericht für` — partial — pred is substring of gold: `Landesgericht für Strafsachen Wien`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
 
 **Gold Entities:**
 
+- `Landesgericht für Strafsachen Wien`(organisation)
 - `Laurin Bickmann`(person)
 
 **Example 2** (doc_id: `deanon_TRAIN/13Os33_12w_13Os58_12x_`) (sent_id: `deanon_TRAIN/13Os33_12w_13Os58_12x__6`)
@@ -2338,9 +2356,13 @@ Dem Landesgericht für Strafsachen Graz wird ein Vorgehen gemäß §§ 14 und 15
 
 **False Positives:**
 
-- `Landesgericht für` — no gold match — likely missing annotation
+- `Landesgericht für` — partial — pred is substring of gold: `Landesgericht für Strafsachen Graz`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Landesgericht für Strafsachen Graz`(organisation)
 
 **Example 3** (doc_id: `deanon_TRAIN/13Os33_12w_13Os58_12x_`) (sent_id: `deanon_TRAIN/13Os33_12w_13Os58_12x__23`)
 
@@ -2360,9 +2382,13 @@ Seither besteht das Landesgericht als Schöffengericht aus nur einem (Berufs-)Ri
 
 **False Positives:**
 
-- `Landesgericht für` — no gold match — likely missing annotation
+- `Landesgericht für` — partial — pred is substring of gold: `Landesgericht für Strafsachen Graz`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Landesgericht für Strafsachen Graz`(organisation)
 
 **Example 5** (doc_id: `deanon_TRAIN/13Os33_12w_13Os58_12x_`) (sent_id: `deanon_TRAIN/13Os33_12w_13Os58_12x__30`)
 
@@ -2371,9 +2397,13 @@ Mit Blick auf § 292 letzter Satz StPO sah sich der Oberste Gerichtshof veranlas
 
 **False Positives:**
 
-- `Landesgericht für` — no gold match — likely missing annotation
+- `Landesgericht für` — partial — pred is substring of gold: `Landesgericht für Strafsachen Graz`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Landesgericht für Strafsachen Graz`(organisation)
 
 **Example 6** (doc_id: `deanon_TRAIN/13Os34_19b`) (sent_id: `deanon_TRAIN/13Os34_19b_5`)
 
@@ -2382,9 +2412,13 @@ Dieser Beschluss wird aufgehoben und es wird dem Landesgericht für Strafsachen 
 
 **False Positives:**
 
-- `Landesgericht für` — no gold match — likely missing annotation
+- `Landesgericht für` — partial — pred is substring of gold: `Landesgericht für Strafsachen Graz`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Landesgericht für Strafsachen Graz`(organisation)
 
 **Example 7** (doc_id: `deanon_TRAIN/13Os7_20h_13Os8_20f_`) (sent_id: `deanon_TRAIN/13Os7_20h_13Os8_20f__5`)
 
@@ -2393,9 +2427,13 @@ In Stattgebung des Antrags der Generalprokuratur wird im außerordentlichen Weg 
 
 **False Positives:**
 
-- `Landesgericht für` — no gold match — likely missing annotation
+- `Landesgericht für` — partial — pred is substring of gold: `Landesgericht für Strafsachen Wien`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Landesgericht für Strafsachen Wien`(organisation)
 
 **Example 8** (doc_id: `deanon_TRAIN/13Os7_20h_13Os8_20f_`) (sent_id: `deanon_TRAIN/13Os7_20h_13Os8_20f__10`)
 
@@ -2404,13 +2442,14 @@ Die am 22. Februar 2019 – innerhalb der Frist des § 467 Abs 1 StPO (vgl Zuste
 
 **False Positives:**
 
-- `Landesgericht für` — no gold match — likely missing annotation
+- `Landesgericht für` — partial — pred is substring of gold: `Landesgericht für Strafsachen Wien`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
 
 **Gold Entities:**
 
 - `Unterbusch`(person)
+- `Landesgericht für Strafsachen Wien`(organisation)
 
 **Example 9** (doc_id: `deanon_TRAIN/13Os99_19m`) (sent_id: `deanon_TRAIN/13Os99_19m_7`)
 
@@ -2441,13 +2480,14 @@ Text Gründe: Gegen Tomsilav Alexejenko ist beim Landesgericht für Strafsachen 
 
 **False Positives:**
 
-- `Landesgericht für` — no gold match — likely missing annotation
+- `Landesgericht für` — partial — pred is substring of gold: `Landesgericht für Strafsachen Wien`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
 
 **Gold Entities:**
 
 - `Alexejenko`(person)
+- `Landesgericht für Strafsachen Wien`(organisation)
 
 **Example 12** (doc_id: `deanon_TRAIN/14Os63_12i`) (sent_id: `deanon_TRAIN/14Os63_12i_8`)
 
@@ -2471,9 +2511,13 @@ Aus Anlass eines vom Angeklagten am 17. Februar 2017 eingebrachten Antrags auf A
 
 **False Positives:**
 
-- `Landesgericht für` — no gold match — likely missing annotation
+- `Landesgericht für` — partial — pred is substring of gold: `Landesgericht für Strafsachen Graz`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Landesgericht für Strafsachen Graz`(organisation)
 
 **Example 14** (doc_id: `deanon_TRAIN/15Os43_13g`) (sent_id: `deanon_TRAIN/15Os43_13g_12`)
 
@@ -2528,9 +2572,13 @@ Das Landesgericht für Zivilrechtssachen Wien gab der gegen das Ersturteil geric
 
 **False Positives:**
 
-- `Landesgericht für` — no gold match — likely missing annotation
+- `Landesgericht für` — partial — pred is substring of gold: `Landesgericht für Zivilrechtssachen Wien`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Landesgericht für Zivilrechtssachen Wien`(organisation)
 
 **Example 18** (doc_id: `deanon_TRAIN/1Ob78_22k`) (sent_id: `deanon_TRAIN/1Ob78_22k_11`)
 
@@ -2539,9 +2587,13 @@ diese Entscheidung wurde vom Landesgericht für Zivilrechtssachen Wien später b
 
 **False Positives:**
 
-- `Landesgericht für` — no gold match — likely missing annotation
+- `Landesgericht für` — partial — pred is substring of gold: `Landesgericht für Zivilrechtssachen Wien`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Landesgericht für Zivilrechtssachen Wien`(organisation)
 
 **Example 19** (doc_id: `deanon_TRAIN/3Ob1_20y`) (sent_id: `deanon_TRAIN/3Ob1_20y_9`)
 
@@ -2566,9 +2618,13 @@ Diesen Ablehnungsantrag hat das Landesgericht für Zivilrechtssachen Wien am 19.
 
 **False Positives:**
 
-- `Landesgericht für` — no gold match — likely missing annotation
+- `Landesgericht für` — partial — pred is substring of gold: `Landesgericht für Zivilrechtssachen Wien`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Landesgericht für Zivilrechtssachen Wien`(organisation)
 
 **Example 21** (doc_id: `deanon_TRAIN/4Fsc1_10z`) (sent_id: `deanon_TRAIN/4Fsc1_10z_11`)
 
@@ -2577,9 +2633,13 @@ Diesen Ablehnungsantrag hat das Landesgericht für Zivilrechtssachen Wien am 19.
 
 **False Positives:**
 
-- `Landesgericht für` — no gold match — likely missing annotation
+- `Landesgericht für` — partial — pred is substring of gold: `Landesgericht für Zivilrechtssachen Wien`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Landesgericht für Zivilrechtssachen Wien`(organisation)
 
 **Example 22** (doc_id: `deanon_TRAIN/5Nc20_14g`) (sent_id: `deanon_TRAIN/5Nc20_14g_3`)
 
@@ -2634,9 +2694,13 @@ Text Begründung: Mit der beim Landesgericht für Zivilrechtssachen Wien eingebr
 
 **False Positives:**
 
-- `Landesgericht für` — no gold match — likely missing annotation
+- `Landesgericht für` — partial — pred is substring of gold: `Landesgericht für Zivilrechtssachen Wien`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Landesgericht für Zivilrechtssachen Wien`(organisation)
 
 **Example 26** (doc_id: `deanon_TRAIN/6Ob240_20t`) (sent_id: `deanon_TRAIN/6Ob240_20t_3`)
 
@@ -2665,9 +2729,13 @@ Das Landesgericht für Zivilrechtssachen Wien wies mit Beschluss vom 22. 4. 2014
 
 **False Positives:**
 
-- `Landesgericht für` — no gold match — likely missing annotation
+- `Landesgericht für` — partial — pred is substring of gold: `Landesgericht für Zivilrechtssachen Wien`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Landesgericht für Zivilrechtssachen Wien`(organisation)
 
 **Example 28** (doc_id: `deanon_TRAIN/6Ob82_15z`) (sent_id: `deanon_TRAIN/6Ob82_15z_14`)
 
@@ -2687,9 +2755,13 @@ Das Oberlandesgericht Wien als Rekursgericht stellte mit Beschluss vom 22. 10. 2
 
 **False Positives:**
 
-- `Landesgericht für` — no gold match — likely missing annotation
+- `Landesgericht für` — partial — pred is substring of gold: `Landesgericht für Zivilrechtssachen Wien`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Landesgericht für Zivilrechtssachen Wien`(organisation)
 
 </details>
 
@@ -2697,7 +2769,7 @@ Das Oberlandesgericht Wien als Rekursgericht stellte mit Beschluss vom 22. 10. 2
 
 ## `Bank and Other Org`
 
-**F1:** 0.040 | **Precision:** 0.667 | **Recall:** 0.021  
+**F1:** 0.039 | **Precision:** 0.667 | **Recall:** 0.020  
 
 **Format:** `regex`  
 **Rule ID:** `53220dfe`  
@@ -2714,13 +2786,13 @@ Matches specific bank names and other organizations like 'Reinemut + Smoch Hande
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.667 | 0.021 | 0.040 | 21 | 14 | 7 |
+| 0.667 | 0.020 | 0.039 | 21 | 14 | 7 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 14 | 7 | 581 |
+| `organisation` | 14 | 7 | 601 |
 
 </details>
 
@@ -3002,7 +3074,7 @@ Wenn das Erstgericht - dem Sachverständigengutachten folgend - zu der Einschät
 
 ## `Generic GmbH Entity`
 
-**F1:** 0.051 | **Precision:** 0.145 | **Recall:** 0.031  
+**F1:** 0.050 | **Precision:** 0.145 | **Recall:** 0.030  
 
 **Format:** `regex`  
 **Rule ID:** `0d4e88c9`  
@@ -3019,13 +3091,13 @@ Matches company names ending in GmbH, AG, KG, etc., with strict word boundaries 
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.145 | 0.031 | 0.051 | 145 | 21 | 124 |
+| 0.145 | 0.030 | 0.050 | 145 | 21 | 124 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 21 | 124 | 653 |
+| `organisation` | 21 | 124 | 677 |
 
 </details>
 
@@ -3753,7 +3825,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 
 ## `Company Name Without Suffix`
 
-**F1:** 0.046 | **Precision:** 0.086 | **Recall:** 0.031  
+**F1:** 0.044 | **Precision:** 0.086 | **Recall:** 0.030  
 
 **Format:** `regex`  
 **Rule ID:** `c8608e27`  
@@ -3770,13 +3842,13 @@ Matches company names that do not end in a standard suffix like GmbH/AG but are 
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.086 | 0.031 | 0.046 | 244 | 21 | 223 |
+| 0.086 | 0.030 | 0.044 | 244 | 21 | 223 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 21 | 223 | 653 |
+| `organisation` | 21 | 223 | 677 |
 
 </details>
 
@@ -4410,7 +4482,7 @@ Matches VfGH acronym.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 12 | 548 |
+| `organisation` | 0 | 12 | 568 |
 
 </details>
 
@@ -4584,7 +4656,7 @@ Matches law firms ending in Rechtsanwälte GmbH/OG with names, ensuring no prece
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 10 | 495 |
+| `organisation` | 0 | 10 | 505 |
 
 </details>
 
@@ -4798,7 +4870,7 @@ Matches law firms ending in KG, excluding GmbH & Co KG patterns.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 10 | 578 |
+| `organisation` | 0 | 10 | 598 |
 
 </details>
 
@@ -4981,7 +5053,7 @@ Matches VwGH acronym, but only when it appears as a standalone entity reference,
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 7 | 548 |
+| `organisation` | 0 | 7 | 568 |
 
 </details>
 
@@ -5337,7 +5409,7 @@ Matches the specific retailer Billa.
 
 ## `District Court Pattern`
 
-**F1:** 0.324 | **Precision:** 0.811 | **Recall:** 0.203  
+**F1:** 0.315 | **Precision:** 0.811 | **Recall:** 0.196  
 
 **Format:** `regex`  
 **Rule ID:** `4a197a40`  
@@ -5354,13 +5426,13 @@ Matches Bezirksgericht followed by location, handling 'BG' abbreviation.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.811 | 0.203 | 0.324 | 169 | 137 | 32 |
+| 0.811 | 0.196 | 0.315 | 169 | 137 | 32 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 137 | 32 | 539 |
+| `organisation` | 137 | 32 | 563 |
 
 </details>
 
@@ -6232,9 +6304,13 @@ In ihrem Einspruch gegen den vom Bezirksgericht Salzburg erlassenen Zahlungsbefe
 
 **False Positives:**
 
-- `Bezirksgericht für` — no gold match — likely missing annotation
+- `Bezirksgericht für` — partial — pred is substring of gold: `Bezirksgericht für Handelssachen Wien`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Bezirksgericht für Handelssachen Wien`(organisation)
 
 **Example 1** (doc_id: `deanon_TRAIN/10Nc21_21a`) (sent_id: `deanon_TRAIN/10Nc21_21a_7`)
 
@@ -6243,9 +6319,13 @@ In ihrem Einspruch gegen den vom Bezirksgericht Salzburg erlassenen Zahlungsbefe
 
 **False Positives:**
 
-- `Bezirksgericht für` — no gold match — likely missing annotation
+- `Bezirksgericht für` — partial — pred is substring of gold: `Bezirksgericht für Handelssachen Wien`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Bezirksgericht für Handelssachen Wien`(organisation)
 
 **Example 2** (doc_id: `deanon_TRAIN/10Nc21_21a`) (sent_id: `deanon_TRAIN/10Nc21_21a_10`)
 
@@ -6254,9 +6334,13 @@ Das Bezirksgericht für Handelssachen Wien überwies die Rechtssache an dieses G
 
 **False Positives:**
 
-- `Bezirksgericht für` — no gold match — likely missing annotation
+- `Bezirksgericht für` — partial — pred is substring of gold: `Bezirksgericht für Handelssachen Wien`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Bezirksgericht für Handelssachen Wien`(organisation)
 
 **Example 3** (doc_id: `deanon_TRAIN/10Nc21_21a`) (sent_id: `deanon_TRAIN/10Nc21_21a_22`)
 
@@ -6265,9 +6349,13 @@ Das Bezirksgericht für Handelssachen Wien überwies die Rechtssache an dieses G
 
 **False Positives:**
 
-- `Bezirksgericht für` — no gold match — likely missing annotation
+- `Bezirksgericht für` — partial — pred is substring of gold: `Bezirksgericht für Handelssachen Wien`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Bezirksgericht für Handelssachen Wien`(organisation)
 
 **Example 4** (doc_id: `deanon_TRAIN/10Nc25_09x`) (sent_id: `deanon_TRAIN/10Nc25_09x_8`)
 
@@ -6500,7 +6588,7 @@ Dem Ordinationsantrag ist somit stattzugeben und zweckmäßigerweise das Bezirks
 
 ## `Regional Court Pattern`
 
-**F1:** 0.164 | **Precision:** 0.670 | **Recall:** 0.093  
+**F1:** 0.159 | **Precision:** 0.670 | **Recall:** 0.090  
 
 **Format:** `regex`  
 **Rule ID:** `8426a1d3`  
@@ -6517,13 +6605,13 @@ Matches Landesgericht (LG) followed by location.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.670 | 0.093 | 0.164 | 94 | 63 | 31 |
+| 0.670 | 0.090 | 0.159 | 94 | 63 | 31 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 63 | 31 | 547 |
+| `organisation` | 63 | 31 | 567 |
 
 </details>
 
@@ -7230,14 +7318,15 @@ Text Gründe: Im Ermittlungsverfahren gegen Viktor Mittermair und andere Beschul
 
 **False Positives:**
 
-- `Landesgericht für` — no gold match — likely missing annotation
+- `Landesgericht für` — partial — pred is substring of gold: `Landesgericht für Strafsachen Wien`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
 
 **Gold Entities:**
 
 - `Mittermair`(person)
 - `Tolmin`(person)
+- `Landesgericht für Strafsachen Wien`(organisation)
 
 **Example 1** (doc_id: `deanon_TRAIN/13Os22_12b_13Ns16_12z_`) (sent_id: `deanon_TRAIN/13Os22_12b_13Ns16_12z__5`)
 
@@ -7246,12 +7335,13 @@ Text Gründe: Das Landesgericht für Strafsachen Wien verhängte mit Beschluss v
 
 **False Positives:**
 
-- `Landesgericht für` — no gold match — likely missing annotation
+- `Landesgericht für` — partial — pred is substring of gold: `Landesgericht für Strafsachen Wien`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
 
 **Gold Entities:**
 
+- `Landesgericht für Strafsachen Wien`(organisation)
 - `Laurin Bickmann`(person)
 
 **Example 2** (doc_id: `deanon_TRAIN/13Os33_12w_13Os58_12x_`) (sent_id: `deanon_TRAIN/13Os33_12w_13Os58_12x__6`)
@@ -7261,9 +7351,13 @@ Dem Landesgericht für Strafsachen Graz wird ein Vorgehen gemäß §§ 14 und 15
 
 **False Positives:**
 
-- `Landesgericht für` — no gold match — likely missing annotation
+- `Landesgericht für` — partial — pred is substring of gold: `Landesgericht für Strafsachen Graz`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Landesgericht für Strafsachen Graz`(organisation)
 
 **Example 3** (doc_id: `deanon_TRAIN/13Os33_12w_13Os58_12x_`) (sent_id: `deanon_TRAIN/13Os33_12w_13Os58_12x__23`)
 
@@ -7283,9 +7377,13 @@ Seither besteht das Landesgericht als Schöffengericht aus nur einem (Berufs-)Ri
 
 **False Positives:**
 
-- `Landesgericht für` — no gold match — likely missing annotation
+- `Landesgericht für` — partial — pred is substring of gold: `Landesgericht für Strafsachen Graz`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Landesgericht für Strafsachen Graz`(organisation)
 
 **Example 5** (doc_id: `deanon_TRAIN/13Os33_12w_13Os58_12x_`) (sent_id: `deanon_TRAIN/13Os33_12w_13Os58_12x__30`)
 
@@ -7294,9 +7392,13 @@ Mit Blick auf § 292 letzter Satz StPO sah sich der Oberste Gerichtshof veranlas
 
 **False Positives:**
 
-- `Landesgericht für` — no gold match — likely missing annotation
+- `Landesgericht für` — partial — pred is substring of gold: `Landesgericht für Strafsachen Graz`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Landesgericht für Strafsachen Graz`(organisation)
 
 **Example 6** (doc_id: `deanon_TRAIN/13Os34_19b`) (sent_id: `deanon_TRAIN/13Os34_19b_5`)
 
@@ -7305,9 +7407,13 @@ Dieser Beschluss wird aufgehoben und es wird dem Landesgericht für Strafsachen 
 
 **False Positives:**
 
-- `Landesgericht für` — no gold match — likely missing annotation
+- `Landesgericht für` — partial — pred is substring of gold: `Landesgericht für Strafsachen Graz`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Landesgericht für Strafsachen Graz`(organisation)
 
 **Example 7** (doc_id: `deanon_TRAIN/13Os7_20h_13Os8_20f_`) (sent_id: `deanon_TRAIN/13Os7_20h_13Os8_20f__5`)
 
@@ -7316,9 +7422,13 @@ In Stattgebung des Antrags der Generalprokuratur wird im außerordentlichen Weg 
 
 **False Positives:**
 
-- `Landesgericht für` — no gold match — likely missing annotation
+- `Landesgericht für` — partial — pred is substring of gold: `Landesgericht für Strafsachen Wien`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Landesgericht für Strafsachen Wien`(organisation)
 
 **Example 8** (doc_id: `deanon_TRAIN/13Os7_20h_13Os8_20f_`) (sent_id: `deanon_TRAIN/13Os7_20h_13Os8_20f__10`)
 
@@ -7327,13 +7437,14 @@ Die am 22. Februar 2019 – innerhalb der Frist des § 467 Abs 1 StPO (vgl Zuste
 
 **False Positives:**
 
-- `Landesgericht für` — no gold match — likely missing annotation
+- `Landesgericht für` — partial — pred is substring of gold: `Landesgericht für Strafsachen Wien`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
 
 **Gold Entities:**
 
 - `Unterbusch`(person)
+- `Landesgericht für Strafsachen Wien`(organisation)
 
 **Example 9** (doc_id: `deanon_TRAIN/13Os99_19m`) (sent_id: `deanon_TRAIN/13Os99_19m_7`)
 
@@ -7364,13 +7475,14 @@ Text Gründe: Gegen Tomsilav Alexejenko ist beim Landesgericht für Strafsachen 
 
 **False Positives:**
 
-- `Landesgericht für` — no gold match — likely missing annotation
+- `Landesgericht für` — partial — pred is substring of gold: `Landesgericht für Strafsachen Wien`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
 
 **Gold Entities:**
 
 - `Alexejenko`(person)
+- `Landesgericht für Strafsachen Wien`(organisation)
 
 **Example 12** (doc_id: `deanon_TRAIN/14Os63_12i`) (sent_id: `deanon_TRAIN/14Os63_12i_8`)
 
@@ -7394,9 +7506,13 @@ Aus Anlass eines vom Angeklagten am 17. Februar 2017 eingebrachten Antrags auf A
 
 **False Positives:**
 
-- `Landesgericht für` — no gold match — likely missing annotation
+- `Landesgericht für` — partial — pred is substring of gold: `Landesgericht für Strafsachen Graz`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Landesgericht für Strafsachen Graz`(organisation)
 
 **Example 14** (doc_id: `deanon_TRAIN/15Os43_13g`) (sent_id: `deanon_TRAIN/15Os43_13g_12`)
 
@@ -7451,9 +7567,13 @@ Das Landesgericht für Zivilrechtssachen Wien gab der gegen das Ersturteil geric
 
 **False Positives:**
 
-- `Landesgericht für` — no gold match — likely missing annotation
+- `Landesgericht für` — partial — pred is substring of gold: `Landesgericht für Zivilrechtssachen Wien`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Landesgericht für Zivilrechtssachen Wien`(organisation)
 
 **Example 18** (doc_id: `deanon_TRAIN/1Ob78_22k`) (sent_id: `deanon_TRAIN/1Ob78_22k_11`)
 
@@ -7462,9 +7582,13 @@ diese Entscheidung wurde vom Landesgericht für Zivilrechtssachen Wien später b
 
 **False Positives:**
 
-- `Landesgericht für` — no gold match — likely missing annotation
+- `Landesgericht für` — partial — pred is substring of gold: `Landesgericht für Zivilrechtssachen Wien`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Landesgericht für Zivilrechtssachen Wien`(organisation)
 
 **Example 19** (doc_id: `deanon_TRAIN/3Ob1_20y`) (sent_id: `deanon_TRAIN/3Ob1_20y_9`)
 
@@ -7489,9 +7613,13 @@ Diesen Ablehnungsantrag hat das Landesgericht für Zivilrechtssachen Wien am 19.
 
 **False Positives:**
 
-- `Landesgericht für` — no gold match — likely missing annotation
+- `Landesgericht für` — partial — pred is substring of gold: `Landesgericht für Zivilrechtssachen Wien`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Landesgericht für Zivilrechtssachen Wien`(organisation)
 
 **Example 21** (doc_id: `deanon_TRAIN/4Fsc1_10z`) (sent_id: `deanon_TRAIN/4Fsc1_10z_11`)
 
@@ -7500,9 +7628,13 @@ Diesen Ablehnungsantrag hat das Landesgericht für Zivilrechtssachen Wien am 19.
 
 **False Positives:**
 
-- `Landesgericht für` — no gold match — likely missing annotation
+- `Landesgericht für` — partial — pred is substring of gold: `Landesgericht für Zivilrechtssachen Wien`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Landesgericht für Zivilrechtssachen Wien`(organisation)
 
 **Example 22** (doc_id: `deanon_TRAIN/5Nc20_14g`) (sent_id: `deanon_TRAIN/5Nc20_14g_3`)
 
@@ -7557,9 +7689,13 @@ Text Begründung: Mit der beim Landesgericht für Zivilrechtssachen Wien eingebr
 
 **False Positives:**
 
-- `Landesgericht für` — no gold match — likely missing annotation
+- `Landesgericht für` — partial — pred is substring of gold: `Landesgericht für Zivilrechtssachen Wien`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Landesgericht für Zivilrechtssachen Wien`(organisation)
 
 **Example 26** (doc_id: `deanon_TRAIN/6Ob240_20t`) (sent_id: `deanon_TRAIN/6Ob240_20t_3`)
 
@@ -7588,9 +7724,13 @@ Das Landesgericht für Zivilrechtssachen Wien wies mit Beschluss vom 22. 4. 2014
 
 **False Positives:**
 
-- `Landesgericht für` — no gold match — likely missing annotation
+- `Landesgericht für` — partial — pred is substring of gold: `Landesgericht für Zivilrechtssachen Wien`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Landesgericht für Zivilrechtssachen Wien`(organisation)
 
 **Example 28** (doc_id: `deanon_TRAIN/6Ob82_15z`) (sent_id: `deanon_TRAIN/6Ob82_15z_14`)
 
@@ -7610,9 +7750,13 @@ Das Oberlandesgericht Wien als Rekursgericht stellte mit Beschluss vom 22. 10. 2
 
 **False Positives:**
 
-- `Landesgericht für` — no gold match — likely missing annotation
+- `Landesgericht für` — partial — pred is substring of gold: `Landesgericht für Zivilrechtssachen Wien`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Landesgericht für Zivilrechtssachen Wien`(organisation)
 
 **Example 30** (doc_id: `deanon_TRAIN/6Ob82_15z`) (sent_id: `deanon_TRAIN/6Ob82_15z_18`)
 
@@ -7621,9 +7765,13 @@ Das Landesgericht für Zivilrechtssachen Wien trug dem Beklagten mit Beschluss v
 
 **False Positives:**
 
-- `Landesgericht für` — no gold match — likely missing annotation
+- `Landesgericht für` — partial — pred is substring of gold: `Landesgericht für Zivilrechtssachen Wien`
 
-> overlaps gold: 0  |  likely missing annotation: 1
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Landesgericht für Zivilrechtssachen Wien`(organisation)
 
 </details>
 
@@ -7631,7 +7779,7 @@ Das Landesgericht für Zivilrechtssachen Wien trug dem Beklagten mit Beschluss v
 
 ## `Labor Court Vienna`
 
-**F1:** 0.096 | **Precision:** 1.000 | **Recall:** 0.050  
+**F1:** 0.093 | **Precision:** 1.000 | **Recall:** 0.049  
 
 **Format:** `regex`  
 **Rule ID:** `dee27985`  
@@ -7648,13 +7796,13 @@ Matches Arbeits- und Sozialgericht Wien and variations.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 1.000 | 0.050 | 0.096 | 34 | 34 | 0 |
+| 1.000 | 0.049 | 0.093 | 34 | 34 | 0 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 34 | 0 | 535 |
+| `organisation` | 34 | 0 | 555 |
 
 </details>
 
@@ -8087,7 +8235,7 @@ Brigitte Augustin und Mag. Andreas Hach als weitere Richter in der Arbeitsrechts
 
 ## `Court with Location`
 
-**F1:** 0.052 | **Precision:** 1.000 | **Recall:** 0.027  
+**F1:** 0.050 | **Precision:** 1.000 | **Recall:** 0.026  
 
 **Format:** `regex`  
 **Rule ID:** `971aef3b`  
@@ -8104,13 +8252,13 @@ Matches court names followed by location suffixes like 'Außenstelle Linz'.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 1.000 | 0.027 | 0.052 | 18 | 18 | 0 |
+| 1.000 | 0.026 | 0.050 | 18 | 18 | 0 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 18 | 0 | 574 |
+| `organisation` | 18 | 0 | 594 |
 
 </details>
 
@@ -8255,7 +8403,7 @@ Ihr Antrag auf Gesetzesprüfung hinsichtlich der inzwischen aufgelösten Berufun
 
 ## `Generic GmbH Entity`
 
-**F1:** 0.051 | **Precision:** 0.145 | **Recall:** 0.031  
+**F1:** 0.050 | **Precision:** 0.145 | **Recall:** 0.030  
 
 **Format:** `regex`  
 **Rule ID:** `0d4e88c9`  
@@ -8272,13 +8420,13 @@ Matches company names ending in GmbH, AG, KG, etc., with strict word boundaries 
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.145 | 0.031 | 0.051 | 145 | 21 | 124 |
+| 0.145 | 0.030 | 0.050 | 145 | 21 | 124 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 21 | 124 | 653 |
+| `organisation` | 21 | 124 | 677 |
 
 </details>
 
@@ -9765,7 +9913,7 @@ Wenn nun kraft ausdrücklicher gesetzlicher Vorschrift gemeinnützige Bauvereini
 
 ## `Company Name Without Suffix`
 
-**F1:** 0.046 | **Precision:** 0.086 | **Recall:** 0.031  
+**F1:** 0.044 | **Precision:** 0.086 | **Recall:** 0.030  
 
 **Format:** `regex`  
 **Rule ID:** `c8608e27`  
@@ -9782,13 +9930,13 @@ Matches company names that do not end in a standard suffix like GmbH/AG but are 
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.086 | 0.031 | 0.046 | 244 | 21 | 223 |
+| 0.086 | 0.030 | 0.044 | 244 | 21 | 223 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 21 | 223 | 653 |
+| `organisation` | 21 | 223 | 677 |
 
 </details>
 
@@ -11242,7 +11390,7 @@ Aber selbst wenn die Beklagte die Gesellschaft aufgrund eines aus der gleichzeit
 
 ## `Bank and Other Org`
 
-**F1:** 0.040 | **Precision:** 0.667 | **Recall:** 0.021  
+**F1:** 0.039 | **Precision:** 0.667 | **Recall:** 0.020  
 
 **Format:** `regex`  
 **Rule ID:** `53220dfe`  
@@ -11259,13 +11407,13 @@ Matches specific bank names and other organizations like 'Reinemut + Smoch Hande
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.667 | 0.021 | 0.040 | 21 | 14 | 7 |
+| 0.667 | 0.020 | 0.039 | 21 | 14 | 7 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 14 | 7 | 581 |
+| `organisation` | 14 | 7 | 601 |
 
 </details>
 
@@ -11547,7 +11695,7 @@ Wenn das Erstgericht - dem Sachverständigengutachten folgend - zu der Einschät
 
 ## `Constitutional Court`
 
-**F1:** 0.023 | **Precision:** 1.000 | **Recall:** 0.012  
+**F1:** 0.023 | **Precision:** 1.000 | **Recall:** 0.011  
 
 **Format:** `regex`  
 **Rule ID:** `0bbc25f5`  
@@ -11564,13 +11712,13 @@ Matches Verfassungsgerichtshof and its genitive form.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 1.000 | 0.012 | 0.023 | 8 | 8 | 0 |
+| 1.000 | 0.011 | 0.023 | 8 | 8 | 0 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 8 | 0 | 386 |
+| `organisation` | 8 | 0 | 394 |
 
 </details>
 
@@ -11696,7 +11844,7 @@ Matches Magistrat der Stadt Wien with department codes, ensuring the full entity
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 7 | 0 | 596 |
+| `organisation` | 7 | 0 | 616 |
 
 </details>
 
@@ -11837,7 +11985,7 @@ Matches Magistrat der Stadt followed by city name, including genitive forms and 
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 7 | 0 | 596 |
+| `organisation` | 7 | 0 | 616 |
 
 </details>
 
@@ -11955,7 +12103,7 @@ Matzka als weitere Richter in der Pflegschaftssache der Minderjährigen Silke Wi
 
 ## `Administrative Court`
 
-**F1:** 0.018 | **Precision:** 1.000 | **Recall:** 0.009  
+**F1:** 0.017 | **Precision:** 1.000 | **Recall:** 0.009  
 
 **Format:** `regex`  
 **Rule ID:** `cbaa7335`  
@@ -11972,13 +12120,13 @@ Matches Verwaltungsgerichtshof and all its case endings, including optional (VwG
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 1.000 | 0.009 | 0.018 | 6 | 6 | 0 |
+| 1.000 | 0.009 | 0.017 | 6 | 6 | 0 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 6 | 0 | 276 |
+| `organisation` | 6 | 0 | 282 |
 
 </details>
 
@@ -12059,7 +12207,7 @@ Von dieser Sachlage ausgehend wies der von der Beklagten in diesem Verfahren mit
 
 ## `Verwaltungsgerichtshof Genitive`
 
-**F1:** 0.015 | **Precision:** 1.000 | **Recall:** 0.007  
+**F1:** 0.014 | **Precision:** 1.000 | **Recall:** 0.007  
 
 **Format:** `regex`  
 **Rule ID:** `6c39efd8`  
@@ -12076,13 +12224,13 @@ Matches Verwaltungsgerichtshof and its genitive form Verwaltungsgerichtshofes.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 1.000 | 0.007 | 0.015 | 5 | 5 | 0 |
+| 1.000 | 0.007 | 0.014 | 5 | 5 | 0 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 5 | 0 | 277 |
+| `organisation` | 5 | 0 | 283 |
 
 </details>
 
@@ -12150,7 +12298,7 @@ Weil in der Folge abermals ein abweisender Bescheid erging, der sodann in Rechts
 
 ## `Federal Ministry of Justice`
 
-**F1:** 0.012 | **Precision:** 1.000 | **Recall:** 0.006  
+**F1:** 0.011 | **Precision:** 1.000 | **Recall:** 0.006  
 
 **Format:** `regex`  
 **Rule ID:** `e4ecd3f6`  
@@ -12167,13 +12315,13 @@ Matches Bundesministeriums für Justiz.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 1.000 | 0.006 | 0.012 | 4 | 4 | 0 |
+| 1.000 | 0.006 | 0.011 | 4 | 4 | 0 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 4 | 0 | 519 |
+| `organisation` | 4 | 0 | 529 |
 
 </details>
 
@@ -12247,7 +12395,7 @@ Matches the specific organization Pensionsversicherungsanstalt.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 1 | 0 | 563 |
+| `organisation` | 1 | 0 | 583 |
 
 </details>
 
@@ -12299,7 +12447,7 @@ Specifically targets hyphenated company names that might be split by the generic
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 1 | 1 | 492 |
+| `organisation` | 1 | 1 | 502 |
 
 </details>
 
@@ -12451,7 +12599,7 @@ Matches VwGH acronym, but only when it appears as a standalone entity reference,
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 7 | 548 |
+| `organisation` | 0 | 7 | 568 |
 
 </details>
 
@@ -13041,7 +13189,7 @@ Matches VfGH acronym.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 12 | 548 |
+| `organisation` | 0 | 12 | 568 |
 
 </details>
 
@@ -13865,7 +14013,7 @@ Matches Sozialversicherungsanstalt der Bauern.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 2 | 569 |
+| `organisation` | 0 | 2 | 589 |
 
 </details>
 
@@ -14205,7 +14353,7 @@ Matches law firms ending in Rechtsanwält... GmbH/OG.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 4 | 495 |
+| `organisation` | 0 | 4 | 505 |
 
 </details>
 
@@ -14540,7 +14688,7 @@ Matches law firms ending in Rechtsanwälte GmbH/OG with names, ensuring no prece
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 10 | 495 |
+| `organisation` | 0 | 10 | 505 |
 
 </details>
 
@@ -15379,7 +15527,7 @@ Matches law firms ending in KG, excluding GmbH & Co KG patterns.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 10 | 578 |
+| `organisation` | 0 | 10 | 598 |
 
 </details>
 
@@ -15562,7 +15710,7 @@ Matches entities ending in 'gesellschaft mbH' or 'Gesellschaft mbH' which are co
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 2 | 350 |
+| `organisation` | 0 | 2 | 356 |
 
 </details>
 
