@@ -1,6 +1,6 @@
 # Rule Evaluation Report — Qwen/Qwen3.5-35B-A3B
 
-Generated on: 2026-05-26T18:28:44.364840
+Generated on: 2026-05-26T19:00:44.162602
 
 ---
 
@@ -52,14 +52,14 @@ Results can be reproduced by running this command:
 | Metric | Value |
 |---|---|
 | Accuracy (exact match) | 97.7% |
-| True Positives | 279 |
-| False Positives | 328 |
-| False Negatives | 383 |
-| Total Gold Entities | 662 |
-| Micro Precision | 46.0% |
-| Micro Recall | 42.1% |
-| Micro F1 | 44.0% |
-| Macro F1 | 44.0% |
+| True Positives | 292 |
+| False Positives | 315 |
+| False Negatives | 384 |
+| Total Gold Entities | 676 |
+| Micro Precision | 48.1% |
+| Micro Recall | 43.2% |
+| Micro F1 | 45.5% |
+| Macro F1 | 45.5% |
 
 </details>
 
@@ -71,20 +71,20 @@ Results can be reproduced by running this command:
 | Rule | F1 | Precision | Recall | Total Predicted | True Positives | False Positives |
 |---|---|---|---|---|---|---|
 | `Administrative Court` | 1.8% | 100.0% | 0.9% | 6 | 6 | 0 |
-| `Vienna Magistrate` | 2.1% | 100.0% | 1.1% | 7 | 7 | 0 |
-| `Constitutional Court` | 2.4% | 100.0% | 1.2% | 8 | 8 | 0 |
-| `Labor Court Vienna` | 9.8% | 100.0% | 5.1% | 34 | 34 | 0 |
-| `Court with Location` | 5.3% | 100.0% | 2.7% | 18 | 18 | 0 |
-| `Pensionsversicherungsanstalt` | 0.3% | 100.0% | 0.2% | 1 | 1 | 0 |
-| `Verwaltungsgerichtshof Genitive` | 1.5% | 100.0% | 0.8% | 5 | 5 | 0 |
-| `Magistrate City Pattern` | 2.1% | 100.0% | 1.1% | 7 | 7 | 0 |
+| `Vienna Magistrate` | 2.0% | 100.0% | 1.0% | 7 | 7 | 0 |
+| `Constitutional Court` | 2.3% | 100.0% | 1.2% | 8 | 8 | 0 |
+| `Labor Court Vienna` | 9.6% | 100.0% | 5.0% | 34 | 34 | 0 |
+| `Court with Location` | 5.2% | 100.0% | 2.7% | 18 | 18 | 0 |
+| `Pensionsversicherungsanstalt` | 0.3% | 100.0% | 0.1% | 1 | 1 | 0 |
+| `Verwaltungsgerichtshof Genitive` | 1.5% | 100.0% | 0.7% | 5 | 5 | 0 |
+| `Magistrate City Pattern` | 2.0% | 100.0% | 1.0% | 7 | 7 | 0 |
 | `Federal Ministry of Justice` | 1.2% | 100.0% | 0.6% | 4 | 4 | 0 |
-| `District Court Pattern` | 29.8% | 73.4% | 18.7% | 169 | 124 | 45 |
-| `Regional Court Pattern` | 16.7% | 67.0% | 9.5% | 94 | 63 | 31 |
-| `Bank and Other Org` | 4.1% | 66.7% | 2.1% | 21 | 14 | 7 |
-| `Hyphenated Company Names` | 0.3% | 50.0% | 0.2% | 2 | 1 | 1 |
-| `Generic GmbH Entity` | 5.2% | 14.5% | 3.2% | 145 | 21 | 124 |
-| `Company Name Without Suffix` | 4.6% | 8.6% | 3.2% | 244 | 21 | 223 |
+| `District Court Pattern` | 32.4% | 81.1% | 20.3% | 169 | 137 | 32 |
+| `Regional Court Pattern` | 16.4% | 67.0% | 9.3% | 94 | 63 | 31 |
+| `Bank and Other Org` | 4.0% | 66.7% | 2.1% | 21 | 14 | 7 |
+| `Hyphenated Company Names` | 0.3% | 50.0% | 0.1% | 2 | 1 | 1 |
+| `Generic GmbH Entity` | 5.1% | 14.5% | 3.1% | 145 | 21 | 124 |
+| `Company Name Without Suffix` | 4.6% | 8.6% | 3.1% | 244 | 21 | 223 |
 | `Federal Tax Court` | 0.0% | 0.0% | 0.0% | 0 | 0 | 0 |
 | `Tax Authority Austria` | 0.0% | 0.0% | 0.0% | 0 | 0 | 0 |
 | `Ministry of Finance` | 0.0% | 0.0% | 0.0% | 0 | 0 | 0 |
@@ -195,7 +195,7 @@ Results can be reproduced by running this command:
 
 ## `Labor Court Vienna`
 
-**F1:** 0.098 | **Precision:** 1.000 | **Recall:** 0.051  
+**F1:** 0.096 | **Precision:** 1.000 | **Recall:** 0.050  
 
 **Format:** `regex`  
 **Rule ID:** `dee27985`  
@@ -212,13 +212,13 @@ Matches Arbeits- und Sozialgericht Wien and variations.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 1.000 | 0.051 | 0.098 | 34 | 34 | 0 |
+| 1.000 | 0.050 | 0.096 | 34 | 34 | 0 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 34 | 0 | 522 |
+| `organisation` | 34 | 0 | 535 |
 
 </details>
 
@@ -636,7 +636,7 @@ Kopf Der Oberste Gerichtshof hat als Revisions- und Rekursgericht in Arbeits- un
 
 ## `Court with Location`
 
-**F1:** 0.053 | **Precision:** 1.000 | **Recall:** 0.027  
+**F1:** 0.052 | **Precision:** 1.000 | **Recall:** 0.027  
 
 **Format:** `regex`  
 **Rule ID:** `971aef3b`  
@@ -653,13 +653,13 @@ Matches court names followed by location suffixes like 'Außenstelle Linz'.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 1.000 | 0.027 | 0.053 | 18 | 18 | 0 |
+| 1.000 | 0.027 | 0.052 | 18 | 18 | 0 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 18 | 0 | 561 |
+| `organisation` | 18 | 0 | 574 |
 
 </details>
 
@@ -804,7 +804,7 @@ Ihr Antrag auf Gesetzesprüfung hinsichtlich der inzwischen aufgelösten Berufun
 
 ## `Constitutional Court`
 
-**F1:** 0.024 | **Precision:** 1.000 | **Recall:** 0.012  
+**F1:** 0.023 | **Precision:** 1.000 | **Recall:** 0.012  
 
 **Format:** `regex`  
 **Rule ID:** `0bbc25f5`  
@@ -821,13 +821,13 @@ Matches Verfassungsgerichtshof and its genitive form.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 1.000 | 0.012 | 0.024 | 8 | 8 | 0 |
+| 1.000 | 0.012 | 0.023 | 8 | 8 | 0 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 8 | 0 | 374 |
+| `organisation` | 8 | 0 | 386 |
 
 </details>
 
@@ -930,7 +930,7 @@ Ihr Antrag auf Gesetzesprüfung hinsichtlich der inzwischen aufgelösten Berufun
 
 ## `Vienna Magistrate`
 
-**F1:** 0.021 | **Precision:** 1.000 | **Recall:** 0.011  
+**F1:** 0.020 | **Precision:** 1.000 | **Recall:** 0.010  
 
 **Format:** `regex`  
 **Rule ID:** `923cbdfe`  
@@ -947,13 +947,13 @@ Matches Magistrat der Stadt Wien with department codes, ensuring the full entity
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 1.000 | 0.011 | 0.021 | 7 | 7 | 0 |
+| 1.000 | 0.010 | 0.020 | 7 | 7 | 0 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 7 | 0 | 583 |
+| `organisation` | 7 | 0 | 596 |
 
 </details>
 
@@ -1071,7 +1071,7 @@ Matzka als weitere Richter in der Pflegschaftssache der Minderjährigen Silke Wi
 
 ## `Magistrate City Pattern`
 
-**F1:** 0.021 | **Precision:** 1.000 | **Recall:** 0.011  
+**F1:** 0.020 | **Precision:** 1.000 | **Recall:** 0.010  
 
 **Format:** `regex`  
 **Rule ID:** `5b8b1658`  
@@ -1088,13 +1088,13 @@ Matches Magistrat der Stadt followed by city name, including genitive forms and 
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 1.000 | 0.011 | 0.021 | 7 | 7 | 0 |
+| 1.000 | 0.010 | 0.020 | 7 | 7 | 0 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 7 | 0 | 583 |
+| `organisation` | 7 | 0 | 596 |
 
 </details>
 
@@ -1235,7 +1235,7 @@ Matches Verwaltungsgerichtshof and all its case endings, including optional (VwG
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 6 | 0 | 272 |
+| `organisation` | 6 | 0 | 276 |
 
 </details>
 
@@ -1316,7 +1316,7 @@ Von dieser Sachlage ausgehend wies der von der Beklagten in diesem Verfahren mit
 
 ## `District Court Pattern`
 
-**F1:** 0.298 | **Precision:** 0.734 | **Recall:** 0.187  
+**F1:** 0.324 | **Precision:** 0.811 | **Recall:** 0.203  
 
 **Format:** `regex`  
 **Rule ID:** `4a197a40`  
@@ -1333,13 +1333,13 @@ Matches Bezirksgericht followed by location, handling 'BG' abbreviation.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.734 | 0.187 | 0.298 | 169 | 124 | 45 |
+| 0.811 | 0.203 | 0.324 | 169 | 137 | 32 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 124 | 45 | 538 |
+| `organisation` | 137 | 32 | 539 |
 
 </details>
 
@@ -1492,6 +1492,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Schinko als Vo
 
 | Predicted | Gold |
 |---|---|
+| `Bezirksgericht Neunkirchen` | `Bezirksgericht Neunkirchen` |
 | `Bezirksgericht Neunkirchen` | `Bezirksgericht Neunkirchen` |
 
 **Missed by this rule (FN):**
@@ -1706,26 +1707,7 @@ Das Bezirksgericht für Handelssachen Wien überwies die Rechtssache an dieses G
 
 > overlaps gold: 0  |  likely missing annotation: 1
 
-**Example 4** (doc_id: `deanon_TRAIN/10Nc25_09x`) (sent_id: `deanon_TRAIN/10Nc25_09x_3`)
-
-
-Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Schinko als Vorsitzenden und die Hofräte Dr. Fellinger und Dr. Schramm als weitere Richter in der Pflegschaftssache der Minderjährigen Delia Truepschuch, geboren am 1. Februar 2026, und Aloisa Eckmaier, geboren am 28. Februar 1976, AZ 2 PS 117/09t des Bezirksgerichts Feldkirchen, infolge Vorlage zur Genehmigung der Übertragung gemäß § 111 JN an das Bezirksgericht Neunkirchen, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die Übertragung der Zuständigkeit zur Besorgung dieser Pflegschaftssache an das Bezirksgericht Neunkirchen wird genehmigt.
-
-**False Positives:**
-
-- `Bezirksgericht Neunkirchen` — similar text (different position): `Bezirksgericht Neunkirchen`
-
-> overlaps gold: 1  |  likely missing annotation: 0
-
-**Gold Entities:**
-
-- `Delia Truepschuch`(person)
-- `1. Februar 2026`(date)
-- `Aloisa Eckmaier`(person)
-- `28. Februar 1976`(date)
-- `Bezirksgericht Neunkirchen`(organisation)
-
-**Example 5** (doc_id: `deanon_TRAIN/10Nc25_09x`) (sent_id: `deanon_TRAIN/10Nc25_09x_8`)
+**Example 4** (doc_id: `deanon_TRAIN/10Nc25_09x`) (sent_id: `deanon_TRAIN/10Nc25_09x_8`)
 
 
 Das bisher zuständige Bezirksgericht werde daher die Interessen der Minderjährigen besser wahren können, zumal unmittelbare pflegschaftsbehördliche Maßnahmen nicht zu setzen seien.
@@ -1736,7 +1718,7 @@ Das bisher zuständige Bezirksgericht werde daher die Interessen der Minderjähr
 
 > overlaps gold: 0  |  likely missing annotation: 1
 
-**Example 6** (doc_id: `deanon_TRAIN/10Ob21_15h`) (sent_id: `deanon_TRAIN/10Ob21_15h_17`)
+**Example 5** (doc_id: `deanon_TRAIN/10Ob21_15h`) (sent_id: `deanon_TRAIN/10Ob21_15h_17`)
 
 
 Mit Urteil des Bezirksgerichts Bezirksgericht St. Pölten vom 21. 5. 2013 wurde die Klägerin zur Zahlung von 6.183,92 EUR sA an Sanierungskosten sowie zur Zahlung der Prozesskosten an den Betreiber eines Hoch- und Niederseilparks verurteilt.
@@ -1751,7 +1733,7 @@ Mit Urteil des Bezirksgerichts Bezirksgericht St. Pölten vom 21. 5. 2013 wurde 
 
 - `Bezirksgericht St. Pölten`(organisation)
 
-**Example 7** (doc_id: `deanon_TRAIN/10Ob21_15h`) (sent_id: `deanon_TRAIN/10Ob21_15h_28`)
+**Example 6** (doc_id: `deanon_TRAIN/10Ob21_15h`) (sent_id: `deanon_TRAIN/10Ob21_15h_28`)
 
 
 Weiters habe sie der Klägerin Zinsen und Prozesskosten, zu deren Zahlung sie im Verfahren vor dem Bezirksgericht Bezirksgericht Meidling verurteilt worden war, sowie die Kosten deren eigener Vertretung in diesem Verfahren zu ersetzen.
@@ -1766,7 +1748,7 @@ Weiters habe sie der Klägerin Zinsen und Prozesskosten, zu deren Zahlung sie im
 
 - `Bezirksgericht Meidling`(organisation)
 
-**Example 8** (doc_id: `deanon_TRAIN/10ObS150_17g`) (sent_id: `deanon_TRAIN/10ObS150_17g_10`)
+**Example 7** (doc_id: `deanon_TRAIN/10ObS150_17g`) (sent_id: `deanon_TRAIN/10ObS150_17g_10`)
 
 
 Für ihn ist ein Sachwalter bestellt, der seit 2011 alle Angelegenheiten (§ 268 Abs 3 Z 3 ABGB) zu besorgen hat (siehe den Beschluss des Bezirksgericht Bezirksgericht Mattersburg vom 15.
@@ -1781,22 +1763,7 @@ Für ihn ist ein Sachwalter bestellt, der seit 2011 alle Angelegenheiten (§ 268
 
 - `Bezirksgericht Mattersburg`(organisation)
 
-**Example 9** (doc_id: `deanon_TRAIN/12Os16_19y_12Os17_19w_12Os18_19t_12Os19_19i_`) (sent_id: `deanon_TRAIN/12Os16_19y_12Os17_19w_12Os18_19t_12Os19_19i__13`)
-
-
-Mit Abwesenheitsurteil vom 26. September 2018 (ON 25) sprach das Bezirksgericht Leopoldstadt Nenad Pentzold des Vergehens der Veruntreuung nach § 133 Abs 1 StGB schuldig und verurteilte ihn zu einer Freiheitsstrafe.
-
-**False Positives:**
-
-- `Bezirksgericht Leopoldstadt` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Pentzold`(person)
-
-**Example 10** (doc_id: `deanon_TRAIN/13Os109_17d_13Os110_17a_`) (sent_id: `deanon_TRAIN/13Os109_17d_13Os110_17a__17`)
+**Example 8** (doc_id: `deanon_TRAIN/13Os109_17d_13Os110_17a_`) (sent_id: `deanon_TRAIN/13Os109_17d_13Os110_17a__17`)
 
 
 Indem das Bezirksgericht über die Jusepeitis&Niemöller Bildung GmbH eine (das Höchstmaß von somit 55 Tagessätzen übersteigende) Verbandsgeldbuße von 70 Tagessätzen verhängte, verletzte es § 4 Abs 3 VbVG).
@@ -1811,7 +1778,7 @@ Indem das Bezirksgericht über die Jusepeitis&Niemöller Bildung GmbH eine (das 
 
 - `Jusepeitis&Niemöller Bildung GmbH`(organisation)
 
-**Example 11** (doc_id: `deanon_TRAIN/13Os7_20h_13Os8_20f_`) (sent_id: `deanon_TRAIN/13Os7_20h_13Os8_20f__11`)
+**Example 9** (doc_id: `deanon_TRAIN/13Os7_20h_13Os8_20f_`) (sent_id: `deanon_TRAIN/13Os7_20h_13Os8_20f__11`)
 
 
 Im Protokoll über die Hauptverhandlung vor dem Bezirksgericht Innere Stadt Wien ist als Tag der Hauptverhandlung „23. 11. 2018“ angeführt (ON 18 S 1).
@@ -1826,7 +1793,7 @@ Im Protokoll über die Hauptverhandlung vor dem Bezirksgericht Innere Stadt Wien
 
 - `Bezirksgericht Innere Stadt Wien`(organisation)
 
-**Example 12** (doc_id: `deanon_TRAIN/13Os99_19m`) (sent_id: `deanon_TRAIN/13Os99_19m_12`)
+**Example 10** (doc_id: `deanon_TRAIN/13Os99_19m`) (sent_id: `deanon_TRAIN/13Os99_19m_12`)
 
 
 Ein anderes Verständnis legt – entgegen der vom Berufungsgericht mit Verweis auf eine Literaturstelle (Hinterhofer/Oshidari, System des österreichischen Strafverfahrens Rz 10.89) vertretenen Ansicht – auch die historische Interpretation nicht nahe: Die im Verfahren vor dem Bezirksgericht schon in der Stammfassung der StPO vorgesehene Rechtsmittellegitimation des Privatbeteiligten (zum Nachteil des Angeklagten) wurde von der Rechtsprechung und überwiegend im Schrifttum zur früheren Rechtslage (mit Blick auf § 366 Abs 2 letzter Satz StPO idF vor BGBl 1978/169) dahin ausgelegt, dass dieser Berufung (nur) dann habe ergreifen können, wenn das Erstgericht eine Entschädigung (zumindest teilweise) zugesprochen hatte, nicht jedoch bei vollständiger Verweisung auf den Zivilrechtsweg.
@@ -1837,7 +1804,7 @@ Ein anderes Verständnis legt – entgegen der vom Berufungsgericht mit Verweis 
 
 > overlaps gold: 0  |  likely missing annotation: 1
 
-**Example 13** (doc_id: `deanon_TRAIN/18ONc1_21y`) (sent_id: `deanon_TRAIN/18ONc1_21y_16`)
+**Example 11** (doc_id: `deanon_TRAIN/18ONc1_21y`) (sent_id: `deanon_TRAIN/18ONc1_21y_16`)
 
 
 [5] Aufgrund des Verweises auf § 37 Abs 2 bis 5 JN ist für einen solchen Antrag das Bezirksgericht zuständig, in dessen Sprengel die Amtshandlung vorgenommen werden soll (HausmaningerinFasching/Konecny3§ 602 ZPO Rz 30).
@@ -1848,7 +1815,7 @@ Ein anderes Verständnis legt – entgegen der vom Berufungsgericht mit Verweis 
 
 > overlaps gold: 0  |  likely missing annotation: 1
 
-**Example 14** (doc_id: `deanon_TRAIN/1Ob55_13i`) (sent_id: `deanon_TRAIN/1Ob55_13i_6`)
+**Example 12** (doc_id: `deanon_TRAIN/1Ob55_13i`) (sent_id: `deanon_TRAIN/1Ob55_13i_6`)
 
 
 Mit der am 20. 8. 2012 beim Bezirksgericht Bezirksgericht Hallein eingebrachten Klage begehrte der Minderjährige von einem in Deutschland wohnhaften minderjährigen Beklagten Schadenersatz von 3.850 EUR sA und die Feststellung seiner Haftung für sämtliche aus dessen Steinwurf resultierenden Spät- und Dauerfolgen.
@@ -1863,7 +1830,7 @@ Mit der am 20. 8. 2012 beim Bezirksgericht Bezirksgericht Hallein eingebrachten 
 
 - `Bezirksgericht Hallein`(organisation)
 
-**Example 15** (doc_id: `deanon_TRAIN/1Ob55_13i`) (sent_id: `deanon_TRAIN/1Ob55_13i_69`)
+**Example 13** (doc_id: `deanon_TRAIN/1Ob55_13i`) (sent_id: `deanon_TRAIN/1Ob55_13i_69`)
 
 
 8. 2012 beim gemäß Art 5 Nr 3 EuGVVO zuständigen Bezirksgericht Bezirksgericht Weiz (Gericht des Ortes, an dem das schädigende Ereignis eingetreten ist) im Elektronischen Rechtsverkehr eingebracht.
@@ -1878,7 +1845,7 @@ Mit der am 20. 8. 2012 beim Bezirksgericht Bezirksgericht Hallein eingebrachten 
 
 - `Bezirksgericht Weiz`(organisation)
 
-**Example 16** (doc_id: `deanon_TRAIN/2Nc17_17y`) (sent_id: `deanon_TRAIN/2Nc17_17y_4`)
+**Example 14** (doc_id: `deanon_TRAIN/2Nc17_17y`) (sent_id: `deanon_TRAIN/2Nc17_17y_4`)
 
 
 Text Begründung: Die klagende Partei begehrt in ihrer beim Bezirksgericht Innere Stadt Wien am allgemeinen Gerichtsstand der beklagten Partei eingebrachten Klage Schadenersatz nach einem Verkehrsunfall auf der B 178 im Ortsgebiet von Going am Wilden Kaiser.
@@ -1893,7 +1860,7 @@ Text Begründung: Die klagende Partei begehrt in ihrer beim Bezirksgericht Inner
 
 - `Bezirksgericht Innere Stadt Wien`(organisation)
 
-**Example 17** (doc_id: `deanon_TRAIN/2Nc17_17y`) (sent_id: `deanon_TRAIN/2Nc17_17y_11`)
+**Example 15** (doc_id: `deanon_TRAIN/2Nc17_17y`) (sent_id: `deanon_TRAIN/2Nc17_17y_11`)
 
 
 Das Bezirksgericht Innere Stadt Wien hält die Delegierung für zweckmäßig.
@@ -1908,7 +1875,7 @@ Das Bezirksgericht Innere Stadt Wien hält die Delegierung für zweckmäßig.
 
 - `Bezirksgericht Innere Stadt Wien`(organisation)
 
-**Example 18** (doc_id: `deanon_TRAIN/3Nc11_13t`) (sent_id: `deanon_TRAIN/3Nc11_13t_10`)
+**Example 16** (doc_id: `deanon_TRAIN/3Nc11_13t`) (sent_id: `deanon_TRAIN/3Nc11_13t_10`)
 
 
 Für eine Unterlassungsexekution ist gemäß § 18 Z 4 zweiter Fall EO jenes Bezirksgericht zuständig, in dessen Sprengel die erste Exekutionshandlung, nämlich die Zustellung der Exekutionsbewilligung, zu bewirken ist.
@@ -1919,7 +1886,7 @@ Für eine Unterlassungsexekution ist gemäß § 18 Z 4 zweiter Fall EO jenes Bez
 
 > overlaps gold: 0  |  likely missing annotation: 1
 
-**Example 19** (doc_id: `deanon_TRAIN/4Nc4_17a`) (sent_id: `deanon_TRAIN/4Nc4_17a_5`)
+**Example 17** (doc_id: `deanon_TRAIN/4Nc4_17a`) (sent_id: `deanon_TRAIN/4Nc4_17a_5`)
 
 
 Für die Bewilligung und die Vollziehung der beabsichtigten Exekution gegen die Zweitbeklagte auf Urteilsveröffentlichung wird das Bezirksgericht Innere Stadt Wien als örtlich zuständiges Gericht bestimmt.
@@ -1934,7 +1901,7 @@ Für die Bewilligung und die Vollziehung der beabsichtigten Exekution gegen die 
 
 - `Bezirksgericht Innere Stadt Wien`(organisation)
 
-**Example 20** (doc_id: `deanon_TRAIN/4Nc4_17a`) (sent_id: `deanon_TRAIN/4Nc4_17a_8`)
+**Example 18** (doc_id: `deanon_TRAIN/4Nc4_17a`) (sent_id: `deanon_TRAIN/4Nc4_17a_8`)
 
 
 Mit dem gegenständlichen Ordinationsantrag beantragen die Klägerinnen, der Oberste Gerichtshof möge das Bezirksgericht Innere Stadt Wien oder ein anderes Bezirksgericht als örtlich zuständiges Gericht für die Durchsetzung des Veröffentlichungsanspruchs gemäß § 354 EO gegen die Zweitbeklagte bestimmen.
@@ -1950,7 +1917,7 @@ Mit dem gegenständlichen Ordinationsantrag beantragen die Klägerinnen, der Obe
 
 - `Bezirksgericht Innere Stadt Wien`(organisation)
 
-**Example 21** (doc_id: `deanon_TRAIN/4Nc4_17a`) (sent_id: `deanon_TRAIN/4Nc4_17a_19`)
+**Example 19** (doc_id: `deanon_TRAIN/4Nc4_17a`) (sent_id: `deanon_TRAIN/4Nc4_17a_19`)
 
 
 Dem Ordinationsantrag ist somit stattzugeben und zweckmäßigerweise das Bezirksgericht Innere Stadt Wien als zuständiges Gericht zu bestimmen.
@@ -1971,7 +1938,7 @@ Dem Ordinationsantrag ist somit stattzugeben und zweckmäßigerweise das Bezirks
 
 ## `Regional Court Pattern`
 
-**F1:** 0.167 | **Precision:** 0.670 | **Recall:** 0.095  
+**F1:** 0.164 | **Precision:** 0.670 | **Recall:** 0.093  
 
 **Format:** `regex`  
 **Rule ID:** `8426a1d3`  
@@ -1988,13 +1955,13 @@ Matches Landesgericht (LG) followed by location.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.670 | 0.095 | 0.167 | 94 | 63 | 31 |
+| 0.670 | 0.093 | 0.164 | 94 | 63 | 31 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 63 | 31 | 534 |
+| `organisation` | 63 | 31 | 547 |
 
 </details>
 
@@ -2730,7 +2697,7 @@ Das Oberlandesgericht Wien als Rekursgericht stellte mit Beschluss vom 22. 10. 2
 
 ## `Bank and Other Org`
 
-**F1:** 0.041 | **Precision:** 0.667 | **Recall:** 0.021  
+**F1:** 0.040 | **Precision:** 0.667 | **Recall:** 0.021  
 
 **Format:** `regex`  
 **Rule ID:** `53220dfe`  
@@ -2747,13 +2714,13 @@ Matches specific bank names and other organizations like 'Reinemut + Smoch Hande
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.667 | 0.021 | 0.041 | 21 | 14 | 7 |
+| 0.667 | 0.021 | 0.040 | 21 | 14 | 7 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 14 | 7 | 568 |
+| `organisation` | 14 | 7 | 581 |
 
 </details>
 
@@ -3035,7 +3002,7 @@ Wenn das Erstgericht - dem Sachverständigengutachten folgend - zu der Einschät
 
 ## `Generic GmbH Entity`
 
-**F1:** 0.052 | **Precision:** 0.145 | **Recall:** 0.032  
+**F1:** 0.051 | **Precision:** 0.145 | **Recall:** 0.031  
 
 **Format:** `regex`  
 **Rule ID:** `0d4e88c9`  
@@ -3052,13 +3019,13 @@ Matches company names ending in GmbH, AG, KG, etc., with strict word boundaries 
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.145 | 0.032 | 0.052 | 145 | 21 | 124 |
+| 0.145 | 0.031 | 0.051 | 145 | 21 | 124 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 21 | 124 | 639 |
+| `organisation` | 21 | 124 | 653 |
 
 </details>
 
@@ -3786,7 +3753,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 
 ## `Company Name Without Suffix`
 
-**F1:** 0.046 | **Precision:** 0.086 | **Recall:** 0.032  
+**F1:** 0.046 | **Precision:** 0.086 | **Recall:** 0.031  
 
 **Format:** `regex`  
 **Rule ID:** `c8608e27`  
@@ -3803,13 +3770,13 @@ Matches company names that do not end in a standard suffix like GmbH/AG but are 
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.086 | 0.032 | 0.046 | 244 | 21 | 223 |
+| 0.086 | 0.031 | 0.046 | 244 | 21 | 223 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 21 | 223 | 639 |
+| `organisation` | 21 | 223 | 653 |
 
 </details>
 
@@ -4443,7 +4410,7 @@ Matches VfGH acronym.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 12 | 535 |
+| `organisation` | 0 | 12 | 548 |
 
 </details>
 
@@ -4617,7 +4584,7 @@ Matches law firms ending in Rechtsanwälte GmbH/OG with names, ensuring no prece
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 10 | 483 |
+| `organisation` | 0 | 10 | 495 |
 
 </details>
 
@@ -4831,7 +4798,7 @@ Matches law firms ending in KG, excluding GmbH & Co KG patterns.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 10 | 565 |
+| `organisation` | 0 | 10 | 578 |
 
 </details>
 
@@ -5014,7 +4981,7 @@ Matches VwGH acronym, but only when it appears as a standalone entity reference,
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 7 | 535 |
+| `organisation` | 0 | 7 | 548 |
 
 </details>
 
@@ -5370,7 +5337,7 @@ Matches the specific retailer Billa.
 
 ## `District Court Pattern`
 
-**F1:** 0.298 | **Precision:** 0.734 | **Recall:** 0.187  
+**F1:** 0.324 | **Precision:** 0.811 | **Recall:** 0.203  
 
 **Format:** `regex`  
 **Rule ID:** `4a197a40`  
@@ -5387,13 +5354,13 @@ Matches Bezirksgericht followed by location, handling 'BG' abbreviation.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.734 | 0.187 | 0.298 | 169 | 124 | 45 |
+| 0.811 | 0.203 | 0.324 | 169 | 137 | 32 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 124 | 45 | 538 |
+| `organisation` | 137 | 32 | 539 |
 
 </details>
 
@@ -5546,6 +5513,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Schinko als Vo
 
 | Predicted | Gold |
 |---|---|
+| `Bezirksgericht Neunkirchen` | `Bezirksgericht Neunkirchen` |
 | `Bezirksgericht Neunkirchen` | `Bezirksgericht Neunkirchen` |
 
 **Missed by this rule (FN):**
@@ -5892,7 +5860,20 @@ Nach zwei negativen Versuchen der Vorführung zur Hauptverhandlung am 2. Mai 201
 |---|---|
 | `Bezirksgericht Leopoldstadt` | `Bezirksgericht Leopoldstadt` |
 
-**Example 48** (doc_id: `deanon_TRAIN/12Os5_11v_12Os6_11s_12Os7_11p_12Os8_11k_`) (sent_id: `deanon_TRAIN/12Os5_11v_12Os6_11s_12Os7_11p_12Os8_11k__14`)
+**Example 48** (doc_id: `deanon_TRAIN/12Os16_19y_12Os17_19w_12Os18_19t_12Os19_19i_`) (sent_id: `deanon_TRAIN/12Os16_19y_12Os17_19w_12Os18_19t_12Os19_19i__13`)
+
+
+Mit Abwesenheitsurteil vom 26. September 2018 (ON 25) sprach das Bezirksgericht Leopoldstadt Nenad Pentzold des Vergehens der Veruntreuung nach § 133 Abs 1 StGB schuldig und verurteilte ihn zu einer Freiheitsstrafe.
+
+| Predicted | Gold |
+|---|---|
+| `Bezirksgericht Leopoldstadt` | `Bezirksgericht Leopoldstadt` |
+
+**Missed by this rule (FN):**
+
+- `Pentzold` (person)
+
+**Example 49** (doc_id: `deanon_TRAIN/12Os5_11v_12Os6_11s_12Os7_11p_12Os8_11k_`) (sent_id: `deanon_TRAIN/12Os5_11v_12Os6_11s_12Os7_11p_12Os8_11k__14`)
 
 
 Am 3. Mai 2010 brachte die Staatsanwaltschaft Wiener Neustadt beim Bezirksgericht Baden erneut einen Strafantrag gegen Christian Kowalzyk wegen des Verdachts der (während der Probezeit begangenen) Vergehen des unbefugten Gebrauchs von Fahrzeugen nach § 136 Abs 1 StGB sowie der Urkundenunterdrückung nach § 229 Abs 1 StGB ein und beantragte zugleich die „Straffestsetzung zu AZ 12 U 86/07z des Bezirksgerichtes Baden“ (ON 3 im Akt AZ 12 U 105/10y).
@@ -5905,7 +5886,7 @@ Am 3. Mai 2010 brachte die Staatsanwaltschaft Wiener Neustadt beim Bezirksgerich
 
 - `Kowalzyk` (person)
 
-**Example 49** (doc_id: `deanon_TRAIN/13Os109_17d_13Os110_17a_`) (sent_id: `deanon_TRAIN/13Os109_17d_13Os110_17a__7`)
+**Example 50** (doc_id: `deanon_TRAIN/13Os109_17d_13Os110_17a_`) (sent_id: `deanon_TRAIN/13Os109_17d_13Os110_17a__7`)
 
 
 Das angefochtene Urteil, das im Übrigen unberührt bleibt, wird im Ausspruch über die Verbandsgeldbuße aufgehoben und die Sache in diesem Umfang wird zu neuer Verhandlung und Entscheidung an das Bezirksgericht Spittal an der Drau verwiesen.
@@ -5914,7 +5895,7 @@ Das angefochtene Urteil, das im Übrigen unberührt bleibt, wird im Ausspruch ü
 |---|---|
 | `Bezirksgericht Spittal` | `Bezirksgericht Spittal` |
 
-**Example 50** (doc_id: `deanon_TRAIN/18ONc1_21y`) (sent_id: `deanon_TRAIN/18ONc1_21y_6`)
+**Example 51** (doc_id: `deanon_TRAIN/18ONc1_21y`) (sent_id: `deanon_TRAIN/18ONc1_21y_6`)
 
 
 [2] Mit ihrem am 7. Jänner 2021 „aus Vorsicht“ auch beim Obersten Gerichtshof eingebrachtenAntragbegehrt die anwaltlich nicht vertreteneSchiedsbeklagteals Antragstellerin, die Einvernahme von zehn Personen als Zeugen vor dem Bezirksgericht Liezen.
@@ -5923,7 +5904,7 @@ Das angefochtene Urteil, das im Übrigen unberührt bleibt, wird im Ausspruch ü
 |---|---|
 | `Bezirksgericht Liezen` | `Bezirksgericht Liezen` |
 
-**Example 51** (doc_id: `deanon_TRAIN/18ONc1_21y`) (sent_id: `deanon_TRAIN/18ONc1_21y_10`)
+**Example 52** (doc_id: `deanon_TRAIN/18ONc1_21y`) (sent_id: `deanon_TRAIN/18ONc1_21y_10`)
 
 
 Gleichzeitig wurde der idente Antrag auch beim Bezirksgericht Liezen eingebracht.
@@ -5932,7 +5913,7 @@ Gleichzeitig wurde der idente Antrag auch beim Bezirksgericht Liezen eingebracht
 |---|---|
 | `Bezirksgericht Liezen` | `Bezirksgericht Liezen` |
 
-**Example 52** (doc_id: `deanon_TRAIN/1Nc2_20i`) (sent_id: `deanon_TRAIN/1Nc2_20i_3`)
+**Example 53** (doc_id: `deanon_TRAIN/1Nc2_20i`) (sent_id: `deanon_TRAIN/1Nc2_20i_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Hofrat Mag. Wurzer als Vorsitzenden sowie den Hofrat Mag. Dr. Wurdinger und die Hofrätin Dr. Hofer-Zeni-Rennhofer als weitere Richter in der Rechtssache der klagenden Partei KommR Franz Kubank, vertreten durch Dr. Michael Wukoschitz, Rechtsanwalt in Wien, gegen die beklagte Partei Laurin Aichhorn a.d., Timothy Schulmeister, Serbien, wegen 600 EUR sA, über den Ordinationsantrag nach § 28 JN den Beschluss gefasst:  Spruch Als örtlich zuständiges Gericht wird das Bezirksgericht Schwechat bestimmt.
@@ -5947,7 +5928,7 @@ Kopf Der Oberste Gerichtshof hat durch den Hofrat Mag. Wurzer als Vorsitzenden s
 - `Laurin Aichhorn` (person)
 - `Timothy Schulmeister` (person)
 
-**Example 53** (doc_id: `deanon_TRAIN/1Nc2_20i`) (sent_id: `deanon_TRAIN/1Nc2_20i_7`)
+**Example 54** (doc_id: `deanon_TRAIN/1Nc2_20i`) (sent_id: `deanon_TRAIN/1Nc2_20i_7`)
 
 
 Sie beantragt beim Obersten Gerichtshof gemäß § 28 JN unter Anschluss der einzubringenden Klage die Ordination des Bezirksgerichts für Handelssachen Wien als örtlich zuständiges Gericht, auch wenn aufgrund des Abflugorts das Bezirksgericht Schwechat naheliegend erschiene, das aber in Fluggastsachen überlastet sei.
@@ -5956,7 +5937,7 @@ Sie beantragt beim Obersten Gerichtshof gemäß § 28 JN unter Anschluss der ein
 |---|---|
 | `Bezirksgericht Schwechat` | `Bezirksgericht Schwechat` |
 
-**Example 54** (doc_id: `deanon_TRAIN/1Nc2_20i`) (sent_id: `deanon_TRAIN/1Nc2_20i_10`)
+**Example 55** (doc_id: `deanon_TRAIN/1Nc2_20i`) (sent_id: `deanon_TRAIN/1Nc2_20i_10`)
 
 
 2. Der Oberste Gerichtshof hat bereits in anderen gleichgelagerten Fällen der Durchsetzung von Ansprüchen nach der EU-Fluggastrechte-VO gegen das auch hier beklagte Flugunternehmen mit Sitz in Hirschmühle 31, 8221 Hofing, Österreich (Serbien) die Ordination bewilligt und das Bezirksgericht Schwechat, in dessen Sprengel der Abflughafen liegt, als zuständiges Gericht bestimmt (6 Nc 1/19b = ZVR 2019/114, 259 [zustMayr];
@@ -5969,7 +5950,7 @@ Sie beantragt beim Obersten Gerichtshof gemäß § 28 JN unter Anschluss der ein
 
 - `Hirschmühle 31, 8221 Hofing, Österreich` (address)
 
-**Example 55** (doc_id: `deanon_TRAIN/1Ob55_13i`) (sent_id: `deanon_TRAIN/1Ob55_13i_7`)
+**Example 56** (doc_id: `deanon_TRAIN/1Ob55_13i`) (sent_id: `deanon_TRAIN/1Ob55_13i_7`)
 
 
 Nach dem Klagsvorbringen sei er am 19. 8. 2009 im Strandbad Bezirksgericht Silz beim Verlassen des Wassers von einem ca zwei Fäuste großen Stein ins Gesicht getroffen worden, der vom damals sechsjährigen Beklagten geworfen worden sei.
@@ -5978,7 +5959,7 @@ Nach dem Klagsvorbringen sei er am 19. 8. 2009 im Strandbad Bezirksgericht Silz 
 |---|---|
 | `Bezirksgericht Silz` | `Bezirksgericht Silz` |
 
-**Example 56** (doc_id: `deanon_TRAIN/1Ob55_13i`) (sent_id: `deanon_TRAIN/1Ob55_13i_18`)
+**Example 57** (doc_id: `deanon_TRAIN/1Ob55_13i`) (sent_id: `deanon_TRAIN/1Ob55_13i_18`)
 
 
 Verwiesen werde auf einen Akt der Staatsanwaltschaft Bezirksgericht Wels, in welchem gegen den Schädiger Vorerhebungen geführt, jedoch mangels Deliktsfähigkeit eingestellt worden seien.
@@ -5987,7 +5968,7 @@ Verwiesen werde auf einen Akt der Staatsanwaltschaft Bezirksgericht Wels, in wel
 |---|---|
 | `Bezirksgericht Wels` | `Bezirksgericht Wels` |
 
-**Example 57** (doc_id: `deanon_TRAIN/23Os1_15t`) (sent_id: `deanon_TRAIN/23Os1_15t_6`)
+**Example 58** (doc_id: `deanon_TRAIN/23Os1_15t`) (sent_id: `deanon_TRAIN/23Os1_15t_6`)
 
 
 Text Gründe: Mit dem angefochtenen Erkenntnis wurde Dr. Nadja Köpers, Rechtsanwalt in Laahen 3, 3240 Pölla, Österreich, wegen des Verstoßes gegen die Bestimmungen des § 9 (Abs 1) RAO und des § 2 RL-BA der Disziplinarvergehen der Verletzung von Berufspflichten und der Beeinträchtigung von Ehre oder (richtig:) Ansehen des Standes nach § 1 Abs 1 erster und zweiter Fall DSt schuldig erkannt, weil er als Rechtsvertreter der Ehegatten Roman und Elfriede Jakubus in Anträgen auf Aufschiebung der Zwangsversteigerungen für seine Mandanten vom 5. September 2013 in näher bezeichneten Verfahren des Bezirksgerichts Innsbruck und des Bezirksgerichts Amstetten sowie in einer näher genannten Feststellungsklage an das Landesgericht Linz vom 7. Oktober 2013 und in einer Impugnationsklage an das Bezirksgericht Amstetten vom 10. Oktober 2013 jeweils vorgebracht hatte, seine Mandanten hätten sämtliche Verpflichtungen aus einer mit der Bachseewald Heizung AG abgeschlossenen Vereinbarung vom 11. Dezember 2012, insbesondere jene zur unwiderruflichen Antragstellung auf Aufhebung der Höfeeigenschaft einer näher bezeichnenden Liegenschaft in Wallsiedlung 66, 8044 Purgstall bei Eggersdorf, Österreich, eingehalten, obwohl ihm zum Zeitpunkt der Antragstellung und Klagseinbringung bekannt war, dass der Antrag auf Aufhebung der Höfeeigenschaft vom 13. Dezember 2012 bereits am 14. Juni 2013 von Roman Janis, durch ihn vertreten, entgegen der zuvor genannten Vereinbarung vom 11. Dezember 2012 wieder zurückgezogen worden war.
@@ -6006,7 +5987,7 @@ Text Gründe: Mit dem angefochtenen Erkenntnis wurde Dr. Nadja Köpers, Rechtsan
 - `Wallsiedlung 66, 8044 Purgstall bei Eggersdorf, Österreich` (address)
 - `Janis` (person)
 
-**Example 58** (doc_id: `deanon_TRAIN/2Nc17_17y`) (sent_id: `deanon_TRAIN/2Nc17_17y_3`)
+**Example 59** (doc_id: `deanon_TRAIN/2Nc17_17y`) (sent_id: `deanon_TRAIN/2Nc17_17y_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Hon.-Prof. Dr. Danzl als Vorsitzenden und durch die Hofräte Dr. Veith und Dr. Musger als weitere Richter in der Rechtssache der klagenden Partei Glanzbruckkraft-Recycling -Aktiengesellschaft, Steindläcker 26, 4183 Obertraberg, Österreich, vertreten durch THUM WEINREICH SCHWARZ CHYBA REITER Rechtsanwälte OG in St. Pölten, gegen die beklagte Partei Verband der Versicherungsunternehmen Österreichs, Schwarzenbergplatz 7, 1030 Wien, vertreten durch Mag. Georg E. Thalhammer, Rechtsanwalt in Wien, wegen 11.550 EUR sA, über den Delegierungsantrag der klagenden Partei in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Zur Verhandlung und Entscheidung in dieser Rechtssache wird anstelle des Bezirksgerichts Innere Stadt Wien das Bezirksgericht Kitzbühel bestimmt.
@@ -6020,7 +6001,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Hon.-Prof. Dr. Dan
 - `Glanzbruckkraft-Recycling` (organisation)
 - `Steindläcker 26, 4183 Obertraberg, Österreich` (address)
 
-**Example 59** (doc_id: `deanon_TRAIN/2Nc17_17y`) (sent_id: `deanon_TRAIN/2Nc17_17y_7`)
+**Example 60** (doc_id: `deanon_TRAIN/2Nc17_17y`) (sent_id: `deanon_TRAIN/2Nc17_17y_7`)
 
 
 Nachdem die beklagte Partei das Klagebegehren dem Grunde und der Höhe nach bestritten hatte, beantragte die klagende Partei die Delegierung der Rechtssache an das Bezirksgericht Kitzbühel, in dessen Sprengel sich der Unfall ereignet habe.
@@ -6029,7 +6010,7 @@ Nachdem die beklagte Partei das Klagebegehren dem Grunde und der Höhe nach best
 |---|---|
 | `Bezirksgericht Kitzbühel` | `Bezirksgericht Kitzbühel` |
 
-**Example 60** (doc_id: `deanon_TRAIN/2Nc24_12w`) (sent_id: `deanon_TRAIN/2Nc24_12w_3`)
+**Example 61** (doc_id: `deanon_TRAIN/2Nc24_12w`) (sent_id: `deanon_TRAIN/2Nc24_12w_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Baumann als Vorsitzenden und durch die Hofräte Dr. Veith und Dr. E. Solé als weitere Richter in der Rechtssache der klagenden Partei Thaddäus Gerzabek, LLM, vertreten durch Dr. Hanspeter Egger, Rechtsanwalt in Wien, gegen die beklagte Partei Pietruszak Recycling -AG, Rainer Chochola, vertreten durch Dr. Norbert Bergmüller, Rechtsanwalt in Schladming, wegen 1.505,25 EUR sA, über den Delegierungsantrag der beklagten Partei in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Zur Verhandlung und Entscheidung in dieser Rechtssache wird anstelle des Bezirksgerichts Hietzing das Bezirksgericht Irdning bestimmt.
@@ -6044,7 +6025,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Baumann als Vo
 - `Pietruszak Recycling` (organisation)
 - `Rainer Chochola` (person)
 
-**Example 61** (doc_id: `deanon_TRAIN/2Nc24_12w`) (sent_id: `deanon_TRAIN/2Nc24_12w_4`)
+**Example 62** (doc_id: `deanon_TRAIN/2Nc24_12w`) (sent_id: `deanon_TRAIN/2Nc24_12w_4`)
 
 
 Text Begründung: Der Kläger begehrt in seiner beim Bezirksgericht Hietzing am allgemeinen Gerichtsstand der beklagten Partei eingebrachten Klage Schadenersatz nach einem Verkehrsunfall auf der Salzkammergutstraße in Unterburg.
@@ -6053,7 +6034,7 @@ Text Begründung: Der Kläger begehrt in seiner beim Bezirksgericht Hietzing am 
 |---|---|
 | `Bezirksgericht Hietzing` | `Bezirksgericht Hietzing` |
 
-**Example 62** (doc_id: `deanon_TRAIN/2Nc24_12w`) (sent_id: `deanon_TRAIN/2Nc24_12w_5`)
+**Example 63** (doc_id: `deanon_TRAIN/2Nc24_12w`) (sent_id: `deanon_TRAIN/2Nc24_12w_5`)
 
 
 Die beklagte Partei beantragt die Delegierung der Rechtssache an das Bezirksgericht Irdning, in dessen Sprengel sich der Unfall ereignet habe.
@@ -6062,7 +6043,7 @@ Die beklagte Partei beantragt die Delegierung der Rechtssache an das Bezirksgeri
 |---|---|
 | `Bezirksgericht Irdning` | `Bezirksgericht Irdning` |
 
-**Example 63** (doc_id: `deanon_TRAIN/2Nc24_12w`) (sent_id: `deanon_TRAIN/2Nc24_12w_8`)
+**Example 64** (doc_id: `deanon_TRAIN/2Nc24_12w`) (sent_id: `deanon_TRAIN/2Nc24_12w_8`)
 
 
 Das Bezirksgericht Hietzing erachtete eine Delegierung für zweckmäßig.
@@ -6071,7 +6052,7 @@ Das Bezirksgericht Hietzing erachtete eine Delegierung für zweckmäßig.
 |---|---|
 | `Bezirksgericht Hietzing` | `Bezirksgericht Hietzing` |
 
-**Example 64** (doc_id: `deanon_TRAIN/3Nc11_13t`) (sent_id: `deanon_TRAIN/3Nc11_13t_3`)
+**Example 65** (doc_id: `deanon_TRAIN/3Nc11_13t`) (sent_id: `deanon_TRAIN/3Nc11_13t_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie die Hofräte Univ.-Prof Dr. Neumayr und Dr. Jensik als weitere Richter in der Ordinationssache der Antragstellerin Waldzorval Technologien GmbH, Dr.-Kühne-Gasse 29, 9560 Albern, Österreich, vertreten durch Dr. Clemens Thiele, Rechtsanwalt in Salzburg, gegen die Antragsgegnerin Pflege Allemkraft GmbH, Schirmerstraße 61, 8967 Oberhausberg, Österreich, wegen Exekutionsführung nach § 355 EO, infolge Antrags gemäß § 28 JN den Beschluss gefasst:  Spruch Für die Bewilligung und die Vollziehung der beabsichtigten Unterlassungsexekution wird das Bezirksgericht Salzburg als örtlich zuständiges Gericht bestimmt.
@@ -6087,7 +6068,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als 
 - `Pflege Allemkraft GmbH` (organisation)
 - `Schirmerstraße 61, 8967 Oberhausberg, Österreich` (address)
 
-**Example 65** (doc_id: `deanon_TRAIN/3Nc2_19b`) (sent_id: `deanon_TRAIN/3Nc2_19b_3`)
+**Example 66** (doc_id: `deanon_TRAIN/3Nc2_19b`) (sent_id: `deanon_TRAIN/3Nc2_19b_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hoch als Vorsitzenden sowie die Hofräte Dr. Roch und Dr. Rassi als weitere Richter in der Pflegschaftssache der minderjährigen Cornelius Eggerling, Mutter: Laura Schrader, LLB, Vater: Werner Pelargus, infolge Vorlage zur Entscheidung nach § 111 Abs 2 JN, den Beschluss gefasst:  Spruch Der Akt wird dem Bezirksgericht Oberwart zurückgestellt.
@@ -6102,7 +6083,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hoch als Vorsi
 - `Laura Schrader, LLB` (person)
 - `Werner Pelargus` (person)
 
-**Example 66** (doc_id: `deanon_TRAIN/3Nc2_19b`) (sent_id: `deanon_TRAIN/3Nc2_19b_4`)
+**Example 67** (doc_id: `deanon_TRAIN/3Nc2_19b`) (sent_id: `deanon_TRAIN/3Nc2_19b_4`)
 
 
 Text Begründung: Das Bezirksgericht Oberwart übertrug mit Beschluss vom 19. Dezember 2018 die Pflegschaftssache gemäß § 111 JN an das Bezirksgericht Fürstenfeld, weil sich das Kind nunmehr ständig in dessen Sprengel aufhalte.
@@ -6112,7 +6093,7 @@ Text Begründung: Das Bezirksgericht Oberwart übertrug mit Beschluss vom 19. De
 | `Bezirksgericht Oberwart` | `Bezirksgericht Oberwart` |
 | `Bezirksgericht Fürstenfeld` | `Bezirksgericht Fürstenfeld` |
 
-**Example 67** (doc_id: `deanon_TRAIN/3Nc2_19b`) (sent_id: `deanon_TRAIN/3Nc2_19b_5`)
+**Example 68** (doc_id: `deanon_TRAIN/3Nc2_19b`) (sent_id: `deanon_TRAIN/3Nc2_19b_5`)
 
 
 Das Bezirksgericht Fürstenfeld lehnte die Übernahme der Zuständigkeit am 2. Jänner 2019 ab und sandte den Akt an das Bezirksgericht Oberwart zurück.
@@ -6122,7 +6103,7 @@ Das Bezirksgericht Fürstenfeld lehnte die Übernahme der Zuständigkeit am 2. J
 | `Bezirksgericht Fürstenfeld` | `Bezirksgericht Fürstenfeld` |
 | `Bezirksgericht Oberwart` | `Bezirksgericht Oberwart` |
 
-**Example 68** (doc_id: `deanon_TRAIN/3Ob1_20y`) (sent_id: `deanon_TRAIN/3Ob1_20y_9`)
+**Example 69** (doc_id: `deanon_TRAIN/3Ob1_20y`) (sent_id: `deanon_TRAIN/3Ob1_20y_9`)
 
 
 Der von den Klägern aufgrund dieses Urteils beim Bezirksgericht Melk eingebrachte, in erster Instanz erfolgreiche Antrag auf Bewilligung der Exekution gemäß § 350 EO zur Durchsetzung der Einverleibung der Dienstbarkeit wurde vom Landesgericht St. Pölten als Rekursgericht mit Beschluss vom 1. Februar 2018 mit der Begründung abgewiesen, dass sich die dem Titel angeschlossenen Pläne (Beilage ./B1 und ON 71) nicht ohne weiteres in Übereinstimmung bringen ließen, weshalb der Verlauf des Servitutswegs dem Titel nicht eindeutig entnommen werden könne.
@@ -6135,7 +6116,7 @@ Der von den Klägern aufgrund dieses Urteils beim Bezirksgericht Melk eingebrach
 
 - `Landesgericht St. Pölten` (organisation)
 
-**Example 69** (doc_id: `deanon_TRAIN/3Ob203_11s`) (sent_id: `deanon_TRAIN/3Ob203_11s_9`)
+**Example 70** (doc_id: `deanon_TRAIN/3Ob203_11s`) (sent_id: `deanon_TRAIN/3Ob203_11s_9`)
 
 
 Am selben Tag langte eine von den Antragstellern selbst verfasste Berufung per Fax beim Bezirksgericht Saalfelden ein.
@@ -6144,7 +6125,7 @@ Am selben Tag langte eine von den Antragstellern selbst verfasste Berufung per F
 |---|---|
 | `Bezirksgericht Saalfelden` | `Bezirksgericht Saalfelden` |
 
-**Example 70** (doc_id: `deanon_TRAIN/4Nc18_11a`) (sent_id: `deanon_TRAIN/4Nc18_11a_3`)
+**Example 71** (doc_id: `deanon_TRAIN/4Nc18_11a`) (sent_id: `deanon_TRAIN/4Nc18_11a_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch die Senatspräsidentin Dr. Schenk als Vorsitzende und die Hofräte Dr. Vogel und Dr. Jensik als weitere Richter in der Rechtssache der klagenden Partei HochCloud GmbH, Piedro Temur, vertreten durch Dr. Christian Fuchshuber LL.M., Rechtsanwalt in Innsbruck, gegen die beklagte Partei SUI Pharma Consulting GmbH, Nancy Herz, vertreten durch Dr. Gerhard Strobich, Rechtsanwalt in Trofaiach, wegen 5.873,18 EUR sA, über den Delegierungsantrag der beklagten Partei den Beschluss gefasst:  Spruch Der Antrag, zur Verhandlung und Entscheidung in dieser Rechtssache anstelle des Bezirksgerichts Innsbruck das Bezirksgericht Leoben zu bestimmen, wird abgewiesen.
@@ -6160,7 +6141,7 @@ Kopf Der Oberste Gerichtshof hat durch die Senatspräsidentin Dr. Schenk als Vor
 - `SUI Pharma Consulting GmbH` (organisation)
 - `Nancy Herz` (person)
 
-**Example 71** (doc_id: `deanon_TRAIN/4Nc18_11a`) (sent_id: `deanon_TRAIN/4Nc18_11a_4`)
+**Example 72** (doc_id: `deanon_TRAIN/4Nc18_11a`) (sent_id: `deanon_TRAIN/4Nc18_11a_4`)
 
 
 Text Begründung: Die Klägerin mit Sitz in Innsbruck begehrt mit ihrer beim Bezirksgericht Innsbruck eingebrachten Klage 5.873,18 EUR sA für der Beklagten vereinbarungsgemäß erbrachte Reisedienstleistungen.
@@ -6169,7 +6150,7 @@ Text Begründung: Die Klägerin mit Sitz in Innsbruck begehrt mit ihrer beim Bez
 |---|---|
 | `Bezirksgericht Innsbruck` | `Bezirksgericht Innsbruck` |
 
-**Example 72** (doc_id: `deanon_TRAIN/4Nc18_11a`) (sent_id: `deanon_TRAIN/4Nc18_11a_8`)
+**Example 73** (doc_id: `deanon_TRAIN/4Nc18_11a`) (sent_id: `deanon_TRAIN/4Nc18_11a_8`)
 
 
 Die Beklagte beantragte die Delegierung der Rechtssache an das Bezirksgericht Leoben.
@@ -6178,7 +6159,7 @@ Die Beklagte beantragte die Delegierung der Rechtssache an das Bezirksgericht Le
 |---|---|
 | `Bezirksgericht Leoben` | `Bezirksgericht Leoben` |
 
-**Example 73** (doc_id: `deanon_TRAIN/4Nc18_11a`) (sent_id: `deanon_TRAIN/4Nc18_11a_14`)
+**Example 74** (doc_id: `deanon_TRAIN/4Nc18_11a`) (sent_id: `deanon_TRAIN/4Nc18_11a_14`)
 
 
 Das Bezirksgericht Innsbruck sprach sich gleichermaßen gegen die beantragte Delegierung aus, verwies auf die Möglichkeit der Zeugenvernehmung mittels Videokonferenz nach § 277 ZPO und (deswegen) auf den fehlenden Vorteil für die Parteien, der mit einer allfälligen Delegierung verbunden wäre.
@@ -6187,7 +6168,7 @@ Das Bezirksgericht Innsbruck sprach sich gleichermaßen gegen die beantragte Del
 |---|---|
 | `Bezirksgericht Innsbruck` | `Bezirksgericht Innsbruck` |
 
-**Example 74** (doc_id: `deanon_TRAIN/5Nc13_13a`) (sent_id: `deanon_TRAIN/5Nc13_13a_14`)
+**Example 75** (doc_id: `deanon_TRAIN/5Nc13_13a`) (sent_id: `deanon_TRAIN/5Nc13_13a_14`)
 
 
 Mit dem vorliegendenOrdinationsantragbegehren die Kläger, für die Rechtssache das Bezirksgericht Imst als örtlich zuständiges Gericht zu bestimmen.
@@ -6196,7 +6177,7 @@ Mit dem vorliegendenOrdinationsantragbegehren die Kläger, für die Rechtssache 
 |---|---|
 | `Bezirksgericht Imst` | `Bezirksgericht Imst` |
 
-**Example 75** (doc_id: `deanon_TRAIN/5Nc13_13a`) (sent_id: `deanon_TRAIN/5Nc13_13a_15`)
+**Example 76** (doc_id: `deanon_TRAIN/5Nc13_13a`) (sent_id: `deanon_TRAIN/5Nc13_13a_15`)
 
 
 Sie gestehen zu, dass das angerufene Bezirksgericht Imst nicht zufolge § 83 Abs 1 JN zuständig sei, weil der Bestandgegenstand nicht im Sprengel dieses Bezirksgerichts, sondern im Fürstentum Liechtenstein liege.
@@ -6205,7 +6186,7 @@ Sie gestehen zu, dass das angerufene Bezirksgericht Imst nicht zufolge § 83 Abs
 |---|---|
 | `Bezirksgericht Imst` | `Bezirksgericht Imst` |
 
-**Example 76** (doc_id: `deanon_TRAIN/5Nc15_20f`) (sent_id: `deanon_TRAIN/5Nc15_20f_4`)
+**Example 77** (doc_id: `deanon_TRAIN/5Nc15_20f`) (sent_id: `deanon_TRAIN/5Nc15_20f_4`)
 
 
 Kirsten Falterer, MA, vertreten durch Mag. Daniel Schöpf, Mag. Christian Maurer, Mag. Daniel Maurer, Rechtsanwälte in Salzburg, gegen die beklagte Partei Mona Gronmayer, BSc, vertreten durch die Steiner Anderwald Rechtsanwälte OG in Spittal an der Drau, wegen 28.017,16 EUR sA, über Vorlage des Akts AZ 3 C 361/20p des Bezirksgerichts Spittal an der Drau zur Entscheidung eines negativen Kompetenzkonflikts, den Beschluss gefasst:  Spruch Zur Fortführung dieser Rechtssache ist das Bezirksgericht Spittal an der Drau zuständig.
@@ -6219,7 +6200,7 @@ Kirsten Falterer, MA, vertreten durch Mag. Daniel Schöpf, Mag. Christian Maurer
 - `Kirsten Falterer, MA` (person)
 - `Mona Gronmayer, BSc` (person)
 
-**Example 77** (doc_id: `deanon_TRAIN/5Nc15_20f`) (sent_id: `deanon_TRAIN/5Nc15_20f_6`)
+**Example 78** (doc_id: `deanon_TRAIN/5Nc15_20f`) (sent_id: `deanon_TRAIN/5Nc15_20f_6`)
 
 
 Text Begründung: Mit der beim Bezirksgericht Salzburg eingebrachten Mahnklage begehrte der Kläger von der Beklagten die Zahlung von 28.017,16 EUR sA.
@@ -6228,7 +6209,7 @@ Text Begründung: Mit der beim Bezirksgericht Salzburg eingebrachten Mahnklage b
 |---|---|
 | `Bezirksgericht Salzburg` | `Bezirksgericht Salzburg` |
 
-**Example 78** (doc_id: `deanon_TRAIN/5Nc15_20f`) (sent_id: `deanon_TRAIN/5Nc15_20f_9`)
+**Example 79** (doc_id: `deanon_TRAIN/5Nc15_20f`) (sent_id: `deanon_TRAIN/5Nc15_20f_9`)
 
 
 In ihrem Einspruch gegen den vom Bezirksgericht Salzburg erlassenen Zahlungsbefehl erhob die Beklagte die Einrede der sachlichen und örtlichen Unzuständigkeit mit der Begründung, die Rechnungen stünden in einem tatsächlichen und rechtlichen Zusammenhang und seien daher zusammenzurechnen.
@@ -6288,26 +6269,7 @@ Das Bezirksgericht für Handelssachen Wien überwies die Rechtssache an dieses G
 
 > overlaps gold: 0  |  likely missing annotation: 1
 
-**Example 4** (doc_id: `deanon_TRAIN/10Nc25_09x`) (sent_id: `deanon_TRAIN/10Nc25_09x_3`)
-
-
-Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Schinko als Vorsitzenden und die Hofräte Dr. Fellinger und Dr. Schramm als weitere Richter in der Pflegschaftssache der Minderjährigen Delia Truepschuch, geboren am 1. Februar 2026, und Aloisa Eckmaier, geboren am 28. Februar 1976, AZ 2 PS 117/09t des Bezirksgerichts Feldkirchen, infolge Vorlage zur Genehmigung der Übertragung gemäß § 111 JN an das Bezirksgericht Neunkirchen, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die Übertragung der Zuständigkeit zur Besorgung dieser Pflegschaftssache an das Bezirksgericht Neunkirchen wird genehmigt.
-
-**False Positives:**
-
-- `Bezirksgericht Neunkirchen` — similar text (different position): `Bezirksgericht Neunkirchen`
-
-> overlaps gold: 1  |  likely missing annotation: 0
-
-**Gold Entities:**
-
-- `Delia Truepschuch`(person)
-- `1. Februar 2026`(date)
-- `Aloisa Eckmaier`(person)
-- `28. Februar 1976`(date)
-- `Bezirksgericht Neunkirchen`(organisation)
-
-**Example 5** (doc_id: `deanon_TRAIN/10Nc25_09x`) (sent_id: `deanon_TRAIN/10Nc25_09x_8`)
+**Example 4** (doc_id: `deanon_TRAIN/10Nc25_09x`) (sent_id: `deanon_TRAIN/10Nc25_09x_8`)
 
 
 Das bisher zuständige Bezirksgericht werde daher die Interessen der Minderjährigen besser wahren können, zumal unmittelbare pflegschaftsbehördliche Maßnahmen nicht zu setzen seien.
@@ -6318,7 +6280,7 @@ Das bisher zuständige Bezirksgericht werde daher die Interessen der Minderjähr
 
 > overlaps gold: 0  |  likely missing annotation: 1
 
-**Example 6** (doc_id: `deanon_TRAIN/10Ob21_15h`) (sent_id: `deanon_TRAIN/10Ob21_15h_17`)
+**Example 5** (doc_id: `deanon_TRAIN/10Ob21_15h`) (sent_id: `deanon_TRAIN/10Ob21_15h_17`)
 
 
 Mit Urteil des Bezirksgerichts Bezirksgericht St. Pölten vom 21. 5. 2013 wurde die Klägerin zur Zahlung von 6.183,92 EUR sA an Sanierungskosten sowie zur Zahlung der Prozesskosten an den Betreiber eines Hoch- und Niederseilparks verurteilt.
@@ -6333,7 +6295,7 @@ Mit Urteil des Bezirksgerichts Bezirksgericht St. Pölten vom 21. 5. 2013 wurde 
 
 - `Bezirksgericht St. Pölten`(organisation)
 
-**Example 7** (doc_id: `deanon_TRAIN/10Ob21_15h`) (sent_id: `deanon_TRAIN/10Ob21_15h_28`)
+**Example 6** (doc_id: `deanon_TRAIN/10Ob21_15h`) (sent_id: `deanon_TRAIN/10Ob21_15h_28`)
 
 
 Weiters habe sie der Klägerin Zinsen und Prozesskosten, zu deren Zahlung sie im Verfahren vor dem Bezirksgericht Bezirksgericht Meidling verurteilt worden war, sowie die Kosten deren eigener Vertretung in diesem Verfahren zu ersetzen.
@@ -6348,7 +6310,7 @@ Weiters habe sie der Klägerin Zinsen und Prozesskosten, zu deren Zahlung sie im
 
 - `Bezirksgericht Meidling`(organisation)
 
-**Example 8** (doc_id: `deanon_TRAIN/10ObS150_17g`) (sent_id: `deanon_TRAIN/10ObS150_17g_10`)
+**Example 7** (doc_id: `deanon_TRAIN/10ObS150_17g`) (sent_id: `deanon_TRAIN/10ObS150_17g_10`)
 
 
 Für ihn ist ein Sachwalter bestellt, der seit 2011 alle Angelegenheiten (§ 268 Abs 3 Z 3 ABGB) zu besorgen hat (siehe den Beschluss des Bezirksgericht Bezirksgericht Mattersburg vom 15.
@@ -6363,22 +6325,7 @@ Für ihn ist ein Sachwalter bestellt, der seit 2011 alle Angelegenheiten (§ 268
 
 - `Bezirksgericht Mattersburg`(organisation)
 
-**Example 9** (doc_id: `deanon_TRAIN/12Os16_19y_12Os17_19w_12Os18_19t_12Os19_19i_`) (sent_id: `deanon_TRAIN/12Os16_19y_12Os17_19w_12Os18_19t_12Os19_19i__13`)
-
-
-Mit Abwesenheitsurteil vom 26. September 2018 (ON 25) sprach das Bezirksgericht Leopoldstadt Nenad Pentzold des Vergehens der Veruntreuung nach § 133 Abs 1 StGB schuldig und verurteilte ihn zu einer Freiheitsstrafe.
-
-**False Positives:**
-
-- `Bezirksgericht Leopoldstadt` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Pentzold`(person)
-
-**Example 10** (doc_id: `deanon_TRAIN/13Os109_17d_13Os110_17a_`) (sent_id: `deanon_TRAIN/13Os109_17d_13Os110_17a__17`)
+**Example 8** (doc_id: `deanon_TRAIN/13Os109_17d_13Os110_17a_`) (sent_id: `deanon_TRAIN/13Os109_17d_13Os110_17a__17`)
 
 
 Indem das Bezirksgericht über die Jusepeitis&Niemöller Bildung GmbH eine (das Höchstmaß von somit 55 Tagessätzen übersteigende) Verbandsgeldbuße von 70 Tagessätzen verhängte, verletzte es § 4 Abs 3 VbVG).
@@ -6393,7 +6340,7 @@ Indem das Bezirksgericht über die Jusepeitis&Niemöller Bildung GmbH eine (das 
 
 - `Jusepeitis&Niemöller Bildung GmbH`(organisation)
 
-**Example 11** (doc_id: `deanon_TRAIN/13Os7_20h_13Os8_20f_`) (sent_id: `deanon_TRAIN/13Os7_20h_13Os8_20f__11`)
+**Example 9** (doc_id: `deanon_TRAIN/13Os7_20h_13Os8_20f_`) (sent_id: `deanon_TRAIN/13Os7_20h_13Os8_20f__11`)
 
 
 Im Protokoll über die Hauptverhandlung vor dem Bezirksgericht Innere Stadt Wien ist als Tag der Hauptverhandlung „23. 11. 2018“ angeführt (ON 18 S 1).
@@ -6408,7 +6355,7 @@ Im Protokoll über die Hauptverhandlung vor dem Bezirksgericht Innere Stadt Wien
 
 - `Bezirksgericht Innere Stadt Wien`(organisation)
 
-**Example 12** (doc_id: `deanon_TRAIN/13Os99_19m`) (sent_id: `deanon_TRAIN/13Os99_19m_12`)
+**Example 10** (doc_id: `deanon_TRAIN/13Os99_19m`) (sent_id: `deanon_TRAIN/13Os99_19m_12`)
 
 
 Ein anderes Verständnis legt – entgegen der vom Berufungsgericht mit Verweis auf eine Literaturstelle (Hinterhofer/Oshidari, System des österreichischen Strafverfahrens Rz 10.89) vertretenen Ansicht – auch die historische Interpretation nicht nahe: Die im Verfahren vor dem Bezirksgericht schon in der Stammfassung der StPO vorgesehene Rechtsmittellegitimation des Privatbeteiligten (zum Nachteil des Angeklagten) wurde von der Rechtsprechung und überwiegend im Schrifttum zur früheren Rechtslage (mit Blick auf § 366 Abs 2 letzter Satz StPO idF vor BGBl 1978/169) dahin ausgelegt, dass dieser Berufung (nur) dann habe ergreifen können, wenn das Erstgericht eine Entschädigung (zumindest teilweise) zugesprochen hatte, nicht jedoch bei vollständiger Verweisung auf den Zivilrechtsweg.
@@ -6419,7 +6366,7 @@ Ein anderes Verständnis legt – entgegen der vom Berufungsgericht mit Verweis 
 
 > overlaps gold: 0  |  likely missing annotation: 1
 
-**Example 13** (doc_id: `deanon_TRAIN/18ONc1_21y`) (sent_id: `deanon_TRAIN/18ONc1_21y_16`)
+**Example 11** (doc_id: `deanon_TRAIN/18ONc1_21y`) (sent_id: `deanon_TRAIN/18ONc1_21y_16`)
 
 
 [5] Aufgrund des Verweises auf § 37 Abs 2 bis 5 JN ist für einen solchen Antrag das Bezirksgericht zuständig, in dessen Sprengel die Amtshandlung vorgenommen werden soll (HausmaningerinFasching/Konecny3§ 602 ZPO Rz 30).
@@ -6430,7 +6377,7 @@ Ein anderes Verständnis legt – entgegen der vom Berufungsgericht mit Verweis 
 
 > overlaps gold: 0  |  likely missing annotation: 1
 
-**Example 14** (doc_id: `deanon_TRAIN/1Ob55_13i`) (sent_id: `deanon_TRAIN/1Ob55_13i_6`)
+**Example 12** (doc_id: `deanon_TRAIN/1Ob55_13i`) (sent_id: `deanon_TRAIN/1Ob55_13i_6`)
 
 
 Mit der am 20. 8. 2012 beim Bezirksgericht Bezirksgericht Hallein eingebrachten Klage begehrte der Minderjährige von einem in Deutschland wohnhaften minderjährigen Beklagten Schadenersatz von 3.850 EUR sA und die Feststellung seiner Haftung für sämtliche aus dessen Steinwurf resultierenden Spät- und Dauerfolgen.
@@ -6445,7 +6392,7 @@ Mit der am 20. 8. 2012 beim Bezirksgericht Bezirksgericht Hallein eingebrachten 
 
 - `Bezirksgericht Hallein`(organisation)
 
-**Example 15** (doc_id: `deanon_TRAIN/1Ob55_13i`) (sent_id: `deanon_TRAIN/1Ob55_13i_69`)
+**Example 13** (doc_id: `deanon_TRAIN/1Ob55_13i`) (sent_id: `deanon_TRAIN/1Ob55_13i_69`)
 
 
 8. 2012 beim gemäß Art 5 Nr 3 EuGVVO zuständigen Bezirksgericht Bezirksgericht Weiz (Gericht des Ortes, an dem das schädigende Ereignis eingetreten ist) im Elektronischen Rechtsverkehr eingebracht.
@@ -6460,7 +6407,7 @@ Mit der am 20. 8. 2012 beim Bezirksgericht Bezirksgericht Hallein eingebrachten 
 
 - `Bezirksgericht Weiz`(organisation)
 
-**Example 16** (doc_id: `deanon_TRAIN/2Nc17_17y`) (sent_id: `deanon_TRAIN/2Nc17_17y_4`)
+**Example 14** (doc_id: `deanon_TRAIN/2Nc17_17y`) (sent_id: `deanon_TRAIN/2Nc17_17y_4`)
 
 
 Text Begründung: Die klagende Partei begehrt in ihrer beim Bezirksgericht Innere Stadt Wien am allgemeinen Gerichtsstand der beklagten Partei eingebrachten Klage Schadenersatz nach einem Verkehrsunfall auf der B 178 im Ortsgebiet von Going am Wilden Kaiser.
@@ -6475,7 +6422,7 @@ Text Begründung: Die klagende Partei begehrt in ihrer beim Bezirksgericht Inner
 
 - `Bezirksgericht Innere Stadt Wien`(organisation)
 
-**Example 17** (doc_id: `deanon_TRAIN/2Nc17_17y`) (sent_id: `deanon_TRAIN/2Nc17_17y_11`)
+**Example 15** (doc_id: `deanon_TRAIN/2Nc17_17y`) (sent_id: `deanon_TRAIN/2Nc17_17y_11`)
 
 
 Das Bezirksgericht Innere Stadt Wien hält die Delegierung für zweckmäßig.
@@ -6490,7 +6437,7 @@ Das Bezirksgericht Innere Stadt Wien hält die Delegierung für zweckmäßig.
 
 - `Bezirksgericht Innere Stadt Wien`(organisation)
 
-**Example 18** (doc_id: `deanon_TRAIN/3Nc11_13t`) (sent_id: `deanon_TRAIN/3Nc11_13t_10`)
+**Example 16** (doc_id: `deanon_TRAIN/3Nc11_13t`) (sent_id: `deanon_TRAIN/3Nc11_13t_10`)
 
 
 Für eine Unterlassungsexekution ist gemäß § 18 Z 4 zweiter Fall EO jenes Bezirksgericht zuständig, in dessen Sprengel die erste Exekutionshandlung, nämlich die Zustellung der Exekutionsbewilligung, zu bewirken ist.
@@ -6501,7 +6448,7 @@ Für eine Unterlassungsexekution ist gemäß § 18 Z 4 zweiter Fall EO jenes Bez
 
 > overlaps gold: 0  |  likely missing annotation: 1
 
-**Example 19** (doc_id: `deanon_TRAIN/4Nc4_17a`) (sent_id: `deanon_TRAIN/4Nc4_17a_5`)
+**Example 17** (doc_id: `deanon_TRAIN/4Nc4_17a`) (sent_id: `deanon_TRAIN/4Nc4_17a_5`)
 
 
 Für die Bewilligung und die Vollziehung der beabsichtigten Exekution gegen die Zweitbeklagte auf Urteilsveröffentlichung wird das Bezirksgericht Innere Stadt Wien als örtlich zuständiges Gericht bestimmt.
@@ -6516,7 +6463,7 @@ Für die Bewilligung und die Vollziehung der beabsichtigten Exekution gegen die 
 
 - `Bezirksgericht Innere Stadt Wien`(organisation)
 
-**Example 20** (doc_id: `deanon_TRAIN/4Nc4_17a`) (sent_id: `deanon_TRAIN/4Nc4_17a_8`)
+**Example 18** (doc_id: `deanon_TRAIN/4Nc4_17a`) (sent_id: `deanon_TRAIN/4Nc4_17a_8`)
 
 
 Mit dem gegenständlichen Ordinationsantrag beantragen die Klägerinnen, der Oberste Gerichtshof möge das Bezirksgericht Innere Stadt Wien oder ein anderes Bezirksgericht als örtlich zuständiges Gericht für die Durchsetzung des Veröffentlichungsanspruchs gemäß § 354 EO gegen die Zweitbeklagte bestimmen.
@@ -6532,7 +6479,7 @@ Mit dem gegenständlichen Ordinationsantrag beantragen die Klägerinnen, der Obe
 
 - `Bezirksgericht Innere Stadt Wien`(organisation)
 
-**Example 21** (doc_id: `deanon_TRAIN/4Nc4_17a`) (sent_id: `deanon_TRAIN/4Nc4_17a_19`)
+**Example 19** (doc_id: `deanon_TRAIN/4Nc4_17a`) (sent_id: `deanon_TRAIN/4Nc4_17a_19`)
 
 
 Dem Ordinationsantrag ist somit stattzugeben und zweckmäßigerweise das Bezirksgericht Innere Stadt Wien als zuständiges Gericht zu bestimmen.
@@ -6553,7 +6500,7 @@ Dem Ordinationsantrag ist somit stattzugeben und zweckmäßigerweise das Bezirks
 
 ## `Regional Court Pattern`
 
-**F1:** 0.167 | **Precision:** 0.670 | **Recall:** 0.095  
+**F1:** 0.164 | **Precision:** 0.670 | **Recall:** 0.093  
 
 **Format:** `regex`  
 **Rule ID:** `8426a1d3`  
@@ -6570,13 +6517,13 @@ Matches Landesgericht (LG) followed by location.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.670 | 0.095 | 0.167 | 94 | 63 | 31 |
+| 0.670 | 0.093 | 0.164 | 94 | 63 | 31 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 63 | 31 | 534 |
+| `organisation` | 63 | 31 | 547 |
 
 </details>
 
@@ -7684,7 +7631,7 @@ Das Landesgericht für Zivilrechtssachen Wien trug dem Beklagten mit Beschluss v
 
 ## `Labor Court Vienna`
 
-**F1:** 0.098 | **Precision:** 1.000 | **Recall:** 0.051  
+**F1:** 0.096 | **Precision:** 1.000 | **Recall:** 0.050  
 
 **Format:** `regex`  
 **Rule ID:** `dee27985`  
@@ -7701,13 +7648,13 @@ Matches Arbeits- und Sozialgericht Wien and variations.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 1.000 | 0.051 | 0.098 | 34 | 34 | 0 |
+| 1.000 | 0.050 | 0.096 | 34 | 34 | 0 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 34 | 0 | 522 |
+| `organisation` | 34 | 0 | 535 |
 
 </details>
 
@@ -8140,7 +8087,7 @@ Brigitte Augustin und Mag. Andreas Hach als weitere Richter in der Arbeitsrechts
 
 ## `Court with Location`
 
-**F1:** 0.053 | **Precision:** 1.000 | **Recall:** 0.027  
+**F1:** 0.052 | **Precision:** 1.000 | **Recall:** 0.027  
 
 **Format:** `regex`  
 **Rule ID:** `971aef3b`  
@@ -8157,13 +8104,13 @@ Matches court names followed by location suffixes like 'Außenstelle Linz'.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 1.000 | 0.027 | 0.053 | 18 | 18 | 0 |
+| 1.000 | 0.027 | 0.052 | 18 | 18 | 0 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 18 | 0 | 561 |
+| `organisation` | 18 | 0 | 574 |
 
 </details>
 
@@ -8308,7 +8255,7 @@ Ihr Antrag auf Gesetzesprüfung hinsichtlich der inzwischen aufgelösten Berufun
 
 ## `Generic GmbH Entity`
 
-**F1:** 0.052 | **Precision:** 0.145 | **Recall:** 0.032  
+**F1:** 0.051 | **Precision:** 0.145 | **Recall:** 0.031  
 
 **Format:** `regex`  
 **Rule ID:** `0d4e88c9`  
@@ -8325,13 +8272,13 @@ Matches company names ending in GmbH, AG, KG, etc., with strict word boundaries 
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.145 | 0.032 | 0.052 | 145 | 21 | 124 |
+| 0.145 | 0.031 | 0.051 | 145 | 21 | 124 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 21 | 124 | 639 |
+| `organisation` | 21 | 124 | 653 |
 
 </details>
 
@@ -9818,7 +9765,7 @@ Wenn nun kraft ausdrücklicher gesetzlicher Vorschrift gemeinnützige Bauvereini
 
 ## `Company Name Without Suffix`
 
-**F1:** 0.046 | **Precision:** 0.086 | **Recall:** 0.032  
+**F1:** 0.046 | **Precision:** 0.086 | **Recall:** 0.031  
 
 **Format:** `regex`  
 **Rule ID:** `c8608e27`  
@@ -9835,13 +9782,13 @@ Matches company names that do not end in a standard suffix like GmbH/AG but are 
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.086 | 0.032 | 0.046 | 244 | 21 | 223 |
+| 0.086 | 0.031 | 0.046 | 244 | 21 | 223 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 21 | 223 | 639 |
+| `organisation` | 21 | 223 | 653 |
 
 </details>
 
@@ -11295,7 +11242,7 @@ Aber selbst wenn die Beklagte die Gesellschaft aufgrund eines aus der gleichzeit
 
 ## `Bank and Other Org`
 
-**F1:** 0.041 | **Precision:** 0.667 | **Recall:** 0.021  
+**F1:** 0.040 | **Precision:** 0.667 | **Recall:** 0.021  
 
 **Format:** `regex`  
 **Rule ID:** `53220dfe`  
@@ -11312,13 +11259,13 @@ Matches specific bank names and other organizations like 'Reinemut + Smoch Hande
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.667 | 0.021 | 0.041 | 21 | 14 | 7 |
+| 0.667 | 0.021 | 0.040 | 21 | 14 | 7 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 14 | 7 | 568 |
+| `organisation` | 14 | 7 | 581 |
 
 </details>
 
@@ -11600,7 +11547,7 @@ Wenn das Erstgericht - dem Sachverständigengutachten folgend - zu der Einschät
 
 ## `Constitutional Court`
 
-**F1:** 0.024 | **Precision:** 1.000 | **Recall:** 0.012  
+**F1:** 0.023 | **Precision:** 1.000 | **Recall:** 0.012  
 
 **Format:** `regex`  
 **Rule ID:** `0bbc25f5`  
@@ -11617,13 +11564,13 @@ Matches Verfassungsgerichtshof and its genitive form.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 1.000 | 0.012 | 0.024 | 8 | 8 | 0 |
+| 1.000 | 0.012 | 0.023 | 8 | 8 | 0 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 8 | 0 | 374 |
+| `organisation` | 8 | 0 | 386 |
 
 </details>
 
@@ -11726,7 +11673,7 @@ Ihr Antrag auf Gesetzesprüfung hinsichtlich der inzwischen aufgelösten Berufun
 
 ## `Vienna Magistrate`
 
-**F1:** 0.021 | **Precision:** 1.000 | **Recall:** 0.011  
+**F1:** 0.020 | **Precision:** 1.000 | **Recall:** 0.010  
 
 **Format:** `regex`  
 **Rule ID:** `923cbdfe`  
@@ -11743,13 +11690,13 @@ Matches Magistrat der Stadt Wien with department codes, ensuring the full entity
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 1.000 | 0.011 | 0.021 | 7 | 7 | 0 |
+| 1.000 | 0.010 | 0.020 | 7 | 7 | 0 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 7 | 0 | 583 |
+| `organisation` | 7 | 0 | 596 |
 
 </details>
 
@@ -11867,7 +11814,7 @@ Matzka als weitere Richter in der Pflegschaftssache der Minderjährigen Silke Wi
 
 ## `Magistrate City Pattern`
 
-**F1:** 0.021 | **Precision:** 1.000 | **Recall:** 0.011  
+**F1:** 0.020 | **Precision:** 1.000 | **Recall:** 0.010  
 
 **Format:** `regex`  
 **Rule ID:** `5b8b1658`  
@@ -11884,13 +11831,13 @@ Matches Magistrat der Stadt followed by city name, including genitive forms and 
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 1.000 | 0.011 | 0.021 | 7 | 7 | 0 |
+| 1.000 | 0.010 | 0.020 | 7 | 7 | 0 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 7 | 0 | 583 |
+| `organisation` | 7 | 0 | 596 |
 
 </details>
 
@@ -12031,7 +11978,7 @@ Matches Verwaltungsgerichtshof and all its case endings, including optional (VwG
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 6 | 0 | 272 |
+| `organisation` | 6 | 0 | 276 |
 
 </details>
 
@@ -12112,7 +12059,7 @@ Von dieser Sachlage ausgehend wies der von der Beklagten in diesem Verfahren mit
 
 ## `Verwaltungsgerichtshof Genitive`
 
-**F1:** 0.015 | **Precision:** 1.000 | **Recall:** 0.008  
+**F1:** 0.015 | **Precision:** 1.000 | **Recall:** 0.007  
 
 **Format:** `regex`  
 **Rule ID:** `6c39efd8`  
@@ -12129,13 +12076,13 @@ Matches Verwaltungsgerichtshof and its genitive form Verwaltungsgerichtshofes.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 1.000 | 0.008 | 0.015 | 5 | 5 | 0 |
+| 1.000 | 0.007 | 0.015 | 5 | 5 | 0 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 5 | 0 | 273 |
+| `organisation` | 5 | 0 | 277 |
 
 </details>
 
@@ -12226,7 +12173,7 @@ Matches Bundesministeriums für Justiz.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 4 | 0 | 507 |
+| `organisation` | 4 | 0 | 519 |
 
 </details>
 
@@ -12277,7 +12224,7 @@ Ob das Erstgericht im fortgesetzten Verfahren gemäß der Empfehlung des Bundesm
 
 ## `Pensionsversicherungsanstalt`
 
-**F1:** 0.003 | **Precision:** 1.000 | **Recall:** 0.002  
+**F1:** 0.003 | **Precision:** 1.000 | **Recall:** 0.001  
 
 **Format:** `regex`  
 **Rule ID:** `afe7e5b5`  
@@ -12294,13 +12241,13 @@ Matches the specific organization Pensionsversicherungsanstalt.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 1.000 | 0.002 | 0.003 | 1 | 1 | 0 |
+| 1.000 | 0.001 | 0.003 | 1 | 1 | 0 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 1 | 0 | 550 |
+| `organisation` | 1 | 0 | 563 |
 
 </details>
 
@@ -12329,7 +12276,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrech
 
 ## `Hyphenated Company Names`
 
-**F1:** 0.003 | **Precision:** 0.500 | **Recall:** 0.002  
+**F1:** 0.003 | **Precision:** 0.500 | **Recall:** 0.001  
 
 **Format:** `regex`  
 **Rule ID:** `5fc6cd92`  
@@ -12346,13 +12293,13 @@ Specifically targets hyphenated company names that might be split by the generic
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.500 | 0.002 | 0.003 | 2 | 1 | 1 |
+| 0.500 | 0.001 | 0.003 | 2 | 1 | 1 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 1 | 1 | 480 |
+| `organisation` | 1 | 1 | 492 |
 
 </details>
 
@@ -12504,7 +12451,7 @@ Matches VwGH acronym, but only when it appears as a standalone entity reference,
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 7 | 535 |
+| `organisation` | 0 | 7 | 548 |
 
 </details>
 
@@ -13094,7 +13041,7 @@ Matches VfGH acronym.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 12 | 535 |
+| `organisation` | 0 | 12 | 548 |
 
 </details>
 
@@ -13918,7 +13865,7 @@ Matches Sozialversicherungsanstalt der Bauern.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 2 | 556 |
+| `organisation` | 0 | 2 | 569 |
 
 </details>
 
@@ -14258,7 +14205,7 @@ Matches law firms ending in Rechtsanwält... GmbH/OG.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 4 | 483 |
+| `organisation` | 0 | 4 | 495 |
 
 </details>
 
@@ -14593,7 +14540,7 @@ Matches law firms ending in Rechtsanwälte GmbH/OG with names, ensuring no prece
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 10 | 483 |
+| `organisation` | 0 | 10 | 495 |
 
 </details>
 
@@ -15432,7 +15379,7 @@ Matches law firms ending in KG, excluding GmbH & Co KG patterns.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 10 | 565 |
+| `organisation` | 0 | 10 | 578 |
 
 </details>
 
@@ -15615,7 +15562,7 @@ Matches entities ending in 'gesellschaft mbH' or 'Gesellschaft mbH' which are co
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 2 | 338 |
+| `organisation` | 0 | 2 | 350 |
 
 </details>
 
