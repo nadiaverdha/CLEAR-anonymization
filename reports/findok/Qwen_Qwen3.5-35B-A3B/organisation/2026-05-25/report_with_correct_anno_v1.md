@@ -1,6 +1,6 @@
 # Rule Evaluation Report — Qwen/Qwen3.5-35B-A3B
 
-Generated on: 2026-05-26T18:12:48.228748
+Generated on: 2026-05-26T18:18:36.279863
 
 ---
 
@@ -52,14 +52,14 @@ Results can be reproduced by running this command:
 | Metric | Value |
 |---|---|
 | Accuracy (exact match) | 97.6% |
-| True Positives | 272 |
-| False Positives | 335 |
+| True Positives | 274 |
+| False Positives | 333 |
 | False Negatives | 375 |
-| Total Gold Entities | 647 |
-| Micro Precision | 44.8% |
-| Micro Recall | 42.0% |
-| Micro F1 | 43.4% |
-| Macro F1 | 43.4% |
+| Total Gold Entities | 649 |
+| Micro Precision | 45.1% |
+| Micro Recall | 42.2% |
+| Micro F1 | 43.6% |
+| Macro F1 | 43.6% |
 
 </details>
 
@@ -73,11 +73,11 @@ Results can be reproduced by running this command:
 | `Administrative Court` | 1.8% | 100.0% | 0.9% | 6 | 6 | 0 |
 | `Vienna Magistrate` | 2.1% | 100.0% | 1.1% | 7 | 7 | 0 |
 | `Constitutional Court` | 2.4% | 100.0% | 1.2% | 8 | 8 | 0 |
-| `Labor Court Vienna` | 10.0% | 100.0% | 5.3% | 34 | 34 | 0 |
+| `Labor Court Vienna` | 10.0% | 100.0% | 5.2% | 34 | 34 | 0 |
 | `Court with Location` | 5.4% | 100.0% | 2.8% | 18 | 18 | 0 |
 | `Verwaltungsgerichtshof Genitive` | 1.5% | 100.0% | 0.8% | 5 | 5 | 0 |
 | `Magistrate City Pattern` | 2.1% | 100.0% | 1.1% | 7 | 7 | 0 |
-| `District Court Pattern` | 29.9% | 72.2% | 18.9% | 169 | 122 | 47 |
+| `District Court Pattern` | 30.3% | 73.4% | 19.1% | 169 | 124 | 45 |
 | `Regional Court Pattern` | 17.0% | 67.0% | 9.7% | 94 | 63 | 31 |
 | `Bank and Other Org` | 4.2% | 66.7% | 2.2% | 21 | 14 | 7 |
 | `Hyphenated Company Names` | 0.3% | 50.0% | 0.2% | 2 | 1 | 1 |
@@ -195,7 +195,7 @@ Results can be reproduced by running this command:
 
 ## `Labor Court Vienna`
 
-**F1:** 0.100 | **Precision:** 1.000 | **Recall:** 0.053  
+**F1:** 0.100 | **Precision:** 1.000 | **Recall:** 0.052  
 
 **Format:** `regex`  
 **Rule ID:** `dee27985`  
@@ -212,13 +212,13 @@ Matches Arbeits- und Sozialgericht Wien and variations.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 1.000 | 0.053 | 0.100 | 34 | 34 | 0 |
+| 1.000 | 0.052 | 0.100 | 34 | 34 | 0 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 34 | 0 | 507 |
+| `organisation` | 34 | 0 | 509 |
 
 </details>
 
@@ -658,7 +658,7 @@ Matches court names followed by location suffixes like 'Außenstelle Linz'.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 18 | 0 | 546 |
+| `organisation` | 18 | 0 | 548 |
 
 </details>
 
@@ -952,7 +952,7 @@ Matches Magistrat der Stadt Wien with department codes, ensuring the full entity
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 7 | 0 | 568 |
+| `organisation` | 7 | 0 | 570 |
 
 </details>
 
@@ -1093,7 +1093,7 @@ Matches Magistrat der Stadt followed by city name, including genitive forms and 
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 7 | 0 | 568 |
+| `organisation` | 7 | 0 | 570 |
 
 </details>
 
@@ -1315,7 +1315,7 @@ Von dieser Sachlage ausgehend wies der von der Beklagten in diesem Verfahren mit
 
 ## `District Court Pattern`
 
-**F1:** 0.299 | **Precision:** 0.722 | **Recall:** 0.189  
+**F1:** 0.303 | **Precision:** 0.734 | **Recall:** 0.191  
 
 **Format:** `regex`  
 **Rule ID:** `4a197a40`  
@@ -1332,13 +1332,13 @@ Matches Bezirksgericht followed by location, handling 'BG' abbreviation.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.722 | 0.189 | 0.299 | 169 | 122 | 47 |
+| 0.734 | 0.191 | 0.303 | 169 | 124 | 45 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 122 | 47 | 525 |
+| `organisation` | 124 | 45 | 525 |
 
 </details>
 
@@ -1918,37 +1918,7 @@ Für eine Unterlassungsexekution ist gemäß § 18 Z 4 zweiter Fall EO jenes Bez
 
 > overlaps gold: 0  |  likely missing annotation: 1
 
-**Example 19** (doc_id: `deanon_TRAIN/3Nc2_19b`) (sent_id: `deanon_TRAIN/3Nc2_19b_4`)
-
-
-Text Begründung: Das Bezirksgericht Oberwart übertrug mit Beschluss vom 19. Dezember 2018 die Pflegschaftssache gemäß § 111 JN an das Bezirksgericht Fürstenfeld, weil sich das Kind nunmehr ständig in dessen Sprengel aufhalte.
-
-**False Positives:**
-
-- `Bezirksgericht Fürstenfeld` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Bezirksgericht Oberwart`(organisation)
-
-**Example 20** (doc_id: `deanon_TRAIN/3Nc2_19b`) (sent_id: `deanon_TRAIN/3Nc2_19b_5`)
-
-
-Das Bezirksgericht Fürstenfeld lehnte die Übernahme der Zuständigkeit am 2. Jänner 2019 ab und sandte den Akt an das Bezirksgericht Oberwart zurück.
-
-**False Positives:**
-
-- `Bezirksgericht Fürstenfeld` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Bezirksgericht Oberwart`(organisation)
-
-**Example 21** (doc_id: `deanon_TRAIN/4Nc4_17a`) (sent_id: `deanon_TRAIN/4Nc4_17a_5`)
+**Example 19** (doc_id: `deanon_TRAIN/4Nc4_17a`) (sent_id: `deanon_TRAIN/4Nc4_17a_5`)
 
 
 Für die Bewilligung und die Vollziehung der beabsichtigten Exekution gegen die Zweitbeklagte auf Urteilsveröffentlichung wird das Bezirksgericht Innere Stadt Wien als örtlich zuständiges Gericht bestimmt.
@@ -1963,7 +1933,7 @@ Für die Bewilligung und die Vollziehung der beabsichtigten Exekution gegen die 
 
 - `Bezirksgericht Innere Stadt Wien`(organisation)
 
-**Example 22** (doc_id: `deanon_TRAIN/4Nc4_17a`) (sent_id: `deanon_TRAIN/4Nc4_17a_8`)
+**Example 20** (doc_id: `deanon_TRAIN/4Nc4_17a`) (sent_id: `deanon_TRAIN/4Nc4_17a_8`)
 
 
 Mit dem gegenständlichen Ordinationsantrag beantragen die Klägerinnen, der Oberste Gerichtshof möge das Bezirksgericht Innere Stadt Wien oder ein anderes Bezirksgericht als örtlich zuständiges Gericht für die Durchsetzung des Veröffentlichungsanspruchs gemäß § 354 EO gegen die Zweitbeklagte bestimmen.
@@ -1979,7 +1949,7 @@ Mit dem gegenständlichen Ordinationsantrag beantragen die Klägerinnen, der Obe
 
 - `Bezirksgericht Innere Stadt Wien`(organisation)
 
-**Example 23** (doc_id: `deanon_TRAIN/4Nc4_17a`) (sent_id: `deanon_TRAIN/4Nc4_17a_19`)
+**Example 21** (doc_id: `deanon_TRAIN/4Nc4_17a`) (sent_id: `deanon_TRAIN/4Nc4_17a_19`)
 
 
 Dem Ordinationsantrag ist somit stattzugeben und zweckmäßigerweise das Bezirksgericht Innere Stadt Wien als zuständiges Gericht zu bestimmen.
@@ -2023,7 +1993,7 @@ Matches Landesgericht (LG) followed by location.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 63 | 31 | 519 |
+| `organisation` | 63 | 31 | 521 |
 
 </details>
 
@@ -2782,7 +2752,7 @@ Matches specific bank names and other organizations like 'Reinemut + Smoch Hande
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 14 | 7 | 553 |
+| `organisation` | 14 | 7 | 555 |
 
 </details>
 
@@ -3087,7 +3057,7 @@ Matches company names ending in GmbH, AG, KG, etc., with strict word boundaries 
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 21 | 124 | 624 |
+| `organisation` | 21 | 124 | 626 |
 
 </details>
 
@@ -3838,7 +3808,7 @@ Matches company names that do not end in a standard suffix like GmbH/AG but are 
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 21 | 223 | 624 |
+| `organisation` | 21 | 223 | 626 |
 
 </details>
 
@@ -4472,7 +4442,7 @@ Matches VfGH acronym.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 12 | 521 |
+| `organisation` | 0 | 12 | 523 |
 
 </details>
 
@@ -4646,7 +4616,7 @@ Matches law firms ending in Rechtsanwälte GmbH/OG with names, ensuring no prece
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 10 | 470 |
+| `organisation` | 0 | 10 | 472 |
 
 </details>
 
@@ -4852,7 +4822,7 @@ Matches law firms ending in KG, excluding GmbH & Co KG patterns.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 10 | 550 |
+| `organisation` | 0 | 10 | 552 |
 
 </details>
 
@@ -5035,7 +5005,7 @@ Matches VwGH acronym, but only when it appears as a standalone entity reference,
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 7 | 521 |
+| `organisation` | 0 | 7 | 523 |
 
 </details>
 
@@ -5391,7 +5361,7 @@ Matches the specific retailer Billa.
 
 ## `District Court Pattern`
 
-**F1:** 0.299 | **Precision:** 0.722 | **Recall:** 0.189  
+**F1:** 0.303 | **Precision:** 0.734 | **Recall:** 0.191  
 
 **Format:** `regex`  
 **Rule ID:** `4a197a40`  
@@ -5408,13 +5378,13 @@ Matches Bezirksgericht followed by location, handling 'BG' abbreviation.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.722 | 0.189 | 0.299 | 169 | 122 | 47 |
+| 0.734 | 0.191 | 0.303 | 169 | 124 | 45 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 122 | 47 | 525 |
+| `organisation` | 124 | 45 | 525 |
 
 </details>
 
@@ -6131,6 +6101,7 @@ Text Begründung: Das Bezirksgericht Oberwart übertrug mit Beschluss vom 19. De
 | Predicted | Gold |
 |---|---|
 | `Bezirksgericht Oberwart` | `Bezirksgericht Oberwart` |
+| `Bezirksgericht Fürstenfeld` | `Bezirksgericht Fürstenfeld` |
 
 **Example 67** (doc_id: `deanon_TRAIN/3Nc2_19b`) (sent_id: `deanon_TRAIN/3Nc2_19b_5`)
 
@@ -6139,6 +6110,7 @@ Das Bezirksgericht Fürstenfeld lehnte die Übernahme der Zuständigkeit am 2. J
 
 | Predicted | Gold |
 |---|---|
+| `Bezirksgericht Fürstenfeld` | `Bezirksgericht Fürstenfeld` |
 | `Bezirksgericht Oberwart` | `Bezirksgericht Oberwart` |
 
 **Example 68** (doc_id: `deanon_TRAIN/3Ob1_20y`) (sent_id: `deanon_TRAIN/3Ob1_20y_9`)
@@ -6520,37 +6492,7 @@ Für eine Unterlassungsexekution ist gemäß § 18 Z 4 zweiter Fall EO jenes Bez
 
 > overlaps gold: 0  |  likely missing annotation: 1
 
-**Example 19** (doc_id: `deanon_TRAIN/3Nc2_19b`) (sent_id: `deanon_TRAIN/3Nc2_19b_4`)
-
-
-Text Begründung: Das Bezirksgericht Oberwart übertrug mit Beschluss vom 19. Dezember 2018 die Pflegschaftssache gemäß § 111 JN an das Bezirksgericht Fürstenfeld, weil sich das Kind nunmehr ständig in dessen Sprengel aufhalte.
-
-**False Positives:**
-
-- `Bezirksgericht Fürstenfeld` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Bezirksgericht Oberwart`(organisation)
-
-**Example 20** (doc_id: `deanon_TRAIN/3Nc2_19b`) (sent_id: `deanon_TRAIN/3Nc2_19b_5`)
-
-
-Das Bezirksgericht Fürstenfeld lehnte die Übernahme der Zuständigkeit am 2. Jänner 2019 ab und sandte den Akt an das Bezirksgericht Oberwart zurück.
-
-**False Positives:**
-
-- `Bezirksgericht Fürstenfeld` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Bezirksgericht Oberwart`(organisation)
-
-**Example 21** (doc_id: `deanon_TRAIN/4Nc4_17a`) (sent_id: `deanon_TRAIN/4Nc4_17a_5`)
+**Example 19** (doc_id: `deanon_TRAIN/4Nc4_17a`) (sent_id: `deanon_TRAIN/4Nc4_17a_5`)
 
 
 Für die Bewilligung und die Vollziehung der beabsichtigten Exekution gegen die Zweitbeklagte auf Urteilsveröffentlichung wird das Bezirksgericht Innere Stadt Wien als örtlich zuständiges Gericht bestimmt.
@@ -6565,7 +6507,7 @@ Für die Bewilligung und die Vollziehung der beabsichtigten Exekution gegen die 
 
 - `Bezirksgericht Innere Stadt Wien`(organisation)
 
-**Example 22** (doc_id: `deanon_TRAIN/4Nc4_17a`) (sent_id: `deanon_TRAIN/4Nc4_17a_8`)
+**Example 20** (doc_id: `deanon_TRAIN/4Nc4_17a`) (sent_id: `deanon_TRAIN/4Nc4_17a_8`)
 
 
 Mit dem gegenständlichen Ordinationsantrag beantragen die Klägerinnen, der Oberste Gerichtshof möge das Bezirksgericht Innere Stadt Wien oder ein anderes Bezirksgericht als örtlich zuständiges Gericht für die Durchsetzung des Veröffentlichungsanspruchs gemäß § 354 EO gegen die Zweitbeklagte bestimmen.
@@ -6581,7 +6523,7 @@ Mit dem gegenständlichen Ordinationsantrag beantragen die Klägerinnen, der Obe
 
 - `Bezirksgericht Innere Stadt Wien`(organisation)
 
-**Example 23** (doc_id: `deanon_TRAIN/4Nc4_17a`) (sent_id: `deanon_TRAIN/4Nc4_17a_19`)
+**Example 21** (doc_id: `deanon_TRAIN/4Nc4_17a`) (sent_id: `deanon_TRAIN/4Nc4_17a_19`)
 
 
 Dem Ordinationsantrag ist somit stattzugeben und zweckmäßigerweise das Bezirksgericht Innere Stadt Wien als zuständiges Gericht zu bestimmen.
@@ -6625,7 +6567,7 @@ Matches Landesgericht (LG) followed by location.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 63 | 31 | 519 |
+| `organisation` | 63 | 31 | 521 |
 
 </details>
 
@@ -7733,7 +7675,7 @@ Das Landesgericht für Zivilrechtssachen Wien trug dem Beklagten mit Beschluss v
 
 ## `Labor Court Vienna`
 
-**F1:** 0.100 | **Precision:** 1.000 | **Recall:** 0.053  
+**F1:** 0.100 | **Precision:** 1.000 | **Recall:** 0.052  
 
 **Format:** `regex`  
 **Rule ID:** `dee27985`  
@@ -7750,13 +7692,13 @@ Matches Arbeits- und Sozialgericht Wien and variations.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 1.000 | 0.053 | 0.100 | 34 | 34 | 0 |
+| 1.000 | 0.052 | 0.100 | 34 | 34 | 0 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 34 | 0 | 507 |
+| `organisation` | 34 | 0 | 509 |
 
 </details>
 
@@ -8211,7 +8153,7 @@ Matches court names followed by location suffixes like 'Außenstelle Linz'.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 18 | 0 | 546 |
+| `organisation` | 18 | 0 | 548 |
 
 </details>
 
@@ -8379,7 +8321,7 @@ Matches company names ending in GmbH, AG, KG, etc., with strict word boundaries 
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 21 | 124 | 624 |
+| `organisation` | 21 | 124 | 626 |
 
 </details>
 
@@ -9886,7 +9828,7 @@ Matches company names that do not end in a standard suffix like GmbH/AG but are 
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 21 | 223 | 624 |
+| `organisation` | 21 | 223 | 626 |
 
 </details>
 
@@ -11361,7 +11303,7 @@ Matches specific bank names and other organizations like 'Reinemut + Smoch Hande
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 14 | 7 | 553 |
+| `organisation` | 14 | 7 | 555 |
 
 </details>
 
@@ -11792,7 +11734,7 @@ Matches Magistrat der Stadt Wien with department codes, ensuring the full entity
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 7 | 0 | 568 |
+| `organisation` | 7 | 0 | 570 |
 
 </details>
 
@@ -11933,7 +11875,7 @@ Matches Magistrat der Stadt followed by city name, including genitive forms and 
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 7 | 0 | 568 |
+| `organisation` | 7 | 0 | 570 |
 
 </details>
 
@@ -12269,7 +12211,7 @@ Specifically targets hyphenated company names that might be split by the generic
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 1 | 1 | 468 |
+| `organisation` | 1 | 1 | 470 |
 
 </details>
 
@@ -12421,7 +12363,7 @@ Matches VwGH acronym, but only when it appears as a standalone entity reference,
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 7 | 521 |
+| `organisation` | 0 | 7 | 523 |
 
 </details>
 
@@ -13011,7 +12953,7 @@ Matches VfGH acronym.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 12 | 521 |
+| `organisation` | 0 | 12 | 523 |
 
 </details>
 
@@ -13410,7 +13352,7 @@ Matches the specific organization Pensionsversicherungsanstalt.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 1 | 536 |
+| `organisation` | 0 | 1 | 538 |
 
 </details>
 
@@ -13889,7 +13831,7 @@ Matches Sozialversicherungsanstalt der Bauern.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 2 | 541 |
+| `organisation` | 0 | 2 | 543 |
 
 </details>
 
@@ -14229,7 +14171,7 @@ Matches law firms ending in Rechtsanwält... GmbH/OG.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 4 | 470 |
+| `organisation` | 0 | 4 | 472 |
 
 </details>
 
@@ -14561,7 +14503,7 @@ Matches law firms ending in Rechtsanwälte GmbH/OG with names, ensuring no prece
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 10 | 470 |
+| `organisation` | 0 | 10 | 472 |
 
 </details>
 
@@ -14942,7 +14884,7 @@ Matches Bundesministeriums für Justiz.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 4 | 497 |
+| `organisation` | 0 | 4 | 499 |
 
 </details>
 
@@ -15474,7 +15416,7 @@ Matches law firms ending in KG, excluding GmbH & Co KG patterns.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 10 | 550 |
+| `organisation` | 0 | 10 | 552 |
 
 </details>
 
