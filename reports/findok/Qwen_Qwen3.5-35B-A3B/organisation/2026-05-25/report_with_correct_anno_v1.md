@@ -1,6 +1,6 @@
 # Rule Evaluation Report — Qwen/Qwen3.5-35B-A3B
 
-Generated on: 2026-05-26T18:25:09.038487
+Generated on: 2026-05-26T18:28:44.364840
 
 ---
 
@@ -51,15 +51,15 @@ Results can be reproduced by running this command:
 
 | Metric | Value |
 |---|---|
-| Accuracy (exact match) | 97.6% |
-| True Positives | 278 |
-| False Positives | 329 |
+| Accuracy (exact match) | 97.7% |
+| True Positives | 279 |
+| False Positives | 328 |
 | False Negatives | 383 |
-| Total Gold Entities | 661 |
-| Micro Precision | 45.8% |
+| Total Gold Entities | 662 |
+| Micro Precision | 46.0% |
 | Micro Recall | 42.1% |
-| Micro F1 | 43.8% |
-| Macro F1 | 43.8% |
+| Micro F1 | 44.0% |
+| Macro F1 | 44.0% |
 
 </details>
 
@@ -75,10 +75,11 @@ Results can be reproduced by running this command:
 | `Constitutional Court` | 2.4% | 100.0% | 1.2% | 8 | 8 | 0 |
 | `Labor Court Vienna` | 9.8% | 100.0% | 5.1% | 34 | 34 | 0 |
 | `Court with Location` | 5.3% | 100.0% | 2.7% | 18 | 18 | 0 |
+| `Pensionsversicherungsanstalt` | 0.3% | 100.0% | 0.2% | 1 | 1 | 0 |
 | `Verwaltungsgerichtshof Genitive` | 1.5% | 100.0% | 0.8% | 5 | 5 | 0 |
 | `Magistrate City Pattern` | 2.1% | 100.0% | 1.1% | 7 | 7 | 0 |
 | `Federal Ministry of Justice` | 1.2% | 100.0% | 0.6% | 4 | 4 | 0 |
-| `District Court Pattern` | 29.9% | 73.4% | 18.8% | 169 | 124 | 45 |
+| `District Court Pattern` | 29.8% | 73.4% | 18.7% | 169 | 124 | 45 |
 | `Regional Court Pattern` | 16.7% | 67.0% | 9.5% | 94 | 63 | 31 |
 | `Bank and Other Org` | 4.1% | 66.7% | 2.1% | 21 | 14 | 7 |
 | `Hyphenated Company Names` | 0.3% | 50.0% | 0.2% | 2 | 1 | 1 |
@@ -117,7 +118,6 @@ Results can be reproduced by running this command:
 | `Cervenka&Neunübel Telekom AG` | 0.0% | 0.0% | 0.0% | 0 | 0 | 0 |
 | `PSD Wien` | 0.0% | 0.0% | 0.0% | 0 | 0 | 0 |
 | `SVS/SVB` | 0.0% | 0.0% | 0.0% | 0 | 0 | 0 |
-| `Pensionsversicherungsanstalt` | 0.0% | 0.0% | 0.0% | 1 | 0 | 1 |
 | `Psychiatrie Otto Wagner Spital` | 0.0% | 0.0% | 0.0% | 0 | 0 | 0 |
 | `Schweizerischen Unfallversicherungsanstalt` | 0.0% | 0.0% | 0.0% | 0 | 0 | 0 |
 | `ÖGK` | 0.0% | 0.0% | 0.0% | 0 | 0 | 0 |
@@ -218,7 +218,7 @@ Matches Arbeits- und Sozialgericht Wien and variations.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 34 | 0 | 521 |
+| `organisation` | 34 | 0 | 522 |
 
 </details>
 
@@ -287,6 +287,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrech
 **Missed by this rule (FN):**
 
 - `Dr.in Gerlinde Saltzmann` (person)
+- `Pensionsversicherungsanstalt` (organisation)
 
 **Example 5** (doc_id: `deanon_TRAIN/8Nc31_13w`) (sent_id: `deanon_TRAIN/8Nc31_13w_3`)
 
@@ -658,7 +659,7 @@ Matches court names followed by location suffixes like 'Außenstelle Linz'.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 18 | 0 | 560 |
+| `organisation` | 18 | 0 | 561 |
 
 </details>
 
@@ -952,7 +953,7 @@ Matches Magistrat der Stadt Wien with department codes, ensuring the full entity
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 7 | 0 | 582 |
+| `organisation` | 7 | 0 | 583 |
 
 </details>
 
@@ -1093,7 +1094,7 @@ Matches Magistrat der Stadt followed by city name, including genitive forms and 
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 7 | 0 | 582 |
+| `organisation` | 7 | 0 | 583 |
 
 </details>
 
@@ -1315,7 +1316,7 @@ Von dieser Sachlage ausgehend wies der von der Beklagten in diesem Verfahren mit
 
 ## `District Court Pattern`
 
-**F1:** 0.299 | **Precision:** 0.734 | **Recall:** 0.188  
+**F1:** 0.298 | **Precision:** 0.734 | **Recall:** 0.187  
 
 **Format:** `regex`  
 **Rule ID:** `4a197a40`  
@@ -1332,13 +1333,13 @@ Matches Bezirksgericht followed by location, handling 'BG' abbreviation.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.734 | 0.188 | 0.299 | 169 | 124 | 45 |
+| 0.734 | 0.187 | 0.298 | 169 | 124 | 45 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 124 | 45 | 537 |
+| `organisation` | 124 | 45 | 538 |
 
 </details>
 
@@ -1993,7 +1994,7 @@ Matches Landesgericht (LG) followed by location.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 63 | 31 | 533 |
+| `organisation` | 63 | 31 | 534 |
 
 </details>
 
@@ -2752,7 +2753,7 @@ Matches specific bank names and other organizations like 'Reinemut + Smoch Hande
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 14 | 7 | 567 |
+| `organisation` | 14 | 7 | 568 |
 
 </details>
 
@@ -3057,7 +3058,7 @@ Matches company names ending in GmbH, AG, KG, etc., with strict word boundaries 
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 21 | 124 | 638 |
+| `organisation` | 21 | 124 | 639 |
 
 </details>
 
@@ -3808,7 +3809,7 @@ Matches company names that do not end in a standard suffix like GmbH/AG but are 
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 21 | 223 | 638 |
+| `organisation` | 21 | 223 | 639 |
 
 </details>
 
@@ -4830,7 +4831,7 @@ Matches law firms ending in KG, excluding GmbH & Co KG patterns.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 10 | 564 |
+| `organisation` | 0 | 10 | 565 |
 
 </details>
 
@@ -5369,7 +5370,7 @@ Matches the specific retailer Billa.
 
 ## `District Court Pattern`
 
-**F1:** 0.299 | **Precision:** 0.734 | **Recall:** 0.188  
+**F1:** 0.298 | **Precision:** 0.734 | **Recall:** 0.187  
 
 **Format:** `regex`  
 **Rule ID:** `4a197a40`  
@@ -5386,13 +5387,13 @@ Matches Bezirksgericht followed by location, handling 'BG' abbreviation.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.734 | 0.188 | 0.299 | 169 | 124 | 45 |
+| 0.734 | 0.187 | 0.298 | 169 | 124 | 45 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 124 | 45 | 537 |
+| `organisation` | 124 | 45 | 538 |
 
 </details>
 
@@ -6575,7 +6576,7 @@ Matches Landesgericht (LG) followed by location.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 63 | 31 | 533 |
+| `organisation` | 63 | 31 | 534 |
 
 </details>
 
@@ -7706,7 +7707,7 @@ Matches Arbeits- und Sozialgericht Wien and variations.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 34 | 0 | 521 |
+| `organisation` | 34 | 0 | 522 |
 
 </details>
 
@@ -7775,6 +7776,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrech
 **Missed by this rule (FN):**
 
 - `Dr.in Gerlinde Saltzmann` (person)
+- `Pensionsversicherungsanstalt` (organisation)
 
 **Example 5** (doc_id: `deanon_TRAIN/8Nc31_13w`) (sent_id: `deanon_TRAIN/8Nc31_13w_3`)
 
@@ -8161,7 +8163,7 @@ Matches court names followed by location suffixes like 'Außenstelle Linz'.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 18 | 0 | 560 |
+| `organisation` | 18 | 0 | 561 |
 
 </details>
 
@@ -8329,7 +8331,7 @@ Matches company names ending in GmbH, AG, KG, etc., with strict word boundaries 
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 21 | 124 | 638 |
+| `organisation` | 21 | 124 | 639 |
 
 </details>
 
@@ -9839,7 +9841,7 @@ Matches company names that do not end in a standard suffix like GmbH/AG but are 
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 21 | 223 | 638 |
+| `organisation` | 21 | 223 | 639 |
 
 </details>
 
@@ -11316,7 +11318,7 @@ Matches specific bank names and other organizations like 'Reinemut + Smoch Hande
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 14 | 7 | 567 |
+| `organisation` | 14 | 7 | 568 |
 
 </details>
 
@@ -11747,7 +11749,7 @@ Matches Magistrat der Stadt Wien with department codes, ensuring the full entity
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 7 | 0 | 582 |
+| `organisation` | 7 | 0 | 583 |
 
 </details>
 
@@ -11888,7 +11890,7 @@ Matches Magistrat der Stadt followed by city name, including genitive forms and 
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 7 | 0 | 582 |
+| `organisation` | 7 | 0 | 583 |
 
 </details>
 
@@ -12268,6 +12270,58 @@ Ob das Erstgericht im fortgesetzten Verfahren gemäß der Empfehlung des Bundesm
 | Predicted | Gold |
 |---|---|
 | `Bundesministeriums für Justiz` | `Bundesministeriums für Justiz` |
+
+</details>
+
+---
+
+## `Pensionsversicherungsanstalt`
+
+**F1:** 0.003 | **Precision:** 1.000 | **Recall:** 0.002  
+
+**Format:** `regex`  
+**Rule ID:** `afe7e5b5`  
+**Description:**
+Matches the specific organization Pensionsversicherungsanstalt.
+
+**Content:**
+```
+(?i)\b(Pensionsversicherungsanstalt)\b
+```
+
+<details>
+<summary>📊 Detailed Metrics</summary>
+
+| Precision | Recall | F1 | Total Predicted | TP | FP |
+|---|---|---|---|---|---|
+| 1.000 | 0.002 | 0.003 | 1 | 1 | 0 |
+
+**Per-Class Breakdown**
+
+| Class | TP | FP | FN |
+|---|---|---|---|
+| `organisation` | 1 | 0 | 550 |
+
+</details>
+
+---
+
+<details>
+<summary>✅ Worked</summary>
+
+**Example 0** (doc_id: `deanon_TRAIN/10ObS92_17b`) (sent_id: `deanon_TRAIN/10ObS92_17b_3`)
+
+
+Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrechtssachen durch den Senatspräsidenten Univ.-Prof. Dr. Neumayr als Vorsitzenden, den Hofrat Dr. Schramm und die Hofrätin Dr. Fichtenau sowie die fachkundigen Laienrichter Dr. Gabriele Griehsel (aus dem Kreis der Arbeitgeber) und Dr. Wolfgang Kozak (aus dem Kreis der Arbeitnehmer) als weitere Richter in der Sozialrechtssache der klagenden Partei Dr.in Gerlinde Saltzmann, vertreten durch Mahringer Steinwender Bestebner Rechtsanwälte OG in Salzburg, gegen die beklagte Partei Pensionsversicherungsanstalt, 1021 Wien, Friedrich-Hillegeist-Straße 1, wegen Berufsunfähigkeitspension, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Linz als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 15. Mai 2017, GZ 11 Rs 22/17k-36, mit dem das Urteil des Landesgerichts Salzburg als Arbeits- und Sozialgericht vom 21. Dezember 2016, GZ 18 Cgs 62/15y-32, bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Der Revision wird Folge gegeben.
+
+| Predicted | Gold |
+|---|---|
+| `Pensionsversicherungsanstalt` | `Pensionsversicherungsanstalt` |
+
+**Missed by this rule (FN):**
+
+- `Dr.in Gerlinde Saltzmann` (person)
+- `Arbeits- und Sozialgericht` (organisation)
 
 </details>
 
@@ -13414,60 +13468,6 @@ Matches the specific organization SVS/SVB.
 
 ---
 
-## `Pensionsversicherungsanstalt`
-
-**F1:** 0.000 | **Precision:** 0.000 | **Recall:** 0.000  
-
-**Format:** `regex`  
-**Rule ID:** `afe7e5b5`  
-**Description:**
-Matches the specific organization Pensionsversicherungsanstalt.
-
-**Content:**
-```
-(?i)\b(Pensionsversicherungsanstalt)\b
-```
-
-<details>
-<summary>📊 Detailed Metrics</summary>
-
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 1 | 0 | 1 |
-
-**Per-Class Breakdown**
-
-| Class | TP | FP | FN |
-|---|---|---|---|
-| `organisation` | 0 | 1 | 550 |
-
-</details>
-
----
-
-<details>
-<summary>⚠️ False Positives</summary>
-
-**Example 0** (doc_id: `deanon_TRAIN/10ObS92_17b`) (sent_id: `deanon_TRAIN/10ObS92_17b_3`)
-
-
-Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrechtssachen durch den Senatspräsidenten Univ.-Prof. Dr. Neumayr als Vorsitzenden, den Hofrat Dr. Schramm und die Hofrätin Dr. Fichtenau sowie die fachkundigen Laienrichter Dr. Gabriele Griehsel (aus dem Kreis der Arbeitgeber) und Dr. Wolfgang Kozak (aus dem Kreis der Arbeitnehmer) als weitere Richter in der Sozialrechtssache der klagenden Partei Dr.in Gerlinde Saltzmann, vertreten durch Mahringer Steinwender Bestebner Rechtsanwälte OG in Salzburg, gegen die beklagte Partei Pensionsversicherungsanstalt, 1021 Wien, Friedrich-Hillegeist-Straße 1, wegen Berufsunfähigkeitspension, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Linz als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 15. Mai 2017, GZ 11 Rs 22/17k-36, mit dem das Urteil des Landesgerichts Salzburg als Arbeits- und Sozialgericht vom 21. Dezember 2016, GZ 18 Cgs 62/15y-32, bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Der Revision wird Folge gegeben.
-
-**False Positives:**
-
-- `Pensionsversicherungsanstalt` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Dr.in Gerlinde Saltzmann`(person)
-- `Arbeits- und Sozialgericht`(organisation)
-
-</details>
-
----
-
 ## `Psychiatrie Otto Wagner Spital`
 
 **F1:** 0.000 | **Precision:** 0.000 | **Recall:** 0.000  
@@ -13918,7 +13918,7 @@ Matches Sozialversicherungsanstalt der Bauern.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 2 | 555 |
+| `organisation` | 0 | 2 | 556 |
 
 </details>
 
@@ -15432,7 +15432,7 @@ Matches law firms ending in KG, excluding GmbH & Co KG patterns.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 10 | 564 |
+| `organisation` | 0 | 10 | 565 |
 
 </details>
 
