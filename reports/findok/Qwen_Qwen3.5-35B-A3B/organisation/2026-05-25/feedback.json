@@ -1,0 +1,7 @@
+[
+  {
+    "level": "rule",
+    "rule_id": "0d4e88c9",
+    "text": "Remove this part from the regex [a-zäöüß0-9]"
+  }
+]
