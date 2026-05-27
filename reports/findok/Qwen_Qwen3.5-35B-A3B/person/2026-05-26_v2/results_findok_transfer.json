@@ -1,0 +1,549 @@
+{
+  "config": {
+    "shots": null,
+    "model": "Qwen/Qwen3.5-35B-A3B",
+    "format": "regex",
+    "max_rules": 30,
+    "max_samples": 150,
+    "max_iterations": 6,
+    "seed": 42,
+    "train_size": 2482,
+    "eval_size": 622,
+    "test_size": 91453,
+    "train_annotations": 3953,
+    "eval_annotations": 1160,
+    "test_annotations": 91453,
+    "use_grex": true,
+    "agentic": true,
+    "enable_critic": true,
+    "enable_prune": false,
+    "critic_interval": 10,
+    "audit_interval": 0,
+    "windows": false,
+    "sampling_strategy": "balanced",
+    "train_ratio": 0.8,
+    "pool_size": null,
+    "batch_size": 100,
+    "refine_per_batch": 1,
+    "synthesis_strategy": "bulk",
+    "selected_classes": [
+      "person"
+    ],
+    "train_name": "findok",
+    "test_name": "findok",
+    "transfer_name": "findok_manual",
+    "transfer_test_name": null,
+    "max_counter_examples": 10,
+    "refine_every": 10
+  },
+  "metadata": {
+    "seeded_from": "findok",
+    "seed_rule_count": 6,
+    "new_rules_added": 2,
+    "continuation": "synthesize_and_refine",
+    "phase1_train_sentences": 3896,
+    "phase1_eval_sentences": 1147,
+    "transfer_train_sentences": 57,
+    "transfer_eval_sentences": 13,
+    "best_batch_idx": 0,
+    "best_batch_f1": 0.2906658558832472,
+    "best_rules_serialized": [
+      {
+        "id": "a6febd7e",
+        "name": "Judge_Richter",
+        "description": "Captures the name of a judge (Richter/Richterin/Vorsitzende) including complex titles and suffixes, ensuring no trailing whitespace.",
+        "format": "regex",
+        "content": "(?:durch\\s+(?:den\\s+)?(?:Richter|Richterin|Vorsitzende)\\s+)([A-Z][a-zA-Z\\.\\s,]+?(?:\\s+(?:LL\\.M\\.|M\\.B\\.L\\.|B\\.Ed\\.|B\\.Sc\\.|MA|Bakk\\.|Dipl\\.-|Dipl\\.\\s+Kfm\\.|Ing\\.|MedR|VetR|Techn|\\u00d6kR|OStR|Univ\\.-|Priv\\.-|Hon\\.-|Dr\\.in|Mag\\.in|Mag\\.a|PhD|LLB|Dr\\.\\s+Univ\\.-Prof\\.in?|Univ\\.-Prof\\.in?|Priv\\.-Doz\\.in?|Hon\\.-Prof\\.in?)?)?)(?=\\s+(?:in der|\\u00fcber die|in der Verwaltungsstrafsache)|$)",
+        "priority": 10,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "ee477b11",
+        "name": "Party_Beschwerdesache",
+        "description": "Captures the name of a party in a complaint case (Beschwerdesache/Rechtssache), handling 'der/des' prefix and complex suffixes.",
+        "format": "regex",
+        "content": "(?:in der\\s+(?:Beschwerdesache|Rechtssache|Verwaltungsstrafsache|Revisionssache)\\s+(?:der\\s+|des\\s+)?)([A-Z][a-zA-Z\\.\\s,]+?(?:\\s+(?:LL\\.M\\.|M\\.B\\.L\\.|B\\.Ed\\.|B\\.Sc\\.|MA|Bakk\\.|Dipl\\.-|Dipl\\.\\s+Kfm\\.|Ing\\.|MedR|VetR|Techn|\\u00d6kR|OStR|Univ\\.-|Priv\\.-|Hon\\.-|Dr\\.in|Mag\\.in|Mag\\.a|PhD|LLB|BEd|BA|BSc|Mag\\.a|Mag\\.in|DDr\\.|R\\.in?|R\\.))?(?=,\\s+[A-Z]|\\s+vertreten|\\s+\\(|\\s+\\)|$|\\s+\\d{4}\\s+\\w+))",
+        "priority": 9,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "4913d14d",
+        "name": "Representative_vertreten_durch",
+        "description": "Captures the name of a representative (lawyer/tax advisor) introduced by 'vertreten durch'.",
+        "format": "regex",
+        "content": "(?:vertreten\\s+durch\\s+)([A-Z][a-zA-Z\\.\\s,]+?(?:\\s+(?:LL\\.M\\.|M\\.B\\.L\\.|B\\.Ed\\.|B\\.Sc\\.|MA|Bakk\\.|Dipl\\.-|Dipl\\.\\s+Kfm\\.|Ing\\.|MedR|VetR|Techn|\\u00d6kR|OStR|Univ\\.-|Priv\\.-|Hon\\.-|Dr\\.in|Mag\\.in|Mag\\.a|PhD|LLB|BEd|BA|BSc|DDr\\.|R\\.in?|R\\.)?)(?=,\\s+[A-Z]|\\s+GmbH|\\s+Steuerberatung|\\s+OG|\\s+KG|\\s+Rechtsanwalts|\\s+PartG|\\s+StbG|\\s+\\(|$))",
+        "priority": 6,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "4bee6298",
+        "name": "Herr_Name",
+        "description": "Captures full names following 'Herr' or 'Herrn', ensuring the full name is extracted.",
+        "format": "regex",
+        "content": "(?:Herr|Herrn)\\s+([A-Z][a-zA-Z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-zA-Z\\u00e4\\u00f6\\u00fc\\u00df]+)+)",
+        "priority": 7,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "b07361b5",
+        "name": "Frau_Name",
+        "description": "Captures full names following 'Frau'.",
+        "format": "regex",
+        "content": "(?:Frau|Frauen)\\s+([A-Z][a-zA-Z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-zA-Z\\u00e4\\u00f6\\u00fc\\u00df]+)+)(?=\\s+(?:in|von|der|des|\\(|$|\\d{4}|\\s+\\d))",
+        "priority": 5,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "98f92f79",
+        "name": "Herr_Name_Corrected",
+        "description": "Captures full names following 'Herr' or 'Herrn', ensuring it matches a name (not a title) and handles German characters.",
+        "format": "regex",
+        "content": "(?:Herr|Herrn)\\s+([A-Z][a-zA-Z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-zA-Z\\u00e4\\u00f6\\u00fc\\u00df]+)+)(?=\\s+(?:in|von|der|des|\\(|$|\\d{4}|\\s+\\d))",
+        "priority": 7,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "3dc90e19",
+        "name": "Name_Following_Kinship",
+        "description": "Captures names following kinship terms like 'Tochter' (daughter) or 'Sohn' (son).",
+        "format": "regex",
+        "content": "(?:Tochter|Sohn)\\s+(?:der\\s+|des\\s+)?([A-Z][a-zA-Z\\.\\s,]+?(?:\\s+(?:MA|Bakk\\.|Dipl\\.-|Dipl\\.\\s+Kfm\\.|Ing\\.|MedR|VetR|Techn|\\u00d6kR|OStR|Univ\\.-|Priv\\.-|Hon\\.-|Dr\\.in|Mag\\.in|Mag\\.a|PhD|LLB|BEd|BA|BSc|DDr\\.|R\\.in?|R\\.)?)?)",
+        "priority": 7,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "0db75673",
+        "name": "Name_Following_Herr_Frau",
+        "description": "Captures full names following 'Herr' or 'Frau' (including 'Herrn').",
+        "format": "regex",
+        "content": "(?:Herr|Herrn|Frau)\\s+([A-Z][a-zA-Z\\.\\s,]+?(?:\\s+(?:MA|Bakk\\.|Dipl\\.-|Dipl\\.\\s+Kfm\\.|Ing\\.|MedR|VetR|Techn|\\u00d6kR|OStR|Univ\\.-|Priv\\.-|Hon\\.-|Dr\\.in|Mag\\.in|Mag\\.a|PhD|LLB|BEd|BA|BSc|DDr\\.|R\\.in?|R\\.)?)?)",
+        "priority": 5,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "77366fa8",
+        "name": "Name_Following_Betreff",
+        "description": "Captures names appearing in subject lines (Betreff) of documents.",
+        "format": "regex",
+        "content": "(?:Betreff|Betreff\\s+):?\\s*([A-Z][a-zA-Z\\.\\s,]+?(?:\\s+(?:MA|Bakk\\.|Dipl\\.-|Dipl\\.\\s+Kfm\\.|Ing\\.|MedR|VetR|Techn|\\u00d6kR|OStR|Univ\\.-|Priv\\.-|Hon\\.-|Dr\\.in|Mag\\.in|Mag\\.a|PhD|LLB|BEd|BA|BSc|DDr\\.|R\\.in?|R\\.)?)?)",
+        "priority": 4,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "bf33689f",
+        "name": "Name_In_Parentheses",
+        "description": "Captures names in parentheses ONLY if they contain a known person title or suffix, filtering out medical/legal descriptions.",
+        "format": "regex",
+        "content": "\\(([^()]+?(?:Dr\\.|Mag\\.|Priv\\.-Doz\\.|Hon\\.-Prof\\.|Bakk\\.|Dipl\\.|Ing\\.|MedR|VetR|Techn|\\u00d6kR|OStR|Univ\\.-|R\\.in?|R\\.)[^()]+?)\\)",
+        "priority": 8,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      }
+    ]
+  },
+  "results": {
+    "accuracy": 0.9889998141121669,
+    "micro_precision": 0.5793939393939394,
+    "micro_recall": 0.32561307901907355,
+    "micro_f1": 0.4169210641081552,
+    "macro_f1": 0.4169210641081552,
+    "num_rules": 8,
+    "learning_time_s": 607.4,
+    "eval_time_s": 14.117,
+    "per_query_ms": 0.15
+  },
+  "per_class": [
+    {
+      "label": "person",
+      "precision": 0.5793939393939394,
+      "recall": 0.32561307901907355,
+      "f1": 0.4169210641081552,
+      "tp": 478,
+      "fp": 347,
+      "fn": 990
+    }
+  ],
+  "iteration_metrics": [
+    {
+      "iteration": 1,
+      "num_rules": 11,
+      "exact_match": 0.0,
+      "micro_precision": 0.02564102564102564,
+      "micro_recall": 0.2,
+      "micro_f1": 0.045454545454545456,
+      "macro_f1": 0.045454545454545456,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.045454545454545456,
+          "precision": 0.02564102564102564,
+          "recall": 0.2
+        }
+      ]
+    }
+  ],
+  "batch_test_metrics": [
+    {
+      "batch": 0,
+      "num_rules": 10,
+      "exact_match": 0.9799569177610358,
+      "micro_f1": 0.2906658558832472,
+      "micro_precision": 0.2624931356397584,
+      "micro_recall": 0.32561307901907355,
+      "macro_f1": 0.2906658558832472,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.2906658558832472,
+          "precision": 0.2624931356397584,
+          "recall": 0.32561307901907355
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "a6febd7e",
+      "name": "Judge_Richter",
+      "description": "Captures the name of a judge (Richter/Richterin/Vorsitzende) including complex titles and suffixes, ensuring no trailing whitespace.",
+      "format": "regex",
+      "content": "(?:durch\\s+(?:den\\s+)?(?:Richter|Richterin|Vorsitzende)\\s+)([A-Z][a-zA-Z\\.\\s,]+?(?:\\s+(?:LL\\.M\\.|M\\.B\\.L\\.|B\\.Ed\\.|B\\.Sc\\.|MA|Bakk\\.|Dipl\\.-|Dipl\\.\\s+Kfm\\.|Ing\\.|MedR|VetR|Techn|\\u00d6kR|OStR|Univ\\.-|Priv\\.-|Hon\\.-|Dr\\.in|Mag\\.in|Mag\\.a|PhD|LLB|Dr\\.\\s+Univ\\.-Prof\\.in?|Univ\\.-Prof\\.in?|Priv\\.-Doz\\.in?|Hon\\.-Prof\\.in?)?)?)(?=\\s+(?:in der|\\u00fcber die|in der Verwaltungsstrafsache)|$)",
+      "priority": 10,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-26T17:47:07.954847"
+    },
+    {
+      "id": "ee477b11",
+      "name": "Party_Beschwerdesache",
+      "description": "Captures the name of a party in a complaint case (Beschwerdesache/Rechtssache), handling 'der/des' prefix and complex suffixes.",
+      "format": "regex",
+      "content": "(?:in der\\s+(?:Beschwerdesache|Rechtssache|Verwaltungsstrafsache|Revisionssache)\\s+(?:der\\s+|des\\s+)?)([A-Z][a-zA-Z\\.\\s,]+?(?:\\s+(?:LL\\.M\\.|M\\.B\\.L\\.|B\\.Ed\\.|B\\.Sc\\.|MA|Bakk\\.|Dipl\\.-|Dipl\\.\\s+Kfm\\.|Ing\\.|MedR|VetR|Techn|\\u00d6kR|OStR|Univ\\.-|Priv\\.-|Hon\\.-|Dr\\.in|Mag\\.in|Mag\\.a|PhD|LLB|BEd|BA|BSc|Mag\\.a|Mag\\.in|DDr\\.|R\\.in?|R\\.))?(?=,\\s+[A-Z]|\\s+vertreten|\\s+\\(|\\s+\\)|$|\\s+\\d{4}\\s+\\w+))",
+      "priority": 9,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-26T17:47:07.955448"
+    },
+    {
+      "id": "4913d14d",
+      "name": "Representative_vertreten_durch",
+      "description": "Captures the name of a representative (lawyer/tax advisor) introduced by 'vertreten durch'.",
+      "format": "regex",
+      "content": "(?:vertreten\\s+durch\\s+)([A-Z][a-zA-Z\\.\\s,]+?(?:\\s+(?:LL\\.M\\.|M\\.B\\.L\\.|B\\.Ed\\.|B\\.Sc\\.|MA|Bakk\\.|Dipl\\.-|Dipl\\.\\s+Kfm\\.|Ing\\.|MedR|VetR|Techn|\\u00d6kR|OStR|Univ\\.-|Priv\\.-|Hon\\.-|Dr\\.in|Mag\\.in|Mag\\.a|PhD|LLB|BEd|BA|BSc|DDr\\.|R\\.in?|R\\.)?)(?=,\\s+[A-Z]|\\s+GmbH|\\s+Steuerberatung|\\s+OG|\\s+KG|\\s+Rechtsanwalts|\\s+PartG|\\s+StbG|\\s+\\(|$))",
+      "priority": 6,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-26T15:45:24.201414"
+    },
+    {
+      "id": "4bee6298",
+      "name": "Herr_Name",
+      "description": "Captures full names following 'Herr' or 'Herrn', ensuring the full name is extracted.",
+      "format": "regex",
+      "content": "(?:Herr|Herrn)\\s+([A-Z][a-zA-Z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-zA-Z\\u00e4\\u00f6\\u00fc\\u00df]+)+)",
+      "priority": 7,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-26T15:44:53.719933"
+    },
+    {
+      "id": "b07361b5",
+      "name": "Frau_Name",
+      "description": "Captures full names following 'Frau'.",
+      "format": "regex",
+      "content": "(?:Frau|Frauen)\\s+([A-Z][a-zA-Z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-zA-Z\\u00e4\\u00f6\\u00fc\\u00df]+)+)(?=\\s+(?:in|von|der|des|\\(|$|\\d{4}|\\s+\\d))",
+      "priority": 5,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-26T15:45:24.201736"
+    },
+    {
+      "id": "98f92f79",
+      "name": "Herr_Name_Corrected",
+      "description": "Captures full names following 'Herr' or 'Herrn', ensuring it matches a name (not a title) and handles German characters.",
+      "format": "regex",
+      "content": "(?:Herr|Herrn)\\s+([A-Z][a-zA-Z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-zA-Z\\u00e4\\u00f6\\u00fc\\u00df]+)+)(?=\\s+(?:in|von|der|des|\\(|$|\\d{4}|\\s+\\d))",
+      "priority": 7,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-26T15:45:24.201224"
+    },
+    {
+      "id": "77366fa8",
+      "name": "Name_Following_Betreff",
+      "description": "Captures names appearing in subject lines (Betreff) of documents.",
+      "format": "regex",
+      "content": "(?:Betreff|Betreff\\s+):?\\s*([A-Z][a-zA-Z\\.\\s,]+?(?:\\s+(?:MA|Bakk\\.|Dipl\\.-|Dipl\\.\\s+Kfm\\.|Ing\\.|MedR|VetR|Techn|\\u00d6kR|OStR|Univ\\.-|Priv\\.-|Hon\\.-|Dr\\.in|Mag\\.in|Mag\\.a|PhD|LLB|BEd|BA|BSc|DDr\\.|R\\.in?|R\\.)?)?)",
+      "priority": 4,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-26T17:47:07.956201"
+    },
+    {
+      "id": "bf33689f",
+      "name": "Name_In_Parentheses",
+      "description": "Captures names in parentheses ONLY if they contain a known person title or suffix, filtering out medical/legal descriptions.",
+      "format": "regex",
+      "content": "\\(([^()]+?(?:Dr\\.|Mag\\.|Priv\\.-Doz\\.|Hon\\.-Prof\\.|Bakk\\.|Dipl\\.|Ing\\.|MedR|VetR|Techn|\\u00d6kR|OStR|Univ\\.-|R\\.in?|R\\.)[^()]+?)\\)",
+      "priority": 8,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-05-26T17:56:49.990514"
+    }
+  ],
+  "best_rules": {
+    "batch": 0,
+    "micro_f1": 0.2906658558832472,
+    "rules": [
+      {
+        "id": "a6febd7e",
+        "name": "Judge_Richter",
+        "description": "Captures the name of a judge (Richter/Richterin/Vorsitzende) including complex titles and suffixes, ensuring no trailing whitespace.",
+        "format": "regex",
+        "content": "(?:durch\\s+(?:den\\s+)?(?:Richter|Richterin|Vorsitzende)\\s+)([A-Z][a-zA-Z\\.\\s,]+?(?:\\s+(?:LL\\.M\\.|M\\.B\\.L\\.|B\\.Ed\\.|B\\.Sc\\.|MA|Bakk\\.|Dipl\\.-|Dipl\\.\\s+Kfm\\.|Ing\\.|MedR|VetR|Techn|\\u00d6kR|OStR|Univ\\.-|Priv\\.-|Hon\\.-|Dr\\.in|Mag\\.in|Mag\\.a|PhD|LLB|Dr\\.\\s+Univ\\.-Prof\\.in?|Univ\\.-Prof\\.in?|Priv\\.-Doz\\.in?|Hon\\.-Prof\\.in?)?)?)(?=\\s+(?:in der|\\u00fcber die|in der Verwaltungsstrafsache)|$)",
+        "priority": 10,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "ee477b11",
+        "name": "Party_Beschwerdesache",
+        "description": "Captures the name of a party in a complaint case (Beschwerdesache/Rechtssache), handling 'der/des' prefix and complex suffixes.",
+        "format": "regex",
+        "content": "(?:in der\\s+(?:Beschwerdesache|Rechtssache|Verwaltungsstrafsache|Revisionssache)\\s+(?:der\\s+|des\\s+)?)([A-Z][a-zA-Z\\.\\s,]+?(?:\\s+(?:LL\\.M\\.|M\\.B\\.L\\.|B\\.Ed\\.|B\\.Sc\\.|MA|Bakk\\.|Dipl\\.-|Dipl\\.\\s+Kfm\\.|Ing\\.|MedR|VetR|Techn|\\u00d6kR|OStR|Univ\\.-|Priv\\.-|Hon\\.-|Dr\\.in|Mag\\.in|Mag\\.a|PhD|LLB|BEd|BA|BSc|Mag\\.a|Mag\\.in|DDr\\.|R\\.in?|R\\.))?(?=,\\s+[A-Z]|\\s+vertreten|\\s+\\(|\\s+\\)|$|\\s+\\d{4}\\s+\\w+))",
+        "priority": 9,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "4913d14d",
+        "name": "Representative_vertreten_durch",
+        "description": "Captures the name of a representative (lawyer/tax advisor) introduced by 'vertreten durch'.",
+        "format": "regex",
+        "content": "(?:vertreten\\s+durch\\s+)([A-Z][a-zA-Z\\.\\s,]+?(?:\\s+(?:LL\\.M\\.|M\\.B\\.L\\.|B\\.Ed\\.|B\\.Sc\\.|MA|Bakk\\.|Dipl\\.-|Dipl\\.\\s+Kfm\\.|Ing\\.|MedR|VetR|Techn|\\u00d6kR|OStR|Univ\\.-|Priv\\.-|Hon\\.-|Dr\\.in|Mag\\.in|Mag\\.a|PhD|LLB|BEd|BA|BSc|DDr\\.|R\\.in?|R\\.)?)(?=,\\s+[A-Z]|\\s+GmbH|\\s+Steuerberatung|\\s+OG|\\s+KG|\\s+Rechtsanwalts|\\s+PartG|\\s+StbG|\\s+\\(|$))",
+        "priority": 6,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "4bee6298",
+        "name": "Herr_Name",
+        "description": "Captures full names following 'Herr' or 'Herrn', ensuring the full name is extracted.",
+        "format": "regex",
+        "content": "(?:Herr|Herrn)\\s+([A-Z][a-zA-Z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-zA-Z\\u00e4\\u00f6\\u00fc\\u00df]+)+)",
+        "priority": 7,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "b07361b5",
+        "name": "Frau_Name",
+        "description": "Captures full names following 'Frau'.",
+        "format": "regex",
+        "content": "(?:Frau|Frauen)\\s+([A-Z][a-zA-Z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-zA-Z\\u00e4\\u00f6\\u00fc\\u00df]+)+)(?=\\s+(?:in|von|der|des|\\(|$|\\d{4}|\\s+\\d))",
+        "priority": 5,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "98f92f79",
+        "name": "Herr_Name_Corrected",
+        "description": "Captures full names following 'Herr' or 'Herrn', ensuring it matches a name (not a title) and handles German characters.",
+        "format": "regex",
+        "content": "(?:Herr|Herrn)\\s+([A-Z][a-zA-Z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-zA-Z\\u00e4\\u00f6\\u00fc\\u00df]+)+)(?=\\s+(?:in|von|der|des|\\(|$|\\d{4}|\\s+\\d))",
+        "priority": 7,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "3dc90e19",
+        "name": "Name_Following_Kinship",
+        "description": "Captures names following kinship terms like 'Tochter' (daughter) or 'Sohn' (son).",
+        "format": "regex",
+        "content": "(?:Tochter|Sohn)\\s+(?:der\\s+|des\\s+)?([A-Z][a-zA-Z\\.\\s,]+?(?:\\s+(?:MA|Bakk\\.|Dipl\\.-|Dipl\\.\\s+Kfm\\.|Ing\\.|MedR|VetR|Techn|\\u00d6kR|OStR|Univ\\.-|Priv\\.-|Hon\\.-|Dr\\.in|Mag\\.in|Mag\\.a|PhD|LLB|BEd|BA|BSc|DDr\\.|R\\.in?|R\\.)?)?)",
+        "priority": 7,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "0db75673",
+        "name": "Name_Following_Herr_Frau",
+        "description": "Captures full names following 'Herr' or 'Frau' (including 'Herrn').",
+        "format": "regex",
+        "content": "(?:Herr|Herrn|Frau)\\s+([A-Z][a-zA-Z\\.\\s,]+?(?:\\s+(?:MA|Bakk\\.|Dipl\\.-|Dipl\\.\\s+Kfm\\.|Ing\\.|MedR|VetR|Techn|\\u00d6kR|OStR|Univ\\.-|Priv\\.-|Hon\\.-|Dr\\.in|Mag\\.in|Mag\\.a|PhD|LLB|BEd|BA|BSc|DDr\\.|R\\.in?|R\\.)?)?)",
+        "priority": 5,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "77366fa8",
+        "name": "Name_Following_Betreff",
+        "description": "Captures names appearing in subject lines (Betreff) of documents.",
+        "format": "regex",
+        "content": "(?:Betreff|Betreff\\s+):?\\s*([A-Z][a-zA-Z\\.\\s,]+?(?:\\s+(?:MA|Bakk\\.|Dipl\\.-|Dipl\\.\\s+Kfm\\.|Ing\\.|MedR|VetR|Techn|\\u00d6kR|OStR|Univ\\.-|Priv\\.-|Hon\\.-|Dr\\.in|Mag\\.in|Mag\\.a|PhD|LLB|BEd|BA|BSc|DDr\\.|R\\.in?|R\\.)?)?)",
+        "priority": 4,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "bf33689f",
+        "name": "Name_In_Parentheses",
+        "description": "Captures names in parentheses ONLY if they contain a known person title or suffix, filtering out medical/legal descriptions.",
+        "format": "regex",
+        "content": "\\(([^()]+?(?:Dr\\.|Mag\\.|Priv\\.-Doz\\.|Hon\\.-Prof\\.|Bakk\\.|Dipl\\.|Ing\\.|MedR|VetR|Techn|\\u00d6kR|OStR|Univ\\.-|R\\.in?|R\\.)[^()]+?)\\)",
+        "priority": 8,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      }
+    ]
+  }
+}
