@@ -1,6 +1,6 @@
 # Rule Evaluation Report — Qwen/Qwen3.5-35B-A3B
 
-Generated on: 2026-05-29T17:20:37.748233
+Generated on: 2026-05-29T17:30:52.855447
 
 ---
 
@@ -52,14 +52,14 @@ Results can be reproduced by running this command:
 | Metric | Value |
 |---|---|
 | Accuracy (exact match) | 96.4% |
-| True Positives | 315 |
-| False Positives | 215 |
-| False Negatives | 1069 |
+| True Positives | 317 |
+| False Positives | 213 |
+| False Negatives | 1067 |
 | Total Gold Entities | 1384 |
-| Micro Precision | 59.4% |
-| Micro Recall | 22.8% |
-| Micro F1 | 32.9% |
-| Macro F1 | 32.9% |
+| Micro Precision | 59.8% |
+| Micro Recall | 22.9% |
+| Micro F1 | 33.1% |
+| Macro F1 | 33.1% |
 
 </details>
 
@@ -73,9 +73,9 @@ Results can be reproduced by running this command:
 | `Criminal_Gegen_Person_Titles` | 6.8% | 100.0% | 3.5% | 49 | 49 | 0 |
 | `Guardianship_Minor` | 1.9% | 92.9% | 0.9% | 14 | 13 | 1 |
 | `Angeklagter_Surname` | 0.7% | 71.4% | 0.4% | 7 | 5 | 2 |
-| `Party_Name_NoContext` | 27.5% | 62.9% | 17.6% | 388 | 244 | 144 |
-| `Party_Comma_Vertreten` | 27.0% | 62.6% | 17.2% | 380 | 238 | 142 |
-| `Person_Title_Context` | 27.4% | 62.6% | 17.6% | 388 | 243 | 145 |
+| `Party_Name_NoContext` | 27.8% | 63.4% | 17.8% | 388 | 246 | 142 |
+| `Party_Comma_Vertreten` | 27.2% | 63.2% | 17.3% | 380 | 240 | 140 |
+| `Person_Title_Context` | 27.7% | 63.1% | 17.7% | 388 | 245 | 143 |
 | `Partei_Surname` | 3.3% | 12.5% | 1.9% | 208 | 26 | 182 |
 | `Representative_vertreten_durch` | 3.6% | 10.3% | 2.2% | 292 | 30 | 262 |
 | `Judge_Richter` | 0.0% | 0.0% | 0.0% | 0 | 0 | 0 |
@@ -828,7 +828,7 @@ Gegen das Urteil hat der Angeklagte Nichtigkeitsbeschwerde und Berufung angemeld
 
 ## `Party_Name_NoContext`
 
-**F1:** 0.275 | **Precision:** 0.629 | **Recall:** 0.176  
+**F1:** 0.278 | **Precision:** 0.634 | **Recall:** 0.178  
 
 **Format:** `regex`  
 **Rule ID:** `c8e7062b`  
@@ -845,13 +845,13 @@ Captures names following 'Partei' or 'Parteien' without specific 'vertreten durc
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.629 | 0.176 | 0.275 | 388 | 244 | 144 |
+| 0.634 | 0.178 | 0.278 | 388 | 246 | 142 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `person` | 244 | 144 | 1140 |
+| `person` | 246 | 142 | 1138 |
 
 </details>
 
@@ -1620,23 +1620,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Veith als Vors
 - `Vogelsanger Marine GmbH`(organisation)
 - `Juri Büttgens`(person)
 
-**Example 21** (doc_id: `deanon_TRAIN/2Ob181_10x`) (sent_id: `deanon_TRAIN/2Ob181_10x_3`)
-
-
-Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Baumann als Vorsitzenden und durch die Hofräte Dr. Veith, Dr. E. Solé, Dr. Schwarzenbacher und Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Gertrude Ptak, vertreten durch Dr. Bertram Broesigke und Dr. Wolfgang Broesigke, Rechtsanwälte in Wien, gegen die beklagte Partei Josef Schindelmeißer, vertreten durch den Sachwalter Dr. Helmut Heiger, Rechtsanwalt in Wien, wegen Aufkündigung, über die außerordentliche Revision der beklagten Partei gegen das Urteil des Landesgerichts für Zivilrechtssachen Wien als Berufungsgericht vom 15. Juni 2010, GZ 41 R 130/10m-26, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen (§ 510 Abs 3 ZPO).
-
-**False Positives:**
-
-- `Gertrude Ptak` — partial — gold is substring of pred: `Ptak`
-
-> overlaps gold: 1  |  likely missing annotation: 0
-
-**Gold Entities:**
-
-- `Ptak`(person)
-- `Schindelmeißer`(person)
-
-**Example 22** (doc_id: `deanon_TRAIN/2Ob37_17f`) (sent_id: `deanon_TRAIN/2Ob37_17f_3`)
+**Example 21** (doc_id: `deanon_TRAIN/2Ob37_17f`) (sent_id: `deanon_TRAIN/2Ob37_17f_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Hon.-Prof. Dr. Danzl als Vorsitzenden und die Hofräte Dr. Veith und Dr. Musger, die Hofrätin Dr. E. Solé und den Hofrat Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Florentin Uffenwasser, vertreten durch Dr. Armin Exner, Rechtsanwalt in Innsbruck, gegen die beklagte Partei Stadtgemeinde Naomi Mertensmeyer, vertreten durch Dr. Thomas Girardi, Rechtsanwalt in Innsbruck, wegen 29.461,04 EUR sA und Feststellung (Streitwert 10.000 EUR), über die außerordentliche Revision der beklagten Partei (Revisionsinteresse 22.377,04 EUR) gegen das Urteil des Oberlandesgerichts Innsbruck als Berufungsgericht vom 15. Dezember 2016, GZ 2 R 141/16a-47, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -1652,7 +1636,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Florentin Uffenwasser`(person)
 - `Naomi Mertensmeyer`(person)
 
-**Example 23** (doc_id: `deanon_TRAIN/2Ob41_16t`) (sent_id: `deanon_TRAIN/2Ob41_16t_3`)
+**Example 22** (doc_id: `deanon_TRAIN/2Ob41_16t`) (sent_id: `deanon_TRAIN/2Ob41_16t_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Hon.-Prof. Dr. Danzl als Vorsitzenden sowie die Hofräte Dr. Veith und Dr. Musger, die Hofrätin Dr. E. Solé und den Hofrat Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei DDr. Ashley Feichtmeier, vertreten durch Bollmann & Bollmann Rechtsanwaltspartnerschaft in Wien, gegen die beklagte Partei StadtDigital AG, Helmut Klösgen, vertreten durch DLA Piper Weiss-Tessbach, Rechtsanwälte GmbH in Wien, wegen 18.056,86 EUR sA, über die Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Wien als Berufungsgericht vom 24. November 2015, GZ 1 R 141/15k-48, womit über Berufung der klagenden Partei das Urteil des Handelsgerichts Wien vom 27. Mai 2015, GZ 55 Cg 295/11k-44, bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die Revision der klagenden Partei wird zurückgewiesen.
@@ -1669,7 +1653,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `StadtDigital AG`(organisation)
 - `Helmut Klösgen`(person)
 
-**Example 24** (doc_id: `deanon_TRAIN/2Ob78_15g`) (sent_id: `deanon_TRAIN/2Ob78_15g_3`)
+**Example 23** (doc_id: `deanon_TRAIN/2Ob78_15g`) (sent_id: `deanon_TRAIN/2Ob78_15g_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Hon.-Prof. Dr. Danzl als Vorsitzenden, die Hofräte Dr. Veith und Dr. Musger sowie die Hofrätinnen Dr. E. Solé und Dr. Hofer-Zeni-Rennhofer als weitere Richter in der Rechtssache der klagenden Partei Luigi Neimeier, vertreten durch Rechtsanwälte Estermann & Partner OG in Mattighofen, gegen die beklagte Partei LNC KI Solutions GmbH, Kordelia Grauel, vertreten durch Dr. Herbert Harlander und Mag. Wolfgang Harlander, Rechtsanwälte in Salzburg, wegen 33.251,85 EUR sA, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Linz als Berufungsgericht vom 5. März 2015, GZ 2 R 1/15b-37, womit infolge Berufung der klagenden Partei das Urteil des Landesgerichts Salzburg vom 23. Oktober 2014, GZ 4 Cg 27/13d-33, bestätigt wurde, in nichtöffentlicher Sitzung beschlossen und zu Recht erkannt:  Spruch
@@ -1686,7 +1670,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `LNC KI Solutions GmbH`(organisation)
 - `Kordelia Grauel`(person)
 
-**Example 25** (doc_id: `deanon_TRAIN/3Ob105_13g`) (sent_id: `deanon_TRAIN/3Ob105_13g_3`)
+**Example 24** (doc_id: `deanon_TRAIN/3Ob105_13g`) (sent_id: `deanon_TRAIN/3Ob105_13g_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Univ.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in der Rechtssache der klagenden Partei ÖkR Malik Sutmöller OEG, Leila Nieboer, vertreten durch Dr. Heinz-Wilhelm Stenzl, Rechtsanwalt in Wien, gegen die beklagte Partei Mittel Bachlemsee GmbH, Erwin Klefass, BSc, vertreten durch Dr. Johann Gelbmann, Rechtsanwalt in Wien, wegen (restlich) 12.536,14 EUR sA, über die Revision der beklagten Partei (Revisionsinteresse 6.909 EUR sA) gegen das Urteil des Landesgerichts für Zivilrechtssachen Wien als Berufungsgericht vom 19. Dezember 2012, GZ 38 R 173/12s-139, womit über die Berufungen beider Parteien das Urteil des Bezirksgerichts Fünfhaus vom 10. April 2012, GZ 12 C 1045/05m-131, bestätigt wurde, den Beschluss gefasst:  Spruch Die Revision wird zurückgewiesen.
@@ -1704,7 +1688,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Mittel Bachlemsee GmbH`(organisation)
 - `Erwin Klefass, BSc`(person)
 
-**Example 26** (doc_id: `deanon_TRAIN/3Ob147_20v`) (sent_id: `deanon_TRAIN/3Ob147_20v_3`)
+**Example 25** (doc_id: `deanon_TRAIN/3Ob147_20v`) (sent_id: `deanon_TRAIN/3Ob147_20v_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Hofrat Dr. Roch als Vorsitzenden sowie den Hofrat Hon.-Prof. PD Dr. Rassi, die Hofrätinnen Dr. Weixelbraun-Mohr und Dr. Kodek und den Hofrat Dr. Stefula als weitere Richter in der Rechtssache der klagenden Partei Kraftnorost Wind GmbH, Roderich Holtze, vertreten durch Mag. Andreas Kleiber, Rechtsanwalt in Wien, gegen die beklagte Partei Annette Fiss verein Ing. Kirstin Movcan, vertreten durch Pflaum Karlberger Wiener Opetnik, Rechtsanwälte in Wien, wegen Aufkündigung, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Landesgerichts für Zivilrechtssachen Wien als Berufungsgericht vom 22. Juli 2020, GZ 40 R 37/20t-27, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -1723,7 +1707,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Hofrat Dr. Roch 
 - `Annette Fiss`(person)
 - `Ing. Kirstin Movcan`(person)
 
-**Example 27** (doc_id: `deanon_TRAIN/3Ob14_24s`) (sent_id: `deanon_TRAIN/3Ob14_24s_3`)
+**Example 26** (doc_id: `deanon_TRAIN/3Ob14_24s`) (sent_id: `deanon_TRAIN/3Ob14_24s_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Hon.-Prof. Dr. Höllwerth als Vorsitzenden sowie den Hofrat Hon.-Prof. Dr. Brenn, die Hofrätinnen Dr. Weixelbraun-Mohr und Dr. Kodek und den Hofrat Dr. Stefula als weitere Richter in der Exekutionssache der betreibenden Partei Daniela Sklenar SE, Kimberly Hurrelmeyer, vertreten durch Cerha Hempel Rechtsanwälte GmbH in Wien, gegen die verpflichtete Partei Staat Libyen, StR Violetta Stegemeyer, Libyen, vertreten durch Binder Grösswang Rechtsanwälte GmbH in Wien, wegen 10 Mio EUR sA, über den außerordentlichen Revisionsrekurs der verpflichteten Partei gegen den Beschluss des Landesgerichts für Zivilrechtssachen Wien als Rekursgericht vom 20. Oktober 2023, GZ 47 R 228/23m-107, den Beschluss gefasst:  Spruch Der außerordentliche Revisionsrekurs wird gemäß § 78 EO iVm § 526 Abs 2 Satz 1 ZPO mangels der Voraussetzungen des § 528 Abs 1 ZPO zurückgewiesen.
@@ -1741,7 +1725,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Hon.-Prof. Dr. Hö
 - `Kimberly Hurrelmeyer`(person)
 - `StR Violetta Stegemeyer`(person)
 
-**Example 28** (doc_id: `deanon_TRAIN/3Ob152_10i`) (sent_id: `deanon_TRAIN/3Ob152_10i_3`)
+**Example 27** (doc_id: `deanon_TRAIN/3Ob152_10i`) (sent_id: `deanon_TRAIN/3Ob152_10i_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Hon.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in der Exekutionssache der betreibenden Partei KMN Versicherung Werke AG, Corbinian Pichlmaier, vertreten durch Dr. Erich Kafka, Dr. Manfred Palkovits, Rechtsanwälte in Wien, gegen die verpflichtete Partei Severin Wellenbrink, vertreten durch Dr. Philipp Jessich, Rechtsanwalt in Wien, wegen Aufschiebung einer Räumungsexekution, über den Revisionsrekurs der betreibenden Partei gegen den Beschluss des Landesgerichts für Zivilrechtssachen Wien als Rekursgericht vom 12. Mai 2010, GZ 39 R 44/10z-22, womit der Beschluss des Bezirksgerichts Fünfhaus vom 14. Jänner 2010, GZ 10 E 171/09d-6, abgeändert wurde, den Beschluss gefasst:  Spruch Dem Revisionsrekurs wird Folge gegeben.
@@ -1760,7 +1744,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als 
 - `Dr. Manfred Palkovits`(person)
 - `Severin Wellenbrink`(person)
 
-**Example 29** (doc_id: `deanon_TRAIN/3Ob156_12f`) (sent_id: `deanon_TRAIN/3Ob156_12f_3`)
+**Example 28** (doc_id: `deanon_TRAIN/3Ob156_12f`) (sent_id: `deanon_TRAIN/3Ob156_12f_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Hon.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in den verbundenen Rechtssachen der klagenden Partei Severin Ilek, vertreten durch die Sachwalterin Mag. Roswitha Ferl-Pailer, Rechtsanwältin in Hartberg, gegen die beklagte Partei Dipl.
@@ -1775,13 +1759,31 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 
 - `Severin Ilek`(person)
 
+**Example 29** (doc_id: `deanon_TRAIN/3Ob164_20v`) (sent_id: `deanon_TRAIN/3Ob164_20v_3`)
+
+
+Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch die Präsidentin Hon.-Prof. Dr. Lovrek als Vorsitzende sowie den Hofrat Hon.-Prof. PD Dr. Rassi, die Hofrätinnen Dr. Weixelbraun-Mohr und Dr. Kodek und den Hofrat Dr. Stefula als weitere Richter in der Rechtssache der klagenden Partei Bruckgartver GmbH, MedR StR René Titz, vertreten durch Dr. Reinhard Schanda, Rechtsanwalt in Wien, gegen die beklagte Partei Ofczarczik Planung AG, Dipl.
+
+**False Positives:**
+
+- `Bruckgartver` — partial — pred is substring of gold: `Bruckgartver GmbH`
+- `Ofczarczik Planung` — partial — pred is substring of gold: `Ofczarczik Planung AG`
+
+> overlaps gold: 2  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Bruckgartver GmbH`(organisation)
+- `MedR StR René Titz`(person)
+- `Ofczarczik Planung AG`(organisation)
+
 </details>
 
 ---
 
 ## `Party_Comma_Vertreten`
 
-**F1:** 0.270 | **Precision:** 0.626 | **Recall:** 0.172  
+**F1:** 0.272 | **Precision:** 0.632 | **Recall:** 0.173  
 
 **Format:** `regex`  
 **Rule ID:** `a850b56c`  
@@ -1798,13 +1800,13 @@ Captures party names in the pattern 'Partei Name, vertreten durch' or similar, s
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.626 | 0.172 | 0.270 | 380 | 238 | 142 |
+| 0.632 | 0.173 | 0.272 | 380 | 240 | 140 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `person` | 238 | 142 | 1146 |
+| `person` | 240 | 140 | 1144 |
 
 </details>
 
@@ -2576,23 +2578,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Veith als Vors
 - `Vogelsanger Marine GmbH`(organisation)
 - `Juri Büttgens`(person)
 
-**Example 21** (doc_id: `deanon_TRAIN/2Ob181_10x`) (sent_id: `deanon_TRAIN/2Ob181_10x_3`)
-
-
-Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Baumann als Vorsitzenden und durch die Hofräte Dr. Veith, Dr. E. Solé, Dr. Schwarzenbacher und Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Gertrude Ptak, vertreten durch Dr. Bertram Broesigke und Dr. Wolfgang Broesigke, Rechtsanwälte in Wien, gegen die beklagte Partei Josef Schindelmeißer, vertreten durch den Sachwalter Dr. Helmut Heiger, Rechtsanwalt in Wien, wegen Aufkündigung, über die außerordentliche Revision der beklagten Partei gegen das Urteil des Landesgerichts für Zivilrechtssachen Wien als Berufungsgericht vom 15. Juni 2010, GZ 41 R 130/10m-26, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen (§ 510 Abs 3 ZPO).
-
-**False Positives:**
-
-- `Gertrude Ptak` — partial — gold is substring of pred: `Ptak`
-
-> overlaps gold: 1  |  likely missing annotation: 0
-
-**Gold Entities:**
-
-- `Ptak`(person)
-- `Schindelmeißer`(person)
-
-**Example 22** (doc_id: `deanon_TRAIN/2Ob37_17f`) (sent_id: `deanon_TRAIN/2Ob37_17f_3`)
+**Example 21** (doc_id: `deanon_TRAIN/2Ob37_17f`) (sent_id: `deanon_TRAIN/2Ob37_17f_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Hon.-Prof. Dr. Danzl als Vorsitzenden und die Hofräte Dr. Veith und Dr. Musger, die Hofrätin Dr. E. Solé und den Hofrat Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Florentin Uffenwasser, vertreten durch Dr. Armin Exner, Rechtsanwalt in Innsbruck, gegen die beklagte Partei Stadtgemeinde Naomi Mertensmeyer, vertreten durch Dr. Thomas Girardi, Rechtsanwalt in Innsbruck, wegen 29.461,04 EUR sA und Feststellung (Streitwert 10.000 EUR), über die außerordentliche Revision der beklagten Partei (Revisionsinteresse 22.377,04 EUR) gegen das Urteil des Oberlandesgerichts Innsbruck als Berufungsgericht vom 15. Dezember 2016, GZ 2 R 141/16a-47, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -2608,7 +2594,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Florentin Uffenwasser`(person)
 - `Naomi Mertensmeyer`(person)
 
-**Example 23** (doc_id: `deanon_TRAIN/2Ob41_16t`) (sent_id: `deanon_TRAIN/2Ob41_16t_3`)
+**Example 22** (doc_id: `deanon_TRAIN/2Ob41_16t`) (sent_id: `deanon_TRAIN/2Ob41_16t_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Hon.-Prof. Dr. Danzl als Vorsitzenden sowie die Hofräte Dr. Veith und Dr. Musger, die Hofrätin Dr. E. Solé und den Hofrat Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei DDr. Ashley Feichtmeier, vertreten durch Bollmann & Bollmann Rechtsanwaltspartnerschaft in Wien, gegen die beklagte Partei StadtDigital AG, Helmut Klösgen, vertreten durch DLA Piper Weiss-Tessbach, Rechtsanwälte GmbH in Wien, wegen 18.056,86 EUR sA, über die Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Wien als Berufungsgericht vom 24. November 2015, GZ 1 R 141/15k-48, womit über Berufung der klagenden Partei das Urteil des Handelsgerichts Wien vom 27. Mai 2015, GZ 55 Cg 295/11k-44, bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die Revision der klagenden Partei wird zurückgewiesen.
@@ -2625,7 +2611,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `StadtDigital AG`(organisation)
 - `Helmut Klösgen`(person)
 
-**Example 24** (doc_id: `deanon_TRAIN/2Ob78_15g`) (sent_id: `deanon_TRAIN/2Ob78_15g_3`)
+**Example 23** (doc_id: `deanon_TRAIN/2Ob78_15g`) (sent_id: `deanon_TRAIN/2Ob78_15g_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Hon.-Prof. Dr. Danzl als Vorsitzenden, die Hofräte Dr. Veith und Dr. Musger sowie die Hofrätinnen Dr. E. Solé und Dr. Hofer-Zeni-Rennhofer als weitere Richter in der Rechtssache der klagenden Partei Luigi Neimeier, vertreten durch Rechtsanwälte Estermann & Partner OG in Mattighofen, gegen die beklagte Partei LNC KI Solutions GmbH, Kordelia Grauel, vertreten durch Dr. Herbert Harlander und Mag. Wolfgang Harlander, Rechtsanwälte in Salzburg, wegen 33.251,85 EUR sA, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Linz als Berufungsgericht vom 5. März 2015, GZ 2 R 1/15b-37, womit infolge Berufung der klagenden Partei das Urteil des Landesgerichts Salzburg vom 23. Oktober 2014, GZ 4 Cg 27/13d-33, bestätigt wurde, in nichtöffentlicher Sitzung beschlossen und zu Recht erkannt:  Spruch
@@ -2642,7 +2628,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `LNC KI Solutions GmbH`(organisation)
 - `Kordelia Grauel`(person)
 
-**Example 25** (doc_id: `deanon_TRAIN/3Ob105_13g`) (sent_id: `deanon_TRAIN/3Ob105_13g_3`)
+**Example 24** (doc_id: `deanon_TRAIN/3Ob105_13g`) (sent_id: `deanon_TRAIN/3Ob105_13g_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Univ.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in der Rechtssache der klagenden Partei ÖkR Malik Sutmöller OEG, Leila Nieboer, vertreten durch Dr. Heinz-Wilhelm Stenzl, Rechtsanwalt in Wien, gegen die beklagte Partei Mittel Bachlemsee GmbH, Erwin Klefass, BSc, vertreten durch Dr. Johann Gelbmann, Rechtsanwalt in Wien, wegen (restlich) 12.536,14 EUR sA, über die Revision der beklagten Partei (Revisionsinteresse 6.909 EUR sA) gegen das Urteil des Landesgerichts für Zivilrechtssachen Wien als Berufungsgericht vom 19. Dezember 2012, GZ 38 R 173/12s-139, womit über die Berufungen beider Parteien das Urteil des Bezirksgerichts Fünfhaus vom 10. April 2012, GZ 12 C 1045/05m-131, bestätigt wurde, den Beschluss gefasst:  Spruch Die Revision wird zurückgewiesen.
@@ -2660,7 +2646,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Mittel Bachlemsee GmbH`(organisation)
 - `Erwin Klefass, BSc`(person)
 
-**Example 26** (doc_id: `deanon_TRAIN/3Ob147_20v`) (sent_id: `deanon_TRAIN/3Ob147_20v_3`)
+**Example 25** (doc_id: `deanon_TRAIN/3Ob147_20v`) (sent_id: `deanon_TRAIN/3Ob147_20v_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Hofrat Dr. Roch als Vorsitzenden sowie den Hofrat Hon.-Prof. PD Dr. Rassi, die Hofrätinnen Dr. Weixelbraun-Mohr und Dr. Kodek und den Hofrat Dr. Stefula als weitere Richter in der Rechtssache der klagenden Partei Kraftnorost Wind GmbH, Roderich Holtze, vertreten durch Mag. Andreas Kleiber, Rechtsanwalt in Wien, gegen die beklagte Partei Annette Fiss verein Ing. Kirstin Movcan, vertreten durch Pflaum Karlberger Wiener Opetnik, Rechtsanwälte in Wien, wegen Aufkündigung, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Landesgerichts für Zivilrechtssachen Wien als Berufungsgericht vom 22. Juli 2020, GZ 40 R 37/20t-27, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -2679,7 +2665,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Hofrat Dr. Roch 
 - `Annette Fiss`(person)
 - `Ing. Kirstin Movcan`(person)
 
-**Example 27** (doc_id: `deanon_TRAIN/3Ob14_24s`) (sent_id: `deanon_TRAIN/3Ob14_24s_3`)
+**Example 26** (doc_id: `deanon_TRAIN/3Ob14_24s`) (sent_id: `deanon_TRAIN/3Ob14_24s_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Hon.-Prof. Dr. Höllwerth als Vorsitzenden sowie den Hofrat Hon.-Prof. Dr. Brenn, die Hofrätinnen Dr. Weixelbraun-Mohr und Dr. Kodek und den Hofrat Dr. Stefula als weitere Richter in der Exekutionssache der betreibenden Partei Daniela Sklenar SE, Kimberly Hurrelmeyer, vertreten durch Cerha Hempel Rechtsanwälte GmbH in Wien, gegen die verpflichtete Partei Staat Libyen, StR Violetta Stegemeyer, Libyen, vertreten durch Binder Grösswang Rechtsanwälte GmbH in Wien, wegen 10 Mio EUR sA, über den außerordentlichen Revisionsrekurs der verpflichteten Partei gegen den Beschluss des Landesgerichts für Zivilrechtssachen Wien als Rekursgericht vom 20. Oktober 2023, GZ 47 R 228/23m-107, den Beschluss gefasst:  Spruch Der außerordentliche Revisionsrekurs wird gemäß § 78 EO iVm § 526 Abs 2 Satz 1 ZPO mangels der Voraussetzungen des § 528 Abs 1 ZPO zurückgewiesen.
@@ -2697,7 +2683,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Hon.-Prof. Dr. Hö
 - `Kimberly Hurrelmeyer`(person)
 - `StR Violetta Stegemeyer`(person)
 
-**Example 28** (doc_id: `deanon_TRAIN/3Ob152_10i`) (sent_id: `deanon_TRAIN/3Ob152_10i_3`)
+**Example 27** (doc_id: `deanon_TRAIN/3Ob152_10i`) (sent_id: `deanon_TRAIN/3Ob152_10i_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Hon.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in der Exekutionssache der betreibenden Partei KMN Versicherung Werke AG, Corbinian Pichlmaier, vertreten durch Dr. Erich Kafka, Dr. Manfred Palkovits, Rechtsanwälte in Wien, gegen die verpflichtete Partei Severin Wellenbrink, vertreten durch Dr. Philipp Jessich, Rechtsanwalt in Wien, wegen Aufschiebung einer Räumungsexekution, über den Revisionsrekurs der betreibenden Partei gegen den Beschluss des Landesgerichts für Zivilrechtssachen Wien als Rekursgericht vom 12. Mai 2010, GZ 39 R 44/10z-22, womit der Beschluss des Bezirksgerichts Fünfhaus vom 14. Jänner 2010, GZ 10 E 171/09d-6, abgeändert wurde, den Beschluss gefasst:  Spruch Dem Revisionsrekurs wird Folge gegeben.
@@ -2716,7 +2702,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als 
 - `Dr. Manfred Palkovits`(person)
 - `Severin Wellenbrink`(person)
 
-**Example 29** (doc_id: `deanon_TRAIN/3Ob156_12f`) (sent_id: `deanon_TRAIN/3Ob156_12f_3`)
+**Example 28** (doc_id: `deanon_TRAIN/3Ob156_12f`) (sent_id: `deanon_TRAIN/3Ob156_12f_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Hon.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in den verbundenen Rechtssachen der klagenden Partei Severin Ilek, vertreten durch die Sachwalterin Mag. Roswitha Ferl-Pailer, Rechtsanwältin in Hartberg, gegen die beklagte Partei Dipl.
@@ -2731,13 +2717,31 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 
 - `Severin Ilek`(person)
 
+**Example 29** (doc_id: `deanon_TRAIN/3Ob164_20v`) (sent_id: `deanon_TRAIN/3Ob164_20v_3`)
+
+
+Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch die Präsidentin Hon.-Prof. Dr. Lovrek als Vorsitzende sowie den Hofrat Hon.-Prof. PD Dr. Rassi, die Hofrätinnen Dr. Weixelbraun-Mohr und Dr. Kodek und den Hofrat Dr. Stefula als weitere Richter in der Rechtssache der klagenden Partei Bruckgartver GmbH, MedR StR René Titz, vertreten durch Dr. Reinhard Schanda, Rechtsanwalt in Wien, gegen die beklagte Partei Ofczarczik Planung AG, Dipl.
+
+**False Positives:**
+
+- `Bruckgartver` — partial — pred is substring of gold: `Bruckgartver GmbH`
+- `Ofczarczik Planung` — partial — pred is substring of gold: `Ofczarczik Planung AG`
+
+> overlaps gold: 2  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Bruckgartver GmbH`(organisation)
+- `MedR StR René Titz`(person)
+- `Ofczarczik Planung AG`(organisation)
+
 </details>
 
 ---
 
 ## `Person_Title_Context`
 
-**F1:** 0.274 | **Precision:** 0.626 | **Recall:** 0.176  
+**F1:** 0.277 | **Precision:** 0.631 | **Recall:** 0.177  
 
 **Format:** `regex`  
 **Rule ID:** `6e69c0ef`  
@@ -2754,13 +2758,13 @@ Captures names with titles (Dr., Mag., DI, Bakk., etc.) in various legal context
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.626 | 0.176 | 0.274 | 388 | 243 | 145 |
+| 0.631 | 0.177 | 0.277 | 388 | 245 | 143 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `person` | 243 | 145 | 1141 |
+| `person` | 245 | 143 | 1139 |
 
 </details>
 
@@ -3532,23 +3536,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Veith als Vors
 - `Vogelsanger Marine GmbH`(organisation)
 - `Juri Büttgens`(person)
 
-**Example 21** (doc_id: `deanon_TRAIN/2Ob181_10x`) (sent_id: `deanon_TRAIN/2Ob181_10x_3`)
-
-
-Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Baumann als Vorsitzenden und durch die Hofräte Dr. Veith, Dr. E. Solé, Dr. Schwarzenbacher und Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Gertrude Ptak, vertreten durch Dr. Bertram Broesigke und Dr. Wolfgang Broesigke, Rechtsanwälte in Wien, gegen die beklagte Partei Josef Schindelmeißer, vertreten durch den Sachwalter Dr. Helmut Heiger, Rechtsanwalt in Wien, wegen Aufkündigung, über die außerordentliche Revision der beklagten Partei gegen das Urteil des Landesgerichts für Zivilrechtssachen Wien als Berufungsgericht vom 15. Juni 2010, GZ 41 R 130/10m-26, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen (§ 510 Abs 3 ZPO).
-
-**False Positives:**
-
-- `Gertrude Ptak` — partial — gold is substring of pred: `Ptak`
-
-> overlaps gold: 1  |  likely missing annotation: 0
-
-**Gold Entities:**
-
-- `Ptak`(person)
-- `Schindelmeißer`(person)
-
-**Example 22** (doc_id: `deanon_TRAIN/2Ob37_17f`) (sent_id: `deanon_TRAIN/2Ob37_17f_3`)
+**Example 21** (doc_id: `deanon_TRAIN/2Ob37_17f`) (sent_id: `deanon_TRAIN/2Ob37_17f_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Hon.-Prof. Dr. Danzl als Vorsitzenden und die Hofräte Dr. Veith und Dr. Musger, die Hofrätin Dr. E. Solé und den Hofrat Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Florentin Uffenwasser, vertreten durch Dr. Armin Exner, Rechtsanwalt in Innsbruck, gegen die beklagte Partei Stadtgemeinde Naomi Mertensmeyer, vertreten durch Dr. Thomas Girardi, Rechtsanwalt in Innsbruck, wegen 29.461,04 EUR sA und Feststellung (Streitwert 10.000 EUR), über die außerordentliche Revision der beklagten Partei (Revisionsinteresse 22.377,04 EUR) gegen das Urteil des Oberlandesgerichts Innsbruck als Berufungsgericht vom 15. Dezember 2016, GZ 2 R 141/16a-47, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -3564,7 +3552,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Florentin Uffenwasser`(person)
 - `Naomi Mertensmeyer`(person)
 
-**Example 23** (doc_id: `deanon_TRAIN/2Ob41_16t`) (sent_id: `deanon_TRAIN/2Ob41_16t_3`)
+**Example 22** (doc_id: `deanon_TRAIN/2Ob41_16t`) (sent_id: `deanon_TRAIN/2Ob41_16t_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Hon.-Prof. Dr. Danzl als Vorsitzenden sowie die Hofräte Dr. Veith und Dr. Musger, die Hofrätin Dr. E. Solé und den Hofrat Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei DDr. Ashley Feichtmeier, vertreten durch Bollmann & Bollmann Rechtsanwaltspartnerschaft in Wien, gegen die beklagte Partei StadtDigital AG, Helmut Klösgen, vertreten durch DLA Piper Weiss-Tessbach, Rechtsanwälte GmbH in Wien, wegen 18.056,86 EUR sA, über die Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Wien als Berufungsgericht vom 24. November 2015, GZ 1 R 141/15k-48, womit über Berufung der klagenden Partei das Urteil des Handelsgerichts Wien vom 27. Mai 2015, GZ 55 Cg 295/11k-44, bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die Revision der klagenden Partei wird zurückgewiesen.
@@ -3581,7 +3569,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `StadtDigital AG`(organisation)
 - `Helmut Klösgen`(person)
 
-**Example 24** (doc_id: `deanon_TRAIN/2Ob78_15g`) (sent_id: `deanon_TRAIN/2Ob78_15g_3`)
+**Example 23** (doc_id: `deanon_TRAIN/2Ob78_15g`) (sent_id: `deanon_TRAIN/2Ob78_15g_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Hon.-Prof. Dr. Danzl als Vorsitzenden, die Hofräte Dr. Veith und Dr. Musger sowie die Hofrätinnen Dr. E. Solé und Dr. Hofer-Zeni-Rennhofer als weitere Richter in der Rechtssache der klagenden Partei Luigi Neimeier, vertreten durch Rechtsanwälte Estermann & Partner OG in Mattighofen, gegen die beklagte Partei LNC KI Solutions GmbH, Kordelia Grauel, vertreten durch Dr. Herbert Harlander und Mag. Wolfgang Harlander, Rechtsanwälte in Salzburg, wegen 33.251,85 EUR sA, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Linz als Berufungsgericht vom 5. März 2015, GZ 2 R 1/15b-37, womit infolge Berufung der klagenden Partei das Urteil des Landesgerichts Salzburg vom 23. Oktober 2014, GZ 4 Cg 27/13d-33, bestätigt wurde, in nichtöffentlicher Sitzung beschlossen und zu Recht erkannt:  Spruch
@@ -3598,7 +3586,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `LNC KI Solutions GmbH`(organisation)
 - `Kordelia Grauel`(person)
 
-**Example 25** (doc_id: `deanon_TRAIN/3Nc11_13t`) (sent_id: `deanon_TRAIN/3Nc11_13t_3`)
+**Example 24** (doc_id: `deanon_TRAIN/3Nc11_13t`) (sent_id: `deanon_TRAIN/3Nc11_13t_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie die Hofräte Univ.-Prof Dr. Neumayr und Dr. Jensik als weitere Richter in der Ordinationssache der Antragstellerin Waldzorval Technologien GmbH, Dr.-Kühne-Gasse 29, 9560 Albern, Österreich, vertreten durch Dr. Clemens Thiele, Rechtsanwalt in Salzburg, gegen die Antragsgegnerin Pflege Allemkraft GmbH, Schirmerstraße 61, 8967 Oberhausberg, Österreich, wegen Exekutionsführung nach § 355 EO, infolge Antrags gemäß § 28 JN den Beschluss gefasst:  Spruch Für die Bewilligung und die Vollziehung der beabsichtigten Unterlassungsexekution wird das Bezirksgericht Salzburg als örtlich zuständiges Gericht bestimmt.
@@ -3617,7 +3605,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als 
 - `Schirmerstraße 61, 8967 Oberhausberg, Österreich`(address)
 - `Bezirksgericht Salzburg`(organisation)
 
-**Example 26** (doc_id: `deanon_TRAIN/3Ob105_13g`) (sent_id: `deanon_TRAIN/3Ob105_13g_3`)
+**Example 25** (doc_id: `deanon_TRAIN/3Ob105_13g`) (sent_id: `deanon_TRAIN/3Ob105_13g_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Univ.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in der Rechtssache der klagenden Partei ÖkR Malik Sutmöller OEG, Leila Nieboer, vertreten durch Dr. Heinz-Wilhelm Stenzl, Rechtsanwalt in Wien, gegen die beklagte Partei Mittel Bachlemsee GmbH, Erwin Klefass, BSc, vertreten durch Dr. Johann Gelbmann, Rechtsanwalt in Wien, wegen (restlich) 12.536,14 EUR sA, über die Revision der beklagten Partei (Revisionsinteresse 6.909 EUR sA) gegen das Urteil des Landesgerichts für Zivilrechtssachen Wien als Berufungsgericht vom 19. Dezember 2012, GZ 38 R 173/12s-139, womit über die Berufungen beider Parteien das Urteil des Bezirksgerichts Fünfhaus vom 10. April 2012, GZ 12 C 1045/05m-131, bestätigt wurde, den Beschluss gefasst:  Spruch Die Revision wird zurückgewiesen.
@@ -3635,7 +3623,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Mittel Bachlemsee GmbH`(organisation)
 - `Erwin Klefass, BSc`(person)
 
-**Example 27** (doc_id: `deanon_TRAIN/3Ob147_20v`) (sent_id: `deanon_TRAIN/3Ob147_20v_3`)
+**Example 26** (doc_id: `deanon_TRAIN/3Ob147_20v`) (sent_id: `deanon_TRAIN/3Ob147_20v_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Hofrat Dr. Roch als Vorsitzenden sowie den Hofrat Hon.-Prof. PD Dr. Rassi, die Hofrätinnen Dr. Weixelbraun-Mohr und Dr. Kodek und den Hofrat Dr. Stefula als weitere Richter in der Rechtssache der klagenden Partei Kraftnorost Wind GmbH, Roderich Holtze, vertreten durch Mag. Andreas Kleiber, Rechtsanwalt in Wien, gegen die beklagte Partei Annette Fiss verein Ing. Kirstin Movcan, vertreten durch Pflaum Karlberger Wiener Opetnik, Rechtsanwälte in Wien, wegen Aufkündigung, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Landesgerichts für Zivilrechtssachen Wien als Berufungsgericht vom 22. Juli 2020, GZ 40 R 37/20t-27, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -3654,7 +3642,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Hofrat Dr. Roch 
 - `Annette Fiss`(person)
 - `Ing. Kirstin Movcan`(person)
 
-**Example 28** (doc_id: `deanon_TRAIN/3Ob14_24s`) (sent_id: `deanon_TRAIN/3Ob14_24s_3`)
+**Example 27** (doc_id: `deanon_TRAIN/3Ob14_24s`) (sent_id: `deanon_TRAIN/3Ob14_24s_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Hon.-Prof. Dr. Höllwerth als Vorsitzenden sowie den Hofrat Hon.-Prof. Dr. Brenn, die Hofrätinnen Dr. Weixelbraun-Mohr und Dr. Kodek und den Hofrat Dr. Stefula als weitere Richter in der Exekutionssache der betreibenden Partei Daniela Sklenar SE, Kimberly Hurrelmeyer, vertreten durch Cerha Hempel Rechtsanwälte GmbH in Wien, gegen die verpflichtete Partei Staat Libyen, StR Violetta Stegemeyer, Libyen, vertreten durch Binder Grösswang Rechtsanwälte GmbH in Wien, wegen 10 Mio EUR sA, über den außerordentlichen Revisionsrekurs der verpflichteten Partei gegen den Beschluss des Landesgerichts für Zivilrechtssachen Wien als Rekursgericht vom 20. Oktober 2023, GZ 47 R 228/23m-107, den Beschluss gefasst:  Spruch Der außerordentliche Revisionsrekurs wird gemäß § 78 EO iVm § 526 Abs 2 Satz 1 ZPO mangels der Voraussetzungen des § 528 Abs 1 ZPO zurückgewiesen.
@@ -3672,7 +3660,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Hon.-Prof. Dr. Hö
 - `Kimberly Hurrelmeyer`(person)
 - `StR Violetta Stegemeyer`(person)
 
-**Example 29** (doc_id: `deanon_TRAIN/3Ob152_10i`) (sent_id: `deanon_TRAIN/3Ob152_10i_3`)
+**Example 28** (doc_id: `deanon_TRAIN/3Ob152_10i`) (sent_id: `deanon_TRAIN/3Ob152_10i_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Hon.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in der Exekutionssache der betreibenden Partei KMN Versicherung Werke AG, Corbinian Pichlmaier, vertreten durch Dr. Erich Kafka, Dr. Manfred Palkovits, Rechtsanwälte in Wien, gegen die verpflichtete Partei Severin Wellenbrink, vertreten durch Dr. Philipp Jessich, Rechtsanwalt in Wien, wegen Aufschiebung einer Räumungsexekution, über den Revisionsrekurs der betreibenden Partei gegen den Beschluss des Landesgerichts für Zivilrechtssachen Wien als Rekursgericht vom 12. Mai 2010, GZ 39 R 44/10z-22, womit der Beschluss des Bezirksgerichts Fünfhaus vom 14. Jänner 2010, GZ 10 E 171/09d-6, abgeändert wurde, den Beschluss gefasst:  Spruch Dem Revisionsrekurs wird Folge gegeben.
@@ -3690,6 +3678,21 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als 
 - `Dr. Erich Kafka`(person)
 - `Dr. Manfred Palkovits`(person)
 - `Severin Wellenbrink`(person)
+
+**Example 29** (doc_id: `deanon_TRAIN/3Ob156_12f`) (sent_id: `deanon_TRAIN/3Ob156_12f_3`)
+
+
+Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Hon.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in den verbundenen Rechtssachen der klagenden Partei Severin Ilek, vertreten durch die Sachwalterin Mag. Roswitha Ferl-Pailer, Rechtsanwältin in Hartberg, gegen die beklagte Partei Dipl.
+
+**False Positives:**
+
+- `Dipl.` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Gold Entities:**
+
+- `Severin Ilek`(person)
 
 </details>
 
@@ -3841,20 +3844,7 @@ Ali Haarnacke und 2. Li Baselt, vertreten durch Dr. Serpil Dogan, Rechtsanwälti
 - `Ali Haarnacke` (person)
 - `Li Baselt` (person)
 
-**Example 8** (doc_id: `deanon_TRAIN/2Ob181_10x`) (sent_id: `deanon_TRAIN/2Ob181_10x_3`)
-
-
-Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Baumann als Vorsitzenden und durch die Hofräte Dr. Veith, Dr. E. Solé, Dr. Schwarzenbacher und Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Gertrude Ptak, vertreten durch Dr. Bertram Broesigke und Dr. Wolfgang Broesigke, Rechtsanwälte in Wien, gegen die beklagte Partei Josef Schindelmeißer, vertreten durch den Sachwalter Dr. Helmut Heiger, Rechtsanwalt in Wien, wegen Aufkündigung, über die außerordentliche Revision der beklagten Partei gegen das Urteil des Landesgerichts für Zivilrechtssachen Wien als Berufungsgericht vom 15. Juni 2010, GZ 41 R 130/10m-26, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen (§ 510 Abs 3 ZPO).
-
-| Predicted | Gold |
-|---|---|
-| `Ptak` | `Ptak` |
-
-**Missed by this rule (FN):**
-
-- `Schindelmeißer` (person)
-
-**Example 9** (doc_id: `deanon_TRAIN/2Ob37_17f`) (sent_id: `deanon_TRAIN/2Ob37_17f_3`)
+**Example 8** (doc_id: `deanon_TRAIN/2Ob37_17f`) (sent_id: `deanon_TRAIN/2Ob37_17f_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Hon.-Prof. Dr. Danzl als Vorsitzenden und die Hofräte Dr. Veith und Dr. Musger, die Hofrätin Dr. E. Solé und den Hofrat Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Florentin Uffenwasser, vertreten durch Dr. Armin Exner, Rechtsanwalt in Innsbruck, gegen die beklagte Partei Stadtgemeinde Naomi Mertensmeyer, vertreten durch Dr. Thomas Girardi, Rechtsanwalt in Innsbruck, wegen 29.461,04 EUR sA und Feststellung (Streitwert 10.000 EUR), über die außerordentliche Revision der beklagten Partei (Revisionsinteresse 22.377,04 EUR) gegen das Urteil des Oberlandesgerichts Innsbruck als Berufungsgericht vom 15. Dezember 2016, GZ 2 R 141/16a-47, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -3867,7 +3857,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 
 - `Florentin Uffenwasser` (person)
 
-**Example 10** (doc_id: `deanon_TRAIN/4Ob100_13d`) (sent_id: `deanon_TRAIN/4Ob100_13d_3`)
+**Example 9** (doc_id: `deanon_TRAIN/4Ob100_13d`) (sent_id: `deanon_TRAIN/4Ob100_13d_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch die Vizepräsidentin Dr. Schenk als Vorsitzende und die Hofräte Dr. Vogel, Dr. Jensik, Dr. Musger und Dr. Schwarzenbacher als weitere Richter in der Rechtssache der klagenden Partei Verein Erwin Sieferer, vertreten durch Kosesnik-Wehrle & Langer Rechtsanwälte KG in Wien, gegen die beklagte Partei Lebensmittel Seeder -Aktiengesellschaft, Knechtswies 63, 4692 Niederau, Österreich, vertreten durch Raits Bleiziffer Rechtsanwälte GmbH in Salzburg, und die Nebenintervenientin auf Seiten der beklagten Partei „ StR Thobias Broß ” Viola Hüßkes, vertreten durch Dr. Peter Zöchbauer und andere Rechtsanwälte in Wien, wegen Unterlassung und Urteilsveröffentlichung (Streitwert 36.000 EUR), über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Linz vom 19. April 2013, GZ 1 R 192/12d-14, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -3882,6 +3872,22 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch die Vizepräsidentin
 - `Knechtswies 63, 4692 Niederau, Österreich` (address)
 - `StR Thobias Broß` (person)
 - `Viola Hüßkes` (person)
+
+**Example 10** (doc_id: `deanon_TRAIN/5Ob18_11z`) (sent_id: `deanon_TRAIN/5Ob18_11z_3`)
+
+
+Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Hon.-Prof. Dr. Danzl als Vorsitzenden und die Hofrätinnen Dr. Hurch und Dr. Lovrek sowie die Hofräte Dr. Höllwerth und Mag. Wurzer als weitere Richter in der Rechtssache der klagenden Partei DI Borislav Viskorf, vertreten durch Dr. Günter Niebauer, Rechtsanwalt in Wien, und der Nebenintervenientin auf Seiten der klagenden Partei Mittel Waldheim Betriebe AG, Samantha Althöfer, vertreten durch Mayer & Herrmann, Rechtsanwälte in Wien, gegen die beklagte Partei Weckebrod Immobilien Aktiengesellschaft, Graf Geroldstraße 2, 8181 Dörfl an der Raab, Österreich, vertreten durch Kunz Schima Wallentin Rechtsanwälte OG in Wien, wegen 96.882,93 EUR sA, über die Revision der beklagten Partei gegen das Urteil des Oberlandesgerichts Wien als Berufungsgericht vom 25. Oktober 2010, GZ 2 R 213/09x, 2 R 216/09p-27, mit dem infolge Berufung der beklagten Partei das Urteil des Handelsgerichts Wien vom 24. Juli 2009, GZ 19 Cg 167/08t-19, bestätigt wurde, den Beschluss gefasst:  Spruch Die Revision wird zurückgewiesen.
+
+| Predicted | Gold |
+|---|---|
+| `DI Borislav Viskorf` | `DI Borislav Viskorf` |
+
+**Missed by this rule (FN):**
+
+- `Mittel Waldheim Betriebe AG` (organisation)
+- `Samantha Althöfer` (person)
+- `Weckebrod Immobilien Aktiengesellschaft` (organisation)
+- `Graf Geroldstraße 2, 8181 Dörfl an der Raab, Österreich` (address)
 
 **Example 11** (doc_id: `deanon_TRAIN/6Ob136_11k`) (sent_id: `deanon_TRAIN/6Ob136_11k_3`)
 
@@ -4625,20 +4631,7 @@ Ali Haarnacke und 2. Li Baselt, vertreten durch Dr. Serpil Dogan, Rechtsanwälti
 - `Ali Haarnacke` (person)
 - `Li Baselt` (person)
 
-**Example 9** (doc_id: `deanon_TRAIN/2Ob181_10x`) (sent_id: `deanon_TRAIN/2Ob181_10x_3`)
-
-
-Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Baumann als Vorsitzenden und durch die Hofräte Dr. Veith, Dr. E. Solé, Dr. Schwarzenbacher und Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Gertrude Ptak, vertreten durch Dr. Bertram Broesigke und Dr. Wolfgang Broesigke, Rechtsanwälte in Wien, gegen die beklagte Partei Josef Schindelmeißer, vertreten durch den Sachwalter Dr. Helmut Heiger, Rechtsanwalt in Wien, wegen Aufkündigung, über die außerordentliche Revision der beklagten Partei gegen das Urteil des Landesgerichts für Zivilrechtssachen Wien als Berufungsgericht vom 15. Juni 2010, GZ 41 R 130/10m-26, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen (§ 510 Abs 3 ZPO).
-
-| Predicted | Gold |
-|---|---|
-| `Ptak` | `Ptak` |
-
-**Missed by this rule (FN):**
-
-- `Schindelmeißer` (person)
-
-**Example 10** (doc_id: `deanon_TRAIN/2Ob37_17f`) (sent_id: `deanon_TRAIN/2Ob37_17f_3`)
+**Example 9** (doc_id: `deanon_TRAIN/2Ob37_17f`) (sent_id: `deanon_TRAIN/2Ob37_17f_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Hon.-Prof. Dr. Danzl als Vorsitzenden und die Hofräte Dr. Veith und Dr. Musger, die Hofrätin Dr. E. Solé und den Hofrat Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Florentin Uffenwasser, vertreten durch Dr. Armin Exner, Rechtsanwalt in Innsbruck, gegen die beklagte Partei Stadtgemeinde Naomi Mertensmeyer, vertreten durch Dr. Thomas Girardi, Rechtsanwalt in Innsbruck, wegen 29.461,04 EUR sA und Feststellung (Streitwert 10.000 EUR), über die außerordentliche Revision der beklagten Partei (Revisionsinteresse 22.377,04 EUR) gegen das Urteil des Oberlandesgerichts Innsbruck als Berufungsgericht vom 15. Dezember 2016, GZ 2 R 141/16a-47, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -4651,7 +4644,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 
 - `Florentin Uffenwasser` (person)
 
-**Example 11** (doc_id: `deanon_TRAIN/4Ob100_13d`) (sent_id: `deanon_TRAIN/4Ob100_13d_3`)
+**Example 10** (doc_id: `deanon_TRAIN/4Ob100_13d`) (sent_id: `deanon_TRAIN/4Ob100_13d_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch die Vizepräsidentin Dr. Schenk als Vorsitzende und die Hofräte Dr. Vogel, Dr. Jensik, Dr. Musger und Dr. Schwarzenbacher als weitere Richter in der Rechtssache der klagenden Partei Verein Erwin Sieferer, vertreten durch Kosesnik-Wehrle & Langer Rechtsanwälte KG in Wien, gegen die beklagte Partei Lebensmittel Seeder -Aktiengesellschaft, Knechtswies 63, 4692 Niederau, Österreich, vertreten durch Raits Bleiziffer Rechtsanwälte GmbH in Salzburg, und die Nebenintervenientin auf Seiten der beklagten Partei „ StR Thobias Broß ” Viola Hüßkes, vertreten durch Dr. Peter Zöchbauer und andere Rechtsanwälte in Wien, wegen Unterlassung und Urteilsveröffentlichung (Streitwert 36.000 EUR), über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Linz vom 19. April 2013, GZ 1 R 192/12d-14, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -4667,7 +4660,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch die Vizepräsidentin
 - `StR Thobias Broß` (person)
 - `Viola Hüßkes` (person)
 
-**Example 12** (doc_id: `deanon_TRAIN/5Ob174_15x`) (sent_id: `deanon_TRAIN/5Ob174_15x_3`)
+**Example 11** (doc_id: `deanon_TRAIN/5Ob174_15x`) (sent_id: `deanon_TRAIN/5Ob174_15x_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hradil als Vorsitzenden sowie den Hofrat Dr. Höllwerth, die Hofrätin Dr. Grohmann und die Hofräte Mag. Wurzer und Mag. Painsi als weitere Richter in der außerstreitigen Wohnrechtssache der Antragstellerin Ulrike Raymackers, vertreten durch Mag. Valerie Gröschl, Mietervereinigung Österreichs, 1010 Wien, Reichsratsstraße 15, gegen die Antragsgegnerin FPNK Telekom GmbH, Karl-Völkl-Straße 16, 4682 Erlet, Österreich, vertreten durch Mag. Günter Petzelbauer, Rechtsanwalt in Wien, wegen § 37 Abs 1 Z 8 iVm § 16 MRG, über den außerordentlichen Revisionsrekurs der Antragsgegnerin gegen den Sachbeschluss des Landesgerichts für Zivilrechtssachen Wien als Rekursgericht vom 27. Mai 2015, GZ 39 R 136/15m-17, mit dem der Sachbeschluss des Bezirksgerichts Hernals vom 30. Dezember 2014, GZ 5 Msch 15/14g-12, bestätigt wurde, den Beschluss gefasst:  Spruch Dem außerordentlichen Revisionsrekurs wird Folge gegeben.
@@ -4680,6 +4673,22 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hradil als Vor
 
 - `FPNK Telekom GmbH` (organisation)
 - `Karl-Völkl-Straße 16, 4682 Erlet, Österreich` (address)
+
+**Example 12** (doc_id: `deanon_TRAIN/5Ob18_11z`) (sent_id: `deanon_TRAIN/5Ob18_11z_3`)
+
+
+Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Hon.-Prof. Dr. Danzl als Vorsitzenden und die Hofrätinnen Dr. Hurch und Dr. Lovrek sowie die Hofräte Dr. Höllwerth und Mag. Wurzer als weitere Richter in der Rechtssache der klagenden Partei DI Borislav Viskorf, vertreten durch Dr. Günter Niebauer, Rechtsanwalt in Wien, und der Nebenintervenientin auf Seiten der klagenden Partei Mittel Waldheim Betriebe AG, Samantha Althöfer, vertreten durch Mayer & Herrmann, Rechtsanwälte in Wien, gegen die beklagte Partei Weckebrod Immobilien Aktiengesellschaft, Graf Geroldstraße 2, 8181 Dörfl an der Raab, Österreich, vertreten durch Kunz Schima Wallentin Rechtsanwälte OG in Wien, wegen 96.882,93 EUR sA, über die Revision der beklagten Partei gegen das Urteil des Oberlandesgerichts Wien als Berufungsgericht vom 25. Oktober 2010, GZ 2 R 213/09x, 2 R 216/09p-27, mit dem infolge Berufung der beklagten Partei das Urteil des Handelsgerichts Wien vom 24. Juli 2009, GZ 19 Cg 167/08t-19, bestätigt wurde, den Beschluss gefasst:  Spruch Die Revision wird zurückgewiesen.
+
+| Predicted | Gold |
+|---|---|
+| `DI Borislav Viskorf` | `DI Borislav Viskorf` |
+
+**Missed by this rule (FN):**
+
+- `Mittel Waldheim Betriebe AG` (organisation)
+- `Samantha Althöfer` (person)
+- `Weckebrod Immobilien Aktiengesellschaft` (organisation)
+- `Graf Geroldstraße 2, 8181 Dörfl an der Raab, Österreich` (address)
 
 **Example 13** (doc_id: `deanon_TRAIN/5Ob46_13w`) (sent_id: `deanon_TRAIN/5Ob46_13w_3`)
 
@@ -6660,7 +6669,7 @@ Captures the surname of a life partner following 'Lebensgefährten' or 'Lebensge
 
 ## `Party_Name_NoContext`
 
-**F1:** 0.275 | **Precision:** 0.629 | **Recall:** 0.176  
+**F1:** 0.278 | **Precision:** 0.634 | **Recall:** 0.178  
 
 **Format:** `regex`  
 **Rule ID:** `c8e7062b`  
@@ -6677,13 +6686,13 @@ Captures names following 'Partei' or 'Parteien' without specific 'vertreten durc
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.629 | 0.176 | 0.275 | 388 | 244 | 144 |
+| 0.634 | 0.178 | 0.278 | 388 | 246 | 142 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `person` | 244 | 144 | 1140 |
+| `person` | 246 | 142 | 1138 |
 
 </details>
 
@@ -7250,7 +7259,20 @@ Sloboda als weitere Richter in der Rechtssache der klagenden Partei Ing. Constan
 
 - `Lothar Schwänke` (person)
 
-**Example 45** (doc_id: `deanon_TRAIN/2Ob182_24i`) (sent_id: `deanon_TRAIN/2Ob182_24i_4`)
+**Example 45** (doc_id: `deanon_TRAIN/2Ob181_10x`) (sent_id: `deanon_TRAIN/2Ob181_10x_3`)
+
+
+Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Baumann als Vorsitzenden und durch die Hofräte Dr. Veith, Dr. E. Solé, Dr. Schwarzenbacher und Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Gertrude Ptak, vertreten durch Dr. Bertram Broesigke und Dr. Wolfgang Broesigke, Rechtsanwälte in Wien, gegen die beklagte Partei Josef Schindelmeißer, vertreten durch den Sachwalter Dr. Helmut Heiger, Rechtsanwalt in Wien, wegen Aufkündigung, über die außerordentliche Revision der beklagten Partei gegen das Urteil des Landesgerichts für Zivilrechtssachen Wien als Berufungsgericht vom 15. Juni 2010, GZ 41 R 130/10m-26, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen (§ 510 Abs 3 ZPO).
+
+| Predicted | Gold |
+|---|---|
+| `Gertrude Ptak` | `Gertrude Ptak` |
+
+**Missed by this rule (FN):**
+
+- `Josef Schindelmeißer` (person)
+
+**Example 46** (doc_id: `deanon_TRAIN/2Ob182_24i`) (sent_id: `deanon_TRAIN/2Ob182_24i_4`)
 
 
 Sloboda, Dr. Thunhart und Dr. Kikinger sowie die Hofrätin Mag. Fitz als weitere Richter in der Rechtssache der klagenden und gefährdeten Partei Theresa Ziebold, vertreten durch Mag. Mahmut Sahinol, Rechtsanwalt in Wien, gegen die beklagten Parteien und Gegner der gefährdeten Parteien 1.
@@ -7259,7 +7281,7 @@ Sloboda, Dr. Thunhart und Dr. Kikinger sowie die Hofrätin Mag. Fitz als weitere
 |---|---|
 | `Theresa Ziebold` | `Theresa Ziebold` |
 
-**Example 46** (doc_id: `deanon_TRAIN/2Ob224_21m`) (sent_id: `deanon_TRAIN/2Ob224_21m_5`)
+**Example 47** (doc_id: `deanon_TRAIN/2Ob224_21m`) (sent_id: `deanon_TRAIN/2Ob224_21m_5`)
 
 
 Dr. Konstantin Haas, Rechtsanwalt in Leonding, gegen die beklagte Partei Annette Provost, vertreten durch Posch, Schausberger & Lutz Rechtsanwälte GmbH in Wels, wegen 25.650,07 EUR sA sowie Herausgabe (Streitwert 1.000 EUR) über die Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Linz als Berufungsgericht vom 1. Oktober 2021, GZ 2 R 119/21i-48, mit dem das Urteil des Landesgerichts Ried im Innkreis vom 28. Juni 2021, GZ 5 Cg 60/18b-44, bestätigt wurde, den Beschluss gefasst:  Spruch Die Revision wird zurückgewiesen.
@@ -7268,7 +7290,7 @@ Dr. Konstantin Haas, Rechtsanwalt in Leonding, gegen die beklagte Partei Annette
 |---|---|
 | `Annette Provost` | `Annette Provost` |
 
-**Example 47** (doc_id: `deanon_TRAIN/2Ob256_12d`) (sent_id: `deanon_TRAIN/2Ob256_12d_3`)
+**Example 48** (doc_id: `deanon_TRAIN/2Ob256_12d`) (sent_id: `deanon_TRAIN/2Ob256_12d_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Baumann als Vorsitzenden und durch die Hofräte Dr. Veith, Dr. E. Solé, Dr. Schwarzenbacher und Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Stallbauer Telekom Aktiengesellschaft, Poysdorfer Straße 5, 9341 Dobersberg, Österreich, vertreten durch Dr. Manfred Steininger, Rechtsanwalt in Wien, gegen die beklagte Partei DDr. Viktor Junkmanns, Bakk. iur., vertreten durch die ANWALTGMBH Rinner Teuchtmann in Linz, wegen 50.932,89 EUR sA, über die Revision der beklagten Partei gegen das Urteil des Oberlandesgerichts Linz als Berufungsgericht vom 2. Oktober 2012, GZ 4 R 158/12a-20, womit das Urteil des Landesgerichts Linz vom 14. Juni 2012, GZ 5 Cg 119/11m-14, abgeändert wurde, den Beschluss gefasst:  Spruch Die Revision wird zurückgewiesen.
@@ -7282,7 +7304,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Stallbauer Telekom Aktiengesellschaft` (organisation)
 - `Poysdorfer Straße 5, 9341 Dobersberg, Österreich` (address)
 
-**Example 48** (doc_id: `deanon_TRAIN/2Ob37_17f`) (sent_id: `deanon_TRAIN/2Ob37_17f_3`)
+**Example 49** (doc_id: `deanon_TRAIN/2Ob37_17f`) (sent_id: `deanon_TRAIN/2Ob37_17f_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Hon.-Prof. Dr. Danzl als Vorsitzenden und die Hofräte Dr. Veith und Dr. Musger, die Hofrätin Dr. E. Solé und den Hofrat Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Florentin Uffenwasser, vertreten durch Dr. Armin Exner, Rechtsanwalt in Innsbruck, gegen die beklagte Partei Stadtgemeinde Naomi Mertensmeyer, vertreten durch Dr. Thomas Girardi, Rechtsanwalt in Innsbruck, wegen 29.461,04 EUR sA und Feststellung (Streitwert 10.000 EUR), über die außerordentliche Revision der beklagten Partei (Revisionsinteresse 22.377,04 EUR) gegen das Urteil des Oberlandesgerichts Innsbruck als Berufungsgericht vom 15. Dezember 2016, GZ 2 R 141/16a-47, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -7295,7 +7317,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 
 - `Naomi Mertensmeyer` (person)
 
-**Example 49** (doc_id: `deanon_TRAIN/2Ob41_16t`) (sent_id: `deanon_TRAIN/2Ob41_16t_3`)
+**Example 50** (doc_id: `deanon_TRAIN/2Ob41_16t`) (sent_id: `deanon_TRAIN/2Ob41_16t_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Hon.-Prof. Dr. Danzl als Vorsitzenden sowie die Hofräte Dr. Veith und Dr. Musger, die Hofrätin Dr. E. Solé und den Hofrat Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei DDr. Ashley Feichtmeier, vertreten durch Bollmann & Bollmann Rechtsanwaltspartnerschaft in Wien, gegen die beklagte Partei StadtDigital AG, Helmut Klösgen, vertreten durch DLA Piper Weiss-Tessbach, Rechtsanwälte GmbH in Wien, wegen 18.056,86 EUR sA, über die Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Wien als Berufungsgericht vom 24. November 2015, GZ 1 R 141/15k-48, womit über Berufung der klagenden Partei das Urteil des Handelsgerichts Wien vom 27. Mai 2015, GZ 55 Cg 295/11k-44, bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die Revision der klagenden Partei wird zurückgewiesen.
@@ -7309,7 +7331,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `StadtDigital AG` (organisation)
 - `Helmut Klösgen` (person)
 
-**Example 50** (doc_id: `deanon_TRAIN/2Ob63_11w`) (sent_id: `deanon_TRAIN/2Ob63_11w_3`)
+**Example 51** (doc_id: `deanon_TRAIN/2Ob63_11w`) (sent_id: `deanon_TRAIN/2Ob63_11w_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Baumann als Vorsitzenden und durch die Hofräte Dr. Veith, Dr. E. Solé, Dr. Schwarzenbacher und Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Thomas Papakonstantinou, vertreten durch Kinberger-Schuberth-Fischer Rechtsanwälte-GmbH in Zell am See, gegen die beklagten Parteien 1. Matthias Graafmann, und 2.
@@ -7319,7 +7341,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 | `Thomas Papakonstantinou` | `Thomas Papakonstantinou` |
 | `Matthias Graafmann` | `Matthias Graafmann` |
 
-**Example 51** (doc_id: `deanon_TRAIN/2Ob71_23i`) (sent_id: `deanon_TRAIN/2Ob71_23i_4`)
+**Example 52** (doc_id: `deanon_TRAIN/2Ob71_23i`) (sent_id: `deanon_TRAIN/2Ob71_23i_4`)
 
 
 Sloboda und Dr. Kikinger als weitere Richter in der Rechtssache der klagenden Partei Moses Malkomes, vertreten durch Klepp Nöbauer Hintringer Primetshofer Rechtsanwälte (GbR) in Linz, gegen die beklagte Partei Carmen Reinoldsmann, vertreten durch Dr. Christoph Arbeithuber, Rechtsanwalt in Linz, wegen 26.843,50 EUR sA und Feststellung, über die außerordentliche Revision der beklagten Partei gegen das Urteil des Oberlandesgerichts Linz als Berufungsgericht vom 27. Februar 2023, GZ 4 R 17/23g-28, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -7329,7 +7351,7 @@ Sloboda und Dr. Kikinger als weitere Richter in der Rechtssache der klagenden Pa
 | `Moses Malkomes` | `Moses Malkomes` |
 | `Carmen Reinoldsmann` | `Carmen Reinoldsmann` |
 
-**Example 52** (doc_id: `deanon_TRAIN/2Ob73_15x`) (sent_id: `deanon_TRAIN/2Ob73_15x_3`)
+**Example 53** (doc_id: `deanon_TRAIN/2Ob73_15x`) (sent_id: `deanon_TRAIN/2Ob73_15x_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Hon.-Prof. Dr. Danzl als Vorsitzenden, die Hofräte Dr. Veith und Dr. Musger, die Hofrätin Dr. E. Solé sowie den Hofrat Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Dragan Karp, vertreten durch Mag. Bernd Trappmaier, Rechtsanwalt in Korneuburg, gegen die beklagte Partei Marlene Diderichs, vertreten durch Mag. Claus Marchl, Rechtsanwalt in Wien, wegen 25.396,03 EUR sA, über die Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Wien als Berufungsgericht vom 22. Jänner 2015, GZ 11 R 239/14v-26, womit infolge Berufung der klagenden Partei das Urteil des Landesgerichts für Zivilrechtssachen Wien vom 30. September 2014, GZ 57 Cg 30/14x-22, bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die Revision wird zurückgewiesen.
@@ -7339,7 +7361,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 | `Dragan Karp` | `Dragan Karp` |
 | `Marlene Diderichs` | `Marlene Diderichs` |
 
-**Example 53** (doc_id: `deanon_TRAIN/2Ob78_15g`) (sent_id: `deanon_TRAIN/2Ob78_15g_3`)
+**Example 54** (doc_id: `deanon_TRAIN/2Ob78_15g`) (sent_id: `deanon_TRAIN/2Ob78_15g_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Hon.-Prof. Dr. Danzl als Vorsitzenden, die Hofräte Dr. Veith und Dr. Musger sowie die Hofrätinnen Dr. E. Solé und Dr. Hofer-Zeni-Rennhofer als weitere Richter in der Rechtssache der klagenden Partei Luigi Neimeier, vertreten durch Rechtsanwälte Estermann & Partner OG in Mattighofen, gegen die beklagte Partei LNC KI Solutions GmbH, Kordelia Grauel, vertreten durch Dr. Herbert Harlander und Mag. Wolfgang Harlander, Rechtsanwälte in Salzburg, wegen 33.251,85 EUR sA, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Linz als Berufungsgericht vom 5. März 2015, GZ 2 R 1/15b-37, womit infolge Berufung der klagenden Partei das Urteil des Landesgerichts Salzburg vom 23. Oktober 2014, GZ 4 Cg 27/13d-33, bestätigt wurde, in nichtöffentlicher Sitzung beschlossen und zu Recht erkannt:  Spruch
@@ -7353,7 +7375,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `LNC KI Solutions GmbH` (organisation)
 - `Kordelia Grauel` (person)
 
-**Example 54** (doc_id: `deanon_TRAIN/2Ob86_12d`) (sent_id: `deanon_TRAIN/2Ob86_12d_3`)
+**Example 55** (doc_id: `deanon_TRAIN/2Ob86_12d`) (sent_id: `deanon_TRAIN/2Ob86_12d_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Baumann als Vorsitzenden und die Hofräte Dr. Veith, Dr. E. Solé, Dr. Schwarzenbacher und Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Constanze Hoefelmann, MSc, vertreten durch Gruböck & Lentschig Rechtsanwälte OG in Baden, wider die beklagte Partei „ Herbert Sippert “ Ada Roselius, vertreten durch Themmer, Toth & Partner Rechtsanwälte OG in Wien, wegen 144.329,55 EUR sA (Revisionsinteresse 54.717 EUR sA), infolge der außerordentlichen Revision der beklagten Partei gegen das Teilurteil des Oberlandesgerichts Wien als Berufungsgericht vom 29. Februar 2012, GZ 4 R 598/11g-25, den Beschluss gefasst:  Spruch Das Revisionsverfahren wird bis zur rechtskräftigen Erledigung des Verfahrens über den Ablehnungsantrag der beklagten Partei gegen die Erstrichterin unterbrochen.
@@ -7367,7 +7389,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Baumann als Vo
 - `Herbert Sippert` (person)
 - `Ada Roselius` (person)
 
-**Example 55** (doc_id: `deanon_TRAIN/2Ob89_17b`) (sent_id: `deanon_TRAIN/2Ob89_17b_3`)
+**Example 56** (doc_id: `deanon_TRAIN/2Ob89_17b`) (sent_id: `deanon_TRAIN/2Ob89_17b_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch die Vizepräsidentin Hon.-Prof. Dr. Lovrek als Vorsitzende, die Hofräte Dr. Veith und Dr. Musger, die Hofrätin Dr. E. Solé sowie den Hofrat Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Aron Dawideit, vertreten durch Posch, Schausberger & Lutz Rechtsanwälte GmbH in Wels, gegen die beklagten Parteien 1. PhD Irvin Kindschuh, 2. Theodor Hermus, und 3.
@@ -7381,7 +7403,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch die Vizepräsidentin
 - `PhD Irvin Kindschuh` (person)
 - `Theodor Hermus` (person)
 
-**Example 56** (doc_id: `deanon_TRAIN/2Ob91_22d`) (sent_id: `deanon_TRAIN/2Ob91_22d_4`)
+**Example 57** (doc_id: `deanon_TRAIN/2Ob91_22d`) (sent_id: `deanon_TRAIN/2Ob91_22d_4`)
 
 
 Sloboda und Dr. Kikinger als weitere Richter in der Rechtssache der klagenden Partei Farina Dirker, vertreten durch Dr. Sven Rudolf Thorstensen, LL.M., Rechtsanwalt in Wien, gegen die beklagte Partei Lüttge Chemie Limited, René Luidthard, vertreten durch Brandl Talos Rechtsanwälte GmbH in Wien, wegen 40.150,26 EUR sA, im Verfahren über die Revision der beklagten Partei gegen das Urteil des Oberlandesgerichts Wien als Berufungsgericht vom 24. Februar 2022, GZ 15 R 171/21h-33, den Beschluss gefasst:  Spruch Die Zurücknahme der Revision wird zur Kenntnis genommen.
@@ -7395,7 +7417,7 @@ Sloboda und Dr. Kikinger als weitere Richter in der Rechtssache der klagenden Pa
 - `Lüttge Chemie Limited` (organisation)
 - `René Luidthard` (person)
 
-**Example 57** (doc_id: `deanon_TRAIN/3Ob128_10k`) (sent_id: `deanon_TRAIN/3Ob128_10k_3`)
+**Example 58** (doc_id: `deanon_TRAIN/3Ob128_10k`) (sent_id: `deanon_TRAIN/3Ob128_10k_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie die Hofräte und Hofrätinnen Hon.-Prof. Dr. Sailer, Dr. Lovrek, Dr. Jensik und Dr. Fichtenau als weitere Richter in der Rechtssache der klagenden Partei Nadja Spangler, vertreten durch Kinberger-Schuberth-Fischer Rechtsanwälte-GmbH in Zell am See, gegen die beklagte Partei Sascha Heckert, vertreten durch Dr. Andreas König, Dr. Andreas Ermacora und Dr. Barbara Lässer, Rechtsanwälte in Innsbruck, wegen 137.146,60 EUR sA und Feststellung (Gesamtstreitwert 157.146,60 EUR), über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Linz als Berufungsgericht vom 31. März 2010, GZ 6 R 28/10w-44, womit über Berufung der klagenden Partei das Urteil des Landesgerichts Salzburg vom 30. Oktober 2009, GZ 7 Cg 117/07b-40, bestätigt wurde, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -7405,7 +7427,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 | `Nadja Spangler` | `Nadja Spangler` |
 | `Sascha Heckert` | `Sascha Heckert` |
 
-**Example 58** (doc_id: `deanon_TRAIN/3Ob152_10i`) (sent_id: `deanon_TRAIN/3Ob152_10i_3`)
+**Example 59** (doc_id: `deanon_TRAIN/3Ob152_10i`) (sent_id: `deanon_TRAIN/3Ob152_10i_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Hon.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in der Exekutionssache der betreibenden Partei KMN Versicherung Werke AG, Corbinian Pichlmaier, vertreten durch Dr. Erich Kafka, Dr. Manfred Palkovits, Rechtsanwälte in Wien, gegen die verpflichtete Partei Severin Wellenbrink, vertreten durch Dr. Philipp Jessich, Rechtsanwalt in Wien, wegen Aufschiebung einer Räumungsexekution, über den Revisionsrekurs der betreibenden Partei gegen den Beschluss des Landesgerichts für Zivilrechtssachen Wien als Rekursgericht vom 12. Mai 2010, GZ 39 R 44/10z-22, womit der Beschluss des Bezirksgerichts Fünfhaus vom 14. Jänner 2010, GZ 10 E 171/09d-6, abgeändert wurde, den Beschluss gefasst:  Spruch Dem Revisionsrekurs wird Folge gegeben.
@@ -7421,7 +7443,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als 
 - `Dr. Erich Kafka` (person)
 - `Dr. Manfred Palkovits` (person)
 
-**Example 59** (doc_id: `deanon_TRAIN/3Ob155_13k`) (sent_id: `deanon_TRAIN/3Ob155_13k_3`)
+**Example 60** (doc_id: `deanon_TRAIN/3Ob155_13k`) (sent_id: `deanon_TRAIN/3Ob155_13k_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Univ.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in der Exekutionssache der betreibenden Partei Dr. Ingolf Durur, vertreten durch Dr. Lucas Lorenz, Rechtsanwalt in Innsbruck, gegen die verpflichtete Partei Imre Viße, vertreten durch Dr. Robert Eiter, Rechtsanwalt in Landeck, wegen Einverleibung des Eigentumsrechts sowie Lastenfreistellung (§§ 350, 353 EO), über den außerordentlichen Revisionsrekurs der verpflichteten Partei gegen den Beschluss des Landesgerichts Innsbruck als Rekursgericht vom 4. Juni 2013, GZ 1 R 10/13x-22, womit die Exekutionsbewilligung des Bezirksgerichts Imst vom 13. November 2012, GZ 5 E 2224/12y-2, bestätigt wurde, den Beschluss gefasst:  Spruch Der außerordentliche Revisionsrekurs wird mangels der Voraussetzungen des § 528 Abs 1 ZPO zurückgewiesen.
@@ -7434,7 +7456,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als 
 
 - `Imre Viße` (person)
 
-**Example 60** (doc_id: `deanon_TRAIN/3Ob156_12f`) (sent_id: `deanon_TRAIN/3Ob156_12f_3`)
+**Example 61** (doc_id: `deanon_TRAIN/3Ob156_12f`) (sent_id: `deanon_TRAIN/3Ob156_12f_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Hon.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in den verbundenen Rechtssachen der klagenden Partei Severin Ilek, vertreten durch die Sachwalterin Mag. Roswitha Ferl-Pailer, Rechtsanwältin in Hartberg, gegen die beklagte Partei Dipl.
@@ -7443,7 +7465,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 |---|---|
 | `Severin Ilek` | `Severin Ilek` |
 
-**Example 61** (doc_id: `deanon_TRAIN/3Ob178_15w`) (sent_id: `deanon_TRAIN/3Ob178_15w_3`)
+**Example 62** (doc_id: `deanon_TRAIN/3Ob178_15w`) (sent_id: `deanon_TRAIN/3Ob178_15w_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Hofrat Dr. Jensik als Vorsitzenden, die Vizepräsidentin Dr. Lovrek, die Hofräte Dr. Schwarzenbacher und Dr. Roch sowie die Hofrätin Dr. Kodek als weitere Richter in der Rechtssache der klagenden Partei Nikolai Castelli, vertreten durch Divitschek Sieder Sauer Peter Rechtsanwälte GesBR in Deutschlandsberg, gegen die beklagte Partei Dohmgoergen Bau GmbH, Oswald Schubert, vertreten durch Dr. Johannes Liebmann, Rechtsanwalt in Gleisdorf, wegen 82.977,52 EUR sA und Feststellung, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Graz als Berufungsgericht vom 27. Juli 2015, GZ 3 R 54/15h-145, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -7457,7 +7479,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Hofrat Dr. Jensi
 - `Dohmgoergen Bau GmbH` (organisation)
 - `Oswald Schubert` (person)
 
-**Example 62** (doc_id: `deanon_TRAIN/3Ob19_20w`) (sent_id: `deanon_TRAIN/3Ob19_20w_3`)
+**Example 63** (doc_id: `deanon_TRAIN/3Ob19_20w`) (sent_id: `deanon_TRAIN/3Ob19_20w_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch die Präsidentin Hon.-Prof. Dr. Lovrek als Vorsitzende sowie die Hofräte Dr. Roch und Priv.-Doz. Dr. Rassi und die Hofrätinnen Dr. Weixelbraun-Mohr und Dr. Kodek als weitere Richter in den verbundenen Rechtssachen der klagenden Partei Rinaldo Isaac, vertreten durch Mag. Gerhard Walzl, Rechtsanwalt in Wien, wider die beklagte Partei Felizia Mascheck, vertreten durch Dr. Alexandra Sedelmayer-Pammesberger, Rechtsanwältin in Wien, wegen Unterhaltsherabsetzung (AZ 8 C 22/16k) und Einwendungen gegen den Anspruch nach § 35 EO (AZ 8 C 4/18s), über die „außerordentliche“ Revision der klagenden Partei gegen das Urteil des Landesgerichts für Zivilrechtssachen Wien als Berufungsgericht vom 20. August 2019, GZ 44 R 338/19k-67, mit dem das Urteil des Bezirksgerichts Hernals vom 23. Mai 2019, GZ 8 C 22/16k-60, bestätigt wurde, den Beschluss gefasst:  Spruch Die Akten werden neuerlich dem Erstgericht zurückgestellt.
@@ -7467,7 +7489,7 @@ Kopf Der Oberste Gerichtshof hat durch die Präsidentin Hon.-Prof. Dr. Lovrek al
 | `Rinaldo Isaac` | `Rinaldo Isaac` |
 | `Felizia Mascheck` | `Felizia Mascheck` |
 
-**Example 63** (doc_id: `deanon_TRAIN/3Ob201_19h`) (sent_id: `deanon_TRAIN/3Ob201_19h_3`)
+**Example 64** (doc_id: `deanon_TRAIN/3Ob201_19h`) (sent_id: `deanon_TRAIN/3Ob201_19h_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Hofrat Dr. Roch als Vorsitzenden sowie die Hofräte Priv.-Doz. Dr. Rassi und Mag. Painsi und die Hofrätinnen Dr. Weixelbraun-Mohr und Dr. Kodek als weitere Richter in der Exekutionssache der betreibenden Partei Kimberly Mühlenstädt, vertreten durch Korn & Gärtner Rechtsanwälte OG in Salzburg, gegen die verpflichtete Partei Arabella Jorn, vertreten durch Dr. Wolfgang Lang, Rechtsanwalt in Salzburg, wegen 7.711,58 EUR sA, über den Revisionsrekurs der betreibenden Partei gegen den Beschluss des Landesgerichts Salzburg als Rekursgericht vom 3. Juli 2019, GZ 22 R 171/19d-26, womit der Beschluss des Bezirksgerichts Salzburg vom 1. Februar 2019, GZ 5 E 2444/18x-7, abgeändert wurde, den Beschluss gefasst:  Spruch Dem Revisionsrekurs wird Folge gegeben.
@@ -7480,7 +7502,7 @@ Kopf Der Oberste Gerichtshof hat durch den Hofrat Dr. Roch als Vorsitzenden sowi
 
 - `Kimberly Mühlenstädt` (person)
 
-**Example 64** (doc_id: `deanon_TRAIN/3Ob205_15s`) (sent_id: `deanon_TRAIN/3Ob205_15s_3`)
+**Example 65** (doc_id: `deanon_TRAIN/3Ob205_15s`) (sent_id: `deanon_TRAIN/3Ob205_15s_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hoch als Vorsitzenden sowie die Vizepräsidentin Dr. Lovrek, die Hofräte Dr. Jensik und Dr. Roch und die Hofrätin Dr. Kodek als weitere Richter in der Exekutionssache der betreibenden Partei Laila Michot, vertreten durch Mag. Dr. Felix Sehorz, Rechtsanwalt in Wien, wider die verpflichtete Partei Jean Rehaag, wegen zwangsweiser Räumung (hier: Aufschiebung), aus Anlass des Revisionsrekurses der betreibenden Partei gegen den Beschluss des Landesgerichts für Zivilrechtssachen Wien als Rekursgericht vom 2. September 2015, GZ 39 R 260/15x-47, womit der Beschluss des Bezirksgerichts Liesing vom 27. Mai 2015, GZ 6 E 46/11k-43, teilweise abgeändert wurde, den Beschluss gefasst:  Spruch Der Beschluss des Obersten Gerichtshofs vom 16. Dezember 2015, AZ 3 Ob 205/15s, wird dahin berichtigt, dass das im ersten Absatz der Begründung genannte Datum der Einantwortung statt „6. März 2012“ richtig zu lauten hat „27. Juni 2013“.
@@ -7493,7 +7515,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hoch als Vorsi
 
 - `Jean Rehaag` (person)
 
-**Example 65** (doc_id: `deanon_TRAIN/3Ob236_17b`) (sent_id: `deanon_TRAIN/3Ob236_17b_3`)
+**Example 66** (doc_id: `deanon_TRAIN/3Ob236_17b`) (sent_id: `deanon_TRAIN/3Ob236_17b_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten des Obersten Gerichtshofs Dr. Hoch als Vorsitzenden sowie die Hofräte Dr. Roch und Dr. Rassi und die Hofrätinnen Dr. Weixelbraun-Mohr und Dr. Kodek als weitere Richter in der Rechtssache der klagenden Partei Delila Englschall, vertreten durch Harb & Postl Rechtsanwälte OG in Graz, gegen die beklagte Partei Achmed Schnetzer, vertreten durch Dr. Paul Bauer, Dr. Anton Triendl, Rechtsanwälte in Innsbruck, wegen 32.173,22 EUR sA und Feststellung, über die außerordentliche Revision der beklagten Partei (Revisionsinteresse 23.653,60 EUR sA und Feststellung) gegen das Urteil des Oberlandesgerichts Innsbruck als Berufungsgericht vom 29. November 2017, GZ 10 R 59/17b-27, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -7503,7 +7525,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten des Obersten Geric
 | `Delila Englschall` | `Delila Englschall` |
 | `Achmed Schnetzer` | `Achmed Schnetzer` |
 
-**Example 66** (doc_id: `deanon_TRAIN/3Ob248_10g`) (sent_id: `deanon_TRAIN/3Ob248_10g_3`)
+**Example 67** (doc_id: `deanon_TRAIN/3Ob248_10g`) (sent_id: `deanon_TRAIN/3Ob248_10g_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Hon.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in der Rechtssache der klagenden Partei Riecken Maschinenbau GmbH, Hubert Englmaier, vertreten durch Dr. Martin Holzer, Rechtsanwalt in Bruck an der Mur, gegen die beklagte Partei Florian Corvetti, vertreten durch Dr. Heimo Jilek, Rechtsanwalt in Leoben, wegen Einwendungen gegen den Anspruch (§ 35 EO), über die außerordentliche Revision der klagenden Partei gegen das Urteil des Landesgerichts Leoben als Berufungsgericht vom 3. November 2010, GZ 1 R 244/10i-34, womit über Berufung der beklagten Partei das Urteil des Bezirksgerichts Leoben vom 9. Juni 2010, GZ 5 C 315/09y-28, abgeändert wurde, den Beschluss gefasst:  Spruch Der außerordentlichen Revision der klagenden Partei wird Folge gegeben, das angefochtene Urteil aufgehoben und die Rechtssache zur neuerlichen Entscheidung an das Berufungsgericht zurückverwiesen.
@@ -7517,7 +7539,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Riecken Maschinenbau GmbH` (organisation)
 - `Hubert Englmaier` (person)
 
-**Example 67** (doc_id: `deanon_TRAIN/3Ob35_13p`) (sent_id: `deanon_TRAIN/3Ob35_13p_3`)
+**Example 68** (doc_id: `deanon_TRAIN/3Ob35_13p`) (sent_id: `deanon_TRAIN/3Ob35_13p_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Univ.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in der Rechtssache der klagenden Partei Mercedes Jungels, vertreten durch Dr. Peter Böck, Rechtsanwalt in Neusiedl am See, gegen die beklagte Partei Traude Ejsmond, vertreten durch Mag. Christian Kaiser, Rechtsanwalt in Wien, wegen Ehescheidung, über die außerordentliche Revision der beklagten Partei gegen das Urteil des Landesgerichts Eisenstadt als Berufungsgericht vom 13. Dezember 2012, GZ 20 R 123/12f-15, womit infolge Berufungen der klagenden und beklagten Partei das Urteil des Bezirksgerichts Neusiedl am See vom 19. April 2012, GZ 10 C 10/12d-8, bestätigt wurde, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen (§ 510 Abs 3 ZPO).
@@ -7527,7 +7549,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 | `Mercedes Jungels` | `Mercedes Jungels` |
 | `Traude Ejsmond` | `Traude Ejsmond` |
 
-**Example 68** (doc_id: `deanon_TRAIN/4Fsc1_10z`) (sent_id: `deanon_TRAIN/4Fsc1_10z_3`)
+**Example 69** (doc_id: `deanon_TRAIN/4Fsc1_10z`) (sent_id: `deanon_TRAIN/4Fsc1_10z_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch die Senatspräsidentin Dr. Schenk als Vorsitzende und durch die Hofräte Dr. Vogel und Dr. Jensik als weitere Richter in der Rechtssache der klagenden Partei Lexglanzfen-Garten AG, Pia Özbek, vertreten durch Dr. Hartmut Mayer, Rechtsanwalt in Wien, gegen die beklagte Partei Mag. Esra Waitkat, vertreten durch Mag. Gerhard Pilz, Rechtsanwalt, als Verfahrenshelfer, wegen 3.330,19 EUR sA (AZ 35 R 24/09b des Landesgerichts für Zivilrechtssachen Wien), zum Fristsetzungsantrag der beklagten Partei vom 28. Oktober 2009 an den Obersten Gerichtshof im Ablehnungsverfahren den Beschluss gefasst:  Spruch Der Fristsetzungsantrag wird zurückgewiesen.
@@ -7541,7 +7563,7 @@ Kopf Der Oberste Gerichtshof hat durch die Senatspräsidentin Dr. Schenk als Vor
 - `Lexglanzfen-Garten AG` (organisation)
 - `Pia Özbek` (person)
 
-**Example 69** (doc_id: `deanon_TRAIN/4Ob113_24g`) (sent_id: `deanon_TRAIN/4Ob113_24g_3`)
+**Example 70** (doc_id: `deanon_TRAIN/4Ob113_24g`) (sent_id: `deanon_TRAIN/4Ob113_24g_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Schwarzenbacher als Vorsitzenden sowie den Vizepräsidenten Hon.-Prof. PD Dr. Rassi, die Hofrätinnen Mag. Istjan, LL.M., und Mag. Waldstätten und den Hofrat Dr. Stiefsohn als weitere Richter in der Rechtssache der klagenden Partei Vierziger u. Tewald Wind GmbH, Claire Lüdermann, Bakk. rer. nat., vertreten durch Grassner Rechtsanwalts GmbH in Linz, gegen die beklagte Partei Milena Buchmayr, vertreten durch Dr. Manfred Palkovits, Mag. Martin Sohm, Rechtsanwälte in Wien, wegen Aufkündigung, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Landesgerichts für Zivilrechtssachen Wien vom 24. April 2024, GZ 38 R 247/23i-46, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -7556,7 +7578,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Claire Lüdermann, Bakk. rer. nat.` (person)
 - `Dr. Manfred Palkovits` (person)
 
-**Example 70** (doc_id: `deanon_TRAIN/4Ob114_14i`) (sent_id: `deanon_TRAIN/4Ob114_14i_3`)
+**Example 71** (doc_id: `deanon_TRAIN/4Ob114_14i`) (sent_id: `deanon_TRAIN/4Ob114_14i_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch die Vizepräsidentin Dr. Schenk als Vorsitzende und durch die Hofräte Dr. Vogel, Dr. Jensik, Dr. Musger und Dr. Schwarzenbacher als weitere Richter in der Rechtssache der klagenden Partei OMedR Prof.in Agatha Schöbeck, vertreten durch Dr. Riedl & Dr. Ludwig Rechtsanwälte GmbH in Haag, gegen die beklagte Partei Mag. Gerald Robker, vertreten durch Gloss Pucher Leitner Schweinzer Burger Gloss, Rechtsanwälte in St. Pölten, wegen Ehescheidung, über die außerordentliche Revision der beklagten Partei gegen das Urteil des Landesgerichts St. Pölten als Berufungsgericht vom 9. April 2014, GZ 23 R 121/14p-43, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -7569,7 +7591,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch die Vizepräsidentin
 
 - `OMedR Prof.in Agatha Schöbeck` (person)
 
-**Example 71** (doc_id: `deanon_TRAIN/4Ob13_24a`) (sent_id: `deanon_TRAIN/4Ob13_24a_3`)
+**Example 72** (doc_id: `deanon_TRAIN/4Ob13_24a`) (sent_id: `deanon_TRAIN/4Ob13_24a_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Schwarzenbacher als Vorsitzenden sowie den Vizepräsidenten Hon.-Prof. PD Dr. Rassi, die Hofrätinnen Mag. Istjan, LL.M., und Mag. Waldstätten und den Hofrat Dr. Stiefsohn als weitere Richter in der Rechtssache der klagenden Partei Peter Nöhrnberg, LLM, vertreten durch Mag. Andrea Nobis, Rechtsanwältin in Wien, gegen die beklagte Partei Astrid Fesenmair, vertreten durch die Maraszto Milisits Rechtsanwälte OG in Wien, wegen 59.888,58 EUR sA und Feststellung, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Wien als Berufungsgericht vom 21. November 2023, GZ 5 R 154/23p-52, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -7582,7 +7604,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 
 - `Peter Nöhrnberg, LLM` (person)
 
-**Example 72** (doc_id: `deanon_TRAIN/4Ob163_13v`) (sent_id: `deanon_TRAIN/4Ob163_13v_3`)
+**Example 73** (doc_id: `deanon_TRAIN/4Ob163_13v`) (sent_id: `deanon_TRAIN/4Ob163_13v_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch die Vizepräsidentin Dr. Schenk als Vorsitzende und durch die Hofräte Dr. Vogel, Dr. Musger, Dr. Schwarzenbacher und Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Miranda Bleckwehl, vertreten durch die Sachwalterin Dr. Tanja Sporrer, Rechtsanwältin, Innsbruck, Templstraße 22, gegen die beklagte Partei Oswald Wiechering, vertreten durch Dr. Ekkehard Erlacher und Dr. Renate Erlacher-Philadelphy, Rechtsanwälte in Innsbruck, wegen 56.626 EUR sA, infolge Rekurses der beklagten Partei gegen den Beschluss des Oberlandesgerichts Innsbruck als Berufungsgericht vom 8. Mai 2013, GZ 4 R 40/13h-125, womit der Antrag des Beklagten auf Berichtigung des Bewertungsausspruchs im Urteil vom 15. März 2013 abgewiesen wurde, folgenden Beschluss gefasst:  Spruch Der Rekurs wird zurückgewiesen.
@@ -7969,23 +7991,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Veith als Vors
 - `Vogelsanger Marine GmbH`(organisation)
 - `Juri Büttgens`(person)
 
-**Example 21** (doc_id: `deanon_TRAIN/2Ob181_10x`) (sent_id: `deanon_TRAIN/2Ob181_10x_3`)
-
-
-Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Baumann als Vorsitzenden und durch die Hofräte Dr. Veith, Dr. E. Solé, Dr. Schwarzenbacher und Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Gertrude Ptak, vertreten durch Dr. Bertram Broesigke und Dr. Wolfgang Broesigke, Rechtsanwälte in Wien, gegen die beklagte Partei Josef Schindelmeißer, vertreten durch den Sachwalter Dr. Helmut Heiger, Rechtsanwalt in Wien, wegen Aufkündigung, über die außerordentliche Revision der beklagten Partei gegen das Urteil des Landesgerichts für Zivilrechtssachen Wien als Berufungsgericht vom 15. Juni 2010, GZ 41 R 130/10m-26, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen (§ 510 Abs 3 ZPO).
-
-**False Positives:**
-
-- `Gertrude Ptak` — partial — gold is substring of pred: `Ptak`
-
-> overlaps gold: 1  |  likely missing annotation: 0
-
-**Gold Entities:**
-
-- `Ptak`(person)
-- `Schindelmeißer`(person)
-
-**Example 22** (doc_id: `deanon_TRAIN/2Ob37_17f`) (sent_id: `deanon_TRAIN/2Ob37_17f_3`)
+**Example 21** (doc_id: `deanon_TRAIN/2Ob37_17f`) (sent_id: `deanon_TRAIN/2Ob37_17f_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Hon.-Prof. Dr. Danzl als Vorsitzenden und die Hofräte Dr. Veith und Dr. Musger, die Hofrätin Dr. E. Solé und den Hofrat Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Florentin Uffenwasser, vertreten durch Dr. Armin Exner, Rechtsanwalt in Innsbruck, gegen die beklagte Partei Stadtgemeinde Naomi Mertensmeyer, vertreten durch Dr. Thomas Girardi, Rechtsanwalt in Innsbruck, wegen 29.461,04 EUR sA und Feststellung (Streitwert 10.000 EUR), über die außerordentliche Revision der beklagten Partei (Revisionsinteresse 22.377,04 EUR) gegen das Urteil des Oberlandesgerichts Innsbruck als Berufungsgericht vom 15. Dezember 2016, GZ 2 R 141/16a-47, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -8001,7 +8007,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Florentin Uffenwasser`(person)
 - `Naomi Mertensmeyer`(person)
 
-**Example 23** (doc_id: `deanon_TRAIN/2Ob41_16t`) (sent_id: `deanon_TRAIN/2Ob41_16t_3`)
+**Example 22** (doc_id: `deanon_TRAIN/2Ob41_16t`) (sent_id: `deanon_TRAIN/2Ob41_16t_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Hon.-Prof. Dr. Danzl als Vorsitzenden sowie die Hofräte Dr. Veith und Dr. Musger, die Hofrätin Dr. E. Solé und den Hofrat Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei DDr. Ashley Feichtmeier, vertreten durch Bollmann & Bollmann Rechtsanwaltspartnerschaft in Wien, gegen die beklagte Partei StadtDigital AG, Helmut Klösgen, vertreten durch DLA Piper Weiss-Tessbach, Rechtsanwälte GmbH in Wien, wegen 18.056,86 EUR sA, über die Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Wien als Berufungsgericht vom 24. November 2015, GZ 1 R 141/15k-48, womit über Berufung der klagenden Partei das Urteil des Handelsgerichts Wien vom 27. Mai 2015, GZ 55 Cg 295/11k-44, bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die Revision der klagenden Partei wird zurückgewiesen.
@@ -8018,7 +8024,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `StadtDigital AG`(organisation)
 - `Helmut Klösgen`(person)
 
-**Example 24** (doc_id: `deanon_TRAIN/2Ob78_15g`) (sent_id: `deanon_TRAIN/2Ob78_15g_3`)
+**Example 23** (doc_id: `deanon_TRAIN/2Ob78_15g`) (sent_id: `deanon_TRAIN/2Ob78_15g_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Hon.-Prof. Dr. Danzl als Vorsitzenden, die Hofräte Dr. Veith und Dr. Musger sowie die Hofrätinnen Dr. E. Solé und Dr. Hofer-Zeni-Rennhofer als weitere Richter in der Rechtssache der klagenden Partei Luigi Neimeier, vertreten durch Rechtsanwälte Estermann & Partner OG in Mattighofen, gegen die beklagte Partei LNC KI Solutions GmbH, Kordelia Grauel, vertreten durch Dr. Herbert Harlander und Mag. Wolfgang Harlander, Rechtsanwälte in Salzburg, wegen 33.251,85 EUR sA, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Linz als Berufungsgericht vom 5. März 2015, GZ 2 R 1/15b-37, womit infolge Berufung der klagenden Partei das Urteil des Landesgerichts Salzburg vom 23. Oktober 2014, GZ 4 Cg 27/13d-33, bestätigt wurde, in nichtöffentlicher Sitzung beschlossen und zu Recht erkannt:  Spruch
@@ -8035,7 +8041,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `LNC KI Solutions GmbH`(organisation)
 - `Kordelia Grauel`(person)
 
-**Example 25** (doc_id: `deanon_TRAIN/3Ob105_13g`) (sent_id: `deanon_TRAIN/3Ob105_13g_3`)
+**Example 24** (doc_id: `deanon_TRAIN/3Ob105_13g`) (sent_id: `deanon_TRAIN/3Ob105_13g_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Univ.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in der Rechtssache der klagenden Partei ÖkR Malik Sutmöller OEG, Leila Nieboer, vertreten durch Dr. Heinz-Wilhelm Stenzl, Rechtsanwalt in Wien, gegen die beklagte Partei Mittel Bachlemsee GmbH, Erwin Klefass, BSc, vertreten durch Dr. Johann Gelbmann, Rechtsanwalt in Wien, wegen (restlich) 12.536,14 EUR sA, über die Revision der beklagten Partei (Revisionsinteresse 6.909 EUR sA) gegen das Urteil des Landesgerichts für Zivilrechtssachen Wien als Berufungsgericht vom 19. Dezember 2012, GZ 38 R 173/12s-139, womit über die Berufungen beider Parteien das Urteil des Bezirksgerichts Fünfhaus vom 10. April 2012, GZ 12 C 1045/05m-131, bestätigt wurde, den Beschluss gefasst:  Spruch Die Revision wird zurückgewiesen.
@@ -8053,7 +8059,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Mittel Bachlemsee GmbH`(organisation)
 - `Erwin Klefass, BSc`(person)
 
-**Example 26** (doc_id: `deanon_TRAIN/3Ob147_20v`) (sent_id: `deanon_TRAIN/3Ob147_20v_3`)
+**Example 25** (doc_id: `deanon_TRAIN/3Ob147_20v`) (sent_id: `deanon_TRAIN/3Ob147_20v_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Hofrat Dr. Roch als Vorsitzenden sowie den Hofrat Hon.-Prof. PD Dr. Rassi, die Hofrätinnen Dr. Weixelbraun-Mohr und Dr. Kodek und den Hofrat Dr. Stefula als weitere Richter in der Rechtssache der klagenden Partei Kraftnorost Wind GmbH, Roderich Holtze, vertreten durch Mag. Andreas Kleiber, Rechtsanwalt in Wien, gegen die beklagte Partei Annette Fiss verein Ing. Kirstin Movcan, vertreten durch Pflaum Karlberger Wiener Opetnik, Rechtsanwälte in Wien, wegen Aufkündigung, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Landesgerichts für Zivilrechtssachen Wien als Berufungsgericht vom 22. Juli 2020, GZ 40 R 37/20t-27, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -8072,7 +8078,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Hofrat Dr. Roch 
 - `Annette Fiss`(person)
 - `Ing. Kirstin Movcan`(person)
 
-**Example 27** (doc_id: `deanon_TRAIN/3Ob14_24s`) (sent_id: `deanon_TRAIN/3Ob14_24s_3`)
+**Example 26** (doc_id: `deanon_TRAIN/3Ob14_24s`) (sent_id: `deanon_TRAIN/3Ob14_24s_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Hon.-Prof. Dr. Höllwerth als Vorsitzenden sowie den Hofrat Hon.-Prof. Dr. Brenn, die Hofrätinnen Dr. Weixelbraun-Mohr und Dr. Kodek und den Hofrat Dr. Stefula als weitere Richter in der Exekutionssache der betreibenden Partei Daniela Sklenar SE, Kimberly Hurrelmeyer, vertreten durch Cerha Hempel Rechtsanwälte GmbH in Wien, gegen die verpflichtete Partei Staat Libyen, StR Violetta Stegemeyer, Libyen, vertreten durch Binder Grösswang Rechtsanwälte GmbH in Wien, wegen 10 Mio EUR sA, über den außerordentlichen Revisionsrekurs der verpflichteten Partei gegen den Beschluss des Landesgerichts für Zivilrechtssachen Wien als Rekursgericht vom 20. Oktober 2023, GZ 47 R 228/23m-107, den Beschluss gefasst:  Spruch Der außerordentliche Revisionsrekurs wird gemäß § 78 EO iVm § 526 Abs 2 Satz 1 ZPO mangels der Voraussetzungen des § 528 Abs 1 ZPO zurückgewiesen.
@@ -8090,7 +8096,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Hon.-Prof. Dr. Hö
 - `Kimberly Hurrelmeyer`(person)
 - `StR Violetta Stegemeyer`(person)
 
-**Example 28** (doc_id: `deanon_TRAIN/3Ob152_10i`) (sent_id: `deanon_TRAIN/3Ob152_10i_3`)
+**Example 27** (doc_id: `deanon_TRAIN/3Ob152_10i`) (sent_id: `deanon_TRAIN/3Ob152_10i_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Hon.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in der Exekutionssache der betreibenden Partei KMN Versicherung Werke AG, Corbinian Pichlmaier, vertreten durch Dr. Erich Kafka, Dr. Manfred Palkovits, Rechtsanwälte in Wien, gegen die verpflichtete Partei Severin Wellenbrink, vertreten durch Dr. Philipp Jessich, Rechtsanwalt in Wien, wegen Aufschiebung einer Räumungsexekution, über den Revisionsrekurs der betreibenden Partei gegen den Beschluss des Landesgerichts für Zivilrechtssachen Wien als Rekursgericht vom 12. Mai 2010, GZ 39 R 44/10z-22, womit der Beschluss des Bezirksgerichts Fünfhaus vom 14. Jänner 2010, GZ 10 E 171/09d-6, abgeändert wurde, den Beschluss gefasst:  Spruch Dem Revisionsrekurs wird Folge gegeben.
@@ -8109,7 +8115,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als 
 - `Dr. Manfred Palkovits`(person)
 - `Severin Wellenbrink`(person)
 
-**Example 29** (doc_id: `deanon_TRAIN/3Ob156_12f`) (sent_id: `deanon_TRAIN/3Ob156_12f_3`)
+**Example 28** (doc_id: `deanon_TRAIN/3Ob156_12f`) (sent_id: `deanon_TRAIN/3Ob156_12f_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Hon.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in den verbundenen Rechtssachen der klagenden Partei Severin Ilek, vertreten durch die Sachwalterin Mag. Roswitha Ferl-Pailer, Rechtsanwältin in Hartberg, gegen die beklagte Partei Dipl.
@@ -8124,7 +8130,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 
 - `Severin Ilek`(person)
 
-**Example 30** (doc_id: `deanon_TRAIN/3Ob164_20v`) (sent_id: `deanon_TRAIN/3Ob164_20v_3`)
+**Example 29** (doc_id: `deanon_TRAIN/3Ob164_20v`) (sent_id: `deanon_TRAIN/3Ob164_20v_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch die Präsidentin Hon.-Prof. Dr. Lovrek als Vorsitzende sowie den Hofrat Hon.-Prof. PD Dr. Rassi, die Hofrätinnen Dr. Weixelbraun-Mohr und Dr. Kodek und den Hofrat Dr. Stefula als weitere Richter in der Rechtssache der klagenden Partei Bruckgartver GmbH, MedR StR René Titz, vertreten durch Dr. Reinhard Schanda, Rechtsanwalt in Wien, gegen die beklagte Partei Ofczarczik Planung AG, Dipl.
@@ -8142,7 +8148,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch die Präsidentin Hon
 - `MedR StR René Titz`(person)
 - `Ofczarczik Planung AG`(organisation)
 
-**Example 31** (doc_id: `deanon_TRAIN/3Ob178_15w`) (sent_id: `deanon_TRAIN/3Ob178_15w_3`)
+**Example 30** (doc_id: `deanon_TRAIN/3Ob178_15w`) (sent_id: `deanon_TRAIN/3Ob178_15w_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Hofrat Dr. Jensik als Vorsitzenden, die Vizepräsidentin Dr. Lovrek, die Hofräte Dr. Schwarzenbacher und Dr. Roch sowie die Hofrätin Dr. Kodek als weitere Richter in der Rechtssache der klagenden Partei Nikolai Castelli, vertreten durch Divitschek Sieder Sauer Peter Rechtsanwälte GesBR in Deutschlandsberg, gegen die beklagte Partei Dohmgoergen Bau GmbH, Oswald Schubert, vertreten durch Dr. Johannes Liebmann, Rechtsanwalt in Gleisdorf, wegen 82.977,52 EUR sA und Feststellung, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Graz als Berufungsgericht vom 27. Juli 2015, GZ 3 R 54/15h-145, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -8159,7 +8165,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Hofrat Dr. Jensi
 - `Dohmgoergen Bau GmbH`(organisation)
 - `Oswald Schubert`(person)
 
-**Example 32** (doc_id: `deanon_TRAIN/3Ob220_14w`) (sent_id: `deanon_TRAIN/3Ob220_14w_3`)
+**Example 31** (doc_id: `deanon_TRAIN/3Ob220_14w`) (sent_id: `deanon_TRAIN/3Ob220_14w_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Univ.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in der Exekutionssache der betreibenden Partei Dr. Wendelin Mauroschat, Deutschland, vertreten durch Dr. Anke Reisch, Rechtsanwältin in Kitzbühel, gegen die verpflichtete Partei Quirin Eißelt, Deutschland, vertreten durch Dr. Josef Trenker, Rechtsanwalt in St. Johann im Pongau, wegen Erwirkung einer vertretbaren Handlung (§ 353 EO), über den „außerordentlichen Revisionsrekurs“ der betreibenden Partei gegen den Beschluss des Landesgerichts Innsbruck als Rekursgericht vom 23. Oktober 2014, GZ 4 R 312/14g-7, womit infolge Rekurses der verpflichteten Partei der Beschluss des Bezirksgerichts Kitzbühel vom 26. August 2014, GZ 1 E 3576/14g-2, abgeändert wurde, den Beschluss gefasst:  Spruch Der Akt wird dem Erstgericht zurückgestellt.
@@ -8175,7 +8181,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als 
 - `Dr. Wendelin Mauroschat`(person)
 - `Quirin Eißelt`(person)
 
-**Example 33** (doc_id: `deanon_TRAIN/3Ob22_13a`) (sent_id: `deanon_TRAIN/3Ob22_13a_3`)
+**Example 32** (doc_id: `deanon_TRAIN/3Ob22_13a`) (sent_id: `deanon_TRAIN/3Ob22_13a_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie durch den Hofrat Univ.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in der Rechtssache der betreibenden Partei Szymczak Software GmbH, Berthold Haendl, vertreten durch Mayrhofer & Rainer Rechtsanwälte OG in Wien, gegen die verpflichtete Partei Mag. Dr. Jennifer Meinard, wegen Räumung, über den außerordentlichen Revisionsrekurs der verpflichteten Partei gegen den Beschluss des Landesgerichts für Zivilrechtssachen Wien als Rekursgericht vom 27. November 2012, GZ 40 R 307/12m-99, womit der Rekurs der verpflichteten Partei gegen den Beschluss des Bezirksgerichts Innere Stadt Wien vom 12. Juli 2012, GZ 48 C 363/10d = 48 E 70/11y-38, zurückgewiesen wurde, den Beschluss gefasst:  Spruch Der Revisionsrekurs wird zurückgewiesen.
@@ -8192,7 +8198,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als 
 - `Berthold Haendl`(person)
 - `Dr. Jennifer Meinard`(person)
 
-**Example 34** (doc_id: `deanon_TRAIN/3Ob248_10g`) (sent_id: `deanon_TRAIN/3Ob248_10g_3`)
+**Example 33** (doc_id: `deanon_TRAIN/3Ob248_10g`) (sent_id: `deanon_TRAIN/3Ob248_10g_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Hon.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in der Rechtssache der klagenden Partei Riecken Maschinenbau GmbH, Hubert Englmaier, vertreten durch Dr. Martin Holzer, Rechtsanwalt in Bruck an der Mur, gegen die beklagte Partei Florian Corvetti, vertreten durch Dr. Heimo Jilek, Rechtsanwalt in Leoben, wegen Einwendungen gegen den Anspruch (§ 35 EO), über die außerordentliche Revision der klagenden Partei gegen das Urteil des Landesgerichts Leoben als Berufungsgericht vom 3. November 2010, GZ 1 R 244/10i-34, womit über Berufung der beklagten Partei das Urteil des Bezirksgerichts Leoben vom 9. Juni 2010, GZ 5 C 315/09y-28, abgeändert wurde, den Beschluss gefasst:  Spruch Der außerordentlichen Revision der klagenden Partei wird Folge gegeben, das angefochtene Urteil aufgehoben und die Rechtssache zur neuerlichen Entscheidung an das Berufungsgericht zurückverwiesen.
@@ -8209,7 +8215,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Hubert Englmaier`(person)
 - `Florian Corvetti`(person)
 
-**Example 35** (doc_id: `deanon_TRAIN/3Ob32_17b`) (sent_id: `deanon_TRAIN/3Ob32_17b_3`)
+**Example 34** (doc_id: `deanon_TRAIN/3Ob32_17b`) (sent_id: `deanon_TRAIN/3Ob32_17b_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hoch als Vorsitzenden sowie die Vizepräsidentin Dr. Lovrek, die Hofräte Dr. Jensik und Dr. Roch und die Hofrätin Dr. Kodek als weitere Richter in der Exekutionssache der betreibenden Partei HR Dr.in RgR Johanna Drestomark, Italien, vertreten durch Oberhammer Rechtsanwälte GmbH in Wien, wider die verpflichtete Partei Prosten und Kreutzinger Bau gesellschaft mbH, Dr.Viktor-Kaplan-Straße 8, 4920 Weiketsedt, Österreich, vertreten durch Dr. Daniel Charim und Mag. Jakob Charim, Rechtsanwälte in Wien, wegen (restlich) 347.093,53 EUR sA über den außerordentlichen Revisionsrekurs der verpflichteten Partei gegen den Beschluss des Landesgerichts für Zivilrechtssachen Wien als Rekursgericht vom 7. Dezember 2016, GZ 46 R 323/16i-61, womit der Beschluss des Bezirksgerichts Josefstadt vom 24. Juni 2016, GZ 11 E 2966/11p-56, bestätigt wurde, den Beschluss gefasst:  Spruch I.Der Revisionsrekurs der verpflichteten Partei wird, soweit er die Bestätigung der Exekutionsbewilligung bekämpft, als jedenfalls unzulässig zurückgewiesen.
@@ -8226,7 +8232,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hoch als Vorsi
 - `Prosten und Kreutzinger Bau gesellschaft mbH`(organisation)
 - `Dr.Viktor-Kaplan-Straße 8, 4920 Weiketsedt, Österreich`(address)
 
-**Example 36** (doc_id: `deanon_TRAIN/3Ob44_20x`) (sent_id: `deanon_TRAIN/3Ob44_20x_3`)
+**Example 35** (doc_id: `deanon_TRAIN/3Ob44_20x`) (sent_id: `deanon_TRAIN/3Ob44_20x_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Hofrat des Obersten Gerichtshofs Dr. Roch als Vorsitzenden sowie die Hofräte Priv.-Doz. Dr. Rassi und Mag. Painsi und die Hofrätinnen Dr. Weixelbraun-Mohr und Dr. Kodek als weitere Richter in der Rechtssache der klagenden Partei Andreas Clösges, vertreten durch die Eger/Gründl Rechtsanwälte OG in Graz, gegen die beklagte Partei Chemie Valtri GmbH, Niels Niefeldt, vertreten durch Mag. Manuel Fähnrich, Rechtsanwalt in Graz, wegen 34.000 EUR sA, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Graz als Berufungsgericht vom 31. Jänner 2020, GZ 2 R 168/19x-28, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -8244,7 +8250,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Hofrat des Obers
 - `Chemie Valtri GmbH`(organisation)
 - `Niels Niefeldt`(person)
 
-**Example 37** (doc_id: `deanon_TRAIN/3Ob49_11v`) (sent_id: `deanon_TRAIN/3Ob49_11v_3`)
+**Example 36** (doc_id: `deanon_TRAIN/3Ob49_11v`) (sent_id: `deanon_TRAIN/3Ob49_11v_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie durch den Hofrat Hon.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in der Rechtssache der klagenden Partei Julius Zimzick Verlag GmbH & Co KG, Terramaregasse 28, 8234 Rohrbachschlag, Österreich, vertreten durch Dr. Wolfgang Dartmann und andere Rechtsanwälte in Linz, wider die beklagten Parteien 1. Friedrich Schreinemachers und 2.
@@ -8261,7 +8267,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Terramaregasse 28, 8234 Rohrbachschlag, Österreich`(address)
 - `Schreinemachers`(person)
 
-**Example 38** (doc_id: `deanon_TRAIN/4Nc18_11a`) (sent_id: `deanon_TRAIN/4Nc18_11a_3`)
+**Example 37** (doc_id: `deanon_TRAIN/4Nc18_11a`) (sent_id: `deanon_TRAIN/4Nc18_11a_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch die Senatspräsidentin Dr. Schenk als Vorsitzende und die Hofräte Dr. Vogel und Dr. Jensik als weitere Richter in der Rechtssache der klagenden Partei HochCloud GmbH, Piedro Temur, vertreten durch Dr. Christian Fuchshuber LL.M., Rechtsanwalt in Innsbruck, gegen die beklagte Partei SUI Pharma Consulting GmbH, Nancy Herz, vertreten durch Dr. Gerhard Strobich, Rechtsanwalt in Trofaiach, wegen 5.873,18 EUR sA, über den Delegierungsantrag der beklagten Partei den Beschluss gefasst:  Spruch Der Antrag, zur Verhandlung und Entscheidung in dieser Rechtssache anstelle des Bezirksgerichts Innsbruck das Bezirksgericht Leoben zu bestimmen, wird abgewiesen.
@@ -8281,7 +8287,7 @@ Kopf Der Oberste Gerichtshof hat durch die Senatspräsidentin Dr. Schenk als Vor
 - `Nancy Herz`(person)
 - `Bezirksgericht Leoben`(organisation)
 
-**Example 39** (doc_id: `deanon_TRAIN/4Nc3_12x`) (sent_id: `deanon_TRAIN/4Nc3_12x_3`)
+**Example 38** (doc_id: `deanon_TRAIN/4Nc3_12x`) (sent_id: `deanon_TRAIN/4Nc3_12x_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch die Senatspräsidentin Dr. Schenk als Vorsitzende und durch die Hofräte Dr. Vogel und Dr. Jensik als weitere Richter in der beim Landesgericht Innsbruck zu AZ 59 Cg 92/11x anhängigen Rechtssache der klagenden Partei Rudigkeit Finanzen GmbH, Ing. Sascha Rohkrämer, vertreten durch Mag. Heinz Heher, Rechtsanwalt in Wien, gegen die beklagte Partei Suddorftra Manufaktur GmbH, Ludmilla Nottelmann, vertreten durch Dr. Adrian Hollaender, Rechtsanwalt in Innsbruck, wegen Unterlassung, Urteilsveröffentlichung und 67.606 EUR sA, über die Delegierungsanträge der beklagten Partei gemäß § 31 Abs 2 JN, folgenden Beschluss gefasst:  Spruch Die Anträge der beklagten Partei, die Rechtssache an das „Landesgericht Wien“ bzw Handelsgericht Wien zu delegieren, werden abgewiesen.
@@ -8302,7 +8308,7 @@ Kopf Der Oberste Gerichtshof hat durch die Senatspräsidentin Dr. Schenk als Vor
 - `Ludmilla Nottelmann`(person)
 - `Landesgericht Wien`(organisation)
 
-**Example 40** (doc_id: `deanon_TRAIN/4Ob100_13d`) (sent_id: `deanon_TRAIN/4Ob100_13d_3`)
+**Example 39** (doc_id: `deanon_TRAIN/4Ob100_13d`) (sent_id: `deanon_TRAIN/4Ob100_13d_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch die Vizepräsidentin Dr. Schenk als Vorsitzende und die Hofräte Dr. Vogel, Dr. Jensik, Dr. Musger und Dr. Schwarzenbacher als weitere Richter in der Rechtssache der klagenden Partei Verein Erwin Sieferer, vertreten durch Kosesnik-Wehrle & Langer Rechtsanwälte KG in Wien, gegen die beklagte Partei Lebensmittel Seeder -Aktiengesellschaft, Knechtswies 63, 4692 Niederau, Österreich, vertreten durch Raits Bleiziffer Rechtsanwälte GmbH in Salzburg, und die Nebenintervenientin auf Seiten der beklagten Partei „ StR Thobias Broß ” Viola Hüßkes, vertreten durch Dr. Peter Zöchbauer und andere Rechtsanwälte in Wien, wegen Unterlassung und Urteilsveröffentlichung (Streitwert 36.000 EUR), über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Linz vom 19. April 2013, GZ 1 R 192/12d-14, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -8321,7 +8327,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch die Vizepräsidentin
 - `StR Thobias Broß`(person)
 - `Viola Hüßkes`(person)
 
-**Example 41** (doc_id: `deanon_TRAIN/4Ob112_24k`) (sent_id: `deanon_TRAIN/4Ob112_24k_3`)
+**Example 40** (doc_id: `deanon_TRAIN/4Ob112_24k`) (sent_id: `deanon_TRAIN/4Ob112_24k_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Schwarzenbacher als Vorsitzenden sowie den Vizepräsidenten Hon.-Prof. PD Dr. Rassi, die Hofrätinnen Mag. Istjan, LL.M., und Mag. Waldstätten und den Hofrat Dr. Stiefsohn als weitere Richter in der Rechtssache der klagenden Partei Kersseboom Textil AG, Prof.in Juliette Große-Kleimann, Schweiz, vertreten durch die Gottgeisl Leinsmer Weber Rechtsanwälte GmbH in Wien, gegen die beklagte Partei Benedikt Faath plc, DDr. Piedro Bielmeier, Malta, vertreten durch die Brandl Talos Rechtsanwälte GmbH in Wien, wegen 19.333,99 EUR sA, über die Revision der beklagten Partei gegen das Urteil des Oberlandesgerichts Linz vom 14. März 2024, GZ 1 R 12/24a-46, mit dem das Urteil des Landesgerichts Wels vom 1. Dezember 2023, GZ 6 Cg 18/23p-41, abgeändert wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die Revision wird zurückgewiesen.
@@ -8340,7 +8346,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Benedikt Faath`(person)
 - `DDr. Piedro Bielmeier`(person)
 
-**Example 42** (doc_id: `deanon_TRAIN/4Ob113_24g`) (sent_id: `deanon_TRAIN/4Ob113_24g_3`)
+**Example 41** (doc_id: `deanon_TRAIN/4Ob113_24g`) (sent_id: `deanon_TRAIN/4Ob113_24g_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Schwarzenbacher als Vorsitzenden sowie den Vizepräsidenten Hon.-Prof. PD Dr. Rassi, die Hofrätinnen Mag. Istjan, LL.M., und Mag. Waldstätten und den Hofrat Dr. Stiefsohn als weitere Richter in der Rechtssache der klagenden Partei Vierziger u. Tewald Wind GmbH, Claire Lüdermann, Bakk. rer. nat., vertreten durch Grassner Rechtsanwalts GmbH in Linz, gegen die beklagte Partei Milena Buchmayr, vertreten durch Dr. Manfred Palkovits, Mag. Martin Sohm, Rechtsanwälte in Wien, wegen Aufkündigung, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Landesgerichts für Zivilrechtssachen Wien vom 24. April 2024, GZ 38 R 247/23i-46, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -8358,7 +8364,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Milena Buchmayr`(person)
 - `Dr. Manfred Palkovits`(person)
 
-**Example 43** (doc_id: `deanon_TRAIN/4Ob162_18d`) (sent_id: `deanon_TRAIN/4Ob162_18d_4`)
+**Example 42** (doc_id: `deanon_TRAIN/4Ob162_18d`) (sent_id: `deanon_TRAIN/4Ob162_18d_4`)
 
 
 Matzka als weitere Richter in der Rechtssache der klagenden Partei XDC Druck GmbH, Scarlett Augustus, vertreten durch Vavrovsky Heine Marth Rechtsanwälte GmbH in Wien, gegen die beklagte Partei UBER B.V., Larissa Ebele, Niederlande, vertreten durch Schönherr Rechtsanwälte GmbH in Wien, wegen Unterlassung, Veröffentlichung und Feststellung (Streitwert im Sicherungsverfahren 70.000 EUR), über den Revisionsrekurs der beklagten Partei gegen den Beschluss des Oberlandesgerichts Wien als Rekursgericht vom 4. Juli 2018, GZ 3 R 32/18z-14, mit dem der Beschluss des Handelsgerichts Wien vom 24. April 2018, GZ 58 Cg 10/18f-6, bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Dem Revisionsrekurs wird teilweise Folge gegeben.
@@ -8382,7 +8388,7 @@ Matzka als weitere Richter in der Rechtssache der klagenden Partei XDC Druck Gmb
 
 ## `Person_Title_Context`
 
-**F1:** 0.274 | **Precision:** 0.626 | **Recall:** 0.176  
+**F1:** 0.277 | **Precision:** 0.631 | **Recall:** 0.177  
 
 **Format:** `regex`  
 **Rule ID:** `6e69c0ef`  
@@ -8399,13 +8405,13 @@ Captures names with titles (Dr., Mag., DI, Bakk., etc.) in various legal context
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.626 | 0.176 | 0.274 | 388 | 243 | 145 |
+| 0.631 | 0.177 | 0.277 | 388 | 245 | 143 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `person` | 243 | 145 | 1141 |
+| `person` | 245 | 143 | 1139 |
 
 </details>
 
@@ -9002,7 +9008,20 @@ Sloboda als weitere Richter in der Rechtssache der klagenden Partei Ing. Constan
 - `DDr. Leif Eralp` (person)
 - `Lothar Schwänke` (person)
 
-**Example 47** (doc_id: `deanon_TRAIN/2Ob182_24i`) (sent_id: `deanon_TRAIN/2Ob182_24i_4`)
+**Example 47** (doc_id: `deanon_TRAIN/2Ob181_10x`) (sent_id: `deanon_TRAIN/2Ob181_10x_3`)
+
+
+Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Baumann als Vorsitzenden und durch die Hofräte Dr. Veith, Dr. E. Solé, Dr. Schwarzenbacher und Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Gertrude Ptak, vertreten durch Dr. Bertram Broesigke und Dr. Wolfgang Broesigke, Rechtsanwälte in Wien, gegen die beklagte Partei Josef Schindelmeißer, vertreten durch den Sachwalter Dr. Helmut Heiger, Rechtsanwalt in Wien, wegen Aufkündigung, über die außerordentliche Revision der beklagten Partei gegen das Urteil des Landesgerichts für Zivilrechtssachen Wien als Berufungsgericht vom 15. Juni 2010, GZ 41 R 130/10m-26, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen (§ 510 Abs 3 ZPO).
+
+| Predicted | Gold |
+|---|---|
+| `Gertrude Ptak` | `Gertrude Ptak` |
+
+**Missed by this rule (FN):**
+
+- `Josef Schindelmeißer` (person)
+
+**Example 48** (doc_id: `deanon_TRAIN/2Ob182_24i`) (sent_id: `deanon_TRAIN/2Ob182_24i_4`)
 
 
 Sloboda, Dr. Thunhart und Dr. Kikinger sowie die Hofrätin Mag. Fitz als weitere Richter in der Rechtssache der klagenden und gefährdeten Partei Theresa Ziebold, vertreten durch Mag. Mahmut Sahinol, Rechtsanwalt in Wien, gegen die beklagten Parteien und Gegner der gefährdeten Parteien 1.
@@ -9011,7 +9030,7 @@ Sloboda, Dr. Thunhart und Dr. Kikinger sowie die Hofrätin Mag. Fitz als weitere
 |---|---|
 | `Theresa Ziebold` | `Theresa Ziebold` |
 
-**Example 48** (doc_id: `deanon_TRAIN/2Ob224_21m`) (sent_id: `deanon_TRAIN/2Ob224_21m_5`)
+**Example 49** (doc_id: `deanon_TRAIN/2Ob224_21m`) (sent_id: `deanon_TRAIN/2Ob224_21m_5`)
 
 
 Dr. Konstantin Haas, Rechtsanwalt in Leonding, gegen die beklagte Partei Annette Provost, vertreten durch Posch, Schausberger & Lutz Rechtsanwälte GmbH in Wels, wegen 25.650,07 EUR sA sowie Herausgabe (Streitwert 1.000 EUR) über die Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Linz als Berufungsgericht vom 1. Oktober 2021, GZ 2 R 119/21i-48, mit dem das Urteil des Landesgerichts Ried im Innkreis vom 28. Juni 2021, GZ 5 Cg 60/18b-44, bestätigt wurde, den Beschluss gefasst:  Spruch Die Revision wird zurückgewiesen.
@@ -9020,7 +9039,7 @@ Dr. Konstantin Haas, Rechtsanwalt in Leonding, gegen die beklagte Partei Annette
 |---|---|
 | `Annette Provost` | `Annette Provost` |
 
-**Example 49** (doc_id: `deanon_TRAIN/2Ob256_12d`) (sent_id: `deanon_TRAIN/2Ob256_12d_3`)
+**Example 50** (doc_id: `deanon_TRAIN/2Ob256_12d`) (sent_id: `deanon_TRAIN/2Ob256_12d_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Baumann als Vorsitzenden und durch die Hofräte Dr. Veith, Dr. E. Solé, Dr. Schwarzenbacher und Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Stallbauer Telekom Aktiengesellschaft, Poysdorfer Straße 5, 9341 Dobersberg, Österreich, vertreten durch Dr. Manfred Steininger, Rechtsanwalt in Wien, gegen die beklagte Partei DDr. Viktor Junkmanns, Bakk. iur., vertreten durch die ANWALTGMBH Rinner Teuchtmann in Linz, wegen 50.932,89 EUR sA, über die Revision der beklagten Partei gegen das Urteil des Oberlandesgerichts Linz als Berufungsgericht vom 2. Oktober 2012, GZ 4 R 158/12a-20, womit das Urteil des Landesgerichts Linz vom 14. Juni 2012, GZ 5 Cg 119/11m-14, abgeändert wurde, den Beschluss gefasst:  Spruch Die Revision wird zurückgewiesen.
@@ -9034,7 +9053,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Stallbauer Telekom Aktiengesellschaft` (organisation)
 - `Poysdorfer Straße 5, 9341 Dobersberg, Österreich` (address)
 
-**Example 50** (doc_id: `deanon_TRAIN/2Ob37_17f`) (sent_id: `deanon_TRAIN/2Ob37_17f_3`)
+**Example 51** (doc_id: `deanon_TRAIN/2Ob37_17f`) (sent_id: `deanon_TRAIN/2Ob37_17f_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Hon.-Prof. Dr. Danzl als Vorsitzenden und die Hofräte Dr. Veith und Dr. Musger, die Hofrätin Dr. E. Solé und den Hofrat Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Florentin Uffenwasser, vertreten durch Dr. Armin Exner, Rechtsanwalt in Innsbruck, gegen die beklagte Partei Stadtgemeinde Naomi Mertensmeyer, vertreten durch Dr. Thomas Girardi, Rechtsanwalt in Innsbruck, wegen 29.461,04 EUR sA und Feststellung (Streitwert 10.000 EUR), über die außerordentliche Revision der beklagten Partei (Revisionsinteresse 22.377,04 EUR) gegen das Urteil des Oberlandesgerichts Innsbruck als Berufungsgericht vom 15. Dezember 2016, GZ 2 R 141/16a-47, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -9047,7 +9066,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 
 - `Naomi Mertensmeyer` (person)
 
-**Example 51** (doc_id: `deanon_TRAIN/2Ob41_16t`) (sent_id: `deanon_TRAIN/2Ob41_16t_3`)
+**Example 52** (doc_id: `deanon_TRAIN/2Ob41_16t`) (sent_id: `deanon_TRAIN/2Ob41_16t_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Hon.-Prof. Dr. Danzl als Vorsitzenden sowie die Hofräte Dr. Veith und Dr. Musger, die Hofrätin Dr. E. Solé und den Hofrat Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei DDr. Ashley Feichtmeier, vertreten durch Bollmann & Bollmann Rechtsanwaltspartnerschaft in Wien, gegen die beklagte Partei StadtDigital AG, Helmut Klösgen, vertreten durch DLA Piper Weiss-Tessbach, Rechtsanwälte GmbH in Wien, wegen 18.056,86 EUR sA, über die Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Wien als Berufungsgericht vom 24. November 2015, GZ 1 R 141/15k-48, womit über Berufung der klagenden Partei das Urteil des Handelsgerichts Wien vom 27. Mai 2015, GZ 55 Cg 295/11k-44, bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die Revision der klagenden Partei wird zurückgewiesen.
@@ -9061,7 +9080,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `StadtDigital AG` (organisation)
 - `Helmut Klösgen` (person)
 
-**Example 52** (doc_id: `deanon_TRAIN/2Ob63_11w`) (sent_id: `deanon_TRAIN/2Ob63_11w_3`)
+**Example 53** (doc_id: `deanon_TRAIN/2Ob63_11w`) (sent_id: `deanon_TRAIN/2Ob63_11w_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Baumann als Vorsitzenden und durch die Hofräte Dr. Veith, Dr. E. Solé, Dr. Schwarzenbacher und Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Thomas Papakonstantinou, vertreten durch Kinberger-Schuberth-Fischer Rechtsanwälte-GmbH in Zell am See, gegen die beklagten Parteien 1. Matthias Graafmann, und 2.
@@ -9074,7 +9093,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 
 - `Matthias Graafmann` (person)
 
-**Example 53** (doc_id: `deanon_TRAIN/2Ob71_23i`) (sent_id: `deanon_TRAIN/2Ob71_23i_4`)
+**Example 54** (doc_id: `deanon_TRAIN/2Ob71_23i`) (sent_id: `deanon_TRAIN/2Ob71_23i_4`)
 
 
 Sloboda und Dr. Kikinger als weitere Richter in der Rechtssache der klagenden Partei Moses Malkomes, vertreten durch Klepp Nöbauer Hintringer Primetshofer Rechtsanwälte (GbR) in Linz, gegen die beklagte Partei Carmen Reinoldsmann, vertreten durch Dr. Christoph Arbeithuber, Rechtsanwalt in Linz, wegen 26.843,50 EUR sA und Feststellung, über die außerordentliche Revision der beklagten Partei gegen das Urteil des Oberlandesgerichts Linz als Berufungsgericht vom 27. Februar 2023, GZ 4 R 17/23g-28, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -9084,7 +9103,7 @@ Sloboda und Dr. Kikinger als weitere Richter in der Rechtssache der klagenden Pa
 | `Moses Malkomes` | `Moses Malkomes` |
 | `Carmen Reinoldsmann` | `Carmen Reinoldsmann` |
 
-**Example 54** (doc_id: `deanon_TRAIN/2Ob73_15x`) (sent_id: `deanon_TRAIN/2Ob73_15x_3`)
+**Example 55** (doc_id: `deanon_TRAIN/2Ob73_15x`) (sent_id: `deanon_TRAIN/2Ob73_15x_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Hon.-Prof. Dr. Danzl als Vorsitzenden, die Hofräte Dr. Veith und Dr. Musger, die Hofrätin Dr. E. Solé sowie den Hofrat Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Dragan Karp, vertreten durch Mag. Bernd Trappmaier, Rechtsanwalt in Korneuburg, gegen die beklagte Partei Marlene Diderichs, vertreten durch Mag. Claus Marchl, Rechtsanwalt in Wien, wegen 25.396,03 EUR sA, über die Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Wien als Berufungsgericht vom 22. Jänner 2015, GZ 11 R 239/14v-26, womit infolge Berufung der klagenden Partei das Urteil des Landesgerichts für Zivilrechtssachen Wien vom 30. September 2014, GZ 57 Cg 30/14x-22, bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die Revision wird zurückgewiesen.
@@ -9094,7 +9113,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 | `Dragan Karp` | `Dragan Karp` |
 | `Marlene Diderichs` | `Marlene Diderichs` |
 
-**Example 55** (doc_id: `deanon_TRAIN/2Ob78_15g`) (sent_id: `deanon_TRAIN/2Ob78_15g_3`)
+**Example 56** (doc_id: `deanon_TRAIN/2Ob78_15g`) (sent_id: `deanon_TRAIN/2Ob78_15g_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Hon.-Prof. Dr. Danzl als Vorsitzenden, die Hofräte Dr. Veith und Dr. Musger sowie die Hofrätinnen Dr. E. Solé und Dr. Hofer-Zeni-Rennhofer als weitere Richter in der Rechtssache der klagenden Partei Luigi Neimeier, vertreten durch Rechtsanwälte Estermann & Partner OG in Mattighofen, gegen die beklagte Partei LNC KI Solutions GmbH, Kordelia Grauel, vertreten durch Dr. Herbert Harlander und Mag. Wolfgang Harlander, Rechtsanwälte in Salzburg, wegen 33.251,85 EUR sA, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Linz als Berufungsgericht vom 5. März 2015, GZ 2 R 1/15b-37, womit infolge Berufung der klagenden Partei das Urteil des Landesgerichts Salzburg vom 23. Oktober 2014, GZ 4 Cg 27/13d-33, bestätigt wurde, in nichtöffentlicher Sitzung beschlossen und zu Recht erkannt:  Spruch
@@ -9108,7 +9127,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `LNC KI Solutions GmbH` (organisation)
 - `Kordelia Grauel` (person)
 
-**Example 56** (doc_id: `deanon_TRAIN/2Ob86_12d`) (sent_id: `deanon_TRAIN/2Ob86_12d_3`)
+**Example 57** (doc_id: `deanon_TRAIN/2Ob86_12d`) (sent_id: `deanon_TRAIN/2Ob86_12d_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Baumann als Vorsitzenden und die Hofräte Dr. Veith, Dr. E. Solé, Dr. Schwarzenbacher und Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Constanze Hoefelmann, MSc, vertreten durch Gruböck & Lentschig Rechtsanwälte OG in Baden, wider die beklagte Partei „ Herbert Sippert “ Ada Roselius, vertreten durch Themmer, Toth & Partner Rechtsanwälte OG in Wien, wegen 144.329,55 EUR sA (Revisionsinteresse 54.717 EUR sA), infolge der außerordentlichen Revision der beklagten Partei gegen das Teilurteil des Oberlandesgerichts Wien als Berufungsgericht vom 29. Februar 2012, GZ 4 R 598/11g-25, den Beschluss gefasst:  Spruch Das Revisionsverfahren wird bis zur rechtskräftigen Erledigung des Verfahrens über den Ablehnungsantrag der beklagten Partei gegen die Erstrichterin unterbrochen.
@@ -9122,7 +9141,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Baumann als Vo
 - `Herbert Sippert` (person)
 - `Ada Roselius` (person)
 
-**Example 57** (doc_id: `deanon_TRAIN/2Ob89_17b`) (sent_id: `deanon_TRAIN/2Ob89_17b_3`)
+**Example 58** (doc_id: `deanon_TRAIN/2Ob89_17b`) (sent_id: `deanon_TRAIN/2Ob89_17b_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch die Vizepräsidentin Hon.-Prof. Dr. Lovrek als Vorsitzende, die Hofräte Dr. Veith und Dr. Musger, die Hofrätin Dr. E. Solé sowie den Hofrat Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Aron Dawideit, vertreten durch Posch, Schausberger & Lutz Rechtsanwälte GmbH in Wels, gegen die beklagten Parteien 1. PhD Irvin Kindschuh, 2. Theodor Hermus, und 3.
@@ -9136,7 +9155,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch die Vizepräsidentin
 - `PhD Irvin Kindschuh` (person)
 - `Theodor Hermus` (person)
 
-**Example 58** (doc_id: `deanon_TRAIN/2Ob91_22d`) (sent_id: `deanon_TRAIN/2Ob91_22d_4`)
+**Example 59** (doc_id: `deanon_TRAIN/2Ob91_22d`) (sent_id: `deanon_TRAIN/2Ob91_22d_4`)
 
 
 Sloboda und Dr. Kikinger als weitere Richter in der Rechtssache der klagenden Partei Farina Dirker, vertreten durch Dr. Sven Rudolf Thorstensen, LL.M., Rechtsanwalt in Wien, gegen die beklagte Partei Lüttge Chemie Limited, René Luidthard, vertreten durch Brandl Talos Rechtsanwälte GmbH in Wien, wegen 40.150,26 EUR sA, im Verfahren über die Revision der beklagten Partei gegen das Urteil des Oberlandesgerichts Wien als Berufungsgericht vom 24. Februar 2022, GZ 15 R 171/21h-33, den Beschluss gefasst:  Spruch Die Zurücknahme der Revision wird zur Kenntnis genommen.
@@ -9150,7 +9169,7 @@ Sloboda und Dr. Kikinger als weitere Richter in der Rechtssache der klagenden Pa
 - `Lüttge Chemie Limited` (organisation)
 - `René Luidthard` (person)
 
-**Example 59** (doc_id: `deanon_TRAIN/3Ob112_23a`) (sent_id: `deanon_TRAIN/3Ob112_23a_3`)
+**Example 60** (doc_id: `deanon_TRAIN/3Ob112_23a`) (sent_id: `deanon_TRAIN/3Ob112_23a_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Hon.-Prof. Dr. Höllwerth als Vorsitzenden sowie den Hofrat Hon.-Prof. Dr. Brenn, die Hofrätinnen Dr. Weixelbraun-Mohr und Dr. Kodek und den Hofrat Dr. Stefula als weitere Richter in der außerstreitigen Rechtssache der Antragstellerin Amalia Lupprich, vertreten durch Dr. Walter Fleissner, Rechtsanwalt in Wien, gegen die Antragsgegnerin Zarin Terzi, vertreten durch Mag. Werner Hauser Rechtsanwalt in Wien, über den außerordentlichen Revisionsrekurs der Antragstellerin gegen den Beschluss des Landesgerichts für Zivilrechtssachen Wien als Rekursgericht vom 27. Februar 2023, GZ 43 R 331/22b-65, den Beschluss gefasst:  Spruch Der außerordentliche Revisionsrekurs wird mangels der Voraussetzungen des § 62 Abs 1 AußStrG zurückgewiesen.
@@ -9163,7 +9182,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Hon.-Prof. Dr. Hö
 
 - `Zarin Terzi` (person)
 
-**Example 60** (doc_id: `deanon_TRAIN/3Ob128_10k`) (sent_id: `deanon_TRAIN/3Ob128_10k_3`)
+**Example 61** (doc_id: `deanon_TRAIN/3Ob128_10k`) (sent_id: `deanon_TRAIN/3Ob128_10k_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie die Hofräte und Hofrätinnen Hon.-Prof. Dr. Sailer, Dr. Lovrek, Dr. Jensik und Dr. Fichtenau als weitere Richter in der Rechtssache der klagenden Partei Nadja Spangler, vertreten durch Kinberger-Schuberth-Fischer Rechtsanwälte-GmbH in Zell am See, gegen die beklagte Partei Sascha Heckert, vertreten durch Dr. Andreas König, Dr. Andreas Ermacora und Dr. Barbara Lässer, Rechtsanwälte in Innsbruck, wegen 137.146,60 EUR sA und Feststellung (Gesamtstreitwert 157.146,60 EUR), über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Linz als Berufungsgericht vom 31. März 2010, GZ 6 R 28/10w-44, womit über Berufung der klagenden Partei das Urteil des Landesgerichts Salzburg vom 30. Oktober 2009, GZ 7 Cg 117/07b-40, bestätigt wurde, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -9173,7 +9192,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 | `Nadja Spangler` | `Nadja Spangler` |
 | `Sascha Heckert` | `Sascha Heckert` |
 
-**Example 61** (doc_id: `deanon_TRAIN/3Ob152_10i`) (sent_id: `deanon_TRAIN/3Ob152_10i_3`)
+**Example 62** (doc_id: `deanon_TRAIN/3Ob152_10i`) (sent_id: `deanon_TRAIN/3Ob152_10i_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Hon.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in der Exekutionssache der betreibenden Partei KMN Versicherung Werke AG, Corbinian Pichlmaier, vertreten durch Dr. Erich Kafka, Dr. Manfred Palkovits, Rechtsanwälte in Wien, gegen die verpflichtete Partei Severin Wellenbrink, vertreten durch Dr. Philipp Jessich, Rechtsanwalt in Wien, wegen Aufschiebung einer Räumungsexekution, über den Revisionsrekurs der betreibenden Partei gegen den Beschluss des Landesgerichts für Zivilrechtssachen Wien als Rekursgericht vom 12. Mai 2010, GZ 39 R 44/10z-22, womit der Beschluss des Bezirksgerichts Fünfhaus vom 14. Jänner 2010, GZ 10 E 171/09d-6, abgeändert wurde, den Beschluss gefasst:  Spruch Dem Revisionsrekurs wird Folge gegeben.
@@ -9189,7 +9208,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als 
 - `Dr. Erich Kafka` (person)
 - `Dr. Manfred Palkovits` (person)
 
-**Example 62** (doc_id: `deanon_TRAIN/3Ob155_13k`) (sent_id: `deanon_TRAIN/3Ob155_13k_3`)
+**Example 63** (doc_id: `deanon_TRAIN/3Ob155_13k`) (sent_id: `deanon_TRAIN/3Ob155_13k_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Univ.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in der Exekutionssache der betreibenden Partei Dr. Ingolf Durur, vertreten durch Dr. Lucas Lorenz, Rechtsanwalt in Innsbruck, gegen die verpflichtete Partei Imre Viße, vertreten durch Dr. Robert Eiter, Rechtsanwalt in Landeck, wegen Einverleibung des Eigentumsrechts sowie Lastenfreistellung (§§ 350, 353 EO), über den außerordentlichen Revisionsrekurs der verpflichteten Partei gegen den Beschluss des Landesgerichts Innsbruck als Rekursgericht vom 4. Juni 2013, GZ 1 R 10/13x-22, womit die Exekutionsbewilligung des Bezirksgerichts Imst vom 13. November 2012, GZ 5 E 2224/12y-2, bestätigt wurde, den Beschluss gefasst:  Spruch Der außerordentliche Revisionsrekurs wird mangels der Voraussetzungen des § 528 Abs 1 ZPO zurückgewiesen.
@@ -9202,7 +9221,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als 
 
 - `Imre Viße` (person)
 
-**Example 63** (doc_id: `deanon_TRAIN/3Ob156_12f`) (sent_id: `deanon_TRAIN/3Ob156_12f_3`)
+**Example 64** (doc_id: `deanon_TRAIN/3Ob156_12f`) (sent_id: `deanon_TRAIN/3Ob156_12f_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Hon.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in den verbundenen Rechtssachen der klagenden Partei Severin Ilek, vertreten durch die Sachwalterin Mag. Roswitha Ferl-Pailer, Rechtsanwältin in Hartberg, gegen die beklagte Partei Dipl.
@@ -9211,7 +9230,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 |---|---|
 | `Severin Ilek` | `Severin Ilek` |
 
-**Example 64** (doc_id: `deanon_TRAIN/3Ob178_15w`) (sent_id: `deanon_TRAIN/3Ob178_15w_3`)
+**Example 65** (doc_id: `deanon_TRAIN/3Ob178_15w`) (sent_id: `deanon_TRAIN/3Ob178_15w_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Hofrat Dr. Jensik als Vorsitzenden, die Vizepräsidentin Dr. Lovrek, die Hofräte Dr. Schwarzenbacher und Dr. Roch sowie die Hofrätin Dr. Kodek als weitere Richter in der Rechtssache der klagenden Partei Nikolai Castelli, vertreten durch Divitschek Sieder Sauer Peter Rechtsanwälte GesBR in Deutschlandsberg, gegen die beklagte Partei Dohmgoergen Bau GmbH, Oswald Schubert, vertreten durch Dr. Johannes Liebmann, Rechtsanwalt in Gleisdorf, wegen 82.977,52 EUR sA und Feststellung, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Graz als Berufungsgericht vom 27. Juli 2015, GZ 3 R 54/15h-145, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -9225,7 +9244,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Hofrat Dr. Jensi
 - `Dohmgoergen Bau GmbH` (organisation)
 - `Oswald Schubert` (person)
 
-**Example 65** (doc_id: `deanon_TRAIN/3Ob19_20w`) (sent_id: `deanon_TRAIN/3Ob19_20w_3`)
+**Example 66** (doc_id: `deanon_TRAIN/3Ob19_20w`) (sent_id: `deanon_TRAIN/3Ob19_20w_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch die Präsidentin Hon.-Prof. Dr. Lovrek als Vorsitzende sowie die Hofräte Dr. Roch und Priv.-Doz. Dr. Rassi und die Hofrätinnen Dr. Weixelbraun-Mohr und Dr. Kodek als weitere Richter in den verbundenen Rechtssachen der klagenden Partei Rinaldo Isaac, vertreten durch Mag. Gerhard Walzl, Rechtsanwalt in Wien, wider die beklagte Partei Felizia Mascheck, vertreten durch Dr. Alexandra Sedelmayer-Pammesberger, Rechtsanwältin in Wien, wegen Unterhaltsherabsetzung (AZ 8 C 22/16k) und Einwendungen gegen den Anspruch nach § 35 EO (AZ 8 C 4/18s), über die „außerordentliche“ Revision der klagenden Partei gegen das Urteil des Landesgerichts für Zivilrechtssachen Wien als Berufungsgericht vom 20. August 2019, GZ 44 R 338/19k-67, mit dem das Urteil des Bezirksgerichts Hernals vom 23. Mai 2019, GZ 8 C 22/16k-60, bestätigt wurde, den Beschluss gefasst:  Spruch Die Akten werden neuerlich dem Erstgericht zurückgestellt.
@@ -9235,7 +9254,7 @@ Kopf Der Oberste Gerichtshof hat durch die Präsidentin Hon.-Prof. Dr. Lovrek al
 | `Rinaldo Isaac` | `Rinaldo Isaac` |
 | `Felizia Mascheck` | `Felizia Mascheck` |
 
-**Example 66** (doc_id: `deanon_TRAIN/3Ob201_19h`) (sent_id: `deanon_TRAIN/3Ob201_19h_3`)
+**Example 67** (doc_id: `deanon_TRAIN/3Ob201_19h`) (sent_id: `deanon_TRAIN/3Ob201_19h_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Hofrat Dr. Roch als Vorsitzenden sowie die Hofräte Priv.-Doz. Dr. Rassi und Mag. Painsi und die Hofrätinnen Dr. Weixelbraun-Mohr und Dr. Kodek als weitere Richter in der Exekutionssache der betreibenden Partei Kimberly Mühlenstädt, vertreten durch Korn & Gärtner Rechtsanwälte OG in Salzburg, gegen die verpflichtete Partei Arabella Jorn, vertreten durch Dr. Wolfgang Lang, Rechtsanwalt in Salzburg, wegen 7.711,58 EUR sA, über den Revisionsrekurs der betreibenden Partei gegen den Beschluss des Landesgerichts Salzburg als Rekursgericht vom 3. Juli 2019, GZ 22 R 171/19d-26, womit der Beschluss des Bezirksgerichts Salzburg vom 1. Februar 2019, GZ 5 E 2444/18x-7, abgeändert wurde, den Beschluss gefasst:  Spruch Dem Revisionsrekurs wird Folge gegeben.
@@ -9248,7 +9267,7 @@ Kopf Der Oberste Gerichtshof hat durch den Hofrat Dr. Roch als Vorsitzenden sowi
 
 - `Kimberly Mühlenstädt` (person)
 
-**Example 67** (doc_id: `deanon_TRAIN/3Ob205_15s`) (sent_id: `deanon_TRAIN/3Ob205_15s_3`)
+**Example 68** (doc_id: `deanon_TRAIN/3Ob205_15s`) (sent_id: `deanon_TRAIN/3Ob205_15s_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hoch als Vorsitzenden sowie die Vizepräsidentin Dr. Lovrek, die Hofräte Dr. Jensik und Dr. Roch und die Hofrätin Dr. Kodek als weitere Richter in der Exekutionssache der betreibenden Partei Laila Michot, vertreten durch Mag. Dr. Felix Sehorz, Rechtsanwalt in Wien, wider die verpflichtete Partei Jean Rehaag, wegen zwangsweiser Räumung (hier: Aufschiebung), aus Anlass des Revisionsrekurses der betreibenden Partei gegen den Beschluss des Landesgerichts für Zivilrechtssachen Wien als Rekursgericht vom 2. September 2015, GZ 39 R 260/15x-47, womit der Beschluss des Bezirksgerichts Liesing vom 27. Mai 2015, GZ 6 E 46/11k-43, teilweise abgeändert wurde, den Beschluss gefasst:  Spruch Der Beschluss des Obersten Gerichtshofs vom 16. Dezember 2015, AZ 3 Ob 205/15s, wird dahin berichtigt, dass das im ersten Absatz der Begründung genannte Datum der Einantwortung statt „6. März 2012“ richtig zu lauten hat „27. Juni 2013“.
@@ -9261,7 +9280,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hoch als Vorsi
 
 - `Jean Rehaag` (person)
 
-**Example 68** (doc_id: `deanon_TRAIN/3Ob236_17b`) (sent_id: `deanon_TRAIN/3Ob236_17b_3`)
+**Example 69** (doc_id: `deanon_TRAIN/3Ob236_17b`) (sent_id: `deanon_TRAIN/3Ob236_17b_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten des Obersten Gerichtshofs Dr. Hoch als Vorsitzenden sowie die Hofräte Dr. Roch und Dr. Rassi und die Hofrätinnen Dr. Weixelbraun-Mohr und Dr. Kodek als weitere Richter in der Rechtssache der klagenden Partei Delila Englschall, vertreten durch Harb & Postl Rechtsanwälte OG in Graz, gegen die beklagte Partei Achmed Schnetzer, vertreten durch Dr. Paul Bauer, Dr. Anton Triendl, Rechtsanwälte in Innsbruck, wegen 32.173,22 EUR sA und Feststellung, über die außerordentliche Revision der beklagten Partei (Revisionsinteresse 23.653,60 EUR sA und Feststellung) gegen das Urteil des Oberlandesgerichts Innsbruck als Berufungsgericht vom 29. November 2017, GZ 10 R 59/17b-27, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -9271,7 +9290,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten des Obersten Geric
 | `Delila Englschall` | `Delila Englschall` |
 | `Achmed Schnetzer` | `Achmed Schnetzer` |
 
-**Example 69** (doc_id: `deanon_TRAIN/3Ob248_10g`) (sent_id: `deanon_TRAIN/3Ob248_10g_3`)
+**Example 70** (doc_id: `deanon_TRAIN/3Ob248_10g`) (sent_id: `deanon_TRAIN/3Ob248_10g_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Hon.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in der Rechtssache der klagenden Partei Riecken Maschinenbau GmbH, Hubert Englmaier, vertreten durch Dr. Martin Holzer, Rechtsanwalt in Bruck an der Mur, gegen die beklagte Partei Florian Corvetti, vertreten durch Dr. Heimo Jilek, Rechtsanwalt in Leoben, wegen Einwendungen gegen den Anspruch (§ 35 EO), über die außerordentliche Revision der klagenden Partei gegen das Urteil des Landesgerichts Leoben als Berufungsgericht vom 3. November 2010, GZ 1 R 244/10i-34, womit über Berufung der beklagten Partei das Urteil des Bezirksgerichts Leoben vom 9. Juni 2010, GZ 5 C 315/09y-28, abgeändert wurde, den Beschluss gefasst:  Spruch Der außerordentlichen Revision der klagenden Partei wird Folge gegeben, das angefochtene Urteil aufgehoben und die Rechtssache zur neuerlichen Entscheidung an das Berufungsgericht zurückverwiesen.
@@ -9285,7 +9304,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Riecken Maschinenbau GmbH` (organisation)
 - `Hubert Englmaier` (person)
 
-**Example 70** (doc_id: `deanon_TRAIN/3Ob35_13p`) (sent_id: `deanon_TRAIN/3Ob35_13p_3`)
+**Example 71** (doc_id: `deanon_TRAIN/3Ob35_13p`) (sent_id: `deanon_TRAIN/3Ob35_13p_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Univ.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in der Rechtssache der klagenden Partei Mercedes Jungels, vertreten durch Dr. Peter Böck, Rechtsanwalt in Neusiedl am See, gegen die beklagte Partei Traude Ejsmond, vertreten durch Mag. Christian Kaiser, Rechtsanwalt in Wien, wegen Ehescheidung, über die außerordentliche Revision der beklagten Partei gegen das Urteil des Landesgerichts Eisenstadt als Berufungsgericht vom 13. Dezember 2012, GZ 20 R 123/12f-15, womit infolge Berufungen der klagenden und beklagten Partei das Urteil des Bezirksgerichts Neusiedl am See vom 19. April 2012, GZ 10 C 10/12d-8, bestätigt wurde, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen (§ 510 Abs 3 ZPO).
@@ -9295,7 +9314,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 | `Mercedes Jungels` | `Mercedes Jungels` |
 | `Traude Ejsmond` | `Traude Ejsmond` |
 
-**Example 71** (doc_id: `deanon_TRAIN/4Fsc1_10z`) (sent_id: `deanon_TRAIN/4Fsc1_10z_3`)
+**Example 72** (doc_id: `deanon_TRAIN/4Fsc1_10z`) (sent_id: `deanon_TRAIN/4Fsc1_10z_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch die Senatspräsidentin Dr. Schenk als Vorsitzende und durch die Hofräte Dr. Vogel und Dr. Jensik als weitere Richter in der Rechtssache der klagenden Partei Lexglanzfen-Garten AG, Pia Özbek, vertreten durch Dr. Hartmut Mayer, Rechtsanwalt in Wien, gegen die beklagte Partei Mag. Esra Waitkat, vertreten durch Mag. Gerhard Pilz, Rechtsanwalt, als Verfahrenshelfer, wegen 3.330,19 EUR sA (AZ 35 R 24/09b des Landesgerichts für Zivilrechtssachen Wien), zum Fristsetzungsantrag der beklagten Partei vom 28. Oktober 2009 an den Obersten Gerichtshof im Ablehnungsverfahren den Beschluss gefasst:  Spruch Der Fristsetzungsantrag wird zurückgewiesen.
@@ -9309,7 +9328,7 @@ Kopf Der Oberste Gerichtshof hat durch die Senatspräsidentin Dr. Schenk als Vor
 - `Lexglanzfen-Garten AG` (organisation)
 - `Pia Özbek` (person)
 
-**Example 72** (doc_id: `deanon_TRAIN/4Ob113_24g`) (sent_id: `deanon_TRAIN/4Ob113_24g_3`)
+**Example 73** (doc_id: `deanon_TRAIN/4Ob113_24g`) (sent_id: `deanon_TRAIN/4Ob113_24g_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Schwarzenbacher als Vorsitzenden sowie den Vizepräsidenten Hon.-Prof. PD Dr. Rassi, die Hofrätinnen Mag. Istjan, LL.M., und Mag. Waldstätten und den Hofrat Dr. Stiefsohn als weitere Richter in der Rechtssache der klagenden Partei Vierziger u. Tewald Wind GmbH, Claire Lüdermann, Bakk. rer. nat., vertreten durch Grassner Rechtsanwalts GmbH in Linz, gegen die beklagte Partei Milena Buchmayr, vertreten durch Dr. Manfred Palkovits, Mag. Martin Sohm, Rechtsanwälte in Wien, wegen Aufkündigung, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Landesgerichts für Zivilrechtssachen Wien vom 24. April 2024, GZ 38 R 247/23i-46, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -9701,23 +9720,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Veith als Vors
 - `Vogelsanger Marine GmbH`(organisation)
 - `Juri Büttgens`(person)
 
-**Example 21** (doc_id: `deanon_TRAIN/2Ob181_10x`) (sent_id: `deanon_TRAIN/2Ob181_10x_3`)
-
-
-Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Baumann als Vorsitzenden und durch die Hofräte Dr. Veith, Dr. E. Solé, Dr. Schwarzenbacher und Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Gertrude Ptak, vertreten durch Dr. Bertram Broesigke und Dr. Wolfgang Broesigke, Rechtsanwälte in Wien, gegen die beklagte Partei Josef Schindelmeißer, vertreten durch den Sachwalter Dr. Helmut Heiger, Rechtsanwalt in Wien, wegen Aufkündigung, über die außerordentliche Revision der beklagten Partei gegen das Urteil des Landesgerichts für Zivilrechtssachen Wien als Berufungsgericht vom 15. Juni 2010, GZ 41 R 130/10m-26, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen (§ 510 Abs 3 ZPO).
-
-**False Positives:**
-
-- `Gertrude Ptak` — partial — gold is substring of pred: `Ptak`
-
-> overlaps gold: 1  |  likely missing annotation: 0
-
-**Gold Entities:**
-
-- `Ptak`(person)
-- `Schindelmeißer`(person)
-
-**Example 22** (doc_id: `deanon_TRAIN/2Ob37_17f`) (sent_id: `deanon_TRAIN/2Ob37_17f_3`)
+**Example 21** (doc_id: `deanon_TRAIN/2Ob37_17f`) (sent_id: `deanon_TRAIN/2Ob37_17f_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Hon.-Prof. Dr. Danzl als Vorsitzenden und die Hofräte Dr. Veith und Dr. Musger, die Hofrätin Dr. E. Solé und den Hofrat Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Florentin Uffenwasser, vertreten durch Dr. Armin Exner, Rechtsanwalt in Innsbruck, gegen die beklagte Partei Stadtgemeinde Naomi Mertensmeyer, vertreten durch Dr. Thomas Girardi, Rechtsanwalt in Innsbruck, wegen 29.461,04 EUR sA und Feststellung (Streitwert 10.000 EUR), über die außerordentliche Revision der beklagten Partei (Revisionsinteresse 22.377,04 EUR) gegen das Urteil des Oberlandesgerichts Innsbruck als Berufungsgericht vom 15. Dezember 2016, GZ 2 R 141/16a-47, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -9733,7 +9736,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Florentin Uffenwasser`(person)
 - `Naomi Mertensmeyer`(person)
 
-**Example 23** (doc_id: `deanon_TRAIN/2Ob41_16t`) (sent_id: `deanon_TRAIN/2Ob41_16t_3`)
+**Example 22** (doc_id: `deanon_TRAIN/2Ob41_16t`) (sent_id: `deanon_TRAIN/2Ob41_16t_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Hon.-Prof. Dr. Danzl als Vorsitzenden sowie die Hofräte Dr. Veith und Dr. Musger, die Hofrätin Dr. E. Solé und den Hofrat Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei DDr. Ashley Feichtmeier, vertreten durch Bollmann & Bollmann Rechtsanwaltspartnerschaft in Wien, gegen die beklagte Partei StadtDigital AG, Helmut Klösgen, vertreten durch DLA Piper Weiss-Tessbach, Rechtsanwälte GmbH in Wien, wegen 18.056,86 EUR sA, über die Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Wien als Berufungsgericht vom 24. November 2015, GZ 1 R 141/15k-48, womit über Berufung der klagenden Partei das Urteil des Handelsgerichts Wien vom 27. Mai 2015, GZ 55 Cg 295/11k-44, bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die Revision der klagenden Partei wird zurückgewiesen.
@@ -9750,7 +9753,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `StadtDigital AG`(organisation)
 - `Helmut Klösgen`(person)
 
-**Example 24** (doc_id: `deanon_TRAIN/2Ob78_15g`) (sent_id: `deanon_TRAIN/2Ob78_15g_3`)
+**Example 23** (doc_id: `deanon_TRAIN/2Ob78_15g`) (sent_id: `deanon_TRAIN/2Ob78_15g_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Hon.-Prof. Dr. Danzl als Vorsitzenden, die Hofräte Dr. Veith und Dr. Musger sowie die Hofrätinnen Dr. E. Solé und Dr. Hofer-Zeni-Rennhofer als weitere Richter in der Rechtssache der klagenden Partei Luigi Neimeier, vertreten durch Rechtsanwälte Estermann & Partner OG in Mattighofen, gegen die beklagte Partei LNC KI Solutions GmbH, Kordelia Grauel, vertreten durch Dr. Herbert Harlander und Mag. Wolfgang Harlander, Rechtsanwälte in Salzburg, wegen 33.251,85 EUR sA, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Linz als Berufungsgericht vom 5. März 2015, GZ 2 R 1/15b-37, womit infolge Berufung der klagenden Partei das Urteil des Landesgerichts Salzburg vom 23. Oktober 2014, GZ 4 Cg 27/13d-33, bestätigt wurde, in nichtöffentlicher Sitzung beschlossen und zu Recht erkannt:  Spruch
@@ -9767,7 +9770,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `LNC KI Solutions GmbH`(organisation)
 - `Kordelia Grauel`(person)
 
-**Example 25** (doc_id: `deanon_TRAIN/3Nc11_13t`) (sent_id: `deanon_TRAIN/3Nc11_13t_3`)
+**Example 24** (doc_id: `deanon_TRAIN/3Nc11_13t`) (sent_id: `deanon_TRAIN/3Nc11_13t_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie die Hofräte Univ.-Prof Dr. Neumayr und Dr. Jensik als weitere Richter in der Ordinationssache der Antragstellerin Waldzorval Technologien GmbH, Dr.-Kühne-Gasse 29, 9560 Albern, Österreich, vertreten durch Dr. Clemens Thiele, Rechtsanwalt in Salzburg, gegen die Antragsgegnerin Pflege Allemkraft GmbH, Schirmerstraße 61, 8967 Oberhausberg, Österreich, wegen Exekutionsführung nach § 355 EO, infolge Antrags gemäß § 28 JN den Beschluss gefasst:  Spruch Für die Bewilligung und die Vollziehung der beabsichtigten Unterlassungsexekution wird das Bezirksgericht Salzburg als örtlich zuständiges Gericht bestimmt.
@@ -9786,7 +9789,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als 
 - `Schirmerstraße 61, 8967 Oberhausberg, Österreich`(address)
 - `Bezirksgericht Salzburg`(organisation)
 
-**Example 26** (doc_id: `deanon_TRAIN/3Ob105_13g`) (sent_id: `deanon_TRAIN/3Ob105_13g_3`)
+**Example 25** (doc_id: `deanon_TRAIN/3Ob105_13g`) (sent_id: `deanon_TRAIN/3Ob105_13g_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Univ.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in der Rechtssache der klagenden Partei ÖkR Malik Sutmöller OEG, Leila Nieboer, vertreten durch Dr. Heinz-Wilhelm Stenzl, Rechtsanwalt in Wien, gegen die beklagte Partei Mittel Bachlemsee GmbH, Erwin Klefass, BSc, vertreten durch Dr. Johann Gelbmann, Rechtsanwalt in Wien, wegen (restlich) 12.536,14 EUR sA, über die Revision der beklagten Partei (Revisionsinteresse 6.909 EUR sA) gegen das Urteil des Landesgerichts für Zivilrechtssachen Wien als Berufungsgericht vom 19. Dezember 2012, GZ 38 R 173/12s-139, womit über die Berufungen beider Parteien das Urteil des Bezirksgerichts Fünfhaus vom 10. April 2012, GZ 12 C 1045/05m-131, bestätigt wurde, den Beschluss gefasst:  Spruch Die Revision wird zurückgewiesen.
@@ -9804,7 +9807,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Mittel Bachlemsee GmbH`(organisation)
 - `Erwin Klefass, BSc`(person)
 
-**Example 27** (doc_id: `deanon_TRAIN/3Ob147_20v`) (sent_id: `deanon_TRAIN/3Ob147_20v_3`)
+**Example 26** (doc_id: `deanon_TRAIN/3Ob147_20v`) (sent_id: `deanon_TRAIN/3Ob147_20v_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Hofrat Dr. Roch als Vorsitzenden sowie den Hofrat Hon.-Prof. PD Dr. Rassi, die Hofrätinnen Dr. Weixelbraun-Mohr und Dr. Kodek und den Hofrat Dr. Stefula als weitere Richter in der Rechtssache der klagenden Partei Kraftnorost Wind GmbH, Roderich Holtze, vertreten durch Mag. Andreas Kleiber, Rechtsanwalt in Wien, gegen die beklagte Partei Annette Fiss verein Ing. Kirstin Movcan, vertreten durch Pflaum Karlberger Wiener Opetnik, Rechtsanwälte in Wien, wegen Aufkündigung, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Landesgerichts für Zivilrechtssachen Wien als Berufungsgericht vom 22. Juli 2020, GZ 40 R 37/20t-27, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -9823,7 +9826,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Hofrat Dr. Roch 
 - `Annette Fiss`(person)
 - `Ing. Kirstin Movcan`(person)
 
-**Example 28** (doc_id: `deanon_TRAIN/3Ob14_24s`) (sent_id: `deanon_TRAIN/3Ob14_24s_3`)
+**Example 27** (doc_id: `deanon_TRAIN/3Ob14_24s`) (sent_id: `deanon_TRAIN/3Ob14_24s_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Hon.-Prof. Dr. Höllwerth als Vorsitzenden sowie den Hofrat Hon.-Prof. Dr. Brenn, die Hofrätinnen Dr. Weixelbraun-Mohr und Dr. Kodek und den Hofrat Dr. Stefula als weitere Richter in der Exekutionssache der betreibenden Partei Daniela Sklenar SE, Kimberly Hurrelmeyer, vertreten durch Cerha Hempel Rechtsanwälte GmbH in Wien, gegen die verpflichtete Partei Staat Libyen, StR Violetta Stegemeyer, Libyen, vertreten durch Binder Grösswang Rechtsanwälte GmbH in Wien, wegen 10 Mio EUR sA, über den außerordentlichen Revisionsrekurs der verpflichteten Partei gegen den Beschluss des Landesgerichts für Zivilrechtssachen Wien als Rekursgericht vom 20. Oktober 2023, GZ 47 R 228/23m-107, den Beschluss gefasst:  Spruch Der außerordentliche Revisionsrekurs wird gemäß § 78 EO iVm § 526 Abs 2 Satz 1 ZPO mangels der Voraussetzungen des § 528 Abs 1 ZPO zurückgewiesen.
@@ -9841,7 +9844,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Hon.-Prof. Dr. Hö
 - `Kimberly Hurrelmeyer`(person)
 - `StR Violetta Stegemeyer`(person)
 
-**Example 29** (doc_id: `deanon_TRAIN/3Ob152_10i`) (sent_id: `deanon_TRAIN/3Ob152_10i_3`)
+**Example 28** (doc_id: `deanon_TRAIN/3Ob152_10i`) (sent_id: `deanon_TRAIN/3Ob152_10i_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Hon.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in der Exekutionssache der betreibenden Partei KMN Versicherung Werke AG, Corbinian Pichlmaier, vertreten durch Dr. Erich Kafka, Dr. Manfred Palkovits, Rechtsanwälte in Wien, gegen die verpflichtete Partei Severin Wellenbrink, vertreten durch Dr. Philipp Jessich, Rechtsanwalt in Wien, wegen Aufschiebung einer Räumungsexekution, über den Revisionsrekurs der betreibenden Partei gegen den Beschluss des Landesgerichts für Zivilrechtssachen Wien als Rekursgericht vom 12. Mai 2010, GZ 39 R 44/10z-22, womit der Beschluss des Bezirksgerichts Fünfhaus vom 14. Jänner 2010, GZ 10 E 171/09d-6, abgeändert wurde, den Beschluss gefasst:  Spruch Dem Revisionsrekurs wird Folge gegeben.
@@ -9860,7 +9863,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als 
 - `Dr. Manfred Palkovits`(person)
 - `Severin Wellenbrink`(person)
 
-**Example 30** (doc_id: `deanon_TRAIN/3Ob156_12f`) (sent_id: `deanon_TRAIN/3Ob156_12f_3`)
+**Example 29** (doc_id: `deanon_TRAIN/3Ob156_12f`) (sent_id: `deanon_TRAIN/3Ob156_12f_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Hon.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in den verbundenen Rechtssachen der klagenden Partei Severin Ilek, vertreten durch die Sachwalterin Mag. Roswitha Ferl-Pailer, Rechtsanwältin in Hartberg, gegen die beklagte Partei Dipl.
@@ -9875,7 +9878,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 
 - `Severin Ilek`(person)
 
-**Example 31** (doc_id: `deanon_TRAIN/3Ob164_20v`) (sent_id: `deanon_TRAIN/3Ob164_20v_3`)
+**Example 30** (doc_id: `deanon_TRAIN/3Ob164_20v`) (sent_id: `deanon_TRAIN/3Ob164_20v_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch die Präsidentin Hon.-Prof. Dr. Lovrek als Vorsitzende sowie den Hofrat Hon.-Prof. PD Dr. Rassi, die Hofrätinnen Dr. Weixelbraun-Mohr und Dr. Kodek und den Hofrat Dr. Stefula als weitere Richter in der Rechtssache der klagenden Partei Bruckgartver GmbH, MedR StR René Titz, vertreten durch Dr. Reinhard Schanda, Rechtsanwalt in Wien, gegen die beklagte Partei Ofczarczik Planung AG, Dipl.
@@ -9893,7 +9896,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch die Präsidentin Hon
 - `MedR StR René Titz`(person)
 - `Ofczarczik Planung AG`(organisation)
 
-**Example 32** (doc_id: `deanon_TRAIN/3Ob178_15w`) (sent_id: `deanon_TRAIN/3Ob178_15w_3`)
+**Example 31** (doc_id: `deanon_TRAIN/3Ob178_15w`) (sent_id: `deanon_TRAIN/3Ob178_15w_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Hofrat Dr. Jensik als Vorsitzenden, die Vizepräsidentin Dr. Lovrek, die Hofräte Dr. Schwarzenbacher und Dr. Roch sowie die Hofrätin Dr. Kodek als weitere Richter in der Rechtssache der klagenden Partei Nikolai Castelli, vertreten durch Divitschek Sieder Sauer Peter Rechtsanwälte GesBR in Deutschlandsberg, gegen die beklagte Partei Dohmgoergen Bau GmbH, Oswald Schubert, vertreten durch Dr. Johannes Liebmann, Rechtsanwalt in Gleisdorf, wegen 82.977,52 EUR sA und Feststellung, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Graz als Berufungsgericht vom 27. Juli 2015, GZ 3 R 54/15h-145, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -9910,7 +9913,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Hofrat Dr. Jensi
 - `Dohmgoergen Bau GmbH`(organisation)
 - `Oswald Schubert`(person)
 
-**Example 33** (doc_id: `deanon_TRAIN/3Ob220_14w`) (sent_id: `deanon_TRAIN/3Ob220_14w_3`)
+**Example 32** (doc_id: `deanon_TRAIN/3Ob220_14w`) (sent_id: `deanon_TRAIN/3Ob220_14w_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Univ.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in der Exekutionssache der betreibenden Partei Dr. Wendelin Mauroschat, Deutschland, vertreten durch Dr. Anke Reisch, Rechtsanwältin in Kitzbühel, gegen die verpflichtete Partei Quirin Eißelt, Deutschland, vertreten durch Dr. Josef Trenker, Rechtsanwalt in St. Johann im Pongau, wegen Erwirkung einer vertretbaren Handlung (§ 353 EO), über den „außerordentlichen Revisionsrekurs“ der betreibenden Partei gegen den Beschluss des Landesgerichts Innsbruck als Rekursgericht vom 23. Oktober 2014, GZ 4 R 312/14g-7, womit infolge Rekurses der verpflichteten Partei der Beschluss des Bezirksgerichts Kitzbühel vom 26. August 2014, GZ 1 E 3576/14g-2, abgeändert wurde, den Beschluss gefasst:  Spruch Der Akt wird dem Erstgericht zurückgestellt.
@@ -9926,7 +9929,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als 
 - `Dr. Wendelin Mauroschat`(person)
 - `Quirin Eißelt`(person)
 
-**Example 34** (doc_id: `deanon_TRAIN/3Ob22_13a`) (sent_id: `deanon_TRAIN/3Ob22_13a_3`)
+**Example 33** (doc_id: `deanon_TRAIN/3Ob22_13a`) (sent_id: `deanon_TRAIN/3Ob22_13a_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie durch den Hofrat Univ.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in der Rechtssache der betreibenden Partei Szymczak Software GmbH, Berthold Haendl, vertreten durch Mayrhofer & Rainer Rechtsanwälte OG in Wien, gegen die verpflichtete Partei Mag. Dr. Jennifer Meinard, wegen Räumung, über den außerordentlichen Revisionsrekurs der verpflichteten Partei gegen den Beschluss des Landesgerichts für Zivilrechtssachen Wien als Rekursgericht vom 27. November 2012, GZ 40 R 307/12m-99, womit der Rekurs der verpflichteten Partei gegen den Beschluss des Bezirksgerichts Innere Stadt Wien vom 12. Juli 2012, GZ 48 C 363/10d = 48 E 70/11y-38, zurückgewiesen wurde, den Beschluss gefasst:  Spruch Der Revisionsrekurs wird zurückgewiesen.
@@ -9943,7 +9946,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als 
 - `Berthold Haendl`(person)
 - `Dr. Jennifer Meinard`(person)
 
-**Example 35** (doc_id: `deanon_TRAIN/3Ob248_10g`) (sent_id: `deanon_TRAIN/3Ob248_10g_3`)
+**Example 34** (doc_id: `deanon_TRAIN/3Ob248_10g`) (sent_id: `deanon_TRAIN/3Ob248_10g_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Hon.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in der Rechtssache der klagenden Partei Riecken Maschinenbau GmbH, Hubert Englmaier, vertreten durch Dr. Martin Holzer, Rechtsanwalt in Bruck an der Mur, gegen die beklagte Partei Florian Corvetti, vertreten durch Dr. Heimo Jilek, Rechtsanwalt in Leoben, wegen Einwendungen gegen den Anspruch (§ 35 EO), über die außerordentliche Revision der klagenden Partei gegen das Urteil des Landesgerichts Leoben als Berufungsgericht vom 3. November 2010, GZ 1 R 244/10i-34, womit über Berufung der beklagten Partei das Urteil des Bezirksgerichts Leoben vom 9. Juni 2010, GZ 5 C 315/09y-28, abgeändert wurde, den Beschluss gefasst:  Spruch Der außerordentlichen Revision der klagenden Partei wird Folge gegeben, das angefochtene Urteil aufgehoben und die Rechtssache zur neuerlichen Entscheidung an das Berufungsgericht zurückverwiesen.
@@ -9960,7 +9963,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Hubert Englmaier`(person)
 - `Florian Corvetti`(person)
 
-**Example 36** (doc_id: `deanon_TRAIN/3Ob32_17b`) (sent_id: `deanon_TRAIN/3Ob32_17b_3`)
+**Example 35** (doc_id: `deanon_TRAIN/3Ob32_17b`) (sent_id: `deanon_TRAIN/3Ob32_17b_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hoch als Vorsitzenden sowie die Vizepräsidentin Dr. Lovrek, die Hofräte Dr. Jensik und Dr. Roch und die Hofrätin Dr. Kodek als weitere Richter in der Exekutionssache der betreibenden Partei HR Dr.in RgR Johanna Drestomark, Italien, vertreten durch Oberhammer Rechtsanwälte GmbH in Wien, wider die verpflichtete Partei Prosten und Kreutzinger Bau gesellschaft mbH, Dr.Viktor-Kaplan-Straße 8, 4920 Weiketsedt, Österreich, vertreten durch Dr. Daniel Charim und Mag. Jakob Charim, Rechtsanwälte in Wien, wegen (restlich) 347.093,53 EUR sA über den außerordentlichen Revisionsrekurs der verpflichteten Partei gegen den Beschluss des Landesgerichts für Zivilrechtssachen Wien als Rekursgericht vom 7. Dezember 2016, GZ 46 R 323/16i-61, womit der Beschluss des Bezirksgerichts Josefstadt vom 24. Juni 2016, GZ 11 E 2966/11p-56, bestätigt wurde, den Beschluss gefasst:  Spruch I.Der Revisionsrekurs der verpflichteten Partei wird, soweit er die Bestätigung der Exekutionsbewilligung bekämpft, als jedenfalls unzulässig zurückgewiesen.
@@ -9977,7 +9980,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hoch als Vorsi
 - `Prosten und Kreutzinger Bau gesellschaft mbH`(organisation)
 - `Dr.Viktor-Kaplan-Straße 8, 4920 Weiketsedt, Österreich`(address)
 
-**Example 37** (doc_id: `deanon_TRAIN/3Ob44_20x`) (sent_id: `deanon_TRAIN/3Ob44_20x_3`)
+**Example 36** (doc_id: `deanon_TRAIN/3Ob44_20x`) (sent_id: `deanon_TRAIN/3Ob44_20x_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Hofrat des Obersten Gerichtshofs Dr. Roch als Vorsitzenden sowie die Hofräte Priv.-Doz. Dr. Rassi und Mag. Painsi und die Hofrätinnen Dr. Weixelbraun-Mohr und Dr. Kodek als weitere Richter in der Rechtssache der klagenden Partei Andreas Clösges, vertreten durch die Eger/Gründl Rechtsanwälte OG in Graz, gegen die beklagte Partei Chemie Valtri GmbH, Niels Niefeldt, vertreten durch Mag. Manuel Fähnrich, Rechtsanwalt in Graz, wegen 34.000 EUR sA, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Graz als Berufungsgericht vom 31. Jänner 2020, GZ 2 R 168/19x-28, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -9995,7 +9998,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Hofrat des Obers
 - `Chemie Valtri GmbH`(organisation)
 - `Niels Niefeldt`(person)
 
-**Example 38** (doc_id: `deanon_TRAIN/3Ob49_11v`) (sent_id: `deanon_TRAIN/3Ob49_11v_3`)
+**Example 37** (doc_id: `deanon_TRAIN/3Ob49_11v`) (sent_id: `deanon_TRAIN/3Ob49_11v_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie durch den Hofrat Hon.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in der Rechtssache der klagenden Partei Julius Zimzick Verlag GmbH & Co KG, Terramaregasse 28, 8234 Rohrbachschlag, Österreich, vertreten durch Dr. Wolfgang Dartmann und andere Rechtsanwälte in Linz, wider die beklagten Parteien 1. Friedrich Schreinemachers und 2.
@@ -10012,7 +10015,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Terramaregasse 28, 8234 Rohrbachschlag, Österreich`(address)
 - `Schreinemachers`(person)
 
-**Example 39** (doc_id: `deanon_TRAIN/4Nc18_11a`) (sent_id: `deanon_TRAIN/4Nc18_11a_3`)
+**Example 38** (doc_id: `deanon_TRAIN/4Nc18_11a`) (sent_id: `deanon_TRAIN/4Nc18_11a_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch die Senatspräsidentin Dr. Schenk als Vorsitzende und die Hofräte Dr. Vogel und Dr. Jensik als weitere Richter in der Rechtssache der klagenden Partei HochCloud GmbH, Piedro Temur, vertreten durch Dr. Christian Fuchshuber LL.M., Rechtsanwalt in Innsbruck, gegen die beklagte Partei SUI Pharma Consulting GmbH, Nancy Herz, vertreten durch Dr. Gerhard Strobich, Rechtsanwalt in Trofaiach, wegen 5.873,18 EUR sA, über den Delegierungsantrag der beklagten Partei den Beschluss gefasst:  Spruch Der Antrag, zur Verhandlung und Entscheidung in dieser Rechtssache anstelle des Bezirksgerichts Innsbruck das Bezirksgericht Leoben zu bestimmen, wird abgewiesen.
@@ -10032,7 +10035,7 @@ Kopf Der Oberste Gerichtshof hat durch die Senatspräsidentin Dr. Schenk als Vor
 - `Nancy Herz`(person)
 - `Bezirksgericht Leoben`(organisation)
 
-**Example 40** (doc_id: `deanon_TRAIN/4Nc3_12x`) (sent_id: `deanon_TRAIN/4Nc3_12x_3`)
+**Example 39** (doc_id: `deanon_TRAIN/4Nc3_12x`) (sent_id: `deanon_TRAIN/4Nc3_12x_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch die Senatspräsidentin Dr. Schenk als Vorsitzende und durch die Hofräte Dr. Vogel und Dr. Jensik als weitere Richter in der beim Landesgericht Innsbruck zu AZ 59 Cg 92/11x anhängigen Rechtssache der klagenden Partei Rudigkeit Finanzen GmbH, Ing. Sascha Rohkrämer, vertreten durch Mag. Heinz Heher, Rechtsanwalt in Wien, gegen die beklagte Partei Suddorftra Manufaktur GmbH, Ludmilla Nottelmann, vertreten durch Dr. Adrian Hollaender, Rechtsanwalt in Innsbruck, wegen Unterlassung, Urteilsveröffentlichung und 67.606 EUR sA, über die Delegierungsanträge der beklagten Partei gemäß § 31 Abs 2 JN, folgenden Beschluss gefasst:  Spruch Die Anträge der beklagten Partei, die Rechtssache an das „Landesgericht Wien“ bzw Handelsgericht Wien zu delegieren, werden abgewiesen.
@@ -10053,7 +10056,7 @@ Kopf Der Oberste Gerichtshof hat durch die Senatspräsidentin Dr. Schenk als Vor
 - `Ludmilla Nottelmann`(person)
 - `Landesgericht Wien`(organisation)
 
-**Example 41** (doc_id: `deanon_TRAIN/4Ob100_13d`) (sent_id: `deanon_TRAIN/4Ob100_13d_3`)
+**Example 40** (doc_id: `deanon_TRAIN/4Ob100_13d`) (sent_id: `deanon_TRAIN/4Ob100_13d_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch die Vizepräsidentin Dr. Schenk als Vorsitzende und die Hofräte Dr. Vogel, Dr. Jensik, Dr. Musger und Dr. Schwarzenbacher als weitere Richter in der Rechtssache der klagenden Partei Verein Erwin Sieferer, vertreten durch Kosesnik-Wehrle & Langer Rechtsanwälte KG in Wien, gegen die beklagte Partei Lebensmittel Seeder -Aktiengesellschaft, Knechtswies 63, 4692 Niederau, Österreich, vertreten durch Raits Bleiziffer Rechtsanwälte GmbH in Salzburg, und die Nebenintervenientin auf Seiten der beklagten Partei „ StR Thobias Broß ” Viola Hüßkes, vertreten durch Dr. Peter Zöchbauer und andere Rechtsanwälte in Wien, wegen Unterlassung und Urteilsveröffentlichung (Streitwert 36.000 EUR), über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Linz vom 19. April 2013, GZ 1 R 192/12d-14, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -10072,7 +10075,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch die Vizepräsidentin
 - `StR Thobias Broß`(person)
 - `Viola Hüßkes`(person)
 
-**Example 42** (doc_id: `deanon_TRAIN/4Ob112_24k`) (sent_id: `deanon_TRAIN/4Ob112_24k_3`)
+**Example 41** (doc_id: `deanon_TRAIN/4Ob112_24k`) (sent_id: `deanon_TRAIN/4Ob112_24k_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Schwarzenbacher als Vorsitzenden sowie den Vizepräsidenten Hon.-Prof. PD Dr. Rassi, die Hofrätinnen Mag. Istjan, LL.M., und Mag. Waldstätten und den Hofrat Dr. Stiefsohn als weitere Richter in der Rechtssache der klagenden Partei Kersseboom Textil AG, Prof.in Juliette Große-Kleimann, Schweiz, vertreten durch die Gottgeisl Leinsmer Weber Rechtsanwälte GmbH in Wien, gegen die beklagte Partei Benedikt Faath plc, DDr. Piedro Bielmeier, Malta, vertreten durch die Brandl Talos Rechtsanwälte GmbH in Wien, wegen 19.333,99 EUR sA, über die Revision der beklagten Partei gegen das Urteil des Oberlandesgerichts Linz vom 14. März 2024, GZ 1 R 12/24a-46, mit dem das Urteil des Landesgerichts Wels vom 1. Dezember 2023, GZ 6 Cg 18/23p-41, abgeändert wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die Revision wird zurückgewiesen.
@@ -10091,7 +10094,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Benedikt Faath`(person)
 - `DDr. Piedro Bielmeier`(person)
 
-**Example 43** (doc_id: `deanon_TRAIN/4Ob113_24g`) (sent_id: `deanon_TRAIN/4Ob113_24g_3`)
+**Example 42** (doc_id: `deanon_TRAIN/4Ob113_24g`) (sent_id: `deanon_TRAIN/4Ob113_24g_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Schwarzenbacher als Vorsitzenden sowie den Vizepräsidenten Hon.-Prof. PD Dr. Rassi, die Hofrätinnen Mag. Istjan, LL.M., und Mag. Waldstätten und den Hofrat Dr. Stiefsohn als weitere Richter in der Rechtssache der klagenden Partei Vierziger u. Tewald Wind GmbH, Claire Lüdermann, Bakk. rer. nat., vertreten durch Grassner Rechtsanwalts GmbH in Linz, gegen die beklagte Partei Milena Buchmayr, vertreten durch Dr. Manfred Palkovits, Mag. Martin Sohm, Rechtsanwälte in Wien, wegen Aufkündigung, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Landesgerichts für Zivilrechtssachen Wien vom 24. April 2024, GZ 38 R 247/23i-46, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -10115,7 +10118,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 
 ## `Party_Comma_Vertreten`
 
-**F1:** 0.270 | **Precision:** 0.626 | **Recall:** 0.172  
+**F1:** 0.272 | **Precision:** 0.632 | **Recall:** 0.173  
 
 **Format:** `regex`  
 **Rule ID:** `a850b56c`  
@@ -10132,13 +10135,13 @@ Captures party names in the pattern 'Partei Name, vertreten durch' or similar, s
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.626 | 0.172 | 0.270 | 380 | 238 | 142 |
+| 0.632 | 0.173 | 0.272 | 380 | 240 | 140 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `person` | 238 | 142 | 1146 |
+| `person` | 240 | 140 | 1144 |
 
 </details>
 
@@ -10708,7 +10711,20 @@ Sloboda als weitere Richter in der Rechtssache der klagenden Partei Ing. Constan
 - `DDr. Leif Eralp` (person)
 - `Lothar Schwänke` (person)
 
-**Example 45** (doc_id: `deanon_TRAIN/2Ob182_24i`) (sent_id: `deanon_TRAIN/2Ob182_24i_4`)
+**Example 45** (doc_id: `deanon_TRAIN/2Ob181_10x`) (sent_id: `deanon_TRAIN/2Ob181_10x_3`)
+
+
+Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Baumann als Vorsitzenden und durch die Hofräte Dr. Veith, Dr. E. Solé, Dr. Schwarzenbacher und Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Gertrude Ptak, vertreten durch Dr. Bertram Broesigke und Dr. Wolfgang Broesigke, Rechtsanwälte in Wien, gegen die beklagte Partei Josef Schindelmeißer, vertreten durch den Sachwalter Dr. Helmut Heiger, Rechtsanwalt in Wien, wegen Aufkündigung, über die außerordentliche Revision der beklagten Partei gegen das Urteil des Landesgerichts für Zivilrechtssachen Wien als Berufungsgericht vom 15. Juni 2010, GZ 41 R 130/10m-26, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen (§ 510 Abs 3 ZPO).
+
+| Predicted | Gold |
+|---|---|
+| `Gertrude Ptak` | `Gertrude Ptak` |
+
+**Missed by this rule (FN):**
+
+- `Josef Schindelmeißer` (person)
+
+**Example 46** (doc_id: `deanon_TRAIN/2Ob182_24i`) (sent_id: `deanon_TRAIN/2Ob182_24i_4`)
 
 
 Sloboda, Dr. Thunhart und Dr. Kikinger sowie die Hofrätin Mag. Fitz als weitere Richter in der Rechtssache der klagenden und gefährdeten Partei Theresa Ziebold, vertreten durch Mag. Mahmut Sahinol, Rechtsanwalt in Wien, gegen die beklagten Parteien und Gegner der gefährdeten Parteien 1.
@@ -10717,7 +10733,7 @@ Sloboda, Dr. Thunhart und Dr. Kikinger sowie die Hofrätin Mag. Fitz als weitere
 |---|---|
 | `Theresa Ziebold` | `Theresa Ziebold` |
 
-**Example 46** (doc_id: `deanon_TRAIN/2Ob224_21m`) (sent_id: `deanon_TRAIN/2Ob224_21m_5`)
+**Example 47** (doc_id: `deanon_TRAIN/2Ob224_21m`) (sent_id: `deanon_TRAIN/2Ob224_21m_5`)
 
 
 Dr. Konstantin Haas, Rechtsanwalt in Leonding, gegen die beklagte Partei Annette Provost, vertreten durch Posch, Schausberger & Lutz Rechtsanwälte GmbH in Wels, wegen 25.650,07 EUR sA sowie Herausgabe (Streitwert 1.000 EUR) über die Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Linz als Berufungsgericht vom 1. Oktober 2021, GZ 2 R 119/21i-48, mit dem das Urteil des Landesgerichts Ried im Innkreis vom 28. Juni 2021, GZ 5 Cg 60/18b-44, bestätigt wurde, den Beschluss gefasst:  Spruch Die Revision wird zurückgewiesen.
@@ -10726,7 +10742,7 @@ Dr. Konstantin Haas, Rechtsanwalt in Leonding, gegen die beklagte Partei Annette
 |---|---|
 | `Annette Provost` | `Annette Provost` |
 
-**Example 47** (doc_id: `deanon_TRAIN/2Ob256_12d`) (sent_id: `deanon_TRAIN/2Ob256_12d_3`)
+**Example 48** (doc_id: `deanon_TRAIN/2Ob256_12d`) (sent_id: `deanon_TRAIN/2Ob256_12d_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Baumann als Vorsitzenden und durch die Hofräte Dr. Veith, Dr. E. Solé, Dr. Schwarzenbacher und Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Stallbauer Telekom Aktiengesellschaft, Poysdorfer Straße 5, 9341 Dobersberg, Österreich, vertreten durch Dr. Manfred Steininger, Rechtsanwalt in Wien, gegen die beklagte Partei DDr. Viktor Junkmanns, Bakk. iur., vertreten durch die ANWALTGMBH Rinner Teuchtmann in Linz, wegen 50.932,89 EUR sA, über die Revision der beklagten Partei gegen das Urteil des Oberlandesgerichts Linz als Berufungsgericht vom 2. Oktober 2012, GZ 4 R 158/12a-20, womit das Urteil des Landesgerichts Linz vom 14. Juni 2012, GZ 5 Cg 119/11m-14, abgeändert wurde, den Beschluss gefasst:  Spruch Die Revision wird zurückgewiesen.
@@ -10740,7 +10756,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Stallbauer Telekom Aktiengesellschaft` (organisation)
 - `Poysdorfer Straße 5, 9341 Dobersberg, Österreich` (address)
 
-**Example 48** (doc_id: `deanon_TRAIN/2Ob37_17f`) (sent_id: `deanon_TRAIN/2Ob37_17f_3`)
+**Example 49** (doc_id: `deanon_TRAIN/2Ob37_17f`) (sent_id: `deanon_TRAIN/2Ob37_17f_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Hon.-Prof. Dr. Danzl als Vorsitzenden und die Hofräte Dr. Veith und Dr. Musger, die Hofrätin Dr. E. Solé und den Hofrat Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Florentin Uffenwasser, vertreten durch Dr. Armin Exner, Rechtsanwalt in Innsbruck, gegen die beklagte Partei Stadtgemeinde Naomi Mertensmeyer, vertreten durch Dr. Thomas Girardi, Rechtsanwalt in Innsbruck, wegen 29.461,04 EUR sA und Feststellung (Streitwert 10.000 EUR), über die außerordentliche Revision der beklagten Partei (Revisionsinteresse 22.377,04 EUR) gegen das Urteil des Oberlandesgerichts Innsbruck als Berufungsgericht vom 15. Dezember 2016, GZ 2 R 141/16a-47, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -10753,7 +10769,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 
 - `Naomi Mertensmeyer` (person)
 
-**Example 49** (doc_id: `deanon_TRAIN/2Ob41_16t`) (sent_id: `deanon_TRAIN/2Ob41_16t_3`)
+**Example 50** (doc_id: `deanon_TRAIN/2Ob41_16t`) (sent_id: `deanon_TRAIN/2Ob41_16t_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Hon.-Prof. Dr. Danzl als Vorsitzenden sowie die Hofräte Dr. Veith und Dr. Musger, die Hofrätin Dr. E. Solé und den Hofrat Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei DDr. Ashley Feichtmeier, vertreten durch Bollmann & Bollmann Rechtsanwaltspartnerschaft in Wien, gegen die beklagte Partei StadtDigital AG, Helmut Klösgen, vertreten durch DLA Piper Weiss-Tessbach, Rechtsanwälte GmbH in Wien, wegen 18.056,86 EUR sA, über die Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Wien als Berufungsgericht vom 24. November 2015, GZ 1 R 141/15k-48, womit über Berufung der klagenden Partei das Urteil des Handelsgerichts Wien vom 27. Mai 2015, GZ 55 Cg 295/11k-44, bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die Revision der klagenden Partei wird zurückgewiesen.
@@ -10767,7 +10783,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `StadtDigital AG` (organisation)
 - `Helmut Klösgen` (person)
 
-**Example 50** (doc_id: `deanon_TRAIN/2Ob63_11w`) (sent_id: `deanon_TRAIN/2Ob63_11w_3`)
+**Example 51** (doc_id: `deanon_TRAIN/2Ob63_11w`) (sent_id: `deanon_TRAIN/2Ob63_11w_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Baumann als Vorsitzenden und durch die Hofräte Dr. Veith, Dr. E. Solé, Dr. Schwarzenbacher und Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Thomas Papakonstantinou, vertreten durch Kinberger-Schuberth-Fischer Rechtsanwälte-GmbH in Zell am See, gegen die beklagten Parteien 1. Matthias Graafmann, und 2.
@@ -10780,7 +10796,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 
 - `Matthias Graafmann` (person)
 
-**Example 51** (doc_id: `deanon_TRAIN/2Ob71_23i`) (sent_id: `deanon_TRAIN/2Ob71_23i_4`)
+**Example 52** (doc_id: `deanon_TRAIN/2Ob71_23i`) (sent_id: `deanon_TRAIN/2Ob71_23i_4`)
 
 
 Sloboda und Dr. Kikinger als weitere Richter in der Rechtssache der klagenden Partei Moses Malkomes, vertreten durch Klepp Nöbauer Hintringer Primetshofer Rechtsanwälte (GbR) in Linz, gegen die beklagte Partei Carmen Reinoldsmann, vertreten durch Dr. Christoph Arbeithuber, Rechtsanwalt in Linz, wegen 26.843,50 EUR sA und Feststellung, über die außerordentliche Revision der beklagten Partei gegen das Urteil des Oberlandesgerichts Linz als Berufungsgericht vom 27. Februar 2023, GZ 4 R 17/23g-28, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -10790,7 +10806,7 @@ Sloboda und Dr. Kikinger als weitere Richter in der Rechtssache der klagenden Pa
 | `Moses Malkomes` | `Moses Malkomes` |
 | `Carmen Reinoldsmann` | `Carmen Reinoldsmann` |
 
-**Example 52** (doc_id: `deanon_TRAIN/2Ob73_15x`) (sent_id: `deanon_TRAIN/2Ob73_15x_3`)
+**Example 53** (doc_id: `deanon_TRAIN/2Ob73_15x`) (sent_id: `deanon_TRAIN/2Ob73_15x_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Hon.-Prof. Dr. Danzl als Vorsitzenden, die Hofräte Dr. Veith und Dr. Musger, die Hofrätin Dr. E. Solé sowie den Hofrat Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Dragan Karp, vertreten durch Mag. Bernd Trappmaier, Rechtsanwalt in Korneuburg, gegen die beklagte Partei Marlene Diderichs, vertreten durch Mag. Claus Marchl, Rechtsanwalt in Wien, wegen 25.396,03 EUR sA, über die Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Wien als Berufungsgericht vom 22. Jänner 2015, GZ 11 R 239/14v-26, womit infolge Berufung der klagenden Partei das Urteil des Landesgerichts für Zivilrechtssachen Wien vom 30. September 2014, GZ 57 Cg 30/14x-22, bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die Revision wird zurückgewiesen.
@@ -10800,7 +10816,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 | `Dragan Karp` | `Dragan Karp` |
 | `Marlene Diderichs` | `Marlene Diderichs` |
 
-**Example 53** (doc_id: `deanon_TRAIN/2Ob78_15g`) (sent_id: `deanon_TRAIN/2Ob78_15g_3`)
+**Example 54** (doc_id: `deanon_TRAIN/2Ob78_15g`) (sent_id: `deanon_TRAIN/2Ob78_15g_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Hon.-Prof. Dr. Danzl als Vorsitzenden, die Hofräte Dr. Veith und Dr. Musger sowie die Hofrätinnen Dr. E. Solé und Dr. Hofer-Zeni-Rennhofer als weitere Richter in der Rechtssache der klagenden Partei Luigi Neimeier, vertreten durch Rechtsanwälte Estermann & Partner OG in Mattighofen, gegen die beklagte Partei LNC KI Solutions GmbH, Kordelia Grauel, vertreten durch Dr. Herbert Harlander und Mag. Wolfgang Harlander, Rechtsanwälte in Salzburg, wegen 33.251,85 EUR sA, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Linz als Berufungsgericht vom 5. März 2015, GZ 2 R 1/15b-37, womit infolge Berufung der klagenden Partei das Urteil des Landesgerichts Salzburg vom 23. Oktober 2014, GZ 4 Cg 27/13d-33, bestätigt wurde, in nichtöffentlicher Sitzung beschlossen und zu Recht erkannt:  Spruch
@@ -10814,7 +10830,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `LNC KI Solutions GmbH` (organisation)
 - `Kordelia Grauel` (person)
 
-**Example 54** (doc_id: `deanon_TRAIN/2Ob86_12d`) (sent_id: `deanon_TRAIN/2Ob86_12d_3`)
+**Example 55** (doc_id: `deanon_TRAIN/2Ob86_12d`) (sent_id: `deanon_TRAIN/2Ob86_12d_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Baumann als Vorsitzenden und die Hofräte Dr. Veith, Dr. E. Solé, Dr. Schwarzenbacher und Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Constanze Hoefelmann, MSc, vertreten durch Gruböck & Lentschig Rechtsanwälte OG in Baden, wider die beklagte Partei „ Herbert Sippert “ Ada Roselius, vertreten durch Themmer, Toth & Partner Rechtsanwälte OG in Wien, wegen 144.329,55 EUR sA (Revisionsinteresse 54.717 EUR sA), infolge der außerordentlichen Revision der beklagten Partei gegen das Teilurteil des Oberlandesgerichts Wien als Berufungsgericht vom 29. Februar 2012, GZ 4 R 598/11g-25, den Beschluss gefasst:  Spruch Das Revisionsverfahren wird bis zur rechtskräftigen Erledigung des Verfahrens über den Ablehnungsantrag der beklagten Partei gegen die Erstrichterin unterbrochen.
@@ -10828,7 +10844,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Baumann als Vo
 - `Herbert Sippert` (person)
 - `Ada Roselius` (person)
 
-**Example 55** (doc_id: `deanon_TRAIN/2Ob89_17b`) (sent_id: `deanon_TRAIN/2Ob89_17b_3`)
+**Example 56** (doc_id: `deanon_TRAIN/2Ob89_17b`) (sent_id: `deanon_TRAIN/2Ob89_17b_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch die Vizepräsidentin Hon.-Prof. Dr. Lovrek als Vorsitzende, die Hofräte Dr. Veith und Dr. Musger, die Hofrätin Dr. E. Solé sowie den Hofrat Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Aron Dawideit, vertreten durch Posch, Schausberger & Lutz Rechtsanwälte GmbH in Wels, gegen die beklagten Parteien 1. PhD Irvin Kindschuh, 2. Theodor Hermus, und 3.
@@ -10842,7 +10858,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch die Vizepräsidentin
 - `PhD Irvin Kindschuh` (person)
 - `Theodor Hermus` (person)
 
-**Example 56** (doc_id: `deanon_TRAIN/2Ob91_22d`) (sent_id: `deanon_TRAIN/2Ob91_22d_4`)
+**Example 57** (doc_id: `deanon_TRAIN/2Ob91_22d`) (sent_id: `deanon_TRAIN/2Ob91_22d_4`)
 
 
 Sloboda und Dr. Kikinger als weitere Richter in der Rechtssache der klagenden Partei Farina Dirker, vertreten durch Dr. Sven Rudolf Thorstensen, LL.M., Rechtsanwalt in Wien, gegen die beklagte Partei Lüttge Chemie Limited, René Luidthard, vertreten durch Brandl Talos Rechtsanwälte GmbH in Wien, wegen 40.150,26 EUR sA, im Verfahren über die Revision der beklagten Partei gegen das Urteil des Oberlandesgerichts Wien als Berufungsgericht vom 24. Februar 2022, GZ 15 R 171/21h-33, den Beschluss gefasst:  Spruch Die Zurücknahme der Revision wird zur Kenntnis genommen.
@@ -10856,7 +10872,7 @@ Sloboda und Dr. Kikinger als weitere Richter in der Rechtssache der klagenden Pa
 - `Lüttge Chemie Limited` (organisation)
 - `René Luidthard` (person)
 
-**Example 57** (doc_id: `deanon_TRAIN/3Ob128_10k`) (sent_id: `deanon_TRAIN/3Ob128_10k_3`)
+**Example 58** (doc_id: `deanon_TRAIN/3Ob128_10k`) (sent_id: `deanon_TRAIN/3Ob128_10k_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie die Hofräte und Hofrätinnen Hon.-Prof. Dr. Sailer, Dr. Lovrek, Dr. Jensik und Dr. Fichtenau als weitere Richter in der Rechtssache der klagenden Partei Nadja Spangler, vertreten durch Kinberger-Schuberth-Fischer Rechtsanwälte-GmbH in Zell am See, gegen die beklagte Partei Sascha Heckert, vertreten durch Dr. Andreas König, Dr. Andreas Ermacora und Dr. Barbara Lässer, Rechtsanwälte in Innsbruck, wegen 137.146,60 EUR sA und Feststellung (Gesamtstreitwert 157.146,60 EUR), über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Linz als Berufungsgericht vom 31. März 2010, GZ 6 R 28/10w-44, womit über Berufung der klagenden Partei das Urteil des Landesgerichts Salzburg vom 30. Oktober 2009, GZ 7 Cg 117/07b-40, bestätigt wurde, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -10866,7 +10882,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 | `Nadja Spangler` | `Nadja Spangler` |
 | `Sascha Heckert` | `Sascha Heckert` |
 
-**Example 58** (doc_id: `deanon_TRAIN/3Ob152_10i`) (sent_id: `deanon_TRAIN/3Ob152_10i_3`)
+**Example 59** (doc_id: `deanon_TRAIN/3Ob152_10i`) (sent_id: `deanon_TRAIN/3Ob152_10i_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Hon.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in der Exekutionssache der betreibenden Partei KMN Versicherung Werke AG, Corbinian Pichlmaier, vertreten durch Dr. Erich Kafka, Dr. Manfred Palkovits, Rechtsanwälte in Wien, gegen die verpflichtete Partei Severin Wellenbrink, vertreten durch Dr. Philipp Jessich, Rechtsanwalt in Wien, wegen Aufschiebung einer Räumungsexekution, über den Revisionsrekurs der betreibenden Partei gegen den Beschluss des Landesgerichts für Zivilrechtssachen Wien als Rekursgericht vom 12. Mai 2010, GZ 39 R 44/10z-22, womit der Beschluss des Bezirksgerichts Fünfhaus vom 14. Jänner 2010, GZ 10 E 171/09d-6, abgeändert wurde, den Beschluss gefasst:  Spruch Dem Revisionsrekurs wird Folge gegeben.
@@ -10882,7 +10898,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als 
 - `Dr. Erich Kafka` (person)
 - `Dr. Manfred Palkovits` (person)
 
-**Example 59** (doc_id: `deanon_TRAIN/3Ob155_13k`) (sent_id: `deanon_TRAIN/3Ob155_13k_3`)
+**Example 60** (doc_id: `deanon_TRAIN/3Ob155_13k`) (sent_id: `deanon_TRAIN/3Ob155_13k_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Univ.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in der Exekutionssache der betreibenden Partei Dr. Ingolf Durur, vertreten durch Dr. Lucas Lorenz, Rechtsanwalt in Innsbruck, gegen die verpflichtete Partei Imre Viße, vertreten durch Dr. Robert Eiter, Rechtsanwalt in Landeck, wegen Einverleibung des Eigentumsrechts sowie Lastenfreistellung (§§ 350, 353 EO), über den außerordentlichen Revisionsrekurs der verpflichteten Partei gegen den Beschluss des Landesgerichts Innsbruck als Rekursgericht vom 4. Juni 2013, GZ 1 R 10/13x-22, womit die Exekutionsbewilligung des Bezirksgerichts Imst vom 13. November 2012, GZ 5 E 2224/12y-2, bestätigt wurde, den Beschluss gefasst:  Spruch Der außerordentliche Revisionsrekurs wird mangels der Voraussetzungen des § 528 Abs 1 ZPO zurückgewiesen.
@@ -10895,7 +10911,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als 
 
 - `Imre Viße` (person)
 
-**Example 60** (doc_id: `deanon_TRAIN/3Ob156_12f`) (sent_id: `deanon_TRAIN/3Ob156_12f_3`)
+**Example 61** (doc_id: `deanon_TRAIN/3Ob156_12f`) (sent_id: `deanon_TRAIN/3Ob156_12f_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Hon.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in den verbundenen Rechtssachen der klagenden Partei Severin Ilek, vertreten durch die Sachwalterin Mag. Roswitha Ferl-Pailer, Rechtsanwältin in Hartberg, gegen die beklagte Partei Dipl.
@@ -10904,7 +10920,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 |---|---|
 | `Severin Ilek` | `Severin Ilek` |
 
-**Example 61** (doc_id: `deanon_TRAIN/3Ob178_15w`) (sent_id: `deanon_TRAIN/3Ob178_15w_3`)
+**Example 62** (doc_id: `deanon_TRAIN/3Ob178_15w`) (sent_id: `deanon_TRAIN/3Ob178_15w_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Hofrat Dr. Jensik als Vorsitzenden, die Vizepräsidentin Dr. Lovrek, die Hofräte Dr. Schwarzenbacher und Dr. Roch sowie die Hofrätin Dr. Kodek als weitere Richter in der Rechtssache der klagenden Partei Nikolai Castelli, vertreten durch Divitschek Sieder Sauer Peter Rechtsanwälte GesBR in Deutschlandsberg, gegen die beklagte Partei Dohmgoergen Bau GmbH, Oswald Schubert, vertreten durch Dr. Johannes Liebmann, Rechtsanwalt in Gleisdorf, wegen 82.977,52 EUR sA und Feststellung, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Graz als Berufungsgericht vom 27. Juli 2015, GZ 3 R 54/15h-145, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -10918,7 +10934,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Hofrat Dr. Jensi
 - `Dohmgoergen Bau GmbH` (organisation)
 - `Oswald Schubert` (person)
 
-**Example 62** (doc_id: `deanon_TRAIN/3Ob19_20w`) (sent_id: `deanon_TRAIN/3Ob19_20w_3`)
+**Example 63** (doc_id: `deanon_TRAIN/3Ob19_20w`) (sent_id: `deanon_TRAIN/3Ob19_20w_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch die Präsidentin Hon.-Prof. Dr. Lovrek als Vorsitzende sowie die Hofräte Dr. Roch und Priv.-Doz. Dr. Rassi und die Hofrätinnen Dr. Weixelbraun-Mohr und Dr. Kodek als weitere Richter in den verbundenen Rechtssachen der klagenden Partei Rinaldo Isaac, vertreten durch Mag. Gerhard Walzl, Rechtsanwalt in Wien, wider die beklagte Partei Felizia Mascheck, vertreten durch Dr. Alexandra Sedelmayer-Pammesberger, Rechtsanwältin in Wien, wegen Unterhaltsherabsetzung (AZ 8 C 22/16k) und Einwendungen gegen den Anspruch nach § 35 EO (AZ 8 C 4/18s), über die „außerordentliche“ Revision der klagenden Partei gegen das Urteil des Landesgerichts für Zivilrechtssachen Wien als Berufungsgericht vom 20. August 2019, GZ 44 R 338/19k-67, mit dem das Urteil des Bezirksgerichts Hernals vom 23. Mai 2019, GZ 8 C 22/16k-60, bestätigt wurde, den Beschluss gefasst:  Spruch Die Akten werden neuerlich dem Erstgericht zurückgestellt.
@@ -10928,7 +10944,7 @@ Kopf Der Oberste Gerichtshof hat durch die Präsidentin Hon.-Prof. Dr. Lovrek al
 | `Rinaldo Isaac` | `Rinaldo Isaac` |
 | `Felizia Mascheck` | `Felizia Mascheck` |
 
-**Example 63** (doc_id: `deanon_TRAIN/3Ob201_19h`) (sent_id: `deanon_TRAIN/3Ob201_19h_3`)
+**Example 64** (doc_id: `deanon_TRAIN/3Ob201_19h`) (sent_id: `deanon_TRAIN/3Ob201_19h_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Hofrat Dr. Roch als Vorsitzenden sowie die Hofräte Priv.-Doz. Dr. Rassi und Mag. Painsi und die Hofrätinnen Dr. Weixelbraun-Mohr und Dr. Kodek als weitere Richter in der Exekutionssache der betreibenden Partei Kimberly Mühlenstädt, vertreten durch Korn & Gärtner Rechtsanwälte OG in Salzburg, gegen die verpflichtete Partei Arabella Jorn, vertreten durch Dr. Wolfgang Lang, Rechtsanwalt in Salzburg, wegen 7.711,58 EUR sA, über den Revisionsrekurs der betreibenden Partei gegen den Beschluss des Landesgerichts Salzburg als Rekursgericht vom 3. Juli 2019, GZ 22 R 171/19d-26, womit der Beschluss des Bezirksgerichts Salzburg vom 1. Februar 2019, GZ 5 E 2444/18x-7, abgeändert wurde, den Beschluss gefasst:  Spruch Dem Revisionsrekurs wird Folge gegeben.
@@ -10941,7 +10957,7 @@ Kopf Der Oberste Gerichtshof hat durch den Hofrat Dr. Roch als Vorsitzenden sowi
 
 - `Kimberly Mühlenstädt` (person)
 
-**Example 64** (doc_id: `deanon_TRAIN/3Ob205_15s`) (sent_id: `deanon_TRAIN/3Ob205_15s_3`)
+**Example 65** (doc_id: `deanon_TRAIN/3Ob205_15s`) (sent_id: `deanon_TRAIN/3Ob205_15s_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hoch als Vorsitzenden sowie die Vizepräsidentin Dr. Lovrek, die Hofräte Dr. Jensik und Dr. Roch und die Hofrätin Dr. Kodek als weitere Richter in der Exekutionssache der betreibenden Partei Laila Michot, vertreten durch Mag. Dr. Felix Sehorz, Rechtsanwalt in Wien, wider die verpflichtete Partei Jean Rehaag, wegen zwangsweiser Räumung (hier: Aufschiebung), aus Anlass des Revisionsrekurses der betreibenden Partei gegen den Beschluss des Landesgerichts für Zivilrechtssachen Wien als Rekursgericht vom 2. September 2015, GZ 39 R 260/15x-47, womit der Beschluss des Bezirksgerichts Liesing vom 27. Mai 2015, GZ 6 E 46/11k-43, teilweise abgeändert wurde, den Beschluss gefasst:  Spruch Der Beschluss des Obersten Gerichtshofs vom 16. Dezember 2015, AZ 3 Ob 205/15s, wird dahin berichtigt, dass das im ersten Absatz der Begründung genannte Datum der Einantwortung statt „6. März 2012“ richtig zu lauten hat „27. Juni 2013“.
@@ -10954,7 +10970,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hoch als Vorsi
 
 - `Jean Rehaag` (person)
 
-**Example 65** (doc_id: `deanon_TRAIN/3Ob236_17b`) (sent_id: `deanon_TRAIN/3Ob236_17b_3`)
+**Example 66** (doc_id: `deanon_TRAIN/3Ob236_17b`) (sent_id: `deanon_TRAIN/3Ob236_17b_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten des Obersten Gerichtshofs Dr. Hoch als Vorsitzenden sowie die Hofräte Dr. Roch und Dr. Rassi und die Hofrätinnen Dr. Weixelbraun-Mohr und Dr. Kodek als weitere Richter in der Rechtssache der klagenden Partei Delila Englschall, vertreten durch Harb & Postl Rechtsanwälte OG in Graz, gegen die beklagte Partei Achmed Schnetzer, vertreten durch Dr. Paul Bauer, Dr. Anton Triendl, Rechtsanwälte in Innsbruck, wegen 32.173,22 EUR sA und Feststellung, über die außerordentliche Revision der beklagten Partei (Revisionsinteresse 23.653,60 EUR sA und Feststellung) gegen das Urteil des Oberlandesgerichts Innsbruck als Berufungsgericht vom 29. November 2017, GZ 10 R 59/17b-27, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -10964,7 +10980,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten des Obersten Geric
 | `Delila Englschall` | `Delila Englschall` |
 | `Achmed Schnetzer` | `Achmed Schnetzer` |
 
-**Example 66** (doc_id: `deanon_TRAIN/3Ob248_10g`) (sent_id: `deanon_TRAIN/3Ob248_10g_3`)
+**Example 67** (doc_id: `deanon_TRAIN/3Ob248_10g`) (sent_id: `deanon_TRAIN/3Ob248_10g_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Hon.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in der Rechtssache der klagenden Partei Riecken Maschinenbau GmbH, Hubert Englmaier, vertreten durch Dr. Martin Holzer, Rechtsanwalt in Bruck an der Mur, gegen die beklagte Partei Florian Corvetti, vertreten durch Dr. Heimo Jilek, Rechtsanwalt in Leoben, wegen Einwendungen gegen den Anspruch (§ 35 EO), über die außerordentliche Revision der klagenden Partei gegen das Urteil des Landesgerichts Leoben als Berufungsgericht vom 3. November 2010, GZ 1 R 244/10i-34, womit über Berufung der beklagten Partei das Urteil des Bezirksgerichts Leoben vom 9. Juni 2010, GZ 5 C 315/09y-28, abgeändert wurde, den Beschluss gefasst:  Spruch Der außerordentlichen Revision der klagenden Partei wird Folge gegeben, das angefochtene Urteil aufgehoben und die Rechtssache zur neuerlichen Entscheidung an das Berufungsgericht zurückverwiesen.
@@ -10978,7 +10994,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Riecken Maschinenbau GmbH` (organisation)
 - `Hubert Englmaier` (person)
 
-**Example 67** (doc_id: `deanon_TRAIN/3Ob35_13p`) (sent_id: `deanon_TRAIN/3Ob35_13p_3`)
+**Example 68** (doc_id: `deanon_TRAIN/3Ob35_13p`) (sent_id: `deanon_TRAIN/3Ob35_13p_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Univ.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in der Rechtssache der klagenden Partei Mercedes Jungels, vertreten durch Dr. Peter Böck, Rechtsanwalt in Neusiedl am See, gegen die beklagte Partei Traude Ejsmond, vertreten durch Mag. Christian Kaiser, Rechtsanwalt in Wien, wegen Ehescheidung, über die außerordentliche Revision der beklagten Partei gegen das Urteil des Landesgerichts Eisenstadt als Berufungsgericht vom 13. Dezember 2012, GZ 20 R 123/12f-15, womit infolge Berufungen der klagenden und beklagten Partei das Urteil des Bezirksgerichts Neusiedl am See vom 19. April 2012, GZ 10 C 10/12d-8, bestätigt wurde, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen (§ 510 Abs 3 ZPO).
@@ -10988,7 +11004,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 | `Mercedes Jungels` | `Mercedes Jungels` |
 | `Traude Ejsmond` | `Traude Ejsmond` |
 
-**Example 68** (doc_id: `deanon_TRAIN/4Fsc1_10z`) (sent_id: `deanon_TRAIN/4Fsc1_10z_3`)
+**Example 69** (doc_id: `deanon_TRAIN/4Fsc1_10z`) (sent_id: `deanon_TRAIN/4Fsc1_10z_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch die Senatspräsidentin Dr. Schenk als Vorsitzende und durch die Hofräte Dr. Vogel und Dr. Jensik als weitere Richter in der Rechtssache der klagenden Partei Lexglanzfen-Garten AG, Pia Özbek, vertreten durch Dr. Hartmut Mayer, Rechtsanwalt in Wien, gegen die beklagte Partei Mag. Esra Waitkat, vertreten durch Mag. Gerhard Pilz, Rechtsanwalt, als Verfahrenshelfer, wegen 3.330,19 EUR sA (AZ 35 R 24/09b des Landesgerichts für Zivilrechtssachen Wien), zum Fristsetzungsantrag der beklagten Partei vom 28. Oktober 2009 an den Obersten Gerichtshof im Ablehnungsverfahren den Beschluss gefasst:  Spruch Der Fristsetzungsantrag wird zurückgewiesen.
@@ -11002,7 +11018,7 @@ Kopf Der Oberste Gerichtshof hat durch die Senatspräsidentin Dr. Schenk als Vor
 - `Lexglanzfen-Garten AG` (organisation)
 - `Pia Özbek` (person)
 
-**Example 69** (doc_id: `deanon_TRAIN/4Ob113_24g`) (sent_id: `deanon_TRAIN/4Ob113_24g_3`)
+**Example 70** (doc_id: `deanon_TRAIN/4Ob113_24g`) (sent_id: `deanon_TRAIN/4Ob113_24g_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Schwarzenbacher als Vorsitzenden sowie den Vizepräsidenten Hon.-Prof. PD Dr. Rassi, die Hofrätinnen Mag. Istjan, LL.M., und Mag. Waldstätten und den Hofrat Dr. Stiefsohn als weitere Richter in der Rechtssache der klagenden Partei Vierziger u. Tewald Wind GmbH, Claire Lüdermann, Bakk. rer. nat., vertreten durch Grassner Rechtsanwalts GmbH in Linz, gegen die beklagte Partei Milena Buchmayr, vertreten durch Dr. Manfred Palkovits, Mag. Martin Sohm, Rechtsanwälte in Wien, wegen Aufkündigung, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Landesgerichts für Zivilrechtssachen Wien vom 24. April 2024, GZ 38 R 247/23i-46, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -11017,7 +11033,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Claire Lüdermann, Bakk. rer. nat.` (person)
 - `Dr. Manfred Palkovits` (person)
 
-**Example 70** (doc_id: `deanon_TRAIN/4Ob114_14i`) (sent_id: `deanon_TRAIN/4Ob114_14i_3`)
+**Example 71** (doc_id: `deanon_TRAIN/4Ob114_14i`) (sent_id: `deanon_TRAIN/4Ob114_14i_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch die Vizepräsidentin Dr. Schenk als Vorsitzende und durch die Hofräte Dr. Vogel, Dr. Jensik, Dr. Musger und Dr. Schwarzenbacher als weitere Richter in der Rechtssache der klagenden Partei OMedR Prof.in Agatha Schöbeck, vertreten durch Dr. Riedl & Dr. Ludwig Rechtsanwälte GmbH in Haag, gegen die beklagte Partei Mag. Gerald Robker, vertreten durch Gloss Pucher Leitner Schweinzer Burger Gloss, Rechtsanwälte in St. Pölten, wegen Ehescheidung, über die außerordentliche Revision der beklagten Partei gegen das Urteil des Landesgerichts St. Pölten als Berufungsgericht vom 9. April 2014, GZ 23 R 121/14p-43, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -11030,7 +11046,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch die Vizepräsidentin
 
 - `OMedR Prof.in Agatha Schöbeck` (person)
 
-**Example 71** (doc_id: `deanon_TRAIN/4Ob13_24a`) (sent_id: `deanon_TRAIN/4Ob13_24a_3`)
+**Example 72** (doc_id: `deanon_TRAIN/4Ob13_24a`) (sent_id: `deanon_TRAIN/4Ob13_24a_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Schwarzenbacher als Vorsitzenden sowie den Vizepräsidenten Hon.-Prof. PD Dr. Rassi, die Hofrätinnen Mag. Istjan, LL.M., und Mag. Waldstätten und den Hofrat Dr. Stiefsohn als weitere Richter in der Rechtssache der klagenden Partei Peter Nöhrnberg, LLM, vertreten durch Mag. Andrea Nobis, Rechtsanwältin in Wien, gegen die beklagte Partei Astrid Fesenmair, vertreten durch die Maraszto Milisits Rechtsanwälte OG in Wien, wegen 59.888,58 EUR sA und Feststellung, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Wien als Berufungsgericht vom 21. November 2023, GZ 5 R 154/23p-52, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -11043,7 +11059,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 
 - `Peter Nöhrnberg, LLM` (person)
 
-**Example 72** (doc_id: `deanon_TRAIN/4Ob163_13v`) (sent_id: `deanon_TRAIN/4Ob163_13v_3`)
+**Example 73** (doc_id: `deanon_TRAIN/4Ob163_13v`) (sent_id: `deanon_TRAIN/4Ob163_13v_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch die Vizepräsidentin Dr. Schenk als Vorsitzende und durch die Hofräte Dr. Vogel, Dr. Musger, Dr. Schwarzenbacher und Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Miranda Bleckwehl, vertreten durch die Sachwalterin Dr. Tanja Sporrer, Rechtsanwältin, Innsbruck, Templstraße 22, gegen die beklagte Partei Oswald Wiechering, vertreten durch Dr. Ekkehard Erlacher und Dr. Renate Erlacher-Philadelphy, Rechtsanwälte in Innsbruck, wegen 56.626 EUR sA, infolge Rekurses der beklagten Partei gegen den Beschluss des Oberlandesgerichts Innsbruck als Berufungsgericht vom 8. Mai 2013, GZ 4 R 40/13h-125, womit der Antrag des Beklagten auf Berichtigung des Bewertungsausspruchs im Urteil vom 15. März 2013 abgewiesen wurde, folgenden Beschluss gefasst:  Spruch Der Rekurs wird zurückgewiesen.
@@ -11430,23 +11446,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Veith als Vors
 - `Vogelsanger Marine GmbH`(organisation)
 - `Juri Büttgens`(person)
 
-**Example 21** (doc_id: `deanon_TRAIN/2Ob181_10x`) (sent_id: `deanon_TRAIN/2Ob181_10x_3`)
-
-
-Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Baumann als Vorsitzenden und durch die Hofräte Dr. Veith, Dr. E. Solé, Dr. Schwarzenbacher und Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Gertrude Ptak, vertreten durch Dr. Bertram Broesigke und Dr. Wolfgang Broesigke, Rechtsanwälte in Wien, gegen die beklagte Partei Josef Schindelmeißer, vertreten durch den Sachwalter Dr. Helmut Heiger, Rechtsanwalt in Wien, wegen Aufkündigung, über die außerordentliche Revision der beklagten Partei gegen das Urteil des Landesgerichts für Zivilrechtssachen Wien als Berufungsgericht vom 15. Juni 2010, GZ 41 R 130/10m-26, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen (§ 510 Abs 3 ZPO).
-
-**False Positives:**
-
-- `Gertrude Ptak` — partial — gold is substring of pred: `Ptak`
-
-> overlaps gold: 1  |  likely missing annotation: 0
-
-**Gold Entities:**
-
-- `Ptak`(person)
-- `Schindelmeißer`(person)
-
-**Example 22** (doc_id: `deanon_TRAIN/2Ob37_17f`) (sent_id: `deanon_TRAIN/2Ob37_17f_3`)
+**Example 21** (doc_id: `deanon_TRAIN/2Ob37_17f`) (sent_id: `deanon_TRAIN/2Ob37_17f_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Hon.-Prof. Dr. Danzl als Vorsitzenden und die Hofräte Dr. Veith und Dr. Musger, die Hofrätin Dr. E. Solé und den Hofrat Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Florentin Uffenwasser, vertreten durch Dr. Armin Exner, Rechtsanwalt in Innsbruck, gegen die beklagte Partei Stadtgemeinde Naomi Mertensmeyer, vertreten durch Dr. Thomas Girardi, Rechtsanwalt in Innsbruck, wegen 29.461,04 EUR sA und Feststellung (Streitwert 10.000 EUR), über die außerordentliche Revision der beklagten Partei (Revisionsinteresse 22.377,04 EUR) gegen das Urteil des Oberlandesgerichts Innsbruck als Berufungsgericht vom 15. Dezember 2016, GZ 2 R 141/16a-47, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -11462,7 +11462,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Florentin Uffenwasser`(person)
 - `Naomi Mertensmeyer`(person)
 
-**Example 23** (doc_id: `deanon_TRAIN/2Ob41_16t`) (sent_id: `deanon_TRAIN/2Ob41_16t_3`)
+**Example 22** (doc_id: `deanon_TRAIN/2Ob41_16t`) (sent_id: `deanon_TRAIN/2Ob41_16t_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Hon.-Prof. Dr. Danzl als Vorsitzenden sowie die Hofräte Dr. Veith und Dr. Musger, die Hofrätin Dr. E. Solé und den Hofrat Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei DDr. Ashley Feichtmeier, vertreten durch Bollmann & Bollmann Rechtsanwaltspartnerschaft in Wien, gegen die beklagte Partei StadtDigital AG, Helmut Klösgen, vertreten durch DLA Piper Weiss-Tessbach, Rechtsanwälte GmbH in Wien, wegen 18.056,86 EUR sA, über die Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Wien als Berufungsgericht vom 24. November 2015, GZ 1 R 141/15k-48, womit über Berufung der klagenden Partei das Urteil des Handelsgerichts Wien vom 27. Mai 2015, GZ 55 Cg 295/11k-44, bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die Revision der klagenden Partei wird zurückgewiesen.
@@ -11479,7 +11479,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `StadtDigital AG`(organisation)
 - `Helmut Klösgen`(person)
 
-**Example 24** (doc_id: `deanon_TRAIN/2Ob78_15g`) (sent_id: `deanon_TRAIN/2Ob78_15g_3`)
+**Example 23** (doc_id: `deanon_TRAIN/2Ob78_15g`) (sent_id: `deanon_TRAIN/2Ob78_15g_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Hon.-Prof. Dr. Danzl als Vorsitzenden, die Hofräte Dr. Veith und Dr. Musger sowie die Hofrätinnen Dr. E. Solé und Dr. Hofer-Zeni-Rennhofer als weitere Richter in der Rechtssache der klagenden Partei Luigi Neimeier, vertreten durch Rechtsanwälte Estermann & Partner OG in Mattighofen, gegen die beklagte Partei LNC KI Solutions GmbH, Kordelia Grauel, vertreten durch Dr. Herbert Harlander und Mag. Wolfgang Harlander, Rechtsanwälte in Salzburg, wegen 33.251,85 EUR sA, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Linz als Berufungsgericht vom 5. März 2015, GZ 2 R 1/15b-37, womit infolge Berufung der klagenden Partei das Urteil des Landesgerichts Salzburg vom 23. Oktober 2014, GZ 4 Cg 27/13d-33, bestätigt wurde, in nichtöffentlicher Sitzung beschlossen und zu Recht erkannt:  Spruch
@@ -11496,7 +11496,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `LNC KI Solutions GmbH`(organisation)
 - `Kordelia Grauel`(person)
 
-**Example 25** (doc_id: `deanon_TRAIN/3Ob105_13g`) (sent_id: `deanon_TRAIN/3Ob105_13g_3`)
+**Example 24** (doc_id: `deanon_TRAIN/3Ob105_13g`) (sent_id: `deanon_TRAIN/3Ob105_13g_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Univ.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in der Rechtssache der klagenden Partei ÖkR Malik Sutmöller OEG, Leila Nieboer, vertreten durch Dr. Heinz-Wilhelm Stenzl, Rechtsanwalt in Wien, gegen die beklagte Partei Mittel Bachlemsee GmbH, Erwin Klefass, BSc, vertreten durch Dr. Johann Gelbmann, Rechtsanwalt in Wien, wegen (restlich) 12.536,14 EUR sA, über die Revision der beklagten Partei (Revisionsinteresse 6.909 EUR sA) gegen das Urteil des Landesgerichts für Zivilrechtssachen Wien als Berufungsgericht vom 19. Dezember 2012, GZ 38 R 173/12s-139, womit über die Berufungen beider Parteien das Urteil des Bezirksgerichts Fünfhaus vom 10. April 2012, GZ 12 C 1045/05m-131, bestätigt wurde, den Beschluss gefasst:  Spruch Die Revision wird zurückgewiesen.
@@ -11514,7 +11514,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Mittel Bachlemsee GmbH`(organisation)
 - `Erwin Klefass, BSc`(person)
 
-**Example 26** (doc_id: `deanon_TRAIN/3Ob147_20v`) (sent_id: `deanon_TRAIN/3Ob147_20v_3`)
+**Example 25** (doc_id: `deanon_TRAIN/3Ob147_20v`) (sent_id: `deanon_TRAIN/3Ob147_20v_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Hofrat Dr. Roch als Vorsitzenden sowie den Hofrat Hon.-Prof. PD Dr. Rassi, die Hofrätinnen Dr. Weixelbraun-Mohr und Dr. Kodek und den Hofrat Dr. Stefula als weitere Richter in der Rechtssache der klagenden Partei Kraftnorost Wind GmbH, Roderich Holtze, vertreten durch Mag. Andreas Kleiber, Rechtsanwalt in Wien, gegen die beklagte Partei Annette Fiss verein Ing. Kirstin Movcan, vertreten durch Pflaum Karlberger Wiener Opetnik, Rechtsanwälte in Wien, wegen Aufkündigung, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Landesgerichts für Zivilrechtssachen Wien als Berufungsgericht vom 22. Juli 2020, GZ 40 R 37/20t-27, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -11533,7 +11533,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Hofrat Dr. Roch 
 - `Annette Fiss`(person)
 - `Ing. Kirstin Movcan`(person)
 
-**Example 27** (doc_id: `deanon_TRAIN/3Ob14_24s`) (sent_id: `deanon_TRAIN/3Ob14_24s_3`)
+**Example 26** (doc_id: `deanon_TRAIN/3Ob14_24s`) (sent_id: `deanon_TRAIN/3Ob14_24s_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Hon.-Prof. Dr. Höllwerth als Vorsitzenden sowie den Hofrat Hon.-Prof. Dr. Brenn, die Hofrätinnen Dr. Weixelbraun-Mohr und Dr. Kodek und den Hofrat Dr. Stefula als weitere Richter in der Exekutionssache der betreibenden Partei Daniela Sklenar SE, Kimberly Hurrelmeyer, vertreten durch Cerha Hempel Rechtsanwälte GmbH in Wien, gegen die verpflichtete Partei Staat Libyen, StR Violetta Stegemeyer, Libyen, vertreten durch Binder Grösswang Rechtsanwälte GmbH in Wien, wegen 10 Mio EUR sA, über den außerordentlichen Revisionsrekurs der verpflichteten Partei gegen den Beschluss des Landesgerichts für Zivilrechtssachen Wien als Rekursgericht vom 20. Oktober 2023, GZ 47 R 228/23m-107, den Beschluss gefasst:  Spruch Der außerordentliche Revisionsrekurs wird gemäß § 78 EO iVm § 526 Abs 2 Satz 1 ZPO mangels der Voraussetzungen des § 528 Abs 1 ZPO zurückgewiesen.
@@ -11551,7 +11551,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Hon.-Prof. Dr. Hö
 - `Kimberly Hurrelmeyer`(person)
 - `StR Violetta Stegemeyer`(person)
 
-**Example 28** (doc_id: `deanon_TRAIN/3Ob152_10i`) (sent_id: `deanon_TRAIN/3Ob152_10i_3`)
+**Example 27** (doc_id: `deanon_TRAIN/3Ob152_10i`) (sent_id: `deanon_TRAIN/3Ob152_10i_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Hon.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in der Exekutionssache der betreibenden Partei KMN Versicherung Werke AG, Corbinian Pichlmaier, vertreten durch Dr. Erich Kafka, Dr. Manfred Palkovits, Rechtsanwälte in Wien, gegen die verpflichtete Partei Severin Wellenbrink, vertreten durch Dr. Philipp Jessich, Rechtsanwalt in Wien, wegen Aufschiebung einer Räumungsexekution, über den Revisionsrekurs der betreibenden Partei gegen den Beschluss des Landesgerichts für Zivilrechtssachen Wien als Rekursgericht vom 12. Mai 2010, GZ 39 R 44/10z-22, womit der Beschluss des Bezirksgerichts Fünfhaus vom 14. Jänner 2010, GZ 10 E 171/09d-6, abgeändert wurde, den Beschluss gefasst:  Spruch Dem Revisionsrekurs wird Folge gegeben.
@@ -11570,7 +11570,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als 
 - `Dr. Manfred Palkovits`(person)
 - `Severin Wellenbrink`(person)
 
-**Example 29** (doc_id: `deanon_TRAIN/3Ob156_12f`) (sent_id: `deanon_TRAIN/3Ob156_12f_3`)
+**Example 28** (doc_id: `deanon_TRAIN/3Ob156_12f`) (sent_id: `deanon_TRAIN/3Ob156_12f_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Hon.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in den verbundenen Rechtssachen der klagenden Partei Severin Ilek, vertreten durch die Sachwalterin Mag. Roswitha Ferl-Pailer, Rechtsanwältin in Hartberg, gegen die beklagte Partei Dipl.
@@ -11585,7 +11585,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 
 - `Severin Ilek`(person)
 
-**Example 30** (doc_id: `deanon_TRAIN/3Ob164_20v`) (sent_id: `deanon_TRAIN/3Ob164_20v_3`)
+**Example 29** (doc_id: `deanon_TRAIN/3Ob164_20v`) (sent_id: `deanon_TRAIN/3Ob164_20v_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch die Präsidentin Hon.-Prof. Dr. Lovrek als Vorsitzende sowie den Hofrat Hon.-Prof. PD Dr. Rassi, die Hofrätinnen Dr. Weixelbraun-Mohr und Dr. Kodek und den Hofrat Dr. Stefula als weitere Richter in der Rechtssache der klagenden Partei Bruckgartver GmbH, MedR StR René Titz, vertreten durch Dr. Reinhard Schanda, Rechtsanwalt in Wien, gegen die beklagte Partei Ofczarczik Planung AG, Dipl.
@@ -11603,7 +11603,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch die Präsidentin Hon
 - `MedR StR René Titz`(person)
 - `Ofczarczik Planung AG`(organisation)
 
-**Example 31** (doc_id: `deanon_TRAIN/3Ob178_15w`) (sent_id: `deanon_TRAIN/3Ob178_15w_3`)
+**Example 30** (doc_id: `deanon_TRAIN/3Ob178_15w`) (sent_id: `deanon_TRAIN/3Ob178_15w_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Hofrat Dr. Jensik als Vorsitzenden, die Vizepräsidentin Dr. Lovrek, die Hofräte Dr. Schwarzenbacher und Dr. Roch sowie die Hofrätin Dr. Kodek als weitere Richter in der Rechtssache der klagenden Partei Nikolai Castelli, vertreten durch Divitschek Sieder Sauer Peter Rechtsanwälte GesBR in Deutschlandsberg, gegen die beklagte Partei Dohmgoergen Bau GmbH, Oswald Schubert, vertreten durch Dr. Johannes Liebmann, Rechtsanwalt in Gleisdorf, wegen 82.977,52 EUR sA und Feststellung, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Graz als Berufungsgericht vom 27. Juli 2015, GZ 3 R 54/15h-145, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -11620,7 +11620,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Hofrat Dr. Jensi
 - `Dohmgoergen Bau GmbH`(organisation)
 - `Oswald Schubert`(person)
 
-**Example 32** (doc_id: `deanon_TRAIN/3Ob220_14w`) (sent_id: `deanon_TRAIN/3Ob220_14w_3`)
+**Example 31** (doc_id: `deanon_TRAIN/3Ob220_14w`) (sent_id: `deanon_TRAIN/3Ob220_14w_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Univ.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in der Exekutionssache der betreibenden Partei Dr. Wendelin Mauroschat, Deutschland, vertreten durch Dr. Anke Reisch, Rechtsanwältin in Kitzbühel, gegen die verpflichtete Partei Quirin Eißelt, Deutschland, vertreten durch Dr. Josef Trenker, Rechtsanwalt in St. Johann im Pongau, wegen Erwirkung einer vertretbaren Handlung (§ 353 EO), über den „außerordentlichen Revisionsrekurs“ der betreibenden Partei gegen den Beschluss des Landesgerichts Innsbruck als Rekursgericht vom 23. Oktober 2014, GZ 4 R 312/14g-7, womit infolge Rekurses der verpflichteten Partei der Beschluss des Bezirksgerichts Kitzbühel vom 26. August 2014, GZ 1 E 3576/14g-2, abgeändert wurde, den Beschluss gefasst:  Spruch Der Akt wird dem Erstgericht zurückgestellt.
@@ -11636,7 +11636,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als 
 - `Dr. Wendelin Mauroschat`(person)
 - `Quirin Eißelt`(person)
 
-**Example 33** (doc_id: `deanon_TRAIN/3Ob22_13a`) (sent_id: `deanon_TRAIN/3Ob22_13a_3`)
+**Example 32** (doc_id: `deanon_TRAIN/3Ob22_13a`) (sent_id: `deanon_TRAIN/3Ob22_13a_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie durch den Hofrat Univ.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in der Rechtssache der betreibenden Partei Szymczak Software GmbH, Berthold Haendl, vertreten durch Mayrhofer & Rainer Rechtsanwälte OG in Wien, gegen die verpflichtete Partei Mag. Dr. Jennifer Meinard, wegen Räumung, über den außerordentlichen Revisionsrekurs der verpflichteten Partei gegen den Beschluss des Landesgerichts für Zivilrechtssachen Wien als Rekursgericht vom 27. November 2012, GZ 40 R 307/12m-99, womit der Rekurs der verpflichteten Partei gegen den Beschluss des Bezirksgerichts Innere Stadt Wien vom 12. Juli 2012, GZ 48 C 363/10d = 48 E 70/11y-38, zurückgewiesen wurde, den Beschluss gefasst:  Spruch Der Revisionsrekurs wird zurückgewiesen.
@@ -11653,7 +11653,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als 
 - `Berthold Haendl`(person)
 - `Dr. Jennifer Meinard`(person)
 
-**Example 34** (doc_id: `deanon_TRAIN/3Ob248_10g`) (sent_id: `deanon_TRAIN/3Ob248_10g_3`)
+**Example 33** (doc_id: `deanon_TRAIN/3Ob248_10g`) (sent_id: `deanon_TRAIN/3Ob248_10g_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Hon.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in der Rechtssache der klagenden Partei Riecken Maschinenbau GmbH, Hubert Englmaier, vertreten durch Dr. Martin Holzer, Rechtsanwalt in Bruck an der Mur, gegen die beklagte Partei Florian Corvetti, vertreten durch Dr. Heimo Jilek, Rechtsanwalt in Leoben, wegen Einwendungen gegen den Anspruch (§ 35 EO), über die außerordentliche Revision der klagenden Partei gegen das Urteil des Landesgerichts Leoben als Berufungsgericht vom 3. November 2010, GZ 1 R 244/10i-34, womit über Berufung der beklagten Partei das Urteil des Bezirksgerichts Leoben vom 9. Juni 2010, GZ 5 C 315/09y-28, abgeändert wurde, den Beschluss gefasst:  Spruch Der außerordentlichen Revision der klagenden Partei wird Folge gegeben, das angefochtene Urteil aufgehoben und die Rechtssache zur neuerlichen Entscheidung an das Berufungsgericht zurückverwiesen.
@@ -11670,7 +11670,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Hubert Englmaier`(person)
 - `Florian Corvetti`(person)
 
-**Example 35** (doc_id: `deanon_TRAIN/3Ob32_17b`) (sent_id: `deanon_TRAIN/3Ob32_17b_3`)
+**Example 34** (doc_id: `deanon_TRAIN/3Ob32_17b`) (sent_id: `deanon_TRAIN/3Ob32_17b_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hoch als Vorsitzenden sowie die Vizepräsidentin Dr. Lovrek, die Hofräte Dr. Jensik und Dr. Roch und die Hofrätin Dr. Kodek als weitere Richter in der Exekutionssache der betreibenden Partei HR Dr.in RgR Johanna Drestomark, Italien, vertreten durch Oberhammer Rechtsanwälte GmbH in Wien, wider die verpflichtete Partei Prosten und Kreutzinger Bau gesellschaft mbH, Dr.Viktor-Kaplan-Straße 8, 4920 Weiketsedt, Österreich, vertreten durch Dr. Daniel Charim und Mag. Jakob Charim, Rechtsanwälte in Wien, wegen (restlich) 347.093,53 EUR sA über den außerordentlichen Revisionsrekurs der verpflichteten Partei gegen den Beschluss des Landesgerichts für Zivilrechtssachen Wien als Rekursgericht vom 7. Dezember 2016, GZ 46 R 323/16i-61, womit der Beschluss des Bezirksgerichts Josefstadt vom 24. Juni 2016, GZ 11 E 2966/11p-56, bestätigt wurde, den Beschluss gefasst:  Spruch I.Der Revisionsrekurs der verpflichteten Partei wird, soweit er die Bestätigung der Exekutionsbewilligung bekämpft, als jedenfalls unzulässig zurückgewiesen.
@@ -11687,7 +11687,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hoch als Vorsi
 - `Prosten und Kreutzinger Bau gesellschaft mbH`(organisation)
 - `Dr.Viktor-Kaplan-Straße 8, 4920 Weiketsedt, Österreich`(address)
 
-**Example 36** (doc_id: `deanon_TRAIN/3Ob44_20x`) (sent_id: `deanon_TRAIN/3Ob44_20x_3`)
+**Example 35** (doc_id: `deanon_TRAIN/3Ob44_20x`) (sent_id: `deanon_TRAIN/3Ob44_20x_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Hofrat des Obersten Gerichtshofs Dr. Roch als Vorsitzenden sowie die Hofräte Priv.-Doz. Dr. Rassi und Mag. Painsi und die Hofrätinnen Dr. Weixelbraun-Mohr und Dr. Kodek als weitere Richter in der Rechtssache der klagenden Partei Andreas Clösges, vertreten durch die Eger/Gründl Rechtsanwälte OG in Graz, gegen die beklagte Partei Chemie Valtri GmbH, Niels Niefeldt, vertreten durch Mag. Manuel Fähnrich, Rechtsanwalt in Graz, wegen 34.000 EUR sA, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Graz als Berufungsgericht vom 31. Jänner 2020, GZ 2 R 168/19x-28, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -11705,7 +11705,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Hofrat des Obers
 - `Chemie Valtri GmbH`(organisation)
 - `Niels Niefeldt`(person)
 
-**Example 37** (doc_id: `deanon_TRAIN/3Ob49_11v`) (sent_id: `deanon_TRAIN/3Ob49_11v_3`)
+**Example 36** (doc_id: `deanon_TRAIN/3Ob49_11v`) (sent_id: `deanon_TRAIN/3Ob49_11v_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie durch den Hofrat Hon.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in der Rechtssache der klagenden Partei Julius Zimzick Verlag GmbH & Co KG, Terramaregasse 28, 8234 Rohrbachschlag, Österreich, vertreten durch Dr. Wolfgang Dartmann und andere Rechtsanwälte in Linz, wider die beklagten Parteien 1. Friedrich Schreinemachers und 2.
@@ -11722,7 +11722,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Terramaregasse 28, 8234 Rohrbachschlag, Österreich`(address)
 - `Schreinemachers`(person)
 
-**Example 38** (doc_id: `deanon_TRAIN/4Nc18_11a`) (sent_id: `deanon_TRAIN/4Nc18_11a_3`)
+**Example 37** (doc_id: `deanon_TRAIN/4Nc18_11a`) (sent_id: `deanon_TRAIN/4Nc18_11a_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch die Senatspräsidentin Dr. Schenk als Vorsitzende und die Hofräte Dr. Vogel und Dr. Jensik als weitere Richter in der Rechtssache der klagenden Partei HochCloud GmbH, Piedro Temur, vertreten durch Dr. Christian Fuchshuber LL.M., Rechtsanwalt in Innsbruck, gegen die beklagte Partei SUI Pharma Consulting GmbH, Nancy Herz, vertreten durch Dr. Gerhard Strobich, Rechtsanwalt in Trofaiach, wegen 5.873,18 EUR sA, über den Delegierungsantrag der beklagten Partei den Beschluss gefasst:  Spruch Der Antrag, zur Verhandlung und Entscheidung in dieser Rechtssache anstelle des Bezirksgerichts Innsbruck das Bezirksgericht Leoben zu bestimmen, wird abgewiesen.
@@ -11742,7 +11742,7 @@ Kopf Der Oberste Gerichtshof hat durch die Senatspräsidentin Dr. Schenk als Vor
 - `Nancy Herz`(person)
 - `Bezirksgericht Leoben`(organisation)
 
-**Example 39** (doc_id: `deanon_TRAIN/4Nc3_12x`) (sent_id: `deanon_TRAIN/4Nc3_12x_3`)
+**Example 38** (doc_id: `deanon_TRAIN/4Nc3_12x`) (sent_id: `deanon_TRAIN/4Nc3_12x_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch die Senatspräsidentin Dr. Schenk als Vorsitzende und durch die Hofräte Dr. Vogel und Dr. Jensik als weitere Richter in der beim Landesgericht Innsbruck zu AZ 59 Cg 92/11x anhängigen Rechtssache der klagenden Partei Rudigkeit Finanzen GmbH, Ing. Sascha Rohkrämer, vertreten durch Mag. Heinz Heher, Rechtsanwalt in Wien, gegen die beklagte Partei Suddorftra Manufaktur GmbH, Ludmilla Nottelmann, vertreten durch Dr. Adrian Hollaender, Rechtsanwalt in Innsbruck, wegen Unterlassung, Urteilsveröffentlichung und 67.606 EUR sA, über die Delegierungsanträge der beklagten Partei gemäß § 31 Abs 2 JN, folgenden Beschluss gefasst:  Spruch Die Anträge der beklagten Partei, die Rechtssache an das „Landesgericht Wien“ bzw Handelsgericht Wien zu delegieren, werden abgewiesen.
@@ -11763,7 +11763,7 @@ Kopf Der Oberste Gerichtshof hat durch die Senatspräsidentin Dr. Schenk als Vor
 - `Ludmilla Nottelmann`(person)
 - `Landesgericht Wien`(organisation)
 
-**Example 40** (doc_id: `deanon_TRAIN/4Ob100_13d`) (sent_id: `deanon_TRAIN/4Ob100_13d_3`)
+**Example 39** (doc_id: `deanon_TRAIN/4Ob100_13d`) (sent_id: `deanon_TRAIN/4Ob100_13d_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch die Vizepräsidentin Dr. Schenk als Vorsitzende und die Hofräte Dr. Vogel, Dr. Jensik, Dr. Musger und Dr. Schwarzenbacher als weitere Richter in der Rechtssache der klagenden Partei Verein Erwin Sieferer, vertreten durch Kosesnik-Wehrle & Langer Rechtsanwälte KG in Wien, gegen die beklagte Partei Lebensmittel Seeder -Aktiengesellschaft, Knechtswies 63, 4692 Niederau, Österreich, vertreten durch Raits Bleiziffer Rechtsanwälte GmbH in Salzburg, und die Nebenintervenientin auf Seiten der beklagten Partei „ StR Thobias Broß ” Viola Hüßkes, vertreten durch Dr. Peter Zöchbauer und andere Rechtsanwälte in Wien, wegen Unterlassung und Urteilsveröffentlichung (Streitwert 36.000 EUR), über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Linz vom 19. April 2013, GZ 1 R 192/12d-14, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -11782,7 +11782,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch die Vizepräsidentin
 - `StR Thobias Broß`(person)
 - `Viola Hüßkes`(person)
 
-**Example 41** (doc_id: `deanon_TRAIN/4Ob112_24k`) (sent_id: `deanon_TRAIN/4Ob112_24k_3`)
+**Example 40** (doc_id: `deanon_TRAIN/4Ob112_24k`) (sent_id: `deanon_TRAIN/4Ob112_24k_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Schwarzenbacher als Vorsitzenden sowie den Vizepräsidenten Hon.-Prof. PD Dr. Rassi, die Hofrätinnen Mag. Istjan, LL.M., und Mag. Waldstätten und den Hofrat Dr. Stiefsohn als weitere Richter in der Rechtssache der klagenden Partei Kersseboom Textil AG, Prof.in Juliette Große-Kleimann, Schweiz, vertreten durch die Gottgeisl Leinsmer Weber Rechtsanwälte GmbH in Wien, gegen die beklagte Partei Benedikt Faath plc, DDr. Piedro Bielmeier, Malta, vertreten durch die Brandl Talos Rechtsanwälte GmbH in Wien, wegen 19.333,99 EUR sA, über die Revision der beklagten Partei gegen das Urteil des Oberlandesgerichts Linz vom 14. März 2024, GZ 1 R 12/24a-46, mit dem das Urteil des Landesgerichts Wels vom 1. Dezember 2023, GZ 6 Cg 18/23p-41, abgeändert wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die Revision wird zurückgewiesen.
@@ -11801,7 +11801,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Benedikt Faath`(person)
 - `DDr. Piedro Bielmeier`(person)
 
-**Example 42** (doc_id: `deanon_TRAIN/4Ob113_24g`) (sent_id: `deanon_TRAIN/4Ob113_24g_3`)
+**Example 41** (doc_id: `deanon_TRAIN/4Ob113_24g`) (sent_id: `deanon_TRAIN/4Ob113_24g_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Schwarzenbacher als Vorsitzenden sowie den Vizepräsidenten Hon.-Prof. PD Dr. Rassi, die Hofrätinnen Mag. Istjan, LL.M., und Mag. Waldstätten und den Hofrat Dr. Stiefsohn als weitere Richter in der Rechtssache der klagenden Partei Vierziger u. Tewald Wind GmbH, Claire Lüdermann, Bakk. rer. nat., vertreten durch Grassner Rechtsanwalts GmbH in Linz, gegen die beklagte Partei Milena Buchmayr, vertreten durch Dr. Manfred Palkovits, Mag. Martin Sohm, Rechtsanwälte in Wien, wegen Aufkündigung, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Landesgerichts für Zivilrechtssachen Wien vom 24. April 2024, GZ 38 R 247/23i-46, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -11819,7 +11819,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Milena Buchmayr`(person)
 - `Dr. Manfred Palkovits`(person)
 
-**Example 43** (doc_id: `deanon_TRAIN/4Ob162_18d`) (sent_id: `deanon_TRAIN/4Ob162_18d_4`)
+**Example 42** (doc_id: `deanon_TRAIN/4Ob162_18d`) (sent_id: `deanon_TRAIN/4Ob162_18d_4`)
 
 
 Matzka als weitere Richter in der Rechtssache der klagenden Partei XDC Druck GmbH, Scarlett Augustus, vertreten durch Vavrovsky Heine Marth Rechtsanwälte GmbH in Wien, gegen die beklagte Partei UBER B.V., Larissa Ebele, Niederlande, vertreten durch Schönherr Rechtsanwälte GmbH in Wien, wegen Unterlassung, Veröffentlichung und Feststellung (Streitwert im Sicherungsverfahren 70.000 EUR), über den Revisionsrekurs der beklagten Partei gegen den Beschluss des Oberlandesgerichts Wien als Rekursgericht vom 4. Juli 2018, GZ 3 R 32/18z-14, mit dem der Beschluss des Handelsgerichts Wien vom 24. April 2018, GZ 58 Cg 10/18f-6, bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Dem Revisionsrekurs wird teilweise Folge gegeben.
@@ -12525,20 +12525,7 @@ Ali Haarnacke und 2. Li Baselt, vertreten durch Dr. Serpil Dogan, Rechtsanwälti
 - `Ali Haarnacke` (person)
 - `Li Baselt` (person)
 
-**Example 9** (doc_id: `deanon_TRAIN/2Ob181_10x`) (sent_id: `deanon_TRAIN/2Ob181_10x_3`)
-
-
-Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Baumann als Vorsitzenden und durch die Hofräte Dr. Veith, Dr. E. Solé, Dr. Schwarzenbacher und Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Gertrude Ptak, vertreten durch Dr. Bertram Broesigke und Dr. Wolfgang Broesigke, Rechtsanwälte in Wien, gegen die beklagte Partei Josef Schindelmeißer, vertreten durch den Sachwalter Dr. Helmut Heiger, Rechtsanwalt in Wien, wegen Aufkündigung, über die außerordentliche Revision der beklagten Partei gegen das Urteil des Landesgerichts für Zivilrechtssachen Wien als Berufungsgericht vom 15. Juni 2010, GZ 41 R 130/10m-26, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen (§ 510 Abs 3 ZPO).
-
-| Predicted | Gold |
-|---|---|
-| `Ptak` | `Ptak` |
-
-**Missed by this rule (FN):**
-
-- `Schindelmeißer` (person)
-
-**Example 10** (doc_id: `deanon_TRAIN/2Ob37_17f`) (sent_id: `deanon_TRAIN/2Ob37_17f_3`)
+**Example 9** (doc_id: `deanon_TRAIN/2Ob37_17f`) (sent_id: `deanon_TRAIN/2Ob37_17f_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Hon.-Prof. Dr. Danzl als Vorsitzenden und die Hofräte Dr. Veith und Dr. Musger, die Hofrätin Dr. E. Solé und den Hofrat Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Florentin Uffenwasser, vertreten durch Dr. Armin Exner, Rechtsanwalt in Innsbruck, gegen die beklagte Partei Stadtgemeinde Naomi Mertensmeyer, vertreten durch Dr. Thomas Girardi, Rechtsanwalt in Innsbruck, wegen 29.461,04 EUR sA und Feststellung (Streitwert 10.000 EUR), über die außerordentliche Revision der beklagten Partei (Revisionsinteresse 22.377,04 EUR) gegen das Urteil des Oberlandesgerichts Innsbruck als Berufungsgericht vom 15. Dezember 2016, GZ 2 R 141/16a-47, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -12551,7 +12538,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 
 - `Florentin Uffenwasser` (person)
 
-**Example 11** (doc_id: `deanon_TRAIN/4Ob100_13d`) (sent_id: `deanon_TRAIN/4Ob100_13d_3`)
+**Example 10** (doc_id: `deanon_TRAIN/4Ob100_13d`) (sent_id: `deanon_TRAIN/4Ob100_13d_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch die Vizepräsidentin Dr. Schenk als Vorsitzende und die Hofräte Dr. Vogel, Dr. Jensik, Dr. Musger und Dr. Schwarzenbacher als weitere Richter in der Rechtssache der klagenden Partei Verein Erwin Sieferer, vertreten durch Kosesnik-Wehrle & Langer Rechtsanwälte KG in Wien, gegen die beklagte Partei Lebensmittel Seeder -Aktiengesellschaft, Knechtswies 63, 4692 Niederau, Österreich, vertreten durch Raits Bleiziffer Rechtsanwälte GmbH in Salzburg, und die Nebenintervenientin auf Seiten der beklagten Partei „ StR Thobias Broß ” Viola Hüßkes, vertreten durch Dr. Peter Zöchbauer und andere Rechtsanwälte in Wien, wegen Unterlassung und Urteilsveröffentlichung (Streitwert 36.000 EUR), über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Linz vom 19. April 2013, GZ 1 R 192/12d-14, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -12567,7 +12554,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch die Vizepräsidentin
 - `StR Thobias Broß` (person)
 - `Viola Hüßkes` (person)
 
-**Example 12** (doc_id: `deanon_TRAIN/5Ob174_15x`) (sent_id: `deanon_TRAIN/5Ob174_15x_3`)
+**Example 11** (doc_id: `deanon_TRAIN/5Ob174_15x`) (sent_id: `deanon_TRAIN/5Ob174_15x_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hradil als Vorsitzenden sowie den Hofrat Dr. Höllwerth, die Hofrätin Dr. Grohmann und die Hofräte Mag. Wurzer und Mag. Painsi als weitere Richter in der außerstreitigen Wohnrechtssache der Antragstellerin Ulrike Raymackers, vertreten durch Mag. Valerie Gröschl, Mietervereinigung Österreichs, 1010 Wien, Reichsratsstraße 15, gegen die Antragsgegnerin FPNK Telekom GmbH, Karl-Völkl-Straße 16, 4682 Erlet, Österreich, vertreten durch Mag. Günter Petzelbauer, Rechtsanwalt in Wien, wegen § 37 Abs 1 Z 8 iVm § 16 MRG, über den außerordentlichen Revisionsrekurs der Antragsgegnerin gegen den Sachbeschluss des Landesgerichts für Zivilrechtssachen Wien als Rekursgericht vom 27. Mai 2015, GZ 39 R 136/15m-17, mit dem der Sachbeschluss des Bezirksgerichts Hernals vom 30. Dezember 2014, GZ 5 Msch 15/14g-12, bestätigt wurde, den Beschluss gefasst:  Spruch Dem außerordentlichen Revisionsrekurs wird Folge gegeben.
@@ -12580,6 +12567,22 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hradil als Vor
 
 - `FPNK Telekom GmbH` (organisation)
 - `Karl-Völkl-Straße 16, 4682 Erlet, Österreich` (address)
+
+**Example 12** (doc_id: `deanon_TRAIN/5Ob18_11z`) (sent_id: `deanon_TRAIN/5Ob18_11z_3`)
+
+
+Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Hon.-Prof. Dr. Danzl als Vorsitzenden und die Hofrätinnen Dr. Hurch und Dr. Lovrek sowie die Hofräte Dr. Höllwerth und Mag. Wurzer als weitere Richter in der Rechtssache der klagenden Partei DI Borislav Viskorf, vertreten durch Dr. Günter Niebauer, Rechtsanwalt in Wien, und der Nebenintervenientin auf Seiten der klagenden Partei Mittel Waldheim Betriebe AG, Samantha Althöfer, vertreten durch Mayer & Herrmann, Rechtsanwälte in Wien, gegen die beklagte Partei Weckebrod Immobilien Aktiengesellschaft, Graf Geroldstraße 2, 8181 Dörfl an der Raab, Österreich, vertreten durch Kunz Schima Wallentin Rechtsanwälte OG in Wien, wegen 96.882,93 EUR sA, über die Revision der beklagten Partei gegen das Urteil des Oberlandesgerichts Wien als Berufungsgericht vom 25. Oktober 2010, GZ 2 R 213/09x, 2 R 216/09p-27, mit dem infolge Berufung der beklagten Partei das Urteil des Handelsgerichts Wien vom 24. Juli 2009, GZ 19 Cg 167/08t-19, bestätigt wurde, den Beschluss gefasst:  Spruch Die Revision wird zurückgewiesen.
+
+| Predicted | Gold |
+|---|---|
+| `DI Borislav Viskorf` | `DI Borislav Viskorf` |
+
+**Missed by this rule (FN):**
+
+- `Mittel Waldheim Betriebe AG` (organisation)
+- `Samantha Althöfer` (person)
+- `Weckebrod Immobilien Aktiengesellschaft` (organisation)
+- `Graf Geroldstraße 2, 8181 Dörfl an der Raab, Österreich` (address)
 
 **Example 13** (doc_id: `deanon_TRAIN/5Ob46_13w`) (sent_id: `deanon_TRAIN/5Ob46_13w_3`)
 
@@ -13237,7 +13240,23 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Hon.-Prof. Dr. Dan
 - `Hartmut Willekes`(person)
 - `KommR Roswitha Allgoewer`(person)
 
-**Example 37** (doc_id: `deanon_TRAIN/2Ob182_24i`) (sent_id: `deanon_TRAIN/2Ob182_24i_4`)
+**Example 37** (doc_id: `deanon_TRAIN/2Ob181_10x`) (sent_id: `deanon_TRAIN/2Ob181_10x_3`)
+
+
+Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Baumann als Vorsitzenden und durch die Hofräte Dr. Veith, Dr. E. Solé, Dr. Schwarzenbacher und Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Gertrude Ptak, vertreten durch Dr. Bertram Broesigke und Dr. Wolfgang Broesigke, Rechtsanwälte in Wien, gegen die beklagte Partei Josef Schindelmeißer, vertreten durch den Sachwalter Dr. Helmut Heiger, Rechtsanwalt in Wien, wegen Aufkündigung, über die außerordentliche Revision der beklagten Partei gegen das Urteil des Landesgerichts für Zivilrechtssachen Wien als Berufungsgericht vom 15. Juni 2010, GZ 41 R 130/10m-26, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen (§ 510 Abs 3 ZPO).
+
+**False Positives:**
+
+- `Ptak` — partial — pred is substring of gold: `Gertrude Ptak`
+
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Gertrude Ptak`(person)
+- `Josef Schindelmeißer`(person)
+
+**Example 38** (doc_id: `deanon_TRAIN/2Ob182_24i`) (sent_id: `deanon_TRAIN/2Ob182_24i_4`)
 
 
 Sloboda, Dr. Thunhart und Dr. Kikinger sowie die Hofrätin Mag. Fitz als weitere Richter in der Rechtssache der klagenden und gefährdeten Partei Theresa Ziebold, vertreten durch Mag. Mahmut Sahinol, Rechtsanwalt in Wien, gegen die beklagten Parteien und Gegner der gefährdeten Parteien 1.
@@ -13252,7 +13271,7 @@ Sloboda, Dr. Thunhart und Dr. Kikinger sowie die Hofrätin Mag. Fitz als weitere
 
 - `Theresa Ziebold`(person)
 
-**Example 38** (doc_id: `deanon_TRAIN/2Ob224_21m`) (sent_id: `deanon_TRAIN/2Ob224_21m_5`)
+**Example 39** (doc_id: `deanon_TRAIN/2Ob224_21m`) (sent_id: `deanon_TRAIN/2Ob224_21m_5`)
 
 
 Dr. Konstantin Haas, Rechtsanwalt in Leonding, gegen die beklagte Partei Annette Provost, vertreten durch Posch, Schausberger & Lutz Rechtsanwälte GmbH in Wels, wegen 25.650,07 EUR sA sowie Herausgabe (Streitwert 1.000 EUR) über die Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Linz als Berufungsgericht vom 1. Oktober 2021, GZ 2 R 119/21i-48, mit dem das Urteil des Landesgerichts Ried im Innkreis vom 28. Juni 2021, GZ 5 Cg 60/18b-44, bestätigt wurde, den Beschluss gefasst:  Spruch Die Revision wird zurückgewiesen.
@@ -13267,7 +13286,7 @@ Dr. Konstantin Haas, Rechtsanwalt in Leonding, gegen die beklagte Partei Annette
 
 - `Annette Provost`(person)
 
-**Example 39** (doc_id: `deanon_TRAIN/2Ob37_17f`) (sent_id: `deanon_TRAIN/2Ob37_17f_3`)
+**Example 40** (doc_id: `deanon_TRAIN/2Ob37_17f`) (sent_id: `deanon_TRAIN/2Ob37_17f_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Hon.-Prof. Dr. Danzl als Vorsitzenden und die Hofräte Dr. Veith und Dr. Musger, die Hofrätin Dr. E. Solé und den Hofrat Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Florentin Uffenwasser, vertreten durch Dr. Armin Exner, Rechtsanwalt in Innsbruck, gegen die beklagte Partei Stadtgemeinde Naomi Mertensmeyer, vertreten durch Dr. Thomas Girardi, Rechtsanwalt in Innsbruck, wegen 29.461,04 EUR sA und Feststellung (Streitwert 10.000 EUR), über die außerordentliche Revision der beklagten Partei (Revisionsinteresse 22.377,04 EUR) gegen das Urteil des Oberlandesgerichts Innsbruck als Berufungsgericht vom 15. Dezember 2016, GZ 2 R 141/16a-47, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -13283,7 +13302,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Florentin Uffenwasser`(person)
 - `Naomi Mertensmeyer`(person)
 
-**Example 40** (doc_id: `deanon_TRAIN/2Ob41_16t`) (sent_id: `deanon_TRAIN/2Ob41_16t_3`)
+**Example 41** (doc_id: `deanon_TRAIN/2Ob41_16t`) (sent_id: `deanon_TRAIN/2Ob41_16t_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Hon.-Prof. Dr. Danzl als Vorsitzenden sowie die Hofräte Dr. Veith und Dr. Musger, die Hofrätin Dr. E. Solé und den Hofrat Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei DDr. Ashley Feichtmeier, vertreten durch Bollmann & Bollmann Rechtsanwaltspartnerschaft in Wien, gegen die beklagte Partei StadtDigital AG, Helmut Klösgen, vertreten durch DLA Piper Weiss-Tessbach, Rechtsanwälte GmbH in Wien, wegen 18.056,86 EUR sA, über die Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Wien als Berufungsgericht vom 24. November 2015, GZ 1 R 141/15k-48, womit über Berufung der klagenden Partei das Urteil des Handelsgerichts Wien vom 27. Mai 2015, GZ 55 Cg 295/11k-44, bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die Revision der klagenden Partei wird zurückgewiesen.
@@ -13300,7 +13319,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `StadtDigital AG`(organisation)
 - `Helmut Klösgen`(person)
 
-**Example 41** (doc_id: `deanon_TRAIN/2Ob63_11w`) (sent_id: `deanon_TRAIN/2Ob63_11w_3`)
+**Example 42** (doc_id: `deanon_TRAIN/2Ob63_11w`) (sent_id: `deanon_TRAIN/2Ob63_11w_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Baumann als Vorsitzenden und durch die Hofräte Dr. Veith, Dr. E. Solé, Dr. Schwarzenbacher und Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Thomas Papakonstantinou, vertreten durch Kinberger-Schuberth-Fischer Rechtsanwälte-GmbH in Zell am See, gegen die beklagten Parteien 1. Matthias Graafmann, und 2.
@@ -13316,7 +13335,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Thomas Papakonstantinou`(person)
 - `Matthias Graafmann`(person)
 
-**Example 42** (doc_id: `deanon_TRAIN/2Ob71_23i`) (sent_id: `deanon_TRAIN/2Ob71_23i_4`)
+**Example 43** (doc_id: `deanon_TRAIN/2Ob71_23i`) (sent_id: `deanon_TRAIN/2Ob71_23i_4`)
 
 
 Sloboda und Dr. Kikinger als weitere Richter in der Rechtssache der klagenden Partei Moses Malkomes, vertreten durch Klepp Nöbauer Hintringer Primetshofer Rechtsanwälte (GbR) in Linz, gegen die beklagte Partei Carmen Reinoldsmann, vertreten durch Dr. Christoph Arbeithuber, Rechtsanwalt in Linz, wegen 26.843,50 EUR sA und Feststellung, über die außerordentliche Revision der beklagten Partei gegen das Urteil des Oberlandesgerichts Linz als Berufungsgericht vom 27. Februar 2023, GZ 4 R 17/23g-28, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -13333,7 +13352,7 @@ Sloboda und Dr. Kikinger als weitere Richter in der Rechtssache der klagenden Pa
 - `Moses Malkomes`(person)
 - `Carmen Reinoldsmann`(person)
 
-**Example 43** (doc_id: `deanon_TRAIN/2Ob73_15x`) (sent_id: `deanon_TRAIN/2Ob73_15x_3`)
+**Example 44** (doc_id: `deanon_TRAIN/2Ob73_15x`) (sent_id: `deanon_TRAIN/2Ob73_15x_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Hon.-Prof. Dr. Danzl als Vorsitzenden, die Hofräte Dr. Veith und Dr. Musger, die Hofrätin Dr. E. Solé sowie den Hofrat Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Dragan Karp, vertreten durch Mag. Bernd Trappmaier, Rechtsanwalt in Korneuburg, gegen die beklagte Partei Marlene Diderichs, vertreten durch Mag. Claus Marchl, Rechtsanwalt in Wien, wegen 25.396,03 EUR sA, über die Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Wien als Berufungsgericht vom 22. Jänner 2015, GZ 11 R 239/14v-26, womit infolge Berufung der klagenden Partei das Urteil des Landesgerichts für Zivilrechtssachen Wien vom 30. September 2014, GZ 57 Cg 30/14x-22, bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die Revision wird zurückgewiesen.
@@ -13350,7 +13369,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Dragan Karp`(person)
 - `Marlene Diderichs`(person)
 
-**Example 44** (doc_id: `deanon_TRAIN/2Ob78_15g`) (sent_id: `deanon_TRAIN/2Ob78_15g_3`)
+**Example 45** (doc_id: `deanon_TRAIN/2Ob78_15g`) (sent_id: `deanon_TRAIN/2Ob78_15g_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Hon.-Prof. Dr. Danzl als Vorsitzenden, die Hofräte Dr. Veith und Dr. Musger sowie die Hofrätinnen Dr. E. Solé und Dr. Hofer-Zeni-Rennhofer als weitere Richter in der Rechtssache der klagenden Partei Luigi Neimeier, vertreten durch Rechtsanwälte Estermann & Partner OG in Mattighofen, gegen die beklagte Partei LNC KI Solutions GmbH, Kordelia Grauel, vertreten durch Dr. Herbert Harlander und Mag. Wolfgang Harlander, Rechtsanwälte in Salzburg, wegen 33.251,85 EUR sA, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Linz als Berufungsgericht vom 5. März 2015, GZ 2 R 1/15b-37, womit infolge Berufung der klagenden Partei das Urteil des Landesgerichts Salzburg vom 23. Oktober 2014, GZ 4 Cg 27/13d-33, bestätigt wurde, in nichtöffentlicher Sitzung beschlossen und zu Recht erkannt:  Spruch
@@ -13368,7 +13387,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `LNC KI Solutions GmbH`(organisation)
 - `Kordelia Grauel`(person)
 
-**Example 45** (doc_id: `deanon_TRAIN/2Ob89_17b`) (sent_id: `deanon_TRAIN/2Ob89_17b_3`)
+**Example 46** (doc_id: `deanon_TRAIN/2Ob89_17b`) (sent_id: `deanon_TRAIN/2Ob89_17b_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch die Vizepräsidentin Hon.-Prof. Dr. Lovrek als Vorsitzende, die Hofräte Dr. Veith und Dr. Musger, die Hofrätin Dr. E. Solé sowie den Hofrat Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Aron Dawideit, vertreten durch Posch, Schausberger & Lutz Rechtsanwälte GmbH in Wels, gegen die beklagten Parteien 1. PhD Irvin Kindschuh, 2. Theodor Hermus, und 3.
@@ -13385,7 +13404,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch die Vizepräsidentin
 - `PhD Irvin Kindschuh`(person)
 - `Theodor Hermus`(person)
 
-**Example 46** (doc_id: `deanon_TRAIN/2Ob91_22d`) (sent_id: `deanon_TRAIN/2Ob91_22d_4`)
+**Example 47** (doc_id: `deanon_TRAIN/2Ob91_22d`) (sent_id: `deanon_TRAIN/2Ob91_22d_4`)
 
 
 Sloboda und Dr. Kikinger als weitere Richter in der Rechtssache der klagenden Partei Farina Dirker, vertreten durch Dr. Sven Rudolf Thorstensen, LL.M., Rechtsanwalt in Wien, gegen die beklagte Partei Lüttge Chemie Limited, René Luidthard, vertreten durch Brandl Talos Rechtsanwälte GmbH in Wien, wegen 40.150,26 EUR sA, im Verfahren über die Revision der beklagten Partei gegen das Urteil des Oberlandesgerichts Wien als Berufungsgericht vom 24. Februar 2022, GZ 15 R 171/21h-33, den Beschluss gefasst:  Spruch Die Zurücknahme der Revision wird zur Kenntnis genommen.
@@ -13402,7 +13421,7 @@ Sloboda und Dr. Kikinger als weitere Richter in der Rechtssache der klagenden Pa
 - `Lüttge Chemie Limited`(organisation)
 - `René Luidthard`(person)
 
-**Example 47** (doc_id: `deanon_TRAIN/3Nc11_13t`) (sent_id: `deanon_TRAIN/3Nc11_13t_3`)
+**Example 48** (doc_id: `deanon_TRAIN/3Nc11_13t`) (sent_id: `deanon_TRAIN/3Nc11_13t_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie die Hofräte Univ.-Prof Dr. Neumayr und Dr. Jensik als weitere Richter in der Ordinationssache der Antragstellerin Waldzorval Technologien GmbH, Dr.-Kühne-Gasse 29, 9560 Albern, Österreich, vertreten durch Dr. Clemens Thiele, Rechtsanwalt in Salzburg, gegen die Antragsgegnerin Pflege Allemkraft GmbH, Schirmerstraße 61, 8967 Oberhausberg, Österreich, wegen Exekutionsführung nach § 355 EO, infolge Antrags gemäß § 28 JN den Beschluss gefasst:  Spruch Für die Bewilligung und die Vollziehung der beabsichtigten Unterlassungsexekution wird das Bezirksgericht Salzburg als örtlich zuständiges Gericht bestimmt.
@@ -13421,7 +13440,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als 
 - `Schirmerstraße 61, 8967 Oberhausberg, Österreich`(address)
 - `Bezirksgericht Salzburg`(organisation)
 
-**Example 48** (doc_id: `deanon_TRAIN/3Ob105_13g`) (sent_id: `deanon_TRAIN/3Ob105_13g_3`)
+**Example 49** (doc_id: `deanon_TRAIN/3Ob105_13g`) (sent_id: `deanon_TRAIN/3Ob105_13g_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Univ.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in der Rechtssache der klagenden Partei ÖkR Malik Sutmöller OEG, Leila Nieboer, vertreten durch Dr. Heinz-Wilhelm Stenzl, Rechtsanwalt in Wien, gegen die beklagte Partei Mittel Bachlemsee GmbH, Erwin Klefass, BSc, vertreten durch Dr. Johann Gelbmann, Rechtsanwalt in Wien, wegen (restlich) 12.536,14 EUR sA, über die Revision der beklagten Partei (Revisionsinteresse 6.909 EUR sA) gegen das Urteil des Landesgerichts für Zivilrechtssachen Wien als Berufungsgericht vom 19. Dezember 2012, GZ 38 R 173/12s-139, womit über die Berufungen beider Parteien das Urteil des Bezirksgerichts Fünfhaus vom 10. April 2012, GZ 12 C 1045/05m-131, bestätigt wurde, den Beschluss gefasst:  Spruch Die Revision wird zurückgewiesen.
@@ -13439,7 +13458,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Mittel Bachlemsee GmbH`(organisation)
 - `Erwin Klefass, BSc`(person)
 
-**Example 49** (doc_id: `deanon_TRAIN/3Ob112_23a`) (sent_id: `deanon_TRAIN/3Ob112_23a_3`)
+**Example 50** (doc_id: `deanon_TRAIN/3Ob112_23a`) (sent_id: `deanon_TRAIN/3Ob112_23a_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Hon.-Prof. Dr. Höllwerth als Vorsitzenden sowie den Hofrat Hon.-Prof. Dr. Brenn, die Hofrätinnen Dr. Weixelbraun-Mohr und Dr. Kodek und den Hofrat Dr. Stefula als weitere Richter in der außerstreitigen Rechtssache der Antragstellerin Amalia Lupprich, vertreten durch Dr. Walter Fleissner, Rechtsanwalt in Wien, gegen die Antragsgegnerin Zarin Terzi, vertreten durch Mag. Werner Hauser Rechtsanwalt in Wien, über den außerordentlichen Revisionsrekurs der Antragstellerin gegen den Beschluss des Landesgerichts für Zivilrechtssachen Wien als Rekursgericht vom 27. Februar 2023, GZ 43 R 331/22b-65, den Beschluss gefasst:  Spruch Der außerordentliche Revisionsrekurs wird mangels der Voraussetzungen des § 62 Abs 1 AußStrG zurückgewiesen.
@@ -13455,7 +13474,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Hon.-Prof. Dr. Hö
 - `Amalia Lupprich`(person)
 - `Zarin Terzi`(person)
 
-**Example 50** (doc_id: `deanon_TRAIN/3Ob128_10k`) (sent_id: `deanon_TRAIN/3Ob128_10k_3`)
+**Example 51** (doc_id: `deanon_TRAIN/3Ob128_10k`) (sent_id: `deanon_TRAIN/3Ob128_10k_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie die Hofräte und Hofrätinnen Hon.-Prof. Dr. Sailer, Dr. Lovrek, Dr. Jensik und Dr. Fichtenau als weitere Richter in der Rechtssache der klagenden Partei Nadja Spangler, vertreten durch Kinberger-Schuberth-Fischer Rechtsanwälte-GmbH in Zell am See, gegen die beklagte Partei Sascha Heckert, vertreten durch Dr. Andreas König, Dr. Andreas Ermacora und Dr. Barbara Lässer, Rechtsanwälte in Innsbruck, wegen 137.146,60 EUR sA und Feststellung (Gesamtstreitwert 157.146,60 EUR), über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Linz als Berufungsgericht vom 31. März 2010, GZ 6 R 28/10w-44, womit über Berufung der klagenden Partei das Urteil des Landesgerichts Salzburg vom 30. Oktober 2009, GZ 7 Cg 117/07b-40, bestätigt wurde, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -13472,7 +13491,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Nadja Spangler`(person)
 - `Sascha Heckert`(person)
 
-**Example 51** (doc_id: `deanon_TRAIN/3Ob147_20v`) (sent_id: `deanon_TRAIN/3Ob147_20v_3`)
+**Example 52** (doc_id: `deanon_TRAIN/3Ob147_20v`) (sent_id: `deanon_TRAIN/3Ob147_20v_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Hofrat Dr. Roch als Vorsitzenden sowie den Hofrat Hon.-Prof. PD Dr. Rassi, die Hofrätinnen Dr. Weixelbraun-Mohr und Dr. Kodek und den Hofrat Dr. Stefula als weitere Richter in der Rechtssache der klagenden Partei Kraftnorost Wind GmbH, Roderich Holtze, vertreten durch Mag. Andreas Kleiber, Rechtsanwalt in Wien, gegen die beklagte Partei Annette Fiss verein Ing. Kirstin Movcan, vertreten durch Pflaum Karlberger Wiener Opetnik, Rechtsanwälte in Wien, wegen Aufkündigung, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Landesgerichts für Zivilrechtssachen Wien als Berufungsgericht vom 22. Juli 2020, GZ 40 R 37/20t-27, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -13490,7 +13509,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Hofrat Dr. Roch 
 - `Annette Fiss`(person)
 - `Ing. Kirstin Movcan`(person)
 
-**Example 52** (doc_id: `deanon_TRAIN/3Ob152_10i`) (sent_id: `deanon_TRAIN/3Ob152_10i_3`)
+**Example 53** (doc_id: `deanon_TRAIN/3Ob152_10i`) (sent_id: `deanon_TRAIN/3Ob152_10i_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Hon.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in der Exekutionssache der betreibenden Partei KMN Versicherung Werke AG, Corbinian Pichlmaier, vertreten durch Dr. Erich Kafka, Dr. Manfred Palkovits, Rechtsanwälte in Wien, gegen die verpflichtete Partei Severin Wellenbrink, vertreten durch Dr. Philipp Jessich, Rechtsanwalt in Wien, wegen Aufschiebung einer Räumungsexekution, über den Revisionsrekurs der betreibenden Partei gegen den Beschluss des Landesgerichts für Zivilrechtssachen Wien als Rekursgericht vom 12. Mai 2010, GZ 39 R 44/10z-22, womit der Beschluss des Bezirksgerichts Fünfhaus vom 14. Jänner 2010, GZ 10 E 171/09d-6, abgeändert wurde, den Beschluss gefasst:  Spruch Dem Revisionsrekurs wird Folge gegeben.
@@ -13510,7 +13529,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als 
 - `Dr. Manfred Palkovits`(person)
 - `Severin Wellenbrink`(person)
 
-**Example 53** (doc_id: `deanon_TRAIN/3Ob156_12f`) (sent_id: `deanon_TRAIN/3Ob156_12f_3`)
+**Example 54** (doc_id: `deanon_TRAIN/3Ob156_12f`) (sent_id: `deanon_TRAIN/3Ob156_12f_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Hon.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in den verbundenen Rechtssachen der klagenden Partei Severin Ilek, vertreten durch die Sachwalterin Mag. Roswitha Ferl-Pailer, Rechtsanwältin in Hartberg, gegen die beklagte Partei Dipl.
@@ -13525,7 +13544,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 
 - `Severin Ilek`(person)
 
-**Example 54** (doc_id: `deanon_TRAIN/3Ob164_20v`) (sent_id: `deanon_TRAIN/3Ob164_20v_3`)
+**Example 55** (doc_id: `deanon_TRAIN/3Ob164_20v`) (sent_id: `deanon_TRAIN/3Ob164_20v_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch die Präsidentin Hon.-Prof. Dr. Lovrek als Vorsitzende sowie den Hofrat Hon.-Prof. PD Dr. Rassi, die Hofrätinnen Dr. Weixelbraun-Mohr und Dr. Kodek und den Hofrat Dr. Stefula als weitere Richter in der Rechtssache der klagenden Partei Bruckgartver GmbH, MedR StR René Titz, vertreten durch Dr. Reinhard Schanda, Rechtsanwalt in Wien, gegen die beklagte Partei Ofczarczik Planung AG, Dipl.
@@ -13543,7 +13562,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch die Präsidentin Hon
 - `MedR StR René Titz`(person)
 - `Ofczarczik Planung AG`(organisation)
 
-**Example 55** (doc_id: `deanon_TRAIN/3Ob178_15w`) (sent_id: `deanon_TRAIN/3Ob178_15w_3`)
+**Example 56** (doc_id: `deanon_TRAIN/3Ob178_15w`) (sent_id: `deanon_TRAIN/3Ob178_15w_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Hofrat Dr. Jensik als Vorsitzenden, die Vizepräsidentin Dr. Lovrek, die Hofräte Dr. Schwarzenbacher und Dr. Roch sowie die Hofrätin Dr. Kodek als weitere Richter in der Rechtssache der klagenden Partei Nikolai Castelli, vertreten durch Divitschek Sieder Sauer Peter Rechtsanwälte GesBR in Deutschlandsberg, gegen die beklagte Partei Dohmgoergen Bau GmbH, Oswald Schubert, vertreten durch Dr. Johannes Liebmann, Rechtsanwalt in Gleisdorf, wegen 82.977,52 EUR sA und Feststellung, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Graz als Berufungsgericht vom 27. Juli 2015, GZ 3 R 54/15h-145, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -13561,7 +13580,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Hofrat Dr. Jensi
 - `Dohmgoergen Bau GmbH`(organisation)
 - `Oswald Schubert`(person)
 
-**Example 56** (doc_id: `deanon_TRAIN/3Ob19_20w`) (sent_id: `deanon_TRAIN/3Ob19_20w_3`)
+**Example 57** (doc_id: `deanon_TRAIN/3Ob19_20w`) (sent_id: `deanon_TRAIN/3Ob19_20w_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch die Präsidentin Hon.-Prof. Dr. Lovrek als Vorsitzende sowie die Hofräte Dr. Roch und Priv.-Doz. Dr. Rassi und die Hofrätinnen Dr. Weixelbraun-Mohr und Dr. Kodek als weitere Richter in den verbundenen Rechtssachen der klagenden Partei Rinaldo Isaac, vertreten durch Mag. Gerhard Walzl, Rechtsanwalt in Wien, wider die beklagte Partei Felizia Mascheck, vertreten durch Dr. Alexandra Sedelmayer-Pammesberger, Rechtsanwältin in Wien, wegen Unterhaltsherabsetzung (AZ 8 C 22/16k) und Einwendungen gegen den Anspruch nach § 35 EO (AZ 8 C 4/18s), über die „außerordentliche“ Revision der klagenden Partei gegen das Urteil des Landesgerichts für Zivilrechtssachen Wien als Berufungsgericht vom 20. August 2019, GZ 44 R 338/19k-67, mit dem das Urteil des Bezirksgerichts Hernals vom 23. Mai 2019, GZ 8 C 22/16k-60, bestätigt wurde, den Beschluss gefasst:  Spruch Die Akten werden neuerlich dem Erstgericht zurückgestellt.
@@ -13578,7 +13597,7 @@ Kopf Der Oberste Gerichtshof hat durch die Präsidentin Hon.-Prof. Dr. Lovrek al
 - `Rinaldo Isaac`(person)
 - `Felizia Mascheck`(person)
 
-**Example 57** (doc_id: `deanon_TRAIN/3Ob201_19h`) (sent_id: `deanon_TRAIN/3Ob201_19h_3`)
+**Example 58** (doc_id: `deanon_TRAIN/3Ob201_19h`) (sent_id: `deanon_TRAIN/3Ob201_19h_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Hofrat Dr. Roch als Vorsitzenden sowie die Hofräte Priv.-Doz. Dr. Rassi und Mag. Painsi und die Hofrätinnen Dr. Weixelbraun-Mohr und Dr. Kodek als weitere Richter in der Exekutionssache der betreibenden Partei Kimberly Mühlenstädt, vertreten durch Korn & Gärtner Rechtsanwälte OG in Salzburg, gegen die verpflichtete Partei Arabella Jorn, vertreten durch Dr. Wolfgang Lang, Rechtsanwalt in Salzburg, wegen 7.711,58 EUR sA, über den Revisionsrekurs der betreibenden Partei gegen den Beschluss des Landesgerichts Salzburg als Rekursgericht vom 3. Juli 2019, GZ 22 R 171/19d-26, womit der Beschluss des Bezirksgerichts Salzburg vom 1. Februar 2019, GZ 5 E 2444/18x-7, abgeändert wurde, den Beschluss gefasst:  Spruch Dem Revisionsrekurs wird Folge gegeben.
@@ -13594,7 +13613,7 @@ Kopf Der Oberste Gerichtshof hat durch den Hofrat Dr. Roch als Vorsitzenden sowi
 - `Kimberly Mühlenstädt`(person)
 - `Arabella Jorn`(person)
 
-**Example 58** (doc_id: `deanon_TRAIN/3Ob205_15s`) (sent_id: `deanon_TRAIN/3Ob205_15s_3`)
+**Example 59** (doc_id: `deanon_TRAIN/3Ob205_15s`) (sent_id: `deanon_TRAIN/3Ob205_15s_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hoch als Vorsitzenden sowie die Vizepräsidentin Dr. Lovrek, die Hofräte Dr. Jensik und Dr. Roch und die Hofrätin Dr. Kodek als weitere Richter in der Exekutionssache der betreibenden Partei Laila Michot, vertreten durch Mag. Dr. Felix Sehorz, Rechtsanwalt in Wien, wider die verpflichtete Partei Jean Rehaag, wegen zwangsweiser Räumung (hier: Aufschiebung), aus Anlass des Revisionsrekurses der betreibenden Partei gegen den Beschluss des Landesgerichts für Zivilrechtssachen Wien als Rekursgericht vom 2. September 2015, GZ 39 R 260/15x-47, womit der Beschluss des Bezirksgerichts Liesing vom 27. Mai 2015, GZ 6 E 46/11k-43, teilweise abgeändert wurde, den Beschluss gefasst:  Spruch Der Beschluss des Obersten Gerichtshofs vom 16. Dezember 2015, AZ 3 Ob 205/15s, wird dahin berichtigt, dass das im ersten Absatz der Begründung genannte Datum der Einantwortung statt „6. März 2012“ richtig zu lauten hat „27. Juni 2013“.
@@ -13610,7 +13629,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hoch als Vorsi
 - `Laila Michot`(person)
 - `Jean Rehaag`(person)
 
-**Example 59** (doc_id: `deanon_TRAIN/3Ob22_13a`) (sent_id: `deanon_TRAIN/3Ob22_13a_3`)
+**Example 60** (doc_id: `deanon_TRAIN/3Ob22_13a`) (sent_id: `deanon_TRAIN/3Ob22_13a_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie durch den Hofrat Univ.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in der Rechtssache der betreibenden Partei Szymczak Software GmbH, Berthold Haendl, vertreten durch Mayrhofer & Rainer Rechtsanwälte OG in Wien, gegen die verpflichtete Partei Mag. Dr. Jennifer Meinard, wegen Räumung, über den außerordentlichen Revisionsrekurs der verpflichteten Partei gegen den Beschluss des Landesgerichts für Zivilrechtssachen Wien als Rekursgericht vom 27. November 2012, GZ 40 R 307/12m-99, womit der Rekurs der verpflichteten Partei gegen den Beschluss des Bezirksgerichts Innere Stadt Wien vom 12. Juli 2012, GZ 48 C 363/10d = 48 E 70/11y-38, zurückgewiesen wurde, den Beschluss gefasst:  Spruch Der Revisionsrekurs wird zurückgewiesen.
@@ -13627,7 +13646,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als 
 - `Berthold Haendl`(person)
 - `Dr. Jennifer Meinard`(person)
 
-**Example 60** (doc_id: `deanon_TRAIN/3Ob236_17b`) (sent_id: `deanon_TRAIN/3Ob236_17b_3`)
+**Example 61** (doc_id: `deanon_TRAIN/3Ob236_17b`) (sent_id: `deanon_TRAIN/3Ob236_17b_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten des Obersten Gerichtshofs Dr. Hoch als Vorsitzenden sowie die Hofräte Dr. Roch und Dr. Rassi und die Hofrätinnen Dr. Weixelbraun-Mohr und Dr. Kodek als weitere Richter in der Rechtssache der klagenden Partei Delila Englschall, vertreten durch Harb & Postl Rechtsanwälte OG in Graz, gegen die beklagte Partei Achmed Schnetzer, vertreten durch Dr. Paul Bauer, Dr. Anton Triendl, Rechtsanwälte in Innsbruck, wegen 32.173,22 EUR sA und Feststellung, über die außerordentliche Revision der beklagten Partei (Revisionsinteresse 23.653,60 EUR sA und Feststellung) gegen das Urteil des Oberlandesgerichts Innsbruck als Berufungsgericht vom 29. November 2017, GZ 10 R 59/17b-27, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -13644,7 +13663,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten des Obersten Geric
 - `Delila Englschall`(person)
 - `Achmed Schnetzer`(person)
 
-**Example 61** (doc_id: `deanon_TRAIN/3Ob248_10g`) (sent_id: `deanon_TRAIN/3Ob248_10g_3`)
+**Example 62** (doc_id: `deanon_TRAIN/3Ob248_10g`) (sent_id: `deanon_TRAIN/3Ob248_10g_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Hon.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in der Rechtssache der klagenden Partei Riecken Maschinenbau GmbH, Hubert Englmaier, vertreten durch Dr. Martin Holzer, Rechtsanwalt in Bruck an der Mur, gegen die beklagte Partei Florian Corvetti, vertreten durch Dr. Heimo Jilek, Rechtsanwalt in Leoben, wegen Einwendungen gegen den Anspruch (§ 35 EO), über die außerordentliche Revision der klagenden Partei gegen das Urteil des Landesgerichts Leoben als Berufungsgericht vom 3. November 2010, GZ 1 R 244/10i-34, womit über Berufung der beklagten Partei das Urteil des Bezirksgerichts Leoben vom 9. Juni 2010, GZ 5 C 315/09y-28, abgeändert wurde, den Beschluss gefasst:  Spruch Der außerordentlichen Revision der klagenden Partei wird Folge gegeben, das angefochtene Urteil aufgehoben und die Rechtssache zur neuerlichen Entscheidung an das Berufungsgericht zurückverwiesen.
@@ -13662,7 +13681,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Hubert Englmaier`(person)
 - `Florian Corvetti`(person)
 
-**Example 62** (doc_id: `deanon_TRAIN/3Ob35_13p`) (sent_id: `deanon_TRAIN/3Ob35_13p_3`)
+**Example 63** (doc_id: `deanon_TRAIN/3Ob35_13p`) (sent_id: `deanon_TRAIN/3Ob35_13p_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Univ.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in der Rechtssache der klagenden Partei Mercedes Jungels, vertreten durch Dr. Peter Böck, Rechtsanwalt in Neusiedl am See, gegen die beklagte Partei Traude Ejsmond, vertreten durch Mag. Christian Kaiser, Rechtsanwalt in Wien, wegen Ehescheidung, über die außerordentliche Revision der beklagten Partei gegen das Urteil des Landesgerichts Eisenstadt als Berufungsgericht vom 13. Dezember 2012, GZ 20 R 123/12f-15, womit infolge Berufungen der klagenden und beklagten Partei das Urteil des Bezirksgerichts Neusiedl am See vom 19. April 2012, GZ 10 C 10/12d-8, bestätigt wurde, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen (§ 510 Abs 3 ZPO).
@@ -13679,7 +13698,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Mercedes Jungels`(person)
 - `Traude Ejsmond`(person)
 
-**Example 63** (doc_id: `deanon_TRAIN/3Ob44_20x`) (sent_id: `deanon_TRAIN/3Ob44_20x_3`)
+**Example 64** (doc_id: `deanon_TRAIN/3Ob44_20x`) (sent_id: `deanon_TRAIN/3Ob44_20x_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Hofrat des Obersten Gerichtshofs Dr. Roch als Vorsitzenden sowie die Hofräte Priv.-Doz. Dr. Rassi und Mag. Painsi und die Hofrätinnen Dr. Weixelbraun-Mohr und Dr. Kodek als weitere Richter in der Rechtssache der klagenden Partei Andreas Clösges, vertreten durch die Eger/Gründl Rechtsanwälte OG in Graz, gegen die beklagte Partei Chemie Valtri GmbH, Niels Niefeldt, vertreten durch Mag. Manuel Fähnrich, Rechtsanwalt in Graz, wegen 34.000 EUR sA, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Graz als Berufungsgericht vom 31. Jänner 2020, GZ 2 R 168/19x-28, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -13697,7 +13716,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Hofrat des Obers
 - `Chemie Valtri GmbH`(organisation)
 - `Niels Niefeldt`(person)
 
-**Example 64** (doc_id: `deanon_TRAIN/3Ob49_11v`) (sent_id: `deanon_TRAIN/3Ob49_11v_3`)
+**Example 65** (doc_id: `deanon_TRAIN/3Ob49_11v`) (sent_id: `deanon_TRAIN/3Ob49_11v_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie durch den Hofrat Hon.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in der Rechtssache der klagenden Partei Julius Zimzick Verlag GmbH & Co KG, Terramaregasse 28, 8234 Rohrbachschlag, Österreich, vertreten durch Dr. Wolfgang Dartmann und andere Rechtsanwälte in Linz, wider die beklagten Parteien 1. Friedrich Schreinemachers und 2.
@@ -13714,7 +13733,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Terramaregasse 28, 8234 Rohrbachschlag, Österreich`(address)
 - `Schreinemachers`(person)
 
-**Example 65** (doc_id: `deanon_TRAIN/4Nc18_11a`) (sent_id: `deanon_TRAIN/4Nc18_11a_3`)
+**Example 66** (doc_id: `deanon_TRAIN/4Nc18_11a`) (sent_id: `deanon_TRAIN/4Nc18_11a_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch die Senatspräsidentin Dr. Schenk als Vorsitzende und die Hofräte Dr. Vogel und Dr. Jensik als weitere Richter in der Rechtssache der klagenden Partei HochCloud GmbH, Piedro Temur, vertreten durch Dr. Christian Fuchshuber LL.M., Rechtsanwalt in Innsbruck, gegen die beklagte Partei SUI Pharma Consulting GmbH, Nancy Herz, vertreten durch Dr. Gerhard Strobich, Rechtsanwalt in Trofaiach, wegen 5.873,18 EUR sA, über den Delegierungsantrag der beklagten Partei den Beschluss gefasst:  Spruch Der Antrag, zur Verhandlung und Entscheidung in dieser Rechtssache anstelle des Bezirksgerichts Innsbruck das Bezirksgericht Leoben zu bestimmen, wird abgewiesen.
@@ -13734,7 +13753,7 @@ Kopf Der Oberste Gerichtshof hat durch die Senatspräsidentin Dr. Schenk als Vor
 - `Nancy Herz`(person)
 - `Bezirksgericht Leoben`(organisation)
 
-**Example 66** (doc_id: `deanon_TRAIN/4Nc3_12x`) (sent_id: `deanon_TRAIN/4Nc3_12x_3`)
+**Example 67** (doc_id: `deanon_TRAIN/4Nc3_12x`) (sent_id: `deanon_TRAIN/4Nc3_12x_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch die Senatspräsidentin Dr. Schenk als Vorsitzende und durch die Hofräte Dr. Vogel und Dr. Jensik als weitere Richter in der beim Landesgericht Innsbruck zu AZ 59 Cg 92/11x anhängigen Rechtssache der klagenden Partei Rudigkeit Finanzen GmbH, Ing. Sascha Rohkrämer, vertreten durch Mag. Heinz Heher, Rechtsanwalt in Wien, gegen die beklagte Partei Suddorftra Manufaktur GmbH, Ludmilla Nottelmann, vertreten durch Dr. Adrian Hollaender, Rechtsanwalt in Innsbruck, wegen Unterlassung, Urteilsveröffentlichung und 67.606 EUR sA, über die Delegierungsanträge der beklagten Partei gemäß § 31 Abs 2 JN, folgenden Beschluss gefasst:  Spruch Die Anträge der beklagten Partei, die Rechtssache an das „Landesgericht Wien“ bzw Handelsgericht Wien zu delegieren, werden abgewiesen.
@@ -13755,7 +13774,7 @@ Kopf Der Oberste Gerichtshof hat durch die Senatspräsidentin Dr. Schenk als Vor
 - `Ludmilla Nottelmann`(person)
 - `Landesgericht Wien`(organisation)
 
-**Example 67** (doc_id: `deanon_TRAIN/4Ob112_24k`) (sent_id: `deanon_TRAIN/4Ob112_24k_3`)
+**Example 68** (doc_id: `deanon_TRAIN/4Ob112_24k`) (sent_id: `deanon_TRAIN/4Ob112_24k_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Schwarzenbacher als Vorsitzenden sowie den Vizepräsidenten Hon.-Prof. PD Dr. Rassi, die Hofrätinnen Mag. Istjan, LL.M., und Mag. Waldstätten und den Hofrat Dr. Stiefsohn als weitere Richter in der Rechtssache der klagenden Partei Kersseboom Textil AG, Prof.in Juliette Große-Kleimann, Schweiz, vertreten durch die Gottgeisl Leinsmer Weber Rechtsanwälte GmbH in Wien, gegen die beklagte Partei Benedikt Faath plc, DDr. Piedro Bielmeier, Malta, vertreten durch die Brandl Talos Rechtsanwälte GmbH in Wien, wegen 19.333,99 EUR sA, über die Revision der beklagten Partei gegen das Urteil des Oberlandesgerichts Linz vom 14. März 2024, GZ 1 R 12/24a-46, mit dem das Urteil des Landesgerichts Wels vom 1. Dezember 2023, GZ 6 Cg 18/23p-41, abgeändert wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die Revision wird zurückgewiesen.
@@ -13773,7 +13792,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Benedikt Faath`(person)
 - `DDr. Piedro Bielmeier`(person)
 
-**Example 68** (doc_id: `deanon_TRAIN/4Ob113_24g`) (sent_id: `deanon_TRAIN/4Ob113_24g_3`)
+**Example 69** (doc_id: `deanon_TRAIN/4Ob113_24g`) (sent_id: `deanon_TRAIN/4Ob113_24g_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Schwarzenbacher als Vorsitzenden sowie den Vizepräsidenten Hon.-Prof. PD Dr. Rassi, die Hofrätinnen Mag. Istjan, LL.M., und Mag. Waldstätten und den Hofrat Dr. Stiefsohn als weitere Richter in der Rechtssache der klagenden Partei Vierziger u. Tewald Wind GmbH, Claire Lüdermann, Bakk. rer. nat., vertreten durch Grassner Rechtsanwalts GmbH in Linz, gegen die beklagte Partei Milena Buchmayr, vertreten durch Dr. Manfred Palkovits, Mag. Martin Sohm, Rechtsanwälte in Wien, wegen Aufkündigung, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Landesgerichts für Zivilrechtssachen Wien vom 24. April 2024, GZ 38 R 247/23i-46, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -13791,7 +13810,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Milena Buchmayr`(person)
 - `Dr. Manfred Palkovits`(person)
 
-**Example 69** (doc_id: `deanon_TRAIN/4Ob13_24a`) (sent_id: `deanon_TRAIN/4Ob13_24a_3`)
+**Example 70** (doc_id: `deanon_TRAIN/4Ob13_24a`) (sent_id: `deanon_TRAIN/4Ob13_24a_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Schwarzenbacher als Vorsitzenden sowie den Vizepräsidenten Hon.-Prof. PD Dr. Rassi, die Hofrätinnen Mag. Istjan, LL.M., und Mag. Waldstätten und den Hofrat Dr. Stiefsohn als weitere Richter in der Rechtssache der klagenden Partei Peter Nöhrnberg, LLM, vertreten durch Mag. Andrea Nobis, Rechtsanwältin in Wien, gegen die beklagte Partei Astrid Fesenmair, vertreten durch die Maraszto Milisits Rechtsanwälte OG in Wien, wegen 59.888,58 EUR sA und Feststellung, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Wien als Berufungsgericht vom 21. November 2023, GZ 5 R 154/23p-52, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -13807,7 +13826,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Peter Nöhrnberg, LLM`(person)
 - `Astrid Fesenmair`(person)
 
-**Example 70** (doc_id: `deanon_TRAIN/4Ob162_18d`) (sent_id: `deanon_TRAIN/4Ob162_18d_4`)
+**Example 71** (doc_id: `deanon_TRAIN/4Ob162_18d`) (sent_id: `deanon_TRAIN/4Ob162_18d_4`)
 
 
 Matzka als weitere Richter in der Rechtssache der klagenden Partei XDC Druck GmbH, Scarlett Augustus, vertreten durch Vavrovsky Heine Marth Rechtsanwälte GmbH in Wien, gegen die beklagte Partei UBER B.V., Larissa Ebele, Niederlande, vertreten durch Schönherr Rechtsanwälte GmbH in Wien, wegen Unterlassung, Veröffentlichung und Feststellung (Streitwert im Sicherungsverfahren 70.000 EUR), über den Revisionsrekurs der beklagten Partei gegen den Beschluss des Oberlandesgerichts Wien als Rekursgericht vom 4. Juli 2018, GZ 3 R 32/18z-14, mit dem der Beschluss des Handelsgerichts Wien vom 24. April 2018, GZ 58 Cg 10/18f-6, bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Dem Revisionsrekurs wird teilweise Folge gegeben.
@@ -13824,7 +13843,7 @@ Matzka als weitere Richter in der Rechtssache der klagenden Partei XDC Druck Gmb
 - `Scarlett Augustus`(person)
 - `Larissa Ebele`(person)
 
-**Example 71** (doc_id: `deanon_TRAIN/4Ob163_13v`) (sent_id: `deanon_TRAIN/4Ob163_13v_3`)
+**Example 72** (doc_id: `deanon_TRAIN/4Ob163_13v`) (sent_id: `deanon_TRAIN/4Ob163_13v_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch die Vizepräsidentin Dr. Schenk als Vorsitzende und durch die Hofräte Dr. Vogel, Dr. Musger, Dr. Schwarzenbacher und Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Miranda Bleckwehl, vertreten durch die Sachwalterin Dr. Tanja Sporrer, Rechtsanwältin, Innsbruck, Templstraße 22, gegen die beklagte Partei Oswald Wiechering, vertreten durch Dr. Ekkehard Erlacher und Dr. Renate Erlacher-Philadelphy, Rechtsanwälte in Innsbruck, wegen 56.626 EUR sA, infolge Rekurses der beklagten Partei gegen den Beschluss des Oberlandesgerichts Innsbruck als Berufungsgericht vom 8. Mai 2013, GZ 4 R 40/13h-125, womit der Antrag des Beklagten auf Berichtigung des Bewertungsausspruchs im Urteil vom 15. März 2013 abgewiesen wurde, folgenden Beschluss gefasst:  Spruch Der Rekurs wird zurückgewiesen.
@@ -13841,7 +13860,7 @@ Kopf Der Oberste Gerichtshof hat durch die Vizepräsidentin Dr. Schenk als Vorsi
 - `Miranda Bleckwehl`(person)
 - `Oswald Wiechering`(person)
 
-**Example 72** (doc_id: `deanon_TRAIN/4Ob188_14x`) (sent_id: `deanon_TRAIN/4Ob188_14x_3`)
+**Example 73** (doc_id: `deanon_TRAIN/4Ob188_14x`) (sent_id: `deanon_TRAIN/4Ob188_14x_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch die Vizepräsidentin Dr. Schenk als Vorsitzende und die Hofräte Dr. Vogel, Dr. Jensik, Dr. Musger und Dr. Schwarzenbacher als weitere Richter in der Rechtssache der klagenden Partei Bachkelwerk Pflege AG, Eva Selcuk, vertreten durch Ebert Huber Swoboda Oswald & Partner Rechtsanwälte GmbH in Wien, gegen die beklagte Partei Christiane Rechenauer e.U., Dossenweg 6, 4924 Dundeck, Österreich, vertreten durch Dr. Patrick Ruth, Rechtsanwalt in Innsbruck, wegen Unterlassung und Urteilsveröffentlichung (Streitwert im Sicherungsverfahren 34.900 EUR), über den außerordentlichen Revisionsrekurs der beklagten Partei gegen den Beschluss des Oberlandesgerichts Linz vom 5. August 2014, GZ 2 R 139/14w-13, den Beschluss gefasst:  Spruch Der außerordentliche Revisionsrekurs wird gemäß §§ 78, 402 Abs 4 EO iVm § 526 Abs 2 Satz 1 ZPO mangels der Voraussetzungen des § 528 Abs 1 ZPO zurückgewiesen.
@@ -13859,7 +13878,7 @@ Kopf Der Oberste Gerichtshof hat durch die Vizepräsidentin Dr. Schenk als Vorsi
 - `Christiane Rechenauer`(person)
 - `Dossenweg 6, 4924 Dundeck, Österreich`(address)
 
-**Example 73** (doc_id: `deanon_TRAIN/4Ob18_20f`) (sent_id: `deanon_TRAIN/4Ob18_20f_4`)
+**Example 74** (doc_id: `deanon_TRAIN/4Ob18_20f`) (sent_id: `deanon_TRAIN/4Ob18_20f_4`)
 
 
 Matzka als weitere Richter in der Rechtssache der klagenden Partei Jörg Drathschmidt, vertreten durch Dr. Winfried Sattlegger und andere Rechtsanwälte in Linz, gegen die beklagte Partei Wien Dorfsud GmbH, Gerlinde Balcerzak, vertreten durch Dr. Helmut Trenkwalder, Rechtsanwalt in Linz, und die Nebenintervenientin auf Seiten der beklagten Partei Waldfen-Versand GmbH, Eva Boztas, vertreten durch Schneider & Schneider Rechtsanwalts GmbH in Wien, wegen 35.628,94 EUR sA Zug um Zug gegen Herausgabe eines Fahrzeugs, über den Rekurs der Nebenintervenientin gegen den Beschluss des Oberlandesgerichts Linz als Berufungsgericht vom 7. November 2019, GZ 6 R 114/19f-41, mit dem das Urteil des Landesgerichts Linz vom 3. Juli 2019, GZ 36 Cg 4/17m-36, im klagsstattgebenden Teil (Spruchpunkt 1.) aufgehoben wurde, den Beschluss gefasst:  Spruch Dem Rekurs wird nicht Folge gegeben.
@@ -13879,7 +13898,7 @@ Matzka als weitere Richter in der Rechtssache der klagenden Partei Jörg Drathsc
 - `Eva Boztas`(person)
 - `Schneider Rechtsanwalts GmbH`(organisation)
 
-**Example 74** (doc_id: `deanon_TRAIN/4Ob190_23d`) (sent_id: `deanon_TRAIN/4Ob190_23d_3`)
+**Example 75** (doc_id: `deanon_TRAIN/4Ob190_23d`) (sent_id: `deanon_TRAIN/4Ob190_23d_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Schwarzenbacher als Vorsitzenden sowie den Vizepräsidenten Hon.-Prof. PD Dr. Rassi, die Hofrätinnen Mag. Istjan, LL.M., und Mag. Waldstätten und den Hofrat Dr. Stiefsohn als weitere Richter in der Rechtssache der klagenden Partei Jolanda Petschke, vertreten durch den Verfahrenshelfer Dr. Lukas Twardosz, Rechtsanwalt in Wien, gegen die beklagte Partei Ali Salwetter Verein Wilma Sahlmüller, vertreten durch die Verfahrenshelferin Mag. Ioana-Maria Vilau, Rechtsanwältin in Wien, wegen zuletzt 30.000 EUR sA, Unterlassung und Beseitigung (Gesamtstreitwert: 40.000 EUR), über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Wien als Berufungsgericht vom 26. Juli 2023, GZ 4 R 175/22t-62, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -13896,7 +13915,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Ali Salwetter`(person)
 - `Wilma Sahlmüller`(person)
 
-**Example 75** (doc_id: `deanon_TRAIN/4Ob194_22s`) (sent_id: `deanon_TRAIN/4Ob194_22s_4`)
+**Example 76** (doc_id: `deanon_TRAIN/4Ob194_22s`) (sent_id: `deanon_TRAIN/4Ob194_22s_4`)
 
 
 Matzka und Dr. Annerl sowie die Hofrätin Mag. Fitz als weitere Richter in der Rechtssache der klagenden Partei Dueckers Wind GmbH, Corvin Cetinbag, vertreten durch Schönherr Rechtsanwälte GmbH in Wien, gegen die beklagten Parteien 1. Wendy Goetzen (Verein), 2. Birkfeld+Münzenrieder Daten GmbH, beide Stegg 92, 3925 Neumelon, Österreich, vertreten durch Dr. Brigitte Birnbaum, Dr. Rainer Toperczer, Rechtsanwälte in Wien, wegen Unterlassung, Herausgabe, Feststellung und Urteilsveröffentlichung (Gesamtstreitwert 75.000 EUR), über die außerordentliche Revision der beklagten Parteien gegen das Urteil des Oberlandesgerichts Wien als Berufungsgericht vom 29. Juli 2022, GZ 2 R 47/22d-41, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -13915,7 +13934,7 @@ Matzka und Dr. Annerl sowie die Hofrätin Mag. Fitz als weitere Richter in der R
 - `Birkfeld+Münzenrieder Daten GmbH`(organisation)
 - `Stegg 92, 3925 Neumelon, Österreich`(address)
 
-**Example 76** (doc_id: `deanon_TRAIN/4Ob19_10p`) (sent_id: `deanon_TRAIN/4Ob19_10p_3`)
+**Example 77** (doc_id: `deanon_TRAIN/4Ob19_10p`) (sent_id: `deanon_TRAIN/4Ob19_10p_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch die Senatspräsidentin Dr. Schenk als Vorsitzende und die Hofräte Dr. Vogel, Dr. Jensik, Dr. Musger und Dr. Schwarzenbacher als weitere Richter in der Rechtssache der klagenden Partei Traun-Sanitär gesellschaft mbH,*****, vertreten durch Prof. Haslinger & Partner, Rechtsanwälte in Linz, gegen die beklagte Partei NWJ KI Dienstleistungen AG,*****, vertreten durch Rechtsanwälte Konrad & Schröttner OG in Graz, wegen Unterlassung und Urteilsveröffentlichung (Streitwert im Sicherungsverfahren 65.000 EUR), über den außerordentlichen Revisionsrekurs der beklagten Partei gegen den Beschluss des Oberlandesgerichts Graz als Rekursgericht vom 25. November 2009, GZ 6 R 169/09h-37, den Beschluss gefasst:  Spruch Der außerordentliche Revisionsrekurs wird gemäß § 402 Abs 4 EO iVm § 526 Abs 2 Satz 1 ZPO mangels der Voraussetzungen des § 528 Abs 1 ZPO zurückgewiesen.
@@ -13931,7 +13950,7 @@ Kopf Der Oberste Gerichtshof hat durch die Senatspräsidentin Dr. Schenk als Vor
 - `Traun-Sanitär gesellschaft mbH`(organisation)
 - `NWJ KI Dienstleistungen AG`(organisation)
 
-**Example 77** (doc_id: `deanon_TRAIN/4Ob201_10b`) (sent_id: `deanon_TRAIN/4Ob201_10b_3`)
+**Example 78** (doc_id: `deanon_TRAIN/4Ob201_10b`) (sent_id: `deanon_TRAIN/4Ob201_10b_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch die Senatspräsidentin Dr. Schenk als Vorsitzende und die Hofräte Dr. Vogel, Dr. Jensik, Dr. Musger und Dr. Schwarzenbacher als weitere Richter in der Rechtssache der klagenden Partei Wendelin Wetekamp OEG, KzlR Ibrahim Kocaslan, vertreten durch Dr. Martin Leitner und Dr. Ralph Trischler, Rechtsanwälte in Wien, gegen die beklagte Partei Feddes KI GmbH, KommR Waldemar Holzhaider, vertreten durch Bichler Zrzavy Rechtsanwälte GmbH in Wien, wegen Unterlassung, Beseitigung, Rechnungslegung, Schadenersatz und Urteilsveröffentlichung (Streitwert im Sicherungsverfahren 36.000 EUR), über den außerordentlichen Revisionsrekurs der beklagten Partei gegen den Beschluss des Oberlandesgerichts Wien als Rekursgericht vom 27. September 2010, GZ 1 R 192/10b-13, den Beschluss gefasst:  Spruch Der außerordentliche Revisionsrekurs wird gemäß Der Antrag auf Zuspruch der Kosten der Revisionsrekursbeantwortung wird gemäß § 508a Abs 2 Satz 2 und § 521a Abs 2 ZPO abgewiesen.
@@ -13949,7 +13968,7 @@ Kopf Der Oberste Gerichtshof hat durch die Senatspräsidentin Dr. Schenk als Vor
 - `Feddes KI GmbH`(organisation)
 - `KommR Waldemar Holzhaider`(person)
 
-**Example 78** (doc_id: `deanon_TRAIN/4Ob204_15a`) (sent_id: `deanon_TRAIN/4Ob204_15a_3`)
+**Example 79** (doc_id: `deanon_TRAIN/4Ob204_15a`) (sent_id: `deanon_TRAIN/4Ob204_15a_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Vogel als Vorsitzenden sowie die Hofräte Dr. Jensik, Dr. Musger, Dr. Schwarzenbacher und Dr. Rassi als weitere Richter in der Rechtssache der klagenden Partei Severin Vollersen, MSc kammer, Miranda Ranfft, vertreten durch Dr. Friedrich Schulz, Rechtsanwalt in Wien, gegen die beklagte Partei Silvia Markfort, vertreten durch Mag. Romi Andrea Panner, Rechtsanwältin in Rudersdorf, wegen Unterlassung und Urteilsveröffentlichung (Streitwert 34.000 EUR), über die außerordentliche Revision der beklagten Partei gegen das Urteil des Oberlandesgerichts Wien als Berufungsgericht vom 28. September 2015, GZ 2 R 101/15k-35, womit das Urteil des Landesgerichts Eisenstadt vom 6. Mai 2015, GZ 18 Cg 18/14w-31, bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die außerordentliche Revision wird mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -13966,7 +13985,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Miranda Ranfft`(person)
 - `Silvia Markfort`(person)
 
-**Example 79** (doc_id: `deanon_TRAIN/4Ob232_23f`) (sent_id: `deanon_TRAIN/4Ob232_23f_4`)
+**Example 80** (doc_id: `deanon_TRAIN/4Ob232_23f`) (sent_id: `deanon_TRAIN/4Ob232_23f_4`)
 
 
 Matzka und die Hofrätinnen Mag. Istjan, LL.M., und Mag. Waldstätten als weitere Richter in der Rechtssache der klagenden Partei Horst Ahrentzen, vertreten durch die Koman Rechtsanwalts GmbH in Salzburg, gegen die beklagte Partei Martha Haberstroh ENC, Robert Bartram, Malta, vertreten durch die Brandl Talos Rechtsanwälte GmbH in Wien, wegen 502.107,44 EUR sA, über die außerordentliche Revision der beklagten Partei gegen das Urteil des Oberlandesgerichts Linz als Berufungsgericht vom 24. Oktober 2023, GZ 2 R 145/23s-67, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -13983,7 +14002,7 @@ Matzka und die Hofrätinnen Mag. Istjan, LL.M., und Mag. Waldstätten als weiter
 - `Martha Haberstroh`(person)
 - `Robert Bartram`(person)
 
-**Example 80** (doc_id: `deanon_TRAIN/4Ob90_16p`) (sent_id: `deanon_TRAIN/4Ob90_16p_3`)
+**Example 81** (doc_id: `deanon_TRAIN/4Ob90_16p`) (sent_id: `deanon_TRAIN/4Ob90_16p_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Vogel als Vorsitzenden und die Hofräte Dr. Jensik, Dr. Musger, Dr. Schwarzenbacher und Dr. Rassi als weitere Richter in der Rechtssache der klagenden Partei Lebensmittel Glanzconuni AG, Immanuel Gspan, vertreten durch Fellner Wratzfeld & Partner Rechtsanwälte GmbH in Wien, gegen die beklagten Parteien 1. Fridolin Braunhold, 2. Mag. Frauke Steinweg, und 3. DonauLexlogbruckPlanung GmbH, Felberbachstraße 4, 3631 Jungschlag, Österreich, alle vertreten durch Dr. Peter Zöchbauer, Rechtsanwalt in Wien, wegen Unterlassung (Streitwert 102.000 EUR), über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Wien als Berufungsgericht vom 26. Februar 2016, GZ 2 R 93/15h-25, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -14003,7 +14022,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Vogel als Vors
 - `DonauLexlogbruckPlanung GmbH`(organisation)
 - `Felberbachstraße 4, 3631 Jungschlag, Österreich`(address)
 
-**Example 81** (doc_id: `deanon_TRAIN/5Ob171_22s`) (sent_id: `deanon_TRAIN/5Ob171_22s_3`)
+**Example 82** (doc_id: `deanon_TRAIN/5Ob171_22s`) (sent_id: `deanon_TRAIN/5Ob171_22s_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Jensik als Vorsitzenden sowie die Hofräte Mag. Wurzer und Mag. Painsi, die Hofrätin Dr. Weixelbraun-Mohr und den Hofrat Dr. Steger als weitere Richter in der Rechtssache der klagenden Partei Penners Medien GmbH, Wilhelmine Kobinger, vertreten durch Dr. Manfred Sommerbauer, DDr. Michael Dohr, LL.M., LL.M., Rechtsanwälte in Wiener Neustadt, gegen die beklagte Partei JRQA Landwirtschaft Rechtsanwälte GmbH, Kometenweg 43, 3200 Rennersdorf, Österreich, wegen Unterlassung (Streitwert 36.000 EUR) und Feststellung (Streitwert 3.000 EUR), über die Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Wien vom 30. Mai 2022, GZ 5 R 6/22x-46, mit dem das Urteil des Handelsgerichts Wien vom 3. November 2021, GZ 21 Cg 21/21f-39, bestätigt wurde, den Beschluss gefasst:  Spruch Die Revision wird zurückgewiesen.
@@ -14021,7 +14040,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `JRQA Landwirtschaft`(organisation)
 - `Kometenweg 43, 3200 Rennersdorf, Österreich`(address)
 
-**Example 82** (doc_id: `deanon_TRAIN/5Ob180_19k`) (sent_id: `deanon_TRAIN/5Ob180_19k_3`)
+**Example 83** (doc_id: `deanon_TRAIN/5Ob180_19k`) (sent_id: `deanon_TRAIN/5Ob180_19k_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Jensik als Vorsitzenden sowie die Hofrätin Dr. Grohmann und die Hofräte Mag. Wurzer, Mag. Painsi und Dr. Steger als weitere Richter in der Rechtssache der klagenden und gefährdeten Partei Rinaldo Feuchtmüller GmbH, Deutschgasse 71, 4616 Weißkirchen, Österreich, vertreten durch Dr. Bernd Roßkothen, Rechtsanwalt in Salzburg, gegen die beklagte Partei und Gegnerin der gefährdeten Partei Leila Zararsiz GmbH, Völtendorfer Straße 12, 4772 Blindendorf, Österreich, vertreten durch die König & Kliemstein Rechtsanwälte OG in Salzburg, wegen Erlassung einer einstweiligen Verfügung (Streitwert 35.000 EUR), über den Revisionsrekurs der klagenden und gefährdeten Partei gegen den Beschluss des Oberlandesgerichts Linz als Rekursgericht vom 29. August 2019, GZ 6 R 94/19i-15, mit dem der Beschluss des Landesgerichts Salzburg vom 22. Juli 2019, GZ 57 Cg 101/19k-3, über Rekurs der beklagten Partei und Gegnerin der gefährdeten Partei abgeändert wurde, den Beschluss gefasst:  Spruch Der Revisionsrekurs wird zurückgewiesen.
@@ -14039,7 +14058,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Jensik als Vor
 - `Leila Zararsiz`(person)
 - `Völtendorfer Straße 12, 4772 Blindendorf, Österreich`(address)
 
-**Example 83** (doc_id: `deanon_TRAIN/5Ob182_20f`) (sent_id: `deanon_TRAIN/5Ob182_20f_3`)
+**Example 84** (doc_id: `deanon_TRAIN/5Ob182_20f`) (sent_id: `deanon_TRAIN/5Ob182_20f_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Jensik als Vorsitzenden sowie die Hofrätin Dr. Grohmann und die Hofräte Mag. Wurzer, Mag. Painsi und Dr. Steger als weitere Richter in der Rechtssache der klagenden Partei Dr. Jeremias Riecke, vertreten durch die Sluka Hammerer Tevini Rechtsanwälte GmbH in Salzburg, gegen die beklagte Partei Walter Huellweber, vertreten durch die Zumtobel Kronberger Rechtsanwälte OG in Salzburg, wegen Beseitigung und Wiederherstellung (Streitwert 10.000 EUR), über die Revision der beklagten Partei gegen das Urteil des Landesgerichts Salzburg als Berufungsgericht vom 6. August 2020, GZ 53 R 89/20z-20, mit dem das Urteil des Bezirksgerichts Salzburg vom 11. Februar 2020, GZ 25 C 657/19t-16, bestätigt wurde, den Beschluss gefasst:  Spruch Die Revision wird zurückgewiesen.
@@ -14055,7 +14074,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Dr. Jeremias Riecke`(person)
 - `Walter Huellweber`(person)
 
-**Example 84** (doc_id: `deanon_TRAIN/5Ob189_19h`) (sent_id: `deanon_TRAIN/5Ob189_19h_3`)
+**Example 85** (doc_id: `deanon_TRAIN/5Ob189_19h`) (sent_id: `deanon_TRAIN/5Ob189_19h_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Jensik als Vorsitzenden sowie die Hofrätin Dr. Grohmann und die Hofräte Mag. Wurzer, Mag. Painsi und Dr. Steger als weitere Richter in der Rechtssache der klagenden Partei James Chowdhury, vertreten durch Mag. Dr. Wolfgang Schlegl, Rechtsanwalt in Graz, gegen die Beklagte Mag. Ilhan Poele, vertreten durch MMag.Dr. Christopher Engel, Rechtsanwalt in Graz, wegen 37.052,50 EUR sA, über die außerordentliche Revision der beklagten Partei gegen das Urteil des Oberlandesgerichts Graz als Berufungsgericht vom 16. September 2019, GZ 2 R 129/19m-21, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -14071,27 +14090,26 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Jensik als Vor
 - `James Chowdhury`(person)
 - `Mag. Ilhan Poele`(person)
 
-**Example 85** (doc_id: `deanon_TRAIN/5Ob18_11z`) (sent_id: `deanon_TRAIN/5Ob18_11z_3`)
+**Example 86** (doc_id: `deanon_TRAIN/5Ob18_11z`) (sent_id: `deanon_TRAIN/5Ob18_11z_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Hon.-Prof. Dr. Danzl als Vorsitzenden und die Hofrätinnen Dr. Hurch und Dr. Lovrek sowie die Hofräte Dr. Höllwerth und Mag. Wurzer als weitere Richter in der Rechtssache der klagenden Partei DI Borislav Viskorf, vertreten durch Dr. Günter Niebauer, Rechtsanwalt in Wien, und der Nebenintervenientin auf Seiten der klagenden Partei Mittel Waldheim Betriebe AG, Samantha Althöfer, vertreten durch Mayer & Herrmann, Rechtsanwälte in Wien, gegen die beklagte Partei Weckebrod Immobilien Aktiengesellschaft, Graf Geroldstraße 2, 8181 Dörfl an der Raab, Österreich, vertreten durch Kunz Schima Wallentin Rechtsanwälte OG in Wien, wegen 96.882,93 EUR sA, über die Revision der beklagten Partei gegen das Urteil des Oberlandesgerichts Wien als Berufungsgericht vom 25. Oktober 2010, GZ 2 R 213/09x, 2 R 216/09p-27, mit dem infolge Berufung der beklagten Partei das Urteil des Handelsgerichts Wien vom 24. Juli 2009, GZ 19 Cg 167/08t-19, bestätigt wurde, den Beschluss gefasst:  Spruch Die Revision wird zurückgewiesen.
 
 **False Positives:**
 
-- `DI Borislav Viskorf` — partial — gold is substring of pred: `Viskorf`
 - `Waldheim Betriebe` — partial — pred is substring of gold: `Mittel Waldheim Betriebe AG`
 
-> overlaps gold: 2  |  likely missing annotation: 0
+> overlaps gold: 1  |  likely missing annotation: 0
 
 **Gold Entities:**
 
-- `Viskorf`(person)
+- `DI Borislav Viskorf`(person)
 - `Mittel Waldheim Betriebe AG`(organisation)
 - `Samantha Althöfer`(person)
 - `Weckebrod Immobilien Aktiengesellschaft`(organisation)
 - `Graf Geroldstraße 2, 8181 Dörfl an der Raab, Österreich`(address)
 
-**Example 86** (doc_id: `deanon_TRAIN/5Ob36_19h`) (sent_id: `deanon_TRAIN/5Ob36_19h_3`)
+**Example 87** (doc_id: `deanon_TRAIN/5Ob36_19h`) (sent_id: `deanon_TRAIN/5Ob36_19h_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Jensik als Vorsitzenden sowie die Hofrätin Dr. Grohmann und die Hofräte Mag. Wurzer, Mag. Painsi und Dr. Steger als weitere Richter in der Rechtssache der klagenden Partei Gisela Rameckers, vertreten durch Dr. Britta Schönhart-Loinig, Rechtsanwältin in Wien, gegen die beklagte Partei Dr. Linus Aycicek, vertreten durch Mag. Kurt Decker, Rechtsanwalt in Wien, wegen Anfechtung eines Vergleichs, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Landesgerichts für Zivilrechtssachen Wien als Berufungsgericht vom 19. September 2018, GZ 42 R 124/18y-37, den Beschluss gefasst:  Spruch Die außerordentliche Revision vom 17. Jänner 2019 wird als unzulässig zurückgewiesen.
@@ -14107,7 +14125,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Gisela Rameckers`(person)
 - `Dr. Linus Aycicek`(person)
 
-**Example 87** (doc_id: `deanon_TRAIN/5Ob50_21w`) (sent_id: `deanon_TRAIN/5Ob50_21w_3`)
+**Example 88** (doc_id: `deanon_TRAIN/5Ob50_21w`) (sent_id: `deanon_TRAIN/5Ob50_21w_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Jensik als Vorsitzenden sowie die Hofrätin Dr. Grohmann und die Hofräte Mag. Wurzer, Mag. Painsi und Dr. Steger als weitere Richter in der Rechtssache der klagenden Partei Eberhard Gottschlich, vertreten durch Dr. Gustav Eckharter, Rechtsanwalt in Wien, gegen die beklagten Parteien 1.
@@ -14122,7 +14140,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 
 - `Eberhard Gottschlich`(person)
 
-**Example 88** (doc_id: `deanon_TRAIN/5Ob63_21g`) (sent_id: `deanon_TRAIN/5Ob63_21g_3`)
+**Example 89** (doc_id: `deanon_TRAIN/5Ob63_21g`) (sent_id: `deanon_TRAIN/5Ob63_21g_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Jensik als Vorsitzenden sowie die Hofrätin Dr. Grohmann und die Hofräte Mag. Wurzer, Mag. Painsi und Dr. Steger als weitere Richter in der Rechtssache der klagenden Partei Gabriele Ivanovs, vertreten durch Mag. Franz Podovsovnik, Rechtsanwalt in Wien, gegen die beklagte Partei Dominik Dreistein, vertreten durch Lansky, Ganzger & Partner Rechtsanwälte GmbH in Wien, wegen 405.188,80 EUR sA und Feststellung (Streitwert 35.000 EUR), über den Rekurs der beklagten Partei gegen den Beschluss des Oberlandesgerichts Wien als Berufungsgericht vom 18. Februar 2021, GZ 11 R 8/21h-28, mit dem die Berufung der beklagten Partei gegen das Versäumungsurteil des Landesgerichts für Zivilrechtssachen Wien vom 11. August 2020, GZ 17 Cg 55/20p-4, zurückgewiesen wurde, den Beschluss gefasst:  Spruch Dem Rekurs wird nicht Folge gegeben.
@@ -14139,7 +14157,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Jensik als Vor
 - `Gabriele Ivanovs`(person)
 - `Dominik Dreistein`(person)
 
-**Example 89** (doc_id: `deanon_TRAIN/5Ob71_24p`) (sent_id: `deanon_TRAIN/5Ob71_24p_3`)
+**Example 90** (doc_id: `deanon_TRAIN/5Ob71_24p`) (sent_id: `deanon_TRAIN/5Ob71_24p_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Mag. Wurzer als Vorsitzenden sowie die Hofrätinnen und Hofräte Mag. Painsi, Dr. Weixelbraun-Mohr, Dr. Steger und Dr. Pfurtscheller als weitere Richter in der Rechtssache der klagenden Partei Ignaz Schaufel, vertreten durch die Poduschka Anwaltsgesellschaft mbH in Linz, gegen die beklagte Partei Mur Waldbach GmbH, StR Martin Leitenbauer, vertreten durch die Wolf Theiss Rechtsanwälte GmbH & Co KG in Wien, wegen 7.140 EUR und Feststellung (Streitwert 2.000 EUR), über die Revision der beklagten Partei gegen das Urteil des Landesgerichts Steyr als Berufungsgericht vom 8. Februar 2024, GZ 1 R 120/23z-43, mit dem das Urteil des Bezirksgerichts Steyr vom 28. September 2023, GZ 2 C 288/21x-39, teilweise abgeändert wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Das Verfahren über die Revision der beklagten Partei wird bis zur Entscheidung des Gerichtshofs der Europäischen Union (EuGH) über die Vorabentscheidungsersuchen des Landgerichts Ravensburg (Deutschland) vom 9. November 2023, Rechtssache C-666/23, vom 9. November 2023, Rechtssache C-667/23, und vom 15. November 2023, Rechtssache C-668/23, unterbrochen.
@@ -14307,20 +14325,7 @@ Ali Haarnacke und 2. Li Baselt, vertreten durch Dr. Serpil Dogan, Rechtsanwälti
 - `Ali Haarnacke` (person)
 - `Li Baselt` (person)
 
-**Example 8** (doc_id: `deanon_TRAIN/2Ob181_10x`) (sent_id: `deanon_TRAIN/2Ob181_10x_3`)
-
-
-Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Baumann als Vorsitzenden und durch die Hofräte Dr. Veith, Dr. E. Solé, Dr. Schwarzenbacher und Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Gertrude Ptak, vertreten durch Dr. Bertram Broesigke und Dr. Wolfgang Broesigke, Rechtsanwälte in Wien, gegen die beklagte Partei Josef Schindelmeißer, vertreten durch den Sachwalter Dr. Helmut Heiger, Rechtsanwalt in Wien, wegen Aufkündigung, über die außerordentliche Revision der beklagten Partei gegen das Urteil des Landesgerichts für Zivilrechtssachen Wien als Berufungsgericht vom 15. Juni 2010, GZ 41 R 130/10m-26, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen (§ 510 Abs 3 ZPO).
-
-| Predicted | Gold |
-|---|---|
-| `Ptak` | `Ptak` |
-
-**Missed by this rule (FN):**
-
-- `Schindelmeißer` (person)
-
-**Example 9** (doc_id: `deanon_TRAIN/2Ob37_17f`) (sent_id: `deanon_TRAIN/2Ob37_17f_3`)
+**Example 8** (doc_id: `deanon_TRAIN/2Ob37_17f`) (sent_id: `deanon_TRAIN/2Ob37_17f_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Hon.-Prof. Dr. Danzl als Vorsitzenden und die Hofräte Dr. Veith und Dr. Musger, die Hofrätin Dr. E. Solé und den Hofrat Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Florentin Uffenwasser, vertreten durch Dr. Armin Exner, Rechtsanwalt in Innsbruck, gegen die beklagte Partei Stadtgemeinde Naomi Mertensmeyer, vertreten durch Dr. Thomas Girardi, Rechtsanwalt in Innsbruck, wegen 29.461,04 EUR sA und Feststellung (Streitwert 10.000 EUR), über die außerordentliche Revision der beklagten Partei (Revisionsinteresse 22.377,04 EUR) gegen das Urteil des Oberlandesgerichts Innsbruck als Berufungsgericht vom 15. Dezember 2016, GZ 2 R 141/16a-47, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -14333,7 +14338,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 
 - `Florentin Uffenwasser` (person)
 
-**Example 10** (doc_id: `deanon_TRAIN/4Ob100_13d`) (sent_id: `deanon_TRAIN/4Ob100_13d_3`)
+**Example 9** (doc_id: `deanon_TRAIN/4Ob100_13d`) (sent_id: `deanon_TRAIN/4Ob100_13d_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch die Vizepräsidentin Dr. Schenk als Vorsitzende und die Hofräte Dr. Vogel, Dr. Jensik, Dr. Musger und Dr. Schwarzenbacher als weitere Richter in der Rechtssache der klagenden Partei Verein Erwin Sieferer, vertreten durch Kosesnik-Wehrle & Langer Rechtsanwälte KG in Wien, gegen die beklagte Partei Lebensmittel Seeder -Aktiengesellschaft, Knechtswies 63, 4692 Niederau, Österreich, vertreten durch Raits Bleiziffer Rechtsanwälte GmbH in Salzburg, und die Nebenintervenientin auf Seiten der beklagten Partei „ StR Thobias Broß ” Viola Hüßkes, vertreten durch Dr. Peter Zöchbauer und andere Rechtsanwälte in Wien, wegen Unterlassung und Urteilsveröffentlichung (Streitwert 36.000 EUR), über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Linz vom 19. April 2013, GZ 1 R 192/12d-14, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -14348,6 +14353,22 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch die Vizepräsidentin
 - `Knechtswies 63, 4692 Niederau, Österreich` (address)
 - `StR Thobias Broß` (person)
 - `Viola Hüßkes` (person)
+
+**Example 10** (doc_id: `deanon_TRAIN/5Ob18_11z`) (sent_id: `deanon_TRAIN/5Ob18_11z_3`)
+
+
+Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Hon.-Prof. Dr. Danzl als Vorsitzenden und die Hofrätinnen Dr. Hurch und Dr. Lovrek sowie die Hofräte Dr. Höllwerth und Mag. Wurzer als weitere Richter in der Rechtssache der klagenden Partei DI Borislav Viskorf, vertreten durch Dr. Günter Niebauer, Rechtsanwalt in Wien, und der Nebenintervenientin auf Seiten der klagenden Partei Mittel Waldheim Betriebe AG, Samantha Althöfer, vertreten durch Mayer & Herrmann, Rechtsanwälte in Wien, gegen die beklagte Partei Weckebrod Immobilien Aktiengesellschaft, Graf Geroldstraße 2, 8181 Dörfl an der Raab, Österreich, vertreten durch Kunz Schima Wallentin Rechtsanwälte OG in Wien, wegen 96.882,93 EUR sA, über die Revision der beklagten Partei gegen das Urteil des Oberlandesgerichts Wien als Berufungsgericht vom 25. Oktober 2010, GZ 2 R 213/09x, 2 R 216/09p-27, mit dem infolge Berufung der beklagten Partei das Urteil des Handelsgerichts Wien vom 24. Juli 2009, GZ 19 Cg 167/08t-19, bestätigt wurde, den Beschluss gefasst:  Spruch Die Revision wird zurückgewiesen.
+
+| Predicted | Gold |
+|---|---|
+| `DI Borislav Viskorf` | `DI Borislav Viskorf` |
+
+**Missed by this rule (FN):**
+
+- `Mittel Waldheim Betriebe AG` (organisation)
+- `Samantha Althöfer` (person)
+- `Weckebrod Immobilien Aktiengesellschaft` (organisation)
+- `Graf Geroldstraße 2, 8181 Dörfl an der Raab, Österreich` (address)
 
 **Example 11** (doc_id: `deanon_TRAIN/6Ob136_11k`) (sent_id: `deanon_TRAIN/6Ob136_11k_3`)
 
@@ -14959,7 +14980,23 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Hon.-Prof. Dr. Dan
 - `Hartmut Willekes`(person)
 - `KommR Roswitha Allgoewer`(person)
 
-**Example 32** (doc_id: `deanon_TRAIN/2Ob182_24i`) (sent_id: `deanon_TRAIN/2Ob182_24i_4`)
+**Example 32** (doc_id: `deanon_TRAIN/2Ob181_10x`) (sent_id: `deanon_TRAIN/2Ob181_10x_3`)
+
+
+Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Baumann als Vorsitzenden und durch die Hofräte Dr. Veith, Dr. E. Solé, Dr. Schwarzenbacher und Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Gertrude Ptak, vertreten durch Dr. Bertram Broesigke und Dr. Wolfgang Broesigke, Rechtsanwälte in Wien, gegen die beklagte Partei Josef Schindelmeißer, vertreten durch den Sachwalter Dr. Helmut Heiger, Rechtsanwalt in Wien, wegen Aufkündigung, über die außerordentliche Revision der beklagten Partei gegen das Urteil des Landesgerichts für Zivilrechtssachen Wien als Berufungsgericht vom 15. Juni 2010, GZ 41 R 130/10m-26, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen (§ 510 Abs 3 ZPO).
+
+**False Positives:**
+
+- `Ptak` — partial — pred is substring of gold: `Gertrude Ptak`
+
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Gertrude Ptak`(person)
+- `Josef Schindelmeißer`(person)
+
+**Example 33** (doc_id: `deanon_TRAIN/2Ob182_24i`) (sent_id: `deanon_TRAIN/2Ob182_24i_4`)
 
 
 Sloboda, Dr. Thunhart und Dr. Kikinger sowie die Hofrätin Mag. Fitz als weitere Richter in der Rechtssache der klagenden und gefährdeten Partei Theresa Ziebold, vertreten durch Mag. Mahmut Sahinol, Rechtsanwalt in Wien, gegen die beklagten Parteien und Gegner der gefährdeten Parteien 1.
@@ -14974,7 +15011,7 @@ Sloboda, Dr. Thunhart und Dr. Kikinger sowie die Hofrätin Mag. Fitz als weitere
 
 - `Theresa Ziebold`(person)
 
-**Example 33** (doc_id: `deanon_TRAIN/2Ob224_21m`) (sent_id: `deanon_TRAIN/2Ob224_21m_5`)
+**Example 34** (doc_id: `deanon_TRAIN/2Ob224_21m`) (sent_id: `deanon_TRAIN/2Ob224_21m_5`)
 
 
 Dr. Konstantin Haas, Rechtsanwalt in Leonding, gegen die beklagte Partei Annette Provost, vertreten durch Posch, Schausberger & Lutz Rechtsanwälte GmbH in Wels, wegen 25.650,07 EUR sA sowie Herausgabe (Streitwert 1.000 EUR) über die Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Linz als Berufungsgericht vom 1. Oktober 2021, GZ 2 R 119/21i-48, mit dem das Urteil des Landesgerichts Ried im Innkreis vom 28. Juni 2021, GZ 5 Cg 60/18b-44, bestätigt wurde, den Beschluss gefasst:  Spruch Die Revision wird zurückgewiesen.
@@ -14989,7 +15026,7 @@ Dr. Konstantin Haas, Rechtsanwalt in Leonding, gegen die beklagte Partei Annette
 
 - `Annette Provost`(person)
 
-**Example 34** (doc_id: `deanon_TRAIN/2Ob37_17f`) (sent_id: `deanon_TRAIN/2Ob37_17f_3`)
+**Example 35** (doc_id: `deanon_TRAIN/2Ob37_17f`) (sent_id: `deanon_TRAIN/2Ob37_17f_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Hon.-Prof. Dr. Danzl als Vorsitzenden und die Hofräte Dr. Veith und Dr. Musger, die Hofrätin Dr. E. Solé und den Hofrat Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Florentin Uffenwasser, vertreten durch Dr. Armin Exner, Rechtsanwalt in Innsbruck, gegen die beklagte Partei Stadtgemeinde Naomi Mertensmeyer, vertreten durch Dr. Thomas Girardi, Rechtsanwalt in Innsbruck, wegen 29.461,04 EUR sA und Feststellung (Streitwert 10.000 EUR), über die außerordentliche Revision der beklagten Partei (Revisionsinteresse 22.377,04 EUR) gegen das Urteil des Oberlandesgerichts Innsbruck als Berufungsgericht vom 15. Dezember 2016, GZ 2 R 141/16a-47, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -15005,7 +15042,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Florentin Uffenwasser`(person)
 - `Naomi Mertensmeyer`(person)
 
-**Example 35** (doc_id: `deanon_TRAIN/2Ob63_11w`) (sent_id: `deanon_TRAIN/2Ob63_11w_3`)
+**Example 36** (doc_id: `deanon_TRAIN/2Ob63_11w`) (sent_id: `deanon_TRAIN/2Ob63_11w_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Baumann als Vorsitzenden und durch die Hofräte Dr. Veith, Dr. E. Solé, Dr. Schwarzenbacher und Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Thomas Papakonstantinou, vertreten durch Kinberger-Schuberth-Fischer Rechtsanwälte-GmbH in Zell am See, gegen die beklagten Parteien 1. Matthias Graafmann, und 2.
@@ -15021,7 +15058,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Thomas Papakonstantinou`(person)
 - `Matthias Graafmann`(person)
 
-**Example 36** (doc_id: `deanon_TRAIN/2Ob71_23i`) (sent_id: `deanon_TRAIN/2Ob71_23i_4`)
+**Example 37** (doc_id: `deanon_TRAIN/2Ob71_23i`) (sent_id: `deanon_TRAIN/2Ob71_23i_4`)
 
 
 Sloboda und Dr. Kikinger als weitere Richter in der Rechtssache der klagenden Partei Moses Malkomes, vertreten durch Klepp Nöbauer Hintringer Primetshofer Rechtsanwälte (GbR) in Linz, gegen die beklagte Partei Carmen Reinoldsmann, vertreten durch Dr. Christoph Arbeithuber, Rechtsanwalt in Linz, wegen 26.843,50 EUR sA und Feststellung, über die außerordentliche Revision der beklagten Partei gegen das Urteil des Oberlandesgerichts Linz als Berufungsgericht vom 27. Februar 2023, GZ 4 R 17/23g-28, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -15038,7 +15075,7 @@ Sloboda und Dr. Kikinger als weitere Richter in der Rechtssache der klagenden Pa
 - `Moses Malkomes`(person)
 - `Carmen Reinoldsmann`(person)
 
-**Example 37** (doc_id: `deanon_TRAIN/2Ob73_15x`) (sent_id: `deanon_TRAIN/2Ob73_15x_3`)
+**Example 38** (doc_id: `deanon_TRAIN/2Ob73_15x`) (sent_id: `deanon_TRAIN/2Ob73_15x_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Hon.-Prof. Dr. Danzl als Vorsitzenden, die Hofräte Dr. Veith und Dr. Musger, die Hofrätin Dr. E. Solé sowie den Hofrat Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Dragan Karp, vertreten durch Mag. Bernd Trappmaier, Rechtsanwalt in Korneuburg, gegen die beklagte Partei Marlene Diderichs, vertreten durch Mag. Claus Marchl, Rechtsanwalt in Wien, wegen 25.396,03 EUR sA, über die Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Wien als Berufungsgericht vom 22. Jänner 2015, GZ 11 R 239/14v-26, womit infolge Berufung der klagenden Partei das Urteil des Landesgerichts für Zivilrechtssachen Wien vom 30. September 2014, GZ 57 Cg 30/14x-22, bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die Revision wird zurückgewiesen.
@@ -15055,7 +15092,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Dragan Karp`(person)
 - `Marlene Diderichs`(person)
 
-**Example 38** (doc_id: `deanon_TRAIN/2Ob78_15g`) (sent_id: `deanon_TRAIN/2Ob78_15g_3`)
+**Example 39** (doc_id: `deanon_TRAIN/2Ob78_15g`) (sent_id: `deanon_TRAIN/2Ob78_15g_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Hon.-Prof. Dr. Danzl als Vorsitzenden, die Hofräte Dr. Veith und Dr. Musger sowie die Hofrätinnen Dr. E. Solé und Dr. Hofer-Zeni-Rennhofer als weitere Richter in der Rechtssache der klagenden Partei Luigi Neimeier, vertreten durch Rechtsanwälte Estermann & Partner OG in Mattighofen, gegen die beklagte Partei LNC KI Solutions GmbH, Kordelia Grauel, vertreten durch Dr. Herbert Harlander und Mag. Wolfgang Harlander, Rechtsanwälte in Salzburg, wegen 33.251,85 EUR sA, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Linz als Berufungsgericht vom 5. März 2015, GZ 2 R 1/15b-37, womit infolge Berufung der klagenden Partei das Urteil des Landesgerichts Salzburg vom 23. Oktober 2014, GZ 4 Cg 27/13d-33, bestätigt wurde, in nichtöffentlicher Sitzung beschlossen und zu Recht erkannt:  Spruch
@@ -15072,7 +15109,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `LNC KI Solutions GmbH`(organisation)
 - `Kordelia Grauel`(person)
 
-**Example 39** (doc_id: `deanon_TRAIN/2Ob89_17b`) (sent_id: `deanon_TRAIN/2Ob89_17b_3`)
+**Example 40** (doc_id: `deanon_TRAIN/2Ob89_17b`) (sent_id: `deanon_TRAIN/2Ob89_17b_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch die Vizepräsidentin Hon.-Prof. Dr. Lovrek als Vorsitzende, die Hofräte Dr. Veith und Dr. Musger, die Hofrätin Dr. E. Solé sowie den Hofrat Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Aron Dawideit, vertreten durch Posch, Schausberger & Lutz Rechtsanwälte GmbH in Wels, gegen die beklagten Parteien 1. PhD Irvin Kindschuh, 2. Theodor Hermus, und 3.
@@ -15089,7 +15126,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch die Vizepräsidentin
 - `PhD Irvin Kindschuh`(person)
 - `Theodor Hermus`(person)
 
-**Example 40** (doc_id: `deanon_TRAIN/2Ob91_22d`) (sent_id: `deanon_TRAIN/2Ob91_22d_4`)
+**Example 41** (doc_id: `deanon_TRAIN/2Ob91_22d`) (sent_id: `deanon_TRAIN/2Ob91_22d_4`)
 
 
 Sloboda und Dr. Kikinger als weitere Richter in der Rechtssache der klagenden Partei Farina Dirker, vertreten durch Dr. Sven Rudolf Thorstensen, LL.M., Rechtsanwalt in Wien, gegen die beklagte Partei Lüttge Chemie Limited, René Luidthard, vertreten durch Brandl Talos Rechtsanwälte GmbH in Wien, wegen 40.150,26 EUR sA, im Verfahren über die Revision der beklagten Partei gegen das Urteil des Oberlandesgerichts Wien als Berufungsgericht vom 24. Februar 2022, GZ 15 R 171/21h-33, den Beschluss gefasst:  Spruch Die Zurücknahme der Revision wird zur Kenntnis genommen.
@@ -15106,7 +15143,7 @@ Sloboda und Dr. Kikinger als weitere Richter in der Rechtssache der klagenden Pa
 - `Lüttge Chemie Limited`(organisation)
 - `René Luidthard`(person)
 
-**Example 41** (doc_id: `deanon_TRAIN/3Ob128_10k`) (sent_id: `deanon_TRAIN/3Ob128_10k_3`)
+**Example 42** (doc_id: `deanon_TRAIN/3Ob128_10k`) (sent_id: `deanon_TRAIN/3Ob128_10k_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie die Hofräte und Hofrätinnen Hon.-Prof. Dr. Sailer, Dr. Lovrek, Dr. Jensik und Dr. Fichtenau als weitere Richter in der Rechtssache der klagenden Partei Nadja Spangler, vertreten durch Kinberger-Schuberth-Fischer Rechtsanwälte-GmbH in Zell am See, gegen die beklagte Partei Sascha Heckert, vertreten durch Dr. Andreas König, Dr. Andreas Ermacora und Dr. Barbara Lässer, Rechtsanwälte in Innsbruck, wegen 137.146,60 EUR sA und Feststellung (Gesamtstreitwert 157.146,60 EUR), über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Linz als Berufungsgericht vom 31. März 2010, GZ 6 R 28/10w-44, womit über Berufung der klagenden Partei das Urteil des Landesgerichts Salzburg vom 30. Oktober 2009, GZ 7 Cg 117/07b-40, bestätigt wurde, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -15123,7 +15160,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Nadja Spangler`(person)
 - `Sascha Heckert`(person)
 
-**Example 42** (doc_id: `deanon_TRAIN/3Ob152_10i`) (sent_id: `deanon_TRAIN/3Ob152_10i_3`)
+**Example 43** (doc_id: `deanon_TRAIN/3Ob152_10i`) (sent_id: `deanon_TRAIN/3Ob152_10i_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Hon.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in der Exekutionssache der betreibenden Partei KMN Versicherung Werke AG, Corbinian Pichlmaier, vertreten durch Dr. Erich Kafka, Dr. Manfred Palkovits, Rechtsanwälte in Wien, gegen die verpflichtete Partei Severin Wellenbrink, vertreten durch Dr. Philipp Jessich, Rechtsanwalt in Wien, wegen Aufschiebung einer Räumungsexekution, über den Revisionsrekurs der betreibenden Partei gegen den Beschluss des Landesgerichts für Zivilrechtssachen Wien als Rekursgericht vom 12. Mai 2010, GZ 39 R 44/10z-22, womit der Beschluss des Bezirksgerichts Fünfhaus vom 14. Jänner 2010, GZ 10 E 171/09d-6, abgeändert wurde, den Beschluss gefasst:  Spruch Dem Revisionsrekurs wird Folge gegeben.
@@ -15142,7 +15179,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als 
 - `Dr. Manfred Palkovits`(person)
 - `Severin Wellenbrink`(person)
 
-**Example 43** (doc_id: `deanon_TRAIN/3Ob156_12f`) (sent_id: `deanon_TRAIN/3Ob156_12f_3`)
+**Example 44** (doc_id: `deanon_TRAIN/3Ob156_12f`) (sent_id: `deanon_TRAIN/3Ob156_12f_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Hon.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in den verbundenen Rechtssachen der klagenden Partei Severin Ilek, vertreten durch die Sachwalterin Mag. Roswitha Ferl-Pailer, Rechtsanwältin in Hartberg, gegen die beklagte Partei Dipl.
@@ -15157,7 +15194,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 
 - `Severin Ilek`(person)
 
-**Example 44** (doc_id: `deanon_TRAIN/3Ob178_15w`) (sent_id: `deanon_TRAIN/3Ob178_15w_3`)
+**Example 45** (doc_id: `deanon_TRAIN/3Ob178_15w`) (sent_id: `deanon_TRAIN/3Ob178_15w_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Hofrat Dr. Jensik als Vorsitzenden, die Vizepräsidentin Dr. Lovrek, die Hofräte Dr. Schwarzenbacher und Dr. Roch sowie die Hofrätin Dr. Kodek als weitere Richter in der Rechtssache der klagenden Partei Nikolai Castelli, vertreten durch Divitschek Sieder Sauer Peter Rechtsanwälte GesBR in Deutschlandsberg, gegen die beklagte Partei Dohmgoergen Bau GmbH, Oswald Schubert, vertreten durch Dr. Johannes Liebmann, Rechtsanwalt in Gleisdorf, wegen 82.977,52 EUR sA und Feststellung, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Graz als Berufungsgericht vom 27. Juli 2015, GZ 3 R 54/15h-145, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -15174,7 +15211,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Hofrat Dr. Jensi
 - `Dohmgoergen Bau GmbH`(organisation)
 - `Oswald Schubert`(person)
 
-**Example 45** (doc_id: `deanon_TRAIN/3Ob19_20w`) (sent_id: `deanon_TRAIN/3Ob19_20w_3`)
+**Example 46** (doc_id: `deanon_TRAIN/3Ob19_20w`) (sent_id: `deanon_TRAIN/3Ob19_20w_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch die Präsidentin Hon.-Prof. Dr. Lovrek als Vorsitzende sowie die Hofräte Dr. Roch und Priv.-Doz. Dr. Rassi und die Hofrätinnen Dr. Weixelbraun-Mohr und Dr. Kodek als weitere Richter in den verbundenen Rechtssachen der klagenden Partei Rinaldo Isaac, vertreten durch Mag. Gerhard Walzl, Rechtsanwalt in Wien, wider die beklagte Partei Felizia Mascheck, vertreten durch Dr. Alexandra Sedelmayer-Pammesberger, Rechtsanwältin in Wien, wegen Unterhaltsherabsetzung (AZ 8 C 22/16k) und Einwendungen gegen den Anspruch nach § 35 EO (AZ 8 C 4/18s), über die „außerordentliche“ Revision der klagenden Partei gegen das Urteil des Landesgerichts für Zivilrechtssachen Wien als Berufungsgericht vom 20. August 2019, GZ 44 R 338/19k-67, mit dem das Urteil des Bezirksgerichts Hernals vom 23. Mai 2019, GZ 8 C 22/16k-60, bestätigt wurde, den Beschluss gefasst:  Spruch Die Akten werden neuerlich dem Erstgericht zurückgestellt.
@@ -15191,7 +15228,7 @@ Kopf Der Oberste Gerichtshof hat durch die Präsidentin Hon.-Prof. Dr. Lovrek al
 - `Rinaldo Isaac`(person)
 - `Felizia Mascheck`(person)
 
-**Example 46** (doc_id: `deanon_TRAIN/3Ob201_19h`) (sent_id: `deanon_TRAIN/3Ob201_19h_3`)
+**Example 47** (doc_id: `deanon_TRAIN/3Ob201_19h`) (sent_id: `deanon_TRAIN/3Ob201_19h_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Hofrat Dr. Roch als Vorsitzenden sowie die Hofräte Priv.-Doz. Dr. Rassi und Mag. Painsi und die Hofrätinnen Dr. Weixelbraun-Mohr und Dr. Kodek als weitere Richter in der Exekutionssache der betreibenden Partei Kimberly Mühlenstädt, vertreten durch Korn & Gärtner Rechtsanwälte OG in Salzburg, gegen die verpflichtete Partei Arabella Jorn, vertreten durch Dr. Wolfgang Lang, Rechtsanwalt in Salzburg, wegen 7.711,58 EUR sA, über den Revisionsrekurs der betreibenden Partei gegen den Beschluss des Landesgerichts Salzburg als Rekursgericht vom 3. Juli 2019, GZ 22 R 171/19d-26, womit der Beschluss des Bezirksgerichts Salzburg vom 1. Februar 2019, GZ 5 E 2444/18x-7, abgeändert wurde, den Beschluss gefasst:  Spruch Dem Revisionsrekurs wird Folge gegeben.
@@ -15207,7 +15244,7 @@ Kopf Der Oberste Gerichtshof hat durch den Hofrat Dr. Roch als Vorsitzenden sowi
 - `Kimberly Mühlenstädt`(person)
 - `Arabella Jorn`(person)
 
-**Example 47** (doc_id: `deanon_TRAIN/3Ob205_15s`) (sent_id: `deanon_TRAIN/3Ob205_15s_3`)
+**Example 48** (doc_id: `deanon_TRAIN/3Ob205_15s`) (sent_id: `deanon_TRAIN/3Ob205_15s_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hoch als Vorsitzenden sowie die Vizepräsidentin Dr. Lovrek, die Hofräte Dr. Jensik und Dr. Roch und die Hofrätin Dr. Kodek als weitere Richter in der Exekutionssache der betreibenden Partei Laila Michot, vertreten durch Mag. Dr. Felix Sehorz, Rechtsanwalt in Wien, wider die verpflichtete Partei Jean Rehaag, wegen zwangsweiser Räumung (hier: Aufschiebung), aus Anlass des Revisionsrekurses der betreibenden Partei gegen den Beschluss des Landesgerichts für Zivilrechtssachen Wien als Rekursgericht vom 2. September 2015, GZ 39 R 260/15x-47, womit der Beschluss des Bezirksgerichts Liesing vom 27. Mai 2015, GZ 6 E 46/11k-43, teilweise abgeändert wurde, den Beschluss gefasst:  Spruch Der Beschluss des Obersten Gerichtshofs vom 16. Dezember 2015, AZ 3 Ob 205/15s, wird dahin berichtigt, dass das im ersten Absatz der Begründung genannte Datum der Einantwortung statt „6. März 2012“ richtig zu lauten hat „27. Juni 2013“.
@@ -15223,7 +15260,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hoch als Vorsi
 - `Laila Michot`(person)
 - `Jean Rehaag`(person)
 
-**Example 48** (doc_id: `deanon_TRAIN/3Ob236_17b`) (sent_id: `deanon_TRAIN/3Ob236_17b_3`)
+**Example 49** (doc_id: `deanon_TRAIN/3Ob236_17b`) (sent_id: `deanon_TRAIN/3Ob236_17b_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten des Obersten Gerichtshofs Dr. Hoch als Vorsitzenden sowie die Hofräte Dr. Roch und Dr. Rassi und die Hofrätinnen Dr. Weixelbraun-Mohr und Dr. Kodek als weitere Richter in der Rechtssache der klagenden Partei Delila Englschall, vertreten durch Harb & Postl Rechtsanwälte OG in Graz, gegen die beklagte Partei Achmed Schnetzer, vertreten durch Dr. Paul Bauer, Dr. Anton Triendl, Rechtsanwälte in Innsbruck, wegen 32.173,22 EUR sA und Feststellung, über die außerordentliche Revision der beklagten Partei (Revisionsinteresse 23.653,60 EUR sA und Feststellung) gegen das Urteil des Oberlandesgerichts Innsbruck als Berufungsgericht vom 29. November 2017, GZ 10 R 59/17b-27, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -15240,7 +15277,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten des Obersten Geric
 - `Delila Englschall`(person)
 - `Achmed Schnetzer`(person)
 
-**Example 49** (doc_id: `deanon_TRAIN/3Ob248_10g`) (sent_id: `deanon_TRAIN/3Ob248_10g_3`)
+**Example 50** (doc_id: `deanon_TRAIN/3Ob248_10g`) (sent_id: `deanon_TRAIN/3Ob248_10g_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Hon.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in der Rechtssache der klagenden Partei Riecken Maschinenbau GmbH, Hubert Englmaier, vertreten durch Dr. Martin Holzer, Rechtsanwalt in Bruck an der Mur, gegen die beklagte Partei Florian Corvetti, vertreten durch Dr. Heimo Jilek, Rechtsanwalt in Leoben, wegen Einwendungen gegen den Anspruch (§ 35 EO), über die außerordentliche Revision der klagenden Partei gegen das Urteil des Landesgerichts Leoben als Berufungsgericht vom 3. November 2010, GZ 1 R 244/10i-34, womit über Berufung der beklagten Partei das Urteil des Bezirksgerichts Leoben vom 9. Juni 2010, GZ 5 C 315/09y-28, abgeändert wurde, den Beschluss gefasst:  Spruch Der außerordentlichen Revision der klagenden Partei wird Folge gegeben, das angefochtene Urteil aufgehoben und die Rechtssache zur neuerlichen Entscheidung an das Berufungsgericht zurückverwiesen.
@@ -15257,7 +15294,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Hubert Englmaier`(person)
 - `Florian Corvetti`(person)
 
-**Example 50** (doc_id: `deanon_TRAIN/3Ob32_17b`) (sent_id: `deanon_TRAIN/3Ob32_17b_3`)
+**Example 51** (doc_id: `deanon_TRAIN/3Ob32_17b`) (sent_id: `deanon_TRAIN/3Ob32_17b_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hoch als Vorsitzenden sowie die Vizepräsidentin Dr. Lovrek, die Hofräte Dr. Jensik und Dr. Roch und die Hofrätin Dr. Kodek als weitere Richter in der Exekutionssache der betreibenden Partei HR Dr.in RgR Johanna Drestomark, Italien, vertreten durch Oberhammer Rechtsanwälte GmbH in Wien, wider die verpflichtete Partei Prosten und Kreutzinger Bau gesellschaft mbH, Dr.Viktor-Kaplan-Straße 8, 4920 Weiketsedt, Österreich, vertreten durch Dr. Daniel Charim und Mag. Jakob Charim, Rechtsanwälte in Wien, wegen (restlich) 347.093,53 EUR sA über den außerordentlichen Revisionsrekurs der verpflichteten Partei gegen den Beschluss des Landesgerichts für Zivilrechtssachen Wien als Rekursgericht vom 7. Dezember 2016, GZ 46 R 323/16i-61, womit der Beschluss des Bezirksgerichts Josefstadt vom 24. Juni 2016, GZ 11 E 2966/11p-56, bestätigt wurde, den Beschluss gefasst:  Spruch I.Der Revisionsrekurs der verpflichteten Partei wird, soweit er die Bestätigung der Exekutionsbewilligung bekämpft, als jedenfalls unzulässig zurückgewiesen.
@@ -15274,7 +15311,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hoch als Vorsi
 - `Prosten und Kreutzinger Bau gesellschaft mbH`(organisation)
 - `Dr.Viktor-Kaplan-Straße 8, 4920 Weiketsedt, Österreich`(address)
 
-**Example 51** (doc_id: `deanon_TRAIN/3Ob35_13p`) (sent_id: `deanon_TRAIN/3Ob35_13p_3`)
+**Example 52** (doc_id: `deanon_TRAIN/3Ob35_13p`) (sent_id: `deanon_TRAIN/3Ob35_13p_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Univ.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in der Rechtssache der klagenden Partei Mercedes Jungels, vertreten durch Dr. Peter Böck, Rechtsanwalt in Neusiedl am See, gegen die beklagte Partei Traude Ejsmond, vertreten durch Mag. Christian Kaiser, Rechtsanwalt in Wien, wegen Ehescheidung, über die außerordentliche Revision der beklagten Partei gegen das Urteil des Landesgerichts Eisenstadt als Berufungsgericht vom 13. Dezember 2012, GZ 20 R 123/12f-15, womit infolge Berufungen der klagenden und beklagten Partei das Urteil des Bezirksgerichts Neusiedl am See vom 19. April 2012, GZ 10 C 10/12d-8, bestätigt wurde, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen (§ 510 Abs 3 ZPO).
@@ -15291,7 +15328,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Mercedes Jungels`(person)
 - `Traude Ejsmond`(person)
 
-**Example 52** (doc_id: `deanon_TRAIN/3Ob49_11v`) (sent_id: `deanon_TRAIN/3Ob49_11v_3`)
+**Example 53** (doc_id: `deanon_TRAIN/3Ob49_11v`) (sent_id: `deanon_TRAIN/3Ob49_11v_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie durch den Hofrat Hon.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in der Rechtssache der klagenden Partei Julius Zimzick Verlag GmbH & Co KG, Terramaregasse 28, 8234 Rohrbachschlag, Österreich, vertreten durch Dr. Wolfgang Dartmann und andere Rechtsanwälte in Linz, wider die beklagten Parteien 1. Friedrich Schreinemachers und 2.
@@ -15308,7 +15345,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Terramaregasse 28, 8234 Rohrbachschlag, Österreich`(address)
 - `Schreinemachers`(person)
 
-**Example 53** (doc_id: `deanon_TRAIN/4Ob113_24g`) (sent_id: `deanon_TRAIN/4Ob113_24g_3`)
+**Example 54** (doc_id: `deanon_TRAIN/4Ob113_24g`) (sent_id: `deanon_TRAIN/4Ob113_24g_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Schwarzenbacher als Vorsitzenden sowie den Vizepräsidenten Hon.-Prof. PD Dr. Rassi, die Hofrätinnen Mag. Istjan, LL.M., und Mag. Waldstätten und den Hofrat Dr. Stiefsohn als weitere Richter in der Rechtssache der klagenden Partei Vierziger u. Tewald Wind GmbH, Claire Lüdermann, Bakk. rer. nat., vertreten durch Grassner Rechtsanwalts GmbH in Linz, gegen die beklagte Partei Milena Buchmayr, vertreten durch Dr. Manfred Palkovits, Mag. Martin Sohm, Rechtsanwälte in Wien, wegen Aufkündigung, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Landesgerichts für Zivilrechtssachen Wien vom 24. April 2024, GZ 38 R 247/23i-46, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -15326,7 +15363,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Milena Buchmayr`(person)
 - `Dr. Manfred Palkovits`(person)
 
-**Example 54** (doc_id: `deanon_TRAIN/4Ob13_24a`) (sent_id: `deanon_TRAIN/4Ob13_24a_3`)
+**Example 55** (doc_id: `deanon_TRAIN/4Ob13_24a`) (sent_id: `deanon_TRAIN/4Ob13_24a_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Schwarzenbacher als Vorsitzenden sowie den Vizepräsidenten Hon.-Prof. PD Dr. Rassi, die Hofrätinnen Mag. Istjan, LL.M., und Mag. Waldstätten und den Hofrat Dr. Stiefsohn als weitere Richter in der Rechtssache der klagenden Partei Peter Nöhrnberg, LLM, vertreten durch Mag. Andrea Nobis, Rechtsanwältin in Wien, gegen die beklagte Partei Astrid Fesenmair, vertreten durch die Maraszto Milisits Rechtsanwälte OG in Wien, wegen 59.888,58 EUR sA und Feststellung, über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Wien als Berufungsgericht vom 21. November 2023, GZ 5 R 154/23p-52, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -15342,7 +15379,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Peter Nöhrnberg, LLM`(person)
 - `Astrid Fesenmair`(person)
 
-**Example 55** (doc_id: `deanon_TRAIN/4Ob163_13v`) (sent_id: `deanon_TRAIN/4Ob163_13v_3`)
+**Example 56** (doc_id: `deanon_TRAIN/4Ob163_13v`) (sent_id: `deanon_TRAIN/4Ob163_13v_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch die Vizepräsidentin Dr. Schenk als Vorsitzende und durch die Hofräte Dr. Vogel, Dr. Musger, Dr. Schwarzenbacher und Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Miranda Bleckwehl, vertreten durch die Sachwalterin Dr. Tanja Sporrer, Rechtsanwältin, Innsbruck, Templstraße 22, gegen die beklagte Partei Oswald Wiechering, vertreten durch Dr. Ekkehard Erlacher und Dr. Renate Erlacher-Philadelphy, Rechtsanwälte in Innsbruck, wegen 56.626 EUR sA, infolge Rekurses der beklagten Partei gegen den Beschluss des Oberlandesgerichts Innsbruck als Berufungsgericht vom 8. Mai 2013, GZ 4 R 40/13h-125, womit der Antrag des Beklagten auf Berichtigung des Bewertungsausspruchs im Urteil vom 15. März 2013 abgewiesen wurde, folgenden Beschluss gefasst:  Spruch Der Rekurs wird zurückgewiesen.
@@ -15359,7 +15396,7 @@ Kopf Der Oberste Gerichtshof hat durch die Vizepräsidentin Dr. Schenk als Vorsi
 - `Miranda Bleckwehl`(person)
 - `Oswald Wiechering`(person)
 
-**Example 56** (doc_id: `deanon_TRAIN/4Ob190_23d`) (sent_id: `deanon_TRAIN/4Ob190_23d_3`)
+**Example 57** (doc_id: `deanon_TRAIN/4Ob190_23d`) (sent_id: `deanon_TRAIN/4Ob190_23d_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Schwarzenbacher als Vorsitzenden sowie den Vizepräsidenten Hon.-Prof. PD Dr. Rassi, die Hofrätinnen Mag. Istjan, LL.M., und Mag. Waldstätten und den Hofrat Dr. Stiefsohn als weitere Richter in der Rechtssache der klagenden Partei Jolanda Petschke, vertreten durch den Verfahrenshelfer Dr. Lukas Twardosz, Rechtsanwalt in Wien, gegen die beklagte Partei Ali Salwetter Verein Wilma Sahlmüller, vertreten durch die Verfahrenshelferin Mag. Ioana-Maria Vilau, Rechtsanwältin in Wien, wegen zuletzt 30.000 EUR sA, Unterlassung und Beseitigung (Gesamtstreitwert: 40.000 EUR), über die außerordentliche Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Wien als Berufungsgericht vom 26. Juli 2023, GZ 4 R 175/22t-62, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -15376,7 +15413,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Ali Salwetter`(person)
 - `Wilma Sahlmüller`(person)
 
-**Example 57** (doc_id: `deanon_TRAIN/4Ob204_15a`) (sent_id: `deanon_TRAIN/4Ob204_15a_3`)
+**Example 58** (doc_id: `deanon_TRAIN/4Ob204_15a`) (sent_id: `deanon_TRAIN/4Ob204_15a_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Vogel als Vorsitzenden sowie die Hofräte Dr. Jensik, Dr. Musger, Dr. Schwarzenbacher und Dr. Rassi als weitere Richter in der Rechtssache der klagenden Partei Severin Vollersen, MSc kammer, Miranda Ranfft, vertreten durch Dr. Friedrich Schulz, Rechtsanwalt in Wien, gegen die beklagte Partei Silvia Markfort, vertreten durch Mag. Romi Andrea Panner, Rechtsanwältin in Rudersdorf, wegen Unterlassung und Urteilsveröffentlichung (Streitwert 34.000 EUR), über die außerordentliche Revision der beklagten Partei gegen das Urteil des Oberlandesgerichts Wien als Berufungsgericht vom 28. September 2015, GZ 2 R 101/15k-35, womit das Urteil des Landesgerichts Eisenstadt vom 6. Mai 2015, GZ 18 Cg 18/14w-31, bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die außerordentliche Revision wird mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -15393,7 +15430,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Miranda Ranfft`(person)
 - `Silvia Markfort`(person)
 
-**Example 58** (doc_id: `deanon_TRAIN/4Ob232_23f`) (sent_id: `deanon_TRAIN/4Ob232_23f_4`)
+**Example 59** (doc_id: `deanon_TRAIN/4Ob232_23f`) (sent_id: `deanon_TRAIN/4Ob232_23f_4`)
 
 
 Matzka und die Hofrätinnen Mag. Istjan, LL.M., und Mag. Waldstätten als weitere Richter in der Rechtssache der klagenden Partei Horst Ahrentzen, vertreten durch die Koman Rechtsanwalts GmbH in Salzburg, gegen die beklagte Partei Martha Haberstroh ENC, Robert Bartram, Malta, vertreten durch die Brandl Talos Rechtsanwälte GmbH in Wien, wegen 502.107,44 EUR sA, über die außerordentliche Revision der beklagten Partei gegen das Urteil des Oberlandesgerichts Linz als Berufungsgericht vom 24. Oktober 2023, GZ 2 R 145/23s-67, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -15410,7 +15447,7 @@ Matzka und die Hofrätinnen Mag. Istjan, LL.M., und Mag. Waldstätten als weiter
 - `Martha Haberstroh`(person)
 - `Robert Bartram`(person)
 
-**Example 59** (doc_id: `deanon_TRAIN/5Ob182_20f`) (sent_id: `deanon_TRAIN/5Ob182_20f_3`)
+**Example 60** (doc_id: `deanon_TRAIN/5Ob182_20f`) (sent_id: `deanon_TRAIN/5Ob182_20f_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Jensik als Vorsitzenden sowie die Hofrätin Dr. Grohmann und die Hofräte Mag. Wurzer, Mag. Painsi und Dr. Steger als weitere Richter in der Rechtssache der klagenden Partei Dr. Jeremias Riecke, vertreten durch die Sluka Hammerer Tevini Rechtsanwälte GmbH in Salzburg, gegen die beklagte Partei Walter Huellweber, vertreten durch die Zumtobel Kronberger Rechtsanwälte OG in Salzburg, wegen Beseitigung und Wiederherstellung (Streitwert 10.000 EUR), über die Revision der beklagten Partei gegen das Urteil des Landesgerichts Salzburg als Berufungsgericht vom 6. August 2020, GZ 53 R 89/20z-20, mit dem das Urteil des Bezirksgerichts Salzburg vom 11. Februar 2020, GZ 25 C 657/19t-16, bestätigt wurde, den Beschluss gefasst:  Spruch Die Revision wird zurückgewiesen.
@@ -15426,7 +15463,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Dr. Jeremias Riecke`(person)
 - `Walter Huellweber`(person)
 
-**Example 60** (doc_id: `deanon_TRAIN/5Ob189_19h`) (sent_id: `deanon_TRAIN/5Ob189_19h_3`)
+**Example 61** (doc_id: `deanon_TRAIN/5Ob189_19h`) (sent_id: `deanon_TRAIN/5Ob189_19h_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Jensik als Vorsitzenden sowie die Hofrätin Dr. Grohmann und die Hofräte Mag. Wurzer, Mag. Painsi und Dr. Steger als weitere Richter in der Rechtssache der klagenden Partei James Chowdhury, vertreten durch Mag. Dr. Wolfgang Schlegl, Rechtsanwalt in Graz, gegen die Beklagte Mag. Ilhan Poele, vertreten durch MMag.Dr. Christopher Engel, Rechtsanwalt in Graz, wegen 37.052,50 EUR sA, über die außerordentliche Revision der beklagten Partei gegen das Urteil des Oberlandesgerichts Graz als Berufungsgericht vom 16. September 2019, GZ 2 R 129/19m-21, den Beschluss gefasst:  Spruch Die außerordentliche Revision wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -15441,25 +15478,6 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Jensik als Vor
 
 - `James Chowdhury`(person)
 - `Mag. Ilhan Poele`(person)
-
-**Example 61** (doc_id: `deanon_TRAIN/5Ob18_11z`) (sent_id: `deanon_TRAIN/5Ob18_11z_3`)
-
-
-Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Hon.-Prof. Dr. Danzl als Vorsitzenden und die Hofrätinnen Dr. Hurch und Dr. Lovrek sowie die Hofräte Dr. Höllwerth und Mag. Wurzer als weitere Richter in der Rechtssache der klagenden Partei DI Borislav Viskorf, vertreten durch Dr. Günter Niebauer, Rechtsanwalt in Wien, und der Nebenintervenientin auf Seiten der klagenden Partei Mittel Waldheim Betriebe AG, Samantha Althöfer, vertreten durch Mayer & Herrmann, Rechtsanwälte in Wien, gegen die beklagte Partei Weckebrod Immobilien Aktiengesellschaft, Graf Geroldstraße 2, 8181 Dörfl an der Raab, Österreich, vertreten durch Kunz Schima Wallentin Rechtsanwälte OG in Wien, wegen 96.882,93 EUR sA, über die Revision der beklagten Partei gegen das Urteil des Oberlandesgerichts Wien als Berufungsgericht vom 25. Oktober 2010, GZ 2 R 213/09x, 2 R 216/09p-27, mit dem infolge Berufung der beklagten Partei das Urteil des Handelsgerichts Wien vom 24. Juli 2009, GZ 19 Cg 167/08t-19, bestätigt wurde, den Beschluss gefasst:  Spruch Die Revision wird zurückgewiesen.
-
-**False Positives:**
-
-- `DI Borislav Viskorf` — partial — gold is substring of pred: `Viskorf`
-
-> overlaps gold: 1  |  likely missing annotation: 0
-
-**Gold Entities:**
-
-- `Viskorf`(person)
-- `Mittel Waldheim Betriebe AG`(organisation)
-- `Samantha Althöfer`(person)
-- `Weckebrod Immobilien Aktiengesellschaft`(organisation)
-- `Graf Geroldstraße 2, 8181 Dörfl an der Raab, Österreich`(address)
 
 **Example 62** (doc_id: `deanon_TRAIN/5Ob36_19h`) (sent_id: `deanon_TRAIN/5Ob36_19h_3`)
 
