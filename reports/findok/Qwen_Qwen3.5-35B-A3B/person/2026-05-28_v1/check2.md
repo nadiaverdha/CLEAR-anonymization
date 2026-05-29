@@ -1,6 +1,6 @@
 # Rule Evaluation Report — Qwen/Qwen3.5-35B-A3B
 
-Generated on: 2026-05-29T16:01:02.173080
+Generated on: 2026-05-29T16:56:38.212672
 
 ---
 
@@ -52,14 +52,14 @@ Results can be reproduced by running this command:
 | Metric | Value |
 |---|---|
 | Accuracy (exact match) | 96.4% |
-| True Positives | 307 |
-| False Positives | 223 |
-| False Negatives | 1077 |
+| True Positives | 309 |
+| False Positives | 221 |
+| False Negatives | 1075 |
 | Total Gold Entities | 1384 |
-| Micro Precision | 57.9% |
-| Micro Recall | 22.2% |
-| Micro F1 | 32.1% |
-| Macro F1 | 32.1% |
+| Micro Precision | 58.3% |
+| Micro Recall | 22.3% |
+| Micro F1 | 32.3% |
+| Macro F1 | 32.3% |
 
 </details>
 
@@ -71,7 +71,7 @@ Results can be reproduced by running this command:
 | Rule | F1 | Precision | Recall | Total Predicted | True Positives | False Positives |
 |---|---|---|---|---|---|---|
 | `Criminal_Gegen_Person_Titles` | 6.8% | 100.0% | 3.5% | 49 | 49 | 0 |
-| `Guardianship_Minor` | 1.6% | 78.6% | 0.8% | 14 | 11 | 3 |
+| `Guardianship_Minor` | 1.9% | 92.9% | 0.9% | 14 | 13 | 1 |
 | `Angeklagter_Surname` | 0.7% | 71.4% | 0.4% | 7 | 5 | 2 |
 | `Person_Title_Context` | 26.9% | 61.3% | 17.2% | 388 | 238 | 150 |
 | `Party_Name_NoContext` | 26.9% | 61.3% | 17.2% | 388 | 238 | 150 |
@@ -443,7 +443,7 @@ Kopf Der Oberste Gerichtshof hat am 29. Jänner 2020 durch den Senatspräsidente
 
 ## `Guardianship_Minor`
 
-**F1:** 0.016 | **Precision:** 0.786 | **Recall:** 0.008  
+**F1:** 0.019 | **Precision:** 0.929 | **Recall:** 0.009  
 
 **Format:** `regex`  
 **Rule ID:** `4e2eb5c0`  
@@ -460,13 +460,13 @@ Captures names of minors in guardianship cases, capturing the full name.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.786 | 0.008 | 0.016 | 14 | 11 | 3 |
+| 0.929 | 0.009 | 0.019 | 14 | 13 | 1 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `person` | 11 | 3 | 1364 |
+| `person` | 13 | 1 | 1362 |
 
 </details>
 
@@ -492,7 +492,21 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Schinko als Vo
 - `Bezirksgericht Neunkirchen` (organisation)
 - `Bezirksgericht Neunkirchen` (organisation)
 
-**Example 1** (doc_id: `deanon_TRAIN/10Ob15_12x`) (sent_id: `deanon_TRAIN/10Ob15_12x_3`)
+**Example 1** (doc_id: `deanon_TRAIN/10Nc2_10s`) (sent_id: `deanon_TRAIN/10Nc2_10s_3`)
+
+
+Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Schinko als Vorsitzenden sowie die Hofräte Dr. Fellinger und Dr. Hoch als weitere Richter in der Pflegschaftssache des mj Andreas Wolfgang Spinner, geboren am 8. Juli 2004, und der mj Herta Vanessa Schlichtcroll, geboren am 4. April 2007, wegen Übertragung der Zuständigkeit nach § 111 Abs 2 JN, den Beschluss gefasst:  Spruch Die mit Beschluss des Bezirksgerichts Salzburg vom 9. 9. 2009, AZ 42 PS 56/09a, verfügte Übertragung der Zuständigkeit zur Führung der Pflegschaftssache an das Bezirksgericht Mödling wird genehmigt.
+
+| Predicted | Gold |
+|---|---|
+| `Andreas Wolfgang Spinner` | `Andreas Wolfgang Spinner` |
+
+**Missed by this rule (FN):**
+
+- `Schlichtcroll` (person)
+- `Bezirksgericht Mödling` (organisation)
+
+**Example 2** (doc_id: `deanon_TRAIN/10Ob15_12x`) (sent_id: `deanon_TRAIN/10Ob15_12x_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hradil als Vorsitzenden sowie die Hofräte Dr. Fellinger, Dr. Hoch, Dr. Schramm und die Hofrätin Dr. Fichtenau als weitere Richter in der Pflegschaftssache der mj Egon Luckow, geboren am 1. August 2011, und des mj Priv.-Doz. Samuel Prestle, geboren am 14. November 2003, beide vertreten durch das Land Wien als Jugendwohlfahrtsträger (Magistrat der Stadt Wien, Amt für Jugend und Familie, Rechtsvertretung, Bezirk 22, 1220 Wien, Kapellenweg 35), wegen Unterhaltsvorschuss, über den Revisionsrekurs der Minderjährigen gegen den Beschluss des Landesgerichts für Zivilrechtssachen Wien als Rekursgericht vom 20. Jänner 2012, GZ 45 R 29/12s, 45 R 30/12p-16, womit infolge Rekurses des Bundes, vertreten durch den Präsidenten des Oberlandesgerichts Wien, die Beschlüsse des Bezirksgerichts Donaustadt jeweils vom 25. Oktober 2011, GZ 17 PU 193/11k-4 und -5, abgeändert wurden, den Beschluss gefasst:  Spruch Dem Revisionsrekurs wird Folge gegeben.
@@ -506,7 +520,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hradil als Vor
 - `Priv.-Doz. Samuel Prestle` (person)
 - `Magistrat der Stadt Wien` (organisation)
 
-**Example 2** (doc_id: `deanon_TRAIN/1Ob179_12y`) (sent_id: `deanon_TRAIN/1Ob179_12y_3`)
+**Example 3** (doc_id: `deanon_TRAIN/1Ob179_12y`) (sent_id: `deanon_TRAIN/1Ob179_12y_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Hon.-Prof. Dr. Sailer als Vorsitzenden sowie die Hofräte Univ.-Prof. Dr. Bydlinski, Dr. Grohmann, Mag. Wurzer und Mag. Dr. Wurdinger als weitere Richter in der Pflegschaftssache des mj Roy Boner, geboren am 13. Juli 2006, vertreten durch Mag. Heinz Wolfbauer, Rechtsanwalt in Wien, wegen Unterhalts, über den Revisionsrekurs des Vaters Dr. Jaroslaw Kellenbrink, gegen den Beschluss des Landesgerichts für Zivilrechtssachen Wien als Rekursgericht vom 29. Mai 2012, GZ 43 R 254/12i-106, womit infolge Rekurses des Vaters der Beschluss des Bezirksgerichts Döbling vom 28. März 2012, GZ 10 Pu 131/09b-100, bestätigt wurde, den Beschluss gefasst:  Spruch Der Revisionsrekurs wird zurückgewiesen.
@@ -519,7 +533,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Hon.-Prof. Dr. Sai
 
 - `Dr. Jaroslaw Kellenbrink` (person)
 
-**Example 3** (doc_id: `deanon_TRAIN/1Ob34_20m`) (sent_id: `deanon_TRAIN/1Ob34_20m_3`)
+**Example 4** (doc_id: `deanon_TRAIN/1Ob34_20m`) (sent_id: `deanon_TRAIN/1Ob34_20m_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Univ.-Prof. Dr. Bydlinski als Vorsitzenden sowie die Hofräte und die Hofrätin Mag. Wurzer, Mag. Dr. Wurdinger, Dr. Hofer-Zeni-Rennhofer und Dr. Parzmayr als weitere Richter in der Pflegschaftssache der mj Jaden Abbenzeller, geboren am 30. März 2004, wegen Unterhalts, über den Revisionsrekurs des Kindes, vertreten durch das Land Niederösterreich (Kinder- und Jugendhilfeträger), gegen den Beschluss des Landesgerichts Wiener Neustadt als Rekursgericht vom 1. Oktober 2019, GZ 16 R 284/19g-102, mit dem der Beschluss des Bezirksgerichts Mödling vom 2. August 2019, GZ 2 Pu 193/14y-97, bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Der Akt wird dem Erstgericht zurückgestellt.
@@ -533,7 +547,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Univ.-Prof. Dr. By
 - `30. März` (date)
 - `Bezirksgerichts Mödling` (organisation)
 
-**Example 4** (doc_id: `deanon_TRAIN/1Ob43_20k`) (sent_id: `deanon_TRAIN/1Ob43_20k_3`)
+**Example 5** (doc_id: `deanon_TRAIN/1Ob43_20k`) (sent_id: `deanon_TRAIN/1Ob43_20k_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Univ.-Prof. Dr. Bydlinski als Vorsitzenden sowie die Hofräte und die Hofrätin Mag. Wurzer, Mag. Dr. Wurdinger, Dr. Hofer-Zeni-Rennhofer und Dr. Parzmayr als weitere Richter in der Pflegschaftssache des mj Sulamith Behne, geboren am 18. August 2005, wegen Unterhalts, über den Revisionsrekurs des Kindes, vertreten durch das Land Niederösterreich (Kinder- und Jugendhilfeträger), gegen den Beschluss des Landesgerichts Wiener Neustadt als Rekursgericht vom 3. Juni 2019, GZ 16 R 156/19h-51, mit dem der Beschluss des Bezirksgerichts Mödling vom 9. April 2019, GZ 13 Pu 27/14t-44, abgeändert wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Der Akt wird dem Erstgericht zurückgestellt.
@@ -547,7 +561,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Univ.-Prof. Dr. By
 - `18. August` (date)
 - `Bezirksgerichts Mödling` (organisation)
 
-**Example 5** (doc_id: `deanon_TRAIN/1Ob60_22p`) (sent_id: `deanon_TRAIN/1Ob60_22p_3`)
+**Example 6** (doc_id: `deanon_TRAIN/1Ob60_22p`) (sent_id: `deanon_TRAIN/1Ob60_22p_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Univ.-Prof. Dr. Bydlinski als Vorsitzenden sowie die Hofräte und die Hofrätin Mag. Wurzer, Mag. Dr. Wurdinger, Mag. Wessely-Kristöfel und Dr. Parzmayr als weitere Richter in der Pflegschaftssache des mj Dorothea Sachtleber, geboren am 8. März 2011, über den außerordentlichen Revisionsrekurs der Mutter Scarlett Jähnel, vertreten durch Mag. Elisabeth Mace, Rechtsanwältin in Wien, gegen den Beschluss des Landesgerichts für Zivilrechtssachen Wien als Rekursgericht vom 11. Jänner 2022, GZ 48 R 263/21p-80, mit dem der Beschluss des Bezirksgerichts Floridsdorf vom 25. Oktober 2021, GZ 1 Ps 110/18i-71, bestätigt wurde, den Beschluss gefasst:  Spruch Der außerordentliche Revisionsrekurs wird mangels der Voraussetzungen des § 62 Abs 1 AußStrG zurückgewiesen.
@@ -561,7 +575,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Univ.-Prof. Dr. By
 - `8. März` (date)
 - `Scarlett Jähnel` (person)
 
-**Example 6** (doc_id: `deanon_TRAIN/2Ob189_17h`) (sent_id: `deanon_TRAIN/2Ob189_17h_3`)
+**Example 7** (doc_id: `deanon_TRAIN/2Ob189_17h`) (sent_id: `deanon_TRAIN/2Ob189_17h_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch die Vizepräsidentin Hon.-Prof. Dr. Lovrek als Vorsitzende, die Hofrätinnen und Hofräte Dr. Fichtenau, Dr. Musger, Dr. E. Solé und Dr. Nowotny als weitere Richter in der Pflegschaftssache des mj Rocco Rebehn, geboren am 29. Februar 1960, über den außerordentlichen Revisionsrekurs der Mutter Shakira Lüpping, vertreten durch MMag.
@@ -575,7 +589,22 @@ Kopf Der Oberste Gerichtshof hat durch die Vizepräsidentin Hon.-Prof. Dr. Lovre
 - `29. Februar 1960` (date)
 - `Shakira Lüpping` (person)
 
-**Example 7** (doc_id: `deanon_TRAIN/5Ob106_20d`) (sent_id: `deanon_TRAIN/5Ob106_20d_3`)
+**Example 8** (doc_id: `deanon_TRAIN/3Ob66_11v`) (sent_id: `deanon_TRAIN/3Ob66_11v_3`)
+
+
+Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Hon.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in der Pflegschaftssache der mj Liudmila Sidler, vertreten durch den Jugendwohlfahrtsträger Land Wien, dieser vertreten durch den Magistrat der Stadt Wien, Amt für Jugend und Familie, Wien 2, Karmelitergasse 9, Mutter Liudmila Schlensok, vertreten durch den Sachwalter Dr. Herbert Eisserer, Rechtsanwalt in Wien, Vater Dmitry Schimczik vertreten durch Mag. Wolfgang Maier, Rechtsanwalt in Wien, wegen Übertragung der Obsorge, über den außerordentlichen Revisionsrekurs der Mutter gegen den Beschluss des Landesgerichts St. Pölten als Rekursgericht vom 16. Februar 2011, GZ 23 R 10/11k-171, womit infolge Rekurses des Vaters der Beschluss des Bezirksgerichts Lilienfeld vom 10. November 2010, GZ 1 P 121/09f-S-162, abgeändert wurde, den Beschluss gefasst:  Spruch Der außerordentliche Revisionsrekurs wird mangels der Voraussetzungen des § 62 Abs 1 AußStrG zurückgewiesen.
+
+| Predicted | Gold |
+|---|---|
+| `Liudmila Sidler` | `Liudmila Sidler` |
+
+**Missed by this rule (FN):**
+
+- `Magistrat der Stadt Wien` (organisation)
+- `Schlensok` (person)
+- `Schimczik` (person)
+
+**Example 9** (doc_id: `deanon_TRAIN/5Ob106_20d`) (sent_id: `deanon_TRAIN/5Ob106_20d_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Jensik als Vorsitzenden sowie die Hofrätin Dr. Grohmann und die Hofräte Mag. Wurzer, Mag. Painsi und Dr. Steger als weitere Richter in der Pflegschaftssache der mj Techn R Theobald Danneboom, und Patricia Federschmid, beide vorläufig in Obsorge der Mutter Lukas Nicolay, vertreten durch Mag. Wolfgang Doppelhofer, Rechtsanwalt in Wien, über den außerordentlichen Revisionsrekurs des Vaters Dietmar Fritzner, vertreten durch Dr. Marco Nademleinsky, Rechtsanwalt in Wien, gegen den Beschluss des Landesgerichts für Zivilrechtssachen Wien als Rekursgericht vom 22. April 2020, GZ 42 R 466/19v-138, mit dem der Beschluss des Bezirksgerichts Innere Stadt Wien vom 14. Oktober 2019, GZ 79 Ps 97/16d-121, bestätigt wurde, den Beschluss gefasst:  Spruch Dem außerordentlichen Revisionsrekurs wird teilweise Folge gegeben.
@@ -590,7 +619,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Jensik als Vor
 - `Lukas Nicolay` (person)
 - `Dietmar Fritzner` (person)
 
-**Example 8** (doc_id: `deanon_TRAIN/6Ob182_20p`) (sent_id: `deanon_TRAIN/6Ob182_20p_3`)
+**Example 10** (doc_id: `deanon_TRAIN/6Ob182_20p`) (sent_id: `deanon_TRAIN/6Ob182_20p_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Schramm als Vorsitzenden und die Hofräte Hon.-Prof. Dr. Gitschthaler, Univ.-Prof. Dr. Kodek, Dr. Nowotny sowie die Hofrätin Dr. Faber als weitere Richter in der Pflegschaftssache des Minderjährigen HR Estelle de Clerck, geboren am 18. Juni 2007, 1. Juli 2016, vertreten durch das Land Wien (Stadt Wien Kinder- und Jugendhilfe Rechtsvertretung Bezirk 22, 1220 Wien, Simone-de-Beauvoir-Platz 6) als Kinder- und Jugendhilfeträger, über den Revisionsrekurs des Vaters Mag. Liu Mertoglu, vertreten durch Anwaltssocietät Sattlegger Dorninger Steiner & Partner in Wien, gegen den Beschluss des Landesgerichts für Zivilrechtssachen Wien als Rekursgericht vom 25. Juni 2020, GZ 43 R 237/20a-31, mit dem der Beschluss des Bezirksgerichts Donaustadt vom 21. April 2020, GZ 1 P 135/18y-22, bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Der Revisionsrekurs wirdzurückgewiesen.
@@ -605,7 +634,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Schramm als Vo
 - `1. Juli 2016` (date)
 - `Mag. Liu Mertoglu` (person)
 
-**Example 9** (doc_id: `deanon_TRAIN/7Ob119_18b`) (sent_id: `deanon_TRAIN/7Ob119_18b_4`)
+**Example 11** (doc_id: `deanon_TRAIN/7Ob119_18b`) (sent_id: `deanon_TRAIN/7Ob119_18b_4`)
 
 
 Matzka als weitere Richter in der Pflegschaftssache der Minderjährigen Silke Wieging, geboren am 20. März 2010, 12. September 1996, vertreten durch das Magistrat der Stadt Wien, Amt für Jugend und Familie Rechtsvertretung Bezirke 12, 13, 23, 1230 Wien, Rößlergasse 15, Mutter Fiona Wenzlick, Vater Viola Peiniger, vertreten durch Dr. Tassilo Wallentin LL.M, Rechtsanwalt in Wien, wegen Unterhalt, infolge Revisionsrekurses des Vaters gegen den Beschluss des Landesgerichts für Zivilrechtssachen Wien als Rekursgericht vom 8. Mai 2018, GZ 44 R 104/18x-180, womit der Rekurs des Vaters gegen den Beschluss des Bezirksgerichts Meidling vom 25. Jänner 2018, GZ 1 Pu 73/10b-173, teilweise zurückgewiesen und ihm im Übrigen nicht Folge gegeben wurde, den Beschluss gefasst:  Spruch Die Akten werden dem Erstgericht zurückgestellt.
@@ -622,7 +651,7 @@ Matzka als weitere Richter in der Pflegschaftssache der Minderjährigen Silke Wi
 - `Fiona Wenzlick` (person)
 - `Viola Peiniger` (person)
 
-**Example 10** (doc_id: `deanon_TRAIN/9Ob2_19p`) (sent_id: `deanon_TRAIN/9Ob2_19p_3`)
+**Example 12** (doc_id: `deanon_TRAIN/9Ob2_19p`) (sent_id: `deanon_TRAIN/9Ob2_19p_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsrekursgericht durch den Senatspräsidenten des Obersten Gerichtshofs Dr. Hopf als Vorsitzenden, die Hofrätinnen und Hofräte des Obersten Gerichtshofs Hon.-Prof. Dr. Dehn, Dr. Hargassner, Mag. Korn und Dr. Stefula in der Pflegschaftssache der mj Konrad Achhorner, geboren am 10. Juni 2015, wohnhaft bei der Mutter Mag. Nina Scharfe, vertreten durch Dr. Karin Prutsch ua, Rechtsanwälte in Graz, Vater Prof. Dr. Martin Lüpken, vertreten durch BHF Briefer Hülle Frohner Rechtsanwälte OG in Wien, wegen Unterhalt, über den „außerordentlichen Revisionsrekurs“ der Minderjährigen gegen den Beschluss des Landesgerichts für Zivilrechtssachen Graz als Rekursgericht vom 6. November 2018, GZ 1 R 240/18y-24, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Der Akt wird dem Erstgericht zurückgestellt.
@@ -644,24 +673,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsrekursgericht durch den Senatsprä
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: `deanon_TRAIN/10Nc2_10s`) (sent_id: `deanon_TRAIN/10Nc2_10s_3`)
-
-
-Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Schinko als Vorsitzenden sowie die Hofräte Dr. Fellinger und Dr. Hoch als weitere Richter in der Pflegschaftssache des mj Andreas Wolfgang Spinner, geboren am 8. Juli 2004, und der mj Herta Vanessa Schlichtcroll, geboren am 4. April 2007, wegen Übertragung der Zuständigkeit nach § 111 Abs 2 JN, den Beschluss gefasst:  Spruch Die mit Beschluss des Bezirksgerichts Salzburg vom 9. 9. 2009, AZ 42 PS 56/09a, verfügte Übertragung der Zuständigkeit zur Führung der Pflegschaftssache an das Bezirksgericht Mödling wird genehmigt.
-
-**False Positives:**
-
-- `Andreas Wolfgang Spinner` — partial — gold is substring of pred: `Spinner`
-
-> overlaps gold: 1  |  likely missing annotation: 0
-
-**Gold Entities:**
-
-- `Spinner`(person)
-- `Schlichtcroll`(person)
-- `Bezirksgericht Mödling`(organisation)
-
-**Example 1** (doc_id: `deanon_TRAIN/10Ob28_17s`) (sent_id: `deanon_TRAIN/10Ob28_17s_3`)
+**Example 0** (doc_id: `deanon_TRAIN/10Ob28_17s`) (sent_id: `deanon_TRAIN/10Ob28_17s_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Univ.-Prof. Dr. Neumayr als Vorsitzenden sowie die Hofrätinnen und Hofräte Dr. Schramm, Dr. Fichtenau, Dr. Grohmann und Mag. Ziegelbauer als weitere Richter in der Pflegschaftssache des mj Kindes Jaroslaw Mlynarik, geboren am 1. Juli 2009, wegen Kontaktrechts des Vaters Dr. Eckard Tschernig, vertreten durch Rechtsanwälte Pieler & Pieler & Partner KG in Wien, infolge des außerordentlichen Revisionsrekurses der Mutter Dr. Bettina Makswietat, vertreten durch Kosch & Partner Rechtsanwälte GmbH in Wiener Neustadt, gegen den Beschluss des Landesgerichts Wiener Neustadt als Rekursgericht vom 31. Jänner 2017, GZ 16 R 12/17d-129, mit dem der Beschluss des Bezirksgerichts Wiener Neustadt vom 2. Dezember 2016, GZ 6 Ps 67/16s-122, teilweise bestätigt, teilweise abgeändert und teilweise aufgehoben wurde, den Beschluss gefasst:  Spruch Der Beschluss des Obersten Gerichtshofs vom 13. Juni 2017, AZ 10 Ob 28/17s, wird dahingehend berichtigt, dass die Wortfolge „einschließlich des Auftrags zur Erziehungsberatung“ in Spruchpunkt 2 zweiter Satz sowie auf S 5 dritter Absatz zu entfallen hat.
@@ -678,24 +690,6 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Univ.-Prof. Dr. Ne
 - `1. Juli 2009`(date)
 - `Dr. Eckard Tschernig`(person)
 - `Dr. Bettina Makswietat`(person)
-
-**Example 2** (doc_id: `deanon_TRAIN/3Ob66_11v`) (sent_id: `deanon_TRAIN/3Ob66_11v_3`)
-
-
-Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Hon.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in der Pflegschaftssache der mj Liudmila Sidler, vertreten durch den Jugendwohlfahrtsträger Land Wien, dieser vertreten durch den Magistrat der Stadt Wien, Amt für Jugend und Familie, Wien 2, Karmelitergasse 9, Mutter Liudmila Schlensok, vertreten durch den Sachwalter Dr. Herbert Eisserer, Rechtsanwalt in Wien, Vater Dmitry Schimczik vertreten durch Mag. Wolfgang Maier, Rechtsanwalt in Wien, wegen Übertragung der Obsorge, über den außerordentlichen Revisionsrekurs der Mutter gegen den Beschluss des Landesgerichts St. Pölten als Rekursgericht vom 16. Februar 2011, GZ 23 R 10/11k-171, womit infolge Rekurses des Vaters der Beschluss des Bezirksgerichts Lilienfeld vom 10. November 2010, GZ 1 P 121/09f-S-162, abgeändert wurde, den Beschluss gefasst:  Spruch Der außerordentliche Revisionsrekurs wird mangels der Voraussetzungen des § 62 Abs 1 AußStrG zurückgewiesen.
-
-**False Positives:**
-
-- `Liudmila Sidler` — partial — gold is substring of pred: `Sidler`
-
-> overlaps gold: 1  |  likely missing annotation: 0
-
-**Gold Entities:**
-
-- `Sidler`(person)
-- `Magistrat der Stadt Wien`(organisation)
-- `Schlensok`(person)
-- `Schimczik`(person)
 
 </details>
 
@@ -16040,7 +16034,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch die Vizepräsidentin
 
 ## `Guardianship_Minor`
 
-**F1:** 0.016 | **Precision:** 0.786 | **Recall:** 0.008  
+**F1:** 0.019 | **Precision:** 0.929 | **Recall:** 0.009  
 
 **Format:** `regex`  
 **Rule ID:** `4e2eb5c0`  
@@ -16057,13 +16051,13 @@ Captures names of minors in guardianship cases, capturing the full name.
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.786 | 0.008 | 0.016 | 14 | 11 | 3 |
+| 0.929 | 0.009 | 0.019 | 14 | 13 | 1 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `person` | 11 | 3 | 1364 |
+| `person` | 13 | 1 | 1362 |
 
 </details>
 
@@ -16089,7 +16083,21 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Schinko als Vo
 - `Bezirksgericht Neunkirchen` (organisation)
 - `Bezirksgericht Neunkirchen` (organisation)
 
-**Example 1** (doc_id: `deanon_TRAIN/10Ob15_12x`) (sent_id: `deanon_TRAIN/10Ob15_12x_3`)
+**Example 1** (doc_id: `deanon_TRAIN/10Nc2_10s`) (sent_id: `deanon_TRAIN/10Nc2_10s_3`)
+
+
+Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Schinko als Vorsitzenden sowie die Hofräte Dr. Fellinger und Dr. Hoch als weitere Richter in der Pflegschaftssache des mj Andreas Wolfgang Spinner, geboren am 8. Juli 2004, und der mj Herta Vanessa Schlichtcroll, geboren am 4. April 2007, wegen Übertragung der Zuständigkeit nach § 111 Abs 2 JN, den Beschluss gefasst:  Spruch Die mit Beschluss des Bezirksgerichts Salzburg vom 9. 9. 2009, AZ 42 PS 56/09a, verfügte Übertragung der Zuständigkeit zur Führung der Pflegschaftssache an das Bezirksgericht Mödling wird genehmigt.
+
+| Predicted | Gold |
+|---|---|
+| `Andreas Wolfgang Spinner` | `Andreas Wolfgang Spinner` |
+
+**Missed by this rule (FN):**
+
+- `Schlichtcroll` (person)
+- `Bezirksgericht Mödling` (organisation)
+
+**Example 2** (doc_id: `deanon_TRAIN/10Ob15_12x`) (sent_id: `deanon_TRAIN/10Ob15_12x_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hradil als Vorsitzenden sowie die Hofräte Dr. Fellinger, Dr. Hoch, Dr. Schramm und die Hofrätin Dr. Fichtenau als weitere Richter in der Pflegschaftssache der mj Egon Luckow, geboren am 1. August 2011, und des mj Priv.-Doz. Samuel Prestle, geboren am 14. November 2003, beide vertreten durch das Land Wien als Jugendwohlfahrtsträger (Magistrat der Stadt Wien, Amt für Jugend und Familie, Rechtsvertretung, Bezirk 22, 1220 Wien, Kapellenweg 35), wegen Unterhaltsvorschuss, über den Revisionsrekurs der Minderjährigen gegen den Beschluss des Landesgerichts für Zivilrechtssachen Wien als Rekursgericht vom 20. Jänner 2012, GZ 45 R 29/12s, 45 R 30/12p-16, womit infolge Rekurses des Bundes, vertreten durch den Präsidenten des Oberlandesgerichts Wien, die Beschlüsse des Bezirksgerichts Donaustadt jeweils vom 25. Oktober 2011, GZ 17 PU 193/11k-4 und -5, abgeändert wurden, den Beschluss gefasst:  Spruch Dem Revisionsrekurs wird Folge gegeben.
@@ -16103,7 +16111,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hradil als Vor
 - `Priv.-Doz. Samuel Prestle` (person)
 - `Magistrat der Stadt Wien` (organisation)
 
-**Example 2** (doc_id: `deanon_TRAIN/1Ob179_12y`) (sent_id: `deanon_TRAIN/1Ob179_12y_3`)
+**Example 3** (doc_id: `deanon_TRAIN/1Ob179_12y`) (sent_id: `deanon_TRAIN/1Ob179_12y_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Hon.-Prof. Dr. Sailer als Vorsitzenden sowie die Hofräte Univ.-Prof. Dr. Bydlinski, Dr. Grohmann, Mag. Wurzer und Mag. Dr. Wurdinger als weitere Richter in der Pflegschaftssache des mj Roy Boner, geboren am 13. Juli 2006, vertreten durch Mag. Heinz Wolfbauer, Rechtsanwalt in Wien, wegen Unterhalts, über den Revisionsrekurs des Vaters Dr. Jaroslaw Kellenbrink, gegen den Beschluss des Landesgerichts für Zivilrechtssachen Wien als Rekursgericht vom 29. Mai 2012, GZ 43 R 254/12i-106, womit infolge Rekurses des Vaters der Beschluss des Bezirksgerichts Döbling vom 28. März 2012, GZ 10 Pu 131/09b-100, bestätigt wurde, den Beschluss gefasst:  Spruch Der Revisionsrekurs wird zurückgewiesen.
@@ -16116,7 +16124,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Hon.-Prof. Dr. Sai
 
 - `Dr. Jaroslaw Kellenbrink` (person)
 
-**Example 3** (doc_id: `deanon_TRAIN/1Ob34_20m`) (sent_id: `deanon_TRAIN/1Ob34_20m_3`)
+**Example 4** (doc_id: `deanon_TRAIN/1Ob34_20m`) (sent_id: `deanon_TRAIN/1Ob34_20m_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Univ.-Prof. Dr. Bydlinski als Vorsitzenden sowie die Hofräte und die Hofrätin Mag. Wurzer, Mag. Dr. Wurdinger, Dr. Hofer-Zeni-Rennhofer und Dr. Parzmayr als weitere Richter in der Pflegschaftssache der mj Jaden Abbenzeller, geboren am 30. März 2004, wegen Unterhalts, über den Revisionsrekurs des Kindes, vertreten durch das Land Niederösterreich (Kinder- und Jugendhilfeträger), gegen den Beschluss des Landesgerichts Wiener Neustadt als Rekursgericht vom 1. Oktober 2019, GZ 16 R 284/19g-102, mit dem der Beschluss des Bezirksgerichts Mödling vom 2. August 2019, GZ 2 Pu 193/14y-97, bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Der Akt wird dem Erstgericht zurückgestellt.
@@ -16130,7 +16138,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Univ.-Prof. Dr. By
 - `30. März` (date)
 - `Bezirksgerichts Mödling` (organisation)
 
-**Example 4** (doc_id: `deanon_TRAIN/1Ob43_20k`) (sent_id: `deanon_TRAIN/1Ob43_20k_3`)
+**Example 5** (doc_id: `deanon_TRAIN/1Ob43_20k`) (sent_id: `deanon_TRAIN/1Ob43_20k_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Univ.-Prof. Dr. Bydlinski als Vorsitzenden sowie die Hofräte und die Hofrätin Mag. Wurzer, Mag. Dr. Wurdinger, Dr. Hofer-Zeni-Rennhofer und Dr. Parzmayr als weitere Richter in der Pflegschaftssache des mj Sulamith Behne, geboren am 18. August 2005, wegen Unterhalts, über den Revisionsrekurs des Kindes, vertreten durch das Land Niederösterreich (Kinder- und Jugendhilfeträger), gegen den Beschluss des Landesgerichts Wiener Neustadt als Rekursgericht vom 3. Juni 2019, GZ 16 R 156/19h-51, mit dem der Beschluss des Bezirksgerichts Mödling vom 9. April 2019, GZ 13 Pu 27/14t-44, abgeändert wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Der Akt wird dem Erstgericht zurückgestellt.
@@ -16144,7 +16152,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Univ.-Prof. Dr. By
 - `18. August` (date)
 - `Bezirksgerichts Mödling` (organisation)
 
-**Example 5** (doc_id: `deanon_TRAIN/1Ob60_22p`) (sent_id: `deanon_TRAIN/1Ob60_22p_3`)
+**Example 6** (doc_id: `deanon_TRAIN/1Ob60_22p`) (sent_id: `deanon_TRAIN/1Ob60_22p_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Univ.-Prof. Dr. Bydlinski als Vorsitzenden sowie die Hofräte und die Hofrätin Mag. Wurzer, Mag. Dr. Wurdinger, Mag. Wessely-Kristöfel und Dr. Parzmayr als weitere Richter in der Pflegschaftssache des mj Dorothea Sachtleber, geboren am 8. März 2011, über den außerordentlichen Revisionsrekurs der Mutter Scarlett Jähnel, vertreten durch Mag. Elisabeth Mace, Rechtsanwältin in Wien, gegen den Beschluss des Landesgerichts für Zivilrechtssachen Wien als Rekursgericht vom 11. Jänner 2022, GZ 48 R 263/21p-80, mit dem der Beschluss des Bezirksgerichts Floridsdorf vom 25. Oktober 2021, GZ 1 Ps 110/18i-71, bestätigt wurde, den Beschluss gefasst:  Spruch Der außerordentliche Revisionsrekurs wird mangels der Voraussetzungen des § 62 Abs 1 AußStrG zurückgewiesen.
@@ -16158,7 +16166,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Univ.-Prof. Dr. By
 - `8. März` (date)
 - `Scarlett Jähnel` (person)
 
-**Example 6** (doc_id: `deanon_TRAIN/2Ob189_17h`) (sent_id: `deanon_TRAIN/2Ob189_17h_3`)
+**Example 7** (doc_id: `deanon_TRAIN/2Ob189_17h`) (sent_id: `deanon_TRAIN/2Ob189_17h_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch die Vizepräsidentin Hon.-Prof. Dr. Lovrek als Vorsitzende, die Hofrätinnen und Hofräte Dr. Fichtenau, Dr. Musger, Dr. E. Solé und Dr. Nowotny als weitere Richter in der Pflegschaftssache des mj Rocco Rebehn, geboren am 29. Februar 1960, über den außerordentlichen Revisionsrekurs der Mutter Shakira Lüpping, vertreten durch MMag.
@@ -16172,7 +16180,22 @@ Kopf Der Oberste Gerichtshof hat durch die Vizepräsidentin Hon.-Prof. Dr. Lovre
 - `29. Februar 1960` (date)
 - `Shakira Lüpping` (person)
 
-**Example 7** (doc_id: `deanon_TRAIN/5Ob106_20d`) (sent_id: `deanon_TRAIN/5Ob106_20d_3`)
+**Example 8** (doc_id: `deanon_TRAIN/3Ob66_11v`) (sent_id: `deanon_TRAIN/3Ob66_11v_3`)
+
+
+Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Hon.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in der Pflegschaftssache der mj Liudmila Sidler, vertreten durch den Jugendwohlfahrtsträger Land Wien, dieser vertreten durch den Magistrat der Stadt Wien, Amt für Jugend und Familie, Wien 2, Karmelitergasse 9, Mutter Liudmila Schlensok, vertreten durch den Sachwalter Dr. Herbert Eisserer, Rechtsanwalt in Wien, Vater Dmitry Schimczik vertreten durch Mag. Wolfgang Maier, Rechtsanwalt in Wien, wegen Übertragung der Obsorge, über den außerordentlichen Revisionsrekurs der Mutter gegen den Beschluss des Landesgerichts St. Pölten als Rekursgericht vom 16. Februar 2011, GZ 23 R 10/11k-171, womit infolge Rekurses des Vaters der Beschluss des Bezirksgerichts Lilienfeld vom 10. November 2010, GZ 1 P 121/09f-S-162, abgeändert wurde, den Beschluss gefasst:  Spruch Der außerordentliche Revisionsrekurs wird mangels der Voraussetzungen des § 62 Abs 1 AußStrG zurückgewiesen.
+
+| Predicted | Gold |
+|---|---|
+| `Liudmila Sidler` | `Liudmila Sidler` |
+
+**Missed by this rule (FN):**
+
+- `Magistrat der Stadt Wien` (organisation)
+- `Schlensok` (person)
+- `Schimczik` (person)
+
+**Example 9** (doc_id: `deanon_TRAIN/5Ob106_20d`) (sent_id: `deanon_TRAIN/5Ob106_20d_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Jensik als Vorsitzenden sowie die Hofrätin Dr. Grohmann und die Hofräte Mag. Wurzer, Mag. Painsi und Dr. Steger als weitere Richter in der Pflegschaftssache der mj Techn R Theobald Danneboom, und Patricia Federschmid, beide vorläufig in Obsorge der Mutter Lukas Nicolay, vertreten durch Mag. Wolfgang Doppelhofer, Rechtsanwalt in Wien, über den außerordentlichen Revisionsrekurs des Vaters Dietmar Fritzner, vertreten durch Dr. Marco Nademleinsky, Rechtsanwalt in Wien, gegen den Beschluss des Landesgerichts für Zivilrechtssachen Wien als Rekursgericht vom 22. April 2020, GZ 42 R 466/19v-138, mit dem der Beschluss des Bezirksgerichts Innere Stadt Wien vom 14. Oktober 2019, GZ 79 Ps 97/16d-121, bestätigt wurde, den Beschluss gefasst:  Spruch Dem außerordentlichen Revisionsrekurs wird teilweise Folge gegeben.
@@ -16187,7 +16210,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Jensik als Vor
 - `Lukas Nicolay` (person)
 - `Dietmar Fritzner` (person)
 
-**Example 8** (doc_id: `deanon_TRAIN/6Ob182_20p`) (sent_id: `deanon_TRAIN/6Ob182_20p_3`)
+**Example 10** (doc_id: `deanon_TRAIN/6Ob182_20p`) (sent_id: `deanon_TRAIN/6Ob182_20p_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Schramm als Vorsitzenden und die Hofräte Hon.-Prof. Dr. Gitschthaler, Univ.-Prof. Dr. Kodek, Dr. Nowotny sowie die Hofrätin Dr. Faber als weitere Richter in der Pflegschaftssache des Minderjährigen HR Estelle de Clerck, geboren am 18. Juni 2007, 1. Juli 2016, vertreten durch das Land Wien (Stadt Wien Kinder- und Jugendhilfe Rechtsvertretung Bezirk 22, 1220 Wien, Simone-de-Beauvoir-Platz 6) als Kinder- und Jugendhilfeträger, über den Revisionsrekurs des Vaters Mag. Liu Mertoglu, vertreten durch Anwaltssocietät Sattlegger Dorninger Steiner & Partner in Wien, gegen den Beschluss des Landesgerichts für Zivilrechtssachen Wien als Rekursgericht vom 25. Juni 2020, GZ 43 R 237/20a-31, mit dem der Beschluss des Bezirksgerichts Donaustadt vom 21. April 2020, GZ 1 P 135/18y-22, bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Der Revisionsrekurs wirdzurückgewiesen.
@@ -16202,7 +16225,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Schramm als Vo
 - `1. Juli 2016` (date)
 - `Mag. Liu Mertoglu` (person)
 
-**Example 9** (doc_id: `deanon_TRAIN/7Ob119_18b`) (sent_id: `deanon_TRAIN/7Ob119_18b_4`)
+**Example 11** (doc_id: `deanon_TRAIN/7Ob119_18b`) (sent_id: `deanon_TRAIN/7Ob119_18b_4`)
 
 
 Matzka als weitere Richter in der Pflegschaftssache der Minderjährigen Silke Wieging, geboren am 20. März 2010, 12. September 1996, vertreten durch das Magistrat der Stadt Wien, Amt für Jugend und Familie Rechtsvertretung Bezirke 12, 13, 23, 1230 Wien, Rößlergasse 15, Mutter Fiona Wenzlick, Vater Viola Peiniger, vertreten durch Dr. Tassilo Wallentin LL.M, Rechtsanwalt in Wien, wegen Unterhalt, infolge Revisionsrekurses des Vaters gegen den Beschluss des Landesgerichts für Zivilrechtssachen Wien als Rekursgericht vom 8. Mai 2018, GZ 44 R 104/18x-180, womit der Rekurs des Vaters gegen den Beschluss des Bezirksgerichts Meidling vom 25. Jänner 2018, GZ 1 Pu 73/10b-173, teilweise zurückgewiesen und ihm im Übrigen nicht Folge gegeben wurde, den Beschluss gefasst:  Spruch Die Akten werden dem Erstgericht zurückgestellt.
@@ -16219,7 +16242,7 @@ Matzka als weitere Richter in der Pflegschaftssache der Minderjährigen Silke Wi
 - `Fiona Wenzlick` (person)
 - `Viola Peiniger` (person)
 
-**Example 10** (doc_id: `deanon_TRAIN/9Ob2_19p`) (sent_id: `deanon_TRAIN/9Ob2_19p_3`)
+**Example 12** (doc_id: `deanon_TRAIN/9Ob2_19p`) (sent_id: `deanon_TRAIN/9Ob2_19p_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsrekursgericht durch den Senatspräsidenten des Obersten Gerichtshofs Dr. Hopf als Vorsitzenden, die Hofrätinnen und Hofräte des Obersten Gerichtshofs Hon.-Prof. Dr. Dehn, Dr. Hargassner, Mag. Korn und Dr. Stefula in der Pflegschaftssache der mj Konrad Achhorner, geboren am 10. Juni 2015, wohnhaft bei der Mutter Mag. Nina Scharfe, vertreten durch Dr. Karin Prutsch ua, Rechtsanwälte in Graz, Vater Prof. Dr. Martin Lüpken, vertreten durch BHF Briefer Hülle Frohner Rechtsanwälte OG in Wien, wegen Unterhalt, über den „außerordentlichen Revisionsrekurs“ der Minderjährigen gegen den Beschluss des Landesgerichts für Zivilrechtssachen Graz als Rekursgericht vom 6. November 2018, GZ 1 R 240/18y-24, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Der Akt wird dem Erstgericht zurückgestellt.
@@ -16241,24 +16264,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsrekursgericht durch den Senatsprä
 <details>
 <summary>⚠️ False Positives</summary>
 
-**Example 0** (doc_id: `deanon_TRAIN/10Nc2_10s`) (sent_id: `deanon_TRAIN/10Nc2_10s_3`)
-
-
-Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Schinko als Vorsitzenden sowie die Hofräte Dr. Fellinger und Dr. Hoch als weitere Richter in der Pflegschaftssache des mj Andreas Wolfgang Spinner, geboren am 8. Juli 2004, und der mj Herta Vanessa Schlichtcroll, geboren am 4. April 2007, wegen Übertragung der Zuständigkeit nach § 111 Abs 2 JN, den Beschluss gefasst:  Spruch Die mit Beschluss des Bezirksgerichts Salzburg vom 9. 9. 2009, AZ 42 PS 56/09a, verfügte Übertragung der Zuständigkeit zur Führung der Pflegschaftssache an das Bezirksgericht Mödling wird genehmigt.
-
-**False Positives:**
-
-- `Andreas Wolfgang Spinner` — partial — gold is substring of pred: `Spinner`
-
-> overlaps gold: 1  |  likely missing annotation: 0
-
-**Gold Entities:**
-
-- `Spinner`(person)
-- `Schlichtcroll`(person)
-- `Bezirksgericht Mödling`(organisation)
-
-**Example 1** (doc_id: `deanon_TRAIN/10Ob28_17s`) (sent_id: `deanon_TRAIN/10Ob28_17s_3`)
+**Example 0** (doc_id: `deanon_TRAIN/10Ob28_17s`) (sent_id: `deanon_TRAIN/10Ob28_17s_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Univ.-Prof. Dr. Neumayr als Vorsitzenden sowie die Hofrätinnen und Hofräte Dr. Schramm, Dr. Fichtenau, Dr. Grohmann und Mag. Ziegelbauer als weitere Richter in der Pflegschaftssache des mj Kindes Jaroslaw Mlynarik, geboren am 1. Juli 2009, wegen Kontaktrechts des Vaters Dr. Eckard Tschernig, vertreten durch Rechtsanwälte Pieler & Pieler & Partner KG in Wien, infolge des außerordentlichen Revisionsrekurses der Mutter Dr. Bettina Makswietat, vertreten durch Kosch & Partner Rechtsanwälte GmbH in Wiener Neustadt, gegen den Beschluss des Landesgerichts Wiener Neustadt als Rekursgericht vom 31. Jänner 2017, GZ 16 R 12/17d-129, mit dem der Beschluss des Bezirksgerichts Wiener Neustadt vom 2. Dezember 2016, GZ 6 Ps 67/16s-122, teilweise bestätigt, teilweise abgeändert und teilweise aufgehoben wurde, den Beschluss gefasst:  Spruch Der Beschluss des Obersten Gerichtshofs vom 13. Juni 2017, AZ 10 Ob 28/17s, wird dahingehend berichtigt, dass die Wortfolge „einschließlich des Auftrags zur Erziehungsberatung“ in Spruchpunkt 2 zweiter Satz sowie auf S 5 dritter Absatz zu entfallen hat.
@@ -16275,24 +16281,6 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Univ.-Prof. Dr. Ne
 - `1. Juli 2009`(date)
 - `Dr. Eckard Tschernig`(person)
 - `Dr. Bettina Makswietat`(person)
-
-**Example 2** (doc_id: `deanon_TRAIN/3Ob66_11v`) (sent_id: `deanon_TRAIN/3Ob66_11v_3`)
-
-
-Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Prückner als Vorsitzenden sowie den Hofrat Hon.-Prof. Dr. Neumayr, die Hofrätin Dr. Lovrek und die Hofräte Dr. Jensik und Dr. Roch als weitere Richter in der Pflegschaftssache der mj Liudmila Sidler, vertreten durch den Jugendwohlfahrtsträger Land Wien, dieser vertreten durch den Magistrat der Stadt Wien, Amt für Jugend und Familie, Wien 2, Karmelitergasse 9, Mutter Liudmila Schlensok, vertreten durch den Sachwalter Dr. Herbert Eisserer, Rechtsanwalt in Wien, Vater Dmitry Schimczik vertreten durch Mag. Wolfgang Maier, Rechtsanwalt in Wien, wegen Übertragung der Obsorge, über den außerordentlichen Revisionsrekurs der Mutter gegen den Beschluss des Landesgerichts St. Pölten als Rekursgericht vom 16. Februar 2011, GZ 23 R 10/11k-171, womit infolge Rekurses des Vaters der Beschluss des Bezirksgerichts Lilienfeld vom 10. November 2010, GZ 1 P 121/09f-S-162, abgeändert wurde, den Beschluss gefasst:  Spruch Der außerordentliche Revisionsrekurs wird mangels der Voraussetzungen des § 62 Abs 1 AußStrG zurückgewiesen.
-
-**False Positives:**
-
-- `Liudmila Sidler` — partial — gold is substring of pred: `Sidler`
-
-> overlaps gold: 1  |  likely missing annotation: 0
-
-**Gold Entities:**
-
-- `Sidler`(person)
-- `Magistrat der Stadt Wien`(organisation)
-- `Schlensok`(person)
-- `Schimczik`(person)
 
 </details>
 
