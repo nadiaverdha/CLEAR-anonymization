@@ -103,8 +103,8 @@ def plot_combined(
     p1_config = phase1_data.get("config", {})
     tr_config = transfer_data.get("config", {})
     model = p1_config.get("model", tr_config.get("model", ""))
-    p1_name = p1_config.get("dataset_name", "Phase 1")
-    tr_name = tr_config.get("dataset_name", "Transfer")
+    p1_name = p1_config.get("train_name", "Phase 1")
+    tr_name = tr_config.get("transfer_name", "manual_findok")
 
     fig, ax = plt.subplots(figsize=(14, 5))
     fig.suptitle(f"Transfer Learning Progression — {model}", fontsize=11)
@@ -195,11 +195,11 @@ def main():
 
     phase1_data = _load(Path(args.results))
     prefix = Path(args.output) if args.output else None
-
+    parent = Path(args.results).parent
     plot_single(
         phase1_data,
         label=f"phase1 ({phase1_data.get('config', {}).get('dataset_name', '')})",
-        output_path=Path("phase1.png"),
+        output_path=Path(f"{parent}/phase1.png"),
     )
 
     if args.transfer:
@@ -208,13 +208,11 @@ def main():
         plot_single(
             transfer_data,
             label=f"transfer ({transfer_data.get('config', {}).get('dataset_name', '')})",
-            output_path=Path(f"transfer.png"),
+            output_path=Path(f"{parent}/transfer.png"),
         )
 
         plot_combined(
-            phase1_data,
-            transfer_data,
-            output_path=Path(f"combined.png") if prefix else None,
+            phase1_data, transfer_data, output_path=Path(f"{parent}/combined.png")
         )
 
 

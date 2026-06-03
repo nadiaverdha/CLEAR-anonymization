@@ -19,7 +19,7 @@ from rulechef.core import (
 from rulechef.evaluation import evaluate_dataset
 from rulechef.executor import RuleExecutor
 
-from benchmarks.util import BenchmarkRun, make_dataset
+from benchmarks.data import BenchmarkRun, make_dataset
 from clear_anonymization.models.nerlearner import NERLearner, NEROutput
 from clear_anonymization.ner_datasets import (
     get_dataset_class_definitions,
@@ -187,7 +187,7 @@ def append_overall_metrics(
             )
 
 
-def _write_rule_detail(f, metric, rules_by_id: dict, top_n_examples: int = 5) -> None:
+def _write_rule_detail(f, metric, rules_by_id: dict, top_n_examples: int = 30) -> None:
     f.write(f"## `{metric.rule_name}`\n\n")
     f.write(
         f"**F1:** {metric.f1:.3f} | "
@@ -331,7 +331,7 @@ def _write_sample_blocks(f, metric, top_n: int):
 
 
 def append_influential_rules(
-    md_path: Path, metrics_list, rules, top_n: int = 5
+    md_path: Path, metrics_list, rules, top_n: int = 10
 ) -> None:
     rules_by_id = {r.id: r for r in rules} if rules else {}
     with_matches = [m for m in metrics_list if m.matches > 5]
@@ -510,6 +510,12 @@ def main():
     test_dataset = make_dataset(f"{args.dataset_name}_eval", test_data, learner.task)
     print(f"Loaded {len(test_data_raw.samples)} test documents")
     print(f"Loaded {len(test_data)} test annotations")
+    gold_count = sum(len(item["entities"]) for item in test_data)
+    print(f"Gold entities in test_data: {gold_count}")
+    person_count = sum(
+        1 for item in test_data for e in item["entities"] if e["type"] == "person"
+    )
+    print(f"Person entities in test_data: {person_count}")
 
     md_path = (
         Path(args.output)
