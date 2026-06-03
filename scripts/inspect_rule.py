@@ -6,10 +6,15 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
+from benchmarks.util import (
+    BenchmarkRun,
+    load_rules_from_json,
+    make_dataset,
+    sample_few_shot,
+)
 from rulechef.core import Rule
 from rulechef.evaluation import evaluate_rules_individually
 
-from benchmarks.util import load_rules_from_json, make_dataset
 from clear_anonymization.models.nerlearner import NERLearner
 from clear_anonymization.ner_datasets import load_ner_dataset_from_conll
 
@@ -51,9 +56,11 @@ def _print_per_sentence(label: str, rows: list[tuple[str, str, str]]) -> None:
     print(f"── {label} ({len(rows)}) ──")
     for sent_id, pred, start, gold in rows:
         if pred == gold:
-            print(f"  [{sent_id}]  {pred}")
+            print(f'"{sent_id}:{gold}:person" \\')
+
         else:
             print(f"  [{sent_id}]  pred: {pred}  →  gold: {gold}")
+
     print()
 
 
@@ -72,24 +79,32 @@ def _extract_gold_from_reason(pred: dict, gold_entities: list[dict]) -> str:
 
 def _print_fp_classified(rows: list[tuple]) -> None:
     """rows: (sent_id, pred_dict, gold_entities)"""
-    partial: dict[str, str] = {}
-    missing: list[str] = []
+    partial: list[tuple[str, str, str]] = []
+    missing: list[tuple[str, str]] = []
 
-    for _sent_id, pred_dict, gold_entities in rows:
+    for sent_id, pred_dict, gold_entities in rows:
         reason = _classify_fp(pred_dict, gold_entities)
         if reason == "truefp":
-            partial[pred_dict["text"]] = _extract_gold_from_reason(
-                pred_dict, gold_entities
+            partial.append(
+                (
+                    sent_id,
+                    pred_dict["text"],
+                    _extract_gold_from_reason(pred_dict, gold_entities),
+                )
             )
         else:
-            missing.append(pred_dict["text"])
+            missing.append((sent_id, pred_dict["text"]))
 
+    #  print(
+    #     f"── FP partial ({len(partial)}): {chr(10).join(repr(s) + ' ' + repr(t) + ' → ' + repr(g) for s, t, g in sorted(partial))}"
+    # )
     print(
-        f"── FP partial ({len(partial)}): {'\n'.join(repr(t) + ' → ' + repr(g) for t, g in sorted(partial.items()))}"
+        f"── FP partial ({len(partial)}): "
+        f"{chr(10).join(f'"{s}:{t}:person" \\' for s, t, g in sorted(partial))}"
     )
     print()
     print(
-        f"── FP missing annotation ({len(missing)}): {'\n '.join(repr(t) for t in sorted(missing))}"
+        f"── FP missing annotation ({len(missing)}): {chr(10).join(repr(s) + ' ' + repr(t) for s, t in sorted(missing))}"
     )
     print()
 
@@ -102,6 +117,12 @@ def main() -> None:
     parser.add_argument(
         "--test-dir", required=True, help="Path to test CoNLL data directory"
     )
+    parser.add_argument(
+        "--test-name",
+        required=False,
+        default="test",
+        help="Path to test CoNLL data directory",
+    )
     parser.add_argument("--rule-id", required=True, help="Rule Id")
     parser.add_argument("--dataset-name", default="findok")
     parser.add_argument("--max-samples", type=int, default=500)
@@ -111,12 +132,12 @@ def main() -> None:
     rules = load_rules_from_json(args.rules_json)
     matched = [r for r in rules if args.rule_id in r.id]
     if not matched:
-        print(f"No rule matching '{args.rule_name}'. Available rules:")
+        print(f"No rule matching '{args.rule_id}'. Available rules:")
         for r in rules:
             print(f"  {r.name}")
         sys.exit(1)
     if len(matched) > 1:
-        print(f"Multiple rules match '{args.rule_name}':")
+        print(f"Multiple rules match '{args.rule_id}':")
         for r in matched:
             print(f"  {r.name}")
         print("Refine --rule-name to match exactly one.")
@@ -141,19 +162,28 @@ def main() -> None:
         synthesis_strategy=config.get("synthesis_strategy"),
         selected_classes=config.get("selected_classes", ["organisation"]),
     )
-
-    # Load test data
     test_raw = load_ner_dataset_from_conll(args.test_dir)
-    test_data = [
-        {
-            "text": sent.text,
-            "entities": sent.labels,
-            "sent_id": sent.sent_id,
-            "doc_id": s.doc_id,
-        }
-        for s in test_raw.samples
-        for sent in s.sentences
-    ]
+    if args.test_name == "eval":
+        test_data = sample_few_shot(
+            train_data=test_raw.samples,
+            seed=config["seed"],
+            num_classes=1,
+            classes=config["selected_classes"],
+            pool_size=config["pool_size"],
+            train_ratio=config["train_ratio"],
+        )[1]
+    else:
+        # Load test data
+        test_data = [
+            {
+                "text": sent.text,
+                "entities": sent.labels,
+                "sent_id": sent.sent_id,
+                "doc_id": s.doc_id,
+            }
+            for s in test_raw.samples
+            for sent in s.sentences
+        ]
     test_dataset = make_dataset(f"{args.dataset_name}_eval", test_data, learner.task)
     print(
         f"Loaded {len(test_data)} sentences from {len(test_raw.samples)} documents.\n"
