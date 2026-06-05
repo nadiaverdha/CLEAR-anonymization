@@ -10,7 +10,7 @@ from rulechef.core import Dataset
 
 from benchmarks.data import BenchmarkRun, DataSplit, load_human_feedback, make_dataset
 from benchmarks.io import save_checkpoint, serialize_rules
-from benchmarks.reporting import evaluate_test, make_oniteration_callback
+from benchmarks.reporting import eval_metrics, evaluate_test, make_oniteration_callback
 from clear_anonymization.models.nerlearner import NERLearner
 
 CHECKPOINT_FILE = "checkpoint.json"
@@ -93,24 +93,7 @@ class SynthesisStep(Step):
             rules_snapshot.append({"batch": batch_idx, "rules": serialize_rules(rules)})
             result, _ = evaluate_test(ctx.dev_dataset, rules, ctx.learner)
             batch_metrics.append(
-                {
-                    "batch": batch_idx,
-                    "num_rules": len(rules),
-                    "exact_match": result.exact_match,
-                    "micro_f1": result.micro_f1,
-                    "micro_precision": result.micro_precision,
-                    "micro_recall": result.micro_recall,
-                    "macro_f1": result.macro_f1,
-                    "per_class": [
-                        {
-                            "label": cm.label,
-                            "f1": cm.f1,
-                            "precision": cm.precision,
-                            "recall": cm.recall,
-                        }
-                        for cm in (result.per_class or [])
-                    ],
-                }
+                {"batch": batch_idx, "num_rules": len(rules), **eval_metrics(result)}
             )
             if result.micro_f1 > best["f1"]:
                 best["f1"] = result.micro_f1
@@ -258,9 +241,6 @@ class EvaluationStep(Step):
     def run(self, ctx: StepContext) -> StepContext:
         eval_results, t_eval = evaluate_test(ctx.dev_dataset, ctx.rules, ctx.learner)
         return replace(ctx, eval_results=eval_results, t_eval=t_eval)
-
-
-CHECKPOINT_FILE = "checkpoint.json"
 
 
 def build_context(

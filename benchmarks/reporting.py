@@ -5,6 +5,25 @@ from rulechef.evaluation import evaluate_dataset
 from benchmarks.data import BenchmarkRun
 
 
+def eval_metrics(result) -> dict:
+    return {
+        "exact_match": result.exact_match,
+        "micro_f1": result.micro_f1,
+        "micro_precision": result.micro_precision,
+        "micro_recall": result.micro_recall,
+        "macro_f1": result.macro_f1,
+        "per_class": [
+            {
+                "label": cm.label,
+                "f1": cm.f1,
+                "precision": cm.precision,
+                "recall": cm.recall,
+            }
+            for cm in (result.per_class or [])
+        ],
+    }
+
+
 def make_oniteration_callback(iteration_metrics: list):
     """
     Returns a callback function suitable for RuleChef's iteration_callback.
@@ -16,20 +35,7 @@ def make_oniteration_callback(iteration_metrics: list):
             {
                 "iteration": iteration,
                 "num_rules": len(iter_rules),
-                "exact_match": eval_result.exact_match,
-                "micro_precision": eval_result.micro_precision,
-                "micro_recall": eval_result.micro_recall,
-                "micro_f1": eval_result.micro_f1,
-                "macro_f1": eval_result.macro_f1,
-                "per_class": [
-                    {
-                        "label": cm.label,
-                        "f1": cm.f1,
-                        "precision": cm.precision,
-                        "recall": cm.recall,
-                    }
-                    for cm in (eval_result.per_class or [])
-                ],
+                **eval_metrics(eval_result),
             }
         )
 

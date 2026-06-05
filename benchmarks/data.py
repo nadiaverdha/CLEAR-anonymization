@@ -1,6 +1,4 @@
 import json
-import tempfile
-import time
 import uuid
 from dataclasses import dataclass, field
 from datetime import datetime
@@ -9,7 +7,6 @@ from typing import Any
 
 import yaml
 from rulechef.core import Correction, Dataset, Example, Feedback, Rule, RuleFormat
-from rulechef.evaluation import evaluate_dataset, evaluate_rules_individually
 from rulechef.training_logger import TrainingDataLogger
 
 from clear_anonymization.ner_datasets import load_ner_dataset_from_conll
