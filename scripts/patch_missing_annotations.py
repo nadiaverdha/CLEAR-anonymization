@@ -1,5 +1,6 @@
 import argparse
 import json
+import re
 from pathlib import Path
 from types import SimpleNamespace
 
@@ -17,9 +18,11 @@ def _parse_misc(misc):
     return {p.split("=")[0]: p.split("=")[1] for p in misc.split("|") if "=" in p}
 
 
-def _set_ner_in_misc(misc, new_ner):
-    parts = misc.split("|")
-    if any(p.startswith("NER=") and not p.startswith("NER=O") for p in parts):
+def _set_ner_in_misc(misc, new_ner, force=False):
+    parts = misc.split("|") if misc and misc != "_" else []
+    if not force and any(
+        p.startswith("NER=") and not p.startswith("NER=O") for p in parts
+    ):
         return misc
     updated = [f"NER={new_ner}" if p.startswith("NER=") else p for p in parts]
     if not any(p.startswith("NER=") for p in parts):
@@ -27,12 +30,61 @@ def _set_ner_in_misc(misc, new_ner):
     return "|".join(updated)
 
 
-def _force_set_ner_in_misc(misc, new_ner):
-    parts = misc.split("|") if misc and misc != "_" else []
-    updated = [f"NER={new_ner}" if p.startswith("NER=") else p for p in parts]
-    if not any(p.startswith("NER=") for p in parts):
-        updated.append(f"NER={new_ner}")
-    return "|".join(updated)
+def _token_spans(sent):
+    """Tokens with their (start_char, end_char) offsets, in document order."""
+    spans = []
+    for tok in sent.tokens:
+        m = _parse_misc(tok.get("misc", "_"))
+        if "SentStart" in m and "SentEnd" in m:
+            spans.append((int(m["SentStart"]), int(m["SentEnd"]), tok))
+    return spans
+
+
+def _find_all(text, pattern):
+    """Yield (start, end) for every (possibly overlapping) occurrence of pattern in text."""
+    start = 0
+    while True:
+        idx = text.find(pattern, start)
+        if idx == -1:
+            return
+        yield idx, idx + len(pattern)
+        start = idx + 1
+
+
+def _tag_pattern_span(
+    sent, ps, pe, entity_type, force=False, drop_overlaps=False, skip_existing=False
+):
+    """Tag tokens overlapping [ps, pe) with entity_type and return the updated
+    labels list (or None if skip_existing and [ps, pe) is already annotated).
+
+    force: overwrite existing non-O NER tags on overlapping tokens.
+    drop_overlaps: remove any existing labels overlapping [ps, pe) from sent.labels.
+    entity_type="O" clears NER on overlapping tokens instead of tagging.
+    """
+    gold = list(sent.labels or [])
+    if skip_existing and (ps, pe) in {(l["start"], l["end"]) for l in gold}:
+        return None
+    if drop_overlaps:
+        gold = [l for l in gold if not (l["start"] < pe and l["end"] > ps)]
+
+    is_remove = entity_type.upper() == "O"
+    for ts, te, tok in _token_spans(sent):
+        if is_remove:
+            if ts < pe and te > ps:
+                tok["misc"] = _set_ner_in_misc(tok["misc"], "O", force=True)
+            continue
+        tok_ns = SimpleNamespace(start_char=ts, end_char=te)
+        new_tag = assign_bio_tag(
+            tok_ns, [{"start": ps, "end": pe, "type": entity_type}]
+        )
+        if new_tag != "O":
+            tok["misc"] = _set_ner_in_misc(tok["misc"], new_tag, force=force)
+
+    if is_remove:
+        return gold
+    return gold + [
+        {"text": sent.text[ps:pe], "type": entity_type, "start": ps, "end": pe}
+    ]
 
 
 def main():
@@ -77,31 +129,9 @@ def main():
     )
     args = parser.parse_args()
 
-    text_patterns = []
-    for p in args.patterns:
-        if ":" not in p:
-            raise ValueError(f"Pattern '{p}' must be in format 'text:type'")
-        text, etype = p.rsplit(":", 1)
-        text_patterns.append((text.strip(), etype.strip()))
-    print(text_patterns)
-    corrections = []
-    for c in args.corrections:
-        parts = c.split(":", 2)
-        if len(parts) != 3:
-            raise ValueError(
-                f"Correction '{c}' must be in format 'sent_id:text:new_type'"
-            )
-        sent_id, text, new_type = parts
-        corrections.append((sent_id.strip(), text.strip(), new_type.strip()))
+    data = load_ner_dataset_from_conll(args.data_dir)
 
-    extend_prev_patterns = []
-    for p in args.extend_prev:
-        parts = p.split(":", 2)
-        if len(parts) != 3:
-            raise ValueError(f"extend-prev '{p}' must be in format 'sent_id:text:type'")
-        sent_id, text, etype = parts
-        extend_prev_patterns.append((sent_id.strip(), text.strip(), etype.strip()))
-
+    # ────── Add new annotation based on rule predictions ──────
     rules = []
     for rules_path in args.rules_json:
         saved = json.loads(Path(rules_path).read_text())
@@ -117,9 +147,6 @@ def main():
             )
             for r in saved["rules"]
         ]
-
-    data = load_ner_dataset_from_conll(args.data_dir)
-
     executor = RuleExecutor()
 
     for s in data.samples if rules else []:
@@ -127,7 +154,6 @@ def main():
             if not sent.text:
                 continue
             result = executor.apply_rules(rules, {"text": sent.text}, TaskType.NER)
-            # predictions = result.get("entities", [])
             predictions = sorted(
                 result.get("entities", []),
                 key=lambda p: int(p["end"]) - int(p["start"]),
@@ -136,83 +162,56 @@ def main():
             if not predictions:
                 continue
             gold = list(sent.labels or [])
-            for tok in sent.tokens:
-                m = _parse_misc(tok.get("misc", "_"))
             for pred in predictions:
                 reason = _classify_fp(pred, gold)
-
                 if not reason.startswith("no gold match"):
                     continue
-                print(
-                    f"  PRED: '{pred.get('text')}' [{pred.get('start')}:{pred.get('end')}] → {reason}"
-                )
                 entity_type = pred.get("type")
-                ps, pe = int(pred["start"]), int(pred["end"])
                 if not entity_type:
                     continue
-                for tok in sent.tokens:
-                    m = _parse_misc(tok.get("misc", "_"))
-                    if "SentStart" not in m or "SentEnd" not in m:
-                        continue
-                    tok_ns = SimpleNamespace(
-                        start_char=int(m["SentStart"]), end_char=int(m["SentEnd"])
-                    )
-                    new_tag = assign_bio_tag(
-                        tok_ns, [{"start": ps, "end": pe, "type": entity_type}]
-                    )
-                    if new_tag != "O":
-                        print("----------------------------------------------")
-                        print(sent.sent_id)
-                        tok["misc"] = _set_ner_in_misc(tok["misc"], new_tag)
-                        print(f"    TAGGED: '{tok['text']}' → {new_tag}")
-                gold.append(
-                    {"text": pred["text"], "type": entity_type, "start": ps, "end": pe}
-                )
-            sent.labels = gold
+                ps, pe = int(pred["start"]), int(pred["end"])
+                print(f"  PRED: '{pred.get('text')}' [{ps}:{pe}] → {reason}")
+                gold = _tag_pattern_span(sent, ps, pe, entity_type)
+                sent.labels = gold
+                print(f"  TAGGED [{sent.sent_id}]: '{pred['text']}' → {entity_type}")
 
+    # ────── Add new annotations based on given pattern ──────
+    text_patterns = []
+    for p in args.patterns:
+        if ":" not in p:
+            raise ValueError(f"Pattern '{p}' must be in format 'text:type'")
+        text, etype = p.rsplit(":", 1)
+        text_patterns.append((text.strip(), etype.strip()))
+    print(text_patterns)
     pattern_count = 0
     for s in data.samples:
         for sent in s.sentences:
             if not sent.text:
                 continue
             for pattern_text, entity_type in text_patterns:
-                start = 0
-                while True:
-                    idx = sent.text.find(pattern_text, start)
-                    if idx == -1:
-                        break
-                    ps, pe = idx, idx + len(pattern_text)
-                    gold = list(sent.labels or [])
-                    gold_spans = {(l["start"], l["end"]) for l in gold}
-                    if (ps, pe) not in gold_spans:
-                        for tok in sent.tokens:
-                            m = _parse_misc(tok.get("misc", "_"))
-                            if "SentStart" not in m or "SentEnd" not in m:
-                                continue
-                            tok_ns = SimpleNamespace(
-                                start_char=int(m["SentStart"]),
-                                end_char=int(m["SentEnd"]),
-                            )
-                            new_tag = assign_bio_tag(
-                                tok_ns, [{"start": ps, "end": pe, "type": entity_type}]
-                            )
-                            if new_tag != "O":
-                                tok["misc"] = _set_ner_in_misc(tok["misc"], new_tag)
-                        sent.labels = gold + [
-                            {
-                                "text": pattern_text,
-                                "type": entity_type,
-                                "start": ps,
-                                "end": pe,
-                            }
-                        ]
+                for ps, pe in _find_all(sent.text, pattern_text):
+                    new_labels = _tag_pattern_span(
+                        sent, ps, pe, entity_type, skip_existing=True
+                    )
+                    if new_labels is not None:
+                        sent.labels = new_labels
                         print(
                             f"  PATTERN: '{pattern_text}' [{ps}:{pe}] → {entity_type} in [{sent.sent_id}]"
                         )
                         pattern_count += 1
-                    start = idx + 1
     if text_patterns:
         print(f"Pattern annotations added: {pattern_count}")
+
+    # ────── Adapt annotations based correction suggestions ──────
+    corrections = []
+    for c in args.corrections:
+        parts = c.split(":", 2)
+        if len(parts) != 3:
+            raise ValueError(
+                f"Correction '{c}' must be in format 'sent_id:text:new_type'"
+            )
+        sent_id, text, new_type = parts
+        corrections.append((sent_id.strip(), text.strip(), new_type.strip()))
 
     correction_count = 0
     sent_index = {sent.sent_id: sent for s in data.samples for sent in s.sentences}
@@ -226,51 +225,25 @@ def main():
             continue
         if not sent.text:
             continue
-        start = 0
-        while True:
-            idx = sent.text.find(pattern_text, start)
-            if idx == -1:
-                break
-            ps, pe = idx, idx + len(pattern_text)
-            gold = [
-                l
-                for l in (sent.labels or [])
-                if not (l["start"] < pe and l["end"] > ps)
-            ]
-            for tok in sent.tokens:
-                m = _parse_misc(tok.get("misc", "_"))
-                print(
-                    f"  Checking token '{tok['text']}' [{m.get('SentStart')}:{m.get('SentEnd')}] against pattern '{pattern_text}' [{ps}:{pe}]"
-                )
-                if "SentStart" not in m or "SentEnd" not in m:
-                    continue
-                tok_ns = SimpleNamespace(
-                    start_char=int(m["SentStart"]), end_char=int(m["SentEnd"])
-                )
-                print(tok_ns, ps, pe)
-                if new_type.upper() == "O":
-                    tok["misc"] = _force_set_ner_in_misc(tok.get("misc", "_"), "O")
-                else:
-                    new_tag = assign_bio_tag(
-                        tok_ns, [{"start": ps, "end": pe, "type": new_type}]
-                    )
-                    if new_tag != "O":
-                        tok["misc"] = _force_set_ner_in_misc(
-                            tok.get("misc", "_"), new_tag
-                        )
-            if new_type.upper() != "O":
-                gold.append(
-                    {"text": pattern_text, "type": new_type, "start": ps, "end": pe}
-                )
-            sent.labels = gold
+        for ps, pe in _find_all(sent.text, pattern_text):
+            sent.labels = _tag_pattern_span(
+                sent, ps, pe, new_type, force=True, drop_overlaps=True
+            )
             print(
                 f"  CORRECTION: '{pattern_text}' [{ps}:{pe}] → {new_type} in [{sent_id}]"
             )
             correction_count += 1
-            start = idx + 1
     if corrections:
         print(f"Corrections applied: {correction_count}")
 
+    # ────── Extend annotations to the previous word of a word given ──────
+    extend_prev_patterns = []
+    for p in args.extend_prev:
+        parts = p.split(":", 2)
+        if len(parts) != 3:
+            raise ValueError(f"extend-prev '{p}' must be in format 'sent_id:text:type'")
+        sent_id, text, etype = parts
+        extend_prev_patterns.append((sent_id.strip(), text.strip(), etype.strip()))
     extend_prev_count = 0
     for sent_id, pattern_text, entity_type in extend_prev_patterns:
         sent = sent_index.get(sent_id)
@@ -279,20 +252,8 @@ def main():
             continue
         if not sent.text:
             continue
-        start = 0
-        while True:
-            idx = sent.text.find(pattern_text, start)
-            if idx == -1:
-                break
-            ps, pe = idx, idx + len(pattern_text)
-
-            # collect tokens with char offsets
-            tok_spans = []
-            for tok in sent.tokens:
-                m = _parse_misc(tok.get("misc", "_"))
-                if "SentStart" in m and "SentEnd" in m:
-                    tok_spans.append((int(m["SentStart"]), int(m["SentEnd"]), tok))
-
+        for ps, pe in _find_all(sent.text, pattern_text):
+            tok_spans = _token_spans(sent)
             matched = [
                 i for i, (ts, te, _) in enumerate(tok_spans) if ts < pe and te > ps
             ]
@@ -300,40 +261,19 @@ def main():
                 print(
                     f"  EXTEND-PREV WARNING: no previous token found for '{pattern_text}' in [{sent_id}]"
                 )
-                start = idx + 1
                 continue
 
             new_ps = tok_spans[matched[0] - 1][0]
             new_pe = pe
             full_text = sent.text[new_ps:new_pe]
 
-            # remove any overlapping labels and force-retag the expanded span
-            gold = [
-                l
-                for l in (sent.labels or [])
-                if not (l["start"] < new_pe and l["end"] > new_ps)
-            ]
-            for tok in sent.tokens:
-                m = _parse_misc(tok.get("misc", "_"))
-                if "SentStart" not in m or "SentEnd" not in m:
-                    continue
-                tok_ns = SimpleNamespace(
-                    start_char=int(m["SentStart"]), end_char=int(m["SentEnd"])
-                )
-                new_tag = assign_bio_tag(
-                    tok_ns, [{"start": new_ps, "end": new_pe, "type": entity_type}]
-                )
-                if new_tag != "O":
-                    tok["misc"] = _force_set_ner_in_misc(tok.get("misc", "_"), new_tag)
-            gold.append(
-                {"text": full_text, "type": entity_type, "start": new_ps, "end": new_pe}
+            sent.labels = _tag_pattern_span(
+                sent, new_ps, new_pe, entity_type, force=True, drop_overlaps=True
             )
-            sent.labels = gold
             print(
                 f"  EXTEND-PREV: '{full_text}' [{new_ps}:{new_pe}] → {entity_type} in [{sent_id}]"
             )
             extend_prev_count += 1
-            start = idx + 1
     if extend_prev_patterns:
         print(f"Extend-prev annotations added: {extend_prev_count}")
 
