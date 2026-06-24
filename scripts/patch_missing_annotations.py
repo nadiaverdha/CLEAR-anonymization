@@ -299,12 +299,12 @@ def main():
     print(f"Written to {out_path}")
 
     _append_changelog(
-        args, out_path, pattern_count, correction_count, extend_prev_count
+        args, out_path, pattern_count, correction_count, extend_prev_count, rules
     )
 
 
 def _append_changelog(
-    args, out_path, pattern_count, correction_count, extend_prev_count
+    args, out_path, pattern_count, correction_count, extend_prev_count, rules
 ):
     changelog = Path(__file__).parent.parent / "data" / "CHANGELOG.md"
     cmd = " \\\n  ".join(["python scripts/patch_missing_annotations.py"] + sys.argv[1:])
@@ -326,10 +326,12 @@ def _append_changelog(
         lines.append(
             f"- {extend_prev_count} extend-prev annotation(s): {', '.join(args.extend_prev)}"
         )
-    if args.rules_json:
-        suffix = f" (IDs: {', '.join(args.rule_id)})" if args.rule_id else ""
-        lines.append(f"- rules applied from: {', '.join(args.rules_json)}{suffix}")
-    if not any([args.patterns, args.corrections, args.extend_prev, args.rules_json]):
+    if rules:
+        lines.append(f"- {len(rules)} rule(s) applied from: {', '.join(args.rules_json)}")
+        for r in rules:
+            lines.append(f"  - `{r.id}` **{r.name}**: `{r.content}`")
+
+    if not any([args.patterns, args.corrections, args.extend_prev, rules]):
         lines.append("- (no changes recorded)")
 
     with changelog.open("a", encoding="utf-8") as f:
