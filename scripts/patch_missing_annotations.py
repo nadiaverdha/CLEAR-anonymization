@@ -1,6 +1,8 @@
 import argparse
 import json
 import re
+import sys
+from datetime import date
 from pathlib import Path
 from types import SimpleNamespace
 
@@ -99,6 +101,13 @@ def main():
         help="Path to results JSON containing rules",
     )
     parser.add_argument(
+        "--rule-id",
+        type=str,
+        nargs="*",
+        default=[],
+        help="Apply only rules with these IDs (from --rules-json)",
+    )
+    parser.add_argument(
         "--data-dir", type=str, required=True, help="Path to data (CONLLU format)"
     )
     parser.add_argument(
@@ -147,6 +156,13 @@ def main():
             )
             for r in saved["rules"]
         ]
+    if args.rule_id:
+        ids = set(args.rule_id)
+        rules = [r for r in rules if r.id in ids]
+        missing = ids - {r.id for r in rules}
+        if missing:
+            print(f"WARNING: rule ID(s) not found: {', '.join(missing)}")
+        print(f"Applying {len(rules)} rule(s): {', '.join(r.id for r in rules)}")
     executor = RuleExecutor()
 
     for s in data.samples if rules else []:
@@ -281,6 +297,44 @@ def main():
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(data.to_conll(), encoding="utf-8")
     print(f"Written to {out_path}")
+
+    _append_changelog(
+        args, out_path, pattern_count, correction_count, extend_prev_count
+    )
+
+
+def _append_changelog(
+    args, out_path, pattern_count, correction_count, extend_prev_count
+):
+    changelog = Path(__file__).parent.parent / "data" / "CHANGELOG.md"
+    cmd = " \\\n  ".join(["python scripts/patch_missing_annotations.py"] + sys.argv[1:])
+
+    lines = [f"\n## {date.today()} — {Path(args.data_dir).name} → {out_path.name}"]
+    lines.append(f"**Input:** `{args.data_dir}`")
+    lines.append(f"**Output:** `{args.output}`")
+    lines.append(f"**Script:**\n```bash\n{cmd}\n```")
+    lines.append("**Changes:**")
+    if args.patterns:
+        lines.append(
+            f"- {pattern_count} pattern annotation(s): {', '.join(args.patterns)}"
+        )
+    if args.corrections:
+        lines.append(
+            f"- {correction_count} correction(s): {', '.join(args.corrections)}"
+        )
+    if args.extend_prev:
+        lines.append(
+            f"- {extend_prev_count} extend-prev annotation(s): {', '.join(args.extend_prev)}"
+        )
+    if args.rules_json:
+        suffix = f" (IDs: {', '.join(args.rule_id)})" if args.rule_id else ""
+        lines.append(f"- rules applied from: {', '.join(args.rules_json)}{suffix}")
+    if not any([args.patterns, args.corrections, args.extend_prev, args.rules_json]):
+        lines.append("- (no changes recorded)")
+
+    with changelog.open("a", encoding="utf-8") as f:
+        f.write("\n".join(lines) + "\n")
+    print(f"Changelog updated: {changelog}")
 
 
 if __name__ == "__main__":
