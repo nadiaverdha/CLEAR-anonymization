@@ -184,9 +184,8 @@ def process_folder(zip_path, folder_name, split, error_file, verbose):
                     json.loads(f.read().decode("utf-8")),
                     key=lambda x: x["startPage"],
                 )
-        except:
+        except Exception:
             annotations = None
-
     annotated, labels, full_text = create_sample(
         folder_name, pages, annotations, split, error_file, verbose
     )
@@ -258,13 +257,15 @@ def main():
 
     print(f"Resuming: {len(processed)} already processed")
 
-    with open(output_path, "a", encoding="utf-8") as out_f, open(
-        progress_path, "a", encoding="utf-8"
-    ) as prog_f:
+    with (
+        open(output_path, "a", encoding="utf-8") as out_f,
+        open(progress_path, "a", encoding="utf-8") as prog_f,
+    ):
         for zip_path in args.input_path:
             folders = list_folders(zip_path)
 
             for i, folder in enumerate(folders):
+                print(i)
                 if folder in processed:
                     continue
 

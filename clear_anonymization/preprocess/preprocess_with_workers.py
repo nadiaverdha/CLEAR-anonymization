@@ -1,4 +1,5 @@
 import os
+
 os.environ["OMP_NUM_THREADS"] = "1"
 os.environ["MKL_NUM_THREADS"] = "1"
 os.environ["OPENBLAS_NUM_THREADS"] = "1"
@@ -7,11 +8,11 @@ import argparse
 import json
 import zipfile
 from concurrent.futures import ProcessPoolExecutor, as_completed
-from tqdm import tqdm
 from dataclasses import dataclass
 from os.path import commonprefix
 from pathlib import Path
 
+from tqdm import tqdm
 from tuw_nlp.text.patterns.de import ABBREV
 from tuw_nlp.text.segmentation import SsplitFixer
 
@@ -132,6 +133,7 @@ def annotate_sentence(full_text, labels, doc_id, split):
         )
 
     from clear_anonymization.ner_datasets import NERSample
+
     return NERSample(
         doc_id=doc_id,
         split=split,
@@ -143,18 +145,22 @@ def annotate_sentence(full_text, labels, doc_id, split):
 
 def _collect_errors(sample, verbose=False):
     from clear_anonymization.ner_datasets.util import recreate_sent_labels_from_tokens
+
     errors = []
     for sent in sample.sentences:
         labels = recreate_sent_labels_from_tokens(sent.tokens, sent.text)
         for label in sent.labels or []:
             matched = any(
-                s["start"] == label["start"] and s["end"] == label["end"] for s in labels
+                s["start"] == label["start"] and s["end"] == label["end"]
+                for s in labels
             )
             if not matched:
                 msg = f"{sample.doc_id} | {sent.sent_id} | ❌ '{label['text']}' ({label['start']}:{label['end']})"
                 errors.append(msg)
                 if verbose:
-                    print(f"❌ missed: '{label['text']}' ({label['start']}:{label['end']})")
+                    print(
+                        f"❌ missed: '{label['text']}' ({label['start']}:{label['end']})"
+                    )
     return errors
 
 
@@ -206,12 +212,13 @@ def _process_folder_worker(args):
 
 def main():
     import multiprocessing
+
     multiprocessing.set_start_method("spawn", force=True)
     parser = argparse.ArgumentParser(description="Parallel CoNLL-U preprocessing")
     parser.add_argument("--input-path", type=str, nargs="+", required=True)
     parser.add_argument("--output-path", type=str, required=True)
     parser.add_argument("--split", type=str, required=True)
-    parser.add_argument("--num-workers", type=int, default=8)
+    parser.add_argument("--num-workers", type=int, default=2)
     parser.add_argument("--verbose", action="store_true")
     args = parser.parse_args()
 
@@ -233,10 +240,13 @@ def main():
     ]
     print(f"Processing {len(tasks)} documents with {args.num_workers} workers")
 
-    with open(output_path, "a", encoding="utf-8") as out_f, \
-         open(progress_path, "a", encoding="utf-8") as prog_f, \
-         ProcessPoolExecutor(max_workers=args.num_workers, initializer=_init_worker) as pool:
-
+    with (
+        open(output_path, "a", encoding="utf-8") as out_f,
+        open(progress_path, "a", encoding="utf-8") as prog_f,
+        ProcessPoolExecutor(
+            max_workers=args.num_workers, initializer=_init_worker
+        ) as pool,
+    ):
         futures = {pool.submit(_process_folder_worker, t): t[1] for t in tasks}
         for future in tqdm(as_completed(futures), total=len(tasks), desc="Processing"):
             folder = futures[future]
