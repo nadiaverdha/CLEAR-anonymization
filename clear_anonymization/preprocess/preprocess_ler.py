@@ -1,11 +1,13 @@
 import argparse
 import json
 import re
+from collections import defaultdict
 from dataclasses import dataclass
 from pathlib import Path
 
 from torch.utils.data import Dataset
 
+from clear_anonymization.ner_datasets import NERData, NERSample, NERSentence
 from clear_anonymization.ner_datasets.ner_dataset import NERData, NERDataset, NERSample
 from scripts.download_dataset import download_dataset
 
@@ -55,24 +57,38 @@ def create_labels(substrs: dict, sentence: str):
     return labels
 
 
-def create_sample(sample) -> NERSample:
+def create_sample(sample, idx: int) -> NERSample:
     text = sample["text"]
     split = sample["split"]
-    substrs = tokens_to_substrs(sample["tokens"], sample["coarse_ner_labels"])
-    labels = create_labels(substrs, sample.get("text", ""))
-    return NERSample(text, split, labels)
+    labels_bio = sample["coarse_ner_labels"]
+    token_dicts = []
+    pos = 0
+    for i, (tok, label) in enumerate(zip(sample["tokens"], labels_bio)):
+        start = text.find(tok, pos)
+        end = start + len(tok)
+        misc = f"NER={label}|SentStart={start}|SentEnd={end}"
+        token_dicts.append({"id": str(i + 1), "text": tok, "misc": misc})
+        pos = end
+    substrs = tokens_to_substrs(sample["tokens"], labels_bio)
+    labels = create_labels(substrs, text)
+    sentence = NERSentence(sent_id=str(idx), text=text, tokens=token_dicts)
+    return NERSample(
+        doc_id=str(idx), split=split, text=text, sentences=[sentence], labels=labels
+    )
+
+    return data
 
 
 def main():
     parser = argparse.ArgumentParser(description="Preprocess LER dataset")
     parser.add_argument(
-        "--repository_id",
+        "--repository-id",
         type=str,
         required=True,
         help="Repository ID on Hugging Face (e.g., 'username/dataset-name')",
     )
     parser.add_argument(
-        "--output_dir",
+        "--output-dir",
         type=str,
         required=True,
         help="Path where to save the JSON file",
@@ -84,15 +100,15 @@ def main():
         repository_id=args.repository_id,
     )
 
-    ner_data = NERData(samples=[])
+    split_data = defaultdict(lambda: NERData(samples=[]))
 
-    for d in data:
-        sample = create_sample(d)
-
-        ner_data.samples.append(sample)
+    for idx, d in enumerate(data):
+        split_data[d["split"]].samples.append(create_sample(d, idx))
 
     output_path = Path(args.output_dir)
-    output_path.write_text(json.dumps(ner_data.to_json(), indent=4))
+    output_path.mkdir(parents=True, exist_ok=True)
+    for split_name, ner_data in split_data.items():
+        (output_path / f"{split_name}.conllu").write_text(ner_data.to_conll())
 
 
 if __name__ == "__main__":
