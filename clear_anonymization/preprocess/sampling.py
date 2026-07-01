@@ -74,7 +74,6 @@ def sample_few_shot(
             classes = set(all_labels)
 
     classes = set(classes)
-
     pos_docs = []
     neg_docs = []
     for doc in train_data:
@@ -99,6 +98,7 @@ def sample_few_shot(
     negatives = [s for doc in neg_docs for s in doc] + [
         s for doc in pool for s in doc if not s["entities"]
     ]
+
     return (
         train_examples,
         eval_examples,

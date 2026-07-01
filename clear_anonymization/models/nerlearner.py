@@ -137,7 +137,6 @@ class NERLearner(RuleChef):
         audit_interval=0,
         seed_rules=None,
         start_batch=0,
-        synthesize_per_batch=False,
     ):
         if seed_rules is not None:
             self.dataset.rules = seed_rules
@@ -222,6 +221,7 @@ class NERLearner(RuleChef):
             # Filter to failures whose input text the targeted rule could plausibly
             # match, so the LLM sees relevant examples instead of the whole dataset.
             import re as _re
+
             trigger_res = []
             for r in rules_for_prompt:
                 if getattr(r, "format", None) and r.format.value == "regex":
@@ -235,8 +235,13 @@ class NERLearner(RuleChef):
                 return inp.get("text", "") if isinstance(inp, dict) else str(inp)
 
             failures = (
-                [f for f in all_failures if any(rx.search(_input_text(f)) for rx in trigger_res)]
-                if trigger_res else all_failures
+                [
+                    f
+                    for f in all_failures
+                    if any(rx.search(_input_text(f)) for rx in trigger_res)
+                ]
+                if trigger_res
+                else all_failures
             )
         else:
             failures = all_failures
@@ -249,7 +254,8 @@ class NERLearner(RuleChef):
         base_guidance = (
             f"Only modify or replace the following rule(s): {', '.join(targeted_names)}. "
             "Do NOT create new rules or touch any other rules."
-            if targeted_ids else ""
+            if targeted_ids
+            else ""
         )
 
         validation_errors: list[str] = []
@@ -257,6 +263,7 @@ class NERLearner(RuleChef):
 
         def _capturing_validate(rule):
             import re as _re
+
             if rule.format.value == "regex":
                 try:
                     _re.compile(rule.content)
@@ -273,7 +280,8 @@ class NERLearner(RuleChef):
             extra = (
                 f" Previous attempt produced invalid regex — errors: {'; '.join(prev_errors)}. "
                 "Fix these specific errors. Count every opening parenthesis and ensure it has a matching closing parenthesis."
-                if attempt > 0 and prev_errors else ""
+                if attempt > 0 and prev_errors
+                else ""
             )
             try:
                 patch = self.learner.synthesize_patch_ruleset(
@@ -292,12 +300,10 @@ class NERLearner(RuleChef):
             if attempt == 0 and prev_errors:
                 print(f"  Retrying with validation errors in prompt...")
         if not patch:
-            
             print("No feedback patches generated.")
             return rules
         merged = self.learner._merge_patch(rules, patch)
         original_by_name = {r.name: r.id for r in rules}
-        print(merged)
         for r in merged:
             if r.name in original_by_name:
                 r.id = original_by_name[r.name]

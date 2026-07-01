@@ -4,8 +4,8 @@ from pathlib import Path
 from clear_anonymization.ner_datasets.ner_dataset import NERData, NERSample, NERSentence
 
 DATASET_CLASS_DEFINITIONS = {
-    "ler": {
-        "PERS": "Personen (Familien-, Vor-, Beinamen und Pseudonyme)",
+    "germanler": {
+        "PER": "Personen (Familien-, Vor-, Beinamen und Pseudonyme)",
         "LOC": "Ortsnamen und geographische Bezeichnungen (Land, Stadt, Region)",
         "ORG": "Organisationsnamen (Parteien, Vereine, Institutionen, Unternehmen)",
         "NRM": "Rechtsnormen (europäische Normen, Gesetze, Rechtsverordnungen)",
