@@ -108,7 +108,7 @@ def main():
         help="Apply only rules with these IDs (from --rules-json)",
     )
     parser.add_argument(
-        "--data-dir", type=str, required=True, help="Path to data (CONLLU format)"
+        "--input-dir", type=str, required=True, help="Path to data (CONLLU format)"
     )
     parser.add_argument(
         "--output",
@@ -136,9 +136,17 @@ def main():
         default=[],
         help="Tag a word and its preceding token as the same entity, format: 'sent_id:text:type'",
     )
+    parser.add_argument(
+        "--patterns-file",
+        default=None,
+        help="JSON file with ['text:type', ...] patterns",
+    )
     args = parser.parse_args()
 
-    data = load_ner_dataset_from_conll(args.data_dir)
+    data = load_ner_dataset_from_conll(args.input_dir)
+    if args.patterns_file:
+        extra = json.loads(Path(args.patterns_file).read_text())
+        args.patterns = args.patterns + extra
 
     # ────── Add new annotation based on rule predictions ──────
     rules = []
@@ -309,8 +317,8 @@ def _append_changelog(
     changelog = Path(__file__).parent.parent / "data" / "CHANGELOG.md"
     cmd = " \\\n  ".join(["python scripts/patch_missing_annotations.py"] + sys.argv[1:])
 
-    lines = [f"\n## {date.today()} — {Path(args.data_dir).name} → {out_path.name}"]
-    lines.append(f"**Input:** `{args.data_dir}`")
+    lines = [f"\n## {date.today()} — {Path(args.input_dir).name} → {out_path.name}"]
+    lines.append(f"**Input:** `{args.input_dir}`")
     lines.append(f"**Output:** `{args.output}`")
     lines.append(f"**Script:**\n```bash\n{cmd}\n```")
     lines.append("**Changes:**")
@@ -327,7 +335,9 @@ def _append_changelog(
             f"- {extend_prev_count} extend-prev annotation(s): {', '.join(args.extend_prev)}"
         )
     if rules:
-        lines.append(f"- {len(rules)} rule(s) applied from: {', '.join(args.rules_json)}")
+        lines.append(
+            f"- {len(rules)} rule(s) applied from: {', '.join(args.rules_json)}"
+        )
         for r in rules:
             lines.append(f"  - `{r.id}` **{r.name}**: `{r.content}`")
 
