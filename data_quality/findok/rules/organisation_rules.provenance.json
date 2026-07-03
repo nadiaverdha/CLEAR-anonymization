@@ -1,0 +1,116 @@
+[
+  {
+    "config": "reports/findok/Qwen_Qwen3.5-35B-A3B/organisation/2026-04-15/config.yaml",
+    "results": "reports/findok/Qwen_Qwen3.5-35B-A3B/organisation/2026-04-15/results_findok.json",
+    "total_rules_in_run": 229,
+    "new_unique_rules_added": 229
+  },
+  {
+    "config": "reports/findok/Qwen_Qwen3.5-35B-A3B/organisation/2026-04-21_v1/config.yaml",
+    "results": "reports/findok/Qwen_Qwen3.5-35B-A3B/organisation/2026-04-21_v1/results_findok.json",
+    "total_rules_in_run": 289,
+    "new_unique_rules_added": 207
+  },
+  {
+    "config": "reports/findok/Qwen_Qwen3.5-35B-A3B/organisation/2026-04-21_v6/config.yaml",
+    "results": "reports/findok/Qwen_Qwen3.5-35B-A3B/organisation/2026-04-21_v6/results_findok.json",
+    "total_rules_in_run": 113,
+    "new_unique_rules_added": 68
+  },
+  {
+    "config": "reports/findok/Qwen_Qwen3.5-35B-A3B/organisation/2026-04-21_v7/config.yaml",
+    "results": "reports/findok/Qwen_Qwen3.5-35B-A3B/organisation/2026-04-21_v7/results_findok.json",
+    "total_rules_in_run": 13,
+    "new_unique_rules_added": 11
+  },
+  {
+    "config": "reports/findok/Qwen_Qwen3.5-35B-A3B/organisation/2026-04-21_v9/config.yaml",
+    "results": "reports/findok/Qwen_Qwen3.5-35B-A3B/organisation/2026-04-21_v9/results_findok.json",
+    "total_rules_in_run": 170,
+    "new_unique_rules_added": 62
+  },
+  {
+    "config": "reports/findok/Qwen_Qwen3.5-35B-A3B/organisation/2026-04-22/config.yaml",
+    "results": "reports/findok/Qwen_Qwen3.5-35B-A3B/organisation/2026-04-22/results_findok.json",
+    "total_rules_in_run": 245,
+    "new_unique_rules_added": 83
+  },
+  {
+    "config": "reports/findok/Qwen_Qwen3.5-35B-A3B/organisation/2026-04-27_v12/config.yaml",
+    "results": "reports/findok/Qwen_Qwen3.5-35B-A3B/organisation/2026-04-27_v12/results_findok.json",
+    "total_rules_in_run": 103,
+    "new_unique_rules_added": 103
+  },
+  {
+    "config": "reports/findok/Qwen_Qwen3.5-35B-A3B/organisation/2026-04-27_v16/config.yaml",
+    "results": "reports/findok/Qwen_Qwen3.5-35B-A3B/organisation/2026-04-27_v16/results_findok.json",
+    "total_rules_in_run": 120,
+    "new_unique_rules_added": 65
+  },
+  {
+    "config": "reports/findok/Qwen_Qwen3.5-35B-A3B/organisation/2026-04-27_v2/config.yaml",
+    "results": "reports/findok/Qwen_Qwen3.5-35B-A3B/organisation/2026-04-27_v2/results_findok.json",
+    "total_rules_in_run": 111,
+    "new_unique_rules_added": 71
+  },
+  {
+    "config": "reports/findok/Qwen_Qwen3.5-35B-A3B/organisation/2026-04-27_v3/config.yaml",
+    "results": "reports/findok/Qwen_Qwen3.5-35B-A3B/organisation/2026-04-27_v3/results_findok.json",
+    "total_rules_in_run": 132,
+    "new_unique_rules_added": 55
+  },
+  {
+    "config": "reports/findok/Qwen_Qwen3.5-35B-A3B/organisation/2026-04-27_v4/config.yaml",
+    "results": "reports/findok/Qwen_Qwen3.5-35B-A3B/organisation/2026-04-27_v4/results_findok.json",
+    "total_rules_in_run": 288,
+    "new_unique_rules_added": 244
+  },
+  {
+    "config": "reports/findok/Qwen_Qwen3.5-35B-A3B/organisation/2026-05-13_v3/config.yaml",
+    "results": "reports/findok/Qwen_Qwen3.5-35B-A3B/organisation/2026-05-13_v3/results_findok.json",
+    "total_rules_in_run": 29,
+    "new_unique_rules_added": 20
+  },
+  {
+    "config": "reports/findok/Qwen_Qwen3.5-35B-A3B/organisation/2026-05-13_v4/config.yaml",
+    "results": "reports/findok/Qwen_Qwen3.5-35B-A3B/organisation/2026-05-13_v4/results_findok.json",
+    "total_rules_in_run": 216,
+    "new_unique_rules_added": 54
+  },
+  {
+    "config": "reports/findok/Qwen_Qwen3.5-35B-A3B/organisation/2026-05-13_v5/config.yaml",
+    "results": "reports/findok/Qwen_Qwen3.5-35B-A3B/organisation/2026-05-13_v5/results_findok.json",
+    "total_rules_in_run": 215,
+    "new_unique_rules_added": 3
+  },
+  {
+    "config": "reports/findok/Qwen_Qwen3.5-35B-A3B/organisation/2026-05-13_v7/config.yaml",
+    "results": "reports/findok/Qwen_Qwen3.5-35B-A3B/organisation/2026-05-13_v7/results_findok.json",
+    "total_rules_in_run": 67,
+    "new_unique_rules_added": 33
+  },
+  {
+    "config": "reports/findok/Qwen_Qwen3.5-35B-A3B/organisation/2026-05-14/config.yaml",
+    "results": "reports/findok/Qwen_Qwen3.5-35B-A3B/organisation/2026-05-14/results_findok.json",
+    "total_rules_in_run": 39,
+    "new_unique_rules_added": 27
+  },
+  {
+    "config": "reports/findok/Qwen_Qwen3.5-35B-A3B/organisation/2026-05-21/config.yaml",
+    "results": "reports/findok/Qwen_Qwen3.5-35B-A3B/organisation/2026-05-21/results_ris.json",
+    "total_rules_in_run": 88,
+    "new_unique_rules_added": 36
+  },
+  {
+    "config": "reports/findok/Qwen_Qwen3.5-35B-A3B/organisation/2026-05-25/config.yaml",
+    "results": "reports/findok/Qwen_Qwen3.5-35B-A3B/organisation/2026-05-25/results_findok.json",
+    "total_rules_in_run": 111,
+    "new_unique_rules_added": 111
+  },
+  {
+    "config": "reports/findok/Qwen_Qwen3.5-35B-A3B/organisation/2026-05-26_v1/config.yaml",
+    "results": "reports/findok/Qwen_Qwen3.5-35B-A3B/organisation/2026-05-26_v1/results_findok.json",
+    "total_rules_in_run": 111,
+    "new_unique_rules_added": 0
+  }
+]
