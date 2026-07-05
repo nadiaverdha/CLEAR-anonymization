@@ -3,9 +3,9 @@ that produced false positives, sorted by FP count, for manual review.
 
 Usage
 -----
-python scripts/list_fp_rules.py \
-    --rules-json collected_rules/all_rules_evaluated.json \
-    --output collected_rules/all_rules_fp_review.json
+python data_quality/list_fp_rules.py \
+    --rules-json data_quality/findok/rules/organisation_rules_evaluated.json \
+    --output data_quality/findok/rules/organisation_rules_fp_review.json
 """
 
 import argparse

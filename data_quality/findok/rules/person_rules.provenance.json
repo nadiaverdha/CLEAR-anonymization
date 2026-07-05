@@ -1,0 +1,32 @@
+[
+  {
+    "config": "reports/findok/Qwen_Qwen3.5-35B-A3B/person/2026-05-25/config.yaml",
+    "results": "reports/findok/Qwen_Qwen3.5-35B-A3B/person/2026-05-25/results_findok.json",
+    "total_rules_in_run": 9,
+    "new_unique_rules_added": 9
+  },
+  {
+    "config": "reports/findok/Qwen_Qwen3.5-35B-A3B/person/2026-05-26_v1/config.yaml",
+    "results": "reports/findok/Qwen_Qwen3.5-35B-A3B/person/2026-05-26_v1/results_findok.json",
+    "total_rules_in_run": 6,
+    "new_unique_rules_added": 6
+  },
+  {
+    "config": "reports/findok/Qwen_Qwen3.5-35B-A3B/person/2026-05-26_v2/config.yaml",
+    "results": "reports/findok/Qwen_Qwen3.5-35B-A3B/person/2026-05-26_v2/results_findok.json",
+    "total_rules_in_run": 6,
+    "new_unique_rules_added": 0
+  },
+  {
+    "config": "reports/findok/Qwen_Qwen3.5-35B-A3B/person/2026-05-28/config.yaml",
+    "results": "reports/findok/Qwen_Qwen3.5-35B-A3B/person/2026-05-28/results_findok.json",
+    "total_rules_in_run": 6,
+    "new_unique_rules_added": 0
+  },
+  {
+    "config": "reports/findok/Qwen_Qwen3.5-35B-A3B/person/2026-05-28_v1/config.yaml",
+    "results": "reports/findok/Qwen_Qwen3.5-35B-A3B/person/2026-05-28_v1/results_findok.json",
+    "total_rules_in_run": 6,
+    "new_unique_rules_added": 6
+  }
+]

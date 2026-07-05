@@ -1,0 +1,7 @@
+reports/findok/Qwen_Qwen3.5-35B-A3B/person/2026-05-25
+reports/findok/Qwen_Qwen3.5-35B-A3B/person/2026-05-26_v1
+reports/findok/Qwen_Qwen3.5-35B-A3B/person/2026-05-26_v2
+reports/findok/Qwen_Qwen3.5-35B-A3B/person/2026-05-28
+reports/findok/Qwen_Qwen3.5-35B-A3B/person/2026-05-28_v1
+
+
