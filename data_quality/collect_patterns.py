@@ -38,6 +38,10 @@ print(f"{'Count':>6}  {'Type':<16}  Text")
 print("-" * 60)
 for (text, etype), n in counts.most_common():
     print(f"{n:>6}  {etype:<16}  {text}")
+print("-" * 60)
+print(
+    f"{sum(counts.values()):>6}  total annotation(s) across {len(counts)} unique pattern(s)"
+)
 
 if args.output:
     patterns = [f"{text}:{etype}" for (text, etype), n in counts.most_common()]
