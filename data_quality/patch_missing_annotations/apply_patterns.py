@@ -33,6 +33,7 @@ def _apply_patterns(data, pattern_strs: list[str]) -> list[dict]:
                         skip_existing=True,
                         token_spans=token_spans,
                     )
+                    print(new_labels)
                     if new_labels is not None:
                         sent.labels = new_labels
                         print(
