@@ -47,5 +47,12 @@ if args.output:
     patterns = [f"{text}:{etype}" for (text, etype), n in counts.most_common()]
     output_path = Path(args.output)
     output_path.parent.mkdir(parents=True, exist_ok=True)
+    if output_path.exists():
+        existing = json.loads(output_path.read_text())
+        new_patterns = [p for p in patterns if p not in existing]
+        patterns = existing + new_patterns
+        print(
+            f"Appending {len(new_patterns)} new pattern(s) to {len(existing)} existing"
+        )
     output_path.write_text(json.dumps(patterns, ensure_ascii=False, indent=2))
     print(f"Saved {len(patterns)} patterns to {args.output}")

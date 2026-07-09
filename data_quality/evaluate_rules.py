@@ -3,9 +3,9 @@
   Usage
   -----
   python data_quality/evaluate_rules.py \
-      --rules-json collected_rules/all_rules.json \
-      --data-dir /share/nverdha/data/bfg/new_files/findok_train_corrected.conllu \
-      --output collected_rules/all_rules_evaluated.json \
+      --rules-json data_quality/findok/rules/organisation_rules.json \
+      --data-dir /share/nverdha/data/bfg/final/findok_train_corrected.conllu \
+      --output data_quality/findok/rules/organisation_rules_evaluated.json \
       --sample-size 50000 \
       --workers 2
 """

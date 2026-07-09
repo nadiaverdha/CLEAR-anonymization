@@ -17,6 +17,25 @@ from clear_anonymization.preprocess.create_train_dev_split import (
 from clear_anonymization.preprocess.sampling import sample_few_shot
 
 
+def make_dataset(dataset_name, data, task):
+    dataset = Dataset(name=dataset_name, task=task)
+    for ex in data:
+        dataset.examples.append(
+            Example(
+                id=str(uuid.uuid4())[:8],
+                input={
+                    "doc_id": ex.get("doc_id", ""),
+                    "sent_id": ex.get("sent_id", ""),
+                    "text": ex["text"],
+                    "sentences": ex.get("sentences", []),
+                },
+                expected_output={"entities": ex["entities"]},
+                source=dataset_name,
+            )
+        )
+    return dataset
+
+
 @dataclass
 class DataSplit:
     """Sampled, train/eval/dev-split data ready for a learning phase."""
@@ -128,25 +147,6 @@ def prepare_split(
         n_eval_docs=n_eval_docs,
         n_test_docs=n_test_docs,
     )
-
-
-def make_dataset(dataset_name, data, task):
-    dataset = Dataset(name=dataset_name, task=task)
-    for ex in data:
-        dataset.examples.append(
-            Example(
-                id=str(uuid.uuid4())[:8],
-                input={
-                    "doc_id": ex.get("doc_id", ""),
-                    "sent_id": ex.get("sent_id", ""),
-                    "text": ex["text"],
-                    "sentences": ex.get("sentences", []),
-                },
-                expected_output={"entities": ex["entities"]},
-                source="benchmark",
-            )
-        )
-    return dataset
 
 
 def load_human_feedback(feedback_path, eval_dataset, learner, rules=None):
