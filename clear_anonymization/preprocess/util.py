@@ -211,5 +211,9 @@ def _is_err_patch(self, sen1, sen2):
     for abr in ABBREV:
         if abr == sen1.text or sen1.text.endswith(abr):
             return True, True
+        if " " in abr:
+            split = abr.split(" ")
+            if sen1.text.endswith(split[0]) and sen2.text.startswith(split[1]):
+                return True, True
 
     return False, None
