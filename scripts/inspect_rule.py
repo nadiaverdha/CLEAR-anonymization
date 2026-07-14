@@ -6,18 +6,15 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from benchmarks.util import (
-    BenchmarkRun,
-    load_rules_from_json,
-    make_dataset,
-    sample_few_shot,
-)
 from rulechef.core import Rule
 from rulechef.evaluation import evaluate_rules_individually
 
+from benchmarks.data import BenchmarkRun, make_dataset
+from benchmarks.io import load_rules_from_json
+from clear_anonymization.evaluation.evaluator import classify_fp
 from clear_anonymization.models.nerlearner import NERLearner
 from clear_anonymization.ner_datasets import load_ner_dataset_from_conll
-from clear_anonymization.evaluation.evaluator import classify_fp
+from clear_anonymization.preprocess.sampling import sample_few_shot
 
 
 def _print_rule(rule: Rule) -> None:
@@ -27,7 +24,6 @@ def _print_rule(rule: Rule) -> None:
     print(f"  Fmt  : {rule.format.value}")
     print(f"  Desc : {rule.description}")
     print(f"  Pattern:\n    {rule.content}")
-    print(f"{'═' * 70}\n")
 
 
 def _print_metrics(m) -> None:
