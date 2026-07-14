@@ -102,9 +102,18 @@ python data_quality/list_fp_rules.py \
 The package that actually rewrites the `.conllu` file. Run as a module:
 
 ```bash
+python -m data_quality.patch_missing_annotations   \
+  --input-dir /share/nverdha/data/findok/findok_train.conllu   \   
+  --output /share/nverdha/data/findok/findok_train_corrected.conllu   \  
+  --dataset-name findok   \   
+  --patterns-file data_quality/findok/existing_annotations/organisation_annotations.json
+```
+
+
+```bash
 python -m data_quality.patch_missing_annotations \
-    --input-dir /share/nverdha/data/bfg/final/findok_val.conllu \
-    --output /share/nverdha/data/bfg/final/findok_val__222.conllu \
+    --input-dir /share/nverdha/data/findok/findok_train.conllu \
+    --output /share/nverdha/data/findok/findok_train_corrected.conllu  \
     --dataset-name findok \
     --rules-json data_quality/findok/rules/organisation_rules_evaluated.json \
     --rule-id rule_12 rule_47 \
