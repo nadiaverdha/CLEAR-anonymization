@@ -1,6 +1,7 @@
 from data_quality.patch_missing_annotations.span_tagging import (
     _find_all,
     _tag_pattern_span,
+    _token_boundaries,
     _token_spans,
 )
 
@@ -25,8 +26,8 @@ def _apply_extend_prev(data, sent_index, extend_prev_strs: list[str]) -> list[di
         if not sent.text:
             continue
         tok_spans = _token_spans(sent)
-        token_span_set = {(ts, te) for ts, te, _ in tok_spans}
-        for ps, pe in _find_all(sent.text, pattern_text, token_span_set):
+        token_starts, token_ends = _token_boundaries(tok_spans)
+        for ps, pe in _find_all(sent.text, pattern_text, token_starts, token_ends):
             matched = [
                 i for i, (ts, te, _) in enumerate(tok_spans) if ts < pe and te > ps
             ]

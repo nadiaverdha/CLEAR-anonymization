@@ -18,6 +18,8 @@ def _set_ner_in_misc(misc, new_ner, force=False):
     ):
         return misc, False
     updated = [f"NER={new_ner}" if p.startswith("NER=") else p for p in parts]
+    if not any(p.startswith("NER=") for p in parts):
+        updated.append(f"NER={new_ner}")
     new_misc = "|".join(updated)
     return new_misc, new_misc != misc
 
@@ -37,17 +39,25 @@ def _token_spans(sent):
     return spans
 
 
-def _find_all(text, pattern, token_span_set):
-    """Yield (start, end) for every occurrence of pattern in text whose span
-    exactly matches one of token_span_set.
-    - token_span_set: precomputed {(start, end), ...} for the sentence's tokens"""
+def _token_boundaries(token_spans):
+    """Returns (starts, ends) — the sets of token-start and token-end offsets,
+    used by _find_all to check that a match aligns with token boundaries"""
+    starts = {ts for ts, _, _ in token_spans}
+    ends = {te for _, te, _ in token_spans}
+    return starts, ends
+
+
+def _find_all(text, pattern, token_starts, token_ends):
+    """Yield (start, end) for every occurrence of pattern in text whose start
+    aligns with a token start and whose end aligns with a token end
+    - token_starts, token_ends: from _token_boundaries(token_spans)"""
     start = 0
     while True:
         idx = text.find(pattern, start)
         if idx == -1:
             return
         end = idx + len(pattern)
-        if (idx, end) in token_span_set:
+        if idx in token_starts and end in token_ends:
             yield idx, end
         start = idx + 1
 

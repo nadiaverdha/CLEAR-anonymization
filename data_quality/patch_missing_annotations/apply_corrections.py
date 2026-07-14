@@ -1,6 +1,7 @@
 from data_quality.patch_missing_annotations.span_tagging import (
     _find_all,
     _tag_pattern_span,
+    _token_boundaries,
     _token_spans,
 )
 
@@ -30,8 +31,8 @@ def _apply_corrections(data, sent_index, correction_strs: list[str]) -> list[dic
         if not sent.text:
             continue
         token_spans = _token_spans(sent)
-        token_span_set = {(ts, te) for ts, te, _ in token_spans}
-        for ps, pe in _find_all(sent.text, pattern_text, token_span_set):
+        token_starts, token_ends = _token_boundaries(token_spans)
+        for ps, pe in _find_all(sent.text, pattern_text, token_starts, token_ends):
             new_labels = _tag_pattern_span(
                 sent,
                 ps,

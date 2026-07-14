@@ -1,6 +1,7 @@
 from data_quality.patch_missing_annotations.span_tagging import (
     _find_all,
     _tag_pattern_span,
+    _token_boundaries,
     _token_spans,
 )
 
@@ -22,9 +23,11 @@ def _apply_patterns(data, pattern_strs: list[str]) -> list[dict]:
             if not sent.text:
                 continue
             token_spans = _token_spans(sent)
-            token_span_set = {(ts, te) for ts, te, _ in token_spans}
+            token_starts, token_ends = _token_boundaries(token_spans)
             for pattern_text, entity_type in text_patterns:
-                for ps, pe in _find_all(sent.text, pattern_text, token_span_set):
+                for ps, pe in _find_all(
+                    sent.text, pattern_text, token_starts, token_ends
+                ):
                     new_labels = _tag_pattern_span(
                         sent,
                         ps,
@@ -33,7 +36,6 @@ def _apply_patterns(data, pattern_strs: list[str]) -> list[dict]:
                         skip_existing=True,
                         token_spans=token_spans,
                     )
-                    print(new_labels)
                     if new_labels is not None:
                         sent.labels = new_labels
                         print(
