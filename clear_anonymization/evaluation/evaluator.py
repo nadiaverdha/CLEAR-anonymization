@@ -179,7 +179,7 @@ def evaluate_char_level(
     return {"precision": precision, "recall": recall, "f1": f1}
 
 
-def _classify_fp(pred: dict, gold_entities: list[dict]) -> str:
+def classify_fp(pred: dict, gold_entities: list[dict]) -> str:
     pt = pred["text"].lower()
     ps, pe = pred.get("start"), pred.get("end")
     for g in gold_entities:
