@@ -22,6 +22,7 @@ from clear_anonymization.preprocess.util import (
     TITLES,
     TOB,
     _is_err_patch,
+    assign_bio_tag,
     preprocess_text,
 )
 
@@ -72,17 +73,6 @@ def collect_annos_in_sentence(annos, sent):
             anno["end"] = anno["end"] - sent.start_char
             collected.append(anno)
     return collected
-
-
-def assign_bio_tag(token, labels, offset=0) -> str:
-    start = token.start_char - offset
-    end = token.end_char - offset
-    for label in labels:
-        if start < label["end"] and end > label["start"]:
-            if start <= label["start"]:
-                return f"B-{label['type']}"
-            return f"I-{label['type']}"
-    return "O"
 
 
 def annotate_sentence(full_text, labels, doc_id, split):

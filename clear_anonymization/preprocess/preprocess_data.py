@@ -21,6 +21,7 @@ from clear_anonymization.preprocess.util import (
     TITLES,
     TOB,
     _is_err_patch,
+    assign_bio_tag,
     preprocess_text,
     validate_docu_annotations,
     validate_sentence_annotations,

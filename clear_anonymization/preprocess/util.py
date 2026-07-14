@@ -63,6 +63,17 @@ def validate_sentence_annotations(sample, error_file, verbose=False):
                 f.write(e + "\n")
 
 
+def assign_bio_tag(token, labels, offset=0) -> str:
+    start = token.start_char - offset
+    end = token.end_char - offset
+    for label in labels:
+        if start < label["end"] and end > label["start"]:
+            if start <= label["start"]:
+                return f"B-{label['type']}"
+            return f"I-{label['type']}"
+    return "O"
+
+
 TITLES = {
     "Bakk. techn.",
     "B. Sc.",
