@@ -17,6 +17,7 @@ from rulechef.evaluation import evaluate_rules_individually
 
 from clear_anonymization.models.nerlearner import NERLearner
 from clear_anonymization.ner_datasets import load_ner_dataset_from_conll
+from clear_anonymization.evaluation.evaluator import classify_fp
 
 
 def _print_rule(rule: Rule) -> None:
@@ -36,19 +37,6 @@ def _print_metrics(m) -> None:
         f"F1: {m.f1:.1%}  "
         f"| Predicted: {m.matches}  TP: {m.true_positives}  FP: {m.false_positives}\n"
     )
-
-
-def _classify_fp(pred: dict, gold_entities: list[dict]) -> str:
-    pt = pred["text"].lower()
-    ps, pe = pred.get("start"), pred.get("end")
-    for g in gold_entities:
-        gt = g["text"].lower()
-        gs, ge = g.get("start"), g.get("end")
-        text_similar = pt == gt or pt in gt or gt in pt
-        pos_overlap = None not in (ps, pe, gs, ge) and ps < ge and pe > gs
-        if text_similar or pos_overlap:
-            return "truefp"
-    return "missingan"
 
 
 def _print_per_sentence(label: str, rows: list[tuple[str, str, str]]) -> None:

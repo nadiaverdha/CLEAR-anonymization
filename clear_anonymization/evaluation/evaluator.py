@@ -177,3 +177,16 @@ def evaluate_char_level(
 
     print({"precision": precision, "recall": recall, "f1": f1})
     return {"precision": precision, "recall": recall, "f1": f1}
+
+
+def _classify_fp(pred: dict, gold_entities: list[dict]) -> str:
+    pt = pred["text"].lower()
+    ps, pe = pred.get("start"), pred.get("end")
+    for g in gold_entities:
+        gt = g["text"].lower()
+        gs, ge = g.get("start"), g.get("end")
+        text_similar = pt == gt or pt in gt or gt in pt
+        pos_overlap = None not in (ps, pe, gs, ge) and ps < ge and pe > gs
+        if text_similar or pos_overlap:
+            return "truefp"
+    return "missingan"
