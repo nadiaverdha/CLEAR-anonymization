@@ -142,6 +142,9 @@ TITLES = {
     "Dipl.",
     "Kfm.",
     "Kff.",
+    "Steuerber.",
+    "Dr. med.vet.",
+    "Mag.pharm."
 }
 
 TOB = {"e.U.", "e.U", "e.G.", "e.G"}
