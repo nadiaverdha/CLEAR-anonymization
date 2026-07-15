@@ -182,11 +182,22 @@ def evaluate_char_level(
 def classify_fp(pred: dict, gold_entities: list[dict]) -> str:
     pt = pred["text"].lower()
     ps, pe = pred.get("start"), pred.get("end")
+    ps = int(ps) if ps not in (None, "") else None
+    pe = int(pe) if pe not in (None, "") else None
     for g in gold_entities:
         gt = g["text"].lower()
         gs, ge = g.get("start"), g.get("end")
-        text_similar = pt == gt or pt in gt or gt in pt
+        gs = int(gs) if gs not in (None, "") else None
+        ge = int(ge) if ge not in (None, "") else None
         pos_overlap = None not in (ps, pe, gs, ge) and ps < ge and pe > gs
-        if text_similar or pos_overlap:
-            return "truefp"
-    return "missingan"
+        if pos_overlap:
+            if pt == gt:
+                return f"type mismatch — same span as gold: `{g['text']}`"
+            if pt in gt:
+                return f"partial — pred is substring of gold: `{g['text']}`"
+            if gt in pt:
+                return f"partial — gold is substring of pred: `{g['text']}`"
+            return f"positional overlap with gold: `{g['text']}`"
+        if pt == gt or pt in gt or gt in pt:
+            return f"similar text (different position): `{g['text']}`"
+    return "no gold match — likely missing annotation"

@@ -11,10 +11,22 @@ from rulechef.evaluation import evaluate_rules_individually
 
 from benchmarks.data import BenchmarkRun, make_dataset
 from benchmarks.io import load_rules_from_json
-from clear_anonymization.evaluation.evaluator import classify_fp
 from clear_anonymization.models.nerlearner import NERLearner
 from clear_anonymization.ner_datasets import load_ner_dataset_from_conll
 from clear_anonymization.preprocess.sampling import sample_few_shot
+
+
+def classify_fp(pred: dict, gold_entities: list[dict]) -> str:
+    pt = pred["text"].lower()
+    ps, pe = pred.get("start"), pred.get("end")
+    for g in gold_entities:
+        gt = g["text"].lower()
+        gs, ge = g.get("start"), g.get("end")
+        text_similar = pt == gt or pt in gt or gt in pt
+        pos_overlap = None not in (ps, pe, gs, ge) and ps < ge and pe > gs
+        if text_similar or pos_overlap:
+            return "truefp"
+    return "missingan"
 
 
 def _print_rule(rule: Rule) -> None:
@@ -40,7 +52,7 @@ def _print_per_sentence(label: str, rows: list[tuple[str, str, str]]) -> None:
     print(f"── {label} ({len(rows)}) ──")
     for sent_id, pred, start, gold in rows:
         if pred == gold:
-            print(f'"{sent_id}:{gold}:person" \\')
+            print(f'"{sent_id}:{gold}" \\')
 
         else:
             print(f"  [{sent_id}]  pred: {pred}  →  gold: {gold}")
@@ -67,7 +79,7 @@ def _print_fp_classified(rows: list[tuple]) -> None:
     missing: list[tuple[str, str]] = []
 
     for sent_id, pred_dict, gold_entities in rows:
-        reason = _classify_fp(pred_dict, gold_entities)
+        reason = classify_fp(pred_dict, gold_entities)
         if reason == "truefp":
             partial.append(
                 (
@@ -84,11 +96,11 @@ def _print_fp_classified(rows: list[tuple]) -> None:
     # )
     print(
         f"── FP partial ({len(partial)}): "
-        f"{chr(10).join(f'"{s}:{t}:person" \\' for s, t, g in sorted(partial))}"
+        f"{chr(10).join(f'"{s}:{t}" \\' for s, t, g in sorted(partial))}"
     )
     print()
     print(
-        f"── FP missing annotation ({len(missing)}): {chr(10).join(repr(s) + ' ' + repr(t) for s, t in sorted(missing))}"
+        f"── FP missing annotation ({len(missing)}): {chr(10).join(t for s, t in sorted(missing))}"
     )
     print()
 
@@ -109,7 +121,12 @@ def main() -> None:
     )
     parser.add_argument("--rule-id", required=True, help="Rule Id")
     parser.add_argument("--dataset-name", default="findok")
-    parser.add_argument("--max-samples", type=int, default=500)
+    parser.add_argument(
+        "--max-samples",
+        type=int,
+        default=500,
+        help="Max per-sentence samples to keep for TP/FP printing; 0 = no cap",
+    )
     args = parser.parse_args()
 
     # Load rules
@@ -174,12 +191,14 @@ def main() -> None:
     )
 
     # Evaluate only this one rule
+    # rulechef caps sample_matches at max_samples; 0 here means "no cap".
+    eval_max_samples = args.max_samples if args.max_samples > 0 else sys.maxsize
     metrics_list = evaluate_rules_individually(
         rules=[rule],
         dataset=test_dataset,
         apply_rules_fn=learner.learner._apply_rules,
         mode="text",
-        max_samples=args.max_samples,
+        max_samples=eval_max_samples,
         iou_threshold=1,
     )
     m = metrics_list[0]
@@ -188,7 +207,7 @@ def main() -> None:
     tp_rows: list[tuple[str, str, str]] = []
     fp_rows: list[tuple] = []
     seen_tp: set[tuple[str, str, str]] = set()
-    seen_fp: set[tuple[str, str]] = set()
+    seen_fp: set[str] = set()
 
     for sample in m.sample_matches:
         sent_id = sample.input.get("sent_id", "")
@@ -198,9 +217,9 @@ def main() -> None:
                 seen_tp.add(key)
                 tp_rows.append(key)
         for e in sample.false_positives:
-            key = (sent_id, e["text"])
-            if key not in seen_fp:
-                seen_fp.add(key)
+            fp_key = e["text"].lower()
+            if fp_key not in seen_fp:
+                seen_fp.add(fp_key)
                 fp_rows.append((sent_id, e, sample.expected))
 
     _print_per_sentence("True Positives  (pred → gold)", tp_rows)
