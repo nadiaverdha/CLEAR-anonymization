@@ -64,6 +64,12 @@ def main():
         default=None,
         help="JSON file with ['text:type', ...] patterns",
     )
+    parser.add_argument(
+        "--changelog-name",
+        default="CHANGELOG.md",
+        help="Changelog filename within data_quality/<dataset-name>/, e.g. CHANGELOG_validation.md",
+    )
+
     args = parser.parse_args()
 
     data = load_ner_dataset_from_conll(args.input_dir)

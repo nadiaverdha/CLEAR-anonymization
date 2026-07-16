@@ -12,7 +12,7 @@ def _append_changelog(
     rules,
     rule_changes,
 ):
-    changelog = Path(__file__).parent.parent / args.dataset_name / "CHANGELOG.md"
+    changelog = Path(__file__).parent.parent / args.dataset_name / args.changelog_name
     cmd = " \\\n  ".join(
         ["python -m data_quality.patch_missing_annotations"] + sys.argv[1:]
     )
