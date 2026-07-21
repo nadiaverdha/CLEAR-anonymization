@@ -16,7 +16,7 @@ def _apply_patterns(data, pattern_strs: list[str]) -> list[dict]:
             raise ValueError(f"Pattern '{p}' must be in format 'text:type'")
         text, etype = p.rsplit(":", 1)
         text_patterns.append((text.strip(), etype.strip()))
-
+    text_patterns.sort(key=lambda p: len(p[0]), reverse=True)
     changes = []
     for s in data.samples:
         for sent in s.sentences:
