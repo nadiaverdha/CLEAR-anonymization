@@ -1,0 +1,14 @@
+[
+  {
+    "config": "reports\\ris\\Qwen_Qwen3.5-35B-A3B\\organisation\\2026-07-20\\config.yaml",
+    "results": "reports\\ris\\Qwen_Qwen3.5-35B-A3B\\organisation\\2026-07-20\\results_ris_train.json",
+    "total_rules_in_run": 29,
+    "new_unique_rules_added": 29
+  },
+  {
+    "config": "reports\\ris\\Qwen_Qwen3.5-35B-A3B\\organisation\\2026-07-21\\config.yaml",
+    "results": "reports\\ris\\Qwen_Qwen3.5-35B-A3B\\organisation\\2026-07-21\\results_ris_train.json",
+    "total_rules_in_run": 28,
+    "new_unique_rules_added": 28
+  }
+]
