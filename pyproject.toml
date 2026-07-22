@@ -8,9 +8,9 @@ version = "0.1.0"
 description = "Comprehensible Learning for Entity Anonymization and Recognition"
 readme = "README.md"
 requires-python = ">=3.8"
-license = {text = "Apache-2.0"}
+license = { text = "Apache-2.0" }
 authors = [
-    {name = "CLEAR-anonymization Contributors"},
+    { name = "CLEAR-anonymization Contributors" },
 ]
 keywords = ["named entity recognition", "rule-learning", "extraction", "llm"]
 classifiers = [
@@ -40,3 +40,6 @@ dev = [
 
 [tool.hatch.build.targets.wheel]
 packages = ["clear_anonymization"]
+
+[tool.ruff]
+target-version = "py310"
