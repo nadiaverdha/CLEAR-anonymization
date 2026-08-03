@@ -1,0 +1,1833 @@
+{
+  "config": {
+    "shots": null,
+    "model": "Qwen/Qwen3.5-35B-A3B",
+    "format": "regex",
+    "max_rules": 10,
+    "max_samples": 20,
+    "max_iterations": 1,
+    "seed": 42,
+    "train_size": 640,
+    "eval_size": 160,
+    "test_size": 477,
+    "train_annotations": 1169,
+    "eval_annotations": 326,
+    "test_annotations": 22727,
+    "use_grex": true,
+    "agentic": false,
+    "enable_critic": true,
+    "enable_prune": false,
+    "critic_interval": 2,
+    "audit_interval": 0,
+    "windows": false,
+    "sampling_strategy": "balanced",
+    "train_ratio": 0.8,
+    "pool_size": 800,
+    "batch_size": 20,
+    "refine_per_batch": 0,
+    "synthesis_strategy": "bulk",
+    "selected_classes": [
+      "person"
+    ],
+    "train_name": "ris_train",
+    "test_name": "ris_train",
+    "transfer_name": null,
+    "transfer_test_name": null,
+    "max_counter_examples": 3,
+    "refine_every": 5
+  },
+  "metadata": {
+    "best_batch_idx": 57,
+    "best_batch_f1": 0.7144385026737969,
+    "best_rules_serialized": [
+      {
+        "id": "678d18c6",
+        "name": "German Legal Person with Initials in Name",
+        "description": "Matches persons with standard titles (Dr., Mag., etc.) followed by a name, including middle initials (e.g., Dr. E. Sol\u00e9) and compound surnames.",
+        "format": "regex",
+        "content": "(?<!\\S)(?:Dr\\.|Mag\\.|MMag\\.|DI\\s+|Ing\\.|PhD\\s+|Prof\\.|StR\\.|OStR\\.|DR\\.|RgR\\.|Dipl\\.-?Ing\\.)\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*(?:-[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*",
+        "priority": 15,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "e2b963ce",
+        "name": "German Legal Person with Compound Titles",
+        "description": "Matches persons with complex academic/legal titles including 'Hon.-Prof. PD Dr.' and 'Priv.-Doz.' sequences followed by a name.",
+        "format": "regex",
+        "content": "(?<!\\S)(?:Hon\\.-?Prof\\.|Univ\\.-?Prof\\.|Priv\\.-?Doz\\.|PD\\s+|Prof\\.|StR\\.|OStR\\.|DR\\.|RgR\\.|Dipl\\.-?Ing\\.|MMag\\.|DI\\s+|Ing\\.|PhD\\s+|MedR|\u00d6kR|KzlR|DDr\\.)\\s+(?:Dr\\.|Mag\\.|MMag\\.)?\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*(?:-[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*",
+        "priority": 16,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "95ea56cf",
+        "name": "German Legal Person with Simple Name in Context",
+        "description": "Matches simple first and last names specifically in the context of 'Angeklagten' (Defendant) or 'Privatankl\u00e4ger' (Private Prosecutor) to avoid false positives from court names and legal terms.",
+        "format": "regex",
+        "content": "(?:Partei|Angeklagten|Kl\u00e4ger|Verteidiger|Zeuge|Gutachter)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*)",
+        "priority": 13,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "dcf1a516",
+        "name": "German Legal Person with Simple Name after Preposition",
+        "description": "Matches simple names following 'als' (as) or 'durch' (by) ONLY when preceded by a known legal role (Senatspr\u00e4sident, Hofrat, etc.) to avoid matching court names or titles.",
+        "format": "regex",
+        "content": "(?:Senatspr\u00e4sident(in)?|Vizepr\u00e4sident(in)?|Hofrat(in)?|Hofr\u00e4t(in)?|Pr\u00e4sident(in)?|Richter(in)?|Anwalt(in)?|Rechtsanwalt(in)?|Vertreter|Gutachter|Zeuge|Kl\u00e4ger|Angeklagten|Partei|Verteidiger|Schriftf\u00fchrer|Beisitzer|Obmann|Obfrau|Mitglied)\\s+(?:als|durch|und|oder|sowie|,|\\n)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*)",
+        "priority": 15,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "e19dac50",
+        "name": "German Legal Person Simple Name after Legal Verbs",
+        "description": "Matches simple names following legal verbs like '\u00fcber' (over), 'hat' (has), 'wurde' (was) to capture names in procedural contexts (e.g., '\u00fcber Franz Z\u00e4sar', 'hat Michael Huperz').",
+        "format": "regex",
+        "content": "(?:\u00fcber|hat|wurde|erkannte|verurteilte|verurteilt)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*)",
+        "priority": 12,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "493ee228",
+        "name": "German Legal Person with Simple Name in List",
+        "description": "Matches simple names in a list context ONLY if the preceding item is a title (Dr., Mag., etc.) or a known person name pattern, to avoid matching street names or generic terms.",
+        "format": "regex",
+        "content": "(?:(?:,\\s+|\\s+und\\s+)(?:(?:Dr\\.|Mag\\.|MMag\\.|DI\\s+|Ing\\.|PhD\\s+|Prof\\.|StR\\.|OStR\\.|DR\\.|RgR\\.|Dipl\\.-?Ing\\.)\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*(?:-[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*)|(?:(?:Dr\\.|Mag\\.|MMag\\.|DI\\s+|Ing\\.|PhD\\s+|Prof\\.|StR\\.|OStR\\.|DR\\.|RgR\\.|Dipl\\.-?Ing\\.)\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*(?:-[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*))\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*)",
+        "priority": 11,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "e0c3e70c",
+        "name": "German Legal Person Simple Name after Preposition 'von'",
+        "description": "Matches names following the preposition 'von' (of/from) which is common in German surnames, excluding common non-person nouns.",
+        "format": "regex",
+        "content": "\\b(?:von)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*)\\b(?!\\s*(?:Suchtgift|Handel|Recht|Gesetz|Verfahren|Sache|Fall|Teil|Art|Absatz|Zahl|Stelle|Firma|Gesellschaft|Unternehmen|Gericht|Beh\u00f6rde|Amt|Ministerium|Regierung|Staat|Land|Stadt|Gemeinde|Bezirk|Kreis|Region|Provinz|Bundesland|Wien|Graz|Linz|Innsbruck|Salzburg|Bregenz|Klagenfurt|Deutschlandsberg|Enns|Deutschland|Italien|Slowakei|\u00d6sterreich|K\u00e4rnten|Oberste|Gerichtshof|Obersten|Gerichtshofs|Vernehmung|Stelle|Frau|Bild|Leben|Duldung|Feststellung|Herausgabe|Rechnungslegung|Folge|Rekurs|Abs|Gegenwart|Bedeutung|Techn|H\u00f6he|Bedeutung|Feldkirch|Lilienfeld|Amstetten|Bew\u00e4hrungshilfe|Beschlussform|Disziplinarbeschuldigte|Disziplinarbeschuldigten|Disziplinarbeschuldigte|Rechtssache|Partei|Vizepr\u00e4sidenten|Hofr\u00e4te|Hofr\u00e4tinnen|Hofrat|Senatspr\u00e4sidenten|Senatspr\u00e4sidentin|Pr\u00e4sidentin|Vizepr\u00e4sidentin|Kl\u00e4gerin|Beklagten|Kl\u00e4ger|Verteidiger|Zeuge|Gutachter|Arbeits|Sozialrechtssachen|Arbeitsrechtssache|Rechtsanw\u00e4lte|Rechtsanw\u00e4ltin|Rechtsanw\u00e4lte|Nebenintervenientin|Nebenintervenient|Beschlussform|Exekutionssache|Urteilsver\u00f6ffentlichung|Versand|Feststellung|Revisionen|Liquidation|Kapsstra\u00dfe|Spiegelstra\u00dfe|Valdorffurt|Wess|Nieder|Revisionsrekurs|Drau|Spittal|Wien|Graz|Linz|Innsbruck|Salzburg|Bregenz|Klagenfurt|Deutschlandsberg|Enns|Salzburg|Deutschland|Italien|Slowakei|\u00d6sterreich|K\u00e4rnten|Oberste|Gerichtshof|Obersten|Gerichtshofs|Rechtsanwalt|Rechtsanw\u00e4lte|GmbH|AG|KG|OHG|UG|Ltd|Inc|Corp|Partnerschaft|Vater|Mutter|Kind|Jugend|Verein|Gesellschaft|Firma|Unternehmen|Gericht|Hofrat|Senatspr\u00e4sident|Vizepr\u00e4sident|Rechtsanwalt|Notar|Anwalt|Kanzlei|B\u00fcro|Abteilung|Amt|Beh\u00f6rde|Ministerium|Regierung|Staat|Land|Stadt|Gemeinde|Bezirk|Kreis|Region|Provinz|Bundesland|Wien|Graz|Linz|Innsbruck|Salzburg|Bregenz|Klagenfurt|Deutschlandsberg|Enns|Deutschland|Italien|Slowakei|\u00d6sterreich|K\u00e4rnten|Oberste|Gerichtshof|Obersten|Gerichtshofs))",
+        "priority": 10,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "d7a4fcfa",
+        "name": "German Legal Person Name after 'gegen' (Against)",
+        "description": "Captures names appearing after 'gegen' (against), a very common context for defendants in legal texts, including simple names without titles.",
+        "format": "regex",
+        "content": "gegen\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00c4\\u00d6\\u00dc\\u00e9\\u00e8\\u00ea\\u00eb\\u00e0\\u00e2\\u00e4\\u00ee\\u00ef\\u00f4\\u00fb\\u00f9\\u00e7\\u00e9\\u00e8\\u00ea\\u00eb\\u00e0\\u00e2\\u00e4\\u00ee\\u00ef\\u00f4\\u00fb\\u00f9\\u00e7]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00c4\\u00d6\\u00dc\\u00e9\\u00e8\\u00ea\\u00eb\\u00e0\\u00e2\\u00e4\\u00ee\\u00ef\\u00f4\\u00fb\\u00f9\\u00e7\\u00e9\\u00e8\\u00ea\\u00eb\\u00e0\\u00e2\\u00e4\\u00ee\\u00ef\\u00f4\\u00fb\\u00f9\\u00e7]+)*)\\b(?!\\s*(?:GmbH|AG|KG|OHG|UG|Ltd|Inc|Corp|Partnerschaft|Vater|Mutter|Kind|Jugend|Verein|Gesellschaft|Firma|Unternehmen|Gericht|Hofrat|Senatspr\u00e4sident|Vizepr\u00e4sident|Rechtsanwalt|Notar|Anwalt|Kanzlei|B\u00fcro|Abteilung|Amt|Beh\u00f6rde|Ministerium|Regierung|Staat|Land|Stadt|Gemeinde|Bezirk|Kreis|Region|Provinz|Bundesland|Wien|Graz|Linz|Innsbruck|Salzburg|Bregenz|Klagenfurt|Deutschlandsberg|Enns|Deutschland|Italien|Slowakei|\u00d6sterreich|K\u00e4rnten|Oberste|Gerichtshof|Obersten|Gerichtshofs|Rechtsanwalt|Rechtsanw\u00e4lte|GmbH|AG|KG|OHG|UG|Ltd|Inc|Corp|Partnerschaft|Vater|Mutter|Kind|Jugend|Verein|Gesellschaft|Firma|Unternehmen|Gericht|Hofrat|Senatspr\u00e4sident|Vizepr\u00e4sident|Rechtsanwalt|Notar|Anwalt|Kanzlei|B\u00fcro|Abteilung|Amt|Beh\u00f6rde|Ministerium|Regierung|Staat|Land|Stadt|Gemeinde|Bezirk|Kreis|Region|Provinz|Bundesland|Wien|Graz|Linz|Innsbruck|Salzburg|Bregenz|Klagenfurt|Deutschlandsberg|Enns|Deutschland|Italien|Slowakei|\u00d6sterreich|K\u00e4rnten|Oberste|Gerichtshof|Obersten|Gerichtshofs|Vernehmung|Stelle|Frau|Bild|Leben|Duldung|Feststellung|Herausgabe|Rechnungslegung|Folge|Rekurs|Abs|Gegenwart|Bedeutung|Techn|H\u00f6he|Bedeutung|Feldkirch|Lilienfeld|Amstetten|Bew\u00e4hrungshilfe|Beschlussform|Disziplinarbeschuldigte|Disziplinarbeschuldigten|Disziplinarbeschuldigte|Rechtssache|Partei|Vizepr\u00e4sidenten|Hofr\u00e4te|Hofr\u00e4tinnen|Hofrat|Senatspr\u00e4sidenten|Senatspr\u00e4sidentin|Pr\u00e4sidentin|Vizepr\u00e4sidentin|Kl\u00e4gerin|Beklagten|Kl\u00e4ger|Verteidiger|Zeuge|Gutachter|Arbeits|Sozialrechtssachen|Arbeitsrechtssache|Rechtsanw\u00e4lte|Rechtsanw\u00e4ltin|Rechtsanw\u00e4lte|Nebenintervenientin|Nebenintervenient|Beschlussform|Exekutionssache|Urteilsver\u00f6ffentlichung|Versand|Feststellung|Revisionen|Liquidation|Kapsstra\u00dfe|Spiegelstra\u00dfe|Valdorffurt|Wess|Nieder|Revisionsrekurs|Drau|Spittal|Wien|Graz|Linz|Innsbruck|Salzburg|Bregenz|Klagenfurt|Deutschlandsberg|Enns|Salzburg|Deutschland|Italien|Slowakei|\u00d6sterreich|K\u00e4rnten|Oberste|Gerichtshof|Obersten|Gerichtshofs|Rechtsanwalt|Rechtsanw\u00e4lte|GmbH|AG|KG|OHG|UG|Ltd|Inc|Corp|Partnerschaft|Vater|Mutter|Kind|Jugend|Verein|Gesellschaft|Firma|Unternehmen|Gericht|Hofrat|Senatspr\u00e4sident|Vizepr\u00e4sident|Rechtsanwalt|Notar|Anwalt|Kanzlei|B\u00fcro|Abteilung|Amt|Beh\u00f6rde|Ministerium|Regierung|Staat|Land|Stadt|Gemeinde|Bezirk|Kreis|Region|Provinz|Bundesland|Wien|Graz|Linz|Innsbruck|Salzburg|Bregenz|Klagenfurt|Deutschlandsberg|Enns|Deutschland|Italien|Slowakei|\u00d6sterreich|K\u00e4rnten|Oberste|Gerichtshof|Obersten|Gerichtshofs))",
+        "priority": 12,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "8ea3b39f",
+        "name": "German Legal Person Simple Name after 'gegen' (Against)",
+        "description": "Captures names appearing after 'gegen' (against), a very common context for defendants in legal texts, including simple names without titles.",
+        "format": "regex",
+        "content": "gegen\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*)\\b(?!\\s*(?:GmbH|AG|KG|OHG|UG|Ltd|Inc|Corp|Partnerschaft|Vater|Mutter|Kind|Jugend|Verein|Gesellschaft|Firma|Unternehmen|Gericht|Hofrat|Senatspr\u00e4sident|Vizepr\u00e4sident|Rechtsanwalt|Notar|Anwalt|Kanzlei|B\u00fcro|Abteilung|Amt|Beh\u00f6rde|Ministerium|Regierung|Staat|Land|Stadt|Gemeinde|Bezirk|Kreis|Region|Provinz|Bundesland|\u00d6sterreich|Deutschland|Schweiz|Europa|Welt|Jahr|Monat|Tag|Stunde|Minute|Sekunde|Zahl|Summe|Betrag|Preis|Wert|Kosten|Geb\u00fchr|Strafe|Bu\u00dfe|Geld|Euro|Dollar|Pfund|Yen|Franc|Mark|Cent|Kredit|Debit|Konto|Karte|Zahlung|Rechnung|Vertrag|Abkommen|Gesetz|Verordnung|Richtlinie|Verfahren|Prozess|Klage|Antrag|Beschluss|Entscheidung|Urteil|Verdict|Rechtsmittel|Rekurs|Revision|Berufung|Einspruch|Widerspruch|Klageerhebung|Klageabweisung|Klagebegr\u00fcndung|Klage\u00e4nderung|Klageerledigung|Klageverzicht|Klageverzicht|Klageverzicht|Klageverzicht|Klageverzicht))",
+        "priority": 12,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "395c9dee",
+        "name": "German Legal Person Simple Name after 'des' (Of)",
+        "description": "Captures names appearing after 'des' (of) ONLY if immediately followed by a title (Dr., Mag., etc.) to avoid matching court names like 'Obersten Gerichtshofs'.",
+        "format": "regex",
+        "content": "des\\s+(?:Dr\\.|Mag\\.|MMag\\.|DI\\s+|Ing\\.|PhD\\s+|Prof\\.|StR\\.|OStR\\.|DR\\.|RgR\\.|Dipl\\.-?Ing\\.)\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*(?:-[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*",
+        "priority": 12,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "36e4cf79",
+        "name": "German Legal Person with Suffixes",
+        "description": "Matches names with academic suffixes (e.g., 'BA', 'Dr.in', 'PhD') that were previously missed, ensuring the full name including suffix is captured.",
+        "format": "regex",
+        "content": "(?:PhD\\s+|OMedR\\s+|Dr\\.in\\s+)([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*)",
+        "priority": 15,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "07cbe754",
+        "name": "German Legal Person Simple Name after Verbs",
+        "description": "Captures simple names (First Last) appearing after common legal verbs like 'informiert', 'kann', 'wird', 'hat' to handle cases like 'Laura Aleite kann' or 'Zoltan Ansel den Kunden', but only if followed by a period or end of sentence to avoid matching street names.",
+        "format": "regex",
+        "content": "(?:informiert|kann|wird|hat|wurde|sind|ist|werden|haben|hatten|konnte|konnten|sollte|sollten|muss|m\u00fcssen|durfte|durften|wollte|wollten|hatte|hatten|ging|gingen|kam|kamen|sagte|sagten|teilte|teilte|berichtet|berichtet|erw\u00e4hnt|erw\u00e4hnt|nennt|nennt|nennt|nennt|wurde|begehrt)\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00c4\\u00d6\\u00dc\\u00e9\\u00e8\\u00ea\\u00eb\\u00e0\\u00e2\\u00e4\\u00ee\\u00ef\\u00f4\\u00fb\\u00f9\\u00e7\\u00e9\\u00e8\\u00ea\\u00eb\\u00e0\\u00e2\\u00e4\\u00ee\\u00ef\\u00f4\\u00fb\\u00f9\\u00e7]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00c4\\u00d6\\u00dc\\u00e9\\u00e8\\u00ea\\u00eb\\u00e0\\u00e2\\u00e4\\u00ee\\u00ef\\u00f4\\u00fb\\u00f9\\u00e7\\u00e9\\u00e8\\u00ea\\u00eb\\u00e0\\u00e2\\u00e4\\u00ee\\u00ef\\u00f4\\u00fb\\u00f9\\u00e7]+)*)\\b(?=\\s*(?:\\.|,|\\)|\\]|$))",
+        "priority": 14,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "8cfac08f",
+        "name": "German Legal Person Simple Name after Legal Roles",
+        "description": "Matches simple first and last names appearing immediately after specific legal roles (Senatspr\u00e4sident, Hofrat, etc.) to capture names like 'Dr. Baumann' or 'Laura Aleite' when the role precedes the name. Requires a valid name pattern to avoid partial matches.",
+        "format": "regex",
+        "content": "(?:Senatspr\u00e4sident(?:en|in)?|Hofr\u00e4t(?:en|in)?|Vizepr\u00e4sident(?:en|in)?|Pr\u00e4sident(?:en|in)?|Richter(?:in)?|Anwalt(?:in)?|Notar|Rechtsanwalt(?:in)?)\\s+(?:Dr\\.|Mag\\.|MMag\\.|DI\\s+|Ing\\.|PhD\\s+|Prof\\.|StR\\.|OStR\\.|DR\\.|RgR\\.|Dipl\\.-?Ing\\.)?\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*)",
+        "priority": 16,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "3342a9c9",
+        "name": "German Legal Person with Compound Titles Mag Dr",
+        "description": "Specifically handles the 'Mag. Dr.' or 'Dr. Mag.' sequence followed by a name, which was previously split incorrectly.",
+        "format": "regex",
+        "content": "(?:Mag\\.\\s+Dr\\.|Dr\\.\\s+Mag\\.)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*)",
+        "priority": 17,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "d3ff3853",
+        "name": "German Legal Person Name after 'als' (As)",
+        "description": "Captures names appearing after 'als' (as) in legal contexts, specifically handling cases like 'als Vorsitzende' (where the role is the entity) vs 'als Dr. Name' (where the name is the entity). This rule targets the name part specifically when preceded by 'als' and a title or role.",
+        "format": "regex",
+        "content": "(?:als|durch|und|oder|sowie)\\s+(?:Senatspr\u00e4sident(?:in)?|Vizepr\u00e4sident(?:in)?|Hofrat(?:in)?|Hofr\u00e4t(?:in)?|Pr\u00e4sident(?:in)?|Richter(?:in)?|Anwalt(?:in)?|Rechtsanwalt(?:in)?|Vertreter|Gutachter|Zeuge|Kl\u00e4ger|Angeklagten|Partei|Verteidiger|Schriftf\u00fchrer|Beisitzer|Obmann|Obfrau|Mitglied|Vorsitzende|Vorsitzender|Vorsitz)\\s+(?:als|durch|und|oder|sowie|,|\\n)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*)",
+        "priority": 15,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "03b36a25",
+        "name": "German Legal Person Simple Name in Context",
+        "description": "Matches simple first and last names specifically in the context of 'Angeklagten' (Defendant) or 'Privatankl\u00e4ger' (Private Prosecutor) to avoid false positives from court names and legal terms.",
+        "format": "regex",
+        "content": "(?:Partei|Angeklagten|Kl\u00e4ger|Verteidiger|Zeuge|Gutachter)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*)",
+        "priority": 13,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      }
+    ]
+  },
+  "results": {
+    "accuracy": 0.920403044836538,
+    "micro_precision": 0.6394882566354784,
+    "micro_recall": 0.8019636015325671,
+    "micro_f1": 0.7115691065547648,
+    "macro_f1": 0.7115691065547648,
+    "num_rules": 17,
+    "learning_time_s": 46790.1,
+    "eval_time_s": 6.256,
+    "per_query_ms": 0.28
+  },
+  "per_class": [
+    {
+      "label": "person",
+      "precision": 0.6394882566354784,
+      "recall": 0.8019636015325671,
+      "f1": 0.7115691065547648,
+      "tp": 3349,
+      "fp": 1888,
+      "fn": 827
+    }
+  ],
+  "iteration_metrics": [],
+  "batch_test_metrics": [
+    {
+      "batch": 0,
+      "num_rules": 4,
+      "exact_match": 0.06028072336868042,
+      "micro_f1": 0.022705998431451917,
+      "micro_precision": 0.011660993165813476,
+      "micro_recall": 0.42983716475095785,
+      "macro_f1": 0.022705998431451917,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.022705998431451917,
+          "precision": 0.011660993165813476,
+          "recall": 0.42983716475095785
+        }
+      ]
+    },
+    {
+      "batch": 1,
+      "num_rules": 4,
+      "exact_match": 0.060236722840674085,
+      "micro_f1": 0.004297496025437202,
+      "micro_precision": 0.0022059573599918394,
+      "micro_recall": 0.0828544061302682,
+      "macro_f1": 0.004297496025437202,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.004297496025437202,
+          "precision": 0.0022059573599918394,
+          "recall": 0.0828544061302682
+        }
+      ]
+    },
+    {
+      "batch": 2,
+      "num_rules": 5,
+      "exact_match": 0.060148721784661414,
+      "micro_f1": 0.0006601112225135292,
+      "micro_precision": 0.00033886818027787193,
+      "micro_recall": 0.012691570881226053,
+      "macro_f1": 0.0006601112225135292,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.0006601112225135292,
+          "precision": 0.00033886818027787193,
+          "recall": 0.012691570881226053
+        }
+      ]
+    },
+    {
+      "batch": 3,
+      "num_rules": 6,
+      "exact_match": 0.13345360144321733,
+      "micro_f1": 0.0006091902727897372,
+      "micro_precision": 0.0003138800686156429,
+      "micro_recall": 0.010296934865900383,
+      "macro_f1": 0.0006091902727897372,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.0006091902727897372,
+          "precision": 0.0003138800686156429,
+          "recall": 0.010296934865900383
+        }
+      ]
+    },
+    {
+      "batch": 4,
+      "num_rules": 6,
+      "exact_match": 0.13345360144321733,
+      "micro_f1": 0.019685350053446016,
+      "micro_precision": 0.010146653157517177,
+      "micro_recall": 0.328544061302682,
+      "macro_f1": 0.019685350053446016,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.019685350053446016,
+          "precision": 0.010146653157517177,
+          "recall": 0.328544061302682
+        }
+      ]
+    },
+    {
+      "batch": 5,
+      "num_rules": 5,
+      "exact_match": 0.6446957363488361,
+      "micro_f1": 0.17808789835450947,
+      "micro_precision": 0.11378759648655842,
+      "micro_recall": 0.40948275862068967,
+      "macro_f1": 0.17808789835450947,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.17808789835450947,
+          "precision": 0.11378759648655842,
+          "recall": 0.40948275862068967
+        }
+      ]
+    },
+    {
+      "batch": 6,
+      "num_rules": 5,
+      "exact_match": 0.6446957363488361,
+      "micro_f1": 0.17808789835450947,
+      "micro_precision": 0.11378759648655842,
+      "micro_recall": 0.40948275862068967,
+      "macro_f1": 0.17808789835450947,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.17808789835450947,
+          "precision": 0.11378759648655842,
+          "recall": 0.40948275862068967
+        }
+      ]
+    },
+    {
+      "batch": 7,
+      "num_rules": 5,
+      "exact_match": 0.6446957363488361,
+      "micro_f1": 0.17808789835450947,
+      "micro_precision": 0.11378759648655842,
+      "micro_recall": 0.40948275862068967,
+      "macro_f1": 0.17808789835450947,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.17808789835450947,
+          "precision": 0.11378759648655842,
+          "recall": 0.40948275862068967
+        }
+      ]
+    },
+    {
+      "batch": 8,
+      "num_rules": 5,
+      "exact_match": 0.6446957363488361,
+      "micro_f1": 0.17808789835450947,
+      "micro_precision": 0.11378759648655842,
+      "micro_recall": 0.40948275862068967,
+      "macro_f1": 0.17808789835450947,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.17808789835450947,
+          "precision": 0.11378759648655842,
+          "recall": 0.40948275862068967
+        }
+      ]
+    },
+    {
+      "batch": 9,
+      "num_rules": 5,
+      "exact_match": 0.6446957363488361,
+      "micro_f1": 0.17808789835450947,
+      "micro_precision": 0.11378759648655842,
+      "micro_recall": 0.40948275862068967,
+      "macro_f1": 0.17808789835450947,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.17808789835450947,
+          "precision": 0.11378759648655842,
+          "recall": 0.40948275862068967
+        }
+      ]
+    },
+    {
+      "batch": 10,
+      "num_rules": 5,
+      "exact_match": 0.6446957363488361,
+      "micro_f1": 0.17808789835450947,
+      "micro_precision": 0.11378759648655842,
+      "micro_recall": 0.40948275862068967,
+      "macro_f1": 0.17808789835450947,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.17808789835450947,
+          "precision": 0.11378759648655842,
+          "recall": 0.40948275862068967
+        }
+      ]
+    },
+    {
+      "batch": 11,
+      "num_rules": 5,
+      "exact_match": 0.3760725128701544,
+      "micro_f1": 0.08484650707442716,
+      "micro_precision": 0.046998063266623626,
+      "micro_recall": 0.43582375478927204,
+      "macro_f1": 0.08484650707442716,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.08484650707442716,
+          "precision": 0.046998063266623626,
+          "recall": 0.43582375478927204
+        }
+      ]
+    },
+    {
+      "batch": 12,
+      "num_rules": 5,
+      "exact_match": 0.3758525102301228,
+      "micro_f1": 0.06656566833702365,
+      "micro_precision": 0.03687159492886467,
+      "micro_recall": 0.34195402298850575,
+      "macro_f1": 0.06656566833702365,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.06656566833702365,
+          "precision": 0.03687159492886467,
+          "recall": 0.34195402298850575
+        }
+      ]
+    },
+    {
+      "batch": 13,
+      "num_rules": 5,
+      "exact_match": 0.3758525102301228,
+      "micro_f1": 0.06572594752186589,
+      "micro_precision": 0.0364092095402982,
+      "micro_recall": 0.33740421455938696,
+      "macro_f1": 0.06572594752186589,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.06572594752186589,
+          "precision": 0.0364092095402982,
+          "recall": 0.33740421455938696
+        }
+      ]
+    },
+    {
+      "batch": 14,
+      "num_rules": 5,
+      "exact_match": 0.3758525102301228,
+      "micro_f1": 0.0655393586005831,
+      "micro_precision": 0.036305847696322904,
+      "micro_recall": 0.3364463601532567,
+      "macro_f1": 0.0655393586005831,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.0655393586005831,
+          "precision": 0.036305847696322904,
+          "recall": 0.3364463601532567
+        }
+      ]
+    },
+    {
+      "batch": 15,
+      "num_rules": 6,
+      "exact_match": 0.2840234082808994,
+      "micro_f1": 0.02993353128249959,
+      "micro_precision": 0.01597207701339853,
+      "micro_recall": 0.2377873563218391,
+      "macro_f1": 0.02993353128249959,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.02993353128249959,
+          "precision": 0.01597207701339853,
+          "recall": 0.2377873563218391
+        }
+      ]
+    },
+    {
+      "batch": 16,
+      "num_rules": 6,
+      "exact_match": 0.9613235358824306,
+      "micro_f1": 0.09918021771267303,
+      "micro_precision": 0.11301684532924962,
+      "micro_recall": 0.08836206896551724,
+      "macro_f1": 0.09918021771267303,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.09918021771267303,
+          "precision": 0.11301684532924962,
+          "recall": 0.08836206896551724
+        }
+      ]
+    },
+    {
+      "batch": 17,
+      "num_rules": 7,
+      "exact_match": 0.9613235358824306,
+      "micro_f1": 0.09855610014571467,
+      "micro_precision": 0.11028757782389564,
+      "micro_recall": 0.08908045977011494,
+      "macro_f1": 0.09855610014571467,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.09855610014571467,
+          "precision": 0.11028757782389564,
+          "recall": 0.08908045977011494
+        }
+      ]
+    },
+    {
+      "batch": 18,
+      "num_rules": 8,
+      "exact_match": 0.3755005060060721,
+      "micro_f1": 0.009629714547747335,
+      "micro_precision": 0.005324678617612009,
+      "micro_recall": 0.05028735632183908,
+      "macro_f1": 0.009629714547747335,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.009629714547747335,
+          "precision": 0.005324678617612009,
+          "recall": 0.05028735632183908
+        }
+      ]
+    },
+    {
+      "batch": 19,
+      "num_rules": 8,
+      "exact_match": 0.3755005060060721,
+      "micro_f1": 0.009501187648456057,
+      "micro_precision": 0.005251464350636235,
+      "micro_recall": 0.04980842911877394,
+      "macro_f1": 0.009501187648456057,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.009501187648456057,
+          "precision": 0.005251464350636235,
+          "recall": 0.04980842911877394
+        }
+      ]
+    },
+    {
+      "batch": 20,
+      "num_rules": 6,
+      "exact_match": 0.064152769833238,
+      "micro_f1": 0.0054341863241795475,
+      "micro_precision": 0.0027923512127824685,
+      "micro_recall": 0.10081417624521073,
+      "macro_f1": 0.0054341863241795475,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.0054341863241795475,
+          "precision": 0.0027923512127824685,
+          "recall": 0.10081417624521073
+        }
+      ]
+    },
+    {
+      "batch": 21,
+      "num_rules": 6,
+      "exact_match": 0.064152769833238,
+      "micro_f1": 0.0054341863241795475,
+      "micro_precision": 0.0027923512127824685,
+      "micro_recall": 0.10081417624521073,
+      "macro_f1": 0.0054341863241795475,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.0054341863241795475,
+          "precision": 0.0027923512127824685,
+          "recall": 0.10081417624521073
+        }
+      ]
+    },
+    {
+      "batch": 22,
+      "num_rules": 5,
+      "exact_match": 0.368812425749109,
+      "micro_f1": 0.007879101007491604,
+      "micro_precision": 0.004328697133125178,
+      "micro_recall": 0.04382183908045977,
+      "macro_f1": 0.007879101007491604,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.007879101007491604,
+          "precision": 0.004328697133125178,
+          "recall": 0.04382183908045977
+        }
+      ]
+    },
+    {
+      "batch": 23,
+      "num_rules": 5,
+      "exact_match": 0.368812425749109,
+      "micro_f1": 0.007879101007491604,
+      "micro_precision": 0.004328697133125178,
+      "micro_recall": 0.04382183908045977,
+      "macro_f1": 0.007879101007491604,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.007879101007491604,
+          "precision": 0.004328697133125178,
+          "recall": 0.04382183908045977
+        }
+      ]
+    },
+    {
+      "batch": 24,
+      "num_rules": 4,
+      "exact_match": 0.8814185770229243,
+      "micro_f1": 0.04390414553087284,
+      "micro_precision": 0.034582529622485536,
+      "micro_recall": 0.06010536398467433,
+      "macro_f1": 0.04390414553087284,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.04390414553087284,
+          "precision": 0.034582529622485536,
+          "recall": 0.06010536398467433
+        }
+      ]
+    },
+    {
+      "batch": 25,
+      "num_rules": 4,
+      "exact_match": 0.8817265807189686,
+      "micro_f1": 0.11259725500480812,
+      "micro_precision": 0.08866859424480242,
+      "micro_recall": 0.15421455938697318,
+      "macro_f1": 0.11259725500480812,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.11259725500480812,
+          "precision": 0.08866859424480242,
+          "recall": 0.15421455938697318
+        }
+      ]
+    },
+    {
+      "batch": 26,
+      "num_rules": 4,
+      "exact_match": 0.8817265807189686,
+      "micro_f1": 0.11259725500480812,
+      "micro_precision": 0.08866859424480242,
+      "micro_recall": 0.15421455938697318,
+      "macro_f1": 0.11259725500480812,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.11259725500480812,
+          "precision": 0.08866859424480242,
+          "recall": 0.15421455938697318
+        }
+      ]
+    },
+    {
+      "batch": 27,
+      "num_rules": 6,
+      "exact_match": 0.8495181942183306,
+      "micro_f1": 0.0979300499643112,
+      "micro_precision": 0.06975798250966037,
+      "micro_recall": 0.164272030651341,
+      "macro_f1": 0.0979300499643112,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.0979300499643112,
+          "precision": 0.06975798250966037,
+          "recall": 0.164272030651341
+        }
+      ]
+    },
+    {
+      "batch": 28,
+      "num_rules": 6,
+      "exact_match": 0.8846306155673868,
+      "micro_f1": 0.11758611758611759,
+      "micro_precision": 0.09194005670311867,
+      "micro_recall": 0.16307471264367815,
+      "macro_f1": 0.11758611758611759,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.11758611758611759,
+          "precision": 0.09194005670311867,
+          "recall": 0.16307471264367815
+        }
+      ]
+    },
+    {
+      "batch": 29,
+      "num_rules": 7,
+      "exact_match": 0.8851146213754565,
+      "micro_f1": 0.546244251405212,
+      "micro_precision": 0.4238699444885012,
+      "micro_recall": 0.7679597701149425,
+      "macro_f1": 0.546244251405212,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.546244251405212,
+          "precision": 0.4238699444885012,
+          "recall": 0.7679597701149425
+        }
+      ]
+    },
+    {
+      "batch": 30,
+      "num_rules": 9,
+      "exact_match": 0.9229110749328991,
+      "micro_f1": 0.6904761904761905,
+      "micro_precision": 0.6299368088467614,
+      "micro_recall": 0.7638888888888888,
+      "macro_f1": 0.6904761904761905,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.6904761904761905,
+          "precision": 0.6299368088467614,
+          "recall": 0.7638888888888888
+        }
+      ]
+    },
+    {
+      "batch": 31,
+      "num_rules": 11,
+      "exact_match": 0.813965767589211,
+      "micro_f1": 0.4889154288273494,
+      "micro_precision": 0.3551675523262119,
+      "micro_recall": 0.7842432950191571,
+      "macro_f1": 0.4889154288273494,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.4889154288273494,
+          "precision": 0.3551675523262119,
+          "recall": 0.7842432950191571
+        }
+      ]
+    },
+    {
+      "batch": 32,
+      "num_rules": 13,
+      "exact_match": 0.6209794517534211,
+      "micro_f1": 0.26559795974132433,
+      "micro_precision": 0.16398605331233831,
+      "micro_recall": 0.6982758620689655,
+      "macro_f1": 0.26559795974132433,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.26559795974132433,
+          "precision": 0.16398605331233831,
+          "recall": 0.6982758620689655
+        }
+      ]
+    },
+    {
+      "batch": 33,
+      "num_rules": 13,
+      "exact_match": 0.6209794517534211,
+      "micro_f1": 0.26559795974132433,
+      "micro_precision": 0.16398605331233831,
+      "micro_recall": 0.6982758620689655,
+      "macro_f1": 0.26559795974132433,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.26559795974132433,
+          "precision": 0.16398605331233831,
+          "recall": 0.6982758620689655
+        }
+      ]
+    },
+    {
+      "batch": 34,
+      "num_rules": 13,
+      "exact_match": 0.813965767589211,
+      "micro_f1": 0.4889154288273494,
+      "micro_precision": 0.3551675523262119,
+      "micro_recall": 0.7842432950191571,
+      "macro_f1": 0.4889154288273494,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.4889154288273494,
+          "precision": 0.3551675523262119,
+          "recall": 0.7842432950191571
+        }
+      ]
+    },
+    {
+      "batch": 35,
+      "num_rules": 13,
+      "exact_match": 0.813965767589211,
+      "micro_f1": 0.4889154288273494,
+      "micro_precision": 0.3551675523262119,
+      "micro_recall": 0.7842432950191571,
+      "macro_f1": 0.4889154288273494,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.4889154288273494,
+          "precision": 0.3551675523262119,
+          "recall": 0.7842432950191571
+        }
+      ]
+    },
+    {
+      "batch": 36,
+      "num_rules": 15,
+      "exact_match": 0.3443041316495798,
+      "micro_f1": 0.10960174137375041,
+      "micro_precision": 0.059837147887323944,
+      "micro_recall": 0.6511015325670498,
+      "macro_f1": 0.10960174137375041,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.10960174137375041,
+          "precision": 0.059837147887323944,
+          "recall": 0.6511015325670498
+        }
+      ]
+    },
+    {
+      "batch": 37,
+      "num_rules": 15,
+      "exact_match": 0.3443041316495798,
+      "micro_f1": 0.10960174137375041,
+      "micro_precision": 0.059837147887323944,
+      "micro_recall": 0.6511015325670498,
+      "macro_f1": 0.10960174137375041,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.10960174137375041,
+          "precision": 0.059837147887323944,
+          "recall": 0.6511015325670498
+        }
+      ]
+    },
+    {
+      "batch": 38,
+      "num_rules": 15,
+      "exact_match": 0.3443041316495798,
+      "micro_f1": 0.10960174137375041,
+      "micro_precision": 0.059837147887323944,
+      "micro_recall": 0.6511015325670498,
+      "macro_f1": 0.10960174137375041,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.10960174137375041,
+          "precision": 0.059837147887323944,
+          "recall": 0.6511015325670498
+        }
+      ]
+    },
+    {
+      "batch": 39,
+      "num_rules": 14,
+      "exact_match": 0.3550842610111321,
+      "micro_f1": 0.11878135111072506,
+      "micro_precision": 0.06531343283582089,
+      "micro_recall": 0.6549329501915708,
+      "macro_f1": 0.11878135111072506,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.11878135111072506,
+          "precision": 0.06531343283582089,
+          "recall": 0.6549329501915708
+        }
+      ]
+    },
+    {
+      "batch": 40,
+      "num_rules": 16,
+      "exact_match": 0.6894882738592863,
+      "micro_f1": 0.2741352862585976,
+      "micro_precision": 0.17276866462920226,
+      "micro_recall": 0.6633141762452107,
+      "macro_f1": 0.2741352862585976,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.2741352862585976,
+          "precision": 0.17276866462920226,
+          "recall": 0.6633141762452107
+        }
+      ]
+    },
+    {
+      "batch": 41,
+      "num_rules": 16,
+      "exact_match": 0.6916002992035905,
+      "micro_f1": 0.27591015488819165,
+      "micro_precision": 0.1741809721436207,
+      "micro_recall": 0.6633141762452107,
+      "macro_f1": 0.27591015488819165,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.27591015488819165,
+          "precision": 0.1741809721436207,
+          "recall": 0.6633141762452107
+        }
+      ]
+    },
+    {
+      "batch": 42,
+      "num_rules": 16,
+      "exact_match": 0.6916002992035905,
+      "micro_f1": 0.27591015488819165,
+      "micro_precision": 0.1741809721436207,
+      "micro_recall": 0.6633141762452107,
+      "macro_f1": 0.27591015488819165,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.27591015488819165,
+          "precision": 0.1741809721436207,
+          "recall": 0.6633141762452107
+        }
+      ]
+    },
+    {
+      "batch": 43,
+      "num_rules": 16,
+      "exact_match": 0.758965107581291,
+      "micro_f1": 0.3856601573885165,
+      "micro_precision": 0.2548732567994453,
+      "micro_recall": 0.7921455938697318,
+      "macro_f1": 0.3856601573885165,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.3856601573885165,
+          "precision": 0.2548732567994453,
+          "recall": 0.7921455938697318
+        }
+      ]
+    },
+    {
+      "batch": 44,
+      "num_rules": 16,
+      "exact_match": 0.758965107581291,
+      "micro_f1": 0.3856601573885165,
+      "micro_precision": 0.2548732567994453,
+      "micro_recall": 0.7921455938697318,
+      "macro_f1": 0.3856601573885165,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.3856601573885165,
+          "precision": 0.2548732567994453,
+          "recall": 0.7921455938697318
+        }
+      ]
+    },
+    {
+      "batch": 45,
+      "num_rules": 16,
+      "exact_match": 0.758965107581291,
+      "micro_f1": 0.3856601573885165,
+      "micro_precision": 0.2548732567994453,
+      "micro_recall": 0.7921455938697318,
+      "macro_f1": 0.3856601573885165,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.3856601573885165,
+          "precision": 0.2548732567994453,
+          "recall": 0.7921455938697318
+        }
+      ]
+    },
+    {
+      "batch": 46,
+      "num_rules": 16,
+      "exact_match": 0.758965107581291,
+      "micro_f1": 0.3856601573885165,
+      "micro_precision": 0.2548732567994453,
+      "micro_recall": 0.7921455938697318,
+      "macro_f1": 0.3856601573885165,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.3856601573885165,
+          "precision": 0.2548732567994453,
+          "recall": 0.7921455938697318
+        }
+      ]
+    },
+    {
+      "batch": 47,
+      "num_rules": 16,
+      "exact_match": 0.758965107581291,
+      "micro_f1": 0.3856601573885165,
+      "micro_precision": 0.2548732567994453,
+      "micro_recall": 0.7921455938697318,
+      "macro_f1": 0.3856601573885165,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.3856601573885165,
+          "precision": 0.2548732567994453,
+          "recall": 0.7921455938697318
+        }
+      ]
+    },
+    {
+      "batch": 48,
+      "num_rules": 16,
+      "exact_match": 0.7587451049412592,
+      "micro_f1": 0.3854803938705354,
+      "micro_precision": 0.2547162547162547,
+      "micro_recall": 0.7921455938697318,
+      "macro_f1": 0.3854803938705354,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.3854803938705354,
+          "precision": 0.2547162547162547,
+          "recall": 0.7921455938697318
+        }
+      ]
+    },
+    {
+      "batch": 49,
+      "num_rules": 14,
+      "exact_match": 0.9207550490605887,
+      "micro_f1": 0.6906230065915373,
+      "micro_precision": 0.6210325047801147,
+      "micro_recall": 0.7777777777777778,
+      "macro_f1": 0.6906230065915373,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.6906230065915373,
+          "precision": 0.6210325047801147,
+          "recall": 0.7777777777777778
+        }
+      ]
+    },
+    {
+      "batch": 50,
+      "num_rules": 14,
+      "exact_match": 0.9207550490605887,
+      "micro_f1": 0.6906230065915373,
+      "micro_precision": 0.6210325047801147,
+      "micro_recall": 0.7777777777777778,
+      "macro_f1": 0.6906230065915373,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.6906230065915373,
+          "precision": 0.6210325047801147,
+          "recall": 0.7777777777777778
+        }
+      ]
+    },
+    {
+      "batch": 51,
+      "num_rules": 14,
+      "exact_match": 0.9207550490605887,
+      "micro_f1": 0.6906230065915373,
+      "micro_precision": 0.6210325047801147,
+      "micro_recall": 0.7777777777777778,
+      "macro_f1": 0.6906230065915373,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.6906230065915373,
+          "precision": 0.6210325047801147,
+          "recall": 0.7777777777777778
+        }
+      ]
+    },
+    {
+      "batch": 52,
+      "num_rules": 14,
+      "exact_match": 0.9207550490605887,
+      "micro_f1": 0.6906230065915373,
+      "micro_precision": 0.6210325047801147,
+      "micro_recall": 0.7777777777777778,
+      "macro_f1": 0.6906230065915373,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.6906230065915373,
+          "precision": 0.6210325047801147,
+          "recall": 0.7777777777777778
+        }
+      ]
+    },
+    {
+      "batch": 53,
+      "num_rules": 14,
+      "exact_match": 0.9207550490605887,
+      "micro_f1": 0.6906230065915373,
+      "micro_precision": 0.6210325047801147,
+      "micro_recall": 0.7777777777777778,
+      "macro_f1": 0.6906230065915373,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.6906230065915373,
+          "precision": 0.6210325047801147,
+          "recall": 0.7777777777777778
+        }
+      ]
+    },
+    {
+      "batch": 54,
+      "num_rules": 15,
+      "exact_match": 0.8070136841642099,
+      "micro_f1": 0.4605540807296985,
+      "micro_precision": 0.3217308606752259,
+      "micro_recall": 0.8101053639846744,
+      "macro_f1": 0.4605540807296985,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.4605540807296985,
+          "precision": 0.3217308606752259,
+          "recall": 0.8101053639846744
+        }
+      ]
+    },
+    {
+      "batch": 55,
+      "num_rules": 15,
+      "exact_match": 0.8070136841642099,
+      "micro_f1": 0.4605540807296985,
+      "micro_precision": 0.3217308606752259,
+      "micro_recall": 0.8101053639846744,
+      "macro_f1": 0.4605540807296985,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.4605540807296985,
+          "precision": 0.3217308606752259,
+          "recall": 0.8101053639846744
+        }
+      ]
+    },
+    {
+      "batch": 56,
+      "num_rules": 15,
+      "exact_match": 0.8070136841642099,
+      "micro_f1": 0.4605540807296985,
+      "micro_precision": 0.3217308606752259,
+      "micro_recall": 0.8101053639846744,
+      "macro_f1": 0.4605540807296985,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.4605540807296985,
+          "precision": 0.3217308606752259,
+          "recall": 0.8101053639846744
+        }
+      ]
+    },
+    {
+      "batch": 57,
+      "num_rules": 16,
+      "exact_match": 0.9218990627887534,
+      "micro_f1": 0.7144385026737969,
+      "micro_precision": 0.6455353691534597,
+      "micro_recall": 0.7998084291187739,
+      "macro_f1": 0.7144385026737969,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.7144385026737969,
+          "precision": 0.6455353691534597,
+          "recall": 0.7998084291187739
+        }
+      ]
+    },
+    {
+      "batch": 58,
+      "num_rules": 15,
+      "exact_match": 0.8784705416464997,
+      "micro_f1": 0.5687886750868865,
+      "micro_precision": 0.4402309408214145,
+      "micro_recall": 0.8034003831417624,
+      "macro_f1": 0.5687886750868865,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.5687886750868865,
+          "precision": 0.4402309408214145,
+          "recall": 0.8034003831417624
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "eb9ae69d",
+      "name": "German Legal Person with Initials in Name",
+      "description": "Matches persons with standard titles (Dr., Mag., etc.) followed by a name, excluding compound titles handled by other rules and stopping at the first surname to avoid partial matches of longer names.",
+      "format": "regex",
+      "content": "(?<!\\S)(?:(?:Hon\\.-?Prof\\.|Univ\\.-?Prof\\.|Priv\\.-?Doz\\.|PD\\s+|MedR|\u00d6kR|KzlR|DDr\\.)\\s+)?(?:Dr\\.|Mag\\.|MMag\\.|DI\\s+|Ing\\.|PhD\\s+|Prof\\.|StR\\.|OStR\\.|DR\\.|RgR\\.|Dipl\\.-?Ing\\.)\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*(?:-[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*",
+      "priority": 15,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T07:07:21.896776"
+    },
+    {
+      "id": "e2b963ce",
+      "name": "German Legal Person with Compound Titles",
+      "description": "Matches persons with complex academic/legal titles including 'Hon.-Prof. PD Dr.' and 'Priv.-Doz.' sequences followed by a name.",
+      "format": "regex",
+      "content": "(?<!\\S)(?:Hon\\.-?Prof\\.|Univ\\.-?Prof\\.|Priv\\.-?Doz\\.|PD\\s+|Prof\\.|StR\\.|OStR\\.|DR\\.|RgR\\.|Dipl\\.-?Ing\\.|MMag\\.|DI\\s+|Ing\\.|PhD\\s+|MedR|\u00d6kR|KzlR|DDr\\.)\\s+(?:Dr\\.|Mag\\.|MMag\\.)?\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*(?:-[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*",
+      "priority": 16,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T06:00:05.900332"
+    },
+    {
+      "id": "95ea56cf",
+      "name": "German Legal Person with Simple Name in Context",
+      "description": "Matches simple first and last names specifically in the context of 'Angeklagten' (Defendant) or 'Privatankl\u00e4ger' (Private Prosecutor) to avoid false positives from court names and legal terms.",
+      "format": "regex",
+      "content": "(?:Partei|Angeklagten|Kl\u00e4ger|Verteidiger|Zeuge|Gutachter)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*)",
+      "priority": 13,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-30T22:52:02.456329"
+    },
+    {
+      "id": "dcf1a516",
+      "name": "German Legal Person with Simple Name after Preposition",
+      "description": "Matches simple names following 'als' (as) or 'durch' (by) ONLY when preceded by a known legal role (Senatspr\u00e4sident, Hofrat, etc.) to avoid matching court names or titles.",
+      "format": "regex",
+      "content": "(?:Senatspr\u00e4sident(in)?|Vizepr\u00e4sident(in)?|Hofrat(in)?|Hofr\u00e4t(in)?|Pr\u00e4sident(in)?|Richter(in)?|Anwalt(in)?|Rechtsanwalt(in)?|Vertreter|Gutachter|Zeuge|Kl\u00e4ger|Angeklagten|Partei|Verteidiger|Schriftf\u00fchrer|Beisitzer|Obmann|Obfrau|Mitglied)\\s+(?:als|durch|und|oder|sowie|,|\\n)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*)",
+      "priority": 15,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-30T22:51:12.480419"
+    },
+    {
+      "id": "e19dac50",
+      "name": "German Legal Person Simple Name after Legal Verbs",
+      "description": "Matches simple names following legal verbs like '\u00fcber' (over), 'hat' (has), 'wurde' (was) to capture names in procedural contexts (e.g., '\u00fcber Franz Z\u00e4sar', 'hat Michael Huperz').",
+      "format": "regex",
+      "content": "(?:\u00fcber|hat|wurde|erkannte|verurteilte|verurteilt)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*)",
+      "priority": 12,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T07:02:23.290275"
+    },
+    {
+      "id": "493ee228",
+      "name": "German Legal Person with Simple Name in List",
+      "description": "Matches simple names in a list context ONLY if the preceding item is a title (Dr., Mag., etc.) or a known person name pattern, to avoid matching street names or generic terms.",
+      "format": "regex",
+      "content": "(?:(?:,\\s+|\\s+und\\s+)(?:(?:Dr\\.|Mag\\.|MMag\\.|DI\\s+|Ing\\.|PhD\\s+|Prof\\.|StR\\.|OStR\\.|DR\\.|RgR\\.|Dipl\\.-?Ing\\.)\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*(?:-[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*)|(?:(?:Dr\\.|Mag\\.|MMag\\.|DI\\s+|Ing\\.|PhD\\s+|Prof\\.|StR\\.|OStR\\.|DR\\.|RgR\\.|Dipl\\.-?Ing\\.)\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*(?:-[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*))\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*)",
+      "priority": 11,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-30T22:53:14.978103"
+    },
+    {
+      "id": "f7a1fc96",
+      "name": "German Legal Person Simple Name after Preposition 'von'",
+      "description": "Matches names following 'von' ONLY if the preceding word is not a title (Dr., Mag., etc.) and the following word is not a common legal noun, to avoid matching 'Dr. Thomas Walzel von Wiesentreu' as 'Walzel' or 'Wiesentreu'.",
+      "format": "regex",
+      "content": "\\b(?:von)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*)\\b(?!\\s*(?:Suchtgift|Handel|Recht|Gesetz|Verfahren|Sache|Fall|Teil|Art|Absatz|Zahl|Stelle|Firma|Gesellschaft|Unternehmen|Gericht|Beh\u00f6rde|Amt|Ministerium|Regierung|Staat|Land|Stadt|Gemeinde|Bezirk|Kreis|Region|Provinz|Bundesland|Wien|Graz|Linz|Innsbruck|Salzburg|Bregenz|Klagenfurt|Deutschlandsberg|Enns|Deutschland|Italien|Slowakei|\u00d6sterreich|K\u00e4rnten|Oberste|Gerichtshof|Obersten|Gerichtshofs|Rechtsanwalt|Rechtsanw\u00e4lte|GmbH|AG|KG|OHG|UG|Ltd|Inc|Corp|Partnerschaft|Vater|Mutter|Kind|Jugend|Verein|Notar|Anwalt|Kanzlei|B\u00fcro|Abteilung|Hofrat|Senatspr\u00e4sident|Vizepr\u00e4sident|Dr\\.\\s|Mag\\.\\s|MMag\\.\\s|Prof\\.\\s|Ing\\.\\s|DI\\s|PhD\\s|StR\\.\\s|OStR\\.\\s|Dipl\\.-?Ing\\.\\s|MedR|\u00d6kR|KzlR|DDr\\.\\s))",
+      "priority": 10,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T07:07:21.897405"
+    },
+    {
+      "id": "d7a4fcfa",
+      "name": "German Legal Person Name after 'gegen' (Against)",
+      "description": "Captures names appearing after 'gegen' (against), a very common context for defendants in legal texts, including simple names without titles.",
+      "format": "regex",
+      "content": "gegen\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00c4\\u00d6\\u00dc\\u00e9\\u00e8\\u00ea\\u00eb\\u00e0\\u00e2\\u00e4\\u00ee\\u00ef\\u00f4\\u00fb\\u00f9\\u00e7\\u00e9\\u00e8\\u00ea\\u00eb\\u00e0\\u00e2\\u00e4\\u00ee\\u00ef\\u00f4\\u00fb\\u00f9\\u00e7]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00c4\\u00d6\\u00dc\\u00e9\\u00e8\\u00ea\\u00eb\\u00e0\\u00e2\\u00e4\\u00ee\\u00ef\\u00f4\\u00fb\\u00f9\\u00e7\\u00e9\\u00e8\\u00ea\\u00eb\\u00e0\\u00e2\\u00e4\\u00ee\\u00ef\\u00f4\\u00fb\\u00f9\\u00e7]+)*)\\b(?!\\s*(?:GmbH|AG|KG|OHG|UG|Ltd|Inc|Corp|Partnerschaft|Vater|Mutter|Kind|Jugend|Verein|Gesellschaft|Firma|Unternehmen|Gericht|Hofrat|Senatspr\u00e4sident|Vizepr\u00e4sident|Rechtsanwalt|Notar|Anwalt|Kanzlei|B\u00fcro|Abteilung|Amt|Beh\u00f6rde|Ministerium|Regierung|Staat|Land|Stadt|Gemeinde|Bezirk|Kreis|Region|Provinz|Bundesland|Wien|Graz|Linz|Innsbruck|Salzburg|Bregenz|Klagenfurt|Deutschlandsberg|Enns|Deutschland|Italien|Slowakei|\u00d6sterreich|K\u00e4rnten|Oberste|Gerichtshof|Obersten|Gerichtshofs|Rechtsanwalt|Rechtsanw\u00e4lte|GmbH|AG|KG|OHG|UG|Ltd|Inc|Corp|Partnerschaft|Vater|Mutter|Kind|Jugend|Verein|Gesellschaft|Firma|Unternehmen|Gericht|Hofrat|Senatspr\u00e4sident|Vizepr\u00e4sident|Rechtsanwalt|Notar|Anwalt|Kanzlei|B\u00fcro|Abteilung|Amt|Beh\u00f6rde|Ministerium|Regierung|Staat|Land|Stadt|Gemeinde|Bezirk|Kreis|Region|Provinz|Bundesland|Wien|Graz|Linz|Innsbruck|Salzburg|Bregenz|Klagenfurt|Deutschlandsberg|Enns|Deutschland|Italien|Slowakei|\u00d6sterreich|K\u00e4rnten|Oberste|Gerichtshof|Obersten|Gerichtshofs|Vernehmung|Stelle|Frau|Bild|Leben|Duldung|Feststellung|Herausgabe|Rechnungslegung|Folge|Rekurs|Abs|Gegenwart|Bedeutung|Techn|H\u00f6he|Bedeutung|Feldkirch|Lilienfeld|Amstetten|Bew\u00e4hrungshilfe|Beschlussform|Disziplinarbeschuldigte|Disziplinarbeschuldigten|Disziplinarbeschuldigte|Rechtssache|Partei|Vizepr\u00e4sidenten|Hofr\u00e4te|Hofr\u00e4tinnen|Hofrat|Senatspr\u00e4sidenten|Senatspr\u00e4sidentin|Pr\u00e4sidentin|Vizepr\u00e4sidentin|Kl\u00e4gerin|Beklagten|Kl\u00e4ger|Verteidiger|Zeuge|Gutachter|Arbeits|Sozialrechtssachen|Arbeitsrechtssache|Rechtsanw\u00e4lte|Rechtsanw\u00e4ltin|Rechtsanw\u00e4lte|Nebenintervenientin|Nebenintervenient|Beschlussform|Exekutionssache|Urteilsver\u00f6ffentlichung|Versand|Feststellung|Revisionen|Liquidation|Kapsstra\u00dfe|Spiegelstra\u00dfe|Valdorffurt|Wess|Nieder|Revisionsrekurs|Drau|Spittal|Wien|Graz|Linz|Innsbruck|Salzburg|Bregenz|Klagenfurt|Deutschlandsberg|Enns|Salzburg|Deutschland|Italien|Slowakei|\u00d6sterreich|K\u00e4rnten|Oberste|Gerichtshof|Obersten|Gerichtshofs|Rechtsanwalt|Rechtsanw\u00e4lte|GmbH|AG|KG|OHG|UG|Ltd|Inc|Corp|Partnerschaft|Vater|Mutter|Kind|Jugend|Verein|Gesellschaft|Firma|Unternehmen|Gericht|Hofrat|Senatspr\u00e4sident|Vizepr\u00e4sident|Rechtsanwalt|Notar|Anwalt|Kanzlei|B\u00fcro|Abteilung|Amt|Beh\u00f6rde|Ministerium|Regierung|Staat|Land|Stadt|Gemeinde|Bezirk|Kreis|Region|Provinz|Bundesland|Wien|Graz|Linz|Innsbruck|Salzburg|Bregenz|Klagenfurt|Deutschlandsberg|Enns|Deutschland|Italien|Slowakei|\u00d6sterreich|K\u00e4rnten|Oberste|Gerichtshof|Obersten|Gerichtshofs))",
+      "priority": 12,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T03:57:56.904348"
+    },
+    {
+      "id": "8ea3b39f",
+      "name": "German Legal Person Simple Name after 'gegen' (Against)",
+      "description": "Captures names appearing after 'gegen' (against), a very common context for defendants in legal texts, including simple names without titles.",
+      "format": "regex",
+      "content": "gegen\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*)\\b(?!\\s*(?:GmbH|AG|KG|OHG|UG|Ltd|Inc|Corp|Partnerschaft|Vater|Mutter|Kind|Jugend|Verein|Gesellschaft|Firma|Unternehmen|Gericht|Hofrat|Senatspr\u00e4sident|Vizepr\u00e4sident|Rechtsanwalt|Notar|Anwalt|Kanzlei|B\u00fcro|Abteilung|Amt|Beh\u00f6rde|Ministerium|Regierung|Staat|Land|Stadt|Gemeinde|Bezirk|Kreis|Region|Provinz|Bundesland|\u00d6sterreich|Deutschland|Schweiz|Europa|Welt|Jahr|Monat|Tag|Stunde|Minute|Sekunde|Zahl|Summe|Betrag|Preis|Wert|Kosten|Geb\u00fchr|Strafe|Bu\u00dfe|Geld|Euro|Dollar|Pfund|Yen|Franc|Mark|Cent|Kredit|Debit|Konto|Karte|Zahlung|Rechnung|Vertrag|Abkommen|Gesetz|Verordnung|Richtlinie|Verfahren|Prozess|Klage|Antrag|Beschluss|Entscheidung|Urteil|Verdict|Rechtsmittel|Rekurs|Revision|Berufung|Einspruch|Widerspruch|Klageerhebung|Klageabweisung|Klagebegr\u00fcndung|Klage\u00e4nderung|Klageerledigung|Klageverzicht|Klageverzicht|Klageverzicht|Klageverzicht|Klageverzicht))",
+      "priority": 12,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-30T22:55:44.772606"
+    },
+    {
+      "id": "395c9dee",
+      "name": "German Legal Person Simple Name after 'des' (Of)",
+      "description": "Captures names appearing after 'des' (of) ONLY if immediately followed by a title (Dr., Mag., etc.) to avoid matching court names like 'Obersten Gerichtshofs'.",
+      "format": "regex",
+      "content": "des\\s+(?:Dr\\.|Mag\\.|MMag\\.|DI\\s+|Ing\\.|PhD\\s+|Prof\\.|StR\\.|OStR\\.|DR\\.|RgR\\.|Dipl\\.-?Ing\\.)\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*(?:-[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*",
+      "priority": 12,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-30T23:28:06.457535"
+    },
+    {
+      "id": "bf5e7baa",
+      "name": "German Legal Person with Suffixes",
+      "description": "Matches names with academic suffixes (e.g., 'BA', 'Dr.in', 'PhD') that were previously missed, ensuring the full name including suffix is captured.",
+      "format": "regex",
+      "content": "(?:PhD\\s+|OMedR\\s+|Dr\\.in\\s+|StR\\s+|PhD\\s+|BA\\s+|MA\\s+|LL\\.M\\.\\s+|LL\\.B\\.\\s+)([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*)",
+      "priority": 15,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T07:07:21.900530"
+    },
+    {
+      "id": "07cbe754",
+      "name": "German Legal Person Simple Name after Verbs",
+      "description": "Captures simple names (First Last) appearing after common legal verbs like 'informiert', 'kann', 'wird', 'hat' to handle cases like 'Laura Aleite kann' or 'Zoltan Ansel den Kunden', but only if followed by a period or end of sentence to avoid matching street names.",
+      "format": "regex",
+      "content": "(?:informiert|kann|wird|hat|wurde|sind|ist|werden|haben|hatten|konnte|konnten|sollte|sollten|muss|m\u00fcssen|durfte|durften|wollte|wollten|hatte|hatten|ging|gingen|kam|kamen|sagte|sagten|teilte|teilte|berichtet|berichtet|erw\u00e4hnt|erw\u00e4hnt|nennt|nennt|nennt|nennt|wurde|begehrt)\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00c4\\u00d6\\u00dc\\u00e9\\u00e8\\u00ea\\u00eb\\u00e0\\u00e2\\u00e4\\u00ee\\u00ef\\u00f4\\u00fb\\u00f9\\u00e7\\u00e9\\u00e8\\u00ea\\u00eb\\u00e0\\u00e2\\u00e4\\u00ee\\u00ef\\u00f4\\u00fb\\u00f9\\u00e7]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00c4\\u00d6\\u00dc\\u00e9\\u00e8\\u00ea\\u00eb\\u00e0\\u00e2\\u00e4\\u00ee\\u00ef\\u00f4\\u00fb\\u00f9\\u00e7\\u00e9\\u00e8\\u00ea\\u00eb\\u00e0\\u00e2\\u00e4\\u00ee\\u00ef\\u00f4\\u00fb\\u00f9\\u00e7]+)*)\\b(?=\\s*(?:\\.|,|\\)|\\]|$))",
+      "priority": 14,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T03:57:56.903578"
+    },
+    {
+      "id": "8cfac08f",
+      "name": "German Legal Person Simple Name after Legal Roles",
+      "description": "Matches simple first and last names appearing immediately after specific legal roles (Senatspr\u00e4sident, Hofrat, etc.) to capture names like 'Dr. Baumann' or 'Laura Aleite' when the role precedes the name. Requires a valid name pattern to avoid partial matches.",
+      "format": "regex",
+      "content": "(?:Senatspr\u00e4sident(?:en|in)?|Hofr\u00e4t(?:en|in)?|Vizepr\u00e4sident(?:en|in)?|Pr\u00e4sident(?:en|in)?|Richter(?:in)?|Anwalt(?:in)?|Notar|Rechtsanwalt(?:in)?)\\s+(?:Dr\\.|Mag\\.|MMag\\.|DI\\s+|Ing\\.|PhD\\s+|Prof\\.|StR\\.|OStR\\.|DR\\.|RgR\\.|Dipl\\.-?Ing\\.)?\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*)",
+      "priority": 16,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T07:02:23.288848"
+    },
+    {
+      "id": "3342a9c9",
+      "name": "German Legal Person with Compound Titles Mag Dr",
+      "description": "Specifically handles the 'Mag. Dr.' or 'Dr. Mag.' sequence followed by a name, which was previously split incorrectly.",
+      "format": "regex",
+      "content": "(?:Mag\\.\\s+Dr\\.|Dr\\.\\s+Mag\\.)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*)",
+      "priority": 17,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T06:00:05.899668"
+    },
+    {
+      "id": "d3ff3853",
+      "name": "German Legal Person Name after 'als' (As)",
+      "description": "Captures names appearing after 'als' (as) in legal contexts, specifically handling cases like 'als Vorsitzende' (where the role is the entity) vs 'als Dr. Name' (where the name is the entity). This rule targets the name part specifically when preceded by 'als' and a title or role.",
+      "format": "regex",
+      "content": "(?:als|durch|und|oder|sowie)\\s+(?:Senatspr\u00e4sident(?:in)?|Vizepr\u00e4sident(?:in)?|Hofrat(?:in)?|Hofr\u00e4t(?:in)?|Pr\u00e4sident(?:in)?|Richter(?:in)?|Anwalt(?:in)?|Rechtsanwalt(?:in)?|Vertreter|Gutachter|Zeuge|Kl\u00e4ger|Angeklagten|Partei|Verteidiger|Schriftf\u00fchrer|Beisitzer|Obmann|Obfrau|Mitglied|Vorsitzende|Vorsitzender|Vorsitz)\\s+(?:als|durch|und|oder|sowie|,|\\n)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*)",
+      "priority": 15,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T07:02:23.289546"
+    },
+    {
+      "id": "8ceaf641",
+      "name": "German Legal Person Simple Name in Context",
+      "description": "Matches simple first and last names specifically in the context of 'Angeklagten' (Defendant), 'Kl\u00e4ger' (Plaintiff), 'Zeuge' (Witness), 'Gutachter' (Expert), or 'Privatankl\u00e4ger' (Private Prosecutor), excluding company names and legal terms.",
+      "format": "regex",
+      "content": "(?:Angeklagten|Kl\u00e4ger|Verteidiger|Zeuge|Gutachter|Privatankl\u00e4ger|Beklagten|Kl\u00e4gerin|Beklagte|Zeugin|Gutachterin)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*)",
+      "priority": 13,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T07:07:21.898634"
+    },
+    {
+      "id": "d512b1ee",
+      "name": "German Legal Person with Simple Name after Preposition 'als'",
+      "description": "Matches names following 'als' (as) ONLY when preceded by a known legal role (Senatspr\u00e4sident, Hofrat, etc.) to avoid matching court names or titles.",
+      "format": "regex",
+      "content": "(?:als)\\s+(?:Senatspr\u00e4sident|Senatspr\u00e4sidentin|Vizepr\u00e4sident|Vizepr\u00e4sidentin|Hofrat|Hofr\u00e4tin|Hofr\u00e4te|Hofr\u00e4tinnen|Pr\u00e4sident|Pr\u00e4sidentin|Vizepr\u00e4sident|Minister|Staatssekret\u00e4r|Bundesminister|Bundeskanzler|Justizminister|Landesgerichtspr\u00e4sident|Oberlandesgerichtspr\u00e4sident|Oberster|Gerichtshof|Oberster|Gerichtshof|Revisionsgericht|Verwaltungsgerichtshof|Verfassungsgerichtshof|Bundesverwaltungsgericht|Bundesgerichtshof|Landesgericht|Bezirksgericht|Oberlandesgericht|Gericht|Beh\u00f6rde|Amt|Ministerium|Regierung|Staat|Land|Stadt|Gemeinde|Bezirk|Kreis|Region|Provinz|Bundesland|Wien|Graz|Linz|Innsbruck|Salzburg|Bregenz|Klagenfurt|Deutschlandsberg|Enns|Deutschland|Italien|Slowakei|\u00d6sterreich|K\u00e4rnten|Oberste|Gerichtshof|Obersten|Gerichtshofs|Rechtsanwalt|Rechtsanw\u00e4lte|GmbH|AG|KG|OHG|UG|Ltd|Inc|Corp|Partnerschaft|Vater|Mutter|Kind|Jugend|Verein|Notar|Anwalt|Kanzlei|B\u00fcro|Abteilung|Hofrat|Senatspr\u00e4sident|Vizepr\u00e4sident|Dr\\.\\s|Mag\\.\\s|MMag\\.\\s|Prof\\.\\s|Ing\\.\\s|DI\\s|PhD\\s|StR\\.\\s|OStR\\.\\s|Dipl\\.-?Ing\\.\\s|MedR|\u00d6kR|KzlR|DDr\\.\\s)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*)",
+      "priority": 12,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T07:07:21.899014"
+    }
+  ],
+  "best_rules": {
+    "batch": 57,
+    "micro_f1": 0.7144385026737969,
+    "rules": [
+      {
+        "id": "678d18c6",
+        "name": "German Legal Person with Initials in Name",
+        "description": "Matches persons with standard titles (Dr., Mag., etc.) followed by a name, including middle initials (e.g., Dr. E. Sol\u00e9) and compound surnames.",
+        "format": "regex",
+        "content": "(?<!\\S)(?:Dr\\.|Mag\\.|MMag\\.|DI\\s+|Ing\\.|PhD\\s+|Prof\\.|StR\\.|OStR\\.|DR\\.|RgR\\.|Dipl\\.-?Ing\\.)\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*(?:-[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*",
+        "priority": 15,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "e2b963ce",
+        "name": "German Legal Person with Compound Titles",
+        "description": "Matches persons with complex academic/legal titles including 'Hon.-Prof. PD Dr.' and 'Priv.-Doz.' sequences followed by a name.",
+        "format": "regex",
+        "content": "(?<!\\S)(?:Hon\\.-?Prof\\.|Univ\\.-?Prof\\.|Priv\\.-?Doz\\.|PD\\s+|Prof\\.|StR\\.|OStR\\.|DR\\.|RgR\\.|Dipl\\.-?Ing\\.|MMag\\.|DI\\s+|Ing\\.|PhD\\s+|MedR|\u00d6kR|KzlR|DDr\\.)\\s+(?:Dr\\.|Mag\\.|MMag\\.)?\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*(?:-[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*",
+        "priority": 16,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "95ea56cf",
+        "name": "German Legal Person with Simple Name in Context",
+        "description": "Matches simple first and last names specifically in the context of 'Angeklagten' (Defendant) or 'Privatankl\u00e4ger' (Private Prosecutor) to avoid false positives from court names and legal terms.",
+        "format": "regex",
+        "content": "(?:Partei|Angeklagten|Kl\u00e4ger|Verteidiger|Zeuge|Gutachter)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*)",
+        "priority": 13,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "dcf1a516",
+        "name": "German Legal Person with Simple Name after Preposition",
+        "description": "Matches simple names following 'als' (as) or 'durch' (by) ONLY when preceded by a known legal role (Senatspr\u00e4sident, Hofrat, etc.) to avoid matching court names or titles.",
+        "format": "regex",
+        "content": "(?:Senatspr\u00e4sident(in)?|Vizepr\u00e4sident(in)?|Hofrat(in)?|Hofr\u00e4t(in)?|Pr\u00e4sident(in)?|Richter(in)?|Anwalt(in)?|Rechtsanwalt(in)?|Vertreter|Gutachter|Zeuge|Kl\u00e4ger|Angeklagten|Partei|Verteidiger|Schriftf\u00fchrer|Beisitzer|Obmann|Obfrau|Mitglied)\\s+(?:als|durch|und|oder|sowie|,|\\n)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*)",
+        "priority": 15,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "e19dac50",
+        "name": "German Legal Person Simple Name after Legal Verbs",
+        "description": "Matches simple names following legal verbs like '\u00fcber' (over), 'hat' (has), 'wurde' (was) to capture names in procedural contexts (e.g., '\u00fcber Franz Z\u00e4sar', 'hat Michael Huperz').",
+        "format": "regex",
+        "content": "(?:\u00fcber|hat|wurde|erkannte|verurteilte|verurteilt)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*)",
+        "priority": 12,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "493ee228",
+        "name": "German Legal Person with Simple Name in List",
+        "description": "Matches simple names in a list context ONLY if the preceding item is a title (Dr., Mag., etc.) or a known person name pattern, to avoid matching street names or generic terms.",
+        "format": "regex",
+        "content": "(?:(?:,\\s+|\\s+und\\s+)(?:(?:Dr\\.|Mag\\.|MMag\\.|DI\\s+|Ing\\.|PhD\\s+|Prof\\.|StR\\.|OStR\\.|DR\\.|RgR\\.|Dipl\\.-?Ing\\.)\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*(?:-[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*)|(?:(?:Dr\\.|Mag\\.|MMag\\.|DI\\s+|Ing\\.|PhD\\s+|Prof\\.|StR\\.|OStR\\.|DR\\.|RgR\\.|Dipl\\.-?Ing\\.)\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*(?:-[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*))\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*)",
+        "priority": 11,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "e0c3e70c",
+        "name": "German Legal Person Simple Name after Preposition 'von'",
+        "description": "Matches names following the preposition 'von' (of/from) which is common in German surnames, excluding common non-person nouns.",
+        "format": "regex",
+        "content": "\\b(?:von)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*)\\b(?!\\s*(?:Suchtgift|Handel|Recht|Gesetz|Verfahren|Sache|Fall|Teil|Art|Absatz|Zahl|Stelle|Firma|Gesellschaft|Unternehmen|Gericht|Beh\u00f6rde|Amt|Ministerium|Regierung|Staat|Land|Stadt|Gemeinde|Bezirk|Kreis|Region|Provinz|Bundesland|Wien|Graz|Linz|Innsbruck|Salzburg|Bregenz|Klagenfurt|Deutschlandsberg|Enns|Deutschland|Italien|Slowakei|\u00d6sterreich|K\u00e4rnten|Oberste|Gerichtshof|Obersten|Gerichtshofs|Vernehmung|Stelle|Frau|Bild|Leben|Duldung|Feststellung|Herausgabe|Rechnungslegung|Folge|Rekurs|Abs|Gegenwart|Bedeutung|Techn|H\u00f6he|Bedeutung|Feldkirch|Lilienfeld|Amstetten|Bew\u00e4hrungshilfe|Beschlussform|Disziplinarbeschuldigte|Disziplinarbeschuldigten|Disziplinarbeschuldigte|Rechtssache|Partei|Vizepr\u00e4sidenten|Hofr\u00e4te|Hofr\u00e4tinnen|Hofrat|Senatspr\u00e4sidenten|Senatspr\u00e4sidentin|Pr\u00e4sidentin|Vizepr\u00e4sidentin|Kl\u00e4gerin|Beklagten|Kl\u00e4ger|Verteidiger|Zeuge|Gutachter|Arbeits|Sozialrechtssachen|Arbeitsrechtssache|Rechtsanw\u00e4lte|Rechtsanw\u00e4ltin|Rechtsanw\u00e4lte|Nebenintervenientin|Nebenintervenient|Beschlussform|Exekutionssache|Urteilsver\u00f6ffentlichung|Versand|Feststellung|Revisionen|Liquidation|Kapsstra\u00dfe|Spiegelstra\u00dfe|Valdorffurt|Wess|Nieder|Revisionsrekurs|Drau|Spittal|Wien|Graz|Linz|Innsbruck|Salzburg|Bregenz|Klagenfurt|Deutschlandsberg|Enns|Salzburg|Deutschland|Italien|Slowakei|\u00d6sterreich|K\u00e4rnten|Oberste|Gerichtshof|Obersten|Gerichtshofs|Rechtsanwalt|Rechtsanw\u00e4lte|GmbH|AG|KG|OHG|UG|Ltd|Inc|Corp|Partnerschaft|Vater|Mutter|Kind|Jugend|Verein|Gesellschaft|Firma|Unternehmen|Gericht|Hofrat|Senatspr\u00e4sident|Vizepr\u00e4sident|Rechtsanwalt|Notar|Anwalt|Kanzlei|B\u00fcro|Abteilung|Amt|Beh\u00f6rde|Ministerium|Regierung|Staat|Land|Stadt|Gemeinde|Bezirk|Kreis|Region|Provinz|Bundesland|Wien|Graz|Linz|Innsbruck|Salzburg|Bregenz|Klagenfurt|Deutschlandsberg|Enns|Deutschland|Italien|Slowakei|\u00d6sterreich|K\u00e4rnten|Oberste|Gerichtshof|Obersten|Gerichtshofs))",
+        "priority": 10,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "d7a4fcfa",
+        "name": "German Legal Person Name after 'gegen' (Against)",
+        "description": "Captures names appearing after 'gegen' (against), a very common context for defendants in legal texts, including simple names without titles.",
+        "format": "regex",
+        "content": "gegen\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00c4\\u00d6\\u00dc\\u00e9\\u00e8\\u00ea\\u00eb\\u00e0\\u00e2\\u00e4\\u00ee\\u00ef\\u00f4\\u00fb\\u00f9\\u00e7\\u00e9\\u00e8\\u00ea\\u00eb\\u00e0\\u00e2\\u00e4\\u00ee\\u00ef\\u00f4\\u00fb\\u00f9\\u00e7]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00c4\\u00d6\\u00dc\\u00e9\\u00e8\\u00ea\\u00eb\\u00e0\\u00e2\\u00e4\\u00ee\\u00ef\\u00f4\\u00fb\\u00f9\\u00e7\\u00e9\\u00e8\\u00ea\\u00eb\\u00e0\\u00e2\\u00e4\\u00ee\\u00ef\\u00f4\\u00fb\\u00f9\\u00e7]+)*)\\b(?!\\s*(?:GmbH|AG|KG|OHG|UG|Ltd|Inc|Corp|Partnerschaft|Vater|Mutter|Kind|Jugend|Verein|Gesellschaft|Firma|Unternehmen|Gericht|Hofrat|Senatspr\u00e4sident|Vizepr\u00e4sident|Rechtsanwalt|Notar|Anwalt|Kanzlei|B\u00fcro|Abteilung|Amt|Beh\u00f6rde|Ministerium|Regierung|Staat|Land|Stadt|Gemeinde|Bezirk|Kreis|Region|Provinz|Bundesland|Wien|Graz|Linz|Innsbruck|Salzburg|Bregenz|Klagenfurt|Deutschlandsberg|Enns|Deutschland|Italien|Slowakei|\u00d6sterreich|K\u00e4rnten|Oberste|Gerichtshof|Obersten|Gerichtshofs|Rechtsanwalt|Rechtsanw\u00e4lte|GmbH|AG|KG|OHG|UG|Ltd|Inc|Corp|Partnerschaft|Vater|Mutter|Kind|Jugend|Verein|Gesellschaft|Firma|Unternehmen|Gericht|Hofrat|Senatspr\u00e4sident|Vizepr\u00e4sident|Rechtsanwalt|Notar|Anwalt|Kanzlei|B\u00fcro|Abteilung|Amt|Beh\u00f6rde|Ministerium|Regierung|Staat|Land|Stadt|Gemeinde|Bezirk|Kreis|Region|Provinz|Bundesland|Wien|Graz|Linz|Innsbruck|Salzburg|Bregenz|Klagenfurt|Deutschlandsberg|Enns|Deutschland|Italien|Slowakei|\u00d6sterreich|K\u00e4rnten|Oberste|Gerichtshof|Obersten|Gerichtshofs|Vernehmung|Stelle|Frau|Bild|Leben|Duldung|Feststellung|Herausgabe|Rechnungslegung|Folge|Rekurs|Abs|Gegenwart|Bedeutung|Techn|H\u00f6he|Bedeutung|Feldkirch|Lilienfeld|Amstetten|Bew\u00e4hrungshilfe|Beschlussform|Disziplinarbeschuldigte|Disziplinarbeschuldigten|Disziplinarbeschuldigte|Rechtssache|Partei|Vizepr\u00e4sidenten|Hofr\u00e4te|Hofr\u00e4tinnen|Hofrat|Senatspr\u00e4sidenten|Senatspr\u00e4sidentin|Pr\u00e4sidentin|Vizepr\u00e4sidentin|Kl\u00e4gerin|Beklagten|Kl\u00e4ger|Verteidiger|Zeuge|Gutachter|Arbeits|Sozialrechtssachen|Arbeitsrechtssache|Rechtsanw\u00e4lte|Rechtsanw\u00e4ltin|Rechtsanw\u00e4lte|Nebenintervenientin|Nebenintervenient|Beschlussform|Exekutionssache|Urteilsver\u00f6ffentlichung|Versand|Feststellung|Revisionen|Liquidation|Kapsstra\u00dfe|Spiegelstra\u00dfe|Valdorffurt|Wess|Nieder|Revisionsrekurs|Drau|Spittal|Wien|Graz|Linz|Innsbruck|Salzburg|Bregenz|Klagenfurt|Deutschlandsberg|Enns|Salzburg|Deutschland|Italien|Slowakei|\u00d6sterreich|K\u00e4rnten|Oberste|Gerichtshof|Obersten|Gerichtshofs|Rechtsanwalt|Rechtsanw\u00e4lte|GmbH|AG|KG|OHG|UG|Ltd|Inc|Corp|Partnerschaft|Vater|Mutter|Kind|Jugend|Verein|Gesellschaft|Firma|Unternehmen|Gericht|Hofrat|Senatspr\u00e4sident|Vizepr\u00e4sident|Rechtsanwalt|Notar|Anwalt|Kanzlei|B\u00fcro|Abteilung|Amt|Beh\u00f6rde|Ministerium|Regierung|Staat|Land|Stadt|Gemeinde|Bezirk|Kreis|Region|Provinz|Bundesland|Wien|Graz|Linz|Innsbruck|Salzburg|Bregenz|Klagenfurt|Deutschlandsberg|Enns|Deutschland|Italien|Slowakei|\u00d6sterreich|K\u00e4rnten|Oberste|Gerichtshof|Obersten|Gerichtshofs))",
+        "priority": 12,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "8ea3b39f",
+        "name": "German Legal Person Simple Name after 'gegen' (Against)",
+        "description": "Captures names appearing after 'gegen' (against), a very common context for defendants in legal texts, including simple names without titles.",
+        "format": "regex",
+        "content": "gegen\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*)\\b(?!\\s*(?:GmbH|AG|KG|OHG|UG|Ltd|Inc|Corp|Partnerschaft|Vater|Mutter|Kind|Jugend|Verein|Gesellschaft|Firma|Unternehmen|Gericht|Hofrat|Senatspr\u00e4sident|Vizepr\u00e4sident|Rechtsanwalt|Notar|Anwalt|Kanzlei|B\u00fcro|Abteilung|Amt|Beh\u00f6rde|Ministerium|Regierung|Staat|Land|Stadt|Gemeinde|Bezirk|Kreis|Region|Provinz|Bundesland|\u00d6sterreich|Deutschland|Schweiz|Europa|Welt|Jahr|Monat|Tag|Stunde|Minute|Sekunde|Zahl|Summe|Betrag|Preis|Wert|Kosten|Geb\u00fchr|Strafe|Bu\u00dfe|Geld|Euro|Dollar|Pfund|Yen|Franc|Mark|Cent|Kredit|Debit|Konto|Karte|Zahlung|Rechnung|Vertrag|Abkommen|Gesetz|Verordnung|Richtlinie|Verfahren|Prozess|Klage|Antrag|Beschluss|Entscheidung|Urteil|Verdict|Rechtsmittel|Rekurs|Revision|Berufung|Einspruch|Widerspruch|Klageerhebung|Klageabweisung|Klagebegr\u00fcndung|Klage\u00e4nderung|Klageerledigung|Klageverzicht|Klageverzicht|Klageverzicht|Klageverzicht|Klageverzicht))",
+        "priority": 12,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "395c9dee",
+        "name": "German Legal Person Simple Name after 'des' (Of)",
+        "description": "Captures names appearing after 'des' (of) ONLY if immediately followed by a title (Dr., Mag., etc.) to avoid matching court names like 'Obersten Gerichtshofs'.",
+        "format": "regex",
+        "content": "des\\s+(?:Dr\\.|Mag\\.|MMag\\.|DI\\s+|Ing\\.|PhD\\s+|Prof\\.|StR\\.|OStR\\.|DR\\.|RgR\\.|Dipl\\.-?Ing\\.)\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*(?:-[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*",
+        "priority": 12,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "36e4cf79",
+        "name": "German Legal Person with Suffixes",
+        "description": "Matches names with academic suffixes (e.g., 'BA', 'Dr.in', 'PhD') that were previously missed, ensuring the full name including suffix is captured.",
+        "format": "regex",
+        "content": "(?:PhD\\s+|OMedR\\s+|Dr\\.in\\s+)([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*)",
+        "priority": 15,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "07cbe754",
+        "name": "German Legal Person Simple Name after Verbs",
+        "description": "Captures simple names (First Last) appearing after common legal verbs like 'informiert', 'kann', 'wird', 'hat' to handle cases like 'Laura Aleite kann' or 'Zoltan Ansel den Kunden', but only if followed by a period or end of sentence to avoid matching street names.",
+        "format": "regex",
+        "content": "(?:informiert|kann|wird|hat|wurde|sind|ist|werden|haben|hatten|konnte|konnten|sollte|sollten|muss|m\u00fcssen|durfte|durften|wollte|wollten|hatte|hatten|ging|gingen|kam|kamen|sagte|sagten|teilte|teilte|berichtet|berichtet|erw\u00e4hnt|erw\u00e4hnt|nennt|nennt|nennt|nennt|wurde|begehrt)\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00c4\\u00d6\\u00dc\\u00e9\\u00e8\\u00ea\\u00eb\\u00e0\\u00e2\\u00e4\\u00ee\\u00ef\\u00f4\\u00fb\\u00f9\\u00e7\\u00e9\\u00e8\\u00ea\\u00eb\\u00e0\\u00e2\\u00e4\\u00ee\\u00ef\\u00f4\\u00fb\\u00f9\\u00e7]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00c4\\u00d6\\u00dc\\u00e9\\u00e8\\u00ea\\u00eb\\u00e0\\u00e2\\u00e4\\u00ee\\u00ef\\u00f4\\u00fb\\u00f9\\u00e7\\u00e9\\u00e8\\u00ea\\u00eb\\u00e0\\u00e2\\u00e4\\u00ee\\u00ef\\u00f4\\u00fb\\u00f9\\u00e7]+)*)\\b(?=\\s*(?:\\.|,|\\)|\\]|$))",
+        "priority": 14,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "8cfac08f",
+        "name": "German Legal Person Simple Name after Legal Roles",
+        "description": "Matches simple first and last names appearing immediately after specific legal roles (Senatspr\u00e4sident, Hofrat, etc.) to capture names like 'Dr. Baumann' or 'Laura Aleite' when the role precedes the name. Requires a valid name pattern to avoid partial matches.",
+        "format": "regex",
+        "content": "(?:Senatspr\u00e4sident(?:en|in)?|Hofr\u00e4t(?:en|in)?|Vizepr\u00e4sident(?:en|in)?|Pr\u00e4sident(?:en|in)?|Richter(?:in)?|Anwalt(?:in)?|Notar|Rechtsanwalt(?:in)?)\\s+(?:Dr\\.|Mag\\.|MMag\\.|DI\\s+|Ing\\.|PhD\\s+|Prof\\.|StR\\.|OStR\\.|DR\\.|RgR\\.|Dipl\\.-?Ing\\.)?\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*)",
+        "priority": 16,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "3342a9c9",
+        "name": "German Legal Person with Compound Titles Mag Dr",
+        "description": "Specifically handles the 'Mag. Dr.' or 'Dr. Mag.' sequence followed by a name, which was previously split incorrectly.",
+        "format": "regex",
+        "content": "(?:Mag\\.\\s+Dr\\.|Dr\\.\\s+Mag\\.)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*)",
+        "priority": 17,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "d3ff3853",
+        "name": "German Legal Person Name after 'als' (As)",
+        "description": "Captures names appearing after 'als' (as) in legal contexts, specifically handling cases like 'als Vorsitzende' (where the role is the entity) vs 'als Dr. Name' (where the name is the entity). This rule targets the name part specifically when preceded by 'als' and a title or role.",
+        "format": "regex",
+        "content": "(?:als|durch|und|oder|sowie)\\s+(?:Senatspr\u00e4sident(?:in)?|Vizepr\u00e4sident(?:in)?|Hofrat(?:in)?|Hofr\u00e4t(?:in)?|Pr\u00e4sident(?:in)?|Richter(?:in)?|Anwalt(?:in)?|Rechtsanwalt(?:in)?|Vertreter|Gutachter|Zeuge|Kl\u00e4ger|Angeklagten|Partei|Verteidiger|Schriftf\u00fchrer|Beisitzer|Obmann|Obfrau|Mitglied|Vorsitzende|Vorsitzender|Vorsitz)\\s+(?:als|durch|und|oder|sowie|,|\\n)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*)",
+        "priority": 15,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "03b36a25",
+        "name": "German Legal Person Simple Name in Context",
+        "description": "Matches simple first and last names specifically in the context of 'Angeklagten' (Defendant) or 'Privatankl\u00e4ger' (Private Prosecutor) to avoid false positives from court names and legal terms.",
+        "format": "regex",
+        "content": "(?:Partei|Angeklagten|Kl\u00e4ger|Verteidiger|Zeuge|Gutachter)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7\u00e9\u00e8\u00ea\u00eb\u00e0\u00e2\u00e4\u00ee\u00ef\u00f4\u00fb\u00f9\u00e7]+)*)",
+        "priority": 13,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      }
+    ]
+  }
+}

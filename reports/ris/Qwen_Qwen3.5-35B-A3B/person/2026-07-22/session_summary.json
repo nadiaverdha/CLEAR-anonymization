@@ -1,0 +1,2278 @@
+{
+  "phases": [
+    "ris_train"
+  ],
+  "history": [
+    {
+      "phase": "train",
+      "dataset": "ris_train",
+      "num_rules": 10,
+      "t_learn": 6689.6,
+      "timestamp": "2026-07-22T17:40:59.878340",
+      "num_train_docs": 759,
+      "num_eval_docs": 155,
+      "num_train_annotations": 2514,
+      "num_eval_annotations": 580,
+      "batch_metrics": [
+        {
+          "batch": 0,
+          "num_rules": 5,
+          "exact_match": 0.9635675628107537,
+          "micro_f1": 0.07442078165223497,
+          "micro_precision": 0.12230769230769231,
+          "micro_recall": 0.05348133198789102,
+          "macro_f1": 0.07442078165223497,
+          "per_class": [
+            {
+              "label": "person",
+              "f1": 0.07442078165223497,
+              "precision": 0.12230769230769231,
+              "recall": 0.05348133198789102
+            }
+          ]
+        },
+        {
+          "batch": 1,
+          "num_rules": 5,
+          "exact_match": 0.9635675628107537,
+          "micro_f1": 0.07442078165223497,
+          "micro_precision": 0.12230769230769231,
+          "micro_recall": 0.05348133198789102,
+          "macro_f1": 0.07442078165223497,
+          "per_class": [
+            {
+              "label": "person",
+              "f1": 0.07442078165223497,
+              "precision": 0.12230769230769231,
+              "recall": 0.05348133198789102
+            }
+          ]
+        },
+        {
+          "batch": 2,
+          "num_rules": 5,
+          "exact_match": 0.9635675628107537,
+          "micro_f1": 0.07442078165223497,
+          "micro_precision": 0.12230769230769231,
+          "micro_recall": 0.05348133198789102,
+          "macro_f1": 0.07442078165223497,
+          "per_class": [
+            {
+              "label": "person",
+              "f1": 0.07442078165223497,
+              "precision": 0.12230769230769231,
+              "recall": 0.05348133198789102
+            }
+          ]
+        },
+        {
+          "batch": 3,
+          "num_rules": 7,
+          "exact_match": 0.13336560038720466,
+          "micro_f1": 0.0006987073913260468,
+          "micro_precision": 0.00035691913232230527,
+          "micro_recall": 0.01648166834846956,
+          "macro_f1": 0.0006987073913260468,
+          "per_class": [
+            {
+              "label": "person",
+              "f1": 0.0006987073913260468,
+              "precision": 0.00035691913232230527,
+              "recall": 0.01648166834846956
+            }
+          ]
+        },
+        {
+          "batch": 4,
+          "num_rules": 8,
+          "exact_match": 0.3469001628019536,
+          "micro_f1": 0.038181973661706864,
+          "micro_precision": 0.020386731502408512,
+          "micro_recall": 0.3003699966363942,
+          "macro_f1": 0.038181973661706864,
+          "per_class": [
+            {
+              "label": "person",
+              "f1": 0.038181973661706864,
+              "precision": 0.020386731502408512,
+              "recall": 0.3003699966363942
+            }
+          ]
+        },
+        {
+          "batch": 5,
+          "num_rules": 7,
+          "exact_match": 0.34641615699388395,
+          "micro_f1": 0.031079038678502247,
+          "micro_precision": 0.01658940096354877,
+          "micro_recall": 0.24554322233434242,
+          "macro_f1": 0.031079038678502247,
+          "per_class": [
+            {
+              "label": "person",
+              "f1": 0.031079038678502247,
+              "precision": 0.01658940096354877,
+              "recall": 0.24554322233434242
+            }
+          ]
+        },
+        {
+          "batch": 6,
+          "num_rules": 7,
+          "exact_match": 0.6649799797597571,
+          "micro_f1": 0.02761496844003607,
+          "micro_precision": 0.01658655473563063,
+          "micro_recall": 0.08240834174234779,
+          "macro_f1": 0.02761496844003607,
+          "per_class": [
+            {
+              "label": "person",
+              "f1": 0.02761496844003607,
+              "precision": 0.01658655473563063,
+              "recall": 0.08240834174234779
+            }
+          ]
+        },
+        {
+          "batch": 7,
+          "num_rules": 7,
+          "exact_match": 0.6648919787037444,
+          "micro_f1": 0.03976031808254466,
+          "micro_precision": 0.023851115291588284,
+          "micro_recall": 0.11940800538176925,
+          "macro_f1": 0.03976031808254466,
+          "per_class": [
+            {
+              "label": "person",
+              "f1": 0.03976031808254466,
+              "precision": 0.023851115291588284,
+              "recall": 0.11940800538176925
+            }
+          ]
+        },
+        {
+          "batch": 8,
+          "num_rules": 8,
+          "exact_match": 0.9076428917147006,
+          "micro_f1": 0.1180520400931457,
+          "micro_precision": 0.08444380069524914,
+          "micro_recall": 0.19609821728893373,
+          "macro_f1": 0.1180520400931457,
+          "per_class": [
+            {
+              "label": "person",
+              "f1": 0.1180520400931457,
+              "precision": 0.08444380069524914,
+              "recall": 0.19609821728893373
+            }
+          ]
+        },
+        {
+          "batch": 9,
+          "num_rules": 8,
+          "exact_match": 0.9075108901306815,
+          "micro_f1": 0.10954743343120382,
+          "micro_precision": 0.0783603707995365,
+          "micro_recall": 0.18197107299024554,
+          "macro_f1": 0.10954743343120382,
+          "per_class": [
+            {
+              "label": "person",
+              "f1": 0.10954743343120382,
+              "precision": 0.0783603707995365,
+              "recall": 0.18197107299024554
+            }
+          ]
+        },
+        {
+          "batch": 10,
+          "num_rules": 8,
+          "exact_match": 0.903242838914067,
+          "micro_f1": 0.12648300824452044,
+          "micro_precision": 0.09020507672450882,
+          "micro_recall": 0.2115708039017827,
+          "macro_f1": 0.12648300824452044,
+          "per_class": [
+            {
+              "label": "person",
+              "f1": 0.12648300824452044,
+              "precision": 0.09020507672450882,
+              "recall": 0.2115708039017827
+            }
+          ]
+        },
+        {
+          "batch": 11,
+          "num_rules": 10,
+          "exact_match": 0.6006512078144938,
+          "micro_f1": 0.07582524271844661,
+          "micro_precision": 0.0443070289896182,
+          "micro_recall": 0.2626976118398924,
+          "macro_f1": 0.07582524271844661,
+          "per_class": [
+            {
+              "label": "person",
+              "f1": 0.07582524271844661,
+              "precision": 0.0443070289896182,
+              "recall": 0.2626976118398924
+            }
+          ]
+        },
+        {
+          "batch": 12,
+          "num_rules": 10,
+          "exact_match": 0.6006512078144938,
+          "micro_f1": 0.07582156206009417,
+          "micro_precision": 0.0443045155434536,
+          "micro_recall": 0.2626976118398924,
+          "macro_f1": 0.07582156206009417,
+          "per_class": [
+            {
+              "label": "person",
+              "f1": 0.07582156206009417,
+              "precision": 0.0443045155434536,
+              "recall": 0.2626976118398924
+            }
+          ]
+        },
+        {
+          "batch": 13,
+          "num_rules": 10,
+          "exact_match": 0.6006512078144938,
+          "micro_f1": 0.07582156206009417,
+          "micro_precision": 0.0443045155434536,
+          "micro_recall": 0.2626976118398924,
+          "macro_f1": 0.07582156206009417,
+          "per_class": [
+            {
+              "label": "person",
+              "f1": 0.07582156206009417,
+              "precision": 0.0443045155434536,
+              "recall": 0.2626976118398924
+            }
+          ]
+        },
+        {
+          "batch": 14,
+          "num_rules": 10,
+          "exact_match": 0.8997667972015664,
+          "micro_f1": 0.12579617834394904,
+          "micro_precision": 0.08932862190812721,
+          "micro_recall": 0.2125798856374033,
+          "macro_f1": 0.12579617834394904,
+          "per_class": [
+            {
+              "label": "person",
+              "f1": 0.12579617834394904,
+              "precision": 0.08932862190812721,
+              "recall": 0.2125798856374033
+            }
+          ]
+        },
+        {
+          "batch": 15,
+          "num_rules": 10,
+          "exact_match": 0.887138645663748,
+          "micro_f1": 0.16396876785374215,
+          "micro_precision": 0.11435781644308673,
+          "micro_recall": 0.289606458123108,
+          "macro_f1": 0.16396876785374215,
+          "per_class": [
+            {
+              "label": "person",
+              "f1": 0.16396876785374215,
+              "precision": 0.11435781644308673,
+              "recall": 0.289606458123108
+            }
+          ]
+        }
+      ],
+      "iteration_metrics": [],
+      "rules_snapshot": [
+        {
+          "batch": 0,
+          "rules": [
+            {
+              "id": "e4671cef",
+              "name": "judges_with_titles",
+              "description": "Captures judges and officials with academic/professional titles (Dr., Mag., Univ.-Prof., Hon.-Prof., etc.)",
+              "format": "regex",
+              "content": "(?:Senatspr\u00e4sident(?:in|en)?|Vizepr\u00e4sident(?:in)?|Hofrat(?:in)?|Hofr\u00e4t(?:in|innen)?|fachkundiger Laienrichter(?:in)?|Richter(?:in)?|Schriftf\u00fchrer(?:in)?|Generalprokurator(?:in)?|Anwalt(?:in)?|Rechtsanwalt(?:in)?|Rechtsanw\u00e4lt(?:in|e)|Rechtsanw\u00e4lte(?:-Partnerschaft)?|Partnerschaft|OG|GmbH|KG|CEG)\\s+(?:Univ\\.-?Prof\\.|Hon\\.-?Prof\\.|Prof\\.|Dr\\.|Mag\\.|MMag\\.|M\\.\\.?Mag\\.|B\\.\\.?Bakk\\.|Dipl\\.-?Ing\\.|DI\\.|PhD\\.|M\\.\\.?M\\.\\.?B\\.\\.?A\\.)?\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+MBA)?(?:\\s+und\\s+[A-Z][a-z]+)?)",
+              "priority": 8,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "f8c5726c",
+              "name": "parties_names",
+              "description": "Captures names of parties (plaintiffs/defendants) in legal cases, often appearing after 'Partei' or 'gegen'",
+              "format": "regex",
+              "content": "(?:der\\s+(?:klagenden|beklagten|Antragsgegner|Antragsteller|Antragsgegnerin|Antragstellerin|betreibenden|verpflichteten)\\s+Partei|gegen\\s+die\\s+(?:beklagte|Antragsgegner)|gegen\\s+den\\s+(?:Beklagten|Antragsgegner)|der\\s+(?:klagenden|beklagten)\\s+Partei)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+MBA)?(?:\\s+und\\s+[A-Z][a-z]+)?)",
+              "priority": 7,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "ff12614b",
+              "name": "criminal_defendants",
+              "description": "Captures names of criminal defendants appearing after 'gegen' in criminal cases",
+              "format": "regex",
+              "content": "(?:Strafsache gegen|Verbrechen der|Vergehen der)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+              "priority": 6,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "bee73e44",
+              "name": "simple_names_with_context",
+              "description": "Captures simple names that appear in specific legal contexts without titles",
+              "format": "regex",
+              "content": "(?:geboren am|im ersten Rechtsgang wurde|wurde schuldig erkannt|wurde freigesprochen)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+              "priority": 5,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "d2aa7da3",
+              "name": "names_with_suffixes",
+              "description": "Captures names that include academic or professional suffixes like Bakk. iur., Dipl.-Ing., etc.",
+              "format": "regex",
+              "content": "(?:Bakk\\. iur\\. |Dipl\\. -?Ing\\. |DI |PhD |MBA |M\\.\\.?M\\.\\.?B\\.\\.?A\\. )([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+              "priority": 4,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            }
+          ]
+        },
+        {
+          "batch": 1,
+          "rules": [
+            {
+              "id": "e4671cef",
+              "name": "judges_with_titles",
+              "description": "Captures judges and officials with academic/professional titles (Dr., Mag., Univ.-Prof., Hon.-Prof., etc.)",
+              "format": "regex",
+              "content": "(?:Senatspr\u00e4sident(?:in|en)?|Vizepr\u00e4sident(?:in)?|Hofrat(?:in)?|Hofr\u00e4t(?:in|innen)?|fachkundiger Laienrichter(?:in)?|Richter(?:in)?|Schriftf\u00fchrer(?:in)?|Generalprokurator(?:in)?|Anwalt(?:in)?|Rechtsanwalt(?:in)?|Rechtsanw\u00e4lt(?:in|e)|Rechtsanw\u00e4lte(?:-Partnerschaft)?|Partnerschaft|OG|GmbH|KG|CEG)\\s+(?:Univ\\.-?Prof\\.|Hon\\.-?Prof\\.|Prof\\.|Dr\\.|Mag\\.|MMag\\.|M\\.\\.?Mag\\.|B\\.\\.?Bakk\\.|Dipl\\.-?Ing\\.|DI\\.|PhD\\.|M\\.\\.?M\\.\\.?B\\.\\.?A\\.)?\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+MBA)?(?:\\s+und\\s+[A-Z][a-z]+)?)",
+              "priority": 8,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "f8c5726c",
+              "name": "parties_names",
+              "description": "Captures names of parties (plaintiffs/defendants) in legal cases, often appearing after 'Partei' or 'gegen'",
+              "format": "regex",
+              "content": "(?:der\\s+(?:klagenden|beklagten|Antragsgegner|Antragsteller|Antragsgegnerin|Antragstellerin|betreibenden|verpflichteten)\\s+Partei|gegen\\s+die\\s+(?:beklagte|Antragsgegner)|gegen\\s+den\\s+(?:Beklagten|Antragsgegner)|der\\s+(?:klagenden|beklagten)\\s+Partei)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+MBA)?(?:\\s+und\\s+[A-Z][a-z]+)?)",
+              "priority": 7,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "ff12614b",
+              "name": "criminal_defendants",
+              "description": "Captures names of criminal defendants appearing after 'gegen' in criminal cases",
+              "format": "regex",
+              "content": "(?:Strafsache gegen|Verbrechen der|Vergehen der)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+              "priority": 6,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "bee73e44",
+              "name": "simple_names_with_context",
+              "description": "Captures simple names that appear in specific legal contexts without titles",
+              "format": "regex",
+              "content": "(?:geboren am|im ersten Rechtsgang wurde|wurde schuldig erkannt|wurde freigesprochen)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+              "priority": 5,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "d2aa7da3",
+              "name": "names_with_suffixes",
+              "description": "Captures names that include academic or professional suffixes like Bakk. iur., Dipl.-Ing., etc.",
+              "format": "regex",
+              "content": "(?:Bakk\\. iur\\. |Dipl\\. -?Ing\\. |DI |PhD |MBA |M\\.\\.?M\\.\\.?B\\.\\.?A\\. )([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+              "priority": 4,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            }
+          ]
+        },
+        {
+          "batch": 2,
+          "rules": [
+            {
+              "id": "e4671cef",
+              "name": "judges_with_titles",
+              "description": "Captures judges and officials with academic/professional titles (Dr., Mag., Univ.-Prof., Hon.-Prof., etc.)",
+              "format": "regex",
+              "content": "(?:Senatspr\u00e4sident(?:in|en)?|Vizepr\u00e4sident(?:in)?|Hofrat(?:in)?|Hofr\u00e4t(?:in|innen)?|fachkundiger Laienrichter(?:in)?|Richter(?:in)?|Schriftf\u00fchrer(?:in)?|Generalprokurator(?:in)?|Anwalt(?:in)?|Rechtsanwalt(?:in)?|Rechtsanw\u00e4lt(?:in|e)|Rechtsanw\u00e4lte(?:-Partnerschaft)?|Partnerschaft|OG|GmbH|KG|CEG)\\s+(?:Univ\\.-?Prof\\.|Hon\\.-?Prof\\.|Prof\\.|Dr\\.|Mag\\.|MMag\\.|M\\.\\.?Mag\\.|B\\.\\.?Bakk\\.|Dipl\\.-?Ing\\.|DI\\.|PhD\\.|M\\.\\.?M\\.\\.?B\\.\\.?A\\.)?\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+MBA)?(?:\\s+und\\s+[A-Z][a-z]+)?)",
+              "priority": 8,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "f8c5726c",
+              "name": "parties_names",
+              "description": "Captures names of parties (plaintiffs/defendants) in legal cases, often appearing after 'Partei' or 'gegen'",
+              "format": "regex",
+              "content": "(?:der\\s+(?:klagenden|beklagten|Antragsgegner|Antragsteller|Antragsgegnerin|Antragstellerin|betreibenden|verpflichteten)\\s+Partei|gegen\\s+die\\s+(?:beklagte|Antragsgegner)|gegen\\s+den\\s+(?:Beklagten|Antragsgegner)|der\\s+(?:klagenden|beklagten)\\s+Partei)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+MBA)?(?:\\s+und\\s+[A-Z][a-z]+)?)",
+              "priority": 7,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "ff12614b",
+              "name": "criminal_defendants",
+              "description": "Captures names of criminal defendants appearing after 'gegen' in criminal cases",
+              "format": "regex",
+              "content": "(?:Strafsache gegen|Verbrechen der|Vergehen der)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+              "priority": 6,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "bee73e44",
+              "name": "simple_names_with_context",
+              "description": "Captures simple names that appear in specific legal contexts without titles",
+              "format": "regex",
+              "content": "(?:geboren am|im ersten Rechtsgang wurde|wurde schuldig erkannt|wurde freigesprochen)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+              "priority": 5,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "d2aa7da3",
+              "name": "names_with_suffixes",
+              "description": "Captures names that include academic or professional suffixes like Bakk. iur., Dipl.-Ing., etc.",
+              "format": "regex",
+              "content": "(?:Bakk\\. iur\\. |Dipl\\. -?Ing\\. |DI |PhD |MBA |M\\.\\.?M\\.\\.?B\\.\\.?A\\. )([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+              "priority": 4,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            }
+          ]
+        },
+        {
+          "batch": 3,
+          "rules": [
+            {
+              "id": "1566f064",
+              "name": "judges_with_titles",
+              "description": "Captures judges and officials with academic/professional titles (Dr., Mag., Univ.-Prof., Hon.-Prof., etc.) including the title and full name",
+              "format": "regex",
+              "content": "(?:Senatspr\u00e4sident(?:in|en)?|Vizepr\u00e4sident(?:in)?|Hofrat(?:in)?|Hofr\u00e4t(?:in|innen)?|fachkundiger Laienrichter(?:in)?|Richter(?:in)?|Schriftf\u00fchrer(?:in)?|Generalprokurator(?:in)?|Anwalt(?:in)?|Rechtsanwalt(?:in)?|Rechtsanw\u00e4lt(?:in|e)|Rechtsanw\u00e4lte(?:-Partnerschaft)?|Partnerschaft|OG|GmbH|KG|CEG|Priv.-Doz\\.|Prof\\.|Dr\\.|Mag\\.|MMag\\.|M\\.\\.?Mag\\.|B\\.\\.?Bakk\\.|Dipl\\.-?Ing\\.|DI\\.|PhD\\.|M\\.\\.?M\\.\\.?B\\.\\.?A\\.)?\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+MBA)?(?:\\s+und\\s+[A-Z][a-z]+)?)",
+              "priority": 8,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "f8c5726c",
+              "name": "parties_names",
+              "description": "Captures names of parties (plaintiffs/defendants) in legal cases, often appearing after 'Partei' or 'gegen'",
+              "format": "regex",
+              "content": "(?:der\\s+(?:klagenden|beklagten|Antragsgegner|Antragsteller|Antragsgegnerin|Antragstellerin|betreibenden|verpflichteten)\\s+Partei|gegen\\s+die\\s+(?:beklagte|Antragsgegner)|gegen\\s+den\\s+(?:Beklagten|Antragsgegner)|der\\s+(?:klagenden|beklagten)\\s+Partei)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+MBA)?(?:\\s+und\\s+[A-Z][a-z]+)?)",
+              "priority": 7,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "ff12614b",
+              "name": "criminal_defendants",
+              "description": "Captures names of criminal defendants appearing after 'gegen' in criminal cases",
+              "format": "regex",
+              "content": "(?:Strafsache gegen|Verbrechen der|Vergehen der)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+              "priority": 6,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "bee73e44",
+              "name": "simple_names_with_context",
+              "description": "Captures simple names that appear in specific legal contexts without titles",
+              "format": "regex",
+              "content": "(?:geboren am|im ersten Rechtsgang wurde|wurde schuldig erkannt|wurde freigesprochen)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+              "priority": 5,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "d2aa7da3",
+              "name": "names_with_suffixes",
+              "description": "Captures names that include academic or professional suffixes like Bakk. iur., Dipl.-Ing., etc.",
+              "format": "regex",
+              "content": "(?:Bakk\\. iur\\. |Dipl\\. -?Ing\\. |DI |PhD |MBA |M\\.\\.?M\\.\\.?B\\.\\.?A\\. )([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+              "priority": 4,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "4587e70c",
+              "name": "names_in_legal_context",
+              "description": "Captures names appearing in legal contexts like 'als', 'durch', 'von', 'des', 'der' without specific titles",
+              "format": "regex",
+              "content": "(?:als\\s+|durch\\s+|von\\s+|des\\s+|der\\s+|mit\\s+|gegen\\s+|in\\s+der\\s+|im\\s+|zu\\s+|nach\\s+|vor\\s+|f\u00fcr\\s+|bei\\s+|unter\\s+|\u00fcber\\s+|aus\\s+|an\\s+|auf\\s+|in\\s+|mit\\s+|nach\\s+|vor\\s+|f\u00fcr\\s+|bei\\s+|unter\\s+|\u00fcber\\s+|aus\\s+|an\\s+|auf\\s+)([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+MBA)?(?:\\s+und\\s+[A-Z][a-z]+)?)",
+              "priority": 5,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "8f50029f",
+              "name": "names_with_honorifics",
+              "description": "Captures names with honorifics like OMedR, OStR, VetR, KzlR, etc.",
+              "format": "regex",
+              "content": "(?:OMedR|OStR|VetR|KzlR|HR|Priv.-Doz\\.)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+              "priority": 6,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            }
+          ]
+        },
+        {
+          "batch": 4,
+          "rules": [
+            {
+              "id": "6acaeb96",
+              "name": "parties_names",
+              "description": "Captures names of parties (plaintiffs/defendants) appearing after 'Partei' or 'gegen' in legal cases",
+              "format": "regex",
+              "content": "(?:Partei|gegen)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+              "priority": 8,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "ff12614b",
+              "name": "criminal_defendants",
+              "description": "Captures names of criminal defendants appearing after 'gegen' in criminal cases",
+              "format": "regex",
+              "content": "(?:Strafsache gegen|Verbrechen der|Vergehen der)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+              "priority": 6,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "bee73e44",
+              "name": "simple_names_with_context",
+              "description": "Captures simple names that appear in specific legal contexts without titles",
+              "format": "regex",
+              "content": "(?:geboren am|im ersten Rechtsgang wurde|wurde schuldig erkannt|wurde freigesprochen)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+              "priority": 5,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "d2aa7da3",
+              "name": "names_with_suffixes",
+              "description": "Captures names that include academic or professional suffixes like Bakk. iur., Dipl.-Ing., etc.",
+              "format": "regex",
+              "content": "(?:Bakk\\. iur\\. |Dipl\\. -?Ing\\. |DI |PhD |MBA |M\\.\\.?M\\.\\.?B\\.\\.?A\\. )([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+              "priority": 4,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "4587e70c",
+              "name": "names_in_legal_context",
+              "description": "Captures names appearing in legal contexts like 'als', 'durch', 'von', 'des', 'der' without specific titles",
+              "format": "regex",
+              "content": "(?:als\\s+|durch\\s+|von\\s+|des\\s+|der\\s+|mit\\s+|gegen\\s+|in\\s+der\\s+|im\\s+|zu\\s+|nach\\s+|vor\\s+|f\u00fcr\\s+|bei\\s+|unter\\s+|\u00fcber\\s+|aus\\s+|an\\s+|auf\\s+|in\\s+|mit\\s+|nach\\s+|vor\\s+|f\u00fcr\\s+|bei\\s+|unter\\s+|\u00fcber\\s+|aus\\s+|an\\s+|auf\\s+)([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+MBA)?(?:\\s+und\\s+[A-Z][a-z]+)?)",
+              "priority": 5,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "5628f0c4",
+              "name": "names_with_honorifics",
+              "description": "Captures names with specific honorifics like OMedR, OStR, VetR, KzlR, etc.",
+              "format": "regex",
+              "content": "(?:OMedR|OStR|VetR|KzlR|Hofrat|Hofr\u00e4t|Hofr\u00e4tin|Hofr\u00e4tinnen)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+              "priority": 7,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "5f7f8836",
+              "name": "judges_with_titles",
+              "description": "Captures judges and officials with academic/professional titles followed by a valid full name (e.g., Dr. Name, Univ.-Prof. Name)",
+              "format": "regex",
+              "content": "(?:Senatspr\u00e4sident(?:in|en)?|Vizepr\u00e4sident(?:in)?|Hofrat(?:in)?|Hofr\u00e4t(?:in|innen)?|fachkundiger Laienrichter(?:in)?|Richter(?:in)?|Schriftf\u00fchrer(?:in)?|Generalprokurator(?:in)?|Anwalt(?:in)?|Rechtsanwalt(?:in)?|Rechtsanw\u00e4lt(?:in|e)|Rechtsanw\u00e4lte(?:-Partnerschaft)?|Priv.-Doz\\.|Prof\\.|Dr\\.|Mag\\.|MMag\\.|M\\.\\.?Mag\\.|B\\.\\.?Bakk\\.|Dipl\\.-?Ing\\.|DI\\.|PhD\\.|M\\.\\.?M\\.\\.?B\\.\\.?A\\.)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+MBA)?(?:\\s+und\\s+[A-Z][a-z]+)?)",
+              "priority": 9,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "78a6cded",
+              "name": "simple_names_in_context",
+              "description": "Captures simple names appearing in legal contexts like 'durch', 'von', 'des', 'der' without specific titles",
+              "format": "regex",
+              "content": "(?:durch|von|des|der|als)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+              "priority": 6,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            }
+          ]
+        },
+        {
+          "batch": 5,
+          "rules": [
+            {
+              "id": "ff12614b",
+              "name": "criminal_defendants",
+              "description": "Captures names of criminal defendants appearing after 'gegen' in criminal cases",
+              "format": "regex",
+              "content": "(?:Strafsache gegen|Verbrechen der|Vergehen der)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+              "priority": 6,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "bee73e44",
+              "name": "simple_names_with_context",
+              "description": "Captures simple names that appear in specific legal contexts without titles",
+              "format": "regex",
+              "content": "(?:geboren am|im ersten Rechtsgang wurde|wurde schuldig erkannt|wurde freigesprochen)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+              "priority": 5,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "29d66700",
+              "name": "names_with_suffixes",
+              "description": "Captures names that include academic or professional suffixes like Bakk. iur., Dipl.-Ing., etc.",
+              "format": "regex",
+              "content": "([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)\\s+(?:B\\.\\.?Bakk\\.|Dipl\\.-?Ing\\.|DI\\.|LL\\.?M\\.|PhD\\.|M\\.\\.?M\\.\\.?B\\.\\.?A\\.)",
+              "priority": 8,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "4587e70c",
+              "name": "names_in_legal_context",
+              "description": "Captures names appearing in legal contexts like 'als', 'durch', 'von', 'des', 'der' without specific titles, ensuring valid name structure",
+              "format": "regex",
+              "content": "(?:als\\s+|durch\\s+|von\\s+|des\\s+|der\\s+|mit\\s+|gegen\\s+|in\\s+der\\s+|im\\s+|zu\\s+|nach\\s+|vor\\s+|f\u00fcr\\s+|bei\\s+|unter\\s+|\u00fcber\\s+|aus\\s+|an\\s+|auf\\s+|in\\s+|mit\\s+|nach\\s+|vor\\s+|f\u00fcr\\s+|bei\\s+|unter\\s+|\u00fcber\\s+|aus\\s+|an\\s+|auf\\s+)([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+MBA)?(?:\\s+und\\s+[A-Z][a-z]+)?)",
+              "priority": 5,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "5d67eec6",
+              "name": "names_with_honorifics",
+              "description": "Captures names with specific honorifics like OMedR, OStR, VetR, KzlR, etc.",
+              "format": "regex",
+              "content": "(?:OMedR|OStR|VetR|KzlR|Hofrat|Hofr\u00e4t|Hofr\u00e4tin|Hofr\u00e4tinnen)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+MBA)?(?:\\s+und\\s+[A-Z][a-z]+)?)",
+              "priority": 7,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "9d4d1e3e",
+              "name": "judges_with_titles",
+              "description": "Captures judges and officials with academic/professional titles followed by a valid full name (e.g., Dr. Name, Univ.-Prof. Name)",
+              "format": "regex",
+              "content": "(?:Senatspr\u00e4sident(?:in|en)?|Vizepr\u00e4sident(?:in)?|Hofrat(?:in)?|Hofr\u00e4t(?:in|innen)?|fachkundiger Laienrichter(?:in)?|Richter(?:in)?|Schriftf\u00fchrer(?:in)?|Generalprokurator(?:in)?|Anwalt(?:in)?|Rechtsanwalt(?:in)?|Rechtsanw\u00e4lt(?:in|e)|Rechtsanw\u00e4lte(?:-Partnerschaft)?|Priv.-Doz\\.|Prof\\.|Dr\\.|Mag\\.|MMag\\.|M\\.\\.?Mag\\.|B\\.\\.?Bakk\\.|Dipl\\.-?Ing\\.|DI\\.|PhD\\.|M\\.\\.?M\\.\\.?B\\.\\.?A\\.|Hon\\.-Prof\\.|Univ\\.-Prof\\.|OStR|OMedR|VetR|KzlR)\\s+(?:[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+MBA)?(?:\\s+und\\s+[A-Z][a-z]+)?|\\w+-\\w+(?:\\s+\\w+)?|\\w+\\s+\\w+)",
+              "priority": 9,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "78a6cded",
+              "name": "simple_names_in_context",
+              "description": "Captures simple names appearing in legal contexts like 'durch', 'von', 'des', 'der' without specific titles",
+              "format": "regex",
+              "content": "(?:durch|von|des|der|als)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+              "priority": 6,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            }
+          ]
+        },
+        {
+          "batch": 6,
+          "rules": [
+            {
+              "id": "8386528f",
+              "name": "criminal_defendants",
+              "description": "Captures names of criminal defendants appearing after 'gegen' in criminal cases",
+              "format": "regex",
+              "content": "(?:Strafsache gegen|Verbrechen der|Vergehen der)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+              "priority": 6,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "bee73e44",
+              "name": "simple_names_with_context",
+              "description": "Captures simple names that appear in specific legal contexts without titles",
+              "format": "regex",
+              "content": "(?:geboren am|im ersten Rechtsgang wurde|wurde schuldig erkannt|wurde freigesprochen)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+              "priority": 5,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "3ca1782d",
+              "name": "names_with_suffixes",
+              "description": "Captures names that include academic or professional suffixes like Bakk. iur., Dipl.-Ing., etc.",
+              "format": "regex",
+              "content": "(?:[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)(?:\\s+(?:B\\.\\.?Bakk\\.|Dipl\\.-?Ing\\.|DI\\.|M\\.\\.?M\\.\\.?B\\.\\.?A\\.|BSc|PhD|Dr\\.\\s+[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)?)?)",
+              "priority": 7,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "25dc2155",
+              "name": "names_in_legal_context",
+              "description": "Captures names appearing in legal contexts like 'als', 'durch', 'von', 'des', 'der' with strict name structure",
+              "format": "regex",
+              "content": "(?:als\\s+|durch\\s+|von\\s+|des\\s+|der\\s+|mit\\s+|gegen\\s+|in\\s+der\\s+|im\\s+|zu\\s+|nach\\s+|vor\\s+|f\\u00fcr\\s+|bei\\s+|unter\\s+|\\u00fcber\\s+|aus\\s+|an\\s+|auf\\s+)([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+              "priority": 5,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "5d67eec6",
+              "name": "names_with_honorifics",
+              "description": "Captures names with specific honorifics like OMedR, OStR, VetR, KzlR, etc.",
+              "format": "regex",
+              "content": "(?:OMedR|OStR|VetR|KzlR|Hofrat|Hofr\u00e4t|Hofr\u00e4tin|Hofr\u00e4tinnen)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+MBA)?(?:\\s+und\\s+[A-Z][a-z]+)?)",
+              "priority": 7,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "c4a55c86",
+              "name": "judges_with_titles",
+              "description": "Captures judges and officials with academic/professional titles followed by a valid full name (First + Last)",
+              "format": "regex",
+              "content": "(?:Senatspr\u00e4sident(?:in|en)?|Vizepr\u00e4sident(?:in)?|Hofrat(?:in)?|Hofr\u00e4te|Hofr\u00e4t(?:in|innen)?|fachkundiger Laienrichter(?:in)?|Richter(?:in)?|Schriftf\u00fchrer(?:in)?|Generalprokurator(?:in)?|Anwalt(?:in)?|Rechtsanwalt(?:in)?|Rechtsanw\u00e4lt(?:in|e)|Rechtsanw\u00e4lte(?:-Partnerschaft)?|Priv.-Doz\\.|Prof\\.|Dr\\.|Mag\\.|MMag\\.|M\\.\\.?Mag\\.|B\\.\\.?Bakk\\.|Dipl\\.-?Ing\\.|DI\\.|PhD\\.|M\\.\\.?M\\.\\.?B\\.\\.?A\\.|Hon\\.-Prof\\.|Univ\\.-Prof\\.|OStR|OMedR|VetR|KzlR|KR)\\s+(?:[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+|\\w+-\\w+(?:\\s+\\w+)?|\\w+\\s+\\w+)",
+              "priority": 9,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "eb962070",
+              "name": "simple_names_in_context",
+              "description": "Captures simple names appearing in legal contexts like 'durch', 'von', 'des', 'der' without specific titles",
+              "format": "regex",
+              "content": "(?:durch|von|des|der|als)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+              "priority": 6,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            }
+          ]
+        },
+        {
+          "batch": 7,
+          "rules": [
+            {
+              "id": "8386528f",
+              "name": "criminal_defendants",
+              "description": "Captures names of criminal defendants appearing after 'gegen' in criminal cases",
+              "format": "regex",
+              "content": "(?:Strafsache gegen|Verbrechen der|Vergehen der)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+              "priority": 6,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "bee73e44",
+              "name": "simple_names_with_context",
+              "description": "Captures simple names that appear in specific legal contexts without titles",
+              "format": "regex",
+              "content": "(?:geboren am|im ersten Rechtsgang wurde|wurde schuldig erkannt|wurde freigesprochen)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+              "priority": 5,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "25dc2155",
+              "name": "names_in_legal_context",
+              "description": "Captures names appearing in legal contexts like 'als', 'durch', 'von', 'des', 'der' with strict name structure",
+              "format": "regex",
+              "content": "(?:als\\s+|durch\\s+|von\\s+|des\\s+|der\\s+|mit\\s+|gegen\\s+|in\\s+der\\s+|im\\s+|zu\\s+|nach\\s+|vor\\s+|f\\u00fcr\\s+|bei\\s+|unter\\s+|\\u00fcber\\s+|aus\\s+|an\\s+|auf\\s+)([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+              "priority": 5,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "da3737ab",
+              "name": "names_with_honorifics",
+              "description": "Captures names with specific honorifics like OMedR, OStR, VetR, KzlR, Hofrat, Hofr\u00e4tin, Hofr\u00e4te",
+              "format": "regex",
+              "content": "(?:OMedR|OStR|VetR|KzlR|Hofrat|Hofr\u00e4t|Hofr\u00e4tin|Hofr\u00e4te|Hofr\u00e4tinnen)\\s+(?:[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*|Dr\\.|Mag\\.|DI\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|B\\.\\.?Bakk\\.|Dipl\\.-?Ing\\.|M\\.\\.?M\\.\\.?B\\.\\.?A\\.|PhD\\.)?\\s*([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+              "priority": 7,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "b1d7db9e",
+              "name": "judges_with_titles",
+              "description": "Captures judges and officials with academic/professional titles followed by a valid full name, excluding trailing context",
+              "format": "regex",
+              "content": "(?:Senatspr\u00e4sident(?:in|en)?|Vizepr\u00e4sident(?:in)?|Hofrat(?:in)?|Hofr\u00e4te|Hofr\u00e4t(?:in|innen)?|fachkundiger Laienrichter(?:in)?|Richter(?:in)?|Schriftf\u00fchrer(?:in)?|Generalprokurator(?:in)?|Anwalt(?:in)?|Rechtsanwalt(?:in)?|Rechtsanw\u00e4lt(?:in|e)|Rechtsanw\u00e4lte(?:-Partnerschaft)?|Priv.-Doz\\.|Prof\\.|Dr\\.|Mag\\.|MMag\\.|M\\.\\.?Mag\\.|B\\.\\.?Bakk\\.|Dipl\\.-?Ing\\.|DI\\.|PhD\\.|M\\.\\.?M\\.\\.?B\\.\\.?A\\.|Hon\\.-Prof\\.|Univ\\.-Prof\\.|Univ\\.-Prof\\.in|OStR|OMedR|VetR|KzlR|KR)\\s+(?:[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+|\\w+-\\w+(?:\\s+\\w+)?|\\w+\\s+\\w+)(?![\\s]+(?:als|und|oder|sowie|in|der|des|die|den|von|mit|auf|an|bei|zu|f\u00fcr|nach|vor|\u00fcber|unter|neben|zwischen|durch|ohne|gegen|bis|seit|w\u00e4hrend|trotz|wegen|statt|au\u00dfer|neben|um|an|auf|bei|in|zu|von|mit|nach|vor|\u00fcber|unter|neben|zwischen|durch|ohne|gegen|bis|seit|w\u00e4hrend|trotz|wegen|statt|au\u00dfer|neben|um))",
+              "priority": 9,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "48c95987",
+              "name": "simple_names_in_context",
+              "description": "Captures simple names appearing in legal contexts like 'durch', 'von', 'des', 'der', 'als' without specific titles, ensuring no trailing conjunctions",
+              "format": "regex",
+              "content": "(?:durch|von|des|der|als)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)(?![\\s]+(?:als|und|oder|sowie|in|der|des|die|den|von|mit|auf|an|bei|zu|f\u00fcr|nach|vor|\u00fcber|unter|neben|zwischen|durch|ohne|gegen|bis|seit|w\u00e4hrend|trotz|wegen|statt|au\u00dfer|neben|um))",
+              "priority": 6,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "3ca1782d",
+              "name": "names_with_suffixes",
+              "description": "Captures names that include academic or professional suffixes like Bakk. iur., Dipl.-Ing., etc.",
+              "format": "regex",
+              "content": "(?:[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)(?:\\s+(?:B\\.\\.?Bakk\\.|Dipl\\.-?Ing\\.|DI\\.|M\\.\\.?M\\.\\.?B\\.\\.?A\\.|BSc|PhD|Dr\\.\\s+[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)?)?)",
+              "priority": 7,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            }
+          ]
+        },
+        {
+          "batch": 8,
+          "rules": [
+            {
+              "id": "8386528f",
+              "name": "criminal_defendants",
+              "description": "Captures names of criminal defendants appearing after 'gegen' in criminal cases",
+              "format": "regex",
+              "content": "(?:Strafsache gegen|Verbrechen der|Vergehen der)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+              "priority": 6,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "bee73e44",
+              "name": "simple_names_with_context",
+              "description": "Captures simple names that appear in specific legal contexts without titles",
+              "format": "regex",
+              "content": "(?:geboren am|im ersten Rechtsgang wurde|wurde schuldig erkannt|wurde freigesprochen)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+              "priority": 5,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "25dc2155",
+              "name": "names_in_legal_context",
+              "description": "Captures names appearing in legal contexts like 'als', 'durch', 'von', 'des', 'der' with strict name structure",
+              "format": "regex",
+              "content": "(?:als\\s+|durch\\s+|von\\s+|des\\s+|der\\s+|mit\\s+|gegen\\s+|in\\s+der\\s+|im\\s+|zu\\s+|nach\\s+|vor\\s+|f\\u00fcr\\s+|bei\\s+|unter\\s+|\\u00fcber\\s+|aus\\s+|an\\s+|auf\\s+)([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+              "priority": 5,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "da3737ab",
+              "name": "names_with_honorifics",
+              "description": "Captures names with specific honorifics like OMedR, OStR, VetR, KzlR, Hofrat, Hofr\u00e4tin, Hofr\u00e4te",
+              "format": "regex",
+              "content": "(?:OMedR|OStR|VetR|KzlR|Hofrat|Hofr\u00e4t|Hofr\u00e4tin|Hofr\u00e4te|Hofr\u00e4tinnen)\\s+(?:[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*|Dr\\.|Mag\\.|DI\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|B\\.\\.?Bakk\\.|Dipl\\.-?Ing\\.|M\\.\\.?M\\.\\.?B\\.\\.?A\\.|PhD\\.)?\\s*([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+              "priority": 7,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "055c9ce0",
+              "name": "judges_with_titles",
+              "description": "Captures judges and officials with academic/professional titles followed by a valid full name, excluding trailing context",
+              "format": "regex",
+              "content": "(?:Senatspr\u00e4sident(?:in|en)?|Vizepr\u00e4sident(?:in)?|Hofrat(?:in)?|Hofr\u00e4te|Hofr\u00e4tin(?:en)?|fachkundiger Laienrichter(?:in)?|Richter(?:in)?|Schriftf\u00fchrer(?:in)?|Generalprokurator(?:in)?|Anwalt(?:in)?|Rechtsanwalt(?:in)?|Rechtsanw\u00e4lt(?:in|e)|Rechtsanw\u00e4lte(?:-Partnerschaft)?|Priv.-Doz\\.|Prof\\.|Dr\\.|Mag\\.|MMag\\.|M\\.\\.?Mag\\.|B\\.\\.?Bakk\\.|Dipl\\.-?Ing\\.|DI\\.|PhD\\.|M\\.\\.?M\\.\\.?B\\.\\.?A\\.|Hon\\.-Prof\\.|Univ\\.-Prof\\.|Univ\\.-Prof\\.in|OStR|OMedR|VetR|KzlR|KR)\\s+(?:[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+|\\w+-\\w+(?:\\s+\\w+)?|\\w+\\s+\\w+)(?![\\s]+(?:als|und|oder|sowie|in|der|des|die|den|von|mit|auf|an|bei|zu|f\u00fcr|nach|vor|\u00fcber|unter|neben|zwischen|durch|ohne|gegen|bis|seit|w\u00e4hrend|trotz|wegen|statt|au\u00dfer|um))",
+              "priority": 9,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "eaf46b01",
+              "name": "simple_names_in_context",
+              "description": "Captures simple names appearing in legal contexts like 'durch', 'von', 'des', 'der', 'als', 'gegen' without specific titles, ensuring no trailing conjunctions",
+              "format": "regex",
+              "content": "(?:durch|von|des|der|als|gegen)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)(?![\\s]+(?:als|und|oder|sowie|in|der|des|die|den|von|mit|auf|an|bei|zu|f\u00fcr|nach|vor|\u00fcber|unter|neben|zwischen|durch|ohne|gegen|bis|seit|w\u00e4hrend|trotz|wegen|statt|au\u00dfer|um))",
+              "priority": 6,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "bc002fca",
+              "name": "names_with_suffixes",
+              "description": "Captures names that include academic or professional suffixes like Bakk. iur., Dipl.-Ing., etc., ensuring they are preceded by a name",
+              "format": "regex",
+              "content": "(?:[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)\\s+(?:B\\.\\.?Bakk\\.|Dipl\\.-?Ing\\.|DI\\.|M\\.\\.?M\\.\\.?B\\.\\.?A\\.|BSc|PhD|LL\\.?M\\.|MSc|MA|Dr\\.\\s+[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)?)",
+              "priority": 7,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "9b5a7839",
+              "name": "names_with_honorifics_simple",
+              "description": "Captures names with simple honorifics like Dr., Mag., MMag. without preceding titles",
+              "format": "regex",
+              "content": "(?:Dr\\.|Mag\\.|MMag\\.|M\\.\\.?Mag\\.|DI\\.|Dipl\\.-?Ing\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+              "priority": 8,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            }
+          ]
+        },
+        {
+          "batch": 9,
+          "rules": [
+            {
+              "id": "574e7fcc",
+              "name": "criminal_defendants",
+              "description": "Captures names of criminal defendants appearing after 'gegen' in criminal cases, ensuring full name capture.",
+              "format": "regex",
+              "content": "(?:Strafsache gegen|Verbrechen der|Vergehen der)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)(?![\\s]+(?:wegen|des|der|die|den|von|mit|auf|an|bei|zu|f\\u00fcr|nach|vor|\\u00fcber|unter|neben|zwischen|durch|ohne|gegen|bis|seit|w\u00e4hrend|trotz|wegen|statt|au\u00dfer|um|als|und|oder|sowie))",
+              "priority": 6,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "bee73e44",
+              "name": "simple_names_with_context",
+              "description": "Captures simple names that appear in specific legal contexts without titles",
+              "format": "regex",
+              "content": "(?:geboren am|im ersten Rechtsgang wurde|wurde schuldig erkannt|wurde freigesprochen)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+              "priority": 5,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "25dc2155",
+              "name": "names_in_legal_context",
+              "description": "Captures names appearing in legal contexts like 'als', 'durch', 'von', 'des', 'der' with strict name structure",
+              "format": "regex",
+              "content": "(?:als\\s+|durch\\s+|von\\s+|des\\s+|der\\s+|mit\\s+|gegen\\s+|in\\s+der\\s+|im\\s+|zu\\s+|nach\\s+|vor\\s+|f\\u00fcr\\s+|bei\\s+|unter\\s+|\\u00fcber\\s+|aus\\s+|an\\s+|auf\\s+)([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+              "priority": 5,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "da3737ab",
+              "name": "names_with_honorifics",
+              "description": "Captures names with specific honorifics like OMedR, OStR, VetR, KzlR, Hofrat, Hofr\u00e4tin, Hofr\u00e4te, etc.",
+              "format": "regex",
+              "content": "(?:OMedR|OStR|VetR|KzlR|Hofrat|Hofr\u00e4t|Hofr\u00e4tin|Hofr\u00e4te|Hofr\u00e4tinnen)\\s+(?:[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*|Dr\\.|Mag\\.|DI\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|B\\.\\.?Bakk\\.|Dipl\\.-?Ing\\.|M\\.\\.?M\\.\\.?B\\.\\.?A\\.|PhD\\.)?\\s*([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+              "priority": 7,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "0d2e910a",
+              "name": "judges_with_titles",
+              "description": "Captures judges and officials with academic/professional titles followed by a valid full name, excluding trailing context like 'als', 'und', 'in der'.",
+              "format": "regex",
+              "content": "(?:Senatspr\u00e4sident(?:in|en)?|Vizepr\u00e4sident(?:in)?|Hofrat(?:in)?|Hofr\u00e4te|Hofr\u00e4tin(?:en)?|fachkundiger Laienrichter(?:in)?|Richter(?:in)?|Schriftf\u00fchrer(?:in)?|Generalprokurator(?:in)?|Anwalt(?:in)?|Rechtsanwalt(?:in)?|Rechtsanw\u00e4lt(?:in|e)|Rechtsanw\u00e4lte(?:-Partnerschaft)?|Priv.-Doz\\.|Prof\\.|Dr\\.|Mag\\.|MMag\\.|M\\.\\.?Mag\\.|B\\.\\.?Bakk\\.|Dipl\\.-?Ing\\.|DI\\.|PhD\\.|M\\.\\.?M\\.\\.?B\\.\\.?A\\.|Hon\\.-Prof\\.|Univ\\.-Prof\\.|Univ\\.-Prof\\.in|OStR|OMedR|VetR|KzlR|KR)\\s+(?:[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+|\\w+-\\w+(?:\\s+\\w+)?|\\w+\\s+\\w+)(?![\\s]+(?:als|und|oder|sowie|in\\s+der|im\\s+|zu\\s+|nach|vor|f\\u00fcr|bei|unter|\\u00fcber|aus|an|auf|mit|gegen|bis|seit|w\u00e4hrend|trotz|wegen|statt|au\u00dfer|um|des|die|den|von))",
+              "priority": 9,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "3e1077c6",
+              "name": "simple_names_in_context",
+              "description": "Captures simple names appearing in legal contexts like 'durch', 'von', 'des', 'der', 'als', 'gegen' without specific titles, ensuring no trailing conjunctions.",
+              "format": "regex",
+              "content": "(?:durch|von|des|der|als|gegen|in\\s+der|im|zu|nach|vor|f\\u00fcr|bei|unter|\\u00fcber|aus|an|auf|mit|wegen|wegen\\s+des)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)(?![\\s]+(?:als|und|oder|sowie|in|der|des|die|den|von|mit|auf|an|bei|zu|f\\u00fcr|nach|vor|\\u00fcber|unter|neben|zwischen|durch|ohne|gegen|bis|seit|w\u00e4hrend|trotz|wegen|statt|au\u00dfer|um|als|und|oder|sowie))",
+              "priority": 6,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "bc002fca",
+              "name": "names_with_suffixes",
+              "description": "Captures names that include academic or professional suffixes like Bakk. iur., Dipl.-Ing., etc., ensuring they are preceded by a name",
+              "format": "regex",
+              "content": "(?:[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)\\s+(?:B\\.\\.?Bakk\\.|Dipl\\.-?Ing\\.|DI\\.|M\\.\\.?M\\.\\.?B\\.\\.?A\\.|BSc|PhD|LL\\.?M\\.|MSc|MA|Dr\\.\\s+[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)?)",
+              "priority": 7,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "8bef689f",
+              "name": "names_with_honorifics_simple",
+              "description": "Captures names with simple honorifics like Dr., Mag., MMag., Univ.-Prof. Dr., etc., handling multiple titles.",
+              "format": "regex",
+              "content": "(?:Dr\\.|Mag\\.|MMag\\.|M\\.\\.?Mag\\.|DI\\.|Dipl\\.-?Ing\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|B\\.\\.?Bakk\\.|PhD\\.|M\\.\\.?M\\.\\.?B\\.\\.?A\\.)\\s+(?:[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*|\\w+-\\w+(?:\\s+\\w+)*)",
+              "priority": 8,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            }
+          ]
+        },
+        {
+          "batch": 10,
+          "rules": [
+            {
+              "id": "d97ec33c",
+              "name": "criminal_defendants",
+              "description": "Captures names of criminal defendants appearing after 'gegen' in criminal cases, ensuring full name capture including hyphenated names.",
+              "format": "regex",
+              "content": "(?:Strafsache gegen|Verbrechen der|Vergehen der)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+|\\-[A-Z][a-z]+)+)(?![\\s]+(?:wegen|des|der|die|den|von|mit|auf|an|bei|zu|f\\u00fcr|nach|vor|\\u00fcber|unter|neben|zwischen|durch|ohne|gegen|bis|seit|w\u00e4hrend|trotz|wegen|statt|au\u00dfer|um|als|und|oder|sowie))",
+              "priority": 6,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "bee73e44",
+              "name": "simple_names_with_context",
+              "description": "Captures simple names that appear in specific legal contexts without titles",
+              "format": "regex",
+              "content": "(?:geboren am|im ersten Rechtsgang wurde|wurde schuldig erkannt|wurde freigesprochen)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+              "priority": 5,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "25dc2155",
+              "name": "names_in_legal_context",
+              "description": "Captures names appearing in legal contexts like 'als', 'durch', 'von', 'des', 'der' with strict name structure",
+              "format": "regex",
+              "content": "(?:als\\s+|durch\\s+|von\\s+|des\\s+|der\\s+|mit\\s+|gegen\\s+|in\\s+der\\s+|im\\s+|zu\\s+|nach\\s+|vor\\s+|f\\u00fcr\\s+|bei\\s+|unter\\s+|\\u00fcber\\s+|aus\\s+|an\\s+|auf\\s+)([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+              "priority": 5,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "4fa42d67",
+              "name": "names_with_honorifics",
+              "description": "Captures names with specific honorifics like OMedR, OStR, VetR, KzlR, Hofrat, Hofr\u00e4tin, Hofr\u00e4te, etc., ensuring full name capture.",
+              "format": "regex",
+              "content": "(?:OMedR|OStR|VetR|KzlR|Hofrat|Hofr\u00e4t|Hofr\u00e4tin|Hofr\u00e4te|Hofr\u00e4tinnen)\\s+(?:[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*|Dr\\.|Mag\\.|DI\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|B\\.\\.?Bakk\\.|Dipl\\.-?Ing\\.|M\\.\\.?M\\.\\.?B\\.\\.?A\\.|PhD\\.)?\\s*([A-Z][a-z]+(?:\\s+[A-Z][a-z]+|\\-[A-Z][a-z]+)*)",
+              "priority": 7,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "8212b944",
+              "name": "judges_with_titles",
+              "description": "Captures judges and officials with academic/professional titles followed by a valid full name, strictly excluding trailing context like 'als', 'und', 'in der'.",
+              "format": "regex",
+              "content": "(?:Senatspr\u00e4sident(?:in|en)?|Vizepr\u00e4sident(?:in)?|Hofrat(?:in)?|Hofr\u00e4te|Hofr\u00e4tin(?:en)?|fachkundiger Laienrichter(?:in)?|Richter(?:in)?|Schriftf\u00fchrer(?:in)?|Generalprokurator(?:in)?|Anwalt(?:in)?|Rechtsanwalt(?:in)?|Rechtsanw\u00e4lt(?:in|e)|Rechtsanw\u00e4lte(?:-Partnerschaft)?|Priv.-Doz\\.|Prof\\.|Dr\\.|Mag\\.|MMag\\.|M\\.\\.?Mag\\.|B\\.\\.?Bakk\\.|Dipl\\.-?Ing\\.|DI\\.|PhD\\.|M\\.\\.?M\\.\\.?B\\.\\.?A\\.|Hon\\.-Prof\\.|Univ\\.-Prof\\.|Univ\\.-Prof\\.in|OStR|OMedR|VetR|KzlR|KR)\\s+(?:[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+|\\w+-\\w+(?:\\s+\\w+)?|\\w+\\s+\\w+)(?![\\s]+(?:als|und|oder|sowie|in\\s+der|im\\s+|zu\\s+|nach|vor|f\\u00fcr|bei|unter|\\u00fcber|aus|an|auf|mit|gegen|bis|seit|w\u00e4hrend|trotz|wegen|statt|au\u00dfer|um|des|die|den|von|\\b))",
+              "priority": 9,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "732e13f4",
+              "name": "simple_names_in_context",
+              "description": "Captures simple names appearing in legal contexts like 'durch', 'von', 'des', 'der', 'als', 'gegen' without specific titles, ensuring no trailing conjunctions and full name capture.",
+              "format": "regex",
+              "content": "(?:durch|von|des|der|als|gegen|in\\s+der|im|zu|nach|vor|f\\u00fcr|bei|unter|\\u00fcber|aus|an|auf|mit|wegen|wegen\\s+des)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+|\\-[A-Z][a-z]+)+)(?![\\s]+(?:als|und|oder|sowie|in|der|des|die|den|von|mit|auf|an|bei|zu|f\\u00fcr|nach|vor|\\u00fcber|unter|neben|zwischen|durch|ohne|gegen|bis|seit|w\u00e4hrend|trotz|wegen|statt|au\u00dfer|um|als|und|oder|sowie))",
+              "priority": 6,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "bc002fca",
+              "name": "names_with_suffixes",
+              "description": "Captures names that include academic or professional suffixes like Bakk. iur., Dipl.-Ing., etc., ensuring they are preceded by a name",
+              "format": "regex",
+              "content": "(?:[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)\\s+(?:B\\.\\.?Bakk\\.|Dipl\\.-?Ing\\.|DI\\.|M\\.\\.?M\\.\\.?B\\.\\.?A\\.|BSc|PhD|LL\\.?M\\.|MSc|MA|Dr\\.\\s+[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)?)",
+              "priority": 7,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "7a30704a",
+              "name": "names_with_honorifics_simple",
+              "description": "Captures names with simple honorifics like Dr., Mag., MMag., Univ.-Prof. Dr., etc., handling multiple titles and hyphenated names.",
+              "format": "regex",
+              "content": "(?:Dr\\.|Mag\\.|MMag\\.|M\\.\\.?Mag\\.|DI\\.|Dipl\\.-?Ing\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|B\\.\\.?Bakk\\.|PhD\\.|M\\.\\.?M\\.\\.?B\\.\\.?A\\.)\\s+(?:[A-Z][a-z]+(?:\\s+[A-Z][a-z]+|\\-[A-Z][a-z]+)*|\\w+-\\w+(?:\\s+\\w+)*)",
+              "priority": 8,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            }
+          ]
+        },
+        {
+          "batch": 11,
+          "rules": [
+            {
+              "id": "d97ec33c",
+              "name": "criminal_defendants",
+              "description": "Captures names of criminal defendants appearing after 'gegen' in criminal cases, ensuring full name capture including hyphenated names.",
+              "format": "regex",
+              "content": "(?:Strafsache gegen|Verbrechen der|Vergehen der)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+|\\-[A-Z][a-z]+)+)(?![\\s]+(?:wegen|des|der|die|den|von|mit|auf|an|bei|zu|f\\u00fcr|nach|vor|\\u00fcber|unter|neben|zwischen|durch|ohne|gegen|bis|seit|w\u00e4hrend|trotz|wegen|statt|au\u00dfer|um|als|und|oder|sowie))",
+              "priority": 6,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "bee73e44",
+              "name": "simple_names_with_context",
+              "description": "Captures simple names that appear in specific legal contexts without titles",
+              "format": "regex",
+              "content": "(?:geboren am|im ersten Rechtsgang wurde|wurde schuldig erkannt|wurde freigesprochen)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+              "priority": 5,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "25dc2155",
+              "name": "names_in_legal_context",
+              "description": "Captures names appearing in legal contexts like 'als', 'durch', 'von', 'des', 'der' with strict name structure",
+              "format": "regex",
+              "content": "(?:als\\s+|durch\\s+|von\\s+|des\\s+|der\\s+|mit\\s+|gegen\\s+|in\\s+der\\s+|im\\s+|zu\\s+|nach\\s+|vor\\s+|f\\u00fcr\\s+|bei\\s+|unter\\s+|\\u00fcber\\s+|aus\\s+|an\\s+|auf\\s+)([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+              "priority": 5,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "4fa42d67",
+              "name": "names_with_honorifics",
+              "description": "Captures names with specific honorifics like OMedR, OStR, VetR, KzlR, Hofrat, Hofr\u00e4tin, Hofr\u00e4te, etc., ensuring full name capture.",
+              "format": "regex",
+              "content": "(?:OMedR|OStR|VetR|KzlR|Hofrat|Hofr\u00e4t|Hofr\u00e4tin|Hofr\u00e4te|Hofr\u00e4tinnen)\\s+(?:[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*|Dr\\.|Mag\\.|DI\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|B\\.\\.?Bakk\\.|Dipl\\.-?Ing\\.|M\\.\\.?M\\.\\.?B\\.\\.?A\\.|PhD\\.)?\\s*([A-Z][a-z]+(?:\\s+[A-Z][a-z]+|\\-[A-Z][a-z]+)*)",
+              "priority": 7,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "8212b944",
+              "name": "judges_with_titles",
+              "description": "Captures judges and officials with academic/professional titles followed by a valid full name, strictly excluding trailing context like 'als', 'und', 'in der'.",
+              "format": "regex",
+              "content": "(?:Senatspr\u00e4sident(?:in|en)?|Vizepr\u00e4sident(?:in)?|Hofrat(?:in)?|Hofr\u00e4te|Hofr\u00e4tin(?:en)?|fachkundiger Laienrichter(?:in)?|Richter(?:in)?|Schriftf\u00fchrer(?:in)?|Generalprokurator(?:in)?|Anwalt(?:in)?|Rechtsanwalt(?:in)?|Rechtsanw\u00e4lt(?:in|e)|Rechtsanw\u00e4lte(?:-Partnerschaft)?|Priv.-Doz\\.|Prof\\.|Dr\\.|Mag\\.|MMag\\.|M\\.\\.?Mag\\.|B\\.\\.?Bakk\\.|Dipl\\.-?Ing\\.|DI\\.|PhD\\.|M\\.\\.?M\\.\\.?B\\.\\.?A\\.|Hon\\.-Prof\\.|Univ\\.-Prof\\.|Univ\\.-Prof\\.in|OStR|OMedR|VetR|KzlR|KR)\\s+(?:[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+|\\w+-\\w+(?:\\s+\\w+)?|\\w+\\s+\\w+)(?![\\s]+(?:als|und|oder|sowie|in\\s+der|im\\s+|zu\\s+|nach|vor|f\\u00fcr|bei|unter|\\u00fcber|aus|an|auf|mit|gegen|bis|seit|w\u00e4hrend|trotz|wegen|statt|au\u00dfer|um|des|die|den|von|\\b))",
+              "priority": 9,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "732e13f4",
+              "name": "simple_names_in_context",
+              "description": "Captures simple names appearing in legal contexts like 'durch', 'von', 'des', 'der', 'als', 'gegen' without specific titles, ensuring no trailing conjunctions and full name capture.",
+              "format": "regex",
+              "content": "(?:durch|von|des|der|als|gegen|in\\s+der|im|zu|nach|vor|f\\u00fcr|bei|unter|\\u00fcber|aus|an|auf|mit|wegen|wegen\\s+des)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+|\\-[A-Z][a-z]+)+)(?![\\s]+(?:als|und|oder|sowie|in|der|des|die|den|von|mit|auf|an|bei|zu|f\\u00fcr|nach|vor|\\u00fcber|unter|neben|zwischen|durch|ohne|gegen|bis|seit|w\u00e4hrend|trotz|wegen|statt|au\u00dfer|um|als|und|oder|sowie))",
+              "priority": 6,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "bc002fca",
+              "name": "names_with_suffixes",
+              "description": "Captures names that include academic or professional suffixes like Bakk. iur., Dipl.-Ing., etc., ensuring they are preceded by a name",
+              "format": "regex",
+              "content": "(?:[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)\\s+(?:B\\.\\.?Bakk\\.|Dipl\\.-?Ing\\.|DI\\.|M\\.\\.?M\\.\\.?B\\.\\.?A\\.|BSc|PhD|LL\\.?M\\.|MSc|MA|Dr\\.\\s+[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)?)",
+              "priority": 7,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "7a30704a",
+              "name": "names_with_honorifics_simple",
+              "description": "Captures names with simple honorifics like Dr., Mag., MMag., Univ.-Prof. Dr., etc., handling multiple titles and hyphenated names.",
+              "format": "regex",
+              "content": "(?:Dr\\.|Mag\\.|MMag\\.|M\\.\\.?Mag\\.|DI\\.|Dipl\\.-?Ing\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|B\\.\\.?Bakk\\.|PhD\\.|M\\.\\.?M\\.\\.?B\\.\\.?A\\.)\\s+(?:[A-Z][a-z]+(?:\\s+[A-Z][a-z]+|\\-[A-Z][a-z]+)*|\\w+-\\w+(?:\\s+\\w+)*)",
+              "priority": 8,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "d8f953ab",
+              "name": "standalone_names",
+              "description": "Captures standalone names at the beginning of sentences or after punctuation, handling hyphenated names.",
+              "format": "regex",
+              "content": "(?:^|\\.|,|\\s)([A-Z][a-z]+(?:\\s+[A-Z][a-z]+|\\-[A-Z][a-z]+)+)(?![\\s]+(?:als|und|oder|sowie|in|der|des|die|den|von|mit|auf|an|bei|zu|f\\u00fcr|nach|vor|\\u00fcber|unter|neben|zwischen|durch|ohne|gegen|bis|seit|w\u00e4hrend|trotz|wegen|statt|au\u00dfer|um|als|und|oder|sowie))",
+              "priority": 5,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "b18809aa",
+              "name": "names_with_complex_titles",
+              "description": "Captures names with complex title combinations like 'Prof. Dr.', 'Univ.-Prof. Dr.', 'Hon.-Prof. Dr.'",
+              "format": "regex",
+              "content": "(?:Prof\\.\\s+Dr\\.|Univ\\.-Prof\\.\\s+Dr\\.|Hon\\.-Prof\\.\\s+Dr\\.|Dr\\.\\s+Prof\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|Prof\\.)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+|\\-[A-Z][a-z]+)+)",
+              "priority": 8,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            }
+          ]
+        },
+        {
+          "batch": 12,
+          "rules": [
+            {
+              "id": "d97ec33c",
+              "name": "criminal_defendants",
+              "description": "Captures names of criminal defendants appearing after 'gegen' in criminal cases, ensuring full name capture including hyphenated names.",
+              "format": "regex",
+              "content": "(?:Strafsache gegen|Verbrechen der|Vergehen der)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+|\\-[A-Z][a-z]+)+)(?![\\s]+(?:wegen|des|der|die|den|von|mit|auf|an|bei|zu|f\\u00fcr|nach|vor|\\u00fcber|unter|neben|zwischen|durch|ohne|gegen|bis|seit|w\u00e4hrend|trotz|wegen|statt|au\u00dfer|um|als|und|oder|sowie))",
+              "priority": 6,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "bee73e44",
+              "name": "simple_names_with_context",
+              "description": "Captures simple names that appear in specific legal contexts without titles",
+              "format": "regex",
+              "content": "(?:geboren am|im ersten Rechtsgang wurde|wurde schuldig erkannt|wurde freigesprochen)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+              "priority": 5,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "25dc2155",
+              "name": "names_in_legal_context",
+              "description": "Captures names appearing in legal contexts like 'als', 'durch', 'von', 'des', 'der' with strict name structure",
+              "format": "regex",
+              "content": "(?:als\\s+|durch\\s+|von\\s+|des\\s+|der\\s+|mit\\s+|gegen\\s+|in\\s+der\\s+|im\\s+|zu\\s+|nach\\s+|vor\\s+|f\\u00fcr\\s+|bei\\s+|unter\\s+|\\u00fcber\\s+|aus\\s+|an\\s+|auf\\s+)([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+              "priority": 5,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "64370557",
+              "name": "names_with_honorifics",
+              "description": "Captures names with specific honorifics like OMedR, OStR, VetR, KzlR, Hofrat, Hofr\u00e4tin, etc., ensuring full name capture.",
+              "format": "regex",
+              "content": "(?:OMedR|OStR|VetR|KzlR|Hofrat|Hofr\u00e4te|Hofr\u00e4tin|Hofr\u00e4te|Hofr\u00e4tinnen)\\s+(?:[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*|Dr\\.|Mag\\.|DI\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|B\\.\\.?Bakk\\.|Dipl\\.-?Ing\\.|M\\.\\.?M\\.\\.?B\\.\\.?A\\.|PhD\\.)?\\s*([A-Z][a-z]+(?:\\s+[A-Z][a-z]+|\\-[A-Z][a-z]+)*)",
+              "priority": 7,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "3f1493ce",
+              "name": "judges_with_titles",
+              "description": "Captures judges and officials with academic/professional titles followed by a valid full name, strictly excluding trailing context like 'als', 'und', 'in der', 'sowie', 'und andere'.",
+              "format": "regex",
+              "content": "(?:Senatspr\u00e4sident(?:in|en)?|Vizepr\u00e4sident(?:in)?|Hofrat(?:in)?|Hofr\u00e4te|Hofr\u00e4tin(?:en)?|fachkundiger Laienrichter(?:in)?|Richter(?:in)?|Schriftf\u00fchrer(?:in)?|Generalprokurator(?:in)?|Anwalt(?:in)?|Rechtsanwalt(?:in)?|Rechtsanw\u00e4lt(?:in|e)|Rechtsanw\u00e4lte(?:-Partnerschaft)?|Priv.-Doz\\.|Prof\\.|Dr\\.|Mag\\.|MMag\\.|M\\.\\.?Mag\\.|B\\.\\.?Bakk\\.|Dipl\\.-?Ing\\.|DI\\.|PhD\\.|M\\.\\.?M\\.\\.?B\\.\\.?A\\.|Hon\\.-Prof\\.|Univ\\.-Prof\\.|Univ\\.-Prof\\.in|OStR|OMedR|VetR|KzlR|KR|PD)\\s+(?:[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+|\\w+-\\w+(?:\\s+\\w+)?|\\w+\\s+\\w+)(?![\\s]+(?:als|und|oder|sowie|in\\s+der|im\\s+|zu\\s+|nach|vor|f\u00fcr|bei|unter|\u00fcber|aus|an|auf|mit|gegen|bis|seit|w\u00e4hrend|trotz|wegen|statt|au\u00dfer|um|des|die|den|von|\\b|\\.|,))",
+              "priority": 9,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "0a590f88",
+              "name": "simple_names_in_context",
+              "description": "Captures simple names appearing in legal contexts like 'durch', 'von', 'des', 'der', 'als', 'gegen' without specific titles, ensuring no trailing conjunctions and full name capture including hyphenated names.",
+              "format": "regex",
+              "content": "(?:durch|von|des|der|als|gegen|in\\s+der|im|zu|nach|vor|f\u00fcr|bei|unter|\u00fcber|aus|an|auf|mit|wegen|wegen\\s+des)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+|\\-[A-Z][a-z]+)+)(?![\\s]+(?:als|und|oder|sowie|in|der|des|die|den|von|mit|auf|an|bei|zu|f\u00fcr|nach|vor|\u00fcber|unter|neben|zwischen|durch|ohne|gegen|bis|seit|w\u00e4hrend|trotz|wegen|statt|au\u00dfer|um|als|und|oder|sowie|\\.|,))",
+              "priority": 6,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "b01f8f46",
+              "name": "names_with_suffixes",
+              "description": "Captures names that include academic or professional suffixes like Bakk. iur., Dipl.-Ing., LL.M., etc., ensuring they are preceded by a name and not truncated.",
+              "format": "regex",
+              "content": "(?:[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)\\s+(?:B\\.\\.?Bakk\\.|Dipl\\.-?Ing\\.|DI\\.|M\\.\\.?M\\.\\.?B\\.\\.?A\\.|BSc|PhD|LL\\.?M\\.|MSc|MA|Dr\\.\\s+[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)?|B\\.\\.?Bakk\\.\\s+iur\\.|B\\.\\.?Bakk\\.\\s+rer\\.\\s+nat\\.\\s+MBA)",
+              "priority": 7,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "0bfda7c4",
+              "name": "names_with_honorifics_simple",
+              "description": "Captures names with simple honorifics like Dr., Mag., MMag., Univ.-Prof. Dr., etc., handling multiple titles and hyphenated names, ensuring full capture.",
+              "format": "regex",
+              "content": "(?:Dr\\.|Mag\\.|MMag\\.|M\\.\\.?Mag\\.|DI\\.|Dipl\\.-?Ing\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|B\\.\\.?Bakk\\.|PhD\\.|M\\.\\.?M\\.\\.?B\\.\\.?A\\.|PD)\\s+(?:[A-Z][a-z]+(?:\\s+[A-Z][a-z]+|\\-[A-Z][a-z]+)*|\\w+-\\w+(?:\\s+\\w+)*)",
+              "priority": 8,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "69d3f044",
+              "name": "standalone_names",
+              "description": "Captures standalone names at the beginning of sentences or after punctuation, handling hyphenated names and ensuring they are not truncated by trailing legal particles.",
+              "format": "regex",
+              "content": "(?:^|\\.|,|\\s)([A-Z][a-z]+(?:\\s+[A-Z][a-z]+|\\-[A-Z][a-z]+)+)(?![\\s]+(?:als|und|oder|sowie|in|der|des|die|den|von|mit|auf|an|bei|zu|f\u00fcr|nach|vor|\u00fcber|unter|neben|zwischen|durch|ohne|gegen|bis|seit|w\u00e4hrend|trotz|wegen|statt|au\u00dfer|um|als|und|oder|sowie|\\.|,))",
+              "priority": 5,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "da591095",
+              "name": "names_with_complex_titles",
+              "description": "Captures names with complex title combinations like 'Prof. Dr.', 'Univ.-Prof. Dr.', 'Hon.-Prof. Dr.', 'Hon.-Prof. PD Dr.'",
+              "format": "regex",
+              "content": "(?:Prof\\.\\s+Dr\\.|Univ\\.-Prof\\.\\s+Dr\\.|Hon\\.-Prof\\.\\s+Dr\\.|Dr\\.\\s+Prof\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|Prof\\.|Hon\\.-Prof\\.\\s+PD\\s+Dr\\.|PD\\s+Dr\\.)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+|\\-[A-Z][a-z]+)+)",
+              "priority": 8,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            }
+          ]
+        },
+        {
+          "batch": 13,
+          "rules": [
+            {
+              "id": "d97ec33c",
+              "name": "criminal_defendants",
+              "description": "Captures names of criminal defendants appearing after 'gegen' in criminal cases, ensuring full name capture including hyphenated names.",
+              "format": "regex",
+              "content": "(?:Strafsache gegen|Verbrechen der|Vergehen der)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+|\\-[A-Z][a-z]+)+)(?![\\s]+(?:wegen|des|der|die|den|von|mit|auf|an|bei|zu|f\\u00fcr|nach|vor|\\u00fcber|unter|neben|zwischen|durch|ohne|gegen|bis|seit|w\u00e4hrend|trotz|wegen|statt|au\u00dfer|um|als|und|oder|sowie))",
+              "priority": 6,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "bee73e44",
+              "name": "simple_names_with_context",
+              "description": "Captures simple names that appear in specific legal contexts without titles",
+              "format": "regex",
+              "content": "(?:geboren am|im ersten Rechtsgang wurde|wurde schuldig erkannt|wurde freigesprochen)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+              "priority": 5,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "25dc2155",
+              "name": "names_in_legal_context",
+              "description": "Captures names appearing in legal contexts like 'als', 'durch', 'von', 'des', 'der' with strict name structure",
+              "format": "regex",
+              "content": "(?:als\\s+|durch\\s+|von\\s+|des\\s+|der\\s+|mit\\s+|gegen\\s+|in\\s+der\\s+|im\\s+|zu\\s+|nach\\s+|vor\\s+|f\\u00fcr\\s+|bei\\s+|unter\\s+|\\u00fcber\\s+|aus\\s+|an\\s+|auf\\s+)([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+              "priority": 5,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "64370557",
+              "name": "names_with_honorifics",
+              "description": "Captures names with specific honorifics like OMedR, OStR, VetR, KzlR, Hofrat, Hofr\u00e4tin, etc., ensuring full name capture.",
+              "format": "regex",
+              "content": "(?:OMedR|OStR|VetR|KzlR|Hofrat|Hofr\u00e4te|Hofr\u00e4tin|Hofr\u00e4te|Hofr\u00e4tinnen)\\s+(?:[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*|Dr\\.|Mag\\.|DI\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|B\\.\\.?Bakk\\.|Dipl\\.-?Ing\\.|M\\.\\.?M\\.\\.?B\\.\\.?A\\.|PhD\\.)?\\s*([A-Z][a-z]+(?:\\s+[A-Z][a-z]+|\\-[A-Z][a-z]+)*)",
+              "priority": 7,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "3f1493ce",
+              "name": "judges_with_titles",
+              "description": "Captures judges and officials with academic/professional titles followed by a valid full name, strictly excluding trailing context like 'als', 'und', 'in der', 'sowie', 'und andere'.",
+              "format": "regex",
+              "content": "(?:Senatspr\u00e4sident(?:in|en)?|Vizepr\u00e4sident(?:in)?|Hofrat(?:in)?|Hofr\u00e4te|Hofr\u00e4tin(?:en)?|fachkundiger Laienrichter(?:in)?|Richter(?:in)?|Schriftf\u00fchrer(?:in)?|Generalprokurator(?:in)?|Anwalt(?:in)?|Rechtsanwalt(?:in)?|Rechtsanw\u00e4lt(?:in|e)|Rechtsanw\u00e4lte(?:-Partnerschaft)?|Priv.-Doz\\.|Prof\\.|Dr\\.|Mag\\.|MMag\\.|M\\.\\.?Mag\\.|B\\.\\.?Bakk\\.|Dipl\\.-?Ing\\.|DI\\.|PhD\\.|M\\.\\.?M\\.\\.?B\\.\\.?A\\.|Hon\\.-Prof\\.|Univ\\.-Prof\\.|Univ\\.-Prof\\.in|OStR|OMedR|VetR|KzlR|KR|PD)\\s+(?:[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+|\\w+-\\w+(?:\\s+\\w+)?|\\w+\\s+\\w+)(?![\\s]+(?:als|und|oder|sowie|in\\s+der|im\\s+|zu\\s+|nach|vor|f\u00fcr|bei|unter|\u00fcber|aus|an|auf|mit|gegen|bis|seit|w\u00e4hrend|trotz|wegen|statt|au\u00dfer|um|des|die|den|von|\\b|\\.|,))",
+              "priority": 9,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "0a590f88",
+              "name": "simple_names_in_context",
+              "description": "Captures simple names appearing in legal contexts like 'durch', 'von', 'des', 'der', 'als', 'gegen' without specific titles, ensuring no trailing conjunctions and full name capture including hyphenated names.",
+              "format": "regex",
+              "content": "(?:durch|von|des|der|als|gegen|in\\s+der|im|zu|nach|vor|f\u00fcr|bei|unter|\u00fcber|aus|an|auf|mit|wegen|wegen\\s+des)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+|\\-[A-Z][a-z]+)+)(?![\\s]+(?:als|und|oder|sowie|in|der|des|die|den|von|mit|auf|an|bei|zu|f\u00fcr|nach|vor|\u00fcber|unter|neben|zwischen|durch|ohne|gegen|bis|seit|w\u00e4hrend|trotz|wegen|statt|au\u00dfer|um|als|und|oder|sowie|\\.|,))",
+              "priority": 6,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "b01f8f46",
+              "name": "names_with_suffixes",
+              "description": "Captures names that include academic or professional suffixes like Bakk. iur., Dipl.-Ing., LL.M., etc., ensuring they are preceded by a name and not truncated.",
+              "format": "regex",
+              "content": "(?:[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)\\s+(?:B\\.\\.?Bakk\\.|Dipl\\.-?Ing\\.|DI\\.|M\\.\\.?M\\.\\.?B\\.\\.?A\\.|BSc|PhD|LL\\.?M\\.|MSc|MA|Dr\\.\\s+[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)?|B\\.\\.?Bakk\\.\\s+iur\\.|B\\.\\.?Bakk\\.\\s+rer\\.\\s+nat\\.\\s+MBA)",
+              "priority": 7,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "0bfda7c4",
+              "name": "names_with_honorifics_simple",
+              "description": "Captures names with simple honorifics like Dr., Mag., MMag., Univ.-Prof. Dr., etc., handling multiple titles and hyphenated names, ensuring full capture.",
+              "format": "regex",
+              "content": "(?:Dr\\.|Mag\\.|MMag\\.|M\\.\\.?Mag\\.|DI\\.|Dipl\\.-?Ing\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|B\\.\\.?Bakk\\.|PhD\\.|M\\.\\.?M\\.\\.?B\\.\\.?A\\.|PD)\\s+(?:[A-Z][a-z]+(?:\\s+[A-Z][a-z]+|\\-[A-Z][a-z]+)*|\\w+-\\w+(?:\\s+\\w+)*)",
+              "priority": 8,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "69d3f044",
+              "name": "standalone_names",
+              "description": "Captures standalone names at the beginning of sentences or after punctuation, handling hyphenated names and ensuring they are not truncated by trailing legal particles.",
+              "format": "regex",
+              "content": "(?:^|\\.|,|\\s)([A-Z][a-z]+(?:\\s+[A-Z][a-z]+|\\-[A-Z][a-z]+)+)(?![\\s]+(?:als|und|oder|sowie|in|der|des|die|den|von|mit|auf|an|bei|zu|f\u00fcr|nach|vor|\u00fcber|unter|neben|zwischen|durch|ohne|gegen|bis|seit|w\u00e4hrend|trotz|wegen|statt|au\u00dfer|um|als|und|oder|sowie|\\.|,))",
+              "priority": 5,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "da591095",
+              "name": "names_with_complex_titles",
+              "description": "Captures names with complex title combinations like 'Prof. Dr.', 'Univ.-Prof. Dr.', 'Hon.-Prof. Dr.', 'Hon.-Prof. PD Dr.'",
+              "format": "regex",
+              "content": "(?:Prof\\.\\s+Dr\\.|Univ\\.-Prof\\.\\s+Dr\\.|Hon\\.-Prof\\.\\s+Dr\\.|Dr\\.\\s+Prof\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|Prof\\.|Hon\\.-Prof\\.\\s+PD\\s+Dr\\.|PD\\s+Dr\\.)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+|\\-[A-Z][a-z]+)+)",
+              "priority": 8,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            }
+          ]
+        },
+        {
+          "batch": 14,
+          "rules": [
+            {
+              "id": "a5ea2dd8",
+              "name": "criminal_defendants",
+              "description": "Captures names of criminal defendants appearing after 'gegen' in criminal cases, ensuring full name capture including hyphenated names.",
+              "format": "regex",
+              "content": "(?:Strafsache gegen|Verbrechen der|Vergehen der)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+|\\-[A-Z][a-z]+)+)(?![\\s]+(?:wegen|des|der|die|den|von|mit|auf|an|bei|zu|f\u00fcr|nach|vor|\u00fcber|unter|neben|zwischen|durch|ohne|gegen|bis|seit|w\u00e4hrend|trotz|wegen|statt|au\u00dfer|um|als|und|oder|sowie))",
+              "priority": 6,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "bee73e44",
+              "name": "simple_names_with_context",
+              "description": "Captures simple names that appear in specific legal contexts without titles",
+              "format": "regex",
+              "content": "(?:geboren am|im ersten Rechtsgang wurde|wurde schuldig erkannt|wurde freigesprochen)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+              "priority": 5,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "25dc2155",
+              "name": "names_in_legal_context",
+              "description": "Captures names appearing in legal contexts like 'als', 'durch', 'von', 'des', 'der' with strict name structure",
+              "format": "regex",
+              "content": "(?:als\\s+|durch\\s+|von\\s+|des\\s+|der\\s+|mit\\s+|gegen\\s+|in\\s+der\\s+|im\\s+|zu\\s+|nach\\s+|vor\\s+|f\\u00fcr\\s+|bei\\s+|unter\\s+|\\u00fcber\\s+|aus\\s+|an\\s+|auf\\s+)([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+              "priority": 5,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "b5a8a226",
+              "name": "names_with_honorifics",
+              "description": "Captures names with specific honorifics like OMedR, OStR, VetR, KzlR, Hofrat, Hofr\u00e4tin, etc., ensuring full name capture.",
+              "format": "regex",
+              "content": "(?:OMedR|OStR|VetR|KzlR|Hofrat|Hofr\u00e4te|Hofr\u00e4tin|Hofr\u00e4tinnen)\\s+(?:[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*|Dr\\.|Mag\\.|DI\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|B\\.\\.?Bakk\\.|Dipl\\.-?Ing\\.|M\\.\\.?M\\.\\.?B\\.\\.?A\\.|PhD\\.)?\\s*([A-Z][a-z]+(?:\\s+[A-Z][a-z]+|\\-[A-Z][a-z]+)*)",
+              "priority": 7,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "3f1493ce",
+              "name": "judges_with_titles",
+              "description": "Captures judges and officials with academic/professional titles, ensuring full name capture including hyphenated names and avoiding truncation by trailing conjunctions.",
+              "format": "regex",
+              "content": "(?:Senatspr\u00e4sident(?:in|en)?|Vizepr\u00e4sident(?:in)?|Hofrat(?:in)?|Hofr\u00e4te|Hofr\u00e4tin(?:en)?|fachkundiger Laienrichter(?:in)?|Richter(?:in)?|Schriftf\u00fchrer(?:in)?|Generalprokurator(?:in)?|Anwalt(?:in)?|Rechtsanwalt(?:in)?|Rechtsanw\u00e4lt(?:in|e)|Rechtsanw\u00e4lte(?:-Partnerschaft)?|Priv.-Doz\\.|Prof\\.|Dr\\.|Mag\\.|MMag\\.|M\\.\\.?Mag\\.|B\\.\\.?Bakk\\.|Dipl\\.-?Ing\\.|DI\\.|PhD\\.|M\\.\\.?M\\.\\.?B\\.\\.?A\\.|Hon\\.-Prof\\.|Univ\\.-Prof\\.|Univ\\.-Prof\\.in|OStR|OMedR|VetR|KzlR|KR|PD)\\s+(?:[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+|\\w+-\\w+(?:\\s+\\w+)?|\\w+\\s+\\w+)(?![\\s]+(?:als|und|oder|sowie|in\\s+der|im\\s+|zu\\s+|nach|vor|f\u00fcr|bei|unter|\u00fcber|aus|an|auf|mit|gegen|bis|seit|w\u00e4hrend|trotz|wegen|statt|au\u00dfer|um|des|die|den|von|\\b|\\.|,))",
+              "priority": 9,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "0a590f88",
+              "name": "simple_names_in_context",
+              "description": "Captures simple names appearing in legal contexts like 'durch', 'von', 'des', 'der', 'als', 'gegen' without specific titles, ensuring no trailing conjunctions and full name capture including hyphenated names.",
+              "format": "regex",
+              "content": "(?:durch|von|des|der|als|gegen|in\\s+der|im|zu|nach|vor|f\u00fcr|bei|unter|\u00fcber|aus|an|auf|mit|wegen|wegen\\s+des)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+|\\-[A-Z][a-z]+)+)(?![\\s]+(?:als|und|oder|sowie|in|der|des|die|den|von|mit|auf|an|bei|zu|f\u00fcr|nach|vor|\u00fcber|unter|neben|zwischen|durch|ohne|gegen|bis|seit|w\u00e4hrend|trotz|wegen|statt|au\u00dfer|um|als|und|oder|sowie|\\.|,))",
+              "priority": 6,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "b01f8f46",
+              "name": "names_with_suffixes",
+              "description": "Captures names that include academic or professional suffixes like Bakk. iur., Dipl.-Ing., LL.M., etc., ensuring they are preceded by a name and not truncated.",
+              "format": "regex",
+              "content": "(?:[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)\\s+(?:B\\.\\.?Bakk\\.|Dipl\\.-?Ing\\.|DI\\.|M\\.\\.?M\\.\\.?B\\.\\.?A\\.|BSc|PhD|LL\\.?M\\.|MSc|MA|Dr\\.\\s+[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)?|B\\.\\.?Bakk\\.\\s+iur\\.|B\\.\\.?Bakk\\.\\s+rer\\.\\s+nat\\.\\s+MBA)",
+              "priority": 7,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "0bfda7c4",
+              "name": "names_with_honorifics_simple",
+              "description": "Captures names with simple honorifics like Dr., Mag., MMag., Univ.-Prof. Dr., etc., handling multiple titles and hyphenated names, ensuring full capture.",
+              "format": "regex",
+              "content": "(?:Dr\\.|Mag\\.|MMag\\.|M\\.\\.?Mag\\.|DI\\.|Dipl\\.-?Ing\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|B\\.\\.?Bakk\\.|PhD\\.|M\\.\\.?M\\.\\.?B\\.\\.?A\\.|PD)\\s+(?:[A-Z][a-z]+(?:\\s+[A-Z][a-z]+|\\-[A-Z][a-z]+)*|\\w+-\\w+(?:\\s+\\w+)*)",
+              "priority": 8,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "e518cd0e",
+              "name": "standalone_names",
+              "description": "Captures names at the start of sentences or after punctuation, strictly requiring a second name part or specific context to avoid matching headers.",
+              "format": "regex",
+              "content": "(?:^|\\.|,|\\n)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+|\\-[A-Z][a-z]+)+)(?=\\s+(?:ist|hat|wurde|sind|waren|als|gegen|von|mit|in|auf|an|bei|zu|nach|vor|\u00fcber|unter|neben|zwischen|durch|ohne|f\u00fcr|wegen|trotz|w\u00e4hrend|statt|au\u00dfer|um|bis|seit|oder|und|sowie|,|\\.|\\?|!|\\))|\\s*$)",
+              "priority": 5,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "da591095",
+              "name": "names_with_complex_titles",
+              "description": "Captures names with complex title combinations like 'Prof. Dr.', 'Univ.-Prof. Dr.', 'Hon.-Prof. Dr.', 'Hon.-Prof. PD Dr.'",
+              "format": "regex",
+              "content": "(?:Prof\\.\\s+Dr\\.|Univ\\.-Prof\\.\\s+Dr\\.|Hon\\.-Prof\\.\\s+Dr\\.|Dr\\.\\s+Prof\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|Prof\\.|Hon\\.-Prof\\.\\s+PD\\s+Dr\\.|PD\\s+Dr\\.)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+|\\-[A-Z][a-z]+)+)",
+              "priority": 8,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            }
+          ]
+        },
+        {
+          "batch": 15,
+          "rules": [
+            {
+              "id": "eea198bb",
+              "name": "criminal_defendants",
+              "description": "Captures names of criminal defendants appearing after 'gegen' in criminal cases, ensuring full name capture including hyphenated names.",
+              "format": "regex",
+              "content": "(?:Strafsache gegen|Verbrechen der|Vergehen der)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+|\\-[A-Z][a-z]+)+)(?![\\s]+(?:wegen|des|der|die|den|von|mit|auf|an|bei|zu|f\\u00fcr|nach|vor|\\u00fcber|unter|neben|zwischen|durch|ohne|gegen|bis|seit|w\\u00e4hrend|trotz|wegen|statt|au\\u00dfer|um|als|und|oder|sowie))",
+              "priority": 6,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "bee73e44",
+              "name": "simple_names_with_context",
+              "description": "Captures simple names that appear in specific legal contexts without titles",
+              "format": "regex",
+              "content": "(?:geboren am|im ersten Rechtsgang wurde|wurde schuldig erkannt|wurde freigesprochen)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+              "priority": 5,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "25dc2155",
+              "name": "names_in_legal_context",
+              "description": "Captures names appearing in legal contexts like 'als', 'durch', 'von', 'des', 'der' with strict name structure",
+              "format": "regex",
+              "content": "(?:als\\s+|durch\\s+|von\\s+|des\\s+|der\\s+|mit\\s+|gegen\\s+|in\\s+der\\s+|im\\s+|zu\\s+|nach\\s+|vor\\s+|f\\u00fcr\\s+|bei\\s+|unter\\s+|\\u00fcber\\s+|aus\\s+|an\\s+|auf\\s+)([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+              "priority": 5,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "b5a8a226",
+              "name": "names_with_honorifics",
+              "description": "Captures names with specific honorifics like OMedR, OStR, VetR, KzlR, Hofrat, Hofr\u00e4tin, etc., ensuring full name capture.",
+              "format": "regex",
+              "content": "(?:OMedR|OStR|VetR|KzlR|Hofrat|Hofr\u00e4te|Hofr\u00e4tin|Hofr\u00e4tinnen)\\s+(?:[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*|Dr\\.|Mag\\.|DI\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|B\\.\\.?Bakk\\.|Dipl\\.-?Ing\\.|M\\.\\.?M\\.\\.?B\\.\\.?A\\.|PhD\\.)?\\s*([A-Z][a-z]+(?:\\s+[A-Z][a-z]+|\\-[A-Z][a-z]+)*)",
+              "priority": 7,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "907e5c27",
+              "name": "judges_with_titles",
+              "description": "Captures judges and officials with academic/professional titles, ensuring full name capture including hyphenated names and avoiding truncation by trailing conjunctions.",
+              "format": "regex",
+              "content": "(?:Senatspr\u00e4sident(?:in|en)?|Vizepr\u00e4sident(?:in)?|Hofrat(?:in)?|Hofr\u00e4te|Hofr\u00e4tin(?:en)?|fachkundiger Laienrichter(?:in)?|Richter(?:in)?|Schriftf\u00fchrer(?:in)?|Generalprokurator(?:in)?|Anwalt(?:in)?|Rechtsanwalt(?:in)?|Rechtsanw\u00e4lt(?:in|e)|Rechtsanw\u00e4lte(?:-Partnerschaft)?|Priv.-Doz\\.|Prof\\.|Dr\\.|Mag\\.|MMag\\.|M\\.\\.?Mag\\.|B\\.\\.?Bakk\\.|Dipl\\.-?Ing\\.|DI\\.|PhD\\.|M\\.\\.?M\\.\\.?B\\.\\.?A\\.|Hon\\.-Prof\\.|Univ\\.-Prof\\.|Univ\\.-Prof\\.in|OStR|OMedR|VetR|KzlR|KR|PD|DDr\\.in|DDr\\.)\\s+(?:[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+|\\w+-\\w+(?:\\s+\\w+)?|\\w+\\s+\\w+)(?![\\s]+(?:als|und|oder|sowie|in\\s+der|im\\s+|zu\\s+|nach|vor|f\u00fcr|bei|unter|\u00fcber|aus|an|auf|mit|gegen|bis|seit|w\u00e4hrend|trotz|wegen|statt|au\u00dfer|um|des|die|den|von|\\.|,|;|:|\\)))",
+              "priority": 9,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "c5a28dd1",
+              "name": "simple_names_in_context",
+              "description": "Captures simple names appearing in legal contexts like 'durch', 'von', 'des', 'der', 'als', 'gegen' without specific titles, ensuring no trailing conjunctions and full name capture including hyphenated names.",
+              "format": "regex",
+              "content": "(?:durch|von|des|der|als|gegen|in\\s+der|im|zu|nach|vor|f\u00fcr|bei|unter|\u00fcber|aus|an|auf|mit|wegen|wegen\\s+des)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+|\\-[A-Z][a-z]+)+)(?![\\s]+(?:als|und|oder|sowie|in|der|des|die|den|von|mit|auf|an|bei|zu|f\\u00fcr|nach|vor|\\u00fcber|unter|neben|zwischen|durch|ohne|gegen|bis|seit|w\\u00e4hrend|trotz|wegen|statt|au\\u00dfer|um|als|und|oder|sowie|\\.|,|;|:|\\)))",
+              "priority": 6,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "b01f8f46",
+              "name": "names_with_suffixes",
+              "description": "Captures names that include academic or professional suffixes like Bakk. iur., Dipl.-Ing., LL.M., etc., ensuring they are preceded by a name and not truncated.",
+              "format": "regex",
+              "content": "(?:[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)\\s+(?:B\\.\\.?Bakk\\.|Dipl\\.-?Ing\\.|DI\\.|M\\.\\.?M\\.\\.?B\\.\\.?A\\.|BSc|PhD|LL\\.?M\\.|MSc|MA|Dr\\.\\s+[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)?|B\\.\\.?Bakk\\.\\s+iur\\.|B\\.\\.?Bakk\\.\\s+rer\\.\\s+nat\\.\\s+MBA)",
+              "priority": 7,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "e0183cba",
+              "name": "names_with_honorifics_simple",
+              "description": "Captures names with simple honorifics like Dr., Mag., MMag., Univ.-Prof. Dr., etc., handling multiple titles and hyphenated names, ensuring full capture.",
+              "format": "regex",
+              "content": "(?:Dr\\.|Mag\\.|MMag\\.|M\\.\\.?Mag\\.|DI\\.|Dipl\\.-?Ing\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|Priv\\.-Doz\\.|B\\.\\.?Bakk\\.|PhD\\.|M\\.\\.?M\\.\\.?B\\.\\.?A\\.|PD|DDr\\.in|DDr\\.)\\s+(?:[A-Z][a-z]+(?:\\s+[A-Z][a-z]+|\\-[A-Z][a-z]+)*|\\w+-\\w+(?:\\s+\\w+)*)",
+              "priority": 8,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "f6d24073",
+              "name": "standalone_names",
+              "description": "Captures names at the start of sentences or after punctuation, strictly requiring a second name part or specific context to avoid matching headers.",
+              "format": "regex",
+              "content": "(?:^|\\.|\\?|!|\\n)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+|\\-[A-Z][a-z]+)+)(?![\\s]+(?:als|und|oder|sowie|in|der|des|die|den|von|mit|auf|an|bei|zu|f\\u00fcr|nach|vor|\\u00fcber|unter|neben|zwischen|durch|ohne|gegen|bis|seit|w\\u00e4hrend|trotz|wegen|statt|au\\u00dfer|um|als|und|oder|sowie|\\.|,|;|:|\\)))",
+              "priority": 5,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "411932a4",
+              "name": "names_with_complex_titles",
+              "description": "Captures names with complex title combinations like 'Prof. Dr.', 'Univ.-Prof. Dr.', 'Hon.-Prof. Dr.', 'Hon.-Prof. PD Dr.'",
+              "format": "regex",
+              "content": "(?:Prof\\.\\s+Dr\\.|Univ\\.-Prof\\.\\s+Dr\\.|Hon\\.-Prof\\.\\s+Dr\\.|Hon\\.-Prof\\.\\s+PD\\s+Dr\\.|PD\\s+Dr\\.|Dr\\.\\s+Prof\\.|Dr\\.\\s+Univ\\.-Prof\\.|Dr\\.\\s+Hon\\.-Prof\\.|Dr\\.\\s+Priv\\.-Doz\\.|Priv\\.-Doz\\.\\s+Dr\\.)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+|\\-[A-Z][a-z]+)*)",
+              "priority": 10,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "phase": "refine",
+      "dataset": "ris_train",
+      "num_rules": 10,
+      "micro_f1": 0.20260663507109006,
+      "micro_precision": 0.15433212996389892,
+      "micro_recall": 0.29482758620689653,
+      "iteration_metrics": [
+        {
+          "iteration": 1,
+          "num_rules": 10,
+          "exact_match": 0.025806451612903226,
+          "micro_f1": 0.20260663507109006,
+          "micro_precision": 0.15433212996389892,
+          "micro_recall": 0.29482758620689653,
+          "macro_f1": 0.20260663507109006,
+          "per_class": [
+            {
+              "label": "person",
+              "f1": 0.20260663507109006,
+              "precision": 0.15433212996389892,
+              "recall": 0.29482758620689653
+            }
+          ]
+        }
+      ],
+      "timestamp": "2026-07-22T17:43:14.650651"
+    }
+  ]
+}
