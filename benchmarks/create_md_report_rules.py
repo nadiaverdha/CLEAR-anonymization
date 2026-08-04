@@ -16,7 +16,7 @@ from rulechef.core import (
     Task,
     TaskType,
 )
-from rulechef.evaluation import evaluate_dataset
+from rulechef.evaluation import evaluate_dataset, evaluate_rules_individually
 from rulechef.executor import RuleExecutor
 
 from benchmarks.data import BenchmarkRun, make_dataset
@@ -121,36 +121,57 @@ def append_overall_metrics(
             f.write(
                 f"```\n python benchmark.py --config {results_folder}/config.yaml \n```\n"
             )
+            train_ratio = getattr(config, "train_ratio", None)
             _write_table(
                 f,
                 ["Parameter", "Value"],
                 [
-                    ["Pool size", config.pool_size],
-                    ["Train ratio", f"{config.train_ratio:.2f}"],
-                    ["Validation ratio", f"{1.0 - config.train_ratio:.2f}"],
-                    ["Shots per class", config.shots],
+                    ["Pool size", getattr(config, "pool_size", "N/A")],
+                    [
+                        "Train ratio",
+                        f"{train_ratio:.2f}" if train_ratio is not None else "N/A",
+                    ],
+                    [
+                        "Validation ratio",
+                        f"{1.0 - train_ratio:.2f}"
+                        if train_ratio is not None
+                        else "N/A",
+                    ],
+                    ["Shots per class", getattr(config, "shots", "N/A")],
                     ["Training documents", run.train_size],
                     ["Validation documents", run.eval_size],
                     ["Test documents", run.test_size],
                     ["Train sentences", run.train_annotations],
                     ["Validation sentences", run.eval_annotations],
                     ["Test sentences", run.test_annotations],
-                    ["Model", config.model],
-                    ["Max rules", config.max_rules],
-                    ["Max samples in prompt", config.max_samples],
-                    ["Refinement iterations", config.max_iterations],
-                    ["Seed", config.seed],
-                    ["Agentic", config.agentic],
-                    ["Enable Critic", config.enable_critic],
-                    ["Enable Prune", config.enable_prune],
-                    ["Critic Interval", config.critic_interval],
-                    ["Audit Interval", config.audit_interval],
-                    ["Use GREX", not config.no_grex],
-                    ["Format", config.format],
-                    ["Synthesis strategy", config.synthesis_strategy],
-                    ["Sampling strategy", config.sampling_strategy],
-                    ["Batch size", config.batch_size],
-                    ["Refine per batch", config.refine_per_batch],
+                    ["Model", getattr(config, "model", "N/A")],
+                    ["Max rules", getattr(config, "max_rules", "N/A")],
+                    ["Max samples in prompt", getattr(config, "max_samples", "N/A")],
+                    [
+                        "Refinement iterations",
+                        getattr(config, "max_iterations", "N/A"),
+                    ],
+                    ["Seed", getattr(config, "seed", "N/A")],
+                    ["Agentic", getattr(config, "agentic", "N/A")],
+                    ["Enable Critic", getattr(config, "enable_critic", "N/A")],
+                    ["Enable Prune", getattr(config, "enable_prune", "N/A")],
+                    ["Critic Interval", getattr(config, "critic_interval", "N/A")],
+                    ["Audit Interval", getattr(config, "audit_interval", "N/A")],
+                    ["Use GREX", not getattr(config, "no_grex", False)],
+                    ["Format", getattr(config, "format", "N/A")],
+                    [
+                        "Synthesis strategy",
+                        getattr(config, "synthesis_strategy", "N/A"),
+                    ],
+                    [
+                        "Sampling strategy",
+                        getattr(config, "sampling_strategy", "N/A"),
+                    ],
+                    ["Batch size", getattr(config, "batch_size", "N/A")],
+                    [
+                        "Refine per batch",
+                        getattr(config, "refine_per_batch", "N/A"),
+                    ],
                     [
                         "Manually annotated examples",
                         getattr(run, "manually_annotated_size", 0),
@@ -378,14 +399,22 @@ def create_md_report(
     append_overall_metrics(
         file_path, chef, test_dataset, run, results_folder, rules=rules
     )
-
+    """
     with ProcessPoolExecutor(
         max_workers=16,
         initializer=_init_worker,
-        initargs=(test_dataset, "text", 100, 0.5),
+        initargs=(test_dataset, "text", 100, 1),
     ) as pool:
         rule_metrics = list(pool.map(_eval_rule_worker, rules))
-
+    """
+    rule_metrics = evaluate_rules_individually(
+        rules,
+        test_dataset,
+        chef.learner._apply_rules,
+        mode="text",
+        max_samples=100,
+        in_context=True,
+    )
     write_summary_table(file_path, rule_metrics)
     append_influential_rules(file_path, rule_metrics, rules, top_n=10)
 
