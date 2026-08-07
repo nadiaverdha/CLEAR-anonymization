@@ -1,8 +1,8 @@
-""""
- python clear_anonymization/preprocess/preprocess_relations.py /
-    --input-path /share/nverdha/data/findok/curated-docs-admin-2026-03-31-093327.zip /
-    --conllu-path /share/nverdha/data/findok/findok_train_corrected.conllu /
-    --output-path /share/nverdha/data/findok/findok_including_relations.conllu
+""" "
+python clear_anonymization/preprocess/preprocess_relations.py /
+   --input-path /share/nverdha/data/findok/curated-docs-admin-2026-03-31-093327.zip /
+   --conllu-path /share/nverdha/data/findok/findok_train_corrected.conllu /
+   --output-path /share/nverdha/data/findok/findok_including_relations.conllu
 """
 
 import argparse
@@ -88,11 +88,14 @@ def add_relations(sample, entities, relations, doc_id):
     n_attached = 0
     unmatched = []
     for relation in relations:
-        print(relation)
-        print(f"Processing relation {relation['%ID']} in doc {doc_id}")
+        # print(f"Processing relation {relation['%ID']} in doc {doc_id}")
         rel_label = relation.get("relLabel")
+        print(rel_label)
         if rel_label is None:
-            if doc_id == "149280.1":
+            print(
+                f"⚠️ Relation {relation['%ID']} in doc {doc_id} has no relLabel, skipping"
+            )
+            if doc_id in ["149280.1"]:
                 rel_label = "address_of"
             else:
                 unmatched.append(
@@ -109,6 +112,20 @@ def add_relations(sample, entities, relations, doc_id):
         gov_token = find_anchor_token(tokens, governor["begin"])
         dep_token = find_anchor_token(tokens, dependent["begin"])
         if not gov_token or not dep_token:
+
+            def doc_span(tok):
+                misc = dict(p.split("=", 1) for p in tok["misc"].split("|") if "=" in p)
+                return int(misc.get("DocStart", -1)), int(misc.get("DocEnd", -1))
+
+            spans = [doc_span(t) for t in tokens]
+            doc_min = min(s for s, _ in spans)
+            doc_max = max(e for _, e in spans)
+            print(
+                f"{doc_id} relation {relation['%ID']}: "
+                f"gov_begin={governor['begin']} (found={gov_token is not None}) "
+                f"dep_begin={dependent['begin']} (found={dep_token is not None}) "
+                f"| doc token span=[{doc_min}, {doc_max}]"
+            )
             unmatched.append(
                 f"{doc_id}: relation {relation['%ID']} references a missing token"
             )
@@ -116,6 +133,7 @@ def add_relations(sample, entities, relations, doc_id):
         add_relation_misc(gov_token, f"{rel_label}:governor:{dependent['begin']}")
         add_relation_misc(dep_token, f"{rel_label}:dependent:{governor['begin']}")
         n_attached += 1
+
     return n_attached, unmatched
 
 
@@ -186,7 +204,6 @@ def main():
     print(
         f"✅\n{total_attached} relations attached in total, {len(total_unmatched)} unmatched relations"
     )
-    print(total_unmatched)
     Path(args.output_path).write_text(ner_data.to_conll())
     print(f"Wrote {args.output_path}")
 

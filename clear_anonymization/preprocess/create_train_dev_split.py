@@ -76,7 +76,6 @@ def print_distribution(samples, name: str, fn=label_distribution_doc) -> None:
 
 
 def split_dev_set_stratified(data, dev_ratio=0.2, seed=42):
-    print("HERE")
     samples = list(data.samples)
 
     samples.sort(key=lambda s: s.doc_id)  # matches sorted zip folder order
@@ -157,7 +156,6 @@ def main():
     print("loading finished.")
 
     if args.stratified:
-        print("am here")
         train_data, dev_data = split_dev_set_stratified(
             full_train_data, dev_ratio=args.dev_ratio, seed=args.seed
         )
@@ -169,8 +167,10 @@ def main():
     print(
         f"Train: {len(train_data.samples)} samples, Test: {len(dev_data.samples)} samples"
     )
-    train_path = Path(args.output_dir + "/" + f"{args.dataset_name}_train_final.conllu")
-    dev_path = Path(args.output_dir + "/" + f"{args.dataset_name}_dev_final.conllu")
+    output_dir = Path(args.output_dir)
+    output_dir.mkdir(parents=True, exist_ok=True)
+    train_path = output_dir / f"{args.dataset_name}_train_training.conllu"
+    dev_path = output_dir / f"{args.dataset_name}_train_dev.conllu"
     print("Writing the splits to:", train_path, " & ", dev_path)
 
     train_path.write_text(train_data.to_conll())
