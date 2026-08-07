@@ -183,7 +183,7 @@ def append_overall_metrics(
                 ],
             )
 
-        if run.metadata:
+        if "seeded_from" in run.metadata:
             f.write("**Transfer Learning**\n\n")
             _write_table(
                 f,
@@ -209,8 +209,37 @@ def append_overall_metrics(
             )
 
 
-def _write_rule_detail(f, metric, rules_by_id: dict, top_n_examples: int = 30) -> None:
-    f.write(f"## `{metric.rule_name}`\n\n")
+def _classify_rules(metrics_list, top_n=10):
+    with_matches = [m for m in metrics_list if m.matches > 10]
+    no_matches_ids = {m.rule_id for m in metrics_list if m.matches == 0}
+    best = sorted(
+        [m for m in with_matches if m.true_positives >= 5],
+        key=lambda m: (m.precision, m.true_positives),
+        reverse=True,
+    )[:top_n]
+    best_ids = {m.rule_id for m in best}
+    worst = sorted(
+        [m for m in with_matches if m.rule_id not in best_ids],
+        key=lambda m: (-m.false_positives, m.precision),
+    )[:top_n]
+    worst_ids = {m.rule_id for m in worst}
+    return best_ids, worst_ids, no_matches_ids
+
+
+def _rule_badge(rule_id, best_ids, worst_ids, no_matches_ids):
+    if rule_id in best_ids:
+        return "🏆"
+    if rule_id in worst_ids:
+        return "💣"
+    if rule_id in no_matches_ids:
+        return "🔇"
+    return ""
+
+
+def _write_rule_detail(
+    f, metric, rules_by_id: dict, top_n_examples: int = 30, badge: str = ""
+) -> None:
+    f.write(f"## `{metric.rule_name}` {badge}\n\n")
     f.write(
         f"**F1:** {metric.f1:.3f} | "
         f"**Precision:** {metric.precision:.3f} | "
@@ -328,41 +357,6 @@ def _write_sample_blocks(f, metric, top_n: int):
     _block("⚠️ False Positives", fps, render_fp)
 
 
-def append_influential_rules(
-    md_path: Path, metrics_list, rules, top_n: int = 10
-) -> None:
-    rules_by_id = {r.id: r for r in rules} if rules else {}
-    with_matches = [m for m in metrics_list if m.matches > 5]
-    no_matches = [m for m in metrics_list if m.matches == 0][:top_n]
-
-    best = sorted(
-        [m for m in with_matches if m.true_positives >= 5],
-        key=lambda m: (m.precision, m.true_positives),
-        reverse=True,
-    )[:top_n]
-    best_ids = {m.rule_id for m in best}
-    worst = sorted(
-        [m for m in with_matches if m.rule_id not in best_ids],
-        key=lambda m: (-m.false_positives, m.precision),
-    )[:top_n]
-
-    with md_path.open("a", encoding="utf-8") as f:
-        print(f"Best rules:  {[m.rule_name for m in best]}")
-        with _details_block(f, "🏆 Most Precise Rules"):
-            for m in best:
-                _write_rule_detail(f, m, rules_by_id)
-
-        print(f"Worst rules: {[m.rule_name for m in worst]}")
-        with _details_block(f, "💣 Least Precise Rules"):
-            for m in worst:
-                _write_rule_detail(f, m, rules_by_id)
-
-        print(f"Inactive rules: {[m.rule_name for m in no_matches]}")
-        with _details_block(f, "🔇 Inactive Rules"):
-            for m in no_matches:
-                _write_rule_detail(f, m, rules_by_id)
-
-
 def append_rule_metrics(
     file_path: Path,
     metrics_list,
@@ -370,12 +364,14 @@ def append_rule_metrics(
     top_n_examples: int = 15,
 ) -> None:
     rules_by_id = {r.id: r for r in rules} if rules else {}
-    sorted_metrics = sorted(metrics_list, key=lambda m: m.f1, reverse=True)
+    best_ids, worst_ids, no_matches_ids = _classify_rules(metrics_list)
+    sorted_metrics = sorted(metrics_list, key=lambda m: m.precision, reverse=True)
 
     with file_path.open("a", encoding="utf-8") as f:
-        with _details_block(f, "📋 All Rules"):
-            for metric in sorted_metrics:
-                _write_rule_detail(f, metric, rules_by_id, top_n_examples)
+        f.write("## 📋 All Rules\n\n")
+        for metric in sorted_metrics:
+            badge = _rule_badge(metric.rule_id, best_ids, worst_ids, no_matches_ids)
+            _write_rule_detail(f, metric, rules_by_id, top_n_examples, badge=badge)
 
 
 def create_md_report(
@@ -416,7 +412,6 @@ def create_md_report(
         in_context=True,
     )
     write_summary_table(file_path, rule_metrics)
-    append_influential_rules(file_path, rule_metrics, rules, top_n=10)
 
     append_rule_metrics(
         file_path,
