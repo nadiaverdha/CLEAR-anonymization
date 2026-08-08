@@ -69,6 +69,7 @@ The train dataset is further split into a train and test set which will be used 
 
 ### Relations
 To attach relation annotations onto an existing CoNLL-U file as as `Rel=` MISC entries:
+Each token's Rel= field can carry multiple relation entries, separated by ";" if that token is the governor or dependent of more than one relation.
 
 ```bash
   python clear_anonymization/preprocess/preprocess_relations.py \
@@ -76,8 +77,6 @@ To attach relation annotations onto an existing CoNLL-U file as as `Rel=` MISC e
   --conllu-path data/{datasetname}/{datasetname}_train.conllu \
   --output-path data/{datasetname}/{datasetname}_including_relations.conllu
 ```
-
-Each token's Rel= field can carry multiple relation entries, separated by ";" if that token is the governor or dependent of more than one relation.
 ---
 
 ## Running the benchmark
