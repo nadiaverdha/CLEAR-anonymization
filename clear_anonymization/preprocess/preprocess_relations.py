@@ -15,6 +15,12 @@ from stanza.utils.conll import CoNLL
 
 from clear_anonymization.ner_datasets import NERData
 
+rellabel_corrections = {
+    "149868.1": "legal_representation_of",
+    "149280.1": "address_of",
+    "149768.1": "address_of",
+}
+
 
 def list_folders(zip_path):
     with zipfile.ZipFile(zip_path, "r") as archive:
@@ -58,14 +64,22 @@ def get_doc_id_from_folder(folder_name):
     return doc_id
 
 
-def get_doc_start(token):
+def get_doc_span(token):
     misc = dict(p.split("=", 1) for p in token["misc"].split("|") if "=" in p)
-    return int(misc["DocStart"]) if "DocStart" in misc else None
+    return (
+        int(misc["DocStart"]) if "DocStart" in misc else None,
+        int(misc["DocEnd"]) if "DocEnd" in misc else None,
+    )
 
 
 def find_anchor_token(tokens, begin):
     for token in tokens:
-        if get_doc_start(token) == begin:
+        start, end = get_doc_span(token)
+        if start is not None and end is not None and start <= begin < end:
+            if begin != start:
+                print(
+                    f"  ⚠️  non-exact anchor match: begin={begin} → token span=[{start},{end})"
+                )
             return token
     return None
 
@@ -88,20 +102,16 @@ def add_relations(sample, entities, relations, doc_id):
     n_attached = 0
     unmatched = []
     for relation in relations:
-        # print(f"Processing relation {relation['%ID']} in doc {doc_id}")
-        rel_label = relation.get("relLabel")
-        print(rel_label)
+        print(f"Processing relation {relation['%ID']} in doc {doc_id}")
+
+        rel_label = relation.get("relLabel") or rellabel_corrections.get(doc_id)
         if rel_label is None:
             print(
                 f"⚠️ Relation {relation['%ID']} in doc {doc_id} has no relLabel, skipping"
             )
-            if doc_id in ["149280.1"]:
-                rel_label = "address_of"
-            else:
-                unmatched.append(
-                    f"{doc_id}: relation {relation['%ID']} missing relLabel"
-                )
-                continue
+
+            unmatched.append(f"{doc_id}: relation {relation['%ID']} missing relLabel")
+            continue
         governor = entities.get(relation["@Governor"])
         dependent = entities.get(relation["@Dependent"])
         if not governor or not dependent:
@@ -181,6 +191,7 @@ def main():
 
     total_attached = 0
     total_unmatched = []
+    doc_ids_in_zip = set()
 
     for zip_path in args.input_path:
         folders = list_folders(zip_path)
@@ -191,6 +202,7 @@ def main():
             if not sample:
                 print(f"❌ No sample found for {doc_id}")
                 continue
+            doc_ids_in_zip.add(doc_id)
             entities, relations = process_folder(
                 zip_path, folder, args.split, None, args.verbose
             )
@@ -204,6 +216,9 @@ def main():
     print(
         f"✅\n{total_attached} relations attached in total, {len(total_unmatched)} unmatched relations"
     )
+    ner_data.samples = [
+        s for s in ner_data.samples if normalize_doc_id(s.doc_id) in doc_ids_in_zip
+    ]
     Path(args.output_path).write_text(ner_data.to_conll())
     print(f"Wrote {args.output_path}")
 
