@@ -36,7 +36,7 @@ def list_folders(zip_path):
         return sorted(folders)
 
 
-def process_folder(zip_path, folder_name, split, error_file, verbose):
+def process_folder(zip_path, folder_name):
     pages = []
     annotations = None
     with zipfile.ZipFile(zip_path, "r") as archive:
@@ -172,19 +172,6 @@ def main():
         default="data/ner_dataset_with_relations.conllu",
     )
 
-    parser.add_argument(
-        "--split",
-        type=str,
-        help="Give information whether data is from train/validation/test split",
-        default="train",
-    )
-
-    parser.add_argument(
-        "--verbose",
-        action="store_true",
-        help="Whether to show detailed annotations check.",
-    )
-
     args = parser.parse_args()
     ner_data = NERData.from_conll(Path(args.conllu_path).read_text())
     samples_by_doc_id = {normalize_doc_id(s.doc_id): s for s in ner_data.samples}
@@ -203,9 +190,7 @@ def main():
                 print(f"❌ No sample found for {doc_id}")
                 continue
             doc_ids_in_zip.add(doc_id)
-            entities, relations = process_folder(
-                zip_path, folder, args.split, None, args.verbose
-            )
+            entities, relations = process_folder(zip_path, folder)
             if not relations:
                 print(f"❌ No relations found for {doc_id}")
                 continue
