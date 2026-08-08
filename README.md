@@ -68,7 +68,8 @@ The train dataset is further split into a train and test set which will be used 
 
 
 ### Relations
-To attach relation annotations onto an existing CoNLL-U file as as `Rel=` MISC entries:
+To attach relation annotations onto an existing CoNLL-U file as as `Rel=` MISC entries.
+
 Each token's Rel= field can carry multiple relation entries, separated by ";" if that token is the governor or dependent of more than one relation.
 
 ```bash
