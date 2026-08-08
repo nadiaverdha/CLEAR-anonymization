@@ -42,6 +42,17 @@ python clear_anonymization/preprocess/preprocess_data.py \
 --verbose \
 
 ```
+/
+
+```bash
+python clear_anonymization/preprocess/preprocess_with_workers.py \
+--input-path {datasetname}_TRAIN.zip \
+--output-path data/{datasetname}/{datasetname}_train.conllu \
+--split val \
+--num-workers 2 \
+--verbose
+
+```
 
 The train dataset is further split into a train and test set which will be used in our testing. The existing validation set is kept held-out for final evaluation. 
 
@@ -50,9 +61,23 @@ The train dataset is further split into a train and test set which will be used 
 --train-file data/{datasetname}/{datasetname}_train.conllu \
 --output-dir  /share/nverdha/data/{dataset_name}/ \
 --dev-ratio 0.2 \
---seed 42
+--seed 42  \
 --stratified
 ```
+---
+
+
+### Relations
+To attach relation annotations onto an existing CoNLL-U file as as `Rel=` MISC entries:
+
+```bash
+  python clear_anonymization/preprocess/preprocess_relations.py \
+  --input-path {datasetname}_curated-docs.zip \
+  --conllu-path data/{datasetname}/{datasetname}_train.conllu \
+  --output-path data/{datasetname}/{datasetname}_including_relations.conllu
+```
+
+Each token's Rel= field can carry multiple relation entries, separated by ";" if that token is the governor or dependent of more than one relation.
 ---
 
 ## Running the benchmark
