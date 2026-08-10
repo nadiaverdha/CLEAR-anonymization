@@ -7,15 +7,7 @@ from datetime import datetime
 from pathlib import Path
 from types import SimpleNamespace
 
-from rulechef import RuleChef
-from rulechef.core import (
-    Dataset,
-    Example,
-    Rule,
-    RuleFormat,
-    Task,
-    TaskType,
-)
+from rulechef.core import Rule, RuleFormat, Task, TaskType
 from rulechef.evaluation import evaluate_dataset, evaluate_rules_individually
 from rulechef.executor import RuleExecutor
 
@@ -25,35 +17,7 @@ from clear_anonymization.models.nerlearner import NERLearner, NEROutput
 from clear_anonymization.ner_datasets import (
     get_dataset_class_definitions,
     load_ner_dataset_from_conll,
-    load_ner_dataset_from_json,
 )
-from clear_anonymization.ner_datasets.ner_dataset import NERData
-from clear_anonymization.preprocess.sampling import sample_few_shot
-
-_worker_state = {}
-
-
-def _init_worker(dataset, mode, max_samples, iou_threshold):
-    from rulechef.executor import RuleExecutor
-
-    _worker_state["dataset"] = dataset
-    _worker_state["mode"] = mode
-    _worker_state["max_samples"] = max_samples
-    _worker_state["iou_threshold"] = iou_threshold
-    _worker_state["executor"] = RuleExecutor()
-
-
-def _eval_rule_worker(rule):
-    from rulechef.evaluation import evaluate_rules_individually
-
-    return evaluate_rules_individually(
-        rules=[rule],
-        dataset=_worker_state["dataset"],
-        apply_rules_fn=_worker_state["executor"].apply_rules,
-        mode=_worker_state["mode"],
-        max_samples=_worker_state["max_samples"],
-        iou_threshold=_worker_state["iou_threshold"],
-    )[0]
 
 
 @contextmanager
@@ -103,7 +67,7 @@ def write_summary_table(file_path: Path, metrics_list):
 
 
 def append_overall_metrics(
-    md_path, chef, test_dataset, run, results_folder, rules=None
+    md_path, apply_rules_fn, test_dataset, run, results_folder, rules=None
 ):
     config = run.args
     if rules is None:
@@ -112,7 +76,7 @@ def append_overall_metrics(
     test_eval = evaluate_dataset(
         rules,
         test_dataset,
-        chef.learner._apply_rules,
+        apply_rules_fn,
         mode="text",
     )
     with md_path.open("a", encoding="utf-8") as f:
@@ -368,15 +332,15 @@ def append_rule_metrics(
     sorted_metrics = sorted(metrics_list, key=lambda m: m.precision, reverse=True)
 
     with file_path.open("a", encoding="utf-8") as f:
-        f.write("## 📋 All Rules\n\n")
-        for metric in sorted_metrics:
-            badge = _rule_badge(metric.rule_id, best_ids, worst_ids, no_matches_ids)
-            _write_rule_detail(f, metric, rules_by_id, top_n_examples, badge=badge)
+        with _details_block(f, "📋 All Rules"):
+            for metric in sorted_metrics:
+                badge = _rule_badge(metric.rule_id, best_ids, worst_ids, no_matches_ids)
+                _write_rule_detail(f, metric, rules_by_id, top_n_examples, badge=badge)
 
 
 def create_md_report(
     file_path: Path,
-    chef,
+    apply_rules_fn,
     run,
     test_dataset,
     results_folder,
@@ -393,20 +357,12 @@ def create_md_report(
     rules = [r for r in run.rules if r.id not in exclude]
 
     append_overall_metrics(
-        file_path, chef, test_dataset, run, results_folder, rules=rules
+        file_path, apply_rules_fn, test_dataset, run, results_folder, rules=rules
     )
-    """
-    with ProcessPoolExecutor(
-        max_workers=16,
-        initializer=_init_worker,
-        initargs=(test_dataset, "text", 100, 1),
-    ) as pool:
-        rule_metrics = list(pool.map(_eval_rule_worker, rules))
-    """
     rule_metrics = evaluate_rules_individually(
         rules,
         test_dataset,
-        chef.learner._apply_rules,
+        apply_rules_fn,
         mode="text",
         max_samples=100,
         in_context=True,
@@ -479,19 +435,15 @@ def main():
     config = saved.get("config", {})
 
     selected_classes = config.get("selected_classes", ["organisation"])
-    learner = NERLearner(
-        model=config.get("model"),
-        dataset_name=config.get("dataset_name"),
-        base_url=config.get("base_url", "http://localhost:8000/v1"),
-        use_grex=not config.get("no_grex"),
-        max_rules=config.get("max_rules"),
-        max_samples=config.get("max_samples"),
-        max_counter_examples=config.get("max_counter_examples"),
-        logger=None,
-        sampling_strategy=config.get("sampling_strategy"),
-        synthesis_strategy=config.get("synthesis_strategy"),
-        selected_classes=selected_classes,
+    task = Task(
+        name="German Legal Named Entity Recognition",
+        description=f"Recognize named entities in German legal text. Entities to look for: {', '.join(sorted(selected_classes))}. German capitalizes all nouns, so rules must use strong context anchors ",
+        input_schema={"text": "str"},
+        output_schema=NEROutput,
+        type=TaskType.NER,
+        text_field="text",
     )
+    executor = RuleExecutor()
 
     results_folder = os.path.dirname(args.rules_json)
     test_data_raw = load_ner_dataset_from_conll(
@@ -508,7 +460,7 @@ def main():
         for sent in s.sentences
     ]
 
-    test_dataset = make_dataset(f"{args.dataset_name}_eval", test_data, learner.task)
+    test_dataset = make_dataset(f"{args.dataset_name}_eval", test_data, task)
     print(f"Loaded {len(test_data_raw.samples)} test documents")
     print(f"Loaded {len(test_data)} test annotations")
     gold_count = sum(len(item["entities"]) for item in test_data)
@@ -551,7 +503,7 @@ def main():
 
     create_md_report(
         md_path,
-        chef=learner,
+        apply_rules_fn=executor.apply_rules,
         run=benchmark_run,
         test_dataset=test_dataset,
         results_folder=results_folder,
