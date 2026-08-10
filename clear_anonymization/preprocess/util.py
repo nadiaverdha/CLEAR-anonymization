@@ -144,7 +144,21 @@ TITLES = {
     "Kff.",
     "Steuerber.",
     "Dr. med.vet.",
-    "Mag.pharm."
+    "Mag.pharm.",
+    "Dkfm.",
+    "Vert.i.Strafs.",
+    "Prof. Univ.Doz.",
+    "Dr. St.",
+    "Maga.",
+    "Drin.",
+    "Gaisbauerstr.",
+    "Komm.",
+    "KomzlR.",
+    "Dirin.",
+    "GmbH.",
+    "Reihe.",
+    "Comp.",
+    "Vert.i.Strafs.",
 }
 
 TOB = {"e.U.", "e.U", "e.G.", "e.G"}
