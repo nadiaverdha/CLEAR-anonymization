@@ -112,6 +112,8 @@ def add_relations(sample, entities, relations, doc_id):
 
             unmatched.append(f"{doc_id}: relation {relation['%ID']} missing relLabel")
             continue
+        if rel_label == "ax":
+            rel_label = "tax_number_of"
         governor = entities.get(relation["@Governor"])
         dependent = entities.get(relation["@Dependent"])
         if not governor or not dependent:
@@ -140,8 +142,8 @@ def add_relations(sample, entities, relations, doc_id):
                 f"{doc_id}: relation {relation['%ID']} references a missing token"
             )
             continue
-        add_relation_misc(gov_token, f"{rel_label}:governor:{dependent['begin']}")
-        add_relation_misc(dep_token, f"{rel_label}:dependent:{governor['begin']}")
+        add_relation_misc(gov_token, f"{rel_label}:governor:{dep_start}")
+        add_relation_misc(dep_token, f"{rel_label}:dependent:{gov_start}")
         n_attached += 1
 
     return n_attached, unmatched
@@ -171,7 +173,6 @@ def main():
         help="Path where to save the CoNLL-U file with relations attached",
         default="data/ner_dataset_with_relations.conllu",
     )
-
     args = parser.parse_args()
     ner_data = NERData.from_conll(Path(args.conllu_path).read_text())
     samples_by_doc_id = {normalize_doc_id(s.doc_id): s for s in ner_data.samples}
