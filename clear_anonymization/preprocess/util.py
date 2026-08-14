@@ -159,6 +159,9 @@ TITLES = {
     "Reihe.",
     "Comp.",
     "Vert.i.Strafs.",
+    "Dr. Med. Univ.",
+    "Univ.",
+    "Med.",
 }
 
 TOB = {"e.U.", "e.U", "e.G.", "e.G"}
