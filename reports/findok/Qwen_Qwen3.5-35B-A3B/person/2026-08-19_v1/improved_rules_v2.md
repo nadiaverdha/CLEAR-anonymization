@@ -1,6 +1,6 @@
 # Rule Evaluation Report — Qwen/Qwen3.5-35B-A3B
 
-Generated on: 2026-08-20T12:10:53.149246
+Generated on: 2026-08-20T12:22:38.354472
 
 ---
 
@@ -52,14 +52,14 @@ Results can be reproduced by running this command:
 | Metric | Value |
 |---|---|
 | Accuracy (exact match) | 90.2% |
-| True Positives | 3192 |
-| False Positives | 3507 |
-| False Negatives | 983 |
+| True Positives | 3201 |
+| False Positives | 3498 |
+| False Negatives | 974 |
 | Total Gold Entities | 4175 |
-| Micro Precision | 47.6% |
-| Micro Recall | 76.5% |
-| Micro F1 | 58.7% |
-| Macro F1 | 58.7% |
+| Micro Precision | 47.8% |
+| Micro Recall | 76.7% |
+| Micro F1 | 58.9% |
+| Macro F1 | 58.9% |
 
 </details>
 
@@ -75,7 +75,7 @@ Results can be reproduced by running this command:
 | `Betroffenen Name` | 0.0% | 100.0% | 0.0% | 1 | 1 | 0 |
 | `Name After Verb Subject` | 0.1% | 100.0% | 0.1% | 3 | 3 | 0 |
 | `Mag Dr Title` | 4.6% | 97.1% | 2.4% | 102 | 99 | 3 |
-| `Hyphenated Surname` | 73.9% | 94.3% | 60.8% | 2692 | 2539 | 153 |
+| `Hyphenated Surname` | 74.2% | 94.7% | 61.0% | 2690 | 2548 | 142 |
 | `Complex Title` | 14.9% | 94.1% | 8.1% | 358 | 337 | 21 |
 | `MedR Title Pattern` | 0.3% | 85.7% | 0.1% | 7 | 6 | 1 |
 | `Zeugen Name` | 0.5% | 76.9% | 0.2% | 13 | 10 | 3 |
@@ -85,7 +85,7 @@ Results can be reproduced by running this command:
 | `Standalone Name Legal Context` | 5.6% | 15.1% | 3.5% | 963 | 145 | 818 |
 | `Dr Name Full` | 0.1% | 8.3% | 0.1% | 36 | 3 | 33 |
 | `Role Title Name Full` | 0.0% | 7.1% | 0.0% | 14 | 1 | 13 |
-| `Role Name Context` | 0.9% | 1.2% | 0.7% | 2434 | 30 | 2404 |
+| `Role Name Context` | 0.9% | 1.2% | 0.7% | 2435 | 30 | 2405 |
 | `Complaint Case Context` | 0.0% | 0.0% | 0.0% | 0 | 0 | 0 |
 | `Deceased Person Context` | 0.0% | 0.0% | 0.0% | 2 | 0 | 2 |
 | `Dr Name List` | 0.0% | 0.0% | 0.0% | 24 | 0 | 24 |
@@ -95,7 +95,7 @@ Results can be reproduced by running this command:
 | `Dr Name Standalone` | 0.0% | 0.0% | 0.0% | 0 | 0 | 0 |
 | `Role Name Full` | 0.0% | 0.0% | 0.0% | 9 | 0 | 9 |
 | `Name with Degree` | 0.0% | 0.0% | 0.0% | 0 | 0 | 0 |
-| `Mag Name Full` | 0.0% | 0.0% | 0.0% | 6 | 0 | 6 |
+| `Mag Name Full` | 0.0% | 0.0% | 0.0% | 7 | 0 | 7 |
 | `Legal Role Context` | 0.0% | 0.0% | 0.0% | 2 | 0 | 2 |
 | `Genitive Person Name` | 0.0% | 0.0% | 0.0% | 9 | 0 | 9 |
 | `Mimi Jueterbock Pattern` | 0.0% | 0.0% | 0.0% | 0 | 0 | 0 |
@@ -2872,7 +2872,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrech
 
 ## `Hyphenated Surname` 🏆
 
-**F1:** 0.739 | **Precision:** 0.943 | **Recall:** 0.608  
+**F1:** 0.742 | **Precision:** 0.947 | **Recall:** 0.610  
 
 **Format:** `regex`  
 **Rule ID:** `2b8414a9`  
@@ -2881,7 +2881,7 @@ Specifically targets hyphenated surnames (e.g., Bachner-Foregger, Hofer-Zeni-Ren
 
 **Content:**
 ```
-(?:Dr\.|Mag\.|Prof\.|MMag\.|Ing\.|DI\.|PhD\.|Dipl\.-Ing\.|Bakk\.\s+iur\.|MBA|BSc|LL\.M\.|Hon\.-Prof\.|Univ\.-Prof\.|Priv\.-Doz\.|PD|OMedR|HR|VetR|Techn|StR|OStR|KR|AR|RgR|ÖkR)\s+([A-Z][a-zäöüß]+(?:\s*[A-Z][a-zäöüß]+)*(?:\s*-[A-Z][a-zäöüß]+)*)\b
+(?:Dr\.|Mag\.|Prof\.|MMag\.|Ing\.|DI\.|PhD\.|Dipl\.-Ing\.|Bakk\.\s+iur\.|MBA|BSc|LL\.M\.|Hon\.-Prof\.|Univ\.-Prof\.|Priv\.-Doz\.|PD|OMedR|HR|VetR|Techn|StR|OStR|KR|AR|RgR|ÖkR)\s+([A-Z][a-zäöüß]+(?:[\s-]+[A-Z][a-zäöüß]+)*)\b
 ```
 
 <details>
@@ -2889,13 +2889,13 @@ Specifically targets hyphenated surnames (e.g., Bachner-Foregger, Hofer-Zeni-Ren
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.943 | 0.608 | 0.739 | 2692 | 2539 | 153 |
+| 0.947 | 0.610 | 0.742 | 2690 | 2548 | 142 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `person` | 2539 | 153 | 1636 |
+| `person` | 2548 | 142 | 1627 |
 
 </details>
 
@@ -3281,13 +3281,13 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 | `Dr. Schramm` | `Dr. Schramm` |
 | `Dr. Fichtenau` | `Dr. Fichtenau` |
 | `Mag. Korn` | `Mag. Korn` |
+| `Dr. Karl-Heinz Plankel` | `Dr. Karl-Heinz Plankel` |
 
 **Missed by this rule (FN):**
 
 - `Oberste Gerichtshof` (organisation)
 - `Univ.-Prof. Dr. Neumayr` (person)
 - `Eva Abdelrahman` (person)
-- `Dr. Karl-Heinz Plankel` (person)
 - `Hochenadel Immobilien GmbH` (organisation)
 - `Ritterhof 11, 2661 Graben, Österreich` (address)
 - `Lederer Rechtsanwalt GmbH` (organisation)
@@ -3872,6 +3872,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hradil als Vor
 | `Dr. Hoch` | `Dr. Hoch` |
 | `Dr. Schramm` | `Dr. Schramm` |
 | `Dr. Fichtenau` | `Dr. Fichtenau` |
+| `Mag. Hans-Christian Obernberger` | `Mag. Hans-Christian Obernberger` |
 
 **Missed by this rule (FN):**
 
@@ -3885,7 +3886,6 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hradil als Vor
 - `Emanuela Janischefsky` (person)
 - `Bezirkshauptmannschaft Feldkirch` (organisation)
 - `Ashley Biesert` (person)
-- `Mag. Hans-Christian Obernberger` (person)
 - `Landesgerichts Feldkirch` (organisation)
 - `Bezirksgerichts Feldkirch` (organisation)
 
@@ -4352,6 +4352,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrech
 | `Dr. Fellinger` | `Dr. Fellinger` |
 | `Dr. Schramm` | `Dr. Schramm` |
 | `Ing. Thomas Bauer` | `Ing. Thomas Bauer` |
+| `Dr. Marie-Luise Safranek` | `Dr. Marie-Luise Safranek` |
 
 **Missed by this rule (FN):**
 
@@ -4361,7 +4362,6 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrech
 - `Willibald Kollowrat, BEd` (person)
 - `Dr. Reinhard Tögl Rechtsanwaltsgesellschaft mbH` (organisation)
 - `Versicherungsanstalt für Eisenbahnen und Bergbau` (organisation)
-- `Dr. Marie-Luise Safranek` (person)
 - `Oberlandesgerichts Graz` (organisation)
 - `Landesgerichts für Zivilrechtssachen Graz` (organisation)
 
@@ -4865,34 +4865,7 @@ DasRekursgerichtgab dem Rekurs der beiden Minderjährigen Folge und änderte die
 - `Ariadne Jefferys`(person)
 - `OStR Univ.-Prof.in Sascha Elfferding`(person)
 
-**Example 1** (doc_id: `deanon_260716_TRAIN/10Ob13_15g`) (sent_id: `deanon_260716_TRAIN/10Ob13_15g_3`)
-
-
-Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Fellinger als Vorsitzenden, die Hofräte Univ.-Prof. Dr. Neumayr und Dr. Schramm sowie die Hofrätinnen Dr. Fichtenau und Mag. Korn als weitere Richter in der Rechtssache der klagenden Partei Eva Abdelrahman, vertreten durch Dr. Karl-Heinz Plankel und andere Rechtsanwälte in Dornbirn, gegen die beklagte Partei Hochenadel Immobilien GmbH, Ritterhof 11, 2661 Graben, Österreich, vertreten durch Lederer Rechtsanwalt GmbH in Wien, wegen 19.151,17 EUR sA, infolge Revision der beklagten Partei gegen das Urteil des Oberlandesgerichts Wien als Berufungsgericht vom 26. November 2014, GZ 4 R 106/14h-21, womit das Urteil des Handelsgerichts Wien vom 24. März 2014, GZ 23 Cg 183/10b-17, bestätigt wurde, in nichtöffentlicher Sitzung zu Recht erkannt:  Spruch
-
-**False Positives:**
-
-- `Dr. Karl-Heinz` — partial — pred is substring of gold: `Dr. Karl-Heinz Plankel`
-
-> overlaps gold: 1  |  likely missing annotation: 0
-
-**Gold Entities:**
-
-- `Oberste Gerichtshof`(organisation)
-- `Dr. Fellinger`(person)
-- `Univ.-Prof. Dr. Neumayr`(person)
-- `Dr. Schramm`(person)
-- `Dr. Fichtenau`(person)
-- `Mag. Korn`(person)
-- `Eva Abdelrahman`(person)
-- `Dr. Karl-Heinz Plankel`(person)
-- `Hochenadel Immobilien GmbH`(organisation)
-- `Ritterhof 11, 2661 Graben, Österreich`(address)
-- `Lederer Rechtsanwalt GmbH`(organisation)
-- `Oberlandesgerichts Wien`(organisation)
-- `Handelsgerichts Wien`(organisation)
-
-**Example 2** (doc_id: `deanon_260716_TRAIN/10Ob24_15z`) (sent_id: `deanon_260716_TRAIN/10Ob24_15z_3`)
+**Example 1** (doc_id: `deanon_260716_TRAIN/10Ob24_15z`) (sent_id: `deanon_260716_TRAIN/10Ob24_15z_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Fellinger als Vorsitzenden, die Hofräte Univ.-Prof. Dr.Neumayr und Dr. Schramm sowie die Hofrätinnen Dr. Fichtenau und Mag. Korn als weitere Richter in der Rechtssache der klagenden Partei AXA Software Institut Gesellschaft mbH, Fuchsgrabengasse 27K, 8330 Untergiem, Österreich, vertreten durch Mag. Oliver Simoncic, Rechtsanwalt in St. Pölten, gegen die beklagten Parteien 1.
@@ -4915,7 +4888,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Fuchsgrabengasse 27K, 8330 Untergiem, Österreich`(address)
 - `Mag. Oliver Simoncic`(person)
 
-**Example 3** (doc_id: `deanon_260716_TRAIN/10Ob2_10g`) (sent_id: `deanon_260716_TRAIN/10Ob2_10g_9`)
+**Example 2** (doc_id: `deanon_260716_TRAIN/10Ob2_10g`) (sent_id: `deanon_260716_TRAIN/10Ob2_10g_9`)
 
 
 Senat in der Besetzung Senatspräsidentin Dr. Sandra Hilt, Mag. Manuel Kumas und MMMag. Gottfried Fegbeitel mit Beschluss vom 3. 8. 2009, AZ 11 R 105/09f, keine Folge und verhängte über den Ablehnungswerber wegen beleidigender Äußerungen im Rechtsmittel eine Ordnungsstrafe von 1.600 EUR.
@@ -4932,39 +4905,7 @@ Senat in der Besetzung Senatspräsidentin Dr. Sandra Hilt, Mag. Manuel Kumas und
 - `Mag. Manuel Kumas`(person)
 - `MMMag. Gottfried Fegbeitel`(person)
 
-**Example 4** (doc_id: `deanon_260716_TRAIN/10Ob2_14p`) (sent_id: `deanon_260716_TRAIN/10Ob2_14p_3`)
-
-
-Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hradil als Vorsitzenden, die Hofräte Dr. Fellinger, Dr. Hoch, Dr. Schramm und die Hofrätin Dr. Fichtenau als weitere Richter in der Pflegschaftssache der mj Jaden Meyerjohann, geboren am 3. Juli 2020, Leroy Jungschmidt, geboren am 28. Mai 1965 und Clemens Theocharakis, geboren am 25. März 1999, in Pflege und Erziehung der Mutter Emanuela Janischefsky, vertreten durch das Land Vorarlberg als Kinder- und Jugendhilfeträger (Bezirkshauptmannschaft Feldkirch, Schlossgraben 1, 6800 Feldkirch), wegen Gewährung von Unterhaltsvorschuss, über den Revisionsrekurs des Vaters Ashley Biesert, vertreten durch Mag. Hans-Christian Obernberger, Rechtsanwalt in Feldkirch, gegen den Beschluss des Landesgerichts Feldkirch als Rekursgericht vom 12. Juli 2011, GZ 3 R 198/11g, 3 R 199/11d, 3 R 200/11a-18, womit die Beschlüsse des Bezirksgerichts Feldkirch vom 18. Mai 2011, GZ 12 Pu 141/11f-4 bis 6, bestätigt wurden, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Der Revisionsrekurs wird zurückgewiesen.
-
-**False Positives:**
-
-- `Mag. Hans-Christian` — partial — pred is substring of gold: `Mag. Hans-Christian Obernberger`
-
-> overlaps gold: 1  |  likely missing annotation: 0
-
-**Gold Entities:**
-
-- `Oberste Gerichtshof`(organisation)
-- `Dr. Hradil`(person)
-- `Dr. Fellinger`(person)
-- `Dr. Hoch`(person)
-- `Dr. Schramm`(person)
-- `Dr. Fichtenau`(person)
-- `Jaden Meyerjohann`(person)
-- `3. Juli 2020`(date)
-- `Leroy Jungschmidt`(person)
-- `28. Mai 1965`(date)
-- `Clemens Theocharakis`(person)
-- `25. März 1999`(date)
-- `Emanuela Janischefsky`(person)
-- `Bezirkshauptmannschaft Feldkirch`(organisation)
-- `Ashley Biesert`(person)
-- `Mag. Hans-Christian Obernberger`(person)
-- `Landesgerichts Feldkirch`(organisation)
-- `Bezirksgerichts Feldkirch`(organisation)
-
-**Example 5** (doc_id: `deanon_260716_TRAIN/10Ob32_22m`) (sent_id: `deanon_260716_TRAIN/10Ob32_22m_3`)
+**Example 3** (doc_id: `deanon_260716_TRAIN/10Ob32_22m`) (sent_id: `deanon_260716_TRAIN/10Ob32_22m_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch die Präsidentin Hon.-Prof. Dr. Lovrek als Vorsitzende, den Hofrat Mag. Ziegelbauer, die Hofrätin Dr. Faber sowie die Hofräte Mag. Schober und Dr. Annerl als weitere Richter in der Rechtssache der klagenden Partei Leander Andermann, vertreten durch Dr. Martin Leitner, Rechtsanwalt in Wien, gegen die beklagte Partei Ing. Ferdinand Abramova, vertreten durch Mag. Wilhelm Deutschmann MBA und Priv.-Doz. Mag. Dr. Henriette Boscheinen-Duursma LL.M., MAS, LL.M., Rechtsanwälte in Linz, wegen 500.000 EUR sA, über die Revision der beklagten Partei gegen das Urteil des Oberlandesgerichts Linz als Berufungsgericht vom 11. Mai 2022, GZ 2 R 64/22b-26, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die Revision wird zurückgewiesen.
@@ -4992,7 +4933,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch die Präsidentin Hon
 - `Priv.-Doz. Mag. Dr. Henriette Boscheinen-Duursma LL.M., MAS, LL.M.`(person)
 - `Oberlandesgerichts Linz`(organisation)
 
-**Example 6** (doc_id: `deanon_260716_TRAIN/10Ob3_12g`) (sent_id: `deanon_260716_TRAIN/10Ob3_12g_3`)
+**Example 4** (doc_id: `deanon_260716_TRAIN/10Ob3_12g`) (sent_id: `deanon_260716_TRAIN/10Ob3_12g_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten Dr. Hradil als Vorsitzenden und die Hofräte Dr. Fellinger, Dr. Hoch, Dr. Schramm und die Hofrätin Dr. Fichtenau als weitere Richter in der Rechtssache der klagenden Partei Maja Pirkmayr, vertreten durch Dr. Georg Gorton und DDr. Birgit Gorton, Rechtsanwälte in Klagenfurt, gegen die beklagte Partei Ing. Emanuel Puff, vertreten durch Dr. Gottfried Kassin, Rechtsanwalt in St. Veit an der Glan, wegen Feststellung, über die Revision der klagenden Partei gegen das Urteil des Landesgerichts Klagenfurt als Berufungsgericht vom 26. Mai 2011, GZ 2 R 83/11z-49, mit dem das Urteil des Bezirksgerichts St. Veit an der Glan vom 29. Oktober 2010, GZ 3 C 333/09h-34, abgeändert wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die Revision wird zurückgewiesen.
@@ -5018,7 +4959,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Dr. Gottfried Kassin`(person)
 - `Landesgerichts Klagenfurt`(organisation)
 
-**Example 7** (doc_id: `deanon_260716_TRAIN/10Ob41_14y`) (sent_id: `deanon_260716_TRAIN/10Ob41_14y_3`)
+**Example 5** (doc_id: `deanon_260716_TRAIN/10Ob41_14y`) (sent_id: `deanon_260716_TRAIN/10Ob41_14y_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hradil als Vorsitzenden, die Hofräte Dr. Fellinger, Dr. Hoch, Dr. Schramm und die Hofrätin Dr. Fichtenau als weitere Richter in den verbundenen Familienrechtssachen des Antragstellers DI Dr. Bodo Kaczynski, geboren am 25. Juli 1975, vertreten durch Mag. Werner Thurner, Rechtsanwalt in Graz, gegen die Antragsgegnerinnen 1. Wolfgang Lombardini, geboren am 4. Dezember 2022, 2. Livia Löblein, geboren am 11. Januar 1966, vertreten durch Mörth Ecker Filzmaier, Rechtsanwalts-Partnerschaft in Graz, wegen Unterhalt, über den Revisionsrekurs des Antragstellers gegen den Beschluss des Landesgerichts für Zivilrechtssachen Graz als Rekursgericht vom 24. September 2013, GZ 2 R 11/13x-76, womit der Beschluss des Bezirksgerichts Graz-Ost vom 26. November 2012, GZ 231 Fam 14/11a, 231 Fam 17/11t, 231 Fam 18/11i-60, teilweise bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Der Akt wird dem Erstgericht zurückgestellt.  Text Begründung: DasErstgerichtsetzte den monatlichen Unterhalt für die Erstantragsgegnerin ab 1. 2. 2011 von 390 EUR um 30 EUR auf 360 EUR herab (Punkt 1);
@@ -5048,7 +4989,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Dr. Hradil als Vor
 - `Landesgerichts für Zivilrechtssachen Graz`(organisation)
 - `Bezirksgerichts Graz-Ost`(organisation)
 
-**Example 8** (doc_id: `deanon_260716_TRAIN/10ObS150_17g`) (sent_id: `deanon_260716_TRAIN/10ObS150_17g_3`)
+**Example 6** (doc_id: `deanon_260716_TRAIN/10ObS150_17g`) (sent_id: `deanon_260716_TRAIN/10ObS150_17g_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrechtssachen durch den Senatspräsidenten Univ.-Prof. Dr. Neumayr als Vorsitzenden, den Senatspräsidenten Dr. Schramm und die Hofrätin Dr. Fichtenau sowie die fachkundigen Laienrichter Ing. Christian Stangl-Brachnik, MA BA und Mag. Claudia Gründel (beide aus dem Kreis der Arbeitgeber) als weitere Richter in der Sozialrechtssache der klagenden Partei Mathias Jendl, vertreten durch Dr. Thomas Stampfer und Dr. Christoph Orgler, Rechtsanwälte in Graz, gegen die beklagte Partei Sozialversicherungsanstalt der Bauern, 1031 Wien, Ghegastraße 1, vertreten durch Dr. Michael Stögerer, Rechtsanwalt in Wien, wegen Ausgleichszulage, infolge Revision der beklagten Partei gegen das Urteil des Oberlandesgerichts Graz als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 20. September 2017, GZ 7 Rs 37/17s-11, womit infolge Berufung der klagenden Partei das Urteil des Landesgerichts für Zivilrechtssachen Graz als Arbeits- und Sozialgericht vom 27. April 2017, GZ 43 Cgs 113/17p-7, teils bestätigt und teils abgeändert wurde, in nichtöffentlicher Sitzung zu Recht erkannt:  Spruch
@@ -5074,7 +5015,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrech
 - `Oberlandesgerichts Graz`(organisation)
 - `Landesgerichts für Zivilrechtssachen Graz`(organisation)
 
-**Example 9** (doc_id: `deanon_260716_TRAIN/10ObS99_15d`) (sent_id: `deanon_260716_TRAIN/10ObS99_15d_3`)
+**Example 7** (doc_id: `deanon_260716_TRAIN/10ObS99_15d`) (sent_id: `deanon_260716_TRAIN/10ObS99_15d_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrechtssachen durch den Senatspräsidenten Dr. Fellinger als Vorsitzenden, die Hofräte Univ.-Prof. Dr. Neumayr und Dr. Schramm sowie die fachkundigen Laienrichter Mag. Dr. Wolfgang Höfle (aus dem Kreis der Arbeitgeber) und Ing. Thomas Bauer (aus dem Kreis der Arbeitnehmer) als weitere Richter in der Sozialrechtssache der klagenden Partei Willibald Kollowrat, BEd, vertreten durch Dr. Reinhard Tögl Rechtsanwaltsgesellschaft mbH in Graz, gegen die beklagte Partei Versicherungsanstalt für Eisenbahnen und Bergbau, Linke Wienzeile 48-52, 1060 Wien, vertreten durch Dr. Marie-Luise Safranek, Rechtsanwältin in Graz, wegen Wochengeld, infolge Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Graz als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 25. Juni 2015, GZ 7 Rs 28/15i-9, mit dem das Urteil des Landesgerichts für Zivilrechtssachen Graz als Arbeits- und Sozialgericht vom 25. Februar 2015, GZ 36 Cgs 216/14d-6, bestätigt wurde, in nichtöffentlicher Sitzung zu Recht erkannt:  Spruch
@@ -5082,9 +5023,8 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrech
 **False Positives:**
 
 - `Dr. Reinhard Tögl Rechtsanwaltsgesellschaft` — partial — pred is substring of gold: `Dr. Reinhard Tögl Rechtsanwaltsgesellschaft mbH`
-- `Dr. Marie-Luise` — partial — pred is substring of gold: `Dr. Marie-Luise Safranek`
 
-> overlaps gold: 2  |  likely missing annotation: 0
+> overlaps gold: 1  |  likely missing annotation: 0
 
 **Gold Entities:**
 
@@ -5101,7 +5041,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrech
 - `Oberlandesgerichts Graz`(organisation)
 - `Landesgerichts für Zivilrechtssachen Graz`(organisation)
 
-**Example 10** (doc_id: `deanon_260716_TRAIN/12Ns4_15g`) (sent_id: `deanon_260716_TRAIN/12Ns4_15g_17`)
+**Example 8** (doc_id: `deanon_260716_TRAIN/12Ns4_15g`) (sent_id: `deanon_260716_TRAIN/12Ns4_15g_17`)
 
 
 3. An die Stelle der Ausgeschlossenen treten aufgrund der laufenden Vertretungsregelung Hofrat des Obersten Gerichtshofs Dr. Nordmeyer und Hofrätin des Obersten Gerichtshofs Dr. Michel-Kwapinski. (§ 45 Abs 2 StPO).
@@ -11523,13 +11463,13 @@ Matches names following specific legal roles (Zeuge, Kläger, etc.) or prepositi
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.012 | 0.007 | 0.009 | 2434 | 30 | 2404 |
+| 0.012 | 0.007 | 0.009 | 2435 | 30 | 2405 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `person` | 30 | 2404 | 4145 |
+| `person` | 30 | 2405 | 4145 |
 
 </details>
 
@@ -14286,13 +14226,13 @@ Mag\.\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\s+[A-Z][a-z\u00e4\u00f6\u00fc\u0
 
 | Precision | Recall | F1 | Total Predicted | TP | FP |
 |---|---|---|---|---|---|
-| 0.000 | 0.000 | 0.000 | 6 | 0 | 6 |
+| 0.000 | 0.000 | 0.000 | 7 | 0 | 7 |
 
 **Per-Class Breakdown**
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `person` | 0 | 6 | 4025 |
+| `person` | 0 | 7 | 4025 |
 
 </details>
 
@@ -14323,7 +14263,38 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsident
 - `Ing. Mag. Pamela Gotterbauer`(person)
 - `Mag. Helwig Schuster`(person)
 
-**Example 1** (doc_id: `deanon_260716_TRAIN/8Ob123_18y`) (sent_id: `deanon_260716_TRAIN/8Ob123_18y_3`)
+**Example 1** (doc_id: `deanon_260716_TRAIN/6Ob169_12i`) (sent_id: `deanon_260716_TRAIN/6Ob169_12i_3`)
+
+
+Kopf Der Oberste Gerichtshof hat als Revisionsgericht durch den Senatspräsidenten des Obersten Gerichtshofs Hon.-Prof. Dr. Pimmer als Vorsitzenden und durch die Hofräte des Obersten Gerichtshofs Dr. Schramm, Dr. Gitschthaler, Univ.-Prof. Dr. Kodek und Dr. Nowotny als weitere Richter in der Rechtssache der klagenden Partei Seesteincon-Transport GmbH, Wildbacher Straße 174, 3623 Bernhards, Österreich, vertreten durch List Rechtsanwälte GmbH in Wien, gegen die beklagte Partei Heimnor GmbH, Am Johannisgraben 44, 8200 Albersdorf, Österreich, vertreten durch Dr. Christoph Brenner - Mag. Severin Perschl Rechtsanwälte OG in Krems, wegen 7.641,30 EUR sA, über die Revision der klagenden Partei gegen das Urteil des Landesgerichts Korneuburg als Berufungsgericht vom 16. Februar 2012, GZ 21 R 262/11v-50, womit das Urteil des Bezirksgerichts Gänserndorf vom 2. August 2011, GZ 12 C 1036/10h-42, bestätigt wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die Revision wird zurückgewiesen.
+
+**False Positives:**
+
+- `Mag. Severin Perschl Rechtsanwälte` — partial — pred is substring of gold: `Mag. Severin Perschl Rechtsanwälte OG`
+
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Oberste Gerichtshof`(organisation)
+- `Obersten Gerichtshofs`(organisation)
+- `Hon.-Prof. Dr. Pimmer`(person)
+- `Obersten Gerichtshofs`(organisation)
+- `Dr. Schramm`(person)
+- `Dr. Gitschthaler`(person)
+- `Univ.-Prof. Dr. Kodek`(person)
+- `Dr. Nowotny`(person)
+- `Seesteincon-Transport GmbH`(organisation)
+- `Wildbacher Straße 174, 3623 Bernhards, Österreich`(address)
+- `List Rechtsanwälte GmbH`(organisation)
+- `Heimnor GmbH`(organisation)
+- `Am Johannisgraben 44, 8200 Albersdorf, Österreich`(address)
+- `Dr. Christoph Brenner`(person)
+- `Mag. Severin Perschl Rechtsanwälte OG`(organisation)
+- `Landesgerichts Korneuburg`(organisation)
+- `Bezirksgerichts Gänserndorf`(organisation)
+
+**Example 2** (doc_id: `deanon_260716_TRAIN/8Ob123_18y`) (sent_id: `deanon_260716_TRAIN/8Ob123_18y_3`)
 
 
 Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Hon.-Prof. Dr. Kuras als Vorsitzenden, die Hofrätinnen Dr. Tarmann-Prentner und Mag. Korn, den Hofrat Dr. Stefula und die Hofrätin Mag. Wessely-Kristöfel als weitere Richter in der Pflegschaftssache der 1. mj Techn R VetR Erhard Januscheidt, geboren am 8. Februar 2002, 2. mj Kurt Altiparmak, geboren am 12. September 2004, beide wohnhaft beim Vater Eberhard Jendges, BA, dieser vertreten durch Ing. Mag. Andreas Gartner, Rechtsanwalt in St. Valentin, und 3. mj Agnes Jirasek, geboren am 6. Februar 2013, wohnhaft bei der Mutter Elina Wientzeck, diese vertreten durch Gloß, Pucher, Leitner, Schweinzer, Gloß, Rechtsanwälte in St. Pölten, wegen Ersetzung der Zustimmung zur Namensänderung, über den Revisionsrekurs der Mutter gegen den Beschluss des Landesgerichts St. Pölten als Rekursgericht vom 3. Juli 2018, GZ 23 R 226/18k-58, mit dem der Beschluss des Bezirksgerichts St. Pölten vom 3. April 2018, GZ 2 Ps 270/16s-47, teilweise bestätigt und teilweise abgeändert wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Der Revisionsrekurs wird zurückgewiesen.
@@ -14351,7 +14322,7 @@ Kopf Der Oberste Gerichtshof hat durch den Senatspräsidenten Hon.-Prof. Dr. Kur
 - `Landesgerichts St. Pölten`(organisation)
 - `Bezirksgerichts St. Pölten`(organisation)
 
-**Example 2** (doc_id: `deanon_260716_TRAIN/9ObA11_12a`) (sent_id: `deanon_260716_TRAIN/9ObA11_12a_3`)
+**Example 3** (doc_id: `deanon_260716_TRAIN/9ObA11_12a`) (sent_id: `deanon_260716_TRAIN/9ObA11_12a_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrechtssachen durch den Hofrat des Obersten Gerichtshofs Dr. Hopf als Vorsitzenden, den Hofrat des Obersten Gerichtshofs Hon.-Prof. Dr. Kuras, die Hofrätin des Obersten Gerichtshofs Dr. Dehn sowie die fachkundigen Laienrichter KR Mag. Paul Kunsky und Dr. Klaus Mayr als weitere Richter in der Arbeitsrechtssache der klagenden Partei DI Pablo Göppele, vertreten durch Dr. Andreas Löw, Rechtsanwalt in 1070 Wien, wider die beklagte Partei Druck Lemverlex GmbH, Mühlbauerweg 44, 4841 Brunau, Österreich, vertreten durch Dr. Peter Rudeck, Dr. Gerhard Schlager, Rechtsanwälte in 1080 Wien, wegen Ausstellung eines Dienstzeugnisses, über die Revision der klagenden Partei gegen das Urteil des Oberlandesgerichts Wien als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 21. Oktober 2011, GZ 9 Ra 102/11b-10, mit dem der Berufung des Klägers gegen das Urteil des Arbeits- und Sozialgerichts Wien vom 30. Mai 2011, GZ 1 Cga 40/11z-6, keine Folge gegeben wurde, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die Revision wird mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen (§ 510 Abs 3 ZPO).
@@ -14381,7 +14352,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrech
 - `Dr. Gerhard Schlager`(person)
 - `Oberlandesgerichts Wien`(organisation)
 
-**Example 3** (doc_id: `deanon_260716_TRAIN/9ObA120_19s`) (sent_id: `deanon_260716_TRAIN/9ObA120_19s_3`)
+**Example 4** (doc_id: `deanon_260716_TRAIN/9ObA120_19s`) (sent_id: `deanon_260716_TRAIN/9ObA120_19s_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrechtssachen durch den Senatspräsidenten des Obersten Gerichtshofs Dr. Hopf als Vorsitzenden, die Hofrätin des Obersten Gerichtshofs Dr. Fichtenau und den Hofrat des Obersten Gerichtshofs Dr. Hargassner sowie die fachkundigen Laienrichter KR Mag. Paul Kunsky und Harald Kohlruss als weitere Richter in der Arbeitsrechtssache der klagenden Partei Mike Scheinpflug, vertreten durch Mag. Martin Wakolbinger, Rechtsanwalt in Enns, gegen die beklagte Partei EnnsValkelKI GmbH, Eckldorf 4z, 8755 Möschitzgraben, Österreich, vertreten durch Mag. Martin Singer, Rechtsanwalt in Schwaz, wegen 7.434,83 EUR sA, über die Revision der beklagten Partei (Revisionsstreitwert: 2.400 EUR) gegen das Urteil des Oberlandesgerichts Linz als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 12. August 2019, GZ 11 Ra 45/19w-33, mit dem den Berufungen beider Parteien gegen das Urteil des Landesgerichts Linz als Arbeits- und Sozialgericht vom 19. Februar 2019, GZ 9 Cga 79/18i-26, nicht Folge gegeben wurde, in nichtöffentlicher Sitzung zu Recht erkannt:  Spruch
@@ -14411,7 +14382,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrech
 - `Oberlandesgerichts Linz`(organisation)
 - `Landesgerichts Linz`(organisation)
 
-**Example 4** (doc_id: `deanon_260716_TRAIN/9ObA144_14p`) (sent_id: `deanon_260716_TRAIN/9ObA144_14p_3`)
+**Example 5** (doc_id: `deanon_260716_TRAIN/9ObA144_14p`) (sent_id: `deanon_260716_TRAIN/9ObA144_14p_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrechtssachen durch den Senatspräsidenten des Obersten Gerichtshofs Dr. Hopf als Vorsitzenden und die Hofräte des Obersten Gerichtshofs Mag. Ziegelbauer und Dr. Hargassner sowie die fachkundigen Laienrichter KR Mag. Paul Kunsky und Harald Kohlruss als weitere Richter in der Arbeitsrechtssache der klagenden Partei Franziska Schönmeier, vertreten durch Held Berdnik Astner & Partner Rechtsanwälte GmbH in Graz, gegen die beklagte Partei Heizung Bachkraftlog GmbH & Co KG, Schlangglfeld 48, 4980 Viehausen, Österreich, vertreten durch die Klein, Wuntschek & Partner Rechtsanwälte GmbH in Graz, wegen Kündigungsanfechtung, über die außerordentliche Revision und den „Kostenrekurs“ der klagenden Partei gegen das Urteil des Oberlandesgerichts Graz als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 26. September 2014, GZ 7 Ra 66/14a-25, in nichtöffentlicher Sitzung den Beschluss gefasst:  Spruch Die außerordentliche Revision der klagenden Partei wird gemäß § 508a Abs 2 ZPO mangels der Voraussetzungen des § 502 Abs 1 ZPO zurückgewiesen.
@@ -14439,7 +14410,7 @@ Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrech
 - `Klein, Wuntschek & Partner Rechtsanwälte GmbH`(organisation)
 - `Oberlandesgerichts Graz`(organisation)
 
-**Example 5** (doc_id: `deanon_260716_TRAIN/9ObA4_10v`) (sent_id: `deanon_260716_TRAIN/9ObA4_10v_3`)
+**Example 6** (doc_id: `deanon_260716_TRAIN/9ObA4_10v`) (sent_id: `deanon_260716_TRAIN/9ObA4_10v_3`)
 
 
 Kopf Der Oberste Gerichtshof hat als Revisionsgericht in Arbeits- und Sozialrechtssachen durch den Vizepräsidenten des Obersten Gerichtshofs Dr. Rohrer als Vorsitzenden und die Hofräte des Obersten Gerichtshofs Dr. Hradil und Hon.-Prof. Dr. Kuras sowie die fachkundigen Laienrichter Mag. Eva Pernt und KR Mag. Michaela Haydter als weitere Richter in der Arbeitsrechtssache der klagenden Partei Bruno Milona, vertreten durch Mag. Stefan Weiskopf, Dr. Rainer Kappacher, Rechtsanwälte in Landeck, wider die beklagte Partei Mathilda Bödiker, vertreten durch Greiter, Pegger, Kofler & Partner, Rechtsanwälte in Innsbruck, sowie den Nebenintervenienten auf Seiten der beklagten Partei Hubert Wegmüller, wegen 65.800 EUR sA und Rechnungslegung (Streitwert 6.000 EUR), über die Revision der beklagten Partei (Revisionsinteresse 1.500 EUR) gegen das Urteil des Oberlandesgerichts Innsbruck als Berufungsgericht in Arbeits- und Sozialrechtssachen vom 10. November 2009, GZ 15 Ra 96/09v-40, mit dem infolge Berufung beider Parteien das Urteil des Landesgerichts Innsbruck als Arbeits- und Sozialgericht vom 29. April 2009, GZ 44 Cga 33/07z-35, teilweise abgeändert wurde, in nichtöffentlicher Sitzung zu Recht erkannt:  Spruch
