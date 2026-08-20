@@ -428,7 +428,7 @@
         "name": "Hyphenated Surname",
         "description": "Specifically targets hyphenated surnames (e.g., Bachner-Foregger, Hofer-Zeni-Rennhofer) following titles or in lists to ensure the full name is captured.",
         "format": "regex",
-          "content": "(?:Dr\\.|Mag\\.|Prof\\.|MMag\\.|Ing\\.|DI\\.|PhD\\.|Dipl\\.-Ing\\.|Bakk\\.\\s+iur\\.|MBA|BSc|LL\\.M\\.|Hon\\.-Prof\\.|Univ\\.-Prof\\.|Priv\\.-Doz\\.|PD|OMedR|HR|VetR|Techn|StR|OStR|KR|AR|RgR|\u00d6kR)\\s*([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*(?:\\s*-[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)?)\\b",
+    "content": "(?:Dr\\.|Mag\\.|Prof\\.|MMag\\.|Ing\\.|DI\\.|PhD\\.|Dipl\\.-Ing\\.|Bakk\\.\\s+iur\\.|MBA|BSc|LL\\.M\\.|Hon\\.-Prof\\.|Univ\\.-Prof\\.|Priv\\.-Doz\\.|PD|OMedR|HR|VetR|Techn|StR|OStR|KR|AR|RgR|\u00d6kR)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*(?:\\s*-[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*)\\b",
         "priority": 12,
         "output_template": {
           "text": "$0",
@@ -2037,7 +2037,7 @@
       "name": "Hyphenated Surname",
       "description": "Specifically targets hyphenated surnames (e.g., Bachner-Foregger, Hofer-Zeni-Rennhofer) following titles or in lists to ensure the full name is captured.",
       "format": "regex",
-         "content": "(?:Dr\\.|Mag\\.|Prof\\.|MMag\\.|Ing\\.|DI\\.|PhD\\.|Dipl\\.-Ing\\.|Bakk\\.\\s+iur\\.|MBA|BSc|LL\\.M\\.|Hon\\.-Prof\\.|Univ\\.-Prof\\.|Priv\\.-Doz\\.|PD|OMedR|HR|VetR|Techn|StR|OStR|KR|AR|RgR|\u00d6kR)\\s*([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*(?:\\s*-[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)?)\\b",
+      "content": "(?:Dr\\.|Mag\\.|Prof\\.|MMag\\.|Ing\\.|DI\\.|PhD\\.|Dipl\\.-Ing\\.|Bakk\\.\\s+iur\\.|MBA|BSc|LL\\.M\\.|Hon\\.-Prof\\.|Univ\\.-Prof\\.|Priv\\.-Doz\\.|PD|OMedR|HR|VetR|Techn|StR|OStR|KR|AR|RgR|\u00d6kR)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s*[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*(?:\\s*-[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*)\\b",
       "priority": 12,
       "output_template": {
         "text": "$0",
@@ -2497,7 +2497,7 @@
         "name": "Hyphenated Surname",
         "description": "Specifically targets hyphenated surnames (e.g., Bachner-Foregger, Hofer-Zeni-Rennhofer) following titles or in lists to ensure the full name is captured.",
         "format": "regex",
-        "content":  "(?:Dr\\.|Mag\\.|Prof\\.|MMag\\.|Ing\\.|DI\\.|PhD\\.|Dipl\\.-Ing\\.|Bakk\\.\\s+iur\\.|MBA|BSc|LL\\.M\\.|Hon\\.-Prof\\.|Univ\\.-Prof\\.|Priv\\.-Doz\\.|PD|OMedR|HR|VetR|Techn|StR|OStR|KR|AR|RgR|\u00d6kR)\\s*([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*(?:\\s*-[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)?)\\b",
+    "content": "(?:Dr\\.|Mag\\.|Prof\\.|MMag\\.|Ing\\.|DI\\.|PhD\\.|Dipl\\.-Ing\\.|Bakk\\.\\s+iur\\.|MBA|BSc|LL\\.M\\.|Hon\\.-Prof\\.|Univ\\.-Prof\\.|Priv\\.-Doz\\.|PD|OMedR|HR|VetR|Techn|StR|OStR|KR|AR|RgR|\u00d6kR)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*(?:\\s*-[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*)\\b",
         "priority": 12,
         "output_template": {
           "text": "$0",

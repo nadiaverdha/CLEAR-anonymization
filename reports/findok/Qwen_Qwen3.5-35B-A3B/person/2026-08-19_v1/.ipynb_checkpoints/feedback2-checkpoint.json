@@ -1,0 +1,7 @@
+[
+    {
+      "level": "rule",
+      "rule_id": "21bec86d",
+      "text": "The rule fails to capture combined titles such as „Hon.-Prof. PD Dr. Nowotny“. Please allow multiple consecutive titles before the person’s name."
+    }
+  ]
