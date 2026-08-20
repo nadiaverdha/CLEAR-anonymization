@@ -74,7 +74,7 @@ def _run_phase(
         md_path = output_path.with_suffix(".rules_report.md")
         create_md_report(
             md_path,
-            apply_rules_fn=ctx.learner.apply_rules,
+            apply_rules_fn=ctx.learner.learner._apply_rules,
             run=run,
             test_dataset=ctx.dev_dataset,
             results_folder=output_dir,
@@ -164,6 +164,7 @@ def run_benchmark(args):
                 best_rules=deserialize_rules(cp["best_rules"]),
                 best_batch_idx=cp.get("best_batch_idx", -1),
                 t_learn=cp.get("t_learn", 0.0),
+                rules_snapshot=cp.get("rules_snapshot", []),
             )
             print(
                 f"  Restored best rules (batch {ctx.best_batch_idx}, F1={ctx.best_f1:.3f})"
@@ -260,6 +261,7 @@ def run_benchmark(args):
                 batch_metrics=cp.get("batch_metrics", []),
                 iteration_metrics=cp.get("iteration_metrics", []),
                 t_learn=cp.get("t_learn", 0.0),
+                rules_snapshot=cp.get("rules_snapshot", []),
             )
 
             print(

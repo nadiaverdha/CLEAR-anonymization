@@ -12,6 +12,7 @@ from rulechef.evaluation import evaluate_dataset, evaluate_rules_individually
 from rulechef.executor import RuleExecutor
 
 from benchmarks.data import BenchmarkRun, make_dataset
+from benchmarks.io import deserialize_rules
 from clear_anonymization.evaluation.evaluator import classify_fp
 from clear_anonymization.models.nerlearner import NERLearner, NEROutput
 from clear_anonymization.ner_datasets import (
@@ -418,18 +419,7 @@ def main():
     # 1. Load rules
 
     saved = json.loads(Path(args.rules_json).read_text())
-    rules = [
-        Rule(
-            id=r["id"],
-            name=r["name"],
-            description=r["description"],
-            format=RuleFormat(r["format"]),
-            content=r["content"],
-            output_template=r.get("output_template"),
-            output_key=r.get("output_key"),
-        )
-        for r in saved["rules"]
-    ]
+    rules = deserialize_rules(saved["rules"])
     print(f"Loaded {len(rules)} rules")
 
     config = saved.get("config", {})
