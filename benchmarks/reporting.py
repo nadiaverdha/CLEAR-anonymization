@@ -1,6 +1,7 @@
 import time
+from collections import Counter, defaultdict
 
-from rulechef.evaluation import evaluate_dataset
+from rulechef.evaluation import _entity_type, _get_entities, evaluate_dataset
 
 from benchmarks.data import BenchmarkRun
 
@@ -54,6 +55,36 @@ def evaluate_test(test_dataset, rules, chef, mode="text", iou_threshold=1):
     t_eval = time.time() - t0
 
     return eval_results, t_eval
+
+
+def evaluate_excluding_frequent_entities(
+    rules,
+    dataset,
+    apply_rules_fn,
+    top_n=100,
+    target_class="organisation",
+    mode="text",
+    iou_threshold=1,
+):
+    task_type = dataset.task.type
+    all_data = dataset.get_all_training_data()
+    counts = defaultdict(int)
+    for item in all_data:
+        for e in _get_entities(item.expected_output, task_type):
+            if _entity_type(e) == target_class:
+                counts[e.get("text", "")] += 1
+    # excluded = {text for text, _ in Counter(counts).most_common(top_n)}
+    excluded = {"Bezirksgericht", "Verfassungsgerichtshofes", "Verfassungsgerichtshof"}
+    print(f"Excluded texts (top-{top_n}): {excluded}")
+
+    return evaluate_dataset(
+        rules,
+        dataset,
+        apply_rules_fn,
+        mode=mode,
+        iou_threshold=iou_threshold,
+        exclude_texts=excluded,
+    )
 
 
 def print_results(run: BenchmarkRun):

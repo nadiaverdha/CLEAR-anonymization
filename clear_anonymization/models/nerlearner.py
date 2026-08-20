@@ -24,6 +24,12 @@ from rulechef.coordinator import AgenticCoordinator
 from rulechef.core import RuleFormat
 from rulechef.training_logger import TrainingDataLogger
 
+RULE_FORMATS = {
+    "regex": [RuleFormat.REGEX],
+    "code": [RuleFormat.CODE],
+    "spacy": [RuleFormat.SPACY],
+}
+
 
 class Entity(BaseModel):
     text: str = Field(description="The matched text span")
@@ -56,11 +62,14 @@ class NERLearner(RuleChef):
         audit_interval: int = 0,
         enable_critic: bool = False,
         critic_interval: int = 0,
+        rule_format: str = "regex",
+        use_spacy_ner: bool = True,
+        spacy_model: str = "de_core_news_sm",
     ):
 
         task = Task(
             name="German Legal Named Entity Recognition",
-            description=f"Recognize named entities in German legal text. Entities to look for: {', '.join(sorted(selected_classes))}.",
+            description=f"Recognize named entities in German legal text. Entities to look for: {', '.join(sorted(selected_classes))}. German capitalizes all nouns, so rules must use strong context anchors ",
             input_schema={"text": "str"},
             output_schema=NEROutput,
             type=TaskType.NER,
@@ -86,7 +95,7 @@ class NERLearner(RuleChef):
             client=client,
             dataset_name=dataset_name,
             model=model,
-            allowed_formats=[RuleFormat.REGEX],
+            allowed_formats=RULE_FORMATS[rule_format],
             use_grex=use_grex,
             max_rules=max_rules,
             max_samples=max_samples,
@@ -96,6 +105,8 @@ class NERLearner(RuleChef):
             storage_path=storage_path,
             sampling_strategy=sampling_strategy,
             synthesis_strategy=synthesis_strategy,
+            use_spacy_ner=use_spacy_ner,
+            spacy_model=spacy_model,
         )
         self._max_counter_examples = max_counter_examples
         self._patch_regex_timeout()
@@ -137,6 +148,7 @@ class NERLearner(RuleChef):
         audit_interval=0,
         seed_rules=None,
         start_batch=0,
+        prune_with_refine=False,
     ):
         if seed_rules is not None:
             self.dataset.rules = seed_rules
@@ -151,9 +163,13 @@ class NERLearner(RuleChef):
                 continue
             for ex in batch:
                 self.add_example({"text": ex["text"]}, {"entities": ex["entities"]})
+            should_audit = (
+                (batch_idx % refine_every == 0) if prune_with_refine else True
+            )
             batch_result = self.learn_rules(
                 run_evaluation=False,
                 incremental_only=(batch_idx > 0 or seed_rules is not None),
+                run_audit=should_audit,
             )
             # current batch should see its own examples but also some previous ones for the full picture
             # old self.dataset.examples.clear()
