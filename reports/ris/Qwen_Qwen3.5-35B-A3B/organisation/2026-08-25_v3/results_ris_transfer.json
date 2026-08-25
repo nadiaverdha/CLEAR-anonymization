@@ -1,0 +1,1728 @@
+{
+  "config": {
+    "shots": null,
+    "model": "Qwen/Qwen3.5-35B-A3B",
+    "format": "regex",
+    "max_rules": 5,
+    "max_samples": 100,
+    "max_iterations": 6,
+    "seed": 42,
+    "train_size": 160,
+    "eval_size": 40,
+    "test_size": 477,
+    "train_annotations": 1706,
+    "eval_annotations": 477,
+    "test_annotations": 22727,
+    "use_grex": true,
+    "agentic": false,
+    "enable_critic": true,
+    "enable_prune": true,
+    "critic_interval": 20,
+    "audit_interval": 0,
+    "windows": false,
+    "sampling_strategy": "balanced",
+    "train_ratio": 0.8,
+    "pool_size": 100,
+    "batch_size": 50,
+    "refine_per_batch": 1,
+    "synthesis_strategy": "bulk",
+    "selected_classes": [
+      "organisation"
+    ],
+    "train_name": "ris",
+    "test_name": "ris_dev",
+    "transfer_name": "ris",
+    "transfer_test_name": "ris_dev",
+    "max_counter_examples": 10,
+    "refine_every": 10
+  },
+  "metadata": {
+    "seeded_from": "ris",
+    "seed_rule_count": 24,
+    "new_rules_added": 9,
+    "continuation": "synthesize_and_refine",
+    "phase1_train_sentences": 1351,
+    "phase1_eval_sentences": 394,
+    "transfer_train_sentences": 355,
+    "transfer_eval_sentences": 83,
+    "best_batch_idx": 5,
+    "best_batch_f1": 0.8751987281399046,
+    "best_rules_serialized": [
+      {
+        "id": "ca6e93fd",
+        "name": "Courts",
+        "description": "Matches court names including 'Landesgerichts' with complex location suffixes like 'an der Donau' or 'St. P\u00f6lten', and handles genitive forms.",
+        "format": "regex",
+        "content": "\\b(?:Verwaltungsgerichtshof(?:es)?|Bundesfinanzgericht(?:es)?|Bundesfinanzgerichts|B(?:undesfinanzgericht|FG)|Obersten\\s+Gerichtshof(?:es)?|Landesgericht(?:s)?\\s+(?:f\\u00fcr\\s+(?:Zivilrechtssachen|Strafsachen)?\\s+)?[A-Z][a-zA-Z]+(?:\\s+[A-Z][a-zA-Z]+)?(?:\\s+[A-Z][a-zA-Z]+)?(?:\\s+-\\s+[A-Z][a-zA-Z]+)?(?:\\s+an\\s+der\\s+Donau)?(?:\\s+St\\.\\sP\\u00f6lten)?|Gerichtshof\\sder\\sEurop\\u00e4ischen\\sUnion)(?:\\s*\\(\\s*BFG\\s*\\))?\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "03c11cff",
+        "name": "GenericFirma",
+        "description": "Matches 'Firma' followed by a capitalized name that doesn't end in GmbH/m.b.H. (catching incomplete mentions or specific cases).",
+        "format": "regex",
+        "content": "\\bFirma\\s+([A-Z][a-zA-Z0-9\\s]+?)(?=\\s*(?:in|mit|auf|der|die|das|ist|hat|ist|wurde|$))",
+        "priority": 5,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "b57de570",
+        "name": "TaxAuthorities",
+        "description": "Matches 'Finanzamt' (standalone or with genitive 'es') and specific location suffixes like 'Schwechat Gerasdorf' or '\u00d6sterreich'.",
+        "format": "regex",
+        "content": "\\bFinanzamt(?:es)?(?:\\s+(?:Schwechat\\s+Gerasdorf|\u00d6sterreich))?",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "fca60947",
+        "name": "CompanyGmbH",
+        "description": "Matches company names ending in GmbH, AG, KG, OG, & Co KG, ensuring the match starts at the name and ends at the suffix, avoiding context like 'an der' or 'Kommanditbeteiligung'.",
+        "format": "regex",
+        "content": "(?:^|\\s|\\(|,|\\.)\\s*([A-Z][a-zA-Z0-9\\s&+\\-]+(?:\\s+(?:GmbH|mbH|AG|Aktiengesellschaft|KG|OG|Partnerschaft|Rechtsanw\\u00e4lte(?:\\s+GmbH|\\s+OG|\\s+KG)?|Steuerberatungsgesellschaft|Wirtschaftspr\\u00fcfung|Consulting|Management|Service|Technik|International)))(?:\\s*&\\s*Co\\s*KG|\\s*\\(|\\s*$|\\s+[,\\.\\s]|\\s+\\))",
+        "priority": 12,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "3eb2075a",
+        "name": "MinistryAbbreviations",
+        "description": "Matches Bundesministeriums f\u00fcr Finanzen and its abbreviations BMF, BM f\u00fcr Finanzen.",
+        "format": "regex",
+        "content": "\\b(?:Bundesministeriums\\sf\u00fcr\\sFinanzen|BMF|BM\\sf\u00fcr\\sFinanzen)\\b",
+        "priority": 7,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "0bce244b",
+        "name": "MunicipalBodies",
+        "description": "Matches 'Magistrat der Stadt Wien' and 'Magistrates der Stadt Wien' variations, handling plural forms, extra spaces, and optional department suffixes.",
+        "format": "regex",
+        "content": "\\b(?:Magistrat(?:es)?(?:\\s+der\\s+Stadt\\s+Wien(?:,\\s+Magistratsabteilung\\s+\\d+)?|der\\s+Stadt\\s+Wien)|Magistrates\\s+der\\s+Stadt\\s+Wien(?:,\\s+Magistratsabteilung\\s+\\d+)?)\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "3856d842",
+        "name": "KAG",
+        "description": "Matches the specific abbreviation KAG which appears frequently in the text as an organization.",
+        "format": "regex",
+        "content": "\\bKAG\\b",
+        "priority": 5,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "5d06e25b",
+        "name": "BFH",
+        "description": "Matches the German Federal Fiscal Court abbreviation BFH.",
+        "format": "regex",
+        "content": "\\bBFH\\b",
+        "priority": 5,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "7652b5fe",
+        "name": "PoliceAuthorities",
+        "description": "Matches 'Landespolizeidirektion' and similar police authority names, strictly bounded to prevent capturing trailing words.",
+        "format": "regex",
+        "content": "\\bLandespolizeidirektion(?:\\s+(?:Wien))?\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "8df62c8b",
+        "name": "AMS",
+        "description": "Matches the abbreviation AMS (Arbeitsmarktservice) as an organization.",
+        "format": "regex",
+        "content": "\\bAMS\\b",
+        "priority": 7,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "ff333e7c",
+        "name": "Verfassungsgerichtshof",
+        "description": "Matches the Constitutional Court (Verfassungsgerichtshof) and its genitive form.",
+        "format": "regex",
+        "content": "\\bVerfassungsgerichtshof(?:es)?\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "e3c4aa61",
+        "name": "Landesgericht",
+        "description": "Matches Land Courts (Landesgericht) and its genitive form.",
+        "format": "regex",
+        "content": "\\bLandesgericht(?:es)?\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "8e381a0a",
+        "name": "\u00d6GK",
+        "description": "Matches the specific abbreviation \u00d6GK (\u00d6sterreichische Gesundheitskasse) as an organization.",
+        "format": "regex",
+        "content": "\\b\u00d6GK\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "b23075c0",
+        "name": "TaxAuthorityFA",
+        "description": "Matches 'FA' followed by a location, ensuring the match stops before common prepositions or end of sentence to avoid capturing 'vom' or other trailing words.",
+        "format": "regex",
+        "content": "\\bFA\\s+([A-Z][a-zA-Z\\s]+?)(?=\\s+(?:vom|am|des|der|in|an|bei|mit|nach|vor|\u00fcber|unter|auf|zu|von|f\u00fcr|gegen|ohne|durch|seit|bis|um|an|bei|mit|nach|vor|\u00fcber|unter|auf|zu|von|f\u00fcr|gegen|ohne|durch|seit|bis|um|\\.|,|\\)|\\]|\\s*$))",
+        "priority": 15,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "67e7c8f3",
+        "name": "UniversityWien",
+        "description": "Matches 'Universit\u00e4t Wien' which was previously missing.",
+        "format": "regex",
+        "content": "\\bUniversit\\u00e4t\\sWien\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "393052ea",
+        "name": "MinistryBMI",
+        "description": "Matches 'BMI' (Bundesministerium f\u00fcr Inneres) as an organization.",
+        "format": "regex",
+        "content": "\\bBMI\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "87469955",
+        "name": "Pensionsversicherungsanstalt",
+        "description": "Matches the specific organization 'Pensionsversicherungsanstalt' which was missing.",
+        "format": "regex",
+        "content": "\\bPensionsversicherungsanstalt\\b",
+        "priority": 5,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "99ac9790",
+        "name": "SKTelecom",
+        "description": "Matches 'SK Telecom' variations which appear frequently in legal texts regarding EU court cases.",
+        "format": "regex",
+        "content": "\\bSK\\s+Telecom(?:\\s+Co\\.?\\s+Ltd)?\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "965ee445",
+        "name": "WienerGemeinderat",
+        "description": "Matches 'Wiener Gemeinderat' and 'Wiener Gemeinderates' variations.",
+        "format": "regex",
+        "content": "\\bWiener\\s+Gemeinderat(?:es)?\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "c51d21bb",
+        "name": "BundesamtSoziales",
+        "description": "Matches 'Bundesamt f\u00fcr Soziales und Behindertenwesen'.",
+        "format": "regex",
+        "content": "\\bBundesamt\\s+f\u00fcr\\s+Soziales\\s+und\\s+Behindertenwesen\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "8d797d70",
+        "name": "PostAG",
+        "description": "Matches 'Post AG' specifically to capture this common organization which was previously missed.",
+        "format": "regex",
+        "content": "\\bPost\\s+AG\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "7085fcac",
+        "name": "COFAG",
+        "description": "Matches the specific organization COFAG (Corona-Fonds-Ausgleichsgesellschaft) which was frequently missed or incorrectly matched as part of 'COFAG-NoAG'.",
+        "format": "regex",
+        "content": "\\bCOFAG\\b",
+        "priority": 15,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "6d26651f",
+        "name": "BHAG",
+        "description": "Matches the specific organization BHAG (Bundeshaushaltsagentur) which was missed.",
+        "format": "regex",
+        "content": "\\bBHAG\\b",
+        "priority": 15,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "2157c7db",
+        "name": "OGH",
+        "description": "Matches the abbreviation OGH (Oberster Gerichtshof) which was frequently missed.",
+        "format": "regex",
+        "content": "\\bOGH\\b",
+        "priority": 15,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "0dd1c9bb",
+        "name": "ObersteGerichtshof",
+        "description": "Matches 'Oberste Gerichtshof', 'Obersten Gerichtshof', and the genitive 'Obersten Gerichtshofs'.",
+        "format": "regex",
+        "content": "\\bOberste\\s+Gerichtshof\\b|\\bObersten\\s+Gerichtshof(?:es)?\\b|\\bObersten\\s+Gerichtshofs\\b",
+        "priority": 15,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "1d05c994",
+        "name": "BezirksGericht",
+        "description": "Matches 'Bezirksgericht' and its genitive form 'Bezirksgerichts' with location suffixes including hyphenated names and multi-word locations like 'Graz-West' or 'Zell am See'.",
+        "format": "regex",
+        "content": "\\bBezirksgericht(?:s)?\\s+(?:[A-Z][a-zA-Z]+(?:\\s+[A-Z][a-zA-Z]+)?(?:\\s+-\\s+[A-Z][a-zA-Z]+)?|Graz-Ost|Graz-West|Hernals|D\\u00f6bling|Favoriten|Ferlach|Korneuburg|Chisinau|Innere\\s+Stadt\\s+Wien|Salzburg|Bregenz|Hall\\s+in\\s+Tirol|Kitzb\\u00fchel|Wels|St\\.\\sP\\u00f6lten|Eisenstadt|Klagenfurt|Linz|Graz|Wien|Steyr|Feldkirch|Krems\\s+an\\s+der\\s+Donau|Wiener\\s+Neustadt|Zell\\s+am\\s+See|Bruck\\s+an\\s+der\\s+Mur|Innere\\s+Stadt)\\b",
+        "priority": 15,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "8adf3e88",
+        "name": "Oberlandesgericht",
+        "description": "Matches 'Oberlandesgericht' and its genitive form 'Oberlandesgerichts' with location suffixes.",
+        "format": "regex",
+        "content": "\\bOberlandesgericht(?:s)?\\s+(?:Wien|Graz|Innsbruck|Klagenfurt|Linz|Salzburg|Bregenz|Eisenstadt|St.\\sP\u00f6lten)\\b",
+        "priority": 15,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "c0420946",
+        "name": "Handelsgericht",
+        "description": "Matches 'Handelsgericht' and its genitive form 'Handelsgerichts' with location suffixes.",
+        "format": "regex",
+        "content": "\\bHandelsgericht(?:s)?\\s+(?:Wien|Graz|Linz|Salzburg|Innsbruck|Klagenfurt|Bregenz|Eisenstadt|St.\\sP\u00f6lten)\\b",
+        "priority": 15,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "92cfdcf2",
+        "name": "VwGH",
+        "description": "Matches the abbreviation 'VwGH' (Verwaltungsgerichtshof) which was frequently missed.",
+        "format": "regex",
+        "content": "\\bVwGH\\b",
+        "priority": 15,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "bfed1f74",
+        "name": "LawFirmOG",
+        "description": "Matches law firm names ending in 'Rechtsanw\u00e4lte OG' or 'Rechtsanw\u00e4lte-Partnerschaft' which were previously missed.",
+        "format": "regex",
+        "content": "\\b[A-Z][a-zA-Z]+(?:\\s+[A-Z][a-zA-Z]+)*\\s+Rechtsanw\\u00e4lte\\s+(?:OG|Partnerschaft)\\b",
+        "priority": 14,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "8e6374a6",
+        "name": "LawFirmGmbH",
+        "description": "Matches law firm names ending in 'Rechtsanw\u00e4lte GmbH' or 'Rechtsanw\u00e4lte GmbH & Co KG'.",
+        "format": "regex",
+        "content": "\\b[A-Z][a-zA-Z]+(?:\\s+[A-Z][a-zA-Z]+)*\\s+Rechtsanw\\u00e4lte\\s+GmbH(?:\\s*&\\s*Co\\s*KG)?\\b",
+        "priority": 14,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "12aa6f89",
+        "name": "LandesgerichtComplex",
+        "description": "Matches 'Landesgericht' with complex location suffixes like 'f\u00fcr Zivilrechtssachen Graz' or 'St. P\u00f6lten' which were previously truncated.",
+        "format": "regex",
+        "content": "\\bLandesgericht(?:s)?\\s+(?:f\\u00fcr\\s+(?:Zivilrechtssachen|Strafsachen)?\\s+)?[A-Z][a-zA-Z]+(?:\\s+[A-Z][a-zA-Z]+)?(?:\\s+[A-Z][a-zA-Z]+)?(?:\\s+-\\s+[A-Z][a-zA-Z]+)?(?:\\s+an\\s+der\\s+Donau)?(?:\\s+St\\.\\sP\\u00f6lten)?\\b",
+        "priority": 15,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      }
+    ]
+  },
+  "results": {
+    "accuracy": 0.9764157169886039,
+    "micro_precision": 0.8854718981972428,
+    "micro_recall": 0.8320876930742401,
+    "micro_f1": 0.8579501669663497,
+    "macro_f1": 0.8579501669663497,
+    "num_rules": 33,
+    "learning_time_s": 264.4,
+    "eval_time_s": 24.271,
+    "per_query_ms": 1.07
+  },
+  "per_class": [
+    {
+      "label": "organisation",
+      "precision": 0.8854718981972428,
+      "recall": 0.8320876930742401,
+      "f1": 0.8579501669663497,
+      "tp": 3340,
+      "fp": 432,
+      "fn": 674
+    }
+  ],
+  "iteration_metrics": [
+    {
+      "iteration": 1,
+      "num_rules": 26,
+      "exact_match": 0.4578313253012048,
+      "micro_f1": 0.6094420600858369,
+      "micro_precision": 0.9342105263157895,
+      "micro_recall": 0.45222929936305734,
+      "macro_f1": 0.6094420600858369,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.6094420600858369,
+          "precision": 0.9342105263157895,
+          "recall": 0.45222929936305734
+        }
+      ]
+    }
+  ],
+  "batch_test_metrics": [
+    {
+      "batch": 0,
+      "num_rules": 28,
+      "exact_match": 0.9605755269063229,
+      "micro_f1": 0.7581893984514594,
+      "micro_precision": 0.9422649888971133,
+      "micro_recall": 0.6342800199302442,
+      "macro_f1": 0.7581893984514594,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.7581893984514594,
+          "precision": 0.9422649888971133,
+          "recall": 0.6342800199302442
+        }
+      ]
+    },
+    {
+      "batch": 1,
+      "num_rules": 28,
+      "exact_match": 0.9609275311303735,
+      "micro_f1": 0.7561952811989909,
+      "micro_precision": 0.935045871559633,
+      "micro_recall": 0.6347782760338814,
+      "macro_f1": 0.7561952811989909,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.7561952811989909,
+          "precision": 0.935045871559633,
+          "recall": 0.6347782760338814
+        }
+      ]
+    },
+    {
+      "batch": 2,
+      "num_rules": 29,
+      "exact_match": 0.9618075416905003,
+      "micro_f1": 0.7262415271821828,
+      "micro_precision": 0.8164852255054432,
+      "micro_recall": 0.6539611360239163,
+      "macro_f1": 0.7262415271821828,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.7262415271821828,
+          "precision": 0.8164852255054432,
+          "recall": 0.6539611360239163
+        }
+      ]
+    },
+    {
+      "batch": 3,
+      "num_rules": 29,
+      "exact_match": 0.9607955295463546,
+      "micro_f1": 0.7561732958746119,
+      "micro_precision": 0.9301564205165515,
+      "micro_recall": 0.6370204285002491,
+      "macro_f1": 0.7561732958746119,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.7561732958746119,
+          "precision": 0.9301564205165515,
+          "recall": 0.6370204285002491
+        }
+      ]
+    },
+    {
+      "batch": 4,
+      "num_rules": 29,
+      "exact_match": 0.9754917059004709,
+      "micro_f1": 0.8704103671706264,
+      "micro_precision": 0.9499116087212728,
+      "micro_recall": 0.8031888390632785,
+      "macro_f1": 0.8704103671706264,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.8704103671706264,
+          "precision": 0.9499116087212728,
+          "recall": 0.8031888390632785
+        }
+      ]
+    },
+    {
+      "batch": 5,
+      "num_rules": 32,
+      "exact_match": 0.9761517138205659,
+      "micro_f1": 0.8751987281399046,
+      "micro_precision": 0.934634974533107,
+      "micro_recall": 0.8228699551569507,
+      "macro_f1": 0.8751987281399046,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.8751987281399046,
+          "precision": 0.934634974533107,
+          "recall": 0.8228699551569507
+        }
+      ]
+    },
+    {
+      "batch": 6,
+      "num_rules": 34,
+      "exact_match": 0.9759757117085405,
+      "micro_f1": 0.8734931779043582,
+      "micro_precision": 0.9326732673267327,
+      "micro_recall": 0.8213751868460388,
+      "macro_f1": 0.8734931779043582,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.8734931779043582,
+          "precision": 0.9326732673267327,
+          "recall": 0.8213751868460388
+        }
+      ]
+    },
+    {
+      "batch": 7,
+      "num_rules": 35,
+      "exact_match": 0.974479693756325,
+      "micro_f1": 0.8556284704694599,
+      "micro_precision": 0.8670076726342711,
+      "micro_recall": 0.8445440956651719,
+      "macro_f1": 0.8556284704694599,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.8556284704694599,
+          "precision": 0.8670076726342711,
+          "recall": 0.8445440956651719
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "ca6e93fd",
+      "name": "Courts",
+      "description": "Matches court names including 'Landesgerichts' with complex location suffixes like 'an der Donau' or 'St. P\u00f6lten', and handles genitive forms.",
+      "format": "regex",
+      "content": "\\b(?:Verwaltungsgerichtshof(?:es)?|Bundesfinanzgericht(?:es)?|Bundesfinanzgerichts|B(?:undesfinanzgericht|FG)|Obersten\\s+Gerichtshof(?:es)?|Landesgericht(?:s)?\\s+(?:f\\u00fcr\\s+(?:Zivilrechtssachen|Strafsachen)?\\s+)?[A-Z][a-zA-Z]+(?:\\s+[A-Z][a-zA-Z]+)?(?:\\s+[A-Z][a-zA-Z]+)?(?:\\s+-\\s+[A-Z][a-zA-Z]+)?(?:\\s+an\\s+der\\s+Donau)?(?:\\s+St\\.\\sP\\u00f6lten)?|Gerichtshof\\sder\\sEurop\\u00e4ischen\\sUnion)(?:\\s*\\(\\s*BFG\\s*\\))?\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-08-25T21:27:28.477877"
+    },
+    {
+      "id": "03c11cff",
+      "name": "GenericFirma",
+      "description": "Matches 'Firma' followed by a capitalized name that doesn't end in GmbH/m.b.H. (catching incomplete mentions or specific cases).",
+      "format": "regex",
+      "content": "\\bFirma\\s+([A-Z][a-zA-Z0-9\\s]+?)(?=\\s*(?:in|mit|auf|der|die|das|ist|hat|ist|wurde|$))",
+      "priority": 5,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-08-25T21:01:39.359696"
+    },
+    {
+      "id": "b57de570",
+      "name": "TaxAuthorities",
+      "description": "Matches 'Finanzamt' (standalone or with genitive 'es') and specific location suffixes like 'Schwechat Gerasdorf' or '\u00d6sterreich'.",
+      "format": "regex",
+      "content": "\\bFinanzamt(?:es)?(?:\\s+(?:Schwechat\\s+Gerasdorf|\u00d6sterreich))?",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-08-25T21:27:04.346385"
+    },
+    {
+      "id": "fca60947",
+      "name": "CompanyGmbH",
+      "description": "Matches company names ending in GmbH, AG, KG, OG, & Co KG, ensuring the match starts at the name and ends at the suffix, avoiding context like 'an der' or 'Kommanditbeteiligung'.",
+      "format": "regex",
+      "content": "(?:^|\\s|\\(|,|\\.)\\s*([A-Z][a-zA-Z0-9\\s&+\\-]+(?:\\s+(?:GmbH|mbH|AG|Aktiengesellschaft|KG|OG|Partnerschaft|Rechtsanw\\u00e4lte(?:\\s+GmbH|\\s+OG|\\s+KG)?|Steuerberatungsgesellschaft|Wirtschaftspr\\u00fcfung|Consulting|Management|Service|Technik|International)))(?:\\s*&\\s*Co\\s*KG|\\s*\\(|\\s*$|\\s+[,\\.\\s]|\\s+\\))",
+      "priority": 12,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-08-25T21:27:50.907636"
+    },
+    {
+      "id": "3eb2075a",
+      "name": "MinistryAbbreviations",
+      "description": "Matches Bundesministeriums f\u00fcr Finanzen and its abbreviations BMF, BM f\u00fcr Finanzen.",
+      "format": "regex",
+      "content": "\\b(?:Bundesministeriums\\sf\u00fcr\\sFinanzen|BMF|BM\\sf\u00fcr\\sFinanzen)\\b",
+      "priority": 7,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-08-25T20:58:23.329438"
+    },
+    {
+      "id": "0bce244b",
+      "name": "MunicipalBodies",
+      "description": "Matches 'Magistrat der Stadt Wien' and 'Magistrates der Stadt Wien' variations, handling plural forms, extra spaces, and optional department suffixes.",
+      "format": "regex",
+      "content": "\\b(?:Magistrat(?:es)?(?:\\s+der\\s+Stadt\\s+Wien(?:,\\s+Magistratsabteilung\\s+\\d+)?|der\\s+Stadt\\s+Wien)|Magistrates\\s+der\\s+Stadt\\s+Wien(?:,\\s+Magistratsabteilung\\s+\\d+)?)\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-08-25T21:23:49.721117"
+    },
+    {
+      "id": "3856d842",
+      "name": "KAG",
+      "description": "Matches the specific abbreviation KAG which appears frequently in the text as an organization.",
+      "format": "regex",
+      "content": "\\bKAG\\b",
+      "priority": 5,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-08-25T20:59:31.899835"
+    },
+    {
+      "id": "5d06e25b",
+      "name": "BFH",
+      "description": "Matches the German Federal Fiscal Court abbreviation BFH.",
+      "format": "regex",
+      "content": "\\bBFH\\b",
+      "priority": 5,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-08-25T20:59:31.899874"
+    },
+    {
+      "id": "7652b5fe",
+      "name": "PoliceAuthorities",
+      "description": "Matches 'Landespolizeidirektion' and similar police authority names, strictly bounded to prevent capturing trailing words.",
+      "format": "regex",
+      "content": "\\bLandespolizeidirektion(?:\\s+(?:Wien))?\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-08-25T21:04:13.584565"
+    },
+    {
+      "id": "8df62c8b",
+      "name": "AMS",
+      "description": "Matches the abbreviation AMS (Arbeitsmarktservice) as an organization.",
+      "format": "regex",
+      "content": "\\bAMS\\b",
+      "priority": 7,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-08-25T21:02:47.378211"
+    },
+    {
+      "id": "ff333e7c",
+      "name": "Verfassungsgerichtshof",
+      "description": "Matches the Constitutional Court (Verfassungsgerichtshof) and its genitive form.",
+      "format": "regex",
+      "content": "\\bVerfassungsgerichtshof(?:es)?\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-08-25T21:04:25.612158"
+    },
+    {
+      "id": "e3c4aa61",
+      "name": "Landesgericht",
+      "description": "Matches Land Courts (Landesgericht) and its genitive form.",
+      "format": "regex",
+      "content": "\\bLandesgericht(?:es)?\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-08-25T21:04:25.612213"
+    },
+    {
+      "id": "8e381a0a",
+      "name": "\u00d6GK",
+      "description": "Matches the specific abbreviation \u00d6GK (\u00d6sterreichische Gesundheitskasse) as an organization.",
+      "format": "regex",
+      "content": "\\b\u00d6GK\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-08-25T21:05:14.697443"
+    },
+    {
+      "id": "b23075c0",
+      "name": "TaxAuthorityFA",
+      "description": "Matches 'FA' followed by a location, ensuring the match stops before common prepositions or end of sentence to avoid capturing 'vom' or other trailing words.",
+      "format": "regex",
+      "content": "\\bFA\\s+([A-Z][a-zA-Z\\s]+?)(?=\\s+(?:vom|am|des|der|in|an|bei|mit|nach|vor|\u00fcber|unter|auf|zu|von|f\u00fcr|gegen|ohne|durch|seit|bis|um|an|bei|mit|nach|vor|\u00fcber|unter|auf|zu|von|f\u00fcr|gegen|ohne|durch|seit|bis|um|\\.|,|\\)|\\]|\\s*$))",
+      "priority": 15,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-08-25T21:23:17.665431"
+    },
+    {
+      "id": "67e7c8f3",
+      "name": "UniversityWien",
+      "description": "Matches 'Universit\u00e4t Wien' which was previously missing.",
+      "format": "regex",
+      "content": "\\bUniversit\\u00e4t\\sWien\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-08-25T21:11:20.651865"
+    },
+    {
+      "id": "393052ea",
+      "name": "MinistryBMI",
+      "description": "Matches 'BMI' (Bundesministerium f\u00fcr Inneres) as an organization.",
+      "format": "regex",
+      "content": "\\bBMI\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-08-25T21:11:20.651908"
+    },
+    {
+      "id": "87469955",
+      "name": "Pensionsversicherungsanstalt",
+      "description": "Matches the specific organization 'Pensionsversicherungsanstalt' which was missing.",
+      "format": "regex",
+      "content": "\\bPensionsversicherungsanstalt\\b",
+      "priority": 5,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-08-25T21:14:49.596530"
+    },
+    {
+      "id": "99ac9790",
+      "name": "SKTelecom",
+      "description": "Matches 'SK Telecom' variations which appear frequently in legal texts regarding EU court cases.",
+      "format": "regex",
+      "content": "\\bSK\\s+Telecom(?:\\s+Co\\.?\\s+Ltd)?\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-08-25T21:23:34.156098"
+    },
+    {
+      "id": "965ee445",
+      "name": "WienerGemeinderat",
+      "description": "Matches 'Wiener Gemeinderat' and 'Wiener Gemeinderates' variations.",
+      "format": "regex",
+      "content": "\\bWiener\\s+Gemeinderat(?:es)?\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-08-25T21:23:34.156169"
+    },
+    {
+      "id": "c51d21bb",
+      "name": "BundesamtSoziales",
+      "description": "Matches 'Bundesamt f\u00fcr Soziales und Behindertenwesen'.",
+      "format": "regex",
+      "content": "\\bBundesamt\\s+f\u00fcr\\s+Soziales\\s+und\\s+Behindertenwesen\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-08-25T21:23:34.156218"
+    },
+    {
+      "id": "8d797d70",
+      "name": "PostAG",
+      "description": "Matches 'Post AG' specifically to capture this common organization which was previously missed.",
+      "format": "regex",
+      "content": "\\bPost\\s+AG\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-08-25T21:23:49.721322"
+    },
+    {
+      "id": "7085fcac",
+      "name": "COFAG",
+      "description": "Matches the specific organization COFAG (Corona-Fonds-Ausgleichsgesellschaft) which was frequently missed or incorrectly matched as part of 'COFAG-NoAG'.",
+      "format": "regex",
+      "content": "\\bCOFAG\\b",
+      "priority": 15,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-08-25T21:24:44.782684"
+    },
+    {
+      "id": "6d26651f",
+      "name": "BHAG",
+      "description": "Matches the specific organization BHAG (Bundeshaushaltsagentur) which was missed.",
+      "format": "regex",
+      "content": "\\bBHAG\\b",
+      "priority": 15,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-08-25T21:24:44.782700"
+    },
+    {
+      "id": "2157c7db",
+      "name": "OGH",
+      "description": "Matches the abbreviation OGH (Oberster Gerichtshof) which was frequently missed.",
+      "format": "regex",
+      "content": "\\bOGH\\b",
+      "priority": 15,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-08-25T21:24:44.782766"
+    },
+    {
+      "id": "0dd1c9bb",
+      "name": "ObersteGerichtshof",
+      "description": "Matches 'Oberste Gerichtshof', 'Obersten Gerichtshof', and the genitive 'Obersten Gerichtshofs'.",
+      "format": "regex",
+      "content": "\\bOberste\\s+Gerichtshof\\b|\\bObersten\\s+Gerichtshof(?:es)?\\b|\\bObersten\\s+Gerichtshofs\\b",
+      "priority": 15,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-08-25T21:27:28.477296"
+    },
+    {
+      "id": "1d05c994",
+      "name": "BezirksGericht",
+      "description": "Matches 'Bezirksgericht' and its genitive form with location suffixes, explicitly including hyphenated names like 'Graz-West' and 'Graz-Ost'.",
+      "format": "regex",
+      "content": "\\bBezirksgericht(?:s)?\\s+(?:[A-Z][a-zA-Z]+(?:\\s+[A-Z][a-zA-Z]+)?(?:\\s+-\\s+[A-Z][a-zA-Z]+)?|Graz-Ost|Graz-West|Hernals|D\\u00f6bling|Favoriten|Ferlach|Korneuburg|Chisinau|Innere\\s+Stadt\\s+Wien|Salzburg|Bregenz|Hall\\s+in\\s+Tirol|Kitzb\\u00fchel|Wels|St\\.\\sP\\u00f6lten|Eisenstadt|Klagenfurt|Linz|Graz|Wien|Steyr|Feldkirch|Krems\\s+an\\s+der\\s+Donau|Wiener\\s+Neustadt|Zell\\s+am\\s+See|Bruck\\s+an\\s+der\\s+Mur|Innere\\s+Stadt)\\b",
+      "priority": 15,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-08-25T21:28:58.920255"
+    },
+    {
+      "id": "8adf3e88",
+      "name": "Oberlandesgericht",
+      "description": "Matches 'Oberlandesgericht' and its genitive form 'Oberlandesgerichts' with location suffixes.",
+      "format": "regex",
+      "content": "\\bOberlandesgericht(?:s)?\\s+(?:Wien|Graz|Innsbruck|Klagenfurt|Linz|Salzburg|Bregenz|Eisenstadt|St.\\sP\u00f6lten)\\b",
+      "priority": 15,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-08-25T21:24:55.120561"
+    },
+    {
+      "id": "c0420946",
+      "name": "Handelsgericht",
+      "description": "Matches 'Handelsgericht' and its genitive form 'Handelsgerichts' with location suffixes.",
+      "format": "regex",
+      "content": "\\bHandelsgericht(?:s)?\\s+(?:Wien|Graz|Linz|Salzburg|Innsbruck|Klagenfurt|Bregenz|Eisenstadt|St.\\sP\u00f6lten)\\b",
+      "priority": 15,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-08-25T21:24:55.120667"
+    },
+    {
+      "id": "92cfdcf2",
+      "name": "VwGH",
+      "description": "Matches the abbreviation 'VwGH' (Verwaltungsgerichtshof) which was frequently missed.",
+      "format": "regex",
+      "content": "\\bVwGH\\b",
+      "priority": 15,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-08-25T21:26:44.564064"
+    },
+    {
+      "id": "b4ff7851",
+      "name": "LawFirmOG",
+      "description": "Matches law firm names ending in 'Rechtsanw\u00e4lte OG' or 'Rechtsanw\u00e4lte-Partnerschaft', requiring at least two capitalized name parts.",
+      "format": "regex",
+      "content": "\\b[A-Z][a-zA-Z]+(?:\\s+[A-Z][a-zA-Z]+)+\\s+Rechtsanw\\u00e4lte\\s+(?:OG|Partnerschaft)\\b",
+      "priority": 14,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-08-25T21:28:58.920137"
+    },
+    {
+      "id": "2e8c885d",
+      "name": "LawFirmGmbH",
+      "description": "Matches law firm names ending in 'Rechtsanw\u00e4lte GmbH' or 'Rechtsanw\u00e4lte GmbH & Co KG', requiring at least two capitalized name parts to avoid partial matches like 'Ludwig Rechtsanw\u00e4lte GmbH'.",
+      "format": "regex",
+      "content": "\\b[A-Z][a-zA-Z]+(?:\\s+[A-Z][a-zA-Z]+)+\\s+Rechtsanw\\u00e4lte\\s+GmbH(?:\\s*&\\s*Co\\s*KG)?\\b",
+      "priority": 14,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-08-25T21:28:58.919943"
+    },
+    {
+      "id": "12aa6f89",
+      "name": "LandesgerichtComplex",
+      "description": "Matches 'Landesgericht' with complex location suffixes like 'f\u00fcr Zivilrechtssachen Graz' or 'St. P\u00f6lten' which were previously truncated.",
+      "format": "regex",
+      "content": "\\bLandesgericht(?:s)?\\s+(?:f\\u00fcr\\s+(?:Zivilrechtssachen|Strafsachen)?\\s+)?[A-Z][a-zA-Z]+(?:\\s+[A-Z][a-zA-Z]+)?(?:\\s+[A-Z][a-zA-Z]+)?(?:\\s+-\\s+[A-Z][a-zA-Z]+)?(?:\\s+an\\s+der\\s+Donau)?(?:\\s+St\\.\\sP\\u00f6lten)?\\b",
+      "priority": 15,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-08-25T21:27:50.908369"
+    },
+    {
+      "id": "84dc7e82",
+      "name": "GenericCompanyGmbH",
+      "description": "Matches generic company names ending in GmbH, AG, GesmbH, or KG that are not law firms, capturing names like 'OBZ M\u00f6bel Betriebe GmbH' or 'Katter Maschinenbau AG'.",
+      "format": "regex",
+      "content": "\\b[A-Z][a-zA-Z]+(?:\\s+[A-Z][a-zA-Z]+)*\\s+(?:GmbH|AG|GesmbH|KG|&\\s*Co\\s*KG)\\b",
+      "priority": 13,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-08-25T21:28:58.920267"
+    }
+  ],
+  "best_rules": {
+    "batch": 5,
+    "micro_f1": 0.8751987281399046,
+    "rules": [
+      {
+        "id": "ca6e93fd",
+        "name": "Courts",
+        "description": "Matches court names including 'Landesgerichts' with complex location suffixes like 'an der Donau' or 'St. P\u00f6lten', and handles genitive forms.",
+        "format": "regex",
+        "content": "\\b(?:Verwaltungsgerichtshof(?:es)?|Bundesfinanzgericht(?:es)?|Bundesfinanzgerichts|B(?:undesfinanzgericht|FG)|Obersten\\s+Gerichtshof(?:es)?|Landesgericht(?:s)?\\s+(?:f\\u00fcr\\s+(?:Zivilrechtssachen|Strafsachen)?\\s+)?[A-Z][a-zA-Z]+(?:\\s+[A-Z][a-zA-Z]+)?(?:\\s+[A-Z][a-zA-Z]+)?(?:\\s+-\\s+[A-Z][a-zA-Z]+)?(?:\\s+an\\s+der\\s+Donau)?(?:\\s+St\\.\\sP\\u00f6lten)?|Gerichtshof\\sder\\sEurop\\u00e4ischen\\sUnion)(?:\\s*\\(\\s*BFG\\s*\\))?\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "03c11cff",
+        "name": "GenericFirma",
+        "description": "Matches 'Firma' followed by a capitalized name that doesn't end in GmbH/m.b.H. (catching incomplete mentions or specific cases).",
+        "format": "regex",
+        "content": "\\bFirma\\s+([A-Z][a-zA-Z0-9\\s]+?)(?=\\s*(?:in|mit|auf|der|die|das|ist|hat|ist|wurde|$))",
+        "priority": 5,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "b57de570",
+        "name": "TaxAuthorities",
+        "description": "Matches 'Finanzamt' (standalone or with genitive 'es') and specific location suffixes like 'Schwechat Gerasdorf' or '\u00d6sterreich'.",
+        "format": "regex",
+        "content": "\\bFinanzamt(?:es)?(?:\\s+(?:Schwechat\\s+Gerasdorf|\u00d6sterreich))?",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "fca60947",
+        "name": "CompanyGmbH",
+        "description": "Matches company names ending in GmbH, AG, KG, OG, & Co KG, ensuring the match starts at the name and ends at the suffix, avoiding context like 'an der' or 'Kommanditbeteiligung'.",
+        "format": "regex",
+        "content": "(?:^|\\s|\\(|,|\\.)\\s*([A-Z][a-zA-Z0-9\\s&+\\-]+(?:\\s+(?:GmbH|mbH|AG|Aktiengesellschaft|KG|OG|Partnerschaft|Rechtsanw\\u00e4lte(?:\\s+GmbH|\\s+OG|\\s+KG)?|Steuerberatungsgesellschaft|Wirtschaftspr\\u00fcfung|Consulting|Management|Service|Technik|International)))(?:\\s*&\\s*Co\\s*KG|\\s*\\(|\\s*$|\\s+[,\\.\\s]|\\s+\\))",
+        "priority": 12,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "3eb2075a",
+        "name": "MinistryAbbreviations",
+        "description": "Matches Bundesministeriums f\u00fcr Finanzen and its abbreviations BMF, BM f\u00fcr Finanzen.",
+        "format": "regex",
+        "content": "\\b(?:Bundesministeriums\\sf\u00fcr\\sFinanzen|BMF|BM\\sf\u00fcr\\sFinanzen)\\b",
+        "priority": 7,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "0bce244b",
+        "name": "MunicipalBodies",
+        "description": "Matches 'Magistrat der Stadt Wien' and 'Magistrates der Stadt Wien' variations, handling plural forms, extra spaces, and optional department suffixes.",
+        "format": "regex",
+        "content": "\\b(?:Magistrat(?:es)?(?:\\s+der\\s+Stadt\\s+Wien(?:,\\s+Magistratsabteilung\\s+\\d+)?|der\\s+Stadt\\s+Wien)|Magistrates\\s+der\\s+Stadt\\s+Wien(?:,\\s+Magistratsabteilung\\s+\\d+)?)\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "3856d842",
+        "name": "KAG",
+        "description": "Matches the specific abbreviation KAG which appears frequently in the text as an organization.",
+        "format": "regex",
+        "content": "\\bKAG\\b",
+        "priority": 5,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "5d06e25b",
+        "name": "BFH",
+        "description": "Matches the German Federal Fiscal Court abbreviation BFH.",
+        "format": "regex",
+        "content": "\\bBFH\\b",
+        "priority": 5,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "7652b5fe",
+        "name": "PoliceAuthorities",
+        "description": "Matches 'Landespolizeidirektion' and similar police authority names, strictly bounded to prevent capturing trailing words.",
+        "format": "regex",
+        "content": "\\bLandespolizeidirektion(?:\\s+(?:Wien))?\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "8df62c8b",
+        "name": "AMS",
+        "description": "Matches the abbreviation AMS (Arbeitsmarktservice) as an organization.",
+        "format": "regex",
+        "content": "\\bAMS\\b",
+        "priority": 7,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "ff333e7c",
+        "name": "Verfassungsgerichtshof",
+        "description": "Matches the Constitutional Court (Verfassungsgerichtshof) and its genitive form.",
+        "format": "regex",
+        "content": "\\bVerfassungsgerichtshof(?:es)?\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "e3c4aa61",
+        "name": "Landesgericht",
+        "description": "Matches Land Courts (Landesgericht) and its genitive form.",
+        "format": "regex",
+        "content": "\\bLandesgericht(?:es)?\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "8e381a0a",
+        "name": "\u00d6GK",
+        "description": "Matches the specific abbreviation \u00d6GK (\u00d6sterreichische Gesundheitskasse) as an organization.",
+        "format": "regex",
+        "content": "\\b\u00d6GK\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "b23075c0",
+        "name": "TaxAuthorityFA",
+        "description": "Matches 'FA' followed by a location, ensuring the match stops before common prepositions or end of sentence to avoid capturing 'vom' or other trailing words.",
+        "format": "regex",
+        "content": "\\bFA\\s+([A-Z][a-zA-Z\\s]+?)(?=\\s+(?:vom|am|des|der|in|an|bei|mit|nach|vor|\u00fcber|unter|auf|zu|von|f\u00fcr|gegen|ohne|durch|seit|bis|um|an|bei|mit|nach|vor|\u00fcber|unter|auf|zu|von|f\u00fcr|gegen|ohne|durch|seit|bis|um|\\.|,|\\)|\\]|\\s*$))",
+        "priority": 15,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "67e7c8f3",
+        "name": "UniversityWien",
+        "description": "Matches 'Universit\u00e4t Wien' which was previously missing.",
+        "format": "regex",
+        "content": "\\bUniversit\\u00e4t\\sWien\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "393052ea",
+        "name": "MinistryBMI",
+        "description": "Matches 'BMI' (Bundesministerium f\u00fcr Inneres) as an organization.",
+        "format": "regex",
+        "content": "\\bBMI\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "87469955",
+        "name": "Pensionsversicherungsanstalt",
+        "description": "Matches the specific organization 'Pensionsversicherungsanstalt' which was missing.",
+        "format": "regex",
+        "content": "\\bPensionsversicherungsanstalt\\b",
+        "priority": 5,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "99ac9790",
+        "name": "SKTelecom",
+        "description": "Matches 'SK Telecom' variations which appear frequently in legal texts regarding EU court cases.",
+        "format": "regex",
+        "content": "\\bSK\\s+Telecom(?:\\s+Co\\.?\\s+Ltd)?\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "965ee445",
+        "name": "WienerGemeinderat",
+        "description": "Matches 'Wiener Gemeinderat' and 'Wiener Gemeinderates' variations.",
+        "format": "regex",
+        "content": "\\bWiener\\s+Gemeinderat(?:es)?\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "c51d21bb",
+        "name": "BundesamtSoziales",
+        "description": "Matches 'Bundesamt f\u00fcr Soziales und Behindertenwesen'.",
+        "format": "regex",
+        "content": "\\bBundesamt\\s+f\u00fcr\\s+Soziales\\s+und\\s+Behindertenwesen\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "8d797d70",
+        "name": "PostAG",
+        "description": "Matches 'Post AG' specifically to capture this common organization which was previously missed.",
+        "format": "regex",
+        "content": "\\bPost\\s+AG\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "7085fcac",
+        "name": "COFAG",
+        "description": "Matches the specific organization COFAG (Corona-Fonds-Ausgleichsgesellschaft) which was frequently missed or incorrectly matched as part of 'COFAG-NoAG'.",
+        "format": "regex",
+        "content": "\\bCOFAG\\b",
+        "priority": 15,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "6d26651f",
+        "name": "BHAG",
+        "description": "Matches the specific organization BHAG (Bundeshaushaltsagentur) which was missed.",
+        "format": "regex",
+        "content": "\\bBHAG\\b",
+        "priority": 15,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "2157c7db",
+        "name": "OGH",
+        "description": "Matches the abbreviation OGH (Oberster Gerichtshof) which was frequently missed.",
+        "format": "regex",
+        "content": "\\bOGH\\b",
+        "priority": 15,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "0dd1c9bb",
+        "name": "ObersteGerichtshof",
+        "description": "Matches 'Oberste Gerichtshof', 'Obersten Gerichtshof', and the genitive 'Obersten Gerichtshofs'.",
+        "format": "regex",
+        "content": "\\bOberste\\s+Gerichtshof\\b|\\bObersten\\s+Gerichtshof(?:es)?\\b|\\bObersten\\s+Gerichtshofs\\b",
+        "priority": 15,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "1d05c994",
+        "name": "BezirksGericht",
+        "description": "Matches 'Bezirksgericht' and its genitive form 'Bezirksgerichts' with location suffixes including hyphenated names and multi-word locations like 'Graz-West' or 'Zell am See'.",
+        "format": "regex",
+        "content": "\\bBezirksgericht(?:s)?\\s+(?:[A-Z][a-zA-Z]+(?:\\s+[A-Z][a-zA-Z]+)?(?:\\s+-\\s+[A-Z][a-zA-Z]+)?|Graz-Ost|Graz-West|Hernals|D\\u00f6bling|Favoriten|Ferlach|Korneuburg|Chisinau|Innere\\s+Stadt\\s+Wien|Salzburg|Bregenz|Hall\\s+in\\s+Tirol|Kitzb\\u00fchel|Wels|St\\.\\sP\\u00f6lten|Eisenstadt|Klagenfurt|Linz|Graz|Wien|Steyr|Feldkirch|Krems\\s+an\\s+der\\s+Donau|Wiener\\s+Neustadt|Zell\\s+am\\s+See|Bruck\\s+an\\s+der\\s+Mur|Innere\\s+Stadt)\\b",
+        "priority": 15,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "8adf3e88",
+        "name": "Oberlandesgericht",
+        "description": "Matches 'Oberlandesgericht' and its genitive form 'Oberlandesgerichts' with location suffixes.",
+        "format": "regex",
+        "content": "\\bOberlandesgericht(?:s)?\\s+(?:Wien|Graz|Innsbruck|Klagenfurt|Linz|Salzburg|Bregenz|Eisenstadt|St.\\sP\u00f6lten)\\b",
+        "priority": 15,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "c0420946",
+        "name": "Handelsgericht",
+        "description": "Matches 'Handelsgericht' and its genitive form 'Handelsgerichts' with location suffixes.",
+        "format": "regex",
+        "content": "\\bHandelsgericht(?:s)?\\s+(?:Wien|Graz|Linz|Salzburg|Innsbruck|Klagenfurt|Bregenz|Eisenstadt|St.\\sP\u00f6lten)\\b",
+        "priority": 15,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "92cfdcf2",
+        "name": "VwGH",
+        "description": "Matches the abbreviation 'VwGH' (Verwaltungsgerichtshof) which was frequently missed.",
+        "format": "regex",
+        "content": "\\bVwGH\\b",
+        "priority": 15,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "bfed1f74",
+        "name": "LawFirmOG",
+        "description": "Matches law firm names ending in 'Rechtsanw\u00e4lte OG' or 'Rechtsanw\u00e4lte-Partnerschaft' which were previously missed.",
+        "format": "regex",
+        "content": "\\b[A-Z][a-zA-Z]+(?:\\s+[A-Z][a-zA-Z]+)*\\s+Rechtsanw\\u00e4lte\\s+(?:OG|Partnerschaft)\\b",
+        "priority": 14,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "8e6374a6",
+        "name": "LawFirmGmbH",
+        "description": "Matches law firm names ending in 'Rechtsanw\u00e4lte GmbH' or 'Rechtsanw\u00e4lte GmbH & Co KG'.",
+        "format": "regex",
+        "content": "\\b[A-Z][a-zA-Z]+(?:\\s+[A-Z][a-zA-Z]+)*\\s+Rechtsanw\\u00e4lte\\s+GmbH(?:\\s*&\\s*Co\\s*KG)?\\b",
+        "priority": 14,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "12aa6f89",
+        "name": "LandesgerichtComplex",
+        "description": "Matches 'Landesgericht' with complex location suffixes like 'f\u00fcr Zivilrechtssachen Graz' or 'St. P\u00f6lten' which were previously truncated.",
+        "format": "regex",
+        "content": "\\bLandesgericht(?:s)?\\s+(?:f\\u00fcr\\s+(?:Zivilrechtssachen|Strafsachen)?\\s+)?[A-Z][a-zA-Z]+(?:\\s+[A-Z][a-zA-Z]+)?(?:\\s+[A-Z][a-zA-Z]+)?(?:\\s+-\\s+[A-Z][a-zA-Z]+)?(?:\\s+an\\s+der\\s+Donau)?(?:\\s+St\\.\\sP\\u00f6lten)?\\b",
+        "priority": 15,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      }
+    ]
+  }
+}
