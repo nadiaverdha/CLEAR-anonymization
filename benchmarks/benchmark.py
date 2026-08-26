@@ -45,6 +45,7 @@ def _synthesis_step(args, phase, start_batch=0):
         phase=phase,
         synthesis_strategy=args.synthesis_strategy,
         seed=args.seed,
+        prune_with_refine=args.prune_with_refine,
     )
 
 
@@ -73,7 +74,7 @@ def _run_phase(
         md_path = output_path.with_suffix(".rules_report.md")
         create_md_report(
             md_path,
-            chef=ctx.learner,
+            apply_rules_fn=ctx.learner.learner._apply_rules,
             run=run,
             test_dataset=ctx.dev_dataset,
             results_folder=output_dir,
@@ -163,6 +164,7 @@ def run_benchmark(args):
                 best_rules=deserialize_rules(cp["best_rules"]),
                 best_batch_idx=cp.get("best_batch_idx", -1),
                 t_learn=cp.get("t_learn", 0.0),
+                rules_snapshot=cp.get("rules_snapshot", []),
             )
             print(
                 f"  Restored best rules (batch {ctx.best_batch_idx}, F1={ctx.best_f1:.3f})"
@@ -259,6 +261,7 @@ def run_benchmark(args):
                 batch_metrics=cp.get("batch_metrics", []),
                 iteration_metrics=cp.get("iteration_metrics", []),
                 t_learn=cp.get("t_learn", 0.0),
+                rules_snapshot=cp.get("rules_snapshot", []),
             )
 
             print(
@@ -386,7 +389,7 @@ def main():
     parser.add_argument("--model", type=str, default="google/gemma-3-27b-it")
     parser.add_argument("--base-url", type=str, default="http://localhost:8000/v1")
     parser.add_argument(
-        "--format", type=str, default="regex", choices=["regex", "code", "both"]
+        "--format", type=str, default="regex", choices=["regex", "code", "spacy"]
     )
     parser.add_argument("--max-rules", type=int, default=10)
     parser.add_argument("--max-samples", type=int, default=50)
@@ -400,6 +403,11 @@ def main():
     parser.add_argument("--agentic", action="store_true")
     parser.add_argument("--enable-prune", action="store_true")
     parser.add_argument("--audit-interval", type=int, default=0)
+    parser.add_argument(
+        "--prune-with-refine",
+        action="store_true",
+        help=("Only run the per-batch prune audit (enable-prune) on batches "),
+    )
     parser.add_argument("--enable-critic", action="store_true")
     parser.add_argument("--critic-interval", type=int, default=0)
     parser.add_argument("--no-grex", action="store_true")

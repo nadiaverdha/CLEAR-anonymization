@@ -31,6 +31,7 @@ class StepContext:
     t_learn: float = 0.0
     t_eval: float = 0.0
     eval_results: Any = None
+    rules_snapshot: list = field(default_factory=list)
     history: list = field(default_factory=list)
     checkpoint_path: Path | None = None
 
@@ -63,6 +64,7 @@ class SynthesisStep(Step):
         phase,
         synthesis_strategy,
         seed=42,
+        prune_with_refine=False,
     ):
         self.batch_size = batch_size
         self.refine_per_batch = refine_per_batch
@@ -72,6 +74,7 @@ class SynthesisStep(Step):
         self.phase = phase
         self.seed = seed
         self.synthesis_strategy = synthesis_strategy
+        self.prune_with_refine = prune_with_refine
 
     def run(self, ctx: StepContext) -> StepContext:
         if self.synthesis_strategy != "bulk":
@@ -81,7 +84,7 @@ class SynthesisStep(Step):
             train_for_chef = ctx.split.train
         batch_metrics = list(ctx.batch_metrics)  # copy to avoid mutating context
         iteration_metrics = list(ctx.iteration_metrics)
-        rules_snapshot = []
+        rules_snapshot = list(ctx.rules_snapshot)
         on_iteration = make_oniteration_callback(iteration_metrics)
         best = {
             "f1": ctx.best_f1,
@@ -133,6 +136,7 @@ class SynthesisStep(Step):
             audit_interval=self.audit_interval,
             seed_rules=ctx.rules or None,
             start_batch=self.start_batch,
+            prune_with_refine=self.prune_with_refine,
         )
         if fit_result is None:
             return replace(
@@ -142,6 +146,7 @@ class SynthesisStep(Step):
                 best_f1=best["f1"],
                 best_rules=best["rules"],
                 best_batch_idx=best["batch_idx"],
+                rules_snapshot=rules_snapshot,
             )
 
         rules, new_t_learn = fit_result
@@ -170,6 +175,7 @@ class SynthesisStep(Step):
             best_batch_idx=best["batch_idx"],
             t_learn=ctx.t_learn + new_t_learn,
             history=ctx.history + [history_entry],
+            rules_snapshot=rules_snapshot,
         )
 
 
@@ -269,6 +275,7 @@ def build_context(
         sampling_strategy=args.sampling_strategy,
         synthesis_strategy=args.synthesis_strategy,
         selected_classes=list(split.selected_classes),
+        rule_format=args.format,
     )
     eval_dataset = make_dataset(f"{split.name}_eval", split.eval, learner.task)
     dev_dataset = make_dataset(f"{split.name}_dev", split.dev, learner.task)

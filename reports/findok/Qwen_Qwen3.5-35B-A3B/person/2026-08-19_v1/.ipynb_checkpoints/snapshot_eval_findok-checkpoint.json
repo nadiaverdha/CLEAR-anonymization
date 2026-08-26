@@ -1,0 +1,2966 @@
+[
+  {
+    "source_dataset": "findok",
+    "batch": 0,
+    "num_rules": 6,
+    "t_eval": 9.614,
+    "exact_match": 0.9840881134822205,
+    "micro_f1": 0.41295360587965085,
+    "micro_precision": 0.4579724910850739,
+    "micro_recall": 0.37599330823923044,
+    "macro_f1": 0.41295360587965085,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.41295360587965085,
+        "precision": 0.4579724910850739,
+        "recall": 0.37599330823923044
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 1,
+    "num_rules": 5,
+    "t_eval": 31.476,
+    "exact_match": 0.051369437892859963,
+    "micro_f1": 0.0009665604015464966,
+    "micro_precision": 0.00048524762100968965,
+    "micro_recall": 0.1191969887076537,
+    "macro_f1": 0.0009665604015464966,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.0009665604015464966,
+        "precision": 0.00048524762100968965,
+        "recall": 0.1191969887076537
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 2,
+    "num_rules": 4,
+    "t_eval": 8.338,
+    "exact_match": 0.5026576235992462,
+    "micro_f1": 0.00339369145301132,
+    "micro_precision": 0.0017453467382338526,
+    "micro_recall": 0.06106231702216646,
+    "macro_f1": 0.00339369145301132,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.00339369145301132,
+        "precision": 0.0017453467382338526,
+        "recall": 0.06106231702216646
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 3,
+    "num_rules": 6,
+    "t_eval": 9.033,
+    "exact_match": 0.9436651507115209,
+    "micro_f1": 0.11824210408002696,
+    "micro_precision": 0.08084844758684291,
+    "micro_recall": 0.21999163529903806,
+    "macro_f1": 0.11824210408002696,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.11824210408002696,
+        "precision": 0.08084844758684291,
+        "recall": 0.21999163529903806
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 4,
+    "num_rules": 6,
+    "t_eval": 8.89,
+    "exact_match": 0.9417128412309707,
+    "micro_f1": 0.11535514939257963,
+    "micro_precision": 0.07812036762525941,
+    "micro_recall": 0.22040987034713508,
+    "macro_f1": 0.11535514939257963,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.11535514939257963,
+        "precision": 0.07812036762525941,
+        "recall": 0.22040987034713508
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 5,
+    "num_rules": 6,
+    "t_eval": 9.391,
+    "exact_match": 0.97692212203627,
+    "micro_f1": 0.18320278503046128,
+    "micro_precision": 0.1909297052154195,
+    "micro_recall": 0.17607695524884986,
+    "macro_f1": 0.18320278503046128,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.18320278503046128,
+        "precision": 0.1909297052154195,
+        "recall": 0.17607695524884986
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 6,
+    "num_rules": 7,
+    "t_eval": 30.741,
+    "exact_match": 0.0758579440939817,
+    "micro_f1": 0.0006729949055850751,
+    "micro_precision": 0.00033807888638387283,
+    "micro_recall": 0.07193642827268926,
+    "macro_f1": 0.0006729949055850751,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.0006729949055850751,
+        "precision": 0.00033807888638387283,
+        "recall": 0.07193642827268926
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 7,
+    "num_rules": 6,
+    "t_eval": 9.533,
+    "exact_match": 0.9760418900161376,
+    "micro_f1": 0.19394452678382387,
+    "micro_precision": 0.19639794168096056,
+    "micro_recall": 0.19155165202844,
+    "macro_f1": 0.19394452678382387,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.19394452678382387,
+        "precision": 0.19639794168096056,
+        "recall": 0.19155165202844
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 8,
+    "num_rules": 6,
+    "t_eval": 9.661,
+    "exact_match": 0.9833658718246758,
+    "micro_f1": 0.28961879645169025,
+    "micro_precision": 0.3393258426966292,
+    "micro_recall": 0.25261396905060646,
+    "macro_f1": 0.28961879645169025,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.28961879645169025,
+        "precision": 0.3393258426966292,
+        "recall": 0.25261396905060646
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 9,
+    "num_rules": 7,
+    "t_eval": 14.642,
+    "exact_match": 0.5019240969158024,
+    "micro_f1": 0.003721956094703105,
+    "micro_precision": 0.001913536498936924,
+    "micro_recall": 0.06775407779171895,
+    "macro_f1": 0.003721956094703105,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.003721956094703105,
+        "precision": 0.001913536498936924,
+        "recall": 0.06775407779171895
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 10,
+    "num_rules": 6,
+    "t_eval": 32.466,
+    "exact_match": 0.051369437892859963,
+    "micro_f1": 0.0014060192459421003,
+    "micro_precision": 0.0007058548714988668,
+    "micro_recall": 0.17440401505646172,
+    "macro_f1": 0.0014060192459421003,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.0014060192459421003,
+        "precision": 0.0007058548714988668,
+        "recall": 0.17440401505646172
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 11,
+    "num_rules": 7,
+    "t_eval": 15.753,
+    "exact_match": 0.5017661065532145,
+    "micro_f1": 0.003674697411635011,
+    "micro_precision": 0.0018892208144903235,
+    "micro_recall": 0.06691760769552489,
+    "macro_f1": 0.003674697411635011,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.003674697411635011,
+        "precision": 0.0018892208144903235,
+        "recall": 0.06691760769552489
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 12,
+    "num_rules": 7,
+    "t_eval": 15.761,
+    "exact_match": 0.5017999616309119,
+    "micro_f1": 0.006138283809414334,
+    "micro_precision": 0.0031558791546498982,
+    "micro_recall": 0.11166875784190715,
+    "macro_f1": 0.006138283809414334,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.006138283809414334,
+        "precision": 0.0031558791546498982,
+        "recall": 0.11166875784190715
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 13,
+    "num_rules": 8,
+    "t_eval": 17.908,
+    "exact_match": 0.5013372755690474,
+    "micro_f1": 0.004662058195347128,
+    "micro_precision": 0.0023968357045870475,
+    "micro_recall": 0.08490171476369719,
+    "macro_f1": 0.004662058195347128,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.004662058195347128,
+        "precision": 0.0023968357045870475,
+        "recall": 0.08490171476369719
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 14,
+    "num_rules": 7,
+    "t_eval": 15.587,
+    "exact_match": 0.50130342049135,
+    "micro_f1": 0.002201557143020949,
+    "micro_precision": 0.0011318085357227069,
+    "micro_recall": 0.04015056461731493,
+    "macro_f1": 0.002201557143020949,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.002201557143020949,
+        "precision": 0.0011318085357227069,
+        "recall": 0.04015056461731493
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 15,
+    "num_rules": 7,
+    "t_eval": 12.039,
+    "exact_match": 0.8769142225181407,
+    "micro_f1": 0.08089616313388785,
+    "micro_precision": 0.04817448270352321,
+    "micro_recall": 0.2521957340025094,
+    "macro_f1": 0.08089616313388785,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.08089616313388785,
+        "precision": 0.04817448270352321,
+        "recall": 0.2521957340025094
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 16,
+    "num_rules": 10,
+    "t_eval": 22.154,
+    "exact_match": 0.36561226908015754,
+    "micro_f1": 0.003610653694499418,
+    "micro_precision": 0.0018385322512404322,
+    "micro_recall": 0.0999581764951903,
+    "macro_f1": 0.003610653694499418,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.003610653694499418,
+        "precision": 0.0018385322512404322,
+        "recall": 0.0999581764951903
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 17,
+    "num_rules": 11,
+    "t_eval": 23.136,
+    "exact_match": 0.3394535790459639,
+    "micro_f1": 0.0037200066192288597,
+    "micro_precision": 0.001889914180409459,
+    "micro_recall": 0.11752404851526559,
+    "macro_f1": 0.0037200066192288597,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.0037200066192288597,
+        "precision": 0.001889914180409459,
+        "recall": 0.11752404851526559
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 18,
+    "num_rules": 11,
+    "t_eval": 23.874,
+    "exact_match": 0.33946486407186305,
+    "micro_f1": 0.0037200558670311707,
+    "micro_precision": 0.00188993960264188,
+    "micro_recall": 0.11752404851526559,
+    "macro_f1": 0.0037200558670311707,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.0037200558670311707,
+        "precision": 0.00188993960264188,
+        "recall": 0.11752404851526559
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 19,
+    "num_rules": 12,
+    "t_eval": 22.132,
+    "exact_match": 0.539582228341214,
+    "micro_f1": 0.009615011824913738,
+    "micro_precision": 0.00496079372699632,
+    "micro_recall": 0.15558343789209536,
+    "macro_f1": 0.009615011824913738,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.009615011824913738,
+        "precision": 0.00496079372699632,
+        "recall": 0.15558343789209536
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 20,
+    "num_rules": 13,
+    "t_eval": 22.976,
+    "exact_match": 0.6176181824337287,
+    "micro_f1": 0.021936368401951695,
+    "micro_precision": 0.011523714703327897,
+    "micro_recall": 0.22751986616478462,
+    "macro_f1": 0.021936368401951695,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.021936368401951695,
+        "precision": 0.011523714703327897,
+        "recall": 0.22751986616478462
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 21,
+    "num_rules": 13,
+    "t_eval": 22.224,
+    "exact_match": 0.8604719397831018,
+    "micro_f1": 0.07564262257954932,
+    "micro_precision": 0.04374304236788684,
+    "micro_recall": 0.2793810121288164,
+    "macro_f1": 0.07564262257954932,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.07564262257954932,
+        "precision": 0.04374304236788684,
+        "recall": 0.2793810121288164
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 22,
+    "num_rules": 12,
+    "t_eval": 20.921,
+    "exact_match": 0.8600205387471365,
+    "micro_f1": 0.05515385908861611,
+    "micro_precision": 0.031844660194174756,
+    "micro_recall": 0.205771643663739,
+    "macro_f1": 0.05515385908861611,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.05515385908861611,
+        "precision": 0.031844660194174756,
+        "recall": 0.205771643663739
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 23,
+    "num_rules": 10,
+    "t_eval": 22.689,
+    "exact_match": 0.4103573967702256,
+    "micro_f1": 0.004432032556491939,
+    "micro_precision": 0.0022605421939864536,
+    "micro_recall": 0.11250522793810121,
+    "macro_f1": 0.004432032556491939,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.004432032556491939,
+        "precision": 0.0022605421939864536,
+        "recall": 0.11250522793810121
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 24,
+    "num_rules": 10,
+    "t_eval": 24.02,
+    "exact_match": 0.41034611174432645,
+    "micro_f1": 0.004138670184261512,
+    "micro_precision": 0.0021109466460337754,
+    "micro_recall": 0.10497699707235467,
+    "macro_f1": 0.004138670184261512,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.004138670184261512,
+        "precision": 0.0021109466460337754,
+        "recall": 0.10497699707235467
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 25,
+    "num_rules": 10,
+    "t_eval": 25.296,
+    "exact_match": 0.4142620157313261,
+    "micro_f1": 0.004383983401101016,
+    "micro_precision": 0.0022367353907884065,
+    "micro_recall": 0.109577582601422,
+    "macro_f1": 0.004383983401101016,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.004383983401101016,
+        "precision": 0.0022367353907884065,
+        "recall": 0.109577582601422
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 26,
+    "num_rules": 9,
+    "t_eval": 25.105,
+    "exact_match": 0.4151535327773577,
+    "micro_f1": 0.004418622300550642,
+    "micro_precision": 0.0022547720270572644,
+    "micro_recall": 0.109577582601422,
+    "macro_f1": 0.004418622300550642,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.004418622300550642,
+        "precision": 0.0022547720270572644,
+        "recall": 0.109577582601422
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 27,
+    "num_rules": 8,
+    "t_eval": 23.004,
+    "exact_match": 0.415176102829156,
+    "micro_f1": 0.004790823211875844,
+    "micro_precision": 0.0024447141664299425,
+    "micro_recall": 0.11877875365955667,
+    "macro_f1": 0.004790823211875844,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.004790823211875844,
+        "precision": 0.0024447141664299425,
+        "recall": 0.11877875365955667
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 28,
+    "num_rules": 8,
+    "t_eval": 21.559,
+    "exact_match": 0.41516481780325687,
+    "micro_f1": 0.004825538233110617,
+    "micro_precision": 0.0024624391923888244,
+    "micro_recall": 0.11961522375575073,
+    "macro_f1": 0.004825538233110617,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.004825538233110617,
+        "precision": 0.0024624391923888244,
+        "recall": 0.11961522375575073
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 29,
+    "num_rules": 7,
+    "t_eval": 11.612,
+    "exact_match": 0.96936115468385,
+    "micro_f1": 0.21076417419884963,
+    "micro_precision": 0.20710536939846588,
+    "micro_recall": 0.21455457967377667,
+    "macro_f1": 0.21076417419884963,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.21076417419884963,
+        "precision": 0.20710536939846588,
+        "recall": 0.21455457967377667
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 30,
+    "num_rules": 8,
+    "t_eval": 14.941,
+    "exact_match": 0.7252998995632695,
+    "micro_f1": 0.02975539568345324,
+    "micro_precision": 0.015977007942149016,
+    "micro_recall": 0.21622751986616479,
+    "macro_f1": 0.02975539568345324,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.02975539568345324,
+        "precision": 0.015977007942149016,
+        "recall": 0.21622751986616479
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 31,
+    "num_rules": 10,
+    "t_eval": 21.741,
+    "exact_match": 0.3738841930642231,
+    "micro_f1": 0.0019759565605709725,
+    "micro_precision": 0.0010070087811165714,
+    "micro_recall": 0.05227938101212882,
+    "macro_f1": 0.0019759565605709725,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.0019759565605709725,
+        "precision": 0.0010070087811165714,
+        "recall": 0.05227938101212882
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 32,
+    "num_rules": 11,
+    "t_eval": 26.781,
+    "exact_match": 0.7797727195783914,
+    "micro_f1": 0.0028025923979681207,
+    "micro_precision": 0.0015651748593788213,
+    "micro_recall": 0.013383521539104977,
+    "macro_f1": 0.0028025923979681207,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.0028025923979681207,
+        "precision": 0.0015651748593788213,
+        "recall": 0.013383521539104977
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 33,
+    "num_rules": 11,
+    "t_eval": 26.5,
+    "exact_match": 0.7803595409251465,
+    "micro_f1": 0.0393238745839902,
+    "micro_precision": 0.021961359745659086,
+    "micro_recall": 0.1877875365955667,
+    "macro_f1": 0.0393238745839902,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.0393238745839902,
+        "precision": 0.021961359745659086,
+        "recall": 0.1877875365955667
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 34,
+    "num_rules": 12,
+    "t_eval": 30.104,
+    "exact_match": 0.8157832372225294,
+    "micro_f1": 0.012715712988192553,
+    "micro_precision": 0.007230160096402135,
+    "micro_recall": 0.05269761606022585,
+    "macro_f1": 0.012715712988192553,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.012715712988192553,
+        "precision": 0.007230160096402135,
+        "recall": 0.05269761606022585
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 35,
+    "num_rules": 12,
+    "t_eval": 30.957,
+    "exact_match": 0.8164716238023766,
+    "micro_f1": 0.05903723887375113,
+    "micro_precision": 0.03356860044758134,
+    "micro_recall": 0.24466750313676286,
+    "macro_f1": 0.05903723887375113,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.05903723887375113,
+        "precision": 0.03356860044758134,
+        "recall": 0.24466750313676286
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 36,
+    "num_rules": 12,
+    "t_eval": 27.826,
+    "exact_match": 0.8164151986728809,
+    "micro_f1": 0.059138157230800285,
+    "micro_precision": 0.033625982670568655,
+    "micro_recall": 0.2450857381848599,
+    "macro_f1": 0.059138157230800285,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.059138157230800285,
+        "precision": 0.033625982670568655,
+        "recall": 0.2450857381848599
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 37,
+    "num_rules": 12,
+    "t_eval": 32.578,
+    "exact_match": 0.8166634692426619,
+    "micro_f1": 0.04165826104498688,
+    "micro_precision": 0.023685266961059815,
+    "micro_recall": 0.1727310748640736,
+    "macro_f1": 0.04165826104498688,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.04165826104498688,
+        "precision": 0.023685266961059815,
+        "recall": 0.1727310748640736
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 38,
+    "num_rules": 11,
+    "t_eval": 27.859,
+    "exact_match": 0.9730175030751695,
+    "micro_f1": 0.1521377012770683,
+    "micro_precision": 0.13645418326693226,
+    "micro_recall": 0.17189460476787954,
+    "macro_f1": 0.1521377012770683,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.1521377012770683,
+        "precision": 0.13645418326693226,
+        "recall": 0.17189460476787954
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 39,
+    "num_rules": 8,
+    "t_eval": 19.998,
+    "exact_match": 0.9086928554501033,
+    "micro_f1": 0.07796230961190947,
+    "micro_precision": 0.049079089924160345,
+    "micro_recall": 0.18946047678795483,
+    "macro_f1": 0.07796230961190947,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.07796230961190947,
+        "precision": 0.049079089924160345,
+        "recall": 0.18946047678795483
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 40,
+    "num_rules": 7,
+    "t_eval": 15.302,
+    "exact_match": 0.9824179296491485,
+    "micro_f1": 0.24977538185085352,
+    "micro_precision": 0.439873417721519,
+    "micro_recall": 0.17440401505646172,
+    "macro_f1": 0.24977538185085352,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.24977538185085352,
+        "precision": 0.439873417721519,
+        "recall": 0.17440401505646172
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 41,
+    "num_rules": 10,
+    "t_eval": 31.439,
+    "exact_match": 0.13780145125433063,
+    "micro_f1": 0.007239648090149357,
+    "micro_precision": 0.003689237851580357,
+    "micro_recall": 0.19238812212463405,
+    "macro_f1": 0.007239648090149357,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.007239648090149357,
+        "precision": 0.003689237851580357,
+        "recall": 0.19238812212463405
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 42,
+    "num_rules": 11,
+    "t_eval": 29.865,
+    "exact_match": 0.5340638506765373,
+    "micro_f1": 0.002104581512060871,
+    "micro_precision": 0.0010946630963808753,
+    "micro_recall": 0.027185278126306986,
+    "macro_f1": 0.002104581512060871,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.002104581512060871,
+        "precision": 0.0010946630963808753,
+        "recall": 0.027185278126306986
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 43,
+    "num_rules": 11,
+    "t_eval": 28.654,
+    "exact_match": 0.5340638506765373,
+    "micro_f1": 0.01490896154716859,
+    "micro_precision": 0.0077542850414627175,
+    "micro_recall": 0.19280635717273106,
+    "macro_f1": 0.01490896154716859,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.01490896154716859,
+        "precision": 0.0077542850414627175,
+        "recall": 0.19280635717273106
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 44,
+    "num_rules": 12,
+    "t_eval": 27.55,
+    "exact_match": 0.667509281933802,
+    "micro_f1": 0.025688275255095025,
+    "micro_precision": 0.01374823363165332,
+    "micro_recall": 0.19531576746131327,
+    "macro_f1": 0.025688275255095025,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.025688275255095025,
+        "precision": 0.01374823363165332,
+        "recall": 0.19531576746131327
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 45,
+    "num_rules": 13,
+    "t_eval": 34.758,
+    "exact_match": 0.6674302867525082,
+    "micro_f1": 0.02573144525869194,
+    "micro_precision": 0.013772967233904504,
+    "micro_recall": 0.19531576746131327,
+    "macro_f1": 0.02573144525869194,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.02573144525869194,
+        "precision": 0.013772967233904504,
+        "recall": 0.19531576746131327
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 46,
+    "num_rules": 14,
+    "t_eval": 36.316,
+    "exact_match": 0.6673964316748107,
+    "micro_f1": 0.025269195389859854,
+    "micro_precision": 0.013508431922709785,
+    "micro_recall": 0.19531576746131327,
+    "macro_f1": 0.025269195389859854,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.025269195389859854,
+        "precision": 0.013508431922709785,
+        "recall": 0.19531576746131327
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 47,
+    "num_rules": 14,
+    "t_eval": 34.532,
+    "exact_match": 0.7107196461015878,
+    "micro_f1": 0.031604374958062134,
+    "micro_precision": 0.01718037570672989,
+    "micro_recall": 0.19698870765370138,
+    "macro_f1": 0.031604374958062134,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.031604374958062134,
+        "precision": 0.01718037570672989,
+        "recall": 0.19698870765370138
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 48,
+    "num_rules": 15,
+    "t_eval": 73.634,
+    "exact_match": 0.051933689187816684,
+    "micro_f1": 0.000710941773523631,
+    "micro_precision": 0.00035694359251596715,
+    "micro_recall": 0.0861564199079883,
+    "macro_f1": 0.000710941773523631,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.000710941773523631,
+        "precision": 0.00035694359251596715,
+        "recall": 0.0861564199079883
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 49,
+    "num_rules": 16,
+    "t_eval": 74.282,
+    "exact_match": 0.05271235597485696,
+    "micro_f1": 0.0006842525418227436,
+    "micro_precision": 0.0003435675348060341,
+    "micro_recall": 0.08155583437892096,
+    "macro_f1": 0.0006842525418227436,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.0006842525418227436,
+        "precision": 0.0003435675348060341,
+        "recall": 0.08155583437892096
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 50,
+    "num_rules": 20,
+    "t_eval": 52.973,
+    "exact_match": 0.6224030334149617,
+    "micro_f1": 0.0037441635098229235,
+    "micro_precision": 0.0019761467463325043,
+    "micro_recall": 0.03554997908824759,
+    "macro_f1": 0.0037441635098229235,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.0037441635098229235,
+        "precision": 0.0019761467463325043,
+        "recall": 0.03554997908824759
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 51,
+    "num_rules": 19,
+    "t_eval": 48.088,
+    "exact_match": 0.6448828050060375,
+    "micro_f1": 0.02352770665249529,
+    "micro_precision": 0.012484938600763966,
+    "micro_recall": 0.20368046842325388,
+    "macro_f1": 0.02352770665249529,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.02352770665249529,
+        "precision": 0.012484938600763966,
+        "recall": 0.20368046842325388
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 52,
+    "num_rules": 20,
+    "t_eval": 51.237,
+    "exact_match": 0.6224030334149617,
+    "micro_f1": 0.003741691244442487,
+    "micro_precision": 0.0019747694166298816,
+    "micro_recall": 0.03554997908824759,
+    "macro_f1": 0.003741691244442487,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.003741691244442487,
+        "precision": 0.0019747694166298816,
+        "recall": 0.03554997908824759
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 53,
+    "num_rules": 20,
+    "t_eval": 50.436,
+    "exact_match": 0.6483360229311727,
+    "micro_f1": 0.02391725921137686,
+    "micro_precision": 0.012714440538182971,
+    "micro_recall": 0.20117105813467168,
+    "macro_f1": 0.02391725921137686,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.02391725921137686,
+        "precision": 0.012714440538182971,
+        "recall": 0.20117105813467168
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 54,
+    "num_rules": 21,
+    "t_eval": 56.957,
+    "exact_match": 0.45905228352499067,
+    "micro_f1": 0.01224319083408322,
+    "micro_precision": 0.006312900274473925,
+    "micro_recall": 0.20200752823086573,
+    "macro_f1": 0.01224319083408322,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.01224319083408322,
+        "precision": 0.006312900274473925,
+        "recall": 0.20200752823086573
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 55,
+    "num_rules": 24,
+    "t_eval": 59.75,
+    "exact_match": 0.6447135296175505,
+    "micro_f1": 0.024206193649549197,
+    "micro_precision": 0.012856213402732596,
+    "micro_recall": 0.20660811375993307,
+    "macro_f1": 0.024206193649549197,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.024206193649549197,
+        "precision": 0.012856213402732596,
+        "recall": 0.20660811375993307
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 56,
+    "num_rules": 24,
+    "t_eval": 60.702,
+    "exact_match": 0.6450182253168271,
+    "micro_f1": 0.026973910480027515,
+    "micro_precision": 0.014328591935273392,
+    "micro_recall": 0.22961104140526975,
+    "macro_f1": 0.026973910480027515,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.026973910480027515,
+        "precision": 0.014328591935273392,
+        "recall": 0.22961104140526975
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 57,
+    "num_rules": 24,
+    "t_eval": 60.486,
+    "exact_match": 0.7057768047577669,
+    "micro_f1": 0.03340619188986396,
+    "micro_precision": 0.018116198428985916,
+    "micro_recall": 0.21413634462567963,
+    "macro_f1": 0.03340619188986396,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.03340619188986396,
+        "precision": 0.018116198428985916,
+        "recall": 0.21413634462567963
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 58,
+    "num_rules": 24,
+    "t_eval": 58.211,
+    "exact_match": 0.7058445149131617,
+    "micro_f1": 0.03109452736318408,
+    "micro_precision": 0.016867298746493377,
+    "micro_recall": 0.1986616478460895,
+    "macro_f1": 0.03109452736318408,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.03109452736318408,
+        "precision": 0.016867298746493377,
+        "recall": 0.1986616478460895
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 59,
+    "num_rules": 26,
+    "t_eval": 64.168,
+    "exact_match": 0.7049642828930293,
+    "micro_f1": 0.031017854815587123,
+    "micro_precision": 0.016819193668068267,
+    "micro_recall": 0.19907988289418654,
+    "macro_f1": 0.031017854815587123,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.031017854815587123,
+        "precision": 0.016819193668068267,
+        "recall": 0.19907988289418654
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 60,
+    "num_rules": 26,
+    "t_eval": 65.501,
+    "exact_match": 0.7050432780743232,
+    "micro_f1": 0.03166845860619685,
+    "micro_precision": 0.017171931312274753,
+    "micro_recall": 0.20326223337515684,
+    "macro_f1": 0.03166845860619685,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.03166845860619685,
+        "precision": 0.017171931312274753,
+        "recall": 0.20326223337515684
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 61,
+    "num_rules": 27,
+    "t_eval": 72.963,
+    "exact_match": 0.7036552198887297,
+    "micro_f1": 0.0012969748062643884,
+    "micro_precision": 0.00070298769771529,
+    "micro_recall": 0.008364700961940611,
+    "macro_f1": 0.0012969748062643884,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.0012969748062643884,
+        "precision": 0.00070298769771529,
+        "recall": 0.008364700961940611
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 62,
+    "num_rules": 27,
+    "t_eval": 73.272,
+    "exact_match": 0.7036552198887297,
+    "micro_f1": 0.0012970168612191958,
+    "micro_precision": 0.0007030124081690042,
+    "micro_recall": 0.008364700961940611,
+    "macro_f1": 0.0012970168612191958,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.0012970168612191958,
+        "precision": 0.0007030124081690042,
+        "recall": 0.008364700961940611
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 63,
+    "num_rules": 27,
+    "t_eval": 72.848,
+    "exact_match": 0.7039260605103089,
+    "micro_f1": 0.00544517550967491,
+    "micro_precision": 0.002951303492375799,
+    "micro_recall": 0.03513174404015056,
+    "macro_f1": 0.00544517550967491,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.00544517550967491,
+        "precision": 0.002951303492375799,
+        "recall": 0.03513174404015056
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 64,
+    "num_rules": 27,
+    "t_eval": 68.834,
+    "exact_match": 0.9718664304334579,
+    "micro_f1": 0.1791271347248577,
+    "micro_precision": 0.16394581451893017,
+    "micro_recall": 0.1974069427017984,
+    "macro_f1": 0.1791271347248577,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.1791271347248577,
+        "precision": 0.16394581451893017,
+        "recall": 0.1974069427017984
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 65,
+    "num_rules": 28,
+    "t_eval": 69.946,
+    "exact_match": 0.9720357058219449,
+    "micro_f1": 0.18847969782813975,
+    "micro_precision": 0.17183195592286502,
+    "micro_recall": 0.20869928900041823,
+    "macro_f1": 0.18847969782813975,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.18847969782813975,
+        "precision": 0.17183195592286502,
+        "recall": 0.20869928900041823
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 66,
+    "num_rules": 28,
+    "t_eval": 74.19,
+    "exact_match": 0.4459503684560956,
+    "micro_f1": 0.002419782219600236,
+    "micro_precision": 0.001239525497346801,
+    "micro_recall": 0.050606440819740695,
+    "macro_f1": 0.002419782219600236,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.002419782219600236,
+        "precision": 0.001239525497346801,
+        "recall": 0.050606440819740695
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 67,
+    "num_rules": 28,
+    "t_eval": 68.948,
+    "exact_match": 0.9526706013790301,
+    "micro_f1": 0.03420659698656169,
+    "micro_precision": 0.02532154340836013,
+    "micro_recall": 0.05269761606022585,
+    "macro_f1": 0.03420659698656169,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.03420659698656169,
+        "precision": 0.02532154340836013,
+        "recall": 0.05269761606022585
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 68,
+    "num_rules": 28,
+    "t_eval": 68.329,
+    "exact_match": 0.9523884757315518,
+    "micro_f1": 0.022258414766558092,
+    "micro_precision": 0.016475788627687362,
+    "micro_recall": 0.034295273943956504,
+    "macro_f1": 0.022258414766558092,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.022258414766558092,
+        "precision": 0.016475788627687362,
+        "recall": 0.034295273943956504
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 69,
+    "num_rules": 28,
+    "t_eval": 73.184,
+    "exact_match": 0.9525238960423414,
+    "micro_f1": 0.028368794326241138,
+    "micro_precision": 0.021048370775146732,
+    "micro_recall": 0.043496445002091176,
+    "macro_f1": 0.028368794326241138,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.028368794326241138,
+        "precision": 0.021048370775146732,
+        "recall": 0.043496445002091176
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 70,
+    "num_rules": 28,
+    "t_eval": 78.918,
+    "exact_match": 0.19476826199316127,
+    "micro_f1": 0.002862779991489033,
+    "micro_precision": 0.001476927989781255,
+    "micro_recall": 0.04642409033877039,
+    "macro_f1": 0.002862779991489033,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.002862779991489033,
+        "precision": 0.001476927989781255,
+        "recall": 0.04642409033877039
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 71,
+    "num_rules": 28,
+    "t_eval": 73.545,
+    "exact_match": 0.19477954701906042,
+    "micro_f1": 0.0031201650335224342,
+    "micro_precision": 0.0016097061288563104,
+    "micro_recall": 0.050606440819740695,
+    "macro_f1": 0.0031201650335224342,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.0031201650335224342,
+        "precision": 0.0016097061288563104,
+        "recall": 0.050606440819740695
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 72,
+    "num_rules": 28,
+    "t_eval": 84.994,
+    "exact_match": 0.1398891810456705,
+    "micro_f1": 0.006834168489895782,
+    "micro_precision": 0.0034658219844067835,
+    "micro_recall": 0.24299456294437474,
+    "macro_f1": 0.006834168489895782,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.006834168489895782,
+        "precision": 0.0034658219844067835,
+        "recall": 0.24299456294437474
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 73,
+    "num_rules": 28,
+    "t_eval": 86.604,
+    "exact_match": 0.24045004683285748,
+    "micro_f1": 0.0004437720625315179,
+    "micro_precision": 0.0002255115010865554,
+    "micro_recall": 0.013801756587202008,
+    "macro_f1": 0.0004437720625315179,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.0004437720625315179,
+        "precision": 0.0002255115010865554,
+        "recall": 0.013801756587202008
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 74,
+    "num_rules": 27,
+    "t_eval": 79.482,
+    "exact_match": 0.4627989121235033,
+    "micro_f1": 0.011460578193121667,
+    "micro_precision": 0.005869666944721369,
+    "micro_recall": 0.24132162275198663,
+    "macro_f1": 0.011460578193121667,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.011460578193121667,
+        "precision": 0.005869666944721369,
+        "recall": 0.24132162275198663
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 75,
+    "num_rules": 28,
+    "t_eval": 73.75,
+    "exact_match": 0.46274248699400766,
+    "micro_f1": 0.0005761455860294629,
+    "micro_precision": 0.0002950812999857547,
+    "micro_recall": 0.012128816394813885,
+    "macro_f1": 0.0005761455860294629,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.0005761455860294629,
+        "precision": 0.0002950812999857547,
+        "recall": 0.012128816394813885
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 76,
+    "num_rules": 29,
+    "t_eval": 77.338,
+    "exact_match": 0.4627989121235033,
+    "micro_f1": 0.011460578193121667,
+    "micro_precision": 0.005869666944721369,
+    "micro_recall": 0.24132162275198663,
+    "macro_f1": 0.011460578193121667,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.011460578193121667,
+        "precision": 0.005869666944721369,
+        "recall": 0.24132162275198663
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 77,
+    "num_rules": 29,
+    "t_eval": 76.579,
+    "exact_match": 0.4627989121235033,
+    "micro_f1": 0.011460578193121667,
+    "micro_precision": 0.005869666944721369,
+    "micro_recall": 0.24132162275198663,
+    "macro_f1": 0.011460578193121667,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.011460578193121667,
+        "precision": 0.005869666944721369,
+        "recall": 0.24132162275198663
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 78,
+    "num_rules": 29,
+    "t_eval": 77.02,
+    "exact_match": 0.4627537720199068,
+    "micro_f1": 0.0006753736902219793,
+    "micro_precision": 0.0003459010722933241,
+    "micro_recall": 0.014219991635299039,
+    "macro_f1": 0.0006753736902219793,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.0006753736902219793,
+        "precision": 0.0003459010722933241,
+        "recall": 0.014219991635299039
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 79,
+    "num_rules": 29,
+    "t_eval": 71.634,
+    "exact_match": 0.9357092074526311,
+    "micro_f1": 0.1316747572815534,
+    "micro_precision": 0.08683473389355742,
+    "micro_recall": 0.2722710163111669,
+    "macro_f1": 0.1316747572815534,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.1316747572815534,
+        "precision": 0.08683473389355742,
+        "recall": 0.2722710163111669
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 80,
+    "num_rules": 29,
+    "t_eval": 76.943,
+    "exact_match": 0.9357092074526311,
+    "micro_f1": 0.13180805831139908,
+    "micro_precision": 0.08695071457192467,
+    "micro_recall": 0.2722710163111669,
+    "macro_f1": 0.13180805831139908,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.13180805831139908,
+        "precision": 0.08695071457192467,
+        "recall": 0.2722710163111669
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 81,
+    "num_rules": 30,
+    "t_eval": 75.946,
+    "exact_match": 0.9357092074526311,
+    "micro_f1": 0.1316747572815534,
+    "micro_precision": 0.08683473389355742,
+    "micro_recall": 0.2722710163111669,
+    "macro_f1": 0.1316747572815534,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.1316747572815534,
+        "precision": 0.08683473389355742,
+        "recall": 0.2722710163111669
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 82,
+    "num_rules": 30,
+    "t_eval": 75.641,
+    "exact_match": 0.9348741155360951,
+    "micro_f1": 0.0072889248835796725,
+    "micro_precision": 0.004808334446373714,
+    "micro_recall": 0.015056461731493099,
+    "macro_f1": 0.0072889248835796725,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.0072889248835796725,
+        "precision": 0.004808334446373714,
+        "recall": 0.015056461731493099
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 83,
+    "num_rules": 31,
+    "t_eval": 82.962,
+    "exact_match": 0.5147777414149165,
+    "micro_f1": 0.015260396583353781,
+    "micro_precision": 0.007849501141964178,
+    "micro_recall": 0.27310748640736093,
+    "macro_f1": 0.015260396583353781,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.015260396583353781,
+        "precision": 0.007849501141964178,
+        "recall": 0.27310748640736093
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 84,
+    "num_rules": 31,
+    "t_eval": 90.783,
+    "exact_match": 0.46097073792784354,
+    "micro_f1": 0.0007299486076723518,
+    "micro_precision": 0.0003737902329622371,
+    "micro_recall": 0.01547469677959013,
+    "macro_f1": 0.0007299486076723518,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.0007299486076723518,
+        "precision": 0.0003737902329622371,
+        "recall": 0.01547469677959013
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 85,
+    "num_rules": 31,
+    "t_eval": 89.032,
+    "exact_match": 0.461004593005541,
+    "micro_f1": 0.011360960678125738,
+    "micro_precision": 0.005816932396998101,
+    "micro_recall": 0.24215809284818068,
+    "macro_f1": 0.011360960678125738,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.011360960678125738,
+        "precision": 0.005816932396998101,
+        "recall": 0.24215809284818068
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 86,
+    "num_rules": 31,
+    "t_eval": 86.47,
+    "exact_match": 0.4609820229537427,
+    "micro_f1": 0.011494478335066003,
+    "micro_precision": 0.005885247712687429,
+    "micro_recall": 0.2450857381848599,
+    "macro_f1": 0.011494478335066003,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.011494478335066003,
+        "precision": 0.005885247712687429,
+        "recall": 0.2450857381848599
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 87,
+    "num_rules": 30,
+    "t_eval": 82.745,
+    "exact_match": 0.4627537720199068,
+    "micro_f1": 0.011399972195189768,
+    "micro_precision": 0.005838614193732136,
+    "micro_recall": 0.24006691760769552,
+    "macro_f1": 0.011399972195189768,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.011399972195189768,
+        "precision": 0.005838614193732136,
+        "recall": 0.24006691760769552
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 88,
+    "num_rules": 31,
+    "t_eval": 83.409,
+    "exact_match": 0.46277634207170504,
+    "micro_f1": 0.01164659431360489,
+    "micro_precision": 0.005964780359919115,
+    "micro_recall": 0.24550397323295692,
+    "macro_f1": 0.01164659431360489,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.01164659431360489,
+        "precision": 0.005964780359919115,
+        "recall": 0.24550397323295692
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 89,
+    "num_rules": 32,
+    "t_eval": 91.672,
+    "exact_match": 0.4627876270976042,
+    "micro_f1": 0.01212698601724771,
+    "micro_precision": 0.00621086443848093,
+    "micro_recall": 0.2555416143872857,
+    "macro_f1": 0.01212698601724771,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.01212698601724771,
+        "precision": 0.00621086443848093,
+        "recall": 0.2555416143872857
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 90,
+    "num_rules": 34,
+    "t_eval": 88.75,
+    "exact_match": 0.46253935652782324,
+    "micro_f1": 0.01233600745713634,
+    "micro_precision": 0.0063177995368301305,
+    "micro_recall": 0.260142199916353,
+    "macro_f1": 0.01233600745713634,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.01233600745713634,
+        "precision": 0.0063177995368301305,
+        "recall": 0.260142199916353
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 91,
+    "num_rules": 34,
+    "t_eval": 88.418,
+    "exact_match": 0.4624829313983276,
+    "micro_f1": 0.012354247640199888,
+    "micro_precision": 0.00632712131214137,
+    "micro_recall": 0.26056043496445,
+    "macro_f1": 0.012354247640199888,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.012354247640199888,
+        "precision": 0.00632712131214137,
+        "recall": 0.26056043496445
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 92,
+    "num_rules": 35,
+    "t_eval": 121.428,
+    "exact_match": 0.05188854908422015,
+    "micro_f1": 0.0009595471489714206,
+    "micro_precision": 0.0004817615141868368,
+    "micro_recall": 0.11626934337097448,
+    "macro_f1": 0.0009595471489714206,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.0009595471489714206,
+        "precision": 0.0004817615141868368,
+        "recall": 0.11626934337097448
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 93,
+    "num_rules": 34,
+    "t_eval": 93.34,
+    "exact_match": 0.4624829313983276,
+    "micro_f1": 0.012374077893233918,
+    "micro_precision": 0.006337277205098258,
+    "micro_recall": 0.26097867001254704,
+    "macro_f1": 0.012374077893233918,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.012374077893233918,
+        "precision": 0.006337277205098258,
+        "recall": 0.26097867001254704
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 94,
+    "num_rules": 34,
+    "t_eval": 94.344,
+    "exact_match": 0.462855337252999,
+    "micro_f1": 0.011829973898631415,
+    "micro_precision": 0.006058757751346956,
+    "micro_recall": 0.2492680886658302,
+    "macro_f1": 0.011829973898631415,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.011829973898631415,
+        "precision": 0.006058757751346956,
+        "recall": 0.2492680886658302
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 95,
+    "num_rules": 34,
+    "t_eval": 87.301,
+    "exact_match": 0.9422883775518265,
+    "micro_f1": 0.04101629258288709,
+    "micro_precision": 0.028186658315064204,
+    "micro_recall": 0.07528230865746549,
+    "macro_f1": 0.04101629258288709,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.04101629258288709,
+        "precision": 0.028186658315064204,
+        "recall": 0.07528230865746549
+      }
+    ]
+  },
+  {
+    "source_dataset": "findok",
+    "batch": 96,
+    "num_rules": 35,
+    "t_eval": 84.685,
+    "exact_match": 0.9422883775518265,
+    "micro_f1": 0.040997608472839085,
+    "micro_precision": 0.028169014084507043,
+    "micro_recall": 0.07528230865746549,
+    "macro_f1": 0.040997608472839085,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.040997608472839085,
+        "precision": 0.028169014084507043,
+        "recall": 0.07528230865746549
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 0,
+    "num_rules": 7,
+    "t_eval": 19.41,
+    "exact_match": 0.9440375565661924,
+    "micro_f1": 0.18700592885375492,
+    "micro_precision": 0.1326906222611744,
+    "micro_recall": 0.3166039314094521,
+    "macro_f1": 0.18700592885375492,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.18700592885375492,
+        "precision": 0.1326906222611744,
+        "recall": 0.3166039314094521
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 1,
+    "num_rules": 7,
+    "t_eval": 20.66,
+    "exact_match": 0.7302314558811912,
+    "micro_f1": 0.024939850947714337,
+    "micro_precision": 0.01341074753084472,
+    "micro_recall": 0.17774989544123798,
+    "macro_f1": 0.024939850947714337,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.024939850947714337,
+        "precision": 0.01341074753084472,
+        "recall": 0.17774989544123798
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 2,
+    "num_rules": 7,
+    "t_eval": 18.962,
+    "exact_match": 0.9781860449369731,
+    "micro_f1": 0.07120036513007759,
+    "micro_precision": 0.07835258663987946,
+    "micro_recall": 0.06524466750313676,
+    "macro_f1": 0.07120036513007759,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.07120036513007759,
+        "precision": 0.07835258663987946,
+        "recall": 0.06524466750313676
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 3,
+    "num_rules": 12,
+    "t_eval": 29.151,
+    "exact_match": 0.9781747599110739,
+    "micro_f1": 0.07102208058274527,
+    "micro_precision": 0.07792207792207792,
+    "micro_recall": 0.06524466750313676,
+    "macro_f1": 0.07102208058274527,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.07102208058274527,
+        "precision": 0.07792207792207792,
+        "recall": 0.06524466750313676
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 4,
+    "num_rules": 8,
+    "t_eval": 24.14,
+    "exact_match": 0.977926489341293,
+    "micro_f1": 0.10477657935285055,
+    "micro_precision": 0.11059479553903345,
+    "micro_recall": 0.09953994144709327,
+    "macro_f1": 0.10477657935285055,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.10477657935285055,
+        "precision": 0.11059479553903345,
+        "recall": 0.09953994144709327
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 5,
+    "num_rules": 10,
+    "t_eval": 29.398,
+    "exact_match": 0.7947028088429463,
+    "micro_f1": 0.008974171895520211,
+    "micro_precision": 0.004915870668638344,
+    "micro_recall": 0.05144291091593475,
+    "macro_f1": 0.008974171895520211,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.008974171895520211,
+        "precision": 0.004915870668638344,
+        "recall": 0.05144291091593475
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 6,
+    "num_rules": 10,
+    "t_eval": 30.366,
+    "exact_match": 0.7947028088429463,
+    "micro_f1": 0.00897384452631963,
+    "micro_precision": 0.004915674206698106,
+    "micro_recall": 0.05144291091593475,
+    "macro_f1": 0.00897384452631963,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.00897384452631963,
+        "precision": 0.004915674206698106,
+        "recall": 0.05144291091593475
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 7,
+    "num_rules": 10,
+    "t_eval": 29.607,
+    "exact_match": 0.7947140938688454,
+    "micro_f1": 0.016999819917161894,
+    "micro_precision": 0.00930085914715851,
+    "micro_recall": 0.0987034713508992,
+    "macro_f1": 0.016999819917161894,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.016999819917161894,
+        "precision": 0.00930085914715851,
+        "recall": 0.0987034713508992
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 8,
+    "num_rules": 10,
+    "t_eval": 29.359,
+    "exact_match": 0.7947366639206437,
+    "micro_f1": 0.019342076342589203,
+    "micro_precision": 0.01059942987915044,
+    "micro_recall": 0.11041405269761606,
+    "macro_f1": 0.019342076342589203,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.019342076342589203,
+        "precision": 0.01059942987915044,
+        "recall": 0.11041405269761606
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 9,
+    "num_rules": 10,
+    "t_eval": 29.709,
+    "exact_match": 0.8338957037906402,
+    "micro_f1": 0.026826970526221343,
+    "micro_precision": 0.015025125628140703,
+    "micro_recall": 0.12505227938101213,
+    "macro_f1": 0.026826970526221343,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.026826970526221343,
+        "precision": 0.015025125628140703,
+        "recall": 0.12505227938101213
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 10,
+    "num_rules": 11,
+    "t_eval": 31.388,
+    "exact_match": 0.895410379966822,
+    "micro_f1": 0.024231127679403542,
+    "micro_precision": 0.014408993745546671,
+    "micro_recall": 0.07611877875365956,
+    "macro_f1": 0.024231127679403542,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.024231127679403542,
+        "precision": 0.014408993745546671,
+        "recall": 0.07611877875365956
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 11,
+    "num_rules": 12,
+    "t_eval": 34.076,
+    "exact_match": 0.895410379966822,
+    "micro_f1": 0.024231127679403542,
+    "micro_precision": 0.014408993745546671,
+    "micro_recall": 0.07611877875365956,
+    "macro_f1": 0.024231127679403542,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.024231127679403542,
+        "precision": 0.014408993745546671,
+        "recall": 0.07611877875365956
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 12,
+    "num_rules": 9,
+    "t_eval": 22.576,
+    "exact_match": 0.8618148578650988,
+    "micro_f1": 0.045165971340467986,
+    "micro_precision": 0.025329332180458776,
+    "micro_recall": 0.20828105395232122,
+    "macro_f1": 0.045165971340467986,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.045165971340467986,
+        "precision": 0.025329332180458776,
+        "recall": 0.20828105395232122
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 13,
+    "num_rules": 9,
+    "t_eval": 47.652,
+    "exact_match": 0.06274474399918747,
+    "micro_f1": 0.0015652297646621713,
+    "micro_precision": 0.0007863305566862918,
+    "micro_recall": 0.1656210790464241,
+    "macro_f1": 0.0015652297646621713,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.0015652297646621713,
+        "precision": 0.0007863305566862918,
+        "recall": 0.1656210790464241
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 14,
+    "num_rules": 8,
+    "t_eval": 18.477,
+    "exact_match": 0.8617810027874014,
+    "micro_f1": 0.04195740824648844,
+    "micro_precision": 0.023527618273286244,
+    "micro_recall": 0.19364282726892515,
+    "macro_f1": 0.04195740824648844,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.04195740824648844,
+        "precision": 0.023527618273286244,
+        "recall": 0.19364282726892515
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 15,
+    "num_rules": 14,
+    "t_eval": 37.196,
+    "exact_match": 0.8618261428909979,
+    "micro_f1": 0.04861237076002177,
+    "micro_precision": 0.027262092467321093,
+    "micro_recall": 0.22417398578000836,
+    "macro_f1": 0.04861237076002177,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.04861237076002177,
+        "precision": 0.027262092467321093,
+        "recall": 0.22417398578000836
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 16,
+    "num_rules": 16,
+    "t_eval": 46.511,
+    "exact_match": 0.17349598817329287,
+    "micro_f1": 0.010639248106868865,
+    "micro_precision": 0.005448926480156148,
+    "micro_recall": 0.22417398578000836,
+    "macro_f1": 0.010639248106868865,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.010639248106868865,
+        "precision": 0.005448926480156148,
+        "recall": 0.22417398578000836
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 17,
+    "num_rules": 20,
+    "t_eval": 51.178,
+    "exact_match": 0.7849074063624976,
+    "micro_f1": 0.043249847281612706,
+    "micro_precision": 0.023328610497874724,
+    "micro_recall": 0.2961104140526976,
+    "macro_f1": 0.043249847281612706,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.043249847281612706,
+        "precision": 0.023328610497874724,
+        "recall": 0.2961104140526976
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 18,
+    "num_rules": 20,
+    "t_eval": 55.277,
+    "exact_match": 0.5504609933079796,
+    "micro_f1": 0.015303192950046186,
+    "micro_precision": 0.007886983261068152,
+    "micro_recall": 0.2563780844834797,
+    "macro_f1": 0.015303192950046186,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.015303192950046186,
+        "precision": 0.007886983261068152,
+        "recall": 0.2563780844834797
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 19,
+    "num_rules": 20,
+    "t_eval": 56.271,
+    "exact_match": 0.5504497082820805,
+    "micro_f1": 0.019068060997828637,
+    "micro_precision": 0.009827251328093848,
+    "micro_recall": 0.3195315767461313,
+    "macro_f1": 0.019068060997828637,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.019068060997828637,
+        "precision": 0.009827251328093848,
+        "recall": 0.3195315767461313
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 20,
+    "num_rules": 18,
+    "t_eval": 51.808,
+    "exact_match": 0.8414679561689594,
+    "micro_f1": 0.056969026548672565,
+    "micro_precision": 0.031455870162732866,
+    "micro_recall": 0.30154746967795903,
+    "macro_f1": 0.056969026548672565,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.056969026548672565,
+        "precision": 0.031455870162732866,
+        "recall": 0.30154746967795903
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 21,
+    "num_rules": 17,
+    "t_eval": 50.962,
+    "exact_match": 0.7455452360263167,
+    "micro_f1": 0.04923140839218945,
+    "micro_precision": 0.026245120566983197,
+    "micro_recall": 0.39648682559598497,
+    "macro_f1": 0.04923140839218945,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.04923140839218945,
+        "precision": 0.026245120566983197,
+        "recall": 0.39648682559598497
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 22,
+    "num_rules": 18,
+    "t_eval": 57.677,
+    "exact_match": 0.33979212982293794,
+    "micro_f1": 0.009175180316903408,
+    "micro_precision": 0.004657867760123014,
+    "micro_recall": 0.3040568799665412,
+    "macro_f1": 0.009175180316903408,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.009175180316903408,
+        "precision": 0.004657867760123014,
+        "recall": 0.3040568799665412
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 23,
+    "num_rules": 18,
+    "t_eval": 59.743,
+    "exact_match": 0.33979212982293794,
+    "micro_f1": 0.009250903950880603,
+    "micro_precision": 0.0046963095848282935,
+    "micro_recall": 0.3065662902551234,
+    "macro_f1": 0.009250903950880603,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.009250903950880603,
+        "precision": 0.0046963095848282935,
+        "recall": 0.3065662902551234
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 24,
+    "num_rules": 18,
+    "t_eval": 58.4,
+    "exact_match": 0.33979212982293794,
+    "micro_f1": 0.009250903950880603,
+    "micro_precision": 0.0046963095848282935,
+    "micro_recall": 0.3065662902551234,
+    "macro_f1": 0.009250903950880603,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.009250903950880603,
+        "precision": 0.0046963095848282935,
+        "recall": 0.3065662902551234
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 25,
+    "num_rules": 18,
+    "t_eval": 58.441,
+    "exact_match": 0.33979212982293794,
+    "micro_f1": 0.009250903950880603,
+    "micro_precision": 0.0046963095848282935,
+    "micro_recall": 0.3065662902551234,
+    "macro_f1": 0.009250903950880603,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.009250903950880603,
+        "precision": 0.0046963095848282935,
+        "recall": 0.3065662902551234
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 26,
+    "num_rules": 16,
+    "t_eval": 46.15,
+    "exact_match": 0.8616004423730153,
+    "micro_f1": 0.08321456484759321,
+    "micro_precision": 0.04674586776859504,
+    "micro_recall": 0.37850271852781264,
+    "macro_f1": 0.08321456484759321,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.08321456484759321,
+        "precision": 0.04674586776859504,
+        "recall": 0.37850271852781264
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 27,
+    "num_rules": 16,
+    "t_eval": 50.06,
+    "exact_match": 0.3944229402006478,
+    "micro_f1": 0.003529865975401247,
+    "micro_precision": 0.0017988211297239132,
+    "micro_recall": 0.09368465077373483,
+    "macro_f1": 0.003529865975401247,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.003529865975401247,
+        "precision": 0.0017988211297239132,
+        "recall": 0.09368465077373483
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 28,
+    "num_rules": 17,
+    "t_eval": 56.477,
+    "exact_match": 0.38911897802805456,
+    "micro_f1": 0.005815960899555747,
+    "micro_precision": 0.0029623260903548537,
+    "micro_recall": 0.15851108322877458,
+    "macro_f1": 0.005815960899555747,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.005815960899555747,
+        "precision": 0.0029623260903548537,
+        "recall": 0.15851108322877458
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 29,
+    "num_rules": 17,
+    "t_eval": 55.7,
+    "exact_match": 0.38907383792445804,
+    "micro_f1": 0.003020615316206291,
+    "micro_precision": 0.001538509598113178,
+    "micro_recall": 0.08239230447511502,
+    "macro_f1": 0.003020615316206291,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.003020615316206291,
+        "precision": 0.001538509598113178,
+        "recall": 0.08239230447511502
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 30,
+    "num_rules": 17,
+    "t_eval": 56.742,
+    "exact_match": 0.3890174127949624,
+    "micro_f1": 0.0030533179900268507,
+    "micro_precision": 0.0015551856454020427,
+    "micro_recall": 0.08322877457130907,
+    "macro_f1": 0.0030533179900268507,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.0030533179900268507,
+        "precision": 0.0015551856454020427,
+        "recall": 0.08322877457130907
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 31,
+    "num_rules": 17,
+    "t_eval": 55.714,
+    "exact_match": 0.3890625528985589,
+    "micro_f1": 0.0057134979474296925,
+    "micro_precision": 0.002910038462438659,
+    "micro_recall": 0.15600167294019238,
+    "macro_f1": 0.0057134979474296925,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.0057134979474296925,
+        "precision": 0.002910038462438659,
+        "recall": 0.15600167294019238
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 32,
+    "num_rules": 20,
+    "t_eval": 59.399,
+    "exact_match": 0.3890625528985589,
+    "micro_f1": 0.006092613853807884,
+    "micro_precision": 0.0031030960790275927,
+    "micro_recall": 0.16645754914261815,
+    "macro_f1": 0.006092613853807884,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.006092613853807884,
+        "precision": 0.0031030960790275927,
+        "recall": 0.16645754914261815
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 33,
+    "num_rules": 20,
+    "t_eval": 51.277,
+    "exact_match": 0.8295396837935743,
+    "micro_f1": 0.028472348968789928,
+    "micro_precision": 0.015597504399296113,
+    "micro_recall": 0.16311166875784192,
+    "macro_f1": 0.028472348968789928,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.028472348968789928,
+        "precision": 0.015597504399296113,
+        "recall": 0.16311166875784192
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 34,
+    "num_rules": 21,
+    "t_eval": 60.41,
+    "exact_match": 0.37541895658650537,
+    "micro_f1": 0.005737776357456204,
+    "micro_precision": 0.002919589335737991,
+    "micro_recall": 0.16520284399832705,
+    "macro_f1": 0.005737776357456204,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.005737776357456204,
+        "precision": 0.002919589335737991,
+        "recall": 0.16520284399832705
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 35,
+    "num_rules": 21,
+    "t_eval": 67.721,
+    "exact_match": 0.2926432916163543,
+    "micro_f1": 0.001472660429932088,
+    "micro_precision": 0.0007457761705734965,
+    "micro_recall": 0.05813467168548724,
+    "macro_f1": 0.001472660429932088,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.001472660429932088,
+        "precision": 0.0007457761705734965,
+        "recall": 0.05813467168548724
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 36,
+    "num_rules": 23,
+    "t_eval": 66.074,
+    "exact_match": 0.2842359473214991,
+    "micro_f1": 0.0034886317682775937,
+    "micro_precision": 0.0017698573090820014,
+    "micro_recall": 0.12086992890004182,
+    "macro_f1": 0.0034886317682775937,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.0034886317682775937,
+        "precision": 0.0017698573090820014,
+        "recall": 0.12086992890004182
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 37,
+    "num_rules": 23,
+    "t_eval": 68.207,
+    "exact_match": 0.2842359473214991,
+    "micro_f1": 0.004940443555432379,
+    "micro_precision": 0.0025063269472937783,
+    "micro_recall": 0.17147636971978253,
+    "macro_f1": 0.004940443555432379,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.004940443555432379,
+        "precision": 0.0025063269472937783,
+        "recall": 0.17147636971978253
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 38,
+    "num_rules": 23,
+    "t_eval": 69.201,
+    "exact_match": 0.2842359473214991,
+    "micro_f1": 0.004940354259549343,
+    "micro_precision": 0.002506280984662783,
+    "micro_recall": 0.17147636971978253,
+    "macro_f1": 0.004940354259549343,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.004940354259549343,
+        "precision": 0.002506280984662783,
+        "recall": 0.17147636971978253
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 39,
+    "num_rules": 23,
+    "t_eval": 69.548,
+    "exact_match": 0.2842359473214991,
+    "micro_f1": 0.004940354259549343,
+    "micro_precision": 0.002506280984662783,
+    "micro_recall": 0.17147636971978253,
+    "macro_f1": 0.004940354259549343,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.004940354259549343,
+        "precision": 0.002506280984662783,
+        "recall": 0.17147636971978253
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 40,
+    "num_rules": 23,
+    "t_eval": 68.954,
+    "exact_match": 0.2842359473214991,
+    "micro_f1": 0.004940354259549343,
+    "micro_precision": 0.002506280984662783,
+    "micro_recall": 0.17147636971978253,
+    "macro_f1": 0.004940354259549343,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.004940354259549343,
+        "precision": 0.002506280984662783,
+        "recall": 0.17147636971978253
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 41,
+    "num_rules": 23,
+    "t_eval": 70.416,
+    "exact_match": 0.2842359473214991,
+    "micro_f1": 0.004940354259549343,
+    "micro_precision": 0.002506280984662783,
+    "micro_recall": 0.17147636971978253,
+    "macro_f1": 0.004940354259549343,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.004940354259549343,
+        "precision": 0.002506280984662783,
+        "recall": 0.17147636971978253
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 42,
+    "num_rules": 23,
+    "t_eval": 68.626,
+    "exact_match": 0.2842359473214991,
+    "micro_f1": 0.004940354259549343,
+    "micro_precision": 0.002506280984662783,
+    "micro_recall": 0.17147636971978253,
+    "macro_f1": 0.004940354259549343,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.004940354259549343,
+        "precision": 0.002506280984662783,
+        "recall": 0.17147636971978253
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 43,
+    "num_rules": 20,
+    "t_eval": 52.948,
+    "exact_match": 0.856544750770203,
+    "micro_f1": 0.05228128557667046,
+    "micro_precision": 0.02919743727686213,
+    "micro_recall": 0.24968632371392724,
+    "macro_f1": 0.05228128557667046,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.05228128557667046,
+        "precision": 0.02919743727686213,
+        "recall": 0.24968632371392724
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 44,
+    "num_rules": 22,
+    "t_eval": 58.274,
+    "exact_match": 0.8111450915779852,
+    "micro_f1": 0.047756162651871624,
+    "micro_precision": 0.02606662322229463,
+    "micro_recall": 0.28439983270598074,
+    "macro_f1": 0.047756162651871624,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.047756162651871624,
+        "precision": 0.02606662322229463,
+        "recall": 0.28439983270598074
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 45,
+    "num_rules": 21,
+    "t_eval": 56.743,
+    "exact_match": 0.85814722444788,
+    "micro_f1": 0.054286983562860956,
+    "micro_precision": 0.03036930264923704,
+    "micro_recall": 0.2555416143872857,
+    "macro_f1": 0.054286983562860956,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.054286983562860956,
+        "precision": 0.03036930264923704,
+        "recall": 0.2555416143872857
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 46,
+    "num_rules": 20,
+    "t_eval": 58.147,
+    "exact_match": 0.15822734813176395,
+    "micro_f1": 0.012174479851130711,
+    "micro_precision": 0.006244203351810711,
+    "micro_recall": 0.24215809284818068,
+    "macro_f1": 0.012174479851130711,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.012174479851130711,
+        "precision": 0.006244203351810711,
+        "recall": 0.24215809284818068
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 47,
+    "num_rules": 19,
+    "t_eval": 59.924,
+    "exact_match": 0.3997043323214427,
+    "micro_f1": 0.005828449308681152,
+    "micro_precision": 0.002971743670598724,
+    "micro_recall": 0.15056461731493098,
+    "macro_f1": 0.005828449308681152,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.005828449308681152,
+        "precision": 0.002971743670598724,
+        "recall": 0.15056461731493098
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 48,
+    "num_rules": 20,
+    "t_eval": 58.218,
+    "exact_match": 0.39969304729554356,
+    "micro_f1": 0.00981527522452847,
+    "micro_precision": 0.005004542076141713,
+    "micro_recall": 0.2534504391468005,
+    "macro_f1": 0.00981527522452847,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.00981527522452847,
+        "precision": 0.005004542076141713,
+        "recall": 0.2534504391468005
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 49,
+    "num_rules": 22,
+    "t_eval": 65.554,
+    "exact_match": 0.39962533714014875,
+    "micro_f1": 0.009829879920000648,
+    "micro_precision": 0.005011972586904467,
+    "micro_recall": 0.25386867419489756,
+    "macro_f1": 0.009829879920000648,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.009829879920000648,
+        "precision": 0.005011972586904467,
+        "recall": 0.25386867419489756
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 50,
+    "num_rules": 23,
+    "t_eval": 65.81,
+    "exact_match": 0.40359766625664406,
+    "micro_f1": 0.009961025641025639,
+    "micro_precision": 0.00508017809915972,
+    "micro_recall": 0.25386867419489756,
+    "macro_f1": 0.009961025641025639,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.009961025641025639,
+        "precision": 0.00508017809915972,
+        "recall": 0.25386867419489756
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 51,
+    "num_rules": 23,
+    "t_eval": 66.691,
+    "exact_match": 0.3684786656585377,
+    "micro_f1": 0.00940746063892337,
+    "micro_precision": 0.004786809679992909,
+    "micro_recall": 0.2710163111668758,
+    "macro_f1": 0.00940746063892337,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.00940746063892337,
+        "precision": 0.004786809679992909,
+        "recall": 0.2710163111668758
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 52,
+    "num_rules": 24,
+    "t_eval": 68.685,
+    "exact_match": 0.3581641519867288,
+    "micro_f1": 0.009439223669167062,
+    "micro_precision": 0.004799614329365558,
+    "micro_recall": 0.2831451275616897,
+    "macro_f1": 0.009439223669167062,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.009439223669167062,
+        "precision": 0.004799614329365558,
+        "recall": 0.2831451275616897
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 53,
+    "num_rules": 24,
+    "t_eval": 69.221,
+    "exact_match": 0.3581641519867288,
+    "micro_f1": 0.00942534665337451,
+    "micro_precision": 0.0047925587726512205,
+    "micro_recall": 0.2827268925135926,
+    "macro_f1": 0.00942534665337451,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.00942534665337451,
+        "precision": 0.0047925587726512205,
+        "recall": 0.2827268925135926
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 54,
+    "num_rules": 25,
+    "t_eval": 74.849,
+    "exact_match": 0.571225440962387,
+    "micro_f1": 0.023402510565823504,
+    "micro_precision": 0.012159748283377854,
+    "micro_recall": 0.31033040568799664,
+    "macro_f1": 0.023402510565823504,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.023402510565823504,
+        "precision": 0.012159748283377854,
+        "recall": 0.31033040568799664
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 55,
+    "num_rules": 25,
+    "t_eval": 74.761,
+    "exact_match": 0.7421822983083746,
+    "micro_f1": 0.06410763751483974,
+    "micro_precision": 0.034377178888653104,
+    "micro_recall": 0.4742785445420326,
+    "macro_f1": 0.06410763751483974,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.06410763751483974,
+        "precision": 0.034377178888653104,
+        "recall": 0.4742785445420326
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 56,
+    "num_rules": 25,
+    "t_eval": 66.848,
+    "exact_match": 0.8991457235394356,
+    "micro_f1": 0.13302581653150808,
+    "micro_precision": 0.08090497737556561,
+    "micro_recall": 0.3739021329987453,
+    "macro_f1": 0.13302581653150808,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.13302581653150808,
+        "precision": 0.08090497737556561,
+        "recall": 0.3739021329987453
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 57,
+    "num_rules": 30,
+    "t_eval": 75.793,
+    "exact_match": 0.9003306512588446,
+    "micro_f1": 0.16249999999999998,
+    "micro_precision": 0.09858149701133018,
+    "micro_recall": 0.4621497281472187,
+    "macro_f1": 0.16249999999999998,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.16249999999999998,
+        "precision": 0.09858149701133018,
+        "recall": 0.4621497281472187
+      }
+    ]
+  },
+  {
+    "source_dataset": "ris",
+    "batch": 58,
+    "num_rules": 30,
+    "t_eval": 95.857,
+    "exact_match": 0.43491361312674215,
+    "micro_f1": 0.015369853454291696,
+    "micro_precision": 0.007848622259441064,
+    "micro_recall": 0.3684650773734839,
+    "macro_f1": 0.015369853454291696,
+    "per_class": [
+      {
+        "label": "person",
+        "f1": 0.015369853454291696,
+        "precision": 0.007848622259441064,
+        "recall": 0.3684650773734839
+      }
+    ]
+  }
+]

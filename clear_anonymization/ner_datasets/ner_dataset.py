@@ -5,7 +5,10 @@ from stanza.models.common.doc import Document
 from stanza.utils.conll import CoNLL
 from torch.utils.data import Dataset
 
-from clear_anonymization.ner_datasets.util import recreate_sent_labels_from_tokens
+from clear_anonymization.ner_datasets.util import (
+    recreate_sent_labels_from_tokens,
+    recreate_sent_relations,
+)
 
 
 @dataclass
@@ -14,6 +17,7 @@ class NERSentence:
     text: str
     tokens: list
     labels: list = None
+    relations: list = None
 
     @classmethod
     def from_json(cls, json_dict: dict) -> "NERSentence":

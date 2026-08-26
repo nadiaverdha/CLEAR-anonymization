@@ -1,0 +1,475 @@
+{
+  "phase": "phase1",
+  "completed_batches": 3,
+  "rules": [
+    {
+      "id": "49291430",
+      "name": "Complaint Case Context",
+      "description": "Matches persons mentioned immediately after 'in der Beschwerdesache' (in the complaint case), including titles and suffixes. This rule is kept but its pattern is implicitly handled by the stricter title/name matching in the other rules, or acts as a fallback for names without titles in this specific context.",
+      "format": "regex",
+      "content": "in\\s+der\\s+Beschwerdesache\\s+(?:des\\s+|der\\s+)?([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s*,\\s*[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)*)",
+      "priority": 9,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities"
+    },
+    {
+      "id": "ce712b26",
+      "name": "Herr/Frau Address",
+      "description": "Matches persons addressed as Herr or Frau in the text.",
+      "format": "regex",
+      "content": "(?:Herr|Frau)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+      "priority": 6,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities"
+    },
+    {
+      "id": "9b46a3d5",
+      "name": "Deceased Person Context",
+      "description": "Matches persons identified as deceased (verstorbenen) in inheritance contexts.",
+      "format": "regex",
+      "content": "verstorbenen\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+      "priority": 5,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities"
+    },
+    {
+      "id": "9ba5a309",
+      "name": "Genitive Case Person",
+      "description": "Matches persons mentioned in genitive case after 'des' (masculine/neuter) or 'der' (feminine) in legal contexts like 'Beschwerdesache des/der'. Captures name and suffixes but stops before addresses.",
+      "format": "regex",
+      "content": "(?:des\\s+|der\\s+)(?:(?:Mag\\.|Mag\\.a|Mag\\.Dr|Dr\\.in|Dr\\.|Univ\\.-Prof\\.|Univ\\.-Prof\\.in|Hon\\.-Prof\\.|Hon\\.-Prof\\.in|Priv\\.-Doz\\.|Priv\\.-Doz\\.in|LL\\.M\\.?|B\\.A\\.?|B\\.A\\.\\.?|B\\.A\\.\\.\\.?|B\\.A\\.\\.\\.\\.?|RgR|KommR|OSR|OMedR|MedR|PhD|Ing\\.\\s+|DI\\.\\s+|Dipl\\.-Ing\\.\\s+|Dipl\\.\\s+)?)([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s*,\\s*[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)*)",
+      "priority": 8,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities"
+    }
+  ],
+  "best_rules": [
+    {
+      "id": "21bec86d",
+      "name": "Judge/Official Titles",
+      "description": "Matches persons identified by judicial titles like Richter, Richterin, Mag., Dr., Prof., etc., specifically when preceded by 'durch' (by) or 'hat durch' (has by).",
+      "format": "regex",
+      "content": "(?:durch\\s+(?:die\\s+)?(?:Richterin|Richter|Vorsitzender|Laienrichter)\\s+)?(?:Mag\\.?\\.?\\.?|Dr\\.?\\.?\\.?|Univ\\.-Prof\\.?|Hon\\.-Prof\\.?|Priv\\.-Doz\\.?|Mag\\.a|Dr\\.in|LL\\.M\\.?)(?:\\s+[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)+",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities"
+    },
+    {
+      "id": "2a43aa87",
+      "name": "Complaint Case Context",
+      "description": "Matches persons mentioned immediately after 'in der Beschwerdesache' (in the complaint case).",
+      "format": "regex",
+      "content": "in\\s+der\\s+Beschwerdesache\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+      "priority": 9,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities"
+    },
+    {
+      "id": "5550e203",
+      "name": "Against/Complaint Context",
+      "description": "Matches persons mentioned after 'gegen' (against) or 'Beschwerde der/des' (complaint of).",
+      "format": "regex",
+      "content": "(?:gegen\\s+(?:die\\s+)?Bescheide|gegen\\s+den\\s+Bescheid|Beschwerde\\s+der|Beschwerde\\s+des|Beschwerde\\s+der\\s+Partei)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+      "priority": 8,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities"
+    },
+    {
+      "id": "ce712b26",
+      "name": "Herr/Frau Address",
+      "description": "Matches persons addressed as Herr or Frau in the text.",
+      "format": "regex",
+      "content": "(?:Herr|Frau)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+      "priority": 6,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities"
+    },
+    {
+      "id": "9b46a3d5",
+      "name": "Deceased Person Context",
+      "description": "Matches persons identified as deceased (verstorbenen) in inheritance contexts.",
+      "format": "regex",
+      "content": "verstorbenen\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+      "priority": 5,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities"
+    },
+    {
+      "id": "b33b27c5",
+      "name": "Representative Context",
+      "description": "Matches persons mentioned as representatives (vertreten durch) or in 'VetR' (Verfahrensbevollm\u00e4chtigter) contexts.",
+      "format": "regex",
+      "content": "(?:vertreten\\s+durch|VetR)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+      "priority": 7,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities"
+    }
+  ],
+  "best_f1": 0.5546196015510094,
+  "best_batch_idx": 0,
+  "batch_metrics": [
+    {
+      "batch": 0,
+      "num_rules": 6,
+      "exact_match": 0.9635235622827474,
+      "micro_f1": 0.5546196015510094,
+      "micro_precision": 0.6277239709443099,
+      "micro_recall": 0.49676646706586824,
+      "macro_f1": 0.5546196015510094,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.5546196015510094,
+          "precision": 0.6277239709443099,
+          "recall": 0.49676646706586824
+        }
+      ]
+    },
+    {
+      "batch": 1,
+      "num_rules": 5,
+      "exact_match": 0.060236722840674085,
+      "micro_f1": 0.004519999750276256,
+      "micro_precision": 0.0023204830707298624,
+      "micro_recall": 0.08670658682634731,
+      "macro_f1": 0.004519999750276256,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.004519999750276256,
+          "precision": 0.0023204830707298624,
+          "recall": 0.08670658682634731
+        }
+      ]
+    },
+    {
+      "batch": 2,
+      "num_rules": 4,
+      "exact_match": 0.46121353456241476,
+      "micro_f1": 0.0032317953654679224,
+      "micro_precision": 0.0018867167114929148,
+      "micro_recall": 0.01125748502994012,
+      "macro_f1": 0.0032317953654679224,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.0032317953654679224,
+          "precision": 0.0018867167114929148,
+          "recall": 0.01125748502994012
+        }
+      ]
+    }
+  ],
+  "iteration_metrics": [
+    {
+      "iteration": 1,
+      "num_rules": 7,
+      "exact_match": 0.003720238095238095,
+      "micro_f1": 0.03245495059097074,
+      "micro_precision": 0.018093437753173104,
+      "micro_recall": 0.1573508689525599,
+      "macro_f1": 0.03245495059097074,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.03245495059097074,
+          "precision": 0.018093437753173104,
+          "recall": 0.1573508689525599
+        }
+      ]
+    }
+  ],
+  "rules_snapshot": [
+    {
+      "batch": 0,
+      "rules": [
+        {
+          "id": "21bec86d",
+          "name": "Judge/Official Titles",
+          "description": "Matches persons identified by judicial titles like Richter, Richterin, Mag., Dr., Prof., etc., specifically when preceded by 'durch' (by) or 'hat durch' (has by).",
+          "format": "regex",
+          "content": "(?:durch\\s+(?:die\\s+)?(?:Richterin|Richter|Vorsitzender|Laienrichter)\\s+)?(?:Mag\\.?\\.?\\.?|Dr\\.?\\.?\\.?|Univ\\.-Prof\\.?|Hon\\.-Prof\\.?|Priv\\.-Doz\\.?|Mag\\.a|Dr\\.in|LL\\.M\\.?)(?:\\s+[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)+",
+          "priority": 10,
+          "output_template": {
+            "text": "$0",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "2a43aa87",
+          "name": "Complaint Case Context",
+          "description": "Matches persons mentioned immediately after 'in der Beschwerdesache' (in the complaint case).",
+          "format": "regex",
+          "content": "in\\s+der\\s+Beschwerdesache\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+          "priority": 9,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "5550e203",
+          "name": "Against/Complaint Context",
+          "description": "Matches persons mentioned after 'gegen' (against) or 'Beschwerde der/des' (complaint of).",
+          "format": "regex",
+          "content": "(?:gegen\\s+(?:die\\s+)?Bescheide|gegen\\s+den\\s+Bescheid|Beschwerde\\s+der|Beschwerde\\s+des|Beschwerde\\s+der\\s+Partei)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+          "priority": 8,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "ce712b26",
+          "name": "Herr/Frau Address",
+          "description": "Matches persons addressed as Herr or Frau in the text.",
+          "format": "regex",
+          "content": "(?:Herr|Frau)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+          "priority": 6,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "9b46a3d5",
+          "name": "Deceased Person Context",
+          "description": "Matches persons identified as deceased (verstorbenen) in inheritance contexts.",
+          "format": "regex",
+          "content": "verstorbenen\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+          "priority": 5,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "b33b27c5",
+          "name": "Representative Context",
+          "description": "Matches persons mentioned as representatives (vertreten durch) or in 'VetR' (Verfahrensbevollm\u00e4chtigter) contexts.",
+          "format": "regex",
+          "content": "(?:vertreten\\s+durch|VetR)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+          "priority": 7,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        }
+      ]
+    },
+    {
+      "batch": 1,
+      "rules": [
+        {
+          "id": "62899334",
+          "name": "Judge/Official Titles",
+          "description": "Matches persons identified by judicial titles like Richter, Richterin, Mag., Dr., Prof., etc., specifically when preceded by 'durch' (by) or 'hat durch' (has by). Captures only the title and name.",
+          "format": "regex",
+          "content": "(?:durch\\s+(?:die\\s+)?(?:Richterin|Richter|Vorsitzender|Laienrichter)\\s+)?(?:(?:Mag\\.|Mag\\.a|Mag\\.Dr|Dr\\.in|Dr\\.|Univ\\.-Prof\\.|Univ\\.-Prof\\.in|Hon\\.-Prof\\.|Hon\\.-Prof\\.in|Priv\\.-Doz\\.|Priv\\.-Doz\\.in|LL\\.M\\.?|B\\.A\\.?|B\\.A\\.\\.?|B\\.A\\.\\.\\.?|B\\.A\\.\\.\\.\\.?)\\s+)?([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+          "priority": 10,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "6bb97c68",
+          "name": "Complaint Case Context",
+          "description": "Matches persons mentioned immediately after 'in der Beschwerdesache' (in the complaint case), including titles and suffixes.",
+          "format": "regex",
+          "content": "in\\s+der\\s+Beschwerdesache\\s+(?:(?:Mag\\.|Mag\\.a|Mag\\.Dr|Dr\\.in|Dr\\.|Univ\\.-Prof\\.|Univ\\.-Prof\\.in|Hon\\.-Prof\\.|Hon\\.-Prof\\.in|Priv\\.-Doz\\.|Priv\\.-Doz\\.in|LL\\.M\\.?|B\\.A\\.?|B\\.A\\.\\.?|B\\.A\\.\\.\\.?|B\\.A\\.\\.\\.\\.?|RgR|KommR|OSR|OMedR|MedR|PhD|Ing\\.\\s+)?)([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s*,\\s*[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)*)",
+          "priority": 9,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "ce712b26",
+          "name": "Herr/Frau Address",
+          "description": "Matches persons addressed as Herr or Frau in the text.",
+          "format": "regex",
+          "content": "(?:Herr|Frau)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+          "priority": 6,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "9b46a3d5",
+          "name": "Deceased Person Context",
+          "description": "Matches persons identified as deceased (verstorbenen) in inheritance contexts.",
+          "format": "regex",
+          "content": "verstorbenen\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+          "priority": 5,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "cf1e8b25",
+          "name": "Genitive Case Person",
+          "description": "Matches persons mentioned in genitive case after 'des' (masculine/neuter) or 'der' (feminine) in legal contexts like 'Beschwerdesache des/der'.",
+          "format": "regex",
+          "content": "(?:des\\s+|der\\s+)(?:(?:Mag\\.|Mag\\.a|Mag\\.Dr|Dr\\.in|Dr\\.|Univ\\.-Prof\\.|Univ\\.-Prof\\.in|Hon\\.-Prof\\.|Hon\\.-Prof\\.in|Priv\\.-Doz\\.|Priv\\.-Doz\\.in|LL\\.M\\.?|B\\.A\\.?|B\\.A\\.\\.?|B\\.A\\.\\.\\.?|B\\.A\\.\\.\\.\\.?|RgR|KommR|OSR|OMedR|MedR|PhD|Ing\\.\\s+)?)([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s*,\\s*[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)*)",
+          "priority": 8,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        }
+      ]
+    },
+    {
+      "batch": 2,
+      "rules": [
+        {
+          "id": "49291430",
+          "name": "Complaint Case Context",
+          "description": "Matches persons mentioned immediately after 'in der Beschwerdesache' (in the complaint case), including titles and suffixes. This rule is kept but its pattern is implicitly handled by the stricter title/name matching in the other rules, or acts as a fallback for names without titles in this specific context.",
+          "format": "regex",
+          "content": "in\\s+der\\s+Beschwerdesache\\s+(?:des\\s+|der\\s+)?([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s*,\\s*[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)*)",
+          "priority": 9,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "ce712b26",
+          "name": "Herr/Frau Address",
+          "description": "Matches persons addressed as Herr or Frau in the text.",
+          "format": "regex",
+          "content": "(?:Herr|Frau)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+          "priority": 6,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "9b46a3d5",
+          "name": "Deceased Person Context",
+          "description": "Matches persons identified as deceased (verstorbenen) in inheritance contexts.",
+          "format": "regex",
+          "content": "verstorbenen\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+          "priority": 5,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "9ba5a309",
+          "name": "Genitive Case Person",
+          "description": "Matches persons mentioned in genitive case after 'des' (masculine/neuter) or 'der' (feminine) in legal contexts like 'Beschwerdesache des/der'. Captures name and suffixes but stops before addresses.",
+          "format": "regex",
+          "content": "(?:des\\s+|der\\s+)(?:(?:Mag\\.|Mag\\.a|Mag\\.Dr|Dr\\.in|Dr\\.|Univ\\.-Prof\\.|Univ\\.-Prof\\.in|Hon\\.-Prof\\.|Hon\\.-Prof\\.in|Priv\\.-Doz\\.|Priv\\.-Doz\\.in|LL\\.M\\.?|B\\.A\\.?|B\\.A\\.\\.?|B\\.A\\.\\.\\.?|B\\.A\\.\\.\\.\\.?|RgR|KommR|OSR|OMedR|MedR|PhD|Ing\\.\\s+|DI\\.\\s+|Dipl\\.-Ing\\.\\s+|Dipl\\.\\s+)?)([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s*,\\s*[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)*)",
+          "priority": 8,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        }
+      ]
+    }
+  ],
+  "timestamp": "2026-08-19T17:30:21.403820"
+}

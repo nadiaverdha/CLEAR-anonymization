@@ -1,0 +1,16 @@
+{
+  "phases": [
+    "findok"
+  ],
+  "history": [
+    {
+      "phase": "feedback",
+      "dataset": "findok",
+      "feedback_path": "reports/findok/Qwen_Qwen3.5-35B-A3B/person/2026-08-19_v1/feedback.json",
+      "num_items": 1,
+      "task_level": 0,
+      "rule_level": 1,
+      "timestamp": "2026-08-21T00:37:43.496899"
+    }
+  ]
+}

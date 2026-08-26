@@ -7,53 +7,18 @@ from datetime import datetime
 from pathlib import Path
 from types import SimpleNamespace
 
-from rulechef import RuleChef
-from rulechef.core import (
-    Dataset,
-    Example,
-    Rule,
-    RuleFormat,
-    Task,
-    TaskType,
-)
-from rulechef.evaluation import evaluate_dataset
+from rulechef.core import Rule, RuleFormat, Task, TaskType
+from rulechef.evaluation import evaluate_dataset, evaluate_rules_individually
 from rulechef.executor import RuleExecutor
 
 from benchmarks.data import BenchmarkRun, make_dataset
+from benchmarks.io import deserialize_rules
 from clear_anonymization.evaluation.evaluator import classify_fp
 from clear_anonymization.models.nerlearner import NERLearner, NEROutput
 from clear_anonymization.ner_datasets import (
     get_dataset_class_definitions,
     load_ner_dataset_from_conll,
-    load_ner_dataset_from_json,
 )
-from clear_anonymization.ner_datasets.ner_dataset import NERData
-from clear_anonymization.preprocess.sampling import sample_few_shot
-
-_worker_state = {}
-
-
-def _init_worker(dataset, mode, max_samples, iou_threshold):
-    from rulechef.executor import RuleExecutor
-
-    _worker_state["dataset"] = dataset
-    _worker_state["mode"] = mode
-    _worker_state["max_samples"] = max_samples
-    _worker_state["iou_threshold"] = iou_threshold
-    _worker_state["executor"] = RuleExecutor()
-
-
-def _eval_rule_worker(rule):
-    from rulechef.evaluation import evaluate_rules_individually
-
-    return evaluate_rules_individually(
-        rules=[rule],
-        dataset=_worker_state["dataset"],
-        apply_rules_fn=_worker_state["executor"].apply_rules,
-        mode=_worker_state["mode"],
-        max_samples=_worker_state["max_samples"],
-        iou_threshold=_worker_state["iou_threshold"],
-    )[0]
 
 
 @contextmanager
@@ -103,7 +68,7 @@ def write_summary_table(file_path: Path, metrics_list):
 
 
 def append_overall_metrics(
-    md_path, chef, test_dataset, run, results_folder, rules=None
+    md_path, apply_rules_fn, test_dataset, run, results_folder, rules=None
 ):
     config = run.args
     if rules is None:
@@ -112,7 +77,7 @@ def append_overall_metrics(
     test_eval = evaluate_dataset(
         rules,
         test_dataset,
-        chef.learner._apply_rules,
+        apply_rules_fn,
         mode="text",
     )
     with md_path.open("a", encoding="utf-8") as f:
@@ -121,36 +86,57 @@ def append_overall_metrics(
             f.write(
                 f"```\n python benchmark.py --config {results_folder}/config.yaml \n```\n"
             )
+            train_ratio = getattr(config, "train_ratio", None)
             _write_table(
                 f,
                 ["Parameter", "Value"],
                 [
-                    ["Pool size", config.pool_size],
-                    ["Train ratio", f"{config.train_ratio:.2f}"],
-                    ["Validation ratio", f"{1.0 - config.train_ratio:.2f}"],
-                    ["Shots per class", config.shots],
+                    ["Pool size", getattr(config, "pool_size", "N/A")],
+                    [
+                        "Train ratio",
+                        f"{train_ratio:.2f}" if train_ratio is not None else "N/A",
+                    ],
+                    [
+                        "Validation ratio",
+                        f"{1.0 - train_ratio:.2f}"
+                        if train_ratio is not None
+                        else "N/A",
+                    ],
+                    ["Shots per class", getattr(config, "shots", "N/A")],
                     ["Training documents", run.train_size],
                     ["Validation documents", run.eval_size],
                     ["Test documents", run.test_size],
                     ["Train sentences", run.train_annotations],
                     ["Validation sentences", run.eval_annotations],
                     ["Test sentences", run.test_annotations],
-                    ["Model", config.model],
-                    ["Max rules", config.max_rules],
-                    ["Max samples in prompt", config.max_samples],
-                    ["Refinement iterations", config.max_iterations],
-                    ["Seed", config.seed],
-                    ["Agentic", config.agentic],
-                    ["Enable Critic", config.enable_critic],
-                    ["Enable Prune", config.enable_prune],
-                    ["Critic Interval", config.critic_interval],
-                    ["Audit Interval", config.audit_interval],
-                    ["Use GREX", not config.no_grex],
-                    ["Format", config.format],
-                    ["Synthesis strategy", config.synthesis_strategy],
-                    ["Sampling strategy", config.sampling_strategy],
-                    ["Batch size", config.batch_size],
-                    ["Refine per batch", config.refine_per_batch],
+                    ["Model", getattr(config, "model", "N/A")],
+                    ["Max rules", getattr(config, "max_rules", "N/A")],
+                    ["Max samples in prompt", getattr(config, "max_samples", "N/A")],
+                    [
+                        "Refinement iterations",
+                        getattr(config, "max_iterations", "N/A"),
+                    ],
+                    ["Seed", getattr(config, "seed", "N/A")],
+                    ["Agentic", getattr(config, "agentic", "N/A")],
+                    ["Enable Critic", getattr(config, "enable_critic", "N/A")],
+                    ["Enable Prune", getattr(config, "enable_prune", "N/A")],
+                    ["Critic Interval", getattr(config, "critic_interval", "N/A")],
+                    ["Audit Interval", getattr(config, "audit_interval", "N/A")],
+                    ["Use GREX", not getattr(config, "no_grex", False)],
+                    ["Format", getattr(config, "format", "N/A")],
+                    [
+                        "Synthesis strategy",
+                        getattr(config, "synthesis_strategy", "N/A"),
+                    ],
+                    [
+                        "Sampling strategy",
+                        getattr(config, "sampling_strategy", "N/A"),
+                    ],
+                    ["Batch size", getattr(config, "batch_size", "N/A")],
+                    [
+                        "Refine per batch",
+                        getattr(config, "refine_per_batch", "N/A"),
+                    ],
                     [
                         "Manually annotated examples",
                         getattr(run, "manually_annotated_size", 0),
@@ -162,7 +148,7 @@ def append_overall_metrics(
                 ],
             )
 
-        if run.metadata:
+        if "seeded_from" in run.metadata:
             f.write("**Transfer Learning**\n\n")
             _write_table(
                 f,
@@ -188,8 +174,37 @@ def append_overall_metrics(
             )
 
 
-def _write_rule_detail(f, metric, rules_by_id: dict, top_n_examples: int = 30) -> None:
-    f.write(f"## `{metric.rule_name}`\n\n")
+def _classify_rules(metrics_list, top_n=10):
+    with_matches = [m for m in metrics_list if m.matches > 10]
+    no_matches_ids = {m.rule_id for m in metrics_list if m.matches == 0}
+    best = sorted(
+        [m for m in with_matches if m.true_positives >= 5],
+        key=lambda m: (m.precision, m.true_positives),
+        reverse=True,
+    )[:top_n]
+    best_ids = {m.rule_id for m in best}
+    worst = sorted(
+        [m for m in with_matches if m.rule_id not in best_ids],
+        key=lambda m: (-m.false_positives, m.precision),
+    )[:top_n]
+    worst_ids = {m.rule_id for m in worst}
+    return best_ids, worst_ids, no_matches_ids
+
+
+def _rule_badge(rule_id, best_ids, worst_ids, no_matches_ids):
+    if rule_id in best_ids:
+        return "🏆"
+    if rule_id in worst_ids:
+        return "💣"
+    if rule_id in no_matches_ids:
+        return "🔇"
+    return ""
+
+
+def _write_rule_detail(
+    f, metric, rules_by_id: dict, top_n_examples: int = 30, badge: str = ""
+) -> None:
+    f.write(f"## `{metric.rule_name}` {badge}\n\n")
     f.write(
         f"**F1:** {metric.f1:.3f} | "
         f"**Precision:** {metric.precision:.3f} | "
@@ -307,41 +322,6 @@ def _write_sample_blocks(f, metric, top_n: int):
     _block("⚠️ False Positives", fps, render_fp)
 
 
-def append_influential_rules(
-    md_path: Path, metrics_list, rules, top_n: int = 10
-) -> None:
-    rules_by_id = {r.id: r for r in rules} if rules else {}
-    with_matches = [m for m in metrics_list if m.matches > 5]
-    no_matches = [m for m in metrics_list if m.matches == 0][:top_n]
-
-    best = sorted(
-        [m for m in with_matches if m.true_positives >= 5],
-        key=lambda m: (m.precision, m.true_positives),
-        reverse=True,
-    )[:top_n]
-    best_ids = {m.rule_id for m in best}
-    worst = sorted(
-        [m for m in with_matches if m.rule_id not in best_ids],
-        key=lambda m: (-m.false_positives, m.precision),
-    )[:top_n]
-
-    with md_path.open("a", encoding="utf-8") as f:
-        print(f"Best rules:  {[m.rule_name for m in best]}")
-        with _details_block(f, "🏆 Most Precise Rules"):
-            for m in best:
-                _write_rule_detail(f, m, rules_by_id)
-
-        print(f"Worst rules: {[m.rule_name for m in worst]}")
-        with _details_block(f, "💣 Least Precise Rules"):
-            for m in worst:
-                _write_rule_detail(f, m, rules_by_id)
-
-        print(f"Inactive rules: {[m.rule_name for m in no_matches]}")
-        with _details_block(f, "🔇 Inactive Rules"):
-            for m in no_matches:
-                _write_rule_detail(f, m, rules_by_id)
-
-
 def append_rule_metrics(
     file_path: Path,
     metrics_list,
@@ -349,17 +329,19 @@ def append_rule_metrics(
     top_n_examples: int = 15,
 ) -> None:
     rules_by_id = {r.id: r for r in rules} if rules else {}
-    sorted_metrics = sorted(metrics_list, key=lambda m: m.f1, reverse=True)
+    best_ids, worst_ids, no_matches_ids = _classify_rules(metrics_list)
+    sorted_metrics = sorted(metrics_list, key=lambda m: m.precision, reverse=True)
 
     with file_path.open("a", encoding="utf-8") as f:
         with _details_block(f, "📋 All Rules"):
             for metric in sorted_metrics:
-                _write_rule_detail(f, metric, rules_by_id, top_n_examples)
+                badge = _rule_badge(metric.rule_id, best_ids, worst_ids, no_matches_ids)
+                _write_rule_detail(f, metric, rules_by_id, top_n_examples, badge=badge)
 
 
 def create_md_report(
     file_path: Path,
-    chef,
+    apply_rules_fn,
     run,
     test_dataset,
     results_folder,
@@ -376,18 +358,17 @@ def create_md_report(
     rules = [r for r in run.rules if r.id not in exclude]
 
     append_overall_metrics(
-        file_path, chef, test_dataset, run, results_folder, rules=rules
+        file_path, apply_rules_fn, test_dataset, run, results_folder, rules=rules
     )
-
-    with ProcessPoolExecutor(
-        max_workers=16,
-        initializer=_init_worker,
-        initargs=(test_dataset, "text", 100, 0.5),
-    ) as pool:
-        rule_metrics = list(pool.map(_eval_rule_worker, rules))
-
+    rule_metrics = evaluate_rules_individually(
+        rules,
+        test_dataset,
+        apply_rules_fn,
+        mode="text",
+        max_samples=100,
+        in_context=True,
+    )
     write_summary_table(file_path, rule_metrics)
-    append_influential_rules(file_path, rule_metrics, rules, top_n=10)
 
     append_rule_metrics(
         file_path,
@@ -438,36 +419,21 @@ def main():
     # 1. Load rules
 
     saved = json.loads(Path(args.rules_json).read_text())
-    rules = [
-        Rule(
-            id=r["id"],
-            name=r["name"],
-            description=r["description"],
-            format=RuleFormat(r["format"]),
-            content=r["content"],
-            output_template=r.get("output_template"),
-            output_key=r.get("output_key"),
-        )
-        for r in saved["rules"]
-    ]
+    rules = deserialize_rules(saved["rules"])
     print(f"Loaded {len(rules)} rules")
 
     config = saved.get("config", {})
 
     selected_classes = config.get("selected_classes", ["organisation"])
-    learner = NERLearner(
-        model=config.get("model"),
-        dataset_name=config.get("dataset_name"),
-        base_url=config.get("base_url", "http://localhost:8000/v1"),
-        use_grex=not config.get("no_grex"),
-        max_rules=config.get("max_rules"),
-        max_samples=config.get("max_samples"),
-        max_counter_examples=config.get("max_counter_examples"),
-        logger=None,
-        sampling_strategy=config.get("sampling_strategy"),
-        synthesis_strategy=config.get("synthesis_strategy"),
-        selected_classes=selected_classes,
+    task = Task(
+        name="German Legal Named Entity Recognition",
+        description=f"Recognize named entities in German legal text. Entities to look for: {', '.join(sorted(selected_classes))}. German capitalizes all nouns, so rules must use strong context anchors ",
+        input_schema={"text": "str"},
+        output_schema=NEROutput,
+        type=TaskType.NER,
+        text_field="text",
     )
+    executor = RuleExecutor()
 
     results_folder = os.path.dirname(args.rules_json)
     test_data_raw = load_ner_dataset_from_conll(
@@ -484,7 +450,7 @@ def main():
         for sent in s.sentences
     ]
 
-    test_dataset = make_dataset(f"{args.dataset_name}_eval", test_data, learner.task)
+    test_dataset = make_dataset(f"{args.dataset_name}_eval", test_data, task)
     print(f"Loaded {len(test_data_raw.samples)} test documents")
     print(f"Loaded {len(test_data)} test annotations")
     gold_count = sum(len(item["entities"]) for item in test_data)
@@ -527,7 +493,7 @@ def main():
 
     create_md_report(
         md_path,
-        chef=learner,
+        apply_rules_fn=executor.apply_rules,
         run=benchmark_run,
         test_dataset=test_dataset,
         results_folder=results_folder,
