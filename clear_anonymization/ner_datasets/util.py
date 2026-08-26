@@ -89,3 +89,45 @@ def recreate_sent_relations(sentences):
         relations_by_sent[sent.sent_id] = sent_relations
     # print(relations_by_sent)
     return relations_by_sent
+
+
+def build_marked_text_relations(sentences, governor, dependent):
+    sent_by_id = {s.sent_id: s for s in sentences}
+    gov_sent = sent_by_id[governor["sent_id"]]
+    dep_sent = sent_by_id[dependent["sent_id"]]
+    if gov_sent is dep_sent:
+        text = gov_sent.text
+        spans = [("GOV", governor), ("DEP", dependent)]
+    else:
+        idx = {s.sent_id: i for i, s in enumerate(sentences)}
+        lo, hi = sorted([gov_sent, dep_sent], key=lambda s: idx[s.sent_id])
+        offset = len(lo.text) + 1
+        text = lo.text + "\n" + hi.text
+        shift = {lo.sent_id: 0, hi.sent_id: offset}
+        spans = [
+            (
+                "GOV",
+                {
+                    **governor,
+                    "start": governor["start"] + shift[gov_sent.sent_id],
+                    "end": governor["end"] + shift[gov_sent.sent_id],
+                },
+            ),
+            (
+                "DEP",
+                {
+                    **dependent,
+                    "start": dependent["start"] + shift[dep_sent.sent_id],
+                    "end": dependent["end"] + shift[dep_sent.sent_id],
+                },
+            ),
+        ]
+    spans.sort(key=lambda s: s[1]["start"])
+    out, cursor = [], 0
+    for role, span in spans:
+        tag = f"{role}:{span.get('type', '')}"
+        out.append(text[cursor : span["start"]])
+        out.append(f"<{tag}>{text[span['start'] : span['end']]}</{tag}>")
+        cursor = span["end"]
+    out.append(text[cursor:])
+    return "".join(out)
