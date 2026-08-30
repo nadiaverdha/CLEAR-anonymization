@@ -1,6 +1,6 @@
 # Rule Evaluation Report — Qwen/Qwen3.5-35B-A3B
 
-Generated on: 2026-08-30T12:26:59.062283
+Generated on: 2026-08-30T17:26:08.876964
 
 ---
 
@@ -52,14 +52,14 @@ Results can be reproduced by running this command:
 | Metric | Value |
 |---|---|
 | Accuracy (exact match) | 84.9% |
-| True Positives | 614 |
-| False Positives | 768 |
-| False Negatives | 17544 |
-| Total Gold Entities | 18158 |
-| Micro Precision | 44.4% |
-| Micro Recall | 3.4% |
-| Micro F1 | 6.3% |
-| Macro F1 | 6.3% |
+| True Positives | 631 |
+| False Positives | 751 |
+| False Negatives | 17542 |
+| Total Gold Entities | 18173 |
+| Micro Precision | 45.7% |
+| Micro Recall | 3.5% |
+| Micro F1 | 6.5% |
+| Macro F1 | 6.5% |
 
 </details>
 
@@ -77,8 +77,8 @@ Results can be reproduced by running this command:
 | `Match Pacher & Partner Rechtsanwälte GmbH & Co KG` | 0.0% | 100.0% | 0.0% | 1 | 1 | 0 |
 | `Match Magistrat der Stadt Wien` | 3.9% | 86.1% | 2.0% | 425 | 366 | 59 |
 | `Match Landesgerichte (Regional Courts) - Extended` | 0.1% | 62.5% | 0.0% | 8 | 5 | 3 |
+| `Match Oberste Gerichtshof variants` | 0.2% | 23.0% | 0.1% | 87 | 20 | 67 |
 | `Match Specific Company Names with Special Characters` | 0.2% | 3.5% | 0.1% | 488 | 17 | 471 |
-| `Match Oberste Gerichtshof variants` | 0.0% | 3.4% | 0.0% | 87 | 3 | 84 |
 | `Match Oberlandesgerichte (Regional Courts of Appeal)` | 0.0% | 0.0% | 0.0% | 0 | 0 | 0 |
 | `Match Handelsgerichte (Commercial Courts)` | 0.0% | 0.0% | 0.0% | 7 | 0 | 7 |
 | `Match District Courts (Extended Locations)` | 0.0% | 0.0% | 0.0% | 0 | 0 | 0 |
@@ -189,7 +189,7 @@ Captures the Constitutional Court in various cases (Nominative, Genitive, Dative
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 218 | 0 | 17313 |
+| `organisation` | 218 | 0 | 17326 |
 
 </details>
 
@@ -1262,7 +1262,7 @@ Captures District Courts with city names, including missing locations like Traun
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 2 | 0 | 6745 |
+| `organisation` | 2 | 0 | 6749 |
 
 </details>
 
@@ -1318,7 +1318,7 @@ Captures District Courts with city names in genitive case (e.g., 'Bezirksgericht
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 1 | 0 | 6812 |
+| `organisation` | 1 | 0 | 6816 |
 
 </details>
 
@@ -1365,7 +1365,7 @@ Captures the specific entity 'Huber Swoboda Oswald Aixberger Rechtsanwälte GmbH
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 1 | 0 | 8758 |
+| `organisation` | 1 | 0 | 8763 |
 
 </details>
 
@@ -1421,7 +1421,7 @@ Captures the specific entity 'Pacher & Partner Rechtsanwälte GmbH & Co KG'.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 1 | 0 | 5501 |
+| `organisation` | 1 | 0 | 5505 |
 
 </details>
 
@@ -1475,7 +1475,7 @@ Captures the specific entity 'Magistrat der Stadt Wien'.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 366 | 59 | 17762 |
+| `organisation` | 366 | 59 | 17777 |
 
 </details>
 
@@ -2512,7 +2512,7 @@ Der Magistrat der Stadt Wien, Magistratsabteilung 67, hat das Schreiben der Fa.W
 **Gold Entities:**
 
 - `Magistrat der Stadt Wien, Magistratsabteilung 67`(organisation)
-- `West Altrader GmbH`(organisation)
+- `West Altrader GmbH`(0)
 - `Gundula Doerfner`(person)
 - `Bundesfinanzgericht`(organisation)
 
@@ -2609,7 +2609,7 @@ Captures Regional Courts with city names including Eisenstadt, Mattersburg, Hall
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 5 | 3 | 6803 |
+| `organisation` | 5 | 3 | 6807 |
 
 </details>
 
@@ -2727,6 +2727,959 @@ Mit Beschluss des Landesgerichts Salzburg vom 20. August 2014 erfolgte hinsichtl
 
 ---
 
+## `Match Oberste Gerichtshof variants` 🏆
+
+**F1:** 0.002 | **Precision:** 0.230 | **Recall:** 0.001  
+
+**Format:** `regex`  
+**Rule ID:** `856df2b4`  
+**Description:**
+Captures the Supreme Court (OGH) in various grammatical cases.
+
+**Content:**
+```
+\b(Oberster\s+Gerichtshof|Oberste\s+Gerichtshof|Obersten\s+Gerichtshof|Obersten\s+Gerichtshofs|OGH)\b
+```
+
+<details>
+<summary>📊 Detailed Metrics</summary>
+
+| Precision | Recall | F1 | Total Predicted | TP | FP |
+|---|---|---|---|---|---|
+| 0.230 | 0.001 | 0.002 | 87 | 20 | 67 |
+
+**Per-Class Breakdown**
+
+| Class | TP | FP | FN |
+|---|---|---|---|
+| `organisation` | 20 | 67 | 17922 |
+
+</details>
+
+---
+
+<details>
+<summary>✅ Worked</summary>
+
+**Example 0** (doc_id: `deanon_BFG_20260814_TRAIN/128871.1`) (sent_id: `deanon_BFG_20260814_TRAIN/128871.1_68`)
+
+
+(Koppensteiner GmbHG, § 15 Tz. 7 unter Verweis auf OGH in RdW  1993, 243 u. a.)
+
+| Predicted | Gold |
+|---|---|
+| `OGH` | `OGH` |
+
+**Missed by this rule (FN):**
+
+- `Koppensteiner GmbHG` (organisation)
+
+**Example 1** (doc_id: `deanon_BFG_20260814_TRAIN/129187.1`) (sent_id: `deanon_BFG_20260814_TRAIN/129187.1_195`)
+
+
+Bei Beurteilung, ob dies der Fall ist, führt er  aus, dass „weder in der Fachliteratur noch in der Rechtsprechung des OGH davon ausgegangen  wird, dass die dem amerikanischen Franchising in Europa nachgebildeten Franchise-Verträge  so gestaltet sind, dass der Franchise-Nehmer nichts anderes als eine Gewerbeberechtigung in  das Vertragsverhältnis einbringt und alles andere einschließlich des vom Franchise-Nehmer zu  führenden Unternehmens beigestellt wird.
+
+| Predicted | Gold |
+|---|---|
+| `OGH` | `OGH` |
+
+**Example 2** (doc_id: `deanon_BFG_20260814_TRAIN/130963.1`) (sent_id: `deanon_BFG_20260814_TRAIN/130963.1_67`)
+
+
+Der  Kündigungsgrund der Z 9 (Eigenbedarf) könne zwar-nach der Rechtsprechung des OGH- auch  für eine juristische Person zutreffen, allerdings nur unter der Voraussetzung, dass diese die  betreffenden Räumlichkeiten zur Erfüllung ihres Zweckes dringend benötige; und es müsse die  dringende Notwendigkeit bestehen, den derzeitigen Zustand sobald als möglich zu beheben,  was nur durch Aufkündigung des Bestandverhältnisses erreicht werden kann.
+
+| Predicted | Gold |
+|---|---|
+| `OGH` | `OGH` |
+
+**Example 3** (doc_id: `deanon_BFG_20260814_TRAIN/131638.1`) (sent_id: `deanon_BFG_20260814_TRAIN/131638.1_218`)
+
+
+Davon spricht man,  wenn der Täter intellektuell erkannt hat, dass sein Verhalten zu einer Steuerverkürzung führen  kann und er diesen Erfolg billigend in Kauf nimmt (vgl. Kotschnigg in Tannert/Kotschnigg,  FinStrG, § 33, Rz. 216 und die dort zitierte OGH- und VwGH-Rechtsprechung).
+
+| Predicted | Gold |
+|---|---|
+| `OGH` | `OGH` |
+
+**Example 4** (doc_id: `deanon_BFG_20260814_TRAIN/133679.1`) (sent_id: `deanon_BFG_20260814_TRAIN/133679.1_633`)
+
+
+Zur Eigenverantwortlichkeit und auch zur Haftung des Vertretungsarztes werde auf eine  Entscheidung des OGH vom 22.1.2008, 4 Ob 210/07 verwiesen, der ebendort ausführe:   „…Es fehle auch an jeder Abhängigkeit des Urlaubsvertreters von dem auf Urlaub befindlichen  Arzt;
+
+| Predicted | Gold |
+|---|---|
+| `OGH` | `OGH` |
+
+**Example 5** (doc_id: `deanon_BFG_20260814_TRAIN/133679.1`) (sent_id: `deanon_BFG_20260814_TRAIN/133679.1_635`)
+
+
+Die Vertretung eines Arztes durch einen anderen Arzt sei  daher nicht Gehilfenschaft iSd § 1313a ABGB, sondern Substitution, bei der man nur für  Auswahlverschulden hafte…“   Aufgrund dieser Ausführungen von Dr. Emberger iVm der Entscheidung des OGH vertrat das  Bundesfinanzgericht die Auffassung, dass die Vertretungsärzte eigenverantwortlich tätig seien  und daher auch zur Haftung herangezogen werden könnten, was einem Unternehmerrisiko  gleichkomme.
+
+| Predicted | Gold |
+|---|---|
+| `OGH` | `OGH` |
+
+**Missed by this rule (FN):**
+
+- `Bundesfinanzgericht` (organisation)
+
+**Example 6** (doc_id: `deanon_BFG_20260814_TRAIN/133679.1`) (sent_id: `deanon_BFG_20260814_TRAIN/133679.1_661`)
+
+
+Das BFG hätte einen wesentlichen Gesichtspunkt unbehandelt gelassen:   “… nach der Rechtsprechung des OGH könne der in der Ordination des Vertretenen tätig  werdende Praxisvertreter eines niedergelassenen Arztes dessen Erfüllungsgehilfe bei der  Behandlung der Patienten sein, wenn diese der Meinung sein mussten, "entweder vom  Ordinationsinhaber persönlich oder zumindest innerhalb seines Verantwortungsbereichs  behandelt zu werden".
+
+| Predicted | Gold |
+|---|---|
+| `OGH` | `OGH` |
+
+**Missed by this rule (FN):**
+
+- `BFG` (organisation)
+
+**Example 7** (doc_id: `deanon_BFG_20260814_TRAIN/133782.1`) (sent_id: `deanon_BFG_20260814_TRAIN/133782.1_49`)
+
+
+Im Urteil des Landesgerichtes LG (yCgyy/yyy vom Datum_2; dieses Urteil wurde vom Obersten  Gerichtshof am Datum_1, xObxxx/xxx bestätigt) werde festgehalten, „... dass die beklagte  Partei für sämtliche zukünftigen, derzeit noch nicht bekannten Schäden ... haftet“.
+
+| Predicted | Gold |
+|---|---|
+| `Obersten  Gerichtshof` | `Obersten  Gerichtshof` |
+
+**Missed by this rule (FN):**
+
+- `Landesgerichtes LG` (organisation)
+
+**Example 8** (doc_id: `deanon_BFG_20260814_TRAIN/133782.1`) (sent_id: `deanon_BFG_20260814_TRAIN/133782.1_62`)
+
+
+In diesem Verfahren entschied der Oberste Gerichtshof mit Urteil vom Datum_1, xObxxx/xxx,  zugunsten der Bf als Klägerin und bestätigte das Urteil des Landesgerichtes LG vom Datum_2,  yCgyy/yyy.
+
+| Predicted | Gold |
+|---|---|
+| `Oberste Gerichtshof` | `Oberste Gerichtshof` |
+
+**Missed by this rule (FN):**
+
+- `Landesgerichtes LG` (organisation)
+
+**Example 9** (doc_id: `deanon_BFG_20260814_TRAIN/133782.1`) (sent_id: `deanon_BFG_20260814_TRAIN/133782.1_68`)
+
+
+Das vom Obersten Gerichtshof bestätigte Urteil des Landesgerichtes LG diente in der Folge als  Rechtgrundlage für die weiteren Nettozahlungen der B an die Bf im streitgegenständlichen Jahr  2019.
+
+| Predicted | Gold |
+|---|---|
+| `Obersten Gerichtshof` | `Obersten Gerichtshof` |
+
+**Missed by this rule (FN):**
+
+- `Landesgerichtes LG` (organisation)
+
+**Example 10** (doc_id: `deanon_BFG_20260814_TRAIN/135942.1`) (sent_id: `deanon_BFG_20260814_TRAIN/135942.1_28`)
+
+
+Die Rechtsprechung des OGH zu der Auslegung des Begriffs „Wohnzwecke" im  Zusammenhang mit § 16 Abs 1 Z 1 MRG ist daher auch für § 33 TP 5 Abs 1 Z 4 heranzuziehen.
+
+| Predicted | Gold |
+|---|---|
+| `OGH` | `OGH` |
+
+**Example 11** (doc_id: `deanon_BFG_20260814_TRAIN/137355.1`) (sent_id: `deanon_BFG_20260814_TRAIN/137355.1_228`)
+
+
+Dem von der Beschwerdeführerin vorgenommenen Verweis auf die Entscheidung des OGH  vom 16.1.2003, 2 Ob 311/02b, nach der sich ergebe, dass, wenn die ordentliche Kündigung  nicht erwähnt werde, dennoch auf die ordentliche Kündigung nicht verzichtet worden sei, und  das Recht zur ordentlichen Kündigung daher bestehen bleibe, tritt das Bundesfinanzgericht  damit entgegen, dass im Sachverhalt des zitierten OGH-Urteils offenbar überhaupt keine  Regelungen zur ordentlichen Kündigung getroffen wurden;
+
+| Predicted | Gold |
+|---|---|
+| `OGH` | `OGH` |
+| `OGH` | `OGH` |
+
+**Missed by this rule (FN):**
+
+- `Bundesfinanzgericht` (organisation)
+
+**Example 12** (doc_id: `deanon_BFG_20260814_TRAIN/137355.1`) (sent_id: `deanon_BFG_20260814_TRAIN/137355.1_230`)
+
+
+Darüber hinaus scheint  es einleuchtend, dass es im Fall eines Kreditkartenvertrags, zu dem die OGH-Entscheidung  erging, irgendeine Möglichkeit zur Auflösung gegeben sein muss, während im  beschwerdegegenständlichen Fall des Fahrzeugleasings ohnehin der Leasingnehmer ein  Interesse daran haben wird, den Vertrag nach einigen Jahren zu beenden, zumal der Wert des  geleasten Fahrzeugs permanent sinkt und sich die faktische Produktlebensdauer dem Ende  18 von 24 Seite 19 von 24
+
+| Predicted | Gold |
+|---|---|
+| `OGH` | `OGH` |
+
+**Example 13** (doc_id: `deanon_BFG_20260814_TRAIN/139351.1`) (sent_id: `deanon_BFG_20260814_TRAIN/139351.1_33`)
+
+
+Seines Wissens nach seien  derartige Prozesskosten "lt. OGH absetzbar", was ihm auch von Mitarbeitern des Finanzamtes  bestätigt worden sei.
+
+| Predicted | Gold |
+|---|---|
+| `OGH` | `OGH` |
+
+**Missed by this rule (FN):**
+
+- `Finanzamtes` (organisation)
+
+**Example 14** (doc_id: `deanon_BFG_20260814_TRAIN/141978.1`) (sent_id: `deanon_BFG_20260814_TRAIN/141978.1_107`)
+
+
+Davon  spricht man, wenn der Täter intellektuell erkannt hat, dass sein Verhalten zu einer  Steuerverkürzung führen kann und er diesen Erfolg billigend in Kauf nimmt (vgl. Kotschnigg in  Tannert/Kotschnigg, FinStrG § 33 Rz 216, und die dort zitierte OGH- bzw. VwGH- Rechtsprechung).
+
+| Predicted | Gold |
+|---|---|
+| `OGH` | `OGH` |
+
+**Example 15** (doc_id: `deanon_BFG_20260814_TRAIN/145191.1`) (sent_id: `deanon_BFG_20260814_TRAIN/145191.1_159`)
+
+
+Unter dem Halter ist nach der Rechtsprechung des OGH die Person zu verstehen, die das  Fahrzeug auf eigene Rechnung in Gebrauch und die Verfügungsgewalt darüber hat.
+
+| Predicted | Gold |
+|---|---|
+| `OGH` | `OGH` |
+
+**Example 16** (doc_id: `deanon_BFG_20260814_TRAIN/145191.1`) (sent_id: `deanon_BFG_20260814_TRAIN/145191.1_191`)
+
+
+sie hat das Kfz somit nicht, wie es die  Rechtsprechung des OGH zum Halterbegriff erfordert (siehe oben), auf eigene Rechnung in  Gebrauch gehabt.
+
+| Predicted | Gold |
+|---|---|
+| `OGH` | `OGH` |
+
+**Example 17** (doc_id: `deanon_BFG_20260814_TRAIN/147476.1`) (sent_id: `deanon_BFG_20260814_TRAIN/147476.1_47`)
+
+
+Solche Vergütungs- zinsen unterliegen der dreijährigen Verjährungsfrist gemäß § 1480 ABGB (vgl. ebenfalls die  soeben zitierte OGH-Entscheidung;
+
+| Predicted | Gold |
+|---|---|
+| `OGH` | `OGH` |
+
+**Example 18** (doc_id: `deanon_BFG_20260814_TRAIN/149096.1`) (sent_id: `deanon_BFG_20260814_TRAIN/149096.1_62`)
+
+
+Wie der OGH schon wiederholt erkannt hat, ist unabdingbare  Voraussetzung der Anrufung des Verfassungsgerichtshofes, dass das Gericht selbst Bedenken  gegen die Verfassungsmäßigkeit des anzuwendenden Gesetzes bzw. die Gesetzmäßigkeit der  anzuwendenden Verordnung hat; der Umstand allein, dass eine Partei solche Bedenken  vorbringt (oder dass im Schrifttum Bedenken geäußert worden sind), berechtigt oder  verpflichtet das Gericht noch nicht zur Normenprüfung.
+
+| Predicted | Gold |
+|---|---|
+| `OGH` | `OGH` |
+
+**Missed by this rule (FN):**
+
+- `Verfassungsgerichtshofes` (organisation)
+
+</details>
+
+---
+
+<details>
+<summary>⚠️ False Positives</summary>
+
+**Example 0** (doc_id: `deanon_BFG_20260814_TRAIN/129187.1`) (sent_id: `deanon_BFG_20260814_TRAIN/129187.1_192`)
+
+
+(OGH 26.4.1994, 4  Ob 535/94, Miet 46.088/11 mwN).
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 1** (doc_id: `deanon_BFG_20260814_TRAIN/129555.1`) (sent_id: `deanon_BFG_20260814_TRAIN/129555.1_21`)
+
+
+Selbst eine Wendung wie "vertreten durch ...", die ohnedies nicht zwingend auf eine erteilte  Bevollmächtigung schließen lassen würde (OGH 24.3.1992, 5 Ob 25/92;
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 2** (doc_id: `deanon_BFG_20260814_TRAIN/131109.1`) (sent_id: `deanon_BFG_20260814_TRAIN/131109.1_102`)
+
+
+Eine gesicherte Rechtsprechung besteht bereits bei Vorliegen eines begründeten Erkenntnisses  (OGH 1.8.2012, 4 Ob 119/12x)
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 3** (doc_id: `deanon_BFG_20260814_TRAIN/131110.1`) (sent_id: `deanon_BFG_20260814_TRAIN/131110.1_141`)
+
+
+Eine gesicherte Rechtsprechung besteht bereits bei Vorliegen eines begründeten Erkenntnisses  (vgl. OGH 1.8.2012, 4 Ob 119/12x)  10 von 11 Seite 11 von 11
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 4** (doc_id: `deanon_BFG_20260814_TRAIN/131313.1`) (sent_id: `deanon_BFG_20260814_TRAIN/131313.1_22`)
+
+
+Nach Auskunft seines Steuerberaters gebe es  für die Möglichkeit der Berücksichtigung in solchen Angelegenheiten entsprechende  Erkenntnisse des OGH.
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 5** (doc_id: `deanon_BFG_20260814_TRAIN/131638.1`) (sent_id: `deanon_BFG_20260814_TRAIN/131638.1_205`)
+
+
+dies gilt auch für den bedingten Vorsatz  (vgl. OGH 26.3.1982, Zl. 10 Os 35/82;
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 6** (doc_id: `deanon_BFG_20260814_TRAIN/132370.1`) (sent_id: `deanon_BFG_20260814_TRAIN/132370.1_117`)
+
+
+Welser in Rummel,  ABGB I3, § 549 Rz 4; OGH EvBl 1966/90).
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 7** (doc_id: `deanon_BFG_20260814_TRAIN/132394.1`) (sent_id: `deanon_BFG_20260814_TRAIN/132394.1_19`)
+
+
+In den Beschwerdevorentscheidungen vom 22.05.2017 (zugestellt am 29.05.2017) verneinte  die belangte Behörde insbesondere unter Hinweis auf das Urteil des OGH vom 12.04.2016, 11  Os 53/15a erneut die Anwendbarkeit des Befreiungstatbestandes des § 10 Abs. 1 Z. 1 KStG.
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 8** (doc_id: `deanon_BFG_20260814_TRAIN/132537.1`) (sent_id: `deanon_BFG_20260814_TRAIN/132537.1_61`)
+
+
+OGH 18.10.2007, 2 Ob 96/07t, NZ 2008,  151).
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 9** (doc_id: `deanon_BFG_20260814_TRAIN/132557.1`) (sent_id: `deanon_BFG_20260814_TRAIN/132557.1_124`)
+
+
+Maßgebend ist, dass der Halter tatsächlich in  der Lage ist, die Verfügungsgewalt über das Fahrzeug auszuüben (vgl. OGH 18.12.2000, 9 Ob A  150/00z;
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 10** (doc_id: `deanon_BFG_20260814_TRAIN/132589.1`) (sent_id: `deanon_BFG_20260814_TRAIN/132589.1_374`)
+
+
+Darunter ist – s: etwa Art. 11 Abs. 1 VO 987/2009 – im  Sinn des nationalen Rechts nicht bloß (irgendein) Wohnsitz i. S. d. § 26 Abs. 1 BAO zu  verstehen, sondern der Mittelpunkt der Lebensinteressen (§ 2 Abs. 8 Satz 2 FLAG 1967) bzw.  der Mittelpunkt der Lebensbeziehungen (§ 1 Abs. 8 Meldegesetz) dieser Person (vgl. Czaszar in  Csaszar/Lenneis/Wanke, FLAG § 53 Rz 81, unter Hinweis auf OGH 17.
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 11** (doc_id: `deanon_BFG_20260814_TRAIN/133151.1`) (sent_id: `deanon_BFG_20260814_TRAIN/133151.1_61`)
+
+
+Die Änderung der Eigentumsverhältnisse bedarf vielmehr der  Einverleibung im Grundbuch, die wiederum nur aufgrund eines gültigen Titels erfolgen kann  (vgl. OGH 23.10.2001, 5 Ob 176/01w).
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 12** (doc_id: `deanon_BFG_20260814_TRAIN/133151.1`) (sent_id: `deanon_BFG_20260814_TRAIN/133151.1_90`)
+
+
+die Änderung der Eigentumsverhältnisse bedarf vielmehr der Einverleibung im Grundbuch,  die wiederum nur aufgrund eines gültigen Titels erfolgen kann (vgl. OGH 23.10.2001, 5 Ob  176/01w).
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 13** (doc_id: `deanon_BFG_20260814_TRAIN/133679.1`) (sent_id: `deanon_BFG_20260814_TRAIN/133679.1_430`)
+
+
+Begründet wurde dies damit, dass sie  als begutachtende und auch Befund erstellende Supervisorin tätig gewesen sei, deren  Vertragsinhalt die Herstellung eines ordnungsgemäßen Befundes des gynäkologischen  Abstrichs durch Supervision gewesen wäre, was in jedem Fall abgrenzbar, überprüfbar und  einer Gewährleistung bzw. Haftung zugänglich gewesen wäre, wobei bei der Herstellung von  Befunden nach der höchstgerichtlichen Rechtsprechung (OGH 23.05.1984, 1 Ob 550/84) ein  Werkvertrag vorliege.
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 14** (doc_id: `deanon_BFG_20260814_TRAIN/133679.1`) (sent_id: `deanon_BFG_20260814_TRAIN/133679.1_662`)
+
+
+Werden die Patienten aber "mittels entsprechender Maßnahmen   (z.B. Anbringen eines entsprechenden Hinweises am Ordinationsschild oder an der Eingangstür  zum Behandlungsraum, Anweisung an den Vertreter oder sein Personal, die Patienten  entsprechend zu informieren)" vor Beginn der Behandlung über den Vertretungsfall aufgeklärt,  so kommt der (in der Regel konkludent abgeschlossene) Behandlungsvertrag nicht mit dem  (diesfalls nicht im rechtlichen Sinn) Vertretenen, sondern mit dem Praxisvertreter selbst  zustande (OGH 22.1.2008, 4 Ob 210/07x; vgl.
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 15** (doc_id: `deanon_BFG_20260814_TRAIN/134050.1`) (sent_id: `deanon_BFG_20260814_TRAIN/134050.1_54`)
+
+
+Finanzstrafrechtlich ungeeignet sind jedenfalls Globalschätzungen oder die  Anwendung eines Sicherheitszuschlags (zB OGH 28.10.2015, 13 Os 3/15p).
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 16** (doc_id: `deanon_BFG_20260814_TRAIN/134050.1`) (sent_id: `deanon_BFG_20260814_TRAIN/134050.1_176`)
+
+
+Mangels entsprechender  Beschwerde des Amtsbeauftragten, der eine Beschwerde zwar angemeldet, aber nicht  ausgeführt hat, war es aufgrund des Verböserungsverbotes des § 161 Abs. 3 FinStrG dem  Finanzstrafsenat verwehrt, den Ausspruch über die Geldstrafe und – zufolge des untrennbaren  Zusammenhangs – auch jener über die Ersatzfreiheitsstrafe aufzuheben und insoweit in der  Sache selbst zu erkennen (vgl. OGH vom 17.6.2020, 13 Os 100/19h).
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 17** (doc_id: `deanon_BFG_20260814_TRAIN/134126.1`) (sent_id: `deanon_BFG_20260814_TRAIN/134126.1_75`)
+
+
+Zudem wirkt eine Bevollmächtigung jeweils nur für jenes  Verfahren, in dem sich der Bevollmächtigte entweder durch eine schriftliche Vollmacht  ausgewiesen oder sich wirksam auf die Bevollmächtigung berufen hat (vgl. OGH 5.8.2016,  2 Ob 55/16a;
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 18** (doc_id: `deanon_BFG_20260814_TRAIN/134126.1`) (sent_id: `deanon_BFG_20260814_TRAIN/134126.1_76`)
+
+
+OGH 26.5.2014, 8 Ob 45/14;
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 19** (doc_id: `deanon_BFG_20260814_TRAIN/134126.1`) (sent_id: `deanon_BFG_20260814_TRAIN/134126.1_77`)
+
+
+OGH 21.9.2006, 2 Ob 171/06;
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 20** (doc_id: `deanon_BFG_20260814_TRAIN/134126.1`) (sent_id: `deanon_BFG_20260814_TRAIN/134126.1_78`)
+
+
+OGH 16.4.1993,  5 Ob 1020/93;
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 21** (doc_id: `deanon_BFG_20260814_TRAIN/134126.1`) (sent_id: `deanon_BFG_20260814_TRAIN/134126.1_98`)
+
+
+OGH 24.03.1992, 5 Ob 25/92;
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 22** (doc_id: `deanon_BFG_20260814_TRAIN/134126.1`) (sent_id: `deanon_BFG_20260814_TRAIN/134126.1_105`)
+
+
+OGH 21.9.2006, 2 Ob 171/06), sieht das BFG keine Veranlassung,  an der fehlenden Legitimation der einschreitenden Mur-Sanitär GmbH zur Erhebung des  verfahrensgegenständlichen Rechtsmittels zu zweifeln.
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Gold Entities:**
+
+- `BFG`(organisation)
+- `Mur-Sanitär GmbH`(organisation)
+
+**Example 23** (doc_id: `deanon_BFG_20260814_TRAIN/134126.1`) (sent_id: `deanon_BFG_20260814_TRAIN/134126.1_111`)
+
+
+Eine gesicherte Rechtsprechung besteht bereits bei Vorliegen eines begründeten Erkenntnisses  (vgl. OGH 1.8.2012, 4 Ob 119/12x).
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 24** (doc_id: `deanon_BFG_20260814_TRAIN/134315.1`) (sent_id: `deanon_BFG_20260814_TRAIN/134315.1_200`)
+
+
+(Vgl OGH 14.08.2014, 40/14b,  OGH 30.01.2014, 13 Os 78/13i, OGH 30.08.2012, 13 Os 70/12m)  Gemäß § 33 Abs 3 lit a zweiter Fall FinStrG ist eine Abgabenverkürzung nach § 33 Abs 1 FinStrG  bewirkt, wenn Abgaben, die bescheidmäßig festzusetzen sind, infolge Unkenntnis der  Abgabenbehörde von der Entstehung des Abgabenanspruchs mit Ablauf der gesetzlichen  Erklärungsfrist nicht festgesetzt werden konnten.
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+- `OGH` — no gold match — likely missing annotation
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 3
+
+**Example 25** (doc_id: `deanon_BFG_20260814_TRAIN/134315.1`) (sent_id: `deanon_BFG_20260814_TRAIN/134315.1_203`)
+
+
+(Vgl OGH 30.08.2012,  13 Os 70/12m, Pkt 2).
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 26** (doc_id: `deanon_BFG_20260814_TRAIN/137198.1`) (sent_id: `deanon_BFG_20260814_TRAIN/137198.1_5`)
+
+
+demnach habe – lt. OLG und OGH – zwischen dem Bf und   DrB ein echtes und folglich gem. § 47 Abs. 2 EStG lohnsteuerpflichtiges Dienstverhältnis  bestanden.
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 27** (doc_id: `deanon_BFG_20260814_TRAIN/137334.1`) (sent_id: `deanon_BFG_20260814_TRAIN/137334.1_68`)
+
+
+sie schaffen objektives Recht (vgl. OGH 29.
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 28** (doc_id: `deanon_BFG_20260814_TRAIN/137355.1`) (sent_id: `deanon_BFG_20260814_TRAIN/137355.1_28`)
+
+
+Nach Auffassung der Beschwerdeführerin stehe hingegen beiden Parteien sowohl nach den  AGB 2006 als auch nach den AGB 2011 ein Kündigungsrecht zu. Auch wenn die Möglichkeit der  ordentlichen Kündigung in den AGB nicht explizit erwähnt sei, komme der Beschwerdeführerin  (mit Hinweis auf OGH 16.1.2003, 2 Ob 3011/02) dennoch das Recht zu, den Leasingvertrag zu  kündigen.
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 29** (doc_id: `deanon_BFG_20260814_TRAIN/137355.1`) (sent_id: `deanon_BFG_20260814_TRAIN/137355.1_193`)
+
+
+Nach der nach § 864a ABGB durchzuführenden Geltungskontrolle ergibt sich, dass die in Rede  stehende Klausel weder ungewöhnlich, benachteiligend oder überraschend ist (es liegt kein  „Überrumpelungs- oder gar Übertölpelungseffekt“ im Sinne der Rechtsprechung des OGH vor –  vgl etwa OGH 24.5.1989, 1 Ob 558/89);
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 2
+
+**Example 30** (doc_id: `deanon_BFG_20260814_TRAIN/137355.1`) (sent_id: `deanon_BFG_20260814_TRAIN/137355.1_197`)
+
+
+OGH  1 Ob 214/17b).
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 31** (doc_id: `deanon_BFG_20260814_TRAIN/137360.1`) (sent_id: `deanon_BFG_20260814_TRAIN/137360.1_41`)
+
+
+26.11.2015, Ro 2015/07/0018; vgl auch OGH 24.11.2015,  1 Ob 127/15f).
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 32** (doc_id: `deanon_BFG_20260814_TRAIN/138133.1`) (sent_id: `deanon_BFG_20260814_TRAIN/138133.1_99`)
+
+
+Gruber, ARD 6403/4/2014; vgl. idZ auch OGH 23.4.2014, 10 ObS 27/14i zu einer Nachzahlung  als laufender Bezug bei Errechnung der Zuverdienstgrenze gem. § 8 KBGG).
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 33** (doc_id: `deanon_BFG_20260814_TRAIN/139661.1`) (sent_id: `deanon_BFG_20260814_TRAIN/139661.1_112`)
+
+
+26.11.2015, Ro 2015/07/0018; vgl auch OGH 24.11.2015, 1 Ob 127/15f).
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 34** (doc_id: `deanon_BFG_20260814_TRAIN/140710.1`) (sent_id: `deanon_BFG_20260814_TRAIN/140710.1_176`)
+
+
+Dies jedoch bloß  unter der Voraussetzung, dass die vermieteten Räumlichkeiten zur Zweckerfüllung dringend  benötigt werden und die vorliegende unabweisliche Notwendigkeit nur durch Aufkündigung  des Bestandverhältnisses erreicht werden kann (vgl OGH 19.1.2011, 7 Ob 242/10d).
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 35** (doc_id: `deanon_BFG_20260814_TRAIN/141415.1`) (sent_id: `deanon_BFG_20260814_TRAIN/141415.1_208`)
+
+
+Andere als behinderungskausale Gründe (wie zB mangelnde oder nicht spezifische Ausbildung,  die Arbeitsplatzsituation, Arbeitswilligkeit oÄ - siehe zu einer vergleichbaren Rechtslage im  Bereich der Invaliditätspension OGH 19.9.2000, 10ObS240/00t) dürfen für die Beurteilung  ebensowenig herangezogen werden, wie eine Verschlechterung des Gesundheitszustandes  (etwa auch durch eine Verschlimmerung des Leidens oder durch Folgeschäden) nach  Vollendung des 21.
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 36** (doc_id: `deanon_BFG_20260814_TRAIN/142383.1`) (sent_id: `deanon_BFG_20260814_TRAIN/142383.1_152`)
+
+
+in diesem Fall soll erst durch  die Treuhandvereinbarung die Verschiebung der wirtschaftlichen Zugehörigkeit bewirkt  werden, also der bisher auf eigene Rechnung gehaltene Geschäftsanteil in Hinkunft auf  Rechnung des Treugebers gehalten werden (vgl. OGH 28.8.2003, 8 Ob 259/02z;
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 37** (doc_id: `deanon_BFG_20260814_TRAIN/143723.1`) (sent_id: `deanon_BFG_20260814_TRAIN/143723.1_50`)
+
+
+OGH 30.10.2018, 2 Ob 94/18i;
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 38** (doc_id: `deanon_BFG_20260814_TRAIN/143723.1`) (sent_id: `deanon_BFG_20260814_TRAIN/143723.1_51`)
+
+
+OGH 21.9.2018,  3 Ob 149/18k, je mwN).
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 39** (doc_id: `deanon_BFG_20260814_TRAIN/144543.1`) (sent_id: `deanon_BFG_20260814_TRAIN/144543.1_166`)
+
+
+Nach der jüngsten Rechtsprechung des OGH (vgl. OGH 18.1.2023, 15 Os 111/22w, Rz 9), ist die  gegenständliche Tat sowohl unter „[...] § 146 StGB als auch § 4 Abs. 1 Wiener  Parkometergesetz 2006 subsumierbar.
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 2
+
+**Example 40** (doc_id: `deanon_BFG_20260814_TRAIN/144695.1`) (sent_id: `deanon_BFG_20260814_TRAIN/144695.1_6`)
+
+
+Mit dem Urteil des OGH  vom 28.06.2023, 13 Os 119/22g, wurde die vom Bf. gegen das Urteil des Landesgerichtes  eingebrachte Nichtigkeitsbeschwerde zurückgewiesen).
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Gold Entities:**
+
+- `Landesgerichtes`(organisation)
+
+**Example 41** (doc_id: `deanon_BFG_20260814_TRAIN/144916.1`) (sent_id: `deanon_BFG_20260814_TRAIN/144916.1_52`)
+
+
+erteilt wurde (vgl. OGH 13.10.1992, 10 ObS  133/92;
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 42** (doc_id: `deanon_BFG_20260814_TRAIN/145191.1`) (sent_id: `deanon_BFG_20260814_TRAIN/145191.1_162`)
+
+
+der Lage ist, die Verfügung über das Fahrzeug auszuüben (OGH 18.10.2000, 9 Ob A 150/00z).
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 43** (doc_id: `deanon_BFG_20260814_TRAIN/145202.1`) (sent_id: `deanon_BFG_20260814_TRAIN/145202.1_38`)
+
+
+Die Regelbedarfsätze sind abstrakte (nicht an die konkrete Einkommenssituation der Eltern  angelehnte) Werte und sollen die durchschnittlichen Grundbedürfnisse (Wohnung, Nahrung,  Kleidung etc.) eines Kindes in Österreich, gestaffelt nach dem Alter des Kindes, repräsentieren  (OGH 9.2.1995, 2 Ob 512/95).
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 44** (doc_id: `deanon_BFG_20260814_TRAIN/145809.1`) (sent_id: `deanon_BFG_20260814_TRAIN/145809.1_139`)
+
+
+Kietaibl in Tomandl, ArbVG § 29 Rz 8 bzw zur vergleichbaren Regelung nach dem BRG 1947  bereits OGH 16.
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 45** (doc_id: `deanon_BFG_20260814_TRAIN/146167.1`) (sent_id: `deanon_BFG_20260814_TRAIN/146167.1_165`)
+
+
+Andere als behinderungskausale Gründe (wie zB mangelnde oder nicht spezifische Ausbildung,  die Arbeitsplatzsituation, Arbeitswilligkeit oÄ - siehe zu einer vergleichbaren Rechtslage im  Bereich der Invaliditätspension OGH 19.9.2000, 10ObS240/00t) dürfen für die Beurteilung  ebensowenig herangezogen werden, wie eine Verschlechterung des Gesundheitszustandes  (etwa auch durch eine Verschlimmerung des Leidens oder durch Folgeschäden) nach  Vollendung des 21.
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 46** (doc_id: `deanon_BFG_20260814_TRAIN/146475.1`) (sent_id: `deanon_BFG_20260814_TRAIN/146475.1_197`)
+
+
+wenn aus diesem Grund die Einleitung eines abgabenrechtlichen Verfahrens überhaupt  unterbleibt oder wegen der Verweigerung der gesetzlich vorgeschriebenen Mitwirkung des  Abgabenschuldners am Veranlagungsverfahren die Einschätzung durch das Finanzamt zu  einem zum Nachteil des Fiskus unrichtigen, der wahren wirtschaftlichen Lage des  Steuerpflichtigen nicht entsprechenden Ergebnis führt (OGH 20.10.1982, 11 Os 145, 146/82).
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Gold Entities:**
+
+- `Finanzamt`(organisation)
+
+**Example 47** (doc_id: `deanon_BFG_20260814_TRAIN/146475.1`) (sent_id: `deanon_BFG_20260814_TRAIN/146475.1_198`)
+
+
+Kommt eine Schätzung zum sachlich zutreffenden Ergebnis oder liegt dieses sogar über der  richtigen Bemessungsgrundlage, so kann eine Abgabenverkürzung gar nicht zustande kommen,  Die bloß verspätete Erfüllung einer Abgabenschuldigkeit ist nur bei den vom Abgabepflichtigen  selbst zu berechnenden Abgaben, z.B. bei Vorauszahlungen an Umsatzsteuer und auch hier  lediglich als Finanzordnungswidrigkeit strafbar (OGH 15.4.1982, 13 Os 182/81).
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 48** (doc_id: `deanon_BFG_20260814_TRAIN/146475.1`) (sent_id: `deanon_BFG_20260814_TRAIN/146475.1_240`)
+
+
+Die Feststellungswirkung eines Schuldspruchs gegen eine natürliche Person erstreckt sich dann  auf einen Verband, wenn dieser im Verfahren gegen die natürliche Person die Möglichkeit  hatte, zu den Vorwürfen, für die er verantwortlich erklärt werden könnte, Stellung zu nehmen  und die Strafentscheidung über seinen Entscheidungsträger oder Mitarbeiter - im Umfang des  betreffenden Schuldspruchs - auf gleiche Weise wie dieser zu bekämpfen, und der  Schuldspruch sowohl gegenüber dem Verband als auch gegenüber allen weiteren  Anfechtungsberechtigten in Rechtskraft erwachsen ist (vgl OGH 19.5.2021, 13 Os 128/20b;
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 49** (doc_id: `deanon_BFG_20260814_TRAIN/146475.1`) (sent_id: `deanon_BFG_20260814_TRAIN/146475.1_242`)
+
+
+Die Entscheidung hat über die Verantwortlichkeit des belangten Verbands allein für die vom  Schuldspruch gegen den Entscheidungsträger umfasste(n) Tat(en) abzusprechen [vgl. OGH  07.06.2021, 13Os3/21x (13Os4/21v)].
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 50** (doc_id: `deanon_BFG_20260814_TRAIN/147363.1`) (sent_id: `deanon_BFG_20260814_TRAIN/147363.1_122`)
+
+
+Die Anzeigepflicht gilt für ausländische wie auch für Schischulen aus anderen  österreichischen Bundesländern in gleicher Weise (OGH 24.1.2006, 4 Ob 240/05f;
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 51** (doc_id: `deanon_BFG_20260814_TRAIN/147401.1`) (sent_id: `deanon_BFG_20260814_TRAIN/147401.1_129`)
+
+
+Die Anzeigepflicht gilt für ausländische wie auch für Schischulen aus anderen  österreichischen Bundesländern in gleicher Weise (OGH 24.1.2006, 4 Ob 240/05f;
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 52** (doc_id: `deanon_BFG_20260814_TRAIN/147476.1`) (sent_id: `deanon_BFG_20260814_TRAIN/147476.1_46`)
+
+
+es ordnet nämlich die  Anwendung des § 1333 ABGB an.“; z.B. OGH 21.11.2023, 4 Ob 210/23w).
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 53** (doc_id: `deanon_BFG_20260814_TRAIN/148292.1`) (sent_id: `deanon_BFG_20260814_TRAIN/148292.1_67`)
+
+
+Demnach endet die  Rechtsfähigkeit der Limited nach Maßgabe des englischen Gesellschaftsrechts konstitutiv  bereits mit der Löschung im Gesellschaftsregister (OGH 13.9.2007, 6 Ob 146/06y).
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 54** (doc_id: `deanon_BFG_20260814_TRAIN/148971.1`) (sent_id: `deanon_BFG_20260814_TRAIN/148971.1_95`)
+
+
+Nach der jüngsten Rechtsprechung des OGH (vgl. OGH 18.1.2023, 15 Os 111/22w, Rz 9), ist die  gegenständliche Tat sowohl unter "[...] § 146 StGB als auch § 4 Abs. 1 Wiener  Parkometergesetz 2006 subsumierbar.
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 2
+
+**Example 55** (doc_id: `deanon_BFG_20260814_TRAIN/149421.1`) (sent_id: `deanon_BFG_20260814_TRAIN/149421.1_117`)
+
+
+Fehlende  Selbsterhaltungsfähigkeit liegt auch bei unzureichender Altersversorgung oder bei  Pflegebedürftigkeit vor (OGH 1Ob156/97s).
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 56** (doc_id: `deanon_BFG_20260814_TRAIN/149421.1`) (sent_id: `deanon_BFG_20260814_TRAIN/149421.1_125`)
+
+
+Die Heranziehung des Stammes des eigenen Vermögens muss zumutbar  sein (OGH 09.06.2009, 1Ob88/09m).
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 57** (doc_id: `deanon_BFG_20260814_TRAIN/149421.1`) (sent_id: `deanon_BFG_20260814_TRAIN/149421.1_126`)
+
+
+Vermögenslosigkeit ist schon dann anzunehmen, wenn  der Unterhaltsbedürftige zwar Vermögen hat, jedoch nur solches, das zur Bestreitung des  Unterhaltes nicht verwertbar ist (OGH 07.11.1951, 2Ob718/51).
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 58** (doc_id: `deanon_BFG_20260814_TRAIN/149421.1`) (sent_id: `deanon_BFG_20260814_TRAIN/149421.1_127`)
+
+
+Bei der Festsetzung des  Unterhalts ist zu berücksichtigen, dass Unterhaltsansprüche gegen Nachkommen nach der  Wertung des § 143 ABGB eher einen Ausnahmefall darstellen (OGH 21.11.2006, 4Ob192/06y;
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 59** (doc_id: `deanon_BFG_20260814_TRAIN/149421.1`) (sent_id: `deanon_BFG_20260814_TRAIN/149421.1_128`)
+
+
+OGH 15.12.2009, 9Ob18/09a;
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 60** (doc_id: `deanon_BFG_20260814_TRAIN/149421.1`) (sent_id: `deanon_BFG_20260814_TRAIN/149421.1_129`)
+
+
+OGH 21.11.2006, 4Ob49/13d).
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+**Example 61** (doc_id: `deanon_BFG_20260814_TRAIN/149470.1`) (sent_id: `deanon_BFG_20260814_TRAIN/149470.1_477`)
+
+
+Diese Arten von Tätigkeiten zählen typischerweise zur Führung der  Geschäfte eines Unternehmens (vgl. OGH 25.11.2020 6Ob209/20h).
+
+**False Positives:**
+
+- `OGH` — no gold match — likely missing annotation
+
+> overlaps gold: 0  |  likely missing annotation: 1
+
+</details>
+
+---
+
 ## `Match Specific Company Names with Special Characters` 🏆
 
 **F1:** 0.002 | **Precision:** 0.035 | **Recall:** 0.001  
@@ -2752,7 +3705,7 @@ Captures company names containing special characters like +, &, or umlauts that 
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 17 | 471 | 17909 |
+| `organisation` | 17 | 471 | 17923 |
 
 </details>
 
@@ -4026,991 +4979,6 @@ Bei der Fa. Z- Bau Bau GmbH, kann dies sicher auch der damalige Auftraggeber der
 
 ---
 
-## `Match Oberste Gerichtshof variants` 💣
-
-**F1:** 0.000 | **Precision:** 0.034 | **Recall:** 0.000  
-
-**Format:** `regex`  
-**Rule ID:** `856df2b4`  
-**Description:**
-Captures the Supreme Court (OGH) in various grammatical cases.
-
-**Content:**
-```
-\b(Oberster\s+Gerichtshof|Oberste\s+Gerichtshof|Obersten\s+Gerichtshof|Obersten\s+Gerichtshofs|OGH)\b
-```
-
-<details>
-<summary>📊 Detailed Metrics</summary>
-
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.034 | 0.000 | 0.000 | 87 | 3 | 84 |
-
-**Per-Class Breakdown**
-
-| Class | TP | FP | FN |
-|---|---|---|---|
-| `organisation` | 3 | 84 | 17924 |
-
-</details>
-
----
-
-<details>
-<summary>✅ Worked</summary>
-
-**Example 0** (doc_id: `deanon_BFG_20260814_TRAIN/133782.1`) (sent_id: `deanon_BFG_20260814_TRAIN/133782.1_49`)
-
-
-Im Urteil des Landesgerichtes LG (yCgyy/yyy vom Datum_2; dieses Urteil wurde vom Obersten  Gerichtshof am Datum_1, xObxxx/xxx bestätigt) werde festgehalten, „... dass die beklagte  Partei für sämtliche zukünftigen, derzeit noch nicht bekannten Schäden ... haftet“.
-
-| Predicted | Gold |
-|---|---|
-| `Obersten  Gerichtshof` | `Obersten  Gerichtshof` |
-
-**Missed by this rule (FN):**
-
-- `Landesgerichtes LG` (organisation)
-
-**Example 1** (doc_id: `deanon_BFG_20260814_TRAIN/133782.1`) (sent_id: `deanon_BFG_20260814_TRAIN/133782.1_62`)
-
-
-In diesem Verfahren entschied der Oberste Gerichtshof mit Urteil vom Datum_1, xObxxx/xxx,  zugunsten der Bf als Klägerin und bestätigte das Urteil des Landesgerichtes LG vom Datum_2,  yCgyy/yyy.
-
-| Predicted | Gold |
-|---|---|
-| `Oberste Gerichtshof` | `Oberste Gerichtshof` |
-
-**Missed by this rule (FN):**
-
-- `Landesgerichtes LG` (organisation)
-
-**Example 2** (doc_id: `deanon_BFG_20260814_TRAIN/133782.1`) (sent_id: `deanon_BFG_20260814_TRAIN/133782.1_68`)
-
-
-Das vom Obersten Gerichtshof bestätigte Urteil des Landesgerichtes LG diente in der Folge als  Rechtgrundlage für die weiteren Nettozahlungen der B an die Bf im streitgegenständlichen Jahr  2019.
-
-| Predicted | Gold |
-|---|---|
-| `Obersten Gerichtshof` | `Obersten Gerichtshof` |
-
-**Missed by this rule (FN):**
-
-- `Landesgerichtes LG` (organisation)
-
-</details>
-
----
-
-<details>
-<summary>⚠️ False Positives</summary>
-
-**Example 0** (doc_id: `deanon_BFG_20260814_TRAIN/128871.1`) (sent_id: `deanon_BFG_20260814_TRAIN/128871.1_68`)
-
-
-(Koppensteiner GmbHG, § 15 Tz. 7 unter Verweis auf OGH in RdW  1993, 243 u. a.)
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Koppensteiner GmbHG`(organisation)
-
-**Example 1** (doc_id: `deanon_BFG_20260814_TRAIN/129187.1`) (sent_id: `deanon_BFG_20260814_TRAIN/129187.1_192`)
-
-
-(OGH 26.4.1994, 4  Ob 535/94, Miet 46.088/11 mwN).
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 2** (doc_id: `deanon_BFG_20260814_TRAIN/129187.1`) (sent_id: `deanon_BFG_20260814_TRAIN/129187.1_195`)
-
-
-Bei Beurteilung, ob dies der Fall ist, führt er  aus, dass „weder in der Fachliteratur noch in der Rechtsprechung des OGH davon ausgegangen  wird, dass die dem amerikanischen Franchising in Europa nachgebildeten Franchise-Verträge  so gestaltet sind, dass der Franchise-Nehmer nichts anderes als eine Gewerbeberechtigung in  das Vertragsverhältnis einbringt und alles andere einschließlich des vom Franchise-Nehmer zu  führenden Unternehmens beigestellt wird.
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 3** (doc_id: `deanon_BFG_20260814_TRAIN/129555.1`) (sent_id: `deanon_BFG_20260814_TRAIN/129555.1_21`)
-
-
-Selbst eine Wendung wie "vertreten durch ...", die ohnedies nicht zwingend auf eine erteilte  Bevollmächtigung schließen lassen würde (OGH 24.3.1992, 5 Ob 25/92;
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 4** (doc_id: `deanon_BFG_20260814_TRAIN/130963.1`) (sent_id: `deanon_BFG_20260814_TRAIN/130963.1_67`)
-
-
-Der  Kündigungsgrund der Z 9 (Eigenbedarf) könne zwar-nach der Rechtsprechung des OGH- auch  für eine juristische Person zutreffen, allerdings nur unter der Voraussetzung, dass diese die  betreffenden Räumlichkeiten zur Erfüllung ihres Zweckes dringend benötige; und es müsse die  dringende Notwendigkeit bestehen, den derzeitigen Zustand sobald als möglich zu beheben,  was nur durch Aufkündigung des Bestandverhältnisses erreicht werden kann.
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 5** (doc_id: `deanon_BFG_20260814_TRAIN/131109.1`) (sent_id: `deanon_BFG_20260814_TRAIN/131109.1_102`)
-
-
-Eine gesicherte Rechtsprechung besteht bereits bei Vorliegen eines begründeten Erkenntnisses  (OGH 1.8.2012, 4 Ob 119/12x)
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 6** (doc_id: `deanon_BFG_20260814_TRAIN/131110.1`) (sent_id: `deanon_BFG_20260814_TRAIN/131110.1_141`)
-
-
-Eine gesicherte Rechtsprechung besteht bereits bei Vorliegen eines begründeten Erkenntnisses  (vgl. OGH 1.8.2012, 4 Ob 119/12x)  10 von 11 Seite 11 von 11
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 7** (doc_id: `deanon_BFG_20260814_TRAIN/131313.1`) (sent_id: `deanon_BFG_20260814_TRAIN/131313.1_22`)
-
-
-Nach Auskunft seines Steuerberaters gebe es  für die Möglichkeit der Berücksichtigung in solchen Angelegenheiten entsprechende  Erkenntnisse des OGH.
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 8** (doc_id: `deanon_BFG_20260814_TRAIN/131638.1`) (sent_id: `deanon_BFG_20260814_TRAIN/131638.1_205`)
-
-
-dies gilt auch für den bedingten Vorsatz  (vgl. OGH 26.3.1982, Zl. 10 Os 35/82;
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 9** (doc_id: `deanon_BFG_20260814_TRAIN/131638.1`) (sent_id: `deanon_BFG_20260814_TRAIN/131638.1_218`)
-
-
-Davon spricht man,  wenn der Täter intellektuell erkannt hat, dass sein Verhalten zu einer Steuerverkürzung führen  kann und er diesen Erfolg billigend in Kauf nimmt (vgl. Kotschnigg in Tannert/Kotschnigg,  FinStrG, § 33, Rz. 216 und die dort zitierte OGH- und VwGH-Rechtsprechung).
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 10** (doc_id: `deanon_BFG_20260814_TRAIN/132370.1`) (sent_id: `deanon_BFG_20260814_TRAIN/132370.1_117`)
-
-
-Welser in Rummel,  ABGB I3, § 549 Rz 4; OGH EvBl 1966/90).
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 11** (doc_id: `deanon_BFG_20260814_TRAIN/132394.1`) (sent_id: `deanon_BFG_20260814_TRAIN/132394.1_19`)
-
-
-In den Beschwerdevorentscheidungen vom 22.05.2017 (zugestellt am 29.05.2017) verneinte  die belangte Behörde insbesondere unter Hinweis auf das Urteil des OGH vom 12.04.2016, 11  Os 53/15a erneut die Anwendbarkeit des Befreiungstatbestandes des § 10 Abs. 1 Z. 1 KStG.
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 12** (doc_id: `deanon_BFG_20260814_TRAIN/132537.1`) (sent_id: `deanon_BFG_20260814_TRAIN/132537.1_61`)
-
-
-OGH 18.10.2007, 2 Ob 96/07t, NZ 2008,  151).
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 13** (doc_id: `deanon_BFG_20260814_TRAIN/132557.1`) (sent_id: `deanon_BFG_20260814_TRAIN/132557.1_124`)
-
-
-Maßgebend ist, dass der Halter tatsächlich in  der Lage ist, die Verfügungsgewalt über das Fahrzeug auszuüben (vgl. OGH 18.12.2000, 9 Ob A  150/00z;
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 14** (doc_id: `deanon_BFG_20260814_TRAIN/132589.1`) (sent_id: `deanon_BFG_20260814_TRAIN/132589.1_374`)
-
-
-Darunter ist – s: etwa Art. 11 Abs. 1 VO 987/2009 – im  Sinn des nationalen Rechts nicht bloß (irgendein) Wohnsitz i. S. d. § 26 Abs. 1 BAO zu  verstehen, sondern der Mittelpunkt der Lebensinteressen (§ 2 Abs. 8 Satz 2 FLAG 1967) bzw.  der Mittelpunkt der Lebensbeziehungen (§ 1 Abs. 8 Meldegesetz) dieser Person (vgl. Czaszar in  Csaszar/Lenneis/Wanke, FLAG § 53 Rz 81, unter Hinweis auf OGH 17.
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 15** (doc_id: `deanon_BFG_20260814_TRAIN/133151.1`) (sent_id: `deanon_BFG_20260814_TRAIN/133151.1_61`)
-
-
-Die Änderung der Eigentumsverhältnisse bedarf vielmehr der  Einverleibung im Grundbuch, die wiederum nur aufgrund eines gültigen Titels erfolgen kann  (vgl. OGH 23.10.2001, 5 Ob 176/01w).
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 16** (doc_id: `deanon_BFG_20260814_TRAIN/133151.1`) (sent_id: `deanon_BFG_20260814_TRAIN/133151.1_90`)
-
-
-die Änderung der Eigentumsverhältnisse bedarf vielmehr der Einverleibung im Grundbuch,  die wiederum nur aufgrund eines gültigen Titels erfolgen kann (vgl. OGH 23.10.2001, 5 Ob  176/01w).
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 17** (doc_id: `deanon_BFG_20260814_TRAIN/133679.1`) (sent_id: `deanon_BFG_20260814_TRAIN/133679.1_430`)
-
-
-Begründet wurde dies damit, dass sie  als begutachtende und auch Befund erstellende Supervisorin tätig gewesen sei, deren  Vertragsinhalt die Herstellung eines ordnungsgemäßen Befundes des gynäkologischen  Abstrichs durch Supervision gewesen wäre, was in jedem Fall abgrenzbar, überprüfbar und  einer Gewährleistung bzw. Haftung zugänglich gewesen wäre, wobei bei der Herstellung von  Befunden nach der höchstgerichtlichen Rechtsprechung (OGH 23.05.1984, 1 Ob 550/84) ein  Werkvertrag vorliege.
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 18** (doc_id: `deanon_BFG_20260814_TRAIN/133679.1`) (sent_id: `deanon_BFG_20260814_TRAIN/133679.1_633`)
-
-
-Zur Eigenverantwortlichkeit und auch zur Haftung des Vertretungsarztes werde auf eine  Entscheidung des OGH vom 22.1.2008, 4 Ob 210/07 verwiesen, der ebendort ausführe:   „…Es fehle auch an jeder Abhängigkeit des Urlaubsvertreters von dem auf Urlaub befindlichen  Arzt;
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 19** (doc_id: `deanon_BFG_20260814_TRAIN/133679.1`) (sent_id: `deanon_BFG_20260814_TRAIN/133679.1_635`)
-
-
-Die Vertretung eines Arztes durch einen anderen Arzt sei  daher nicht Gehilfenschaft iSd § 1313a ABGB, sondern Substitution, bei der man nur für  Auswahlverschulden hafte…“   Aufgrund dieser Ausführungen von Dr. Emberger iVm der Entscheidung des OGH vertrat das  Bundesfinanzgericht die Auffassung, dass die Vertretungsärzte eigenverantwortlich tätig seien  und daher auch zur Haftung herangezogen werden könnten, was einem Unternehmerrisiko  gleichkomme.
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Bundesfinanzgericht`(organisation)
-
-**Example 20** (doc_id: `deanon_BFG_20260814_TRAIN/133679.1`) (sent_id: `deanon_BFG_20260814_TRAIN/133679.1_661`)
-
-
-Das BFG hätte einen wesentlichen Gesichtspunkt unbehandelt gelassen:   “… nach der Rechtsprechung des OGH könne der in der Ordination des Vertretenen tätig  werdende Praxisvertreter eines niedergelassenen Arztes dessen Erfüllungsgehilfe bei der  Behandlung der Patienten sein, wenn diese der Meinung sein mussten, "entweder vom  Ordinationsinhaber persönlich oder zumindest innerhalb seines Verantwortungsbereichs  behandelt zu werden".
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `BFG`(organisation)
-
-**Example 21** (doc_id: `deanon_BFG_20260814_TRAIN/133679.1`) (sent_id: `deanon_BFG_20260814_TRAIN/133679.1_662`)
-
-
-Werden die Patienten aber "mittels entsprechender Maßnahmen   (z.B. Anbringen eines entsprechenden Hinweises am Ordinationsschild oder an der Eingangstür  zum Behandlungsraum, Anweisung an den Vertreter oder sein Personal, die Patienten  entsprechend zu informieren)" vor Beginn der Behandlung über den Vertretungsfall aufgeklärt,  so kommt der (in der Regel konkludent abgeschlossene) Behandlungsvertrag nicht mit dem  (diesfalls nicht im rechtlichen Sinn) Vertretenen, sondern mit dem Praxisvertreter selbst  zustande (OGH 22.1.2008, 4 Ob 210/07x; vgl.
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 22** (doc_id: `deanon_BFG_20260814_TRAIN/134050.1`) (sent_id: `deanon_BFG_20260814_TRAIN/134050.1_54`)
-
-
-Finanzstrafrechtlich ungeeignet sind jedenfalls Globalschätzungen oder die  Anwendung eines Sicherheitszuschlags (zB OGH 28.10.2015, 13 Os 3/15p).
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 23** (doc_id: `deanon_BFG_20260814_TRAIN/134050.1`) (sent_id: `deanon_BFG_20260814_TRAIN/134050.1_176`)
-
-
-Mangels entsprechender  Beschwerde des Amtsbeauftragten, der eine Beschwerde zwar angemeldet, aber nicht  ausgeführt hat, war es aufgrund des Verböserungsverbotes des § 161 Abs. 3 FinStrG dem  Finanzstrafsenat verwehrt, den Ausspruch über die Geldstrafe und – zufolge des untrennbaren  Zusammenhangs – auch jener über die Ersatzfreiheitsstrafe aufzuheben und insoweit in der  Sache selbst zu erkennen (vgl. OGH vom 17.6.2020, 13 Os 100/19h).
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 24** (doc_id: `deanon_BFG_20260814_TRAIN/134126.1`) (sent_id: `deanon_BFG_20260814_TRAIN/134126.1_75`)
-
-
-Zudem wirkt eine Bevollmächtigung jeweils nur für jenes  Verfahren, in dem sich der Bevollmächtigte entweder durch eine schriftliche Vollmacht  ausgewiesen oder sich wirksam auf die Bevollmächtigung berufen hat (vgl. OGH 5.8.2016,  2 Ob 55/16a;
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 25** (doc_id: `deanon_BFG_20260814_TRAIN/134126.1`) (sent_id: `deanon_BFG_20260814_TRAIN/134126.1_76`)
-
-
-OGH 26.5.2014, 8 Ob 45/14;
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 26** (doc_id: `deanon_BFG_20260814_TRAIN/134126.1`) (sent_id: `deanon_BFG_20260814_TRAIN/134126.1_77`)
-
-
-OGH 21.9.2006, 2 Ob 171/06;
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 27** (doc_id: `deanon_BFG_20260814_TRAIN/134126.1`) (sent_id: `deanon_BFG_20260814_TRAIN/134126.1_78`)
-
-
-OGH 16.4.1993,  5 Ob 1020/93;
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 28** (doc_id: `deanon_BFG_20260814_TRAIN/134126.1`) (sent_id: `deanon_BFG_20260814_TRAIN/134126.1_98`)
-
-
-OGH 24.03.1992, 5 Ob 25/92;
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 29** (doc_id: `deanon_BFG_20260814_TRAIN/134126.1`) (sent_id: `deanon_BFG_20260814_TRAIN/134126.1_105`)
-
-
-OGH 21.9.2006, 2 Ob 171/06), sieht das BFG keine Veranlassung,  an der fehlenden Legitimation der einschreitenden Mur-Sanitär GmbH zur Erhebung des  verfahrensgegenständlichen Rechtsmittels zu zweifeln.
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `BFG`(organisation)
-- `Mur-Sanitär GmbH`(organisation)
-
-**Example 30** (doc_id: `deanon_BFG_20260814_TRAIN/134126.1`) (sent_id: `deanon_BFG_20260814_TRAIN/134126.1_111`)
-
-
-Eine gesicherte Rechtsprechung besteht bereits bei Vorliegen eines begründeten Erkenntnisses  (vgl. OGH 1.8.2012, 4 Ob 119/12x).
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 31** (doc_id: `deanon_BFG_20260814_TRAIN/134315.1`) (sent_id: `deanon_BFG_20260814_TRAIN/134315.1_200`)
-
-
-(Vgl OGH 14.08.2014, 40/14b,  OGH 30.01.2014, 13 Os 78/13i, OGH 30.08.2012, 13 Os 70/12m)  Gemäß § 33 Abs 3 lit a zweiter Fall FinStrG ist eine Abgabenverkürzung nach § 33 Abs 1 FinStrG  bewirkt, wenn Abgaben, die bescheidmäßig festzusetzen sind, infolge Unkenntnis der  Abgabenbehörde von der Entstehung des Abgabenanspruchs mit Ablauf der gesetzlichen  Erklärungsfrist nicht festgesetzt werden konnten.
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-- `OGH` — no gold match — likely missing annotation
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 3
-
-**Example 32** (doc_id: `deanon_BFG_20260814_TRAIN/134315.1`) (sent_id: `deanon_BFG_20260814_TRAIN/134315.1_203`)
-
-
-(Vgl OGH 30.08.2012,  13 Os 70/12m, Pkt 2).
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 33** (doc_id: `deanon_BFG_20260814_TRAIN/135942.1`) (sent_id: `deanon_BFG_20260814_TRAIN/135942.1_28`)
-
-
-Die Rechtsprechung des OGH zu der Auslegung des Begriffs „Wohnzwecke" im  Zusammenhang mit § 16 Abs 1 Z 1 MRG ist daher auch für § 33 TP 5 Abs 1 Z 4 heranzuziehen.
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 34** (doc_id: `deanon_BFG_20260814_TRAIN/137198.1`) (sent_id: `deanon_BFG_20260814_TRAIN/137198.1_5`)
-
-
-demnach habe – lt. OLG und OGH – zwischen dem Bf und   DrB ein echtes und folglich gem. § 47 Abs. 2 EStG lohnsteuerpflichtiges Dienstverhältnis  bestanden.
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 35** (doc_id: `deanon_BFG_20260814_TRAIN/137334.1`) (sent_id: `deanon_BFG_20260814_TRAIN/137334.1_68`)
-
-
-sie schaffen objektives Recht (vgl. OGH 29.
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 36** (doc_id: `deanon_BFG_20260814_TRAIN/137355.1`) (sent_id: `deanon_BFG_20260814_TRAIN/137355.1_28`)
-
-
-Nach Auffassung der Beschwerdeführerin stehe hingegen beiden Parteien sowohl nach den  AGB 2006 als auch nach den AGB 2011 ein Kündigungsrecht zu. Auch wenn die Möglichkeit der  ordentlichen Kündigung in den AGB nicht explizit erwähnt sei, komme der Beschwerdeführerin  (mit Hinweis auf OGH 16.1.2003, 2 Ob 3011/02) dennoch das Recht zu, den Leasingvertrag zu  kündigen.
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 37** (doc_id: `deanon_BFG_20260814_TRAIN/137355.1`) (sent_id: `deanon_BFG_20260814_TRAIN/137355.1_193`)
-
-
-Nach der nach § 864a ABGB durchzuführenden Geltungskontrolle ergibt sich, dass die in Rede  stehende Klausel weder ungewöhnlich, benachteiligend oder überraschend ist (es liegt kein  „Überrumpelungs- oder gar Übertölpelungseffekt“ im Sinne der Rechtsprechung des OGH vor –  vgl etwa OGH 24.5.1989, 1 Ob 558/89);
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 2
-
-**Example 38** (doc_id: `deanon_BFG_20260814_TRAIN/137355.1`) (sent_id: `deanon_BFG_20260814_TRAIN/137355.1_197`)
-
-
-OGH  1 Ob 214/17b).
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 39** (doc_id: `deanon_BFG_20260814_TRAIN/137355.1`) (sent_id: `deanon_BFG_20260814_TRAIN/137355.1_228`)
-
-
-Dem von der Beschwerdeführerin vorgenommenen Verweis auf die Entscheidung des OGH  vom 16.1.2003, 2 Ob 311/02b, nach der sich ergebe, dass, wenn die ordentliche Kündigung  nicht erwähnt werde, dennoch auf die ordentliche Kündigung nicht verzichtet worden sei, und  das Recht zur ordentlichen Kündigung daher bestehen bleibe, tritt das Bundesfinanzgericht  damit entgegen, dass im Sachverhalt des zitierten OGH-Urteils offenbar überhaupt keine  Regelungen zur ordentlichen Kündigung getroffen wurden;
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 2
-
-**Gold Entities:**
-
-- `Bundesfinanzgericht`(organisation)
-
-**Example 40** (doc_id: `deanon_BFG_20260814_TRAIN/137355.1`) (sent_id: `deanon_BFG_20260814_TRAIN/137355.1_230`)
-
-
-Darüber hinaus scheint  es einleuchtend, dass es im Fall eines Kreditkartenvertrags, zu dem die OGH-Entscheidung  erging, irgendeine Möglichkeit zur Auflösung gegeben sein muss, während im  beschwerdegegenständlichen Fall des Fahrzeugleasings ohnehin der Leasingnehmer ein  Interesse daran haben wird, den Vertrag nach einigen Jahren zu beenden, zumal der Wert des  geleasten Fahrzeugs permanent sinkt und sich die faktische Produktlebensdauer dem Ende  18 von 24 Seite 19 von 24
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 41** (doc_id: `deanon_BFG_20260814_TRAIN/137360.1`) (sent_id: `deanon_BFG_20260814_TRAIN/137360.1_41`)
-
-
-26.11.2015, Ro 2015/07/0018; vgl auch OGH 24.11.2015,  1 Ob 127/15f).
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 42** (doc_id: `deanon_BFG_20260814_TRAIN/138133.1`) (sent_id: `deanon_BFG_20260814_TRAIN/138133.1_99`)
-
-
-Gruber, ARD 6403/4/2014; vgl. idZ auch OGH 23.4.2014, 10 ObS 27/14i zu einer Nachzahlung  als laufender Bezug bei Errechnung der Zuverdienstgrenze gem. § 8 KBGG).
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 43** (doc_id: `deanon_BFG_20260814_TRAIN/139351.1`) (sent_id: `deanon_BFG_20260814_TRAIN/139351.1_33`)
-
-
-Seines Wissens nach seien  derartige Prozesskosten "lt. OGH absetzbar", was ihm auch von Mitarbeitern des Finanzamtes  bestätigt worden sei.
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Finanzamtes`(organisation)
-
-**Example 44** (doc_id: `deanon_BFG_20260814_TRAIN/139661.1`) (sent_id: `deanon_BFG_20260814_TRAIN/139661.1_112`)
-
-
-26.11.2015, Ro 2015/07/0018; vgl auch OGH 24.11.2015, 1 Ob 127/15f).
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 45** (doc_id: `deanon_BFG_20260814_TRAIN/140710.1`) (sent_id: `deanon_BFG_20260814_TRAIN/140710.1_176`)
-
-
-Dies jedoch bloß  unter der Voraussetzung, dass die vermieteten Räumlichkeiten zur Zweckerfüllung dringend  benötigt werden und die vorliegende unabweisliche Notwendigkeit nur durch Aufkündigung  des Bestandverhältnisses erreicht werden kann (vgl OGH 19.1.2011, 7 Ob 242/10d).
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 46** (doc_id: `deanon_BFG_20260814_TRAIN/141415.1`) (sent_id: `deanon_BFG_20260814_TRAIN/141415.1_208`)
-
-
-Andere als behinderungskausale Gründe (wie zB mangelnde oder nicht spezifische Ausbildung,  die Arbeitsplatzsituation, Arbeitswilligkeit oÄ - siehe zu einer vergleichbaren Rechtslage im  Bereich der Invaliditätspension OGH 19.9.2000, 10ObS240/00t) dürfen für die Beurteilung  ebensowenig herangezogen werden, wie eine Verschlechterung des Gesundheitszustandes  (etwa auch durch eine Verschlimmerung des Leidens oder durch Folgeschäden) nach  Vollendung des 21.
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 47** (doc_id: `deanon_BFG_20260814_TRAIN/141978.1`) (sent_id: `deanon_BFG_20260814_TRAIN/141978.1_107`)
-
-
-Davon  spricht man, wenn der Täter intellektuell erkannt hat, dass sein Verhalten zu einer  Steuerverkürzung führen kann und er diesen Erfolg billigend in Kauf nimmt (vgl. Kotschnigg in  Tannert/Kotschnigg, FinStrG § 33 Rz 216, und die dort zitierte OGH- bzw. VwGH- Rechtsprechung).
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 48** (doc_id: `deanon_BFG_20260814_TRAIN/142383.1`) (sent_id: `deanon_BFG_20260814_TRAIN/142383.1_152`)
-
-
-in diesem Fall soll erst durch  die Treuhandvereinbarung die Verschiebung der wirtschaftlichen Zugehörigkeit bewirkt  werden, also der bisher auf eigene Rechnung gehaltene Geschäftsanteil in Hinkunft auf  Rechnung des Treugebers gehalten werden (vgl. OGH 28.8.2003, 8 Ob 259/02z;
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 49** (doc_id: `deanon_BFG_20260814_TRAIN/143723.1`) (sent_id: `deanon_BFG_20260814_TRAIN/143723.1_50`)
-
-
-OGH 30.10.2018, 2 Ob 94/18i;
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 50** (doc_id: `deanon_BFG_20260814_TRAIN/143723.1`) (sent_id: `deanon_BFG_20260814_TRAIN/143723.1_51`)
-
-
-OGH 21.9.2018,  3 Ob 149/18k, je mwN).
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 51** (doc_id: `deanon_BFG_20260814_TRAIN/144543.1`) (sent_id: `deanon_BFG_20260814_TRAIN/144543.1_166`)
-
-
-Nach der jüngsten Rechtsprechung des OGH (vgl. OGH 18.1.2023, 15 Os 111/22w, Rz 9), ist die  gegenständliche Tat sowohl unter „[...] § 146 StGB als auch § 4 Abs. 1 Wiener  Parkometergesetz 2006 subsumierbar.
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 2
-
-**Example 52** (doc_id: `deanon_BFG_20260814_TRAIN/144695.1`) (sent_id: `deanon_BFG_20260814_TRAIN/144695.1_6`)
-
-
-Mit dem Urteil des OGH  vom 28.06.2023, 13 Os 119/22g, wurde die vom Bf. gegen das Urteil des Landesgerichtes  eingebrachte Nichtigkeitsbeschwerde zurückgewiesen).
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Landesgerichtes`(organisation)
-
-**Example 53** (doc_id: `deanon_BFG_20260814_TRAIN/144916.1`) (sent_id: `deanon_BFG_20260814_TRAIN/144916.1_52`)
-
-
-erteilt wurde (vgl. OGH 13.10.1992, 10 ObS  133/92;
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 54** (doc_id: `deanon_BFG_20260814_TRAIN/145191.1`) (sent_id: `deanon_BFG_20260814_TRAIN/145191.1_159`)
-
-
-Unter dem Halter ist nach der Rechtsprechung des OGH die Person zu verstehen, die das  Fahrzeug auf eigene Rechnung in Gebrauch und die Verfügungsgewalt darüber hat.
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 55** (doc_id: `deanon_BFG_20260814_TRAIN/145191.1`) (sent_id: `deanon_BFG_20260814_TRAIN/145191.1_162`)
-
-
-der Lage ist, die Verfügung über das Fahrzeug auszuüben (OGH 18.10.2000, 9 Ob A 150/00z).
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 56** (doc_id: `deanon_BFG_20260814_TRAIN/145191.1`) (sent_id: `deanon_BFG_20260814_TRAIN/145191.1_191`)
-
-
-sie hat das Kfz somit nicht, wie es die  Rechtsprechung des OGH zum Halterbegriff erfordert (siehe oben), auf eigene Rechnung in  Gebrauch gehabt.
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 57** (doc_id: `deanon_BFG_20260814_TRAIN/145202.1`) (sent_id: `deanon_BFG_20260814_TRAIN/145202.1_38`)
-
-
-Die Regelbedarfsätze sind abstrakte (nicht an die konkrete Einkommenssituation der Eltern  angelehnte) Werte und sollen die durchschnittlichen Grundbedürfnisse (Wohnung, Nahrung,  Kleidung etc.) eines Kindes in Österreich, gestaffelt nach dem Alter des Kindes, repräsentieren  (OGH 9.2.1995, 2 Ob 512/95).
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 58** (doc_id: `deanon_BFG_20260814_TRAIN/145809.1`) (sent_id: `deanon_BFG_20260814_TRAIN/145809.1_139`)
-
-
-Kietaibl in Tomandl, ArbVG § 29 Rz 8 bzw zur vergleichbaren Regelung nach dem BRG 1947  bereits OGH 16.
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 59** (doc_id: `deanon_BFG_20260814_TRAIN/146167.1`) (sent_id: `deanon_BFG_20260814_TRAIN/146167.1_165`)
-
-
-Andere als behinderungskausale Gründe (wie zB mangelnde oder nicht spezifische Ausbildung,  die Arbeitsplatzsituation, Arbeitswilligkeit oÄ - siehe zu einer vergleichbaren Rechtslage im  Bereich der Invaliditätspension OGH 19.9.2000, 10ObS240/00t) dürfen für die Beurteilung  ebensowenig herangezogen werden, wie eine Verschlechterung des Gesundheitszustandes  (etwa auch durch eine Verschlimmerung des Leidens oder durch Folgeschäden) nach  Vollendung des 21.
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 60** (doc_id: `deanon_BFG_20260814_TRAIN/146475.1`) (sent_id: `deanon_BFG_20260814_TRAIN/146475.1_197`)
-
-
-wenn aus diesem Grund die Einleitung eines abgabenrechtlichen Verfahrens überhaupt  unterbleibt oder wegen der Verweigerung der gesetzlich vorgeschriebenen Mitwirkung des  Abgabenschuldners am Veranlagungsverfahren die Einschätzung durch das Finanzamt zu  einem zum Nachteil des Fiskus unrichtigen, der wahren wirtschaftlichen Lage des  Steuerpflichtigen nicht entsprechenden Ergebnis führt (OGH 20.10.1982, 11 Os 145, 146/82).
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Finanzamt`(organisation)
-
-**Example 61** (doc_id: `deanon_BFG_20260814_TRAIN/146475.1`) (sent_id: `deanon_BFG_20260814_TRAIN/146475.1_198`)
-
-
-Kommt eine Schätzung zum sachlich zutreffenden Ergebnis oder liegt dieses sogar über der  richtigen Bemessungsgrundlage, so kann eine Abgabenverkürzung gar nicht zustande kommen,  Die bloß verspätete Erfüllung einer Abgabenschuldigkeit ist nur bei den vom Abgabepflichtigen  selbst zu berechnenden Abgaben, z.B. bei Vorauszahlungen an Umsatzsteuer und auch hier  lediglich als Finanzordnungswidrigkeit strafbar (OGH 15.4.1982, 13 Os 182/81).
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 62** (doc_id: `deanon_BFG_20260814_TRAIN/146475.1`) (sent_id: `deanon_BFG_20260814_TRAIN/146475.1_240`)
-
-
-Die Feststellungswirkung eines Schuldspruchs gegen eine natürliche Person erstreckt sich dann  auf einen Verband, wenn dieser im Verfahren gegen die natürliche Person die Möglichkeit  hatte, zu den Vorwürfen, für die er verantwortlich erklärt werden könnte, Stellung zu nehmen  und die Strafentscheidung über seinen Entscheidungsträger oder Mitarbeiter - im Umfang des  betreffenden Schuldspruchs - auf gleiche Weise wie dieser zu bekämpfen, und der  Schuldspruch sowohl gegenüber dem Verband als auch gegenüber allen weiteren  Anfechtungsberechtigten in Rechtskraft erwachsen ist (vgl OGH 19.5.2021, 13 Os 128/20b;
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 63** (doc_id: `deanon_BFG_20260814_TRAIN/146475.1`) (sent_id: `deanon_BFG_20260814_TRAIN/146475.1_242`)
-
-
-Die Entscheidung hat über die Verantwortlichkeit des belangten Verbands allein für die vom  Schuldspruch gegen den Entscheidungsträger umfasste(n) Tat(en) abzusprechen [vgl. OGH  07.06.2021, 13Os3/21x (13Os4/21v)].
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 64** (doc_id: `deanon_BFG_20260814_TRAIN/147363.1`) (sent_id: `deanon_BFG_20260814_TRAIN/147363.1_122`)
-
-
-Die Anzeigepflicht gilt für ausländische wie auch für Schischulen aus anderen  österreichischen Bundesländern in gleicher Weise (OGH 24.1.2006, 4 Ob 240/05f;
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 65** (doc_id: `deanon_BFG_20260814_TRAIN/147401.1`) (sent_id: `deanon_BFG_20260814_TRAIN/147401.1_129`)
-
-
-Die Anzeigepflicht gilt für ausländische wie auch für Schischulen aus anderen  österreichischen Bundesländern in gleicher Weise (OGH 24.1.2006, 4 Ob 240/05f;
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 66** (doc_id: `deanon_BFG_20260814_TRAIN/147476.1`) (sent_id: `deanon_BFG_20260814_TRAIN/147476.1_46`)
-
-
-es ordnet nämlich die  Anwendung des § 1333 ABGB an.“; z.B. OGH 21.11.2023, 4 Ob 210/23w).
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 67** (doc_id: `deanon_BFG_20260814_TRAIN/147476.1`) (sent_id: `deanon_BFG_20260814_TRAIN/147476.1_47`)
-
-
-Solche Vergütungs- zinsen unterliegen der dreijährigen Verjährungsfrist gemäß § 1480 ABGB (vgl. ebenfalls die  soeben zitierte OGH-Entscheidung;
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 68** (doc_id: `deanon_BFG_20260814_TRAIN/148292.1`) (sent_id: `deanon_BFG_20260814_TRAIN/148292.1_67`)
-
-
-Demnach endet die  Rechtsfähigkeit der Limited nach Maßgabe des englischen Gesellschaftsrechts konstitutiv  bereits mit der Löschung im Gesellschaftsregister (OGH 13.9.2007, 6 Ob 146/06y).
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 69** (doc_id: `deanon_BFG_20260814_TRAIN/148971.1`) (sent_id: `deanon_BFG_20260814_TRAIN/148971.1_95`)
-
-
-Nach der jüngsten Rechtsprechung des OGH (vgl. OGH 18.1.2023, 15 Os 111/22w, Rz 9), ist die  gegenständliche Tat sowohl unter "[...] § 146 StGB als auch § 4 Abs. 1 Wiener  Parkometergesetz 2006 subsumierbar.
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 2
-
-**Example 70** (doc_id: `deanon_BFG_20260814_TRAIN/149096.1`) (sent_id: `deanon_BFG_20260814_TRAIN/149096.1_62`)
-
-
-Wie der OGH schon wiederholt erkannt hat, ist unabdingbare  Voraussetzung der Anrufung des Verfassungsgerichtshofes, dass das Gericht selbst Bedenken  gegen die Verfassungsmäßigkeit des anzuwendenden Gesetzes bzw. die Gesetzmäßigkeit der  anzuwendenden Verordnung hat; der Umstand allein, dass eine Partei solche Bedenken  vorbringt (oder dass im Schrifttum Bedenken geäußert worden sind), berechtigt oder  verpflichtet das Gericht noch nicht zur Normenprüfung.
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Verfassungsgerichtshofes`(organisation)
-
-**Example 71** (doc_id: `deanon_BFG_20260814_TRAIN/149421.1`) (sent_id: `deanon_BFG_20260814_TRAIN/149421.1_117`)
-
-
-Fehlende  Selbsterhaltungsfähigkeit liegt auch bei unzureichender Altersversorgung oder bei  Pflegebedürftigkeit vor (OGH 1Ob156/97s).
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 72** (doc_id: `deanon_BFG_20260814_TRAIN/149421.1`) (sent_id: `deanon_BFG_20260814_TRAIN/149421.1_125`)
-
-
-Die Heranziehung des Stammes des eigenen Vermögens muss zumutbar  sein (OGH 09.06.2009, 1Ob88/09m).
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 73** (doc_id: `deanon_BFG_20260814_TRAIN/149421.1`) (sent_id: `deanon_BFG_20260814_TRAIN/149421.1_126`)
-
-
-Vermögenslosigkeit ist schon dann anzunehmen, wenn  der Unterhaltsbedürftige zwar Vermögen hat, jedoch nur solches, das zur Bestreitung des  Unterhaltes nicht verwertbar ist (OGH 07.11.1951, 2Ob718/51).
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 74** (doc_id: `deanon_BFG_20260814_TRAIN/149421.1`) (sent_id: `deanon_BFG_20260814_TRAIN/149421.1_127`)
-
-
-Bei der Festsetzung des  Unterhalts ist zu berücksichtigen, dass Unterhaltsansprüche gegen Nachkommen nach der  Wertung des § 143 ABGB eher einen Ausnahmefall darstellen (OGH 21.11.2006, 4Ob192/06y;
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 75** (doc_id: `deanon_BFG_20260814_TRAIN/149421.1`) (sent_id: `deanon_BFG_20260814_TRAIN/149421.1_128`)
-
-
-OGH 15.12.2009, 9Ob18/09a;
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 76** (doc_id: `deanon_BFG_20260814_TRAIN/149421.1`) (sent_id: `deanon_BFG_20260814_TRAIN/149421.1_129`)
-
-
-OGH 21.11.2006, 4Ob49/13d).
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Example 77** (doc_id: `deanon_BFG_20260814_TRAIN/149470.1`) (sent_id: `deanon_BFG_20260814_TRAIN/149470.1_477`)
-
-
-Diese Arten von Tätigkeiten zählen typischerweise zur Führung der  Geschäfte eines Unternehmens (vgl. OGH 25.11.2020 6Ob209/20h).
-
-**False Positives:**
-
-- `OGH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-</details>
-
----
-
 ## `Match Oberlandesgerichte (Regional Courts of Appeal)` 🔇
 
 **F1:** 0.000 | **Precision:** 0.000 | **Recall:** 0.000  
@@ -5061,7 +5029,7 @@ Captures Commercial Courts.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 7 | 17825 |
+| `organisation` | 0 | 7 | 17839 |
 
 </details>
 
@@ -5292,7 +5260,7 @@ Captures companies ending in e.U. (Einzelunternehmer) and OEG (Offene Gesellscha
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 11 | 14674 |
+| `organisation` | 0 | 11 | 14685 |
 
 </details>
 
@@ -5505,7 +5473,7 @@ Captures associations starting with 'Verein' or 'Verband'.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 4 | 15633 |
+| `organisation` | 0 | 4 | 15644 |
 
 </details>
 
@@ -5725,7 +5693,7 @@ Captures 'Gesellschaft mbH' and 'gesellschaft mbH' with strict boundaries, allow
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 2 | 17209 |
+| `organisation` | 0 | 2 | 17222 |
 
 </details>
 
@@ -6009,7 +5977,7 @@ Captures law firms ending in 'OG' (Offene Gesellschaft) that are not 'Rechtsanw�
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 87 | 11873 |
+| `organisation` | 0 | 87 | 11883 |
 
 </details>
 
@@ -7070,7 +7038,7 @@ Captures standard company names with suffixes, allowing lowercase starts and com
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 34 | 16728 |
+| `organisation` | 0 | 34 | 16741 |
 
 </details>
 
@@ -8799,7 +8767,7 @@ Captures 'GmbH & Co KG' structures, ensuring the full name is captured including
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 4 | 16715 |
+| `organisation` | 0 | 4 | 16728 |
 
 </details>
 
