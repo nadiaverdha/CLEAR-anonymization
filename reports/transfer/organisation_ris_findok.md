@@ -1,6 +1,6 @@
 # Rule Evaluation Report — Qwen/Qwen3.5-35B-A3B
 
-Generated on: 2026-08-30T17:26:08.876964
+Generated on: 2026-08-30T17:33:52.441651
 
 ---
 
@@ -52,11 +52,11 @@ Results can be reproduced by running this command:
 | Metric | Value |
 |---|---|
 | Accuracy (exact match) | 84.9% |
-| True Positives | 631 |
-| False Positives | 751 |
-| False Negatives | 17542 |
+| True Positives | 634 |
+| False Positives | 748 |
+| False Negatives | 17539 |
 | Total Gold Entities | 18173 |
-| Micro Precision | 45.7% |
+| Micro Precision | 45.9% |
 | Micro Recall | 3.5% |
 | Micro F1 | 6.5% |
 | Macro F1 | 6.5% |
@@ -71,12 +71,12 @@ Results can be reproduced by running this command:
 | Rule | F1 | Precision | Recall | Total Predicted | True Positives | False Positives |
 |---|---|---|---|---|---|---|
 | `Match Verfassungsgerichtshof` | 2.4% | 100.0% | 1.2% | 218 | 218 | 0 |
+| `Match Landesgerichte (Regional Courts) - Extended` | 0.1% | 100.0% | 0.0% | 8 | 8 | 0 |
 | `Match Bezirksgerichte (District Courts) - Extended Locations` | 0.0% | 100.0% | 0.0% | 2 | 2 | 0 |
 | `Match District Courts with Genitive Suffix` | 0.0% | 100.0% | 0.0% | 1 | 1 | 0 |
 | `Match Huber Swoboda Oswald Aixberger` | 0.0% | 100.0% | 0.0% | 1 | 1 | 0 |
 | `Match Pacher & Partner Rechtsanwälte GmbH & Co KG` | 0.0% | 100.0% | 0.0% | 1 | 1 | 0 |
 | `Match Magistrat der Stadt Wien` | 3.9% | 86.1% | 2.0% | 425 | 366 | 59 |
-| `Match Landesgerichte (Regional Courts) - Extended` | 0.1% | 62.5% | 0.0% | 8 | 5 | 3 |
 | `Match Oberste Gerichtshof variants` | 0.2% | 23.0% | 0.1% | 87 | 20 | 67 |
 | `Match Specific Company Names with Special Characters` | 0.2% | 3.5% | 0.1% | 488 | 17 | 471 |
 | `Match Oberlandesgerichte (Regional Courts of Appeal)` | 0.0% | 0.0% | 0.0% | 0 | 0 | 0 |
@@ -1232,6 +1232,130 @@ Die Beschwerde ist direkt beim Verfassungsgerichtshof einzubringen.
 | Predicted | Gold |
 |---|---|
 | `Verfassungsgerichtshof` | `Verfassungsgerichtshof` |
+
+</details>
+
+---
+
+## `Match Landesgerichte (Regional Courts) - Extended` 
+
+**F1:** 0.001 | **Precision:** 1.000 | **Recall:** 0.000  
+
+**Format:** `regex`  
+**Rule ID:** `c2d2cd23`  
+**Description:**
+Captures Regional Courts with city names including Eisenstadt, Mattersburg, Hall in Tirol, Korneuburg, and Spittal an der Drau, plus Graz for Zivilrechtssachen.
+
+**Content:**
+```
+\b(Landesgerichts?\s+(?:f\u00fcr\s+Zivilrechtssachen\s+)?(?:f\u00fcr\s+Strafsachen\s+)?(?:Wien|Salzburg|St\.\s+P\u00f6lten|Wels|Graz|Leoben|Innsbruck|Linz|Klagenfurt|Feldkirch|Steyr|Ried\s+im\s+Innkreis|Wiener\s+Neustadt|Eisenstadt|Mattersburg|Hall\s+in\s+Tirol|Korneuburg|Krems\s+an\s+der\s+Donau|Spittal\s+an\s+der\s+Drau|Graz))\b
+```
+
+<details>
+<summary>📊 Detailed Metrics</summary>
+
+| Precision | Recall | F1 | Total Predicted | TP | FP |
+|---|---|---|---|---|---|
+| 1.000 | 0.000 | 0.001 | 8 | 8 | 0 |
+
+**Per-Class Breakdown**
+
+| Class | TP | FP | FN |
+|---|---|---|---|
+| `organisation` | 8 | 0 | 6804 |
+
+</details>
+
+---
+
+<details>
+<summary>✅ Worked</summary>
+
+**Example 0** (doc_id: `deanon_BFG_20260814_TRAIN/142167.1`) (sent_id: `deanon_BFG_20260814_TRAIN/142167.1_160`)
+
+
+Am 10.9.2018 übermittelte das Finanzamt Wien 9/18/19 Klosterneuburg als  Finanzstrafbehörde gemäß § 100 Abs. 2 StPO den Zwischen- und Abschussbericht an die  Staatsanwaltschaft Wien beim Landesgericht für Strafsachen und diese legte am 15.7.2019 die  Anklageschrift dem Landesgericht für Strafsachen Wien vor.
+
+| Predicted | Gold |
+|---|---|
+| `Landesgericht für Strafsachen Wien` | `Landesgericht für Strafsachen Wien` |
+
+**Missed by this rule (FN):**
+
+- `Finanzamt Wien 9/18/19 Klosterneuburg` (organisation)
+- `Landesgericht für Strafsachen` (organisation)
+
+**Example 1** (doc_id: `deanon_BFG_20260814_TRAIN/142167.1`) (sent_id: `deanon_BFG_20260814_TRAIN/142167.1_162`)
+
+
+Am 23.9.2019 ist gegen den Bf. ein Urteil des Landesgerichts für Strafsachen Wien ergangen,  dessen Spruch auszugsweise wie folgt lautet:  „Ing. Bianca Karbow  ist schuldig, hat im Zeitraum 2008 bis 2013 im Bereich des Finanzamts Wien  9/18/19 Klosterneuburg als für die Wahrnehmung der abgabenrechtlichen Obliegenheiten  verantwortlicher Einzelunternehmer vorsätzlich unter Verletzung einer abgabenrechtlichen  Anzeige-, Offenlegungs- und Wahrheitspflicht eine Verkürzung von bescheidmäßig  festzusetzenden Abgaben bewirkt bzw zu bewirken versucht, und zwar,  I./ durch die Abgabe inhaltlich unrichtiger Steuererklärungen betreffend Einkommensteuer und  Umsatzsteuer, wobei er die Taten teils unter Verwendung falscher Beweismittel (§ 39 Abs 1 lit a  FinStrG), nämlich durch die Aufnahme von Schein- und Deckungsrechnungen, die gezielt zum  Zwecke der Abgabenhinterziehung produziert worden waren, in sein buchhalterisches  Rechenwerk aufnahm, derweil die Leistungen tatsächlich nicht bzw nicht im ausgewiesenen  Umfang stattgefunden hatten, beging, nämlich  1./ hinsichtlich Einkommensteuer  am 9.3.2010 für das Jahr 2008 EUR 57.486,09,  am 14.1.2011 für das Jahr 2009 EUR 49.150,22,  am 30.4.2012 für das Jahr 2010 EUR 15.424,-,  am 27.5.2013 für das Jahr 2011 EUR 22.581   am 1.12.2013 für das Jahr 2012 EUR 16.299,-,  am 16.1.2015 für das Jahr 2013 EUR 15.531,-,  SUMME EUR 176.471,31,  11 von 16 Seite 12 von 16
+
+| Predicted | Gold |
+|---|---|
+| `Landesgerichts für Strafsachen Wien` | `Landesgerichts für Strafsachen Wien` |
+
+**Missed by this rule (FN):**
+
+- `Ing. Bianca Karbow` (person)
+- `Finanzamts Wien  9/18/19` (organisation)
+
+**Example 2** (doc_id: `deanon_BFG_20260814_TRAIN/142167.1`) (sent_id: `deanon_BFG_20260814_TRAIN/142167.1_174`)
+
+
+Sachverhaltsmäßig steht fest, dass das Landesgericht für Strafsachen Wien auch betragsmäßig  die Sachverhaltsfeststellungen der Betriebsprüfung bestätigt hat und es als erwiesen  angenommen hat, dass der Bf. die oben angeführten Taten in objektiver und subjektiver  Hinsicht begangen hat.
+
+| Predicted | Gold |
+|---|---|
+| `Landesgericht für Strafsachen Wien` | `Landesgericht für Strafsachen Wien` |
+
+**Example 3** (doc_id: `deanon_BFG_20260814_TRAIN/142167.1`) (sent_id: `deanon_BFG_20260814_TRAIN/142167.1_175`)
+
+
+Unstrittig ist weiters, dass das Landesgericht für Strafsachen Wien bei Ermittlung des  Sachverhaltes von Amts wegen vorzugehen hatte.
+
+| Predicted | Gold |
+|---|---|
+| `Landesgericht für Strafsachen Wien` | `Landesgericht für Strafsachen Wien` |
+
+**Example 4** (doc_id: `deanon_BFG_20260814_TRAIN/142167.1`) (sent_id: `deanon_BFG_20260814_TRAIN/142167.1_185`)
+
+
+Das Landesgericht für Strafsachen Wien hat in seinem Urteil vom 23.9.2019 festgestellt, dass  der Bf. die oben angeführten Taten in objektiver und subjektiver Hinsicht begangen hat, und es  dabei billigend in Kauf nahm und sich damit abfand seine abgabenrechtliche Anzeige-,  Offenlegungs- bzw. Wahrheitspflicht zu verletzen und damit die im Spruch des Strafurteils  genannten Abgaben zu verkürzen.
+
+| Predicted | Gold |
+|---|---|
+| `Landesgericht für Strafsachen Wien` | `Landesgericht für Strafsachen Wien` |
+
+**Example 5** (doc_id: `deanon_BFG_20260814_TRAIN/142167.1`) (sent_id: `deanon_BFG_20260814_TRAIN/142167.1_186`)
+
+
+Das Landesgericht für Strafsachen Wien hat die Abgabenforderungen, welche aufgrund der  Feststellungen der Betriebsprüfung, hinsichtlich Einkommensteuer und Umsatzsteuer,  festgesetzt wurden, bestätigt.
+
+| Predicted | Gold |
+|---|---|
+| `Landesgericht für Strafsachen Wien` | `Landesgericht für Strafsachen Wien` |
+
+**Example 6** (doc_id: `deanon_BFG_20260814_TRAIN/142167.1`) (sent_id: `deanon_BFG_20260814_TRAIN/142167.1_191`)
+
+
+Bescheid betreffend Festsetzung von Umsatzsteuer für die Monate Jänner 2014 bis August  2014  Die im Zuge der Betriebsprüfung aufgedeckten und auch in den Vorjahren laut Urteil des  Landesgerichts für Strafsachen Wien gesetzten Handlungen (Schein- und Deckungsrechnungen)  wurden auch im Jahr 2014 fortgesetzt.
+
+| Predicted | Gold |
+|---|---|
+| `Landesgerichts für Strafsachen Wien` | `Landesgerichts für Strafsachen Wien` |
+
+**Example 7** (doc_id: `deanon_BFG_20260814_TRAIN/142383.1`) (sent_id: `deanon_BFG_20260814_TRAIN/142383.1_68`)
+
+
+Mit Beschluss des Landesgerichts Salzburg vom 20. August 2014 erfolgte hinsichtlich der Klemeyer + Heisterhagen Pharma GmbH die Eröffnung des Sanierungsverfahrens ohne Eigenverwaltung, welches mit Beschluss  vom 19. Dezember 2014 aufgrund der rechtskräftigen Bestätigung des Sanierungsplans  aufgehoben wurde.
+
+| Predicted | Gold |
+|---|---|
+| `Landesgerichts Salzburg` | `Landesgerichts Salzburg` |
+
+**Missed by this rule (FN):**
+
+- `Klemeyer + Heisterhagen Pharma GmbH` (organisation)
 
 </details>
 
@@ -2579,149 +2703,6 @@ Mit Straferkenntnis vom 24. August 2021, Z3, wurde der Bf. vom Magistrat der Sta
 **Gold Entities:**
 
 - `Magistrat der Stadt Wien,  Magistratsabteilung 67`(organisation)
-
-</details>
-
----
-
-## `Match Landesgerichte (Regional Courts) - Extended` 
-
-**F1:** 0.001 | **Precision:** 0.625 | **Recall:** 0.000  
-
-**Format:** `regex`  
-**Rule ID:** `c2d2cd23`  
-**Description:**
-Captures Regional Courts with city names including Eisenstadt, Mattersburg, Hall in Tirol, Korneuburg, and Spittal an der Drau, plus Graz for Zivilrechtssachen.
-
-**Content:**
-```
-\b(Landesgerichts?\s+(?:f\u00fcr\s+Zivilrechtssachen\s+)?(?:f\u00fcr\s+Strafsachen\s+)?(?:Wien|Salzburg|St\.\s+P\u00f6lten|Wels|Graz|Leoben|Innsbruck|Linz|Klagenfurt|Feldkirch|Steyr|Ried\s+im\s+Innkreis|Wiener\s+Neustadt|Eisenstadt|Mattersburg|Hall\s+in\s+Tirol|Korneuburg|Krems\s+an\s+der\s+Donau|Spittal\s+an\s+der\s+Drau|Graz))\b
-```
-
-<details>
-<summary>📊 Detailed Metrics</summary>
-
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.625 | 0.000 | 0.001 | 8 | 5 | 3 |
-
-**Per-Class Breakdown**
-
-| Class | TP | FP | FN |
-|---|---|---|---|
-| `organisation` | 5 | 3 | 6807 |
-
-</details>
-
----
-
-<details>
-<summary>✅ Worked</summary>
-
-**Example 0** (doc_id: `deanon_BFG_20260814_TRAIN/142167.1`) (sent_id: `deanon_BFG_20260814_TRAIN/142167.1_160`)
-
-
-Am 10.9.2018 übermittelte das Finanzamt Wien 9/18/19 Klosterneuburg als  Finanzstrafbehörde gemäß § 100 Abs. 2 StPO den Zwischen- und Abschussbericht an die  Staatsanwaltschaft Wien beim Landesgericht für Strafsachen und diese legte am 15.7.2019 die  Anklageschrift dem Landesgericht für Strafsachen Wien vor.
-
-| Predicted | Gold |
-|---|---|
-| `Landesgericht für Strafsachen Wien` | `Landesgericht für Strafsachen Wien` |
-
-**Missed by this rule (FN):**
-
-- `Finanzamt Wien 9/18/19 Klosterneuburg` (organisation)
-- `Landesgericht für Strafsachen` (organisation)
-
-**Example 1** (doc_id: `deanon_BFG_20260814_TRAIN/142167.1`) (sent_id: `deanon_BFG_20260814_TRAIN/142167.1_174`)
-
-
-Sachverhaltsmäßig steht fest, dass das Landesgericht für Strafsachen Wien auch betragsmäßig  die Sachverhaltsfeststellungen der Betriebsprüfung bestätigt hat und es als erwiesen  angenommen hat, dass der Bf. die oben angeführten Taten in objektiver und subjektiver  Hinsicht begangen hat.
-
-| Predicted | Gold |
-|---|---|
-| `Landesgericht für Strafsachen Wien` | `Landesgericht für Strafsachen Wien` |
-
-**Example 2** (doc_id: `deanon_BFG_20260814_TRAIN/142167.1`) (sent_id: `deanon_BFG_20260814_TRAIN/142167.1_175`)
-
-
-Unstrittig ist weiters, dass das Landesgericht für Strafsachen Wien bei Ermittlung des  Sachverhaltes von Amts wegen vorzugehen hatte.
-
-| Predicted | Gold |
-|---|---|
-| `Landesgericht für Strafsachen Wien` | `Landesgericht für Strafsachen Wien` |
-
-**Example 3** (doc_id: `deanon_BFG_20260814_TRAIN/142167.1`) (sent_id: `deanon_BFG_20260814_TRAIN/142167.1_185`)
-
-
-Das Landesgericht für Strafsachen Wien hat in seinem Urteil vom 23.9.2019 festgestellt, dass  der Bf. die oben angeführten Taten in objektiver und subjektiver Hinsicht begangen hat, und es  dabei billigend in Kauf nahm und sich damit abfand seine abgabenrechtliche Anzeige-,  Offenlegungs- bzw. Wahrheitspflicht zu verletzen und damit die im Spruch des Strafurteils  genannten Abgaben zu verkürzen.
-
-| Predicted | Gold |
-|---|---|
-| `Landesgericht für Strafsachen Wien` | `Landesgericht für Strafsachen Wien` |
-
-**Example 4** (doc_id: `deanon_BFG_20260814_TRAIN/142167.1`) (sent_id: `deanon_BFG_20260814_TRAIN/142167.1_186`)
-
-
-Das Landesgericht für Strafsachen Wien hat die Abgabenforderungen, welche aufgrund der  Feststellungen der Betriebsprüfung, hinsichtlich Einkommensteuer und Umsatzsteuer,  festgesetzt wurden, bestätigt.
-
-| Predicted | Gold |
-|---|---|
-| `Landesgericht für Strafsachen Wien` | `Landesgericht für Strafsachen Wien` |
-
-</details>
-
----
-
-<details>
-<summary>⚠️ False Positives</summary>
-
-**Example 0** (doc_id: `deanon_BFG_20260814_TRAIN/142167.1`) (sent_id: `deanon_BFG_20260814_TRAIN/142167.1_162`)
-
-
-Am 23.9.2019 ist gegen den Bf. ein Urteil des Landesgerichts für Strafsachen Wien ergangen,  dessen Spruch auszugsweise wie folgt lautet:  „Ing. Bianca Karbow  ist schuldig, hat im Zeitraum 2008 bis 2013 im Bereich des Finanzamts Wien  9/18/19 Klosterneuburg als für die Wahrnehmung der abgabenrechtlichen Obliegenheiten  verantwortlicher Einzelunternehmer vorsätzlich unter Verletzung einer abgabenrechtlichen  Anzeige-, Offenlegungs- und Wahrheitspflicht eine Verkürzung von bescheidmäßig  festzusetzenden Abgaben bewirkt bzw zu bewirken versucht, und zwar,  I./ durch die Abgabe inhaltlich unrichtiger Steuererklärungen betreffend Einkommensteuer und  Umsatzsteuer, wobei er die Taten teils unter Verwendung falscher Beweismittel (§ 39 Abs 1 lit a  FinStrG), nämlich durch die Aufnahme von Schein- und Deckungsrechnungen, die gezielt zum  Zwecke der Abgabenhinterziehung produziert worden waren, in sein buchhalterisches  Rechenwerk aufnahm, derweil die Leistungen tatsächlich nicht bzw nicht im ausgewiesenen  Umfang stattgefunden hatten, beging, nämlich  1./ hinsichtlich Einkommensteuer  am 9.3.2010 für das Jahr 2008 EUR 57.486,09,  am 14.1.2011 für das Jahr 2009 EUR 49.150,22,  am 30.4.2012 für das Jahr 2010 EUR 15.424,-,  am 27.5.2013 für das Jahr 2011 EUR 22.581   am 1.12.2013 für das Jahr 2012 EUR 16.299,-,  am 16.1.2015 für das Jahr 2013 EUR 15.531,-,  SUMME EUR 176.471,31,  11 von 16 Seite 12 von 16
-
-**False Positives:**
-
-- `Landesgerichts für Strafsachen Wien` — partial — gold is substring of pred: `Landesgerichts für Strafsachen`
-
-> overlaps gold: 1  |  likely missing annotation: 0
-
-**Gold Entities:**
-
-- `Landesgerichts für Strafsachen`(organisation)
-- `Ing. Bianca Karbow`(person)
-- `Finanzamts Wien  9/18/19`(organisation)
-
-**Example 1** (doc_id: `deanon_BFG_20260814_TRAIN/142167.1`) (sent_id: `deanon_BFG_20260814_TRAIN/142167.1_191`)
-
-
-Bescheid betreffend Festsetzung von Umsatzsteuer für die Monate Jänner 2014 bis August  2014  Die im Zuge der Betriebsprüfung aufgedeckten und auch in den Vorjahren laut Urteil des  Landesgerichts für Strafsachen Wien gesetzten Handlungen (Schein- und Deckungsrechnungen)  wurden auch im Jahr 2014 fortgesetzt.
-
-**False Positives:**
-
-- `Landesgerichts für Strafsachen Wien` — partial — gold is substring of pred: `Landesgerichts für Strafsachen`
-
-> overlaps gold: 1  |  likely missing annotation: 0
-
-**Gold Entities:**
-
-- `Landesgerichts für Strafsachen`(organisation)
-
-**Example 2** (doc_id: `deanon_BFG_20260814_TRAIN/142383.1`) (sent_id: `deanon_BFG_20260814_TRAIN/142383.1_68`)
-
-
-Mit Beschluss des Landesgerichts Salzburg vom 20. August 2014 erfolgte hinsichtlich der Klemeyer + Heisterhagen Pharma GmbH die Eröffnung des Sanierungsverfahrens ohne Eigenverwaltung, welches mit Beschluss  vom 19. Dezember 2014 aufgrund der rechtskräftigen Bestätigung des Sanierungsplans  aufgehoben wurde.
-
-**False Positives:**
-
-- `Landesgerichts Salzburg` — partial — gold is substring of pred: `Landesgerichts`
-
-> overlaps gold: 1  |  likely missing annotation: 0
-
-**Gold Entities:**
-
-- `Landesgerichts`(organisation)
-- `Klemeyer + Heisterhagen Pharma GmbH`(organisation)
 
 </details>
 
