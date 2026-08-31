@@ -1,6 +1,6 @@
 # Rule Evaluation Report — Qwen/Qwen3.5-35B-A3B
 
-Generated on: 2026-08-31T09:27:57.943576
+Generated on: 2026-08-31T09:49:07.194855
 
 ---
 
