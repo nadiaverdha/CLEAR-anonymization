@@ -1,6 +1,6 @@
 # Rule Evaluation Report — Qwen/Qwen3.5-35B-A3B
 
-Generated on: 2026-08-31T09:49:07.194855
+Generated on: 2026-08-31T09:57:12.795428
 
 ---
 
@@ -52,14 +52,14 @@ Results can be reproduced by running this command:
 | Metric | Value |
 |---|---|
 | Accuracy (exact match) | 85.3% |
-| True Positives | 783 |
-| False Positives | 274 |
-| False Negatives | 17390 |
-| Total Gold Entities | 18173 |
-| Micro Precision | 74.1% |
+| True Positives | 787 |
+| False Positives | 270 |
+| False Negatives | 17392 |
+| Total Gold Entities | 18179 |
+| Micro Precision | 74.5% |
 | Micro Recall | 4.3% |
-| Micro F1 | 8.1% |
-| Macro F1 | 8.1% |
+| Micro F1 | 8.2% |
+| Macro F1 | 8.2% |
 
 </details>
 
@@ -77,8 +77,8 @@ Results can be reproduced by running this command:
 | `OGK_Abbreviation` | 0.4% | 97.5% | 0.2% | 40 | 39 | 1 |
 | `Hyphenated_Ampersand_Corporate_Name` | 1.7% | 93.9% | 0.8% | 163 | 153 | 10 |
 | `Magistrat_Wien` | 3.9% | 86.1% | 2.0% | 425 | 366 | 59 |
+| `Law_Firm_OG_KG_GmbH` | 0.1% | 53.3% | 0.0% | 15 | 8 | 7 |
 | `Law_Firm_Rechtsanwaelte_OG` | 0.0% | 50.0% | 0.0% | 6 | 3 | 3 |
-| `Law_Firm_OG_KG_GmbH` | 0.0% | 26.7% | 0.0% | 15 | 4 | 11 |
 | `Generic_KG_Entity` | 0.2% | 22.8% | 0.1% | 79 | 18 | 61 |
 | `OGH_Abbreviation` | 0.2% | 20.2% | 0.1% | 84 | 17 | 67 |
 | `Oberlandesgericht_City` | 0.0% | 0.0% | 0.0% | 0 | 0 | 0 |
@@ -131,7 +131,7 @@ Matches the Supreme Court of Austria in nominative or genitive case.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 3 | 0 | 13430 |
+| `organisation` | 3 | 0 | 13436 |
 
 </details>
 
@@ -208,7 +208,7 @@ Matches the Constitutional Court (Verfassungsgerichtshof) in nominative or genit
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 172 | 0 | 17372 |
+| `organisation` | 172 | 0 | 17378 |
 
 </details>
 
@@ -1291,7 +1291,7 @@ Matches Regional Courts with city names, ensuring 'St. Pölten', 'Hermagor', 'Le
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 1 | 0 | 6658 |
+| `organisation` | 1 | 0 | 6661 |
 
 </details>
 
@@ -1342,7 +1342,7 @@ Matches Regional Courts for Criminal Matters (Landesgericht für Strafsachen).
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 7 | 0 | 6805 |
+| `organisation` | 7 | 0 | 6808 |
 
 </details>
 
@@ -1453,7 +1453,7 @@ Matches the abbreviation ÖGK (Österreichische Gebietskrankenkasse).
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 39 | 1 | 15747 |
+| `organisation` | 39 | 1 | 15753 |
 
 </details>
 
@@ -1800,7 +1800,7 @@ Matches corporate names where the name and suffix are connected by hyphens, plus
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 153 | 10 | 17672 |
+| `organisation` | 153 | 10 | 17678 |
 
 </details>
 
@@ -2967,7 +2967,7 @@ Matches the Magistrat der Stadt Wien.
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 366 | 59 | 17777 |
+| `organisation` | 366 | 59 | 17783 |
 
 </details>
 
@@ -4076,6 +4076,345 @@ Mit Straferkenntnis vom 24. August 2021, Z3, wurde der Bf. vom Magistrat der Sta
 
 ---
 
+## `Law_Firm_OG_KG_GmbH` 🏆
+
+**F1:** 0.001 | **Precision:** 0.533 | **Recall:** 0.000  
+
+**Format:** `regex`  
+**Rule ID:** `ac276403`  
+**Description:**
+Matches law firms identified by suffixes OG, KG, or GmbH, allowing for slashes, hyphens, and 'und'/'&' in names, ensuring full name capture including 'GmbH & Co KG'.
+
+**Content:**
+```
+(?<![\w])([A-Z][a-zA-Z]+(?:\s+[A-Z][a-zA-Z]+)*|[A-Z][a-zA-Z]+(?:-[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\+[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\s+und\s+[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\s*&\s*[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\s+&\s*[A-Z][a-zA-Z]+)+|[A-Za-z]+(?:/[A-Za-z]+)+)\s+(?:Rechtsanwälte|Anwälte|Anwaltsgesellschaft)\s+(?:OG|KG|GmbH|mbH|GmbH\s+&\s+Co\s+KG)\b
+```
+
+<details>
+<summary>📊 Detailed Metrics</summary>
+
+| Precision | Recall | F1 | Total Predicted | TP | FP |
+|---|---|---|---|---|---|
+| 0.533 | 0.000 | 0.001 | 15 | 8 | 7 |
+
+**Per-Class Breakdown**
+
+| Class | TP | FP | FN |
+|---|---|---|---|
+| `organisation` | 8 | 7 | 18156 |
+
+</details>
+
+---
+
+<details>
+<summary>✅ Worked</summary>
+
+**Example 0** (doc_id: `deanon_BFG_20260814_TRAIN/127180.1`) (sent_id: `deanon_BFG_20260814_TRAIN/127180.1_0`)
+
+
+GZ. RV/7100281/2020 IM NAMEN DER REPUBLIK Das Bundesfinanzgericht erkennt durch den Richter MMag. Gerald Erwin Ehgartner in der Beschwerdesache Zeno Matyssek, vertreten durch Jank Weiler Operenyi Rechtsanwälte GmbH, Schottengasse 1, 1010 Wien, über die Beschwerde vom 18.11.2019 gegen den Bescheid der belangten Behörde Finanzamt für Gebühren, Verkehrsteuern und Glücksspiel vom 10.10.2019, ERFNR 123/2019, betreffend Gebühren zu Recht:  I. Die Beschwerde wird als unbegründet abgewiesen.
+
+| Predicted | Gold |
+|---|---|
+| `Jank Weiler Operenyi Rechtsanwälte GmbH` | `Jank Weiler Operenyi Rechtsanwälte GmbH` |
+
+**Missed by this rule (FN):**
+
+- `Bundesfinanzgericht` (organisation)
+- `MMag. Gerald Erwin Ehgartner` (person)
+- `Zeno Matyssek` (person)
+- `Finanzamt für Gebühren` (organisation)
+
+**Example 1** (doc_id: `deanon_BFG_20260814_TRAIN/138766.1`) (sent_id: `deanon_BFG_20260814_TRAIN/138766.1_1`)
+
+
+IM NAMEN DER REPUBLI K  Das Bundesfinanzgericht hat durch die Richterin Priv.-Doz.in Sophie Szcygiel  in der Beschwerdesache Veronika Krenzin, LLM,  Allramstraße 3, 3925 Dietrichsbach, Österreich, vertreten durch ARNOLD Rechtsanwälte GmbH, Wipplingerstraße 10, 1010  Wien, über die Beschwerden vom 14. Juni 2019 gegen die Bescheide des Finanzamtes für  Gebühren, Verkehrsteuern und Glücksspiel als Vorgängerorganisation des Finanzamts  Österreich, Dienststelle Sonderzuständigkeiten, vom 9. Mai 2019 betreffend   50 Säumniszuschläge für die Monate   Jänner 2014 bis Februar 2017 und Mai 2017 bis April 2018,  Steuernummer 33-539/1315  zu Recht erkannt:     I. Den Beschwerden wird gemäß § 279 BAO teilweise Folge gegeben.
+
+| Predicted | Gold |
+|---|---|
+| `ARNOLD Rechtsanwälte GmbH` | `ARNOLD Rechtsanwälte GmbH` |
+
+**Missed by this rule (FN):**
+
+- `Bundesfinanzgericht` (organisation)
+- `Priv.-Doz.in Sophie Szcygiel` (person)
+- `Veronika Krenzin, LLM` (person)
+- `Allramstraße 3, 3925 Dietrichsbach, Österreich` (address)
+- `Finanzamtes für  Gebühren` (organisation)
+- `Finanzamts  Österreich` (organisation)
+- `33-539/1315` (tax_number)
+
+**Example 2** (doc_id: `deanon_BFG_20260814_TRAIN/139038.1`) (sent_id: `deanon_BFG_20260814_TRAIN/139038.1_1`)
+
+
+IM NAMEN DER REPUBLI K  Das Bundesfinanzgericht hat durch den Vorsitzenden MMag. Gerald Erwin Ehgartner und die  weiteren Mitglieder Mag. Elisabeth Traxler, Mag. Franz Gross und Mag. Gerd Wiehart in der  Beschwerdesache Olivia Meyerhöfer, Untermarktstraße 28A, 4715 Ragering, Österreich, vertreten durch Herbst Kinsky Rechtsanwälte  GmbH, Dr. Karl Lueger-Platz 5, 1010 Wien, über die Beschwerden vom 2. August 2018 gegen  die Bescheide des Finanzamtes Wien 1/23 vom 3. Juli 2018 betreffen Haftung zur Einbehaltung  und Abfuhr der Lohnsteuer sowie Festsetzung des Dienstgeberbeitrages zum Ausgleichsfonds  für Familienbeihilfen für die Kalenderjahre 2012, 2013, 2014, 2015 und 2016 nach der am  18. Oktober 2022 durchgeführten mündlichen Verhandlung zu Recht erkannt:  Die angefochtenen Bescheide werden wie folgt abgeändert:  Lohnsteuer 2012: € 13.257,06 (bisher € 10.246,96)  Lohnsteuer 2013: € 10.467,93 (bisher € 11.559,76)  Lohnsteuer 2014: € 15.690,02 (bisher € 10.982,06)  Lohnsteuer 2015: € 16.143,78 (bisher € 10.416,39)  Lohnsteuer 2016: € 7.304,82 (bisher € 7.809,71)  Dienstgeberbeitrag 2012: Bemessungsgrundlage € 3.214.721,96 (bisher € 3.207.480,00),  Dienstgeberbeitrag € 144.662,49 (bisher € 144.336,60)  Dienstgeberbeitrag 2013: Bemessungsgrundlage € 3.620.052,21 (bisher € 3.622.388,44),  Dienstgeberbeitrag € 162.902,35 (bisher € 163.007,48)  Dienstgeberbeitrag 2014: Bemessungsgrundlage € 3.041.967,20 (bisher € 3.029.183,55),  Dienstgeberbeitrag € 136.888,52 (bisher € 136.313,26)  Dienstgeberbeitrag 2015: Bemessungsgrundlage € 3.081.592,83 (bisher € 3.059.469,77),  Dienstgeberbeitrag € 138.671,67 (bisher € 137.676,14)  Dienstgeberbeitrag 2016: Bemessungsgrundlage € 3.007.628,39 (bisher € 3.009.072,44),  Dienstgeberbeitrag € 135.343,27 (bisher € 135.408,26)  Gegen dieses Erkenntnis ist eine Revision an den Verwaltungsgerichtshof nach Art. 133 Abs. 4  Bundes-Verfassungsgesetz (B-VG) nicht zulässig.
+
+| Predicted | Gold |
+|---|---|
+| `Herbst Kinsky Rechtsanwälte  GmbH` | `Herbst Kinsky Rechtsanwälte  GmbH` |
+
+**Missed by this rule (FN):**
+
+- `Bundesfinanzgericht` (organisation)
+- `MMag. Gerald Erwin Ehgartner` (person)
+- `Mag. Elisabeth Traxler` (person)
+- `Mag. Franz Gross` (person)
+- `Mag. Gerd Wiehart` (person)
+- `Olivia Meyerhöfer` (person)
+- `Untermarktstraße 28A, 4715 Ragering, Österreich` (address)
+- `Dr. Karl` (person)
+- `Finanzamtes Wien 1/23` (organisation)
+- `Verwaltungsgerichtshof` (organisation)
+
+**Example 3** (doc_id: `deanon_BFG_20260814_TRAIN/139698.1`) (sent_id: `deanon_BFG_20260814_TRAIN/139698.1_1`)
+
+
+IM NAMEN DER REPUBLI K  Gekürzte Ausfertigung des Erkenntnisses gemäß § 29 Abs. 5 VwGVG  Das Bundesfinanzgericht hat durch den Richter Mag. Gerhard Groschedl in der  Verwaltungsstrafsache gegen Herrn Brunhild Stanislav, Johann Hoffer-Weg 990, 8385 Neuhaus am Klausenbach, Österreich, vertreten durch Huber  Swoboda Oswald Aixberger Rechtsanwälte GmbH, Tuchlauben 11/18, 1010 Wien, wegen der  Verwaltungsübertretungen gemäß § 1 Abs. 1 in Verbindung mit § 16 Abs. 1 und Tarifen D Post  1 und D Post 4 des Gebrauchsabgabegesetzes (GAG) vom 8. Juli 1966, LGBl. für Wien Nr. 20, in  der derzeit geltenden Fassung über die Beschwerde des Beschuldigten vom 4. März 2022  gegen   I. das Straferkenntnis des Magistrates der Stadt Wien, Magistratsabteilung 6 Abgabenstrafen  vom 3. Februar 2022, GZ. MA6/206000003074/2020,   II. das Straferkenntnis des Magistrates der Stadt Wien vom 21. Februar 2022, GZ.  MA6/206000003065/2020,   nach Durchführung einer mündlichen Verhandlung am 15. Dezember 2022 in Abwesenheit des  Beschuldigten, jedoch in Anwesenheit der Verteidigerin, auch als Vertreterin der haftenden  GmbH, der Behördenvertreterin und der Schriftführerin zu Recht erkannt:  I. Gemäß § 50 Verwaltungsgerichtsverfahrensgesetz (VwGVG) in Verbindung mit § 24 Abs. 1  Bundesfinanzgerichtsgesetz (BFGG) und § 5 Gesetz über das Wiener  Abgabenorganisationsrecht (WAOR) wird der Beschwerde insoweit stattgegeben, als bei  unverändert bleibenden Schuldsprüchen die Höhe der Strafen und der Kosten wie folgt  geändert werden:  II. Wegen der Verwaltungsübertretungen laut Erkenntnis vom 3. Februar 2022, GZ.  MA6/206000003074/2020, werden über den Beschuldigten folgende Strafen jeweils gemäß  § 16 Abs. 1 GAG LGBl. für Wien Nr. 20, in der derzeit geltenden Fassung verhängt:   1. – 5. Geldstrafen in Höhe von je € 330,00, falls diese uneinbringlich sind,   5 Ersatzfreiheitsstrafen von je 11 Stunden,   1 von 11 Seite 2 von 11
+
+| Predicted | Gold |
+|---|---|
+| `Huber  Swoboda Oswald Aixberger Rechtsanwälte GmbH` | `Huber  Swoboda Oswald Aixberger Rechtsanwälte GmbH` |
+
+**Missed by this rule (FN):**
+
+- `Bundesfinanzgericht` (organisation)
+- `Mag. Gerhard Groschedl` (person)
+- `Brunhild Stanislav` (person)
+- `Johann Hoffer-Weg 990, 8385 Neuhaus am Klausenbach, Österreich` (address)
+- `Magistrates der Stadt Wien, Magistratsabteilung 6` (organisation)
+- `Magistrates der Stadt Wien` (organisation)
+
+**Example 4** (doc_id: `deanon_BFG_20260814_TRAIN/140274.1`) (sent_id: `deanon_BFG_20260814_TRAIN/140274.1_1`)
+
+
+IM NAMEN DER REPUBLI K  Das Bundesfinanzgericht hat durch die Richterin Dr.in Stephanie Stöfhas  in der Beschwerdesache Techn R Cedric Greuel, MBA,  Breitenschützing 2, 9651 Aigen, Österreich, vertreten durch DSC Doralt Seist Csoklich Rechtsanwälte GmbH, Währinger  Straße 2-4, 1090 Wien, über die Beschwerde vom 14. Februar 2019 gegen den Bescheid des  Finanzamtes für Gebühren, Verkehrsteuern und Glücksspiel als Vorgängerorganisation des  Finanzamts Österreich Dienststelle Sonderzuständigkeiten vom 11. Jänner 2019 betreffend   Zahlungerserleichterungsansuchen für Glücksspielabgaben und Wettgebühren 2012  Steuernummer 93-237/4757  zu Recht erkannt:   I. Die Beschwerde wird gemäß § 279 BAO als unbegründet abgewiesen.
+
+| Predicted | Gold |
+|---|---|
+| `DSC Doralt Seist Csoklich Rechtsanwälte GmbH` | `DSC Doralt Seist Csoklich Rechtsanwälte GmbH` |
+
+**Missed by this rule (FN):**
+
+- `Bundesfinanzgericht` (organisation)
+- `Dr.in Stephanie Stöfhas` (person)
+- `Techn R Cedric Greuel, MBA` (person)
+- `Breitenschützing 2, 9651 Aigen, Österreich` (address)
+- `Finanzamtes für Gebühren` (organisation)
+- `Finanzamts Österreich` (organisation)
+- `93-237/4757` (tax_number)
+
+**Example 5** (doc_id: `deanon_BFG_20260814_TRAIN/140710.1`) (sent_id: `deanon_BFG_20260814_TRAIN/140710.1_1`)
+
+
+IM NAMEN DER REPUBLI K  Das Bundesfinanzgericht erkennt durch die Richterin Mag. Judith Daniela Herdin-Winter in der  Beschwerdesache Fabian Träubler, Dr.-Stumpf-Straße 18, 4720 Sumeding, Österreich, vertreten durch DORDA Rechtsanwälte GmbH,  Universitätsring 10, 1010 Wien, über die Beschwerde vom 24. Mai 2017 gegen den Bescheid  des Finanzamtes für Gebühren, Verkehrsteuern und Glücksspiel (nunmehr Finanzamt  Österreich) vom 19. April 2017 betreffend Gebühren 18.12.2015, Erf. Nr. ***, Steuernummer  ***, zu Recht:   I. Die Beschwerde wird gemäß § 279 BAO als unbegründet abgewiesen.
+
+| Predicted | Gold |
+|---|---|
+| `DORDA Rechtsanwälte GmbH` | `DORDA Rechtsanwälte GmbH` |
+
+**Missed by this rule (FN):**
+
+- `Bundesfinanzgericht` (organisation)
+- `Mag. Judith Daniela Herdin-Winter` (person)
+- `Fabian Träubler` (person)
+- `Dr.-Stumpf-Straße 18, 4720 Sumeding, Österreich` (address)
+- `Finanzamtes für Gebühren` (organisation)
+- `Finanzamt  Österreich` (organisation)
+
+**Example 6** (doc_id: `deanon_BFG_20260814_TRAIN/142761.1`) (sent_id: `deanon_BFG_20260814_TRAIN/142761.1_1`)
+
+
+IM NAMEN DER REPUBLI K  Das Bundesfinanzgericht hat durch den Senatsvorsitzenden Dr. Hans Blasina, die Richterin  Mag. Monika Ahorn sowie die fachkundigen Laienrichter Gerald Cuny-Kreuzer und Dipl. Ing.  Thomas Hrdinka in der Beschwerdesache Clarissa Maak, Haidenweg 21, 5321 Koppl, Österreich, vertreten durch Sacha  Katzensteiner Blauensteiner Rechtsanwälte GmbH, Gartenaugasse 3, 3500 Krems/Donau, über  die Beschwerde vom 28. Dezember 2020 gegen die Bescheide des Finanzamtes Hollabrunn  Korneuburg Tulln (nunmehr Finanzamt Österreich,   § 323b BAO) vom 30. November 2020 betreffend Wiederaufnahme der Verfahren  Einkommensteuer 2014 und 2015 gemäß § 303 BAO sowie betreffend Einkommensteuer 2014  und 2015 (Steuernummer 35-947/5347 ) nach Durchführung einer mündlichen  Verhandlung am 21. November 2023 in Anwesenheit der Schriftführerin Asli Özdemir   zu Recht erkannt:  I. Die Beschwerde wird gemäß § 279 BAO als unbegründet abgewiesen.
+
+| Predicted | Gold |
+|---|---|
+| `Sacha  Katzensteiner Blauensteiner Rechtsanwälte GmbH` | `Sacha  Katzensteiner Blauensteiner Rechtsanwälte GmbH` |
+
+**Missed by this rule (FN):**
+
+- `Bundesfinanzgericht` (organisation)
+- `Dr. Hans Blasina` (person)
+- `Mag. Monika Ahorn` (person)
+- `Gerald Cuny-Kreuzer` (person)
+- `Dipl. Ing.  Thomas Hrdinka` (person)
+- `Clarissa Maak` (person)
+- `Haidenweg 21, 5321 Koppl, Österreich` (address)
+- `Finanzamtes` (organisation)
+- `Finanzamt Österreich` (organisation)
+- `35-947/5347` (tax_number)
+
+**Example 7** (doc_id: `deanon_BFG_20260814_TRAIN/149106.1`) (sent_id: `deanon_BFG_20260814_TRAIN/149106.1_2`)
+
+
+Das Bundesfinanzgericht hat durch den Richter Priv.-Doz. Miroslav Spandl  in der Beschwerdesache Rebecca Wölzlein, LLM,  Lahnsattel 29x, 5203 Köstendorf, Österreich, vertreten durch Niederhuber & Partner Rechtsanwälte GmbH, Metahofgasse  16, 8020 Graz, über die Beschwerde vom 16. Juni 2023 gegen den Bescheid des Zollamtes  Österreich vom 12. Mai 2023, Zl. 230000/204741/03/2023, betreffend die Aussetzung der  Einhebung zu Recht erkannt:   I. Die Beschwerde wird gemäß § 279 BAO als unbegründet abgewiesen.
+
+| Predicted | Gold |
+|---|---|
+| `Niederhuber & Partner Rechtsanwälte GmbH` | `Niederhuber & Partner Rechtsanwälte GmbH` |
+
+**Missed by this rule (FN):**
+
+- `Bundesfinanzgericht` (organisation)
+- `Priv.-Doz. Miroslav Spandl` (person)
+- `Rebecca Wölzlein, LLM` (person)
+- `Lahnsattel 29x, 5203 Köstendorf, Österreich` (address)
+- `Zollamtes  Österreich` (organisation)
+
+</details>
+
+---
+
+<details>
+<summary>⚠️ False Positives</summary>
+
+**Example 0** (doc_id: `deanon_BFG_20260814_TRAIN/134395.1`) (sent_id: `deanon_BFG_20260814_TRAIN/134395.1_1`)
+
+
+IM NAMEN DER REPUBLI K  Das Bundesfinanzgericht hat durch die Richterin Dr. Susanne Zankl in der Beschwerdesache  Dario Berenz, Haller 74, 8444 Michlgleinz, Österreich, vertreten durch CMS Reich-Rohrwig Hainz Rechtsanwälte GmbH,  Gauermanngasse 2-4, 1010 Wien, über die Beschwerde vom 21. November 2018 gegen den  Bescheid des Finanzamtes St. Johann Tamsweg Zell am See (nunmehr Finanzamt Österreich)  vom 25. Oktober 2018 betreffend Einkommensteuer 2016, Steuernummer 68-155/5685  zu  Recht erkannt:   Die Beschwerde wird gemäß § 279 BAO als unbegründet abgewiesen.
+
+**False Positives:**
+
+- `Rohrwig Hainz Rechtsanwälte GmbH` — partial — pred is substring of gold: `CMS Reich-Rohrwig Hainz Rechtsanwälte GmbH`
+
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Bundesfinanzgericht`(organisation)
+- `Dr. Susanne Zankl`(person)
+- `Dario Berenz`(person)
+- `Haller 74, 8444 Michlgleinz, Österreich`(address)
+- `CMS Reich-Rohrwig Hainz Rechtsanwälte GmbH`(organisation)
+- `Finanzamtes St. Johann Tamsweg Zell`(organisation)
+- `Finanzamt Österreich`(organisation)
+- `68-155/5685`(tax_number)
+
+**Example 1** (doc_id: `deanon_BFG_20260814_TRAIN/144019.1`) (sent_id: `deanon_BFG_20260814_TRAIN/144019.1_1`)
+
+
+IM NAMEN DER REPUBLI K  Das Bundesfinanzgericht hat durch den Richter Univ.-Prof. Theobald Steuder  in der Beschwerdesache Amy Benedict,  Otto-Probst-Platz 17, 4656 Wahl, Österreich, vertreten durch Pacher & Partner Rechtsanwälte GmbH & Co KG,  Kaiserfeldgasse 1/II/3.
+
+**False Positives:**
+
+- `Pacher & Partner Rechtsanwälte GmbH` — partial — pred is substring of gold: `Pacher & Partner Rechtsanwälte GmbH & Co KG`
+
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Bundesfinanzgericht`(organisation)
+- `Univ.-Prof. Theobald Steuder`(person)
+- `Amy Benedict`(person)
+- `Otto-Probst-Platz 17, 4656 Wahl, Österreich`(address)
+- `Pacher & Partner Rechtsanwälte GmbH & Co KG`(organisation)
+
+**Example 2** (doc_id: `deanon_BFG_20260814_TRAIN/144400.1`) (sent_id: `deanon_BFG_20260814_TRAIN/144400.1_1`)
+
+
+IM NAMEN DER REPUBLI K  Das Bundesfinanzgericht hat durch die Richterin Univ.-Prof.in Roswitha Augustiny  in der Beschwerdesache Miriam Hillger,  Marktsiedlung 44, 4924 Nußbaum am Kobernaußer Walde, Österreich, vertreten durch Zacherl Schallaböck Proksch Manak Kraft Rechtsanwälte  GmbH, Teinfaltstraße 8-8A Tür 5.01, 1010 Wien, über die Beschwerde vom 7. Februar 2024  gegen den Bescheid des Finanzamt Freistadt Rohrbach Urfahr  vom 10. Jänner 2024 betreffend Abweisung eines Antrages  auf bescheidmäßige Festsetzung des Energiekrisenbeitrag-Strom (EKB-S) für den Zeitraum  01.12.2022 bis 30.06.2023, Steuernummer 14-958/5389, zu Recht erkannt:   I. Die Beschwerde wird gemäß § 279 BAO als unbegründet abgewiesen.
+
+**False Positives:**
+
+- `Proksch Manak Kraft Rechtsanwälte  GmbH` — partial — pred is substring of gold: `Zacherl Schallaböck Proksch Manak Kraft Rechtsanwälte  GmbH`
+
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Bundesfinanzgericht`(organisation)
+- `Univ.-Prof.in Roswitha Augustiny`(person)
+- `Miriam Hillger`(person)
+- `Marktsiedlung 44, 4924 Nußbaum am Kobernaußer Walde, Österreich`(address)
+- `Zacherl Schallaböck Proksch Manak Kraft Rechtsanwälte  GmbH`(organisation)
+- `Finanzamt Freistadt Rohrbach Urfahr`(organisation)
+- `14-958/5389`(tax_number)
+
+**Example 3** (doc_id: `deanon_BFG_20260814_TRAIN/145629.1`) (sent_id: `deanon_BFG_20260814_TRAIN/145629.1_1`)
+
+
+IM NAMEN DER REPUBLI K  Das Bundesfinanzgericht hat durch den Richter[...] in der Beschwerdesache Ulrike Philippzig, Klimaweg 7, 8543 Graschach, Österreich, vertreten durch Zacherl Schallaböck Proksch Manak Kraft Rechtsanwälte GmbH,  Teinfaltstraße 8/5.01, 1010 Wien, über die Beschwerde vom 21.6.2024 gegen den Bescheid des  Finanzamtes für Großbetriebe vom 28.5.2024 mit dem der Antrag vom 25.10.2023 auf  bescheidmäßige Festsetzung des Energiekrisenbeitrag-Strom iSd Bundesgesetz über den  Energiekrisenbeitrag-Strom (EKBSG) BGBl I 220/2022 idgF für den Zeitraum 12/2022 bis  06/2023 gemäß § 201 Abs 3 Z 1 BAO abgewiesen wurde, Steuernummer [...], zu Recht erkannt:   I. Die Beschwerde wird gemäß § 279 BAO als unbegründet abgewiesen.
+
+**False Positives:**
+
+- `Proksch Manak Kraft Rechtsanwälte GmbH` — partial — pred is substring of gold: `Zacherl Schallaböck Proksch Manak Kraft Rechtsanwälte GmbH`
+
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Bundesfinanzgericht`(organisation)
+- `Ulrike Philippzig`(person)
+- `Klimaweg 7, 8543 Graschach, Österreich`(address)
+- `Zacherl Schallaböck Proksch Manak Kraft Rechtsanwälte GmbH`(organisation)
+- `Finanzamtes für Großbetriebe`(organisation)
+
+**Example 4** (doc_id: `deanon_BFG_20260814_TRAIN/146200.1`) (sent_id: `deanon_BFG_20260814_TRAIN/146200.1_1`)
+
+
+IM NAMEN DER REPUBLIK   Das Bundesfinanzgericht erkennt durch den Richter Dr. Gregor Lohwaßer  in der Beschwerdesache  Hermann Kirchenbaur, Bradirn 5, 4841 Schmidham, Österreich, vertreten durch Zacherl Schallaböck Proksch Manak Kraft  Rechtsanwälte GmbH, Teinfaltstraße 8-8A Tür 5.01, 1010 Wien, über die Beschwerde vom  12. Juni 2024 gegen den Bescheid des Finanzamtes Österreich vom 16. Mai 2024,  Steuernummer 67-467/1130, betreffend Festsetzung Energiekrisenbeitrag-Strom Juli bis  Dezember 2023 zu Recht:   I. Die Beschwerde wird gemäß § 279 BAO als unbegründet abgewiesen.
+
+**False Positives:**
+
+- `Proksch Manak Kraft  Rechtsanwälte GmbH` — partial — pred is substring of gold: `Zacherl Schallaböck Proksch Manak Kraft  Rechtsanwälte GmbH`
+
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Bundesfinanzgericht`(organisation)
+- `Dr. Gregor Lohwaßer`(person)
+- `Hermann Kirchenbaur`(person)
+- `Bradirn 5, 4841 Schmidham, Österreich`(address)
+- `Zacherl Schallaböck Proksch Manak Kraft  Rechtsanwälte GmbH`(organisation)
+- `Finanzamtes Österreich`(organisation)
+- `67-467/1130`(tax_number)
+
+**Example 5** (doc_id: `deanon_BFG_20260814_TRAIN/147805.1`) (sent_id: `deanon_BFG_20260814_TRAIN/147805.1_1`)
+
+
+IM NAMEN DER REPUBLI K  Das Bundesfinanzgericht hat durch die Richterin R. in der Beschwerdesache Janet Borjes,  Karl Höfinger-Promenade 26O, 5500 Winkl, Österreich, vertreten durch  Zacherl Schallaböck Proksch Manak Kraft Rechtsanwälte GmbH, Teinfaltstraße 8/5.01,  1010 Wien, über die Beschwerde vom 3. Dezember 2024 gegen den Bescheid des Finanzamtes  Österreich vom 7. November 2024 betreffend Festsetzung des Energiekrisenbeitrag-Strom  (EKB-S) für den Zeitraum 1. Jänner 2024 bis 30. Juni 2024, Steuernummer 52-122/5024, zu  Recht erkannt:   I. Die Beschwerde wird gemäß § 279 BAO als unbegründet abgewiesen.
+
+**False Positives:**
+
+- `Proksch Manak Kraft Rechtsanwälte GmbH` — partial — pred is substring of gold: `Zacherl Schallaböck Proksch Manak Kraft Rechtsanwälte GmbH`
+
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Bundesfinanzgericht`(organisation)
+- `Janet Borjes`(person)
+- `Karl Höfinger-Promenade 26O, 5500 Winkl, Österreich`(address)
+- `Zacherl Schallaböck Proksch Manak Kraft Rechtsanwälte GmbH`(organisation)
+- `Finanzamtes  Österreich`(organisation)
+- `52-122/5024`(tax_number)
+
+**Example 6** (doc_id: `deanon_BFG_20260814_TRAIN/148988.1`) (sent_id: `deanon_BFG_20260814_TRAIN/148988.1_1`)
+
+
+BESCHLUSS  Das Bundesfinanzgericht hat durch den Richter Mag. Corbinian Stumm  in der Beschwerdesache Irene Bödiger,  Roller 8, 3151 St. Pölten, Österreich, vertreten durch BEURLE Rechtsanwälte GmbH & Co KG, Landstraße 9, 4020  Linz, betreffend die Beschwerde vom 22.4.2025 gegen den Bescheid des Finanzamtes  Österreich vom 24.3.2025 betreffend Abweisung eines Antrages auf bescheidmäßige  Festsetzung des Energiekrisenbeitrages-Strom (EKB-S) für den Zeitraum Jänner 2024 bis Juni  2024 beschlossen:  I. Gemäß § 278 Abs 1 BAO wird der angefochtene Bescheid vom 24.3.2025 aufgehoben und die  Sache zur Erledigung an das Finanzamt zurückverwiesen.
+
+**False Positives:**
+
+- `BEURLE Rechtsanwälte GmbH` — partial — pred is substring of gold: `BEURLE Rechtsanwälte GmbH & Co KG`
+
+> overlaps gold: 1  |  likely missing annotation: 0
+
+**Gold Entities:**
+
+- `Bundesfinanzgericht`(organisation)
+- `Mag. Corbinian Stumm`(person)
+- `Irene Bödiger`(person)
+- `Roller 8, 3151 St. Pölten, Österreich`(address)
+- `BEURLE Rechtsanwälte GmbH & Co KG`(organisation)
+- `Finanzamtes  Österreich`(organisation)
+- `Finanzamt`(organisation)
+
+</details>
+
+---
+
 ## `Law_Firm_Rechtsanwaelte_OG` 
 
 **F1:** 0.000 | **Precision:** 0.500 | **Recall:** 0.000  
@@ -4101,7 +4440,7 @@ Matches law firms ending in 'Rechtsanwälte OG' with flexible name structures in
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 3 | 3 | 18049 |
+| `organisation` | 3 | 3 | 18055 |
 
 </details>
 
@@ -4236,351 +4575,6 @@ BESCHLUSS  Das Bundesfinanzgericht hat durch die Richterin Univ.-Prof.in Carla J
 
 ---
 
-## `Law_Firm_OG_KG_GmbH` 💣
-
-**F1:** 0.000 | **Precision:** 0.267 | **Recall:** 0.000  
-
-**Format:** `regex`  
-**Rule ID:** `ac276403`  
-**Description:**
-Matches law firms identified by suffixes OG, KG, or GmbH, allowing for slashes, hyphens, and 'und'/'&' in names, ensuring full name capture including 'GmbH & Co KG'.
-
-**Content:**
-```
-(?<![\w])([A-Z][a-zA-Z]+(?:\s+[A-Z][a-zA-Z]+)*|[A-Z][a-zA-Z]+(?:-[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\+[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\s+und\s+[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\s*&\s*[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\s+&\s*[A-Z][a-zA-Z]+)+|[A-Za-z]+(?:/[A-Za-z]+)+)\s+(?:Rechtsanwälte|Anwälte|Anwaltsgesellschaft)\s+(?:OG|KG|GmbH|mbH|GmbH\s+&\s+Co\s+KG)\b
-```
-
-<details>
-<summary>📊 Detailed Metrics</summary>
-
-| Precision | Recall | F1 | Total Predicted | TP | FP |
-|---|---|---|---|---|---|
-| 0.267 | 0.000 | 0.000 | 15 | 4 | 11 |
-
-**Per-Class Breakdown**
-
-| Class | TP | FP | FN |
-|---|---|---|---|
-| `organisation` | 4 | 11 | 18154 |
-
-</details>
-
----
-
-<details>
-<summary>✅ Worked</summary>
-
-**Example 0** (doc_id: `deanon_BFG_20260814_TRAIN/127180.1`) (sent_id: `deanon_BFG_20260814_TRAIN/127180.1_0`)
-
-
-GZ. RV/7100281/2020 IM NAMEN DER REPUBLIK Das Bundesfinanzgericht erkennt durch den Richter MMag. Gerald Erwin Ehgartner in der Beschwerdesache Zeno Matyssek, vertreten durch Jank Weiler Operenyi Rechtsanwälte GmbH, Schottengasse 1, 1010 Wien, über die Beschwerde vom 18.11.2019 gegen den Bescheid der belangten Behörde Finanzamt für Gebühren, Verkehrsteuern und Glücksspiel vom 10.10.2019, ERFNR 123/2019, betreffend Gebühren zu Recht:  I. Die Beschwerde wird als unbegründet abgewiesen.
-
-| Predicted | Gold |
-|---|---|
-| `Jank Weiler Operenyi Rechtsanwälte GmbH` | `Jank Weiler Operenyi Rechtsanwälte GmbH` |
-
-**Missed by this rule (FN):**
-
-- `Bundesfinanzgericht` (organisation)
-- `MMag. Gerald Erwin Ehgartner` (person)
-- `Zeno Matyssek` (person)
-- `Finanzamt für Gebühren` (organisation)
-
-**Example 1** (doc_id: `deanon_BFG_20260814_TRAIN/139038.1`) (sent_id: `deanon_BFG_20260814_TRAIN/139038.1_1`)
-
-
-IM NAMEN DER REPUBLI K  Das Bundesfinanzgericht hat durch den Vorsitzenden MMag. Gerald Erwin Ehgartner und die  weiteren Mitglieder Mag. Elisabeth Traxler, Mag. Franz Gross und Mag. Gerd Wiehart in der  Beschwerdesache Olivia Meyerhöfer, Untermarktstraße 28A, 4715 Ragering, Österreich, vertreten durch Herbst Kinsky Rechtsanwälte  GmbH, Dr. Karl Lueger-Platz 5, 1010 Wien, über die Beschwerden vom 2. August 2018 gegen  die Bescheide des Finanzamtes Wien 1/23 vom 3. Juli 2018 betreffen Haftung zur Einbehaltung  und Abfuhr der Lohnsteuer sowie Festsetzung des Dienstgeberbeitrages zum Ausgleichsfonds  für Familienbeihilfen für die Kalenderjahre 2012, 2013, 2014, 2015 und 2016 nach der am  18. Oktober 2022 durchgeführten mündlichen Verhandlung zu Recht erkannt:  Die angefochtenen Bescheide werden wie folgt abgeändert:  Lohnsteuer 2012: € 13.257,06 (bisher € 10.246,96)  Lohnsteuer 2013: € 10.467,93 (bisher € 11.559,76)  Lohnsteuer 2014: € 15.690,02 (bisher € 10.982,06)  Lohnsteuer 2015: € 16.143,78 (bisher € 10.416,39)  Lohnsteuer 2016: € 7.304,82 (bisher € 7.809,71)  Dienstgeberbeitrag 2012: Bemessungsgrundlage € 3.214.721,96 (bisher € 3.207.480,00),  Dienstgeberbeitrag € 144.662,49 (bisher € 144.336,60)  Dienstgeberbeitrag 2013: Bemessungsgrundlage € 3.620.052,21 (bisher € 3.622.388,44),  Dienstgeberbeitrag € 162.902,35 (bisher € 163.007,48)  Dienstgeberbeitrag 2014: Bemessungsgrundlage € 3.041.967,20 (bisher € 3.029.183,55),  Dienstgeberbeitrag € 136.888,52 (bisher € 136.313,26)  Dienstgeberbeitrag 2015: Bemessungsgrundlage € 3.081.592,83 (bisher € 3.059.469,77),  Dienstgeberbeitrag € 138.671,67 (bisher € 137.676,14)  Dienstgeberbeitrag 2016: Bemessungsgrundlage € 3.007.628,39 (bisher € 3.009.072,44),  Dienstgeberbeitrag € 135.343,27 (bisher € 135.408,26)  Gegen dieses Erkenntnis ist eine Revision an den Verwaltungsgerichtshof nach Art. 133 Abs. 4  Bundes-Verfassungsgesetz (B-VG) nicht zulässig.
-
-| Predicted | Gold |
-|---|---|
-| `Herbst Kinsky Rechtsanwälte  GmbH` | `Herbst Kinsky Rechtsanwälte  GmbH` |
-
-**Missed by this rule (FN):**
-
-- `Bundesfinanzgericht` (organisation)
-- `MMag. Gerald Erwin Ehgartner` (person)
-- `Mag. Elisabeth Traxler` (person)
-- `Mag. Franz Gross` (person)
-- `Mag. Gerd Wiehart` (person)
-- `Olivia Meyerhöfer` (person)
-- `Untermarktstraße 28A, 4715 Ragering, Österreich` (address)
-- `Dr. Karl` (person)
-- `Finanzamtes Wien 1/23` (organisation)
-- `Verwaltungsgerichtshof` (organisation)
-
-**Example 2** (doc_id: `deanon_BFG_20260814_TRAIN/139698.1`) (sent_id: `deanon_BFG_20260814_TRAIN/139698.1_1`)
-
-
-IM NAMEN DER REPUBLI K  Gekürzte Ausfertigung des Erkenntnisses gemäß § 29 Abs. 5 VwGVG  Das Bundesfinanzgericht hat durch den Richter Mag. Gerhard Groschedl in der  Verwaltungsstrafsache gegen Herrn Brunhild Stanislav, Johann Hoffer-Weg 990, 8385 Neuhaus am Klausenbach, Österreich, vertreten durch Huber  Swoboda Oswald Aixberger Rechtsanwälte GmbH, Tuchlauben 11/18, 1010 Wien, wegen der  Verwaltungsübertretungen gemäß § 1 Abs. 1 in Verbindung mit § 16 Abs. 1 und Tarifen D Post  1 und D Post 4 des Gebrauchsabgabegesetzes (GAG) vom 8. Juli 1966, LGBl. für Wien Nr. 20, in  der derzeit geltenden Fassung über die Beschwerde des Beschuldigten vom 4. März 2022  gegen   I. das Straferkenntnis des Magistrates der Stadt Wien, Magistratsabteilung 6 Abgabenstrafen  vom 3. Februar 2022, GZ. MA6/206000003074/2020,   II. das Straferkenntnis des Magistrates der Stadt Wien vom 21. Februar 2022, GZ.  MA6/206000003065/2020,   nach Durchführung einer mündlichen Verhandlung am 15. Dezember 2022 in Abwesenheit des  Beschuldigten, jedoch in Anwesenheit der Verteidigerin, auch als Vertreterin der haftenden  GmbH, der Behördenvertreterin und der Schriftführerin zu Recht erkannt:  I. Gemäß § 50 Verwaltungsgerichtsverfahrensgesetz (VwGVG) in Verbindung mit § 24 Abs. 1  Bundesfinanzgerichtsgesetz (BFGG) und § 5 Gesetz über das Wiener  Abgabenorganisationsrecht (WAOR) wird der Beschwerde insoweit stattgegeben, als bei  unverändert bleibenden Schuldsprüchen die Höhe der Strafen und der Kosten wie folgt  geändert werden:  II. Wegen der Verwaltungsübertretungen laut Erkenntnis vom 3. Februar 2022, GZ.  MA6/206000003074/2020, werden über den Beschuldigten folgende Strafen jeweils gemäß  § 16 Abs. 1 GAG LGBl. für Wien Nr. 20, in der derzeit geltenden Fassung verhängt:   1. – 5. Geldstrafen in Höhe von je € 330,00, falls diese uneinbringlich sind,   5 Ersatzfreiheitsstrafen von je 11 Stunden,   1 von 11 Seite 2 von 11
-
-| Predicted | Gold |
-|---|---|
-| `Huber  Swoboda Oswald Aixberger Rechtsanwälte GmbH` | `Huber  Swoboda Oswald Aixberger Rechtsanwälte GmbH` |
-
-**Missed by this rule (FN):**
-
-- `Bundesfinanzgericht` (organisation)
-- `Mag. Gerhard Groschedl` (person)
-- `Brunhild Stanislav` (person)
-- `Johann Hoffer-Weg 990, 8385 Neuhaus am Klausenbach, Österreich` (address)
-- `Magistrates der Stadt Wien, Magistratsabteilung 6` (organisation)
-- `Magistrates der Stadt Wien` (organisation)
-
-**Example 3** (doc_id: `deanon_BFG_20260814_TRAIN/142761.1`) (sent_id: `deanon_BFG_20260814_TRAIN/142761.1_1`)
-
-
-IM NAMEN DER REPUBLI K  Das Bundesfinanzgericht hat durch den Senatsvorsitzenden Dr. Hans Blasina, die Richterin  Mag. Monika Ahorn sowie die fachkundigen Laienrichter Gerald Cuny-Kreuzer und Dipl. Ing.  Thomas Hrdinka in der Beschwerdesache Clarissa Maak, Haidenweg 21, 5321 Koppl, Österreich, vertreten durch Sacha  Katzensteiner Blauensteiner Rechtsanwälte GmbH, Gartenaugasse 3, 3500 Krems/Donau, über  die Beschwerde vom 28. Dezember 2020 gegen die Bescheide des Finanzamtes Hollabrunn  Korneuburg Tulln (nunmehr Finanzamt Österreich,   § 323b BAO) vom 30. November 2020 betreffend Wiederaufnahme der Verfahren  Einkommensteuer 2014 und 2015 gemäß § 303 BAO sowie betreffend Einkommensteuer 2014  und 2015 (Steuernummer 35-947/5347 ) nach Durchführung einer mündlichen  Verhandlung am 21. November 2023 in Anwesenheit der Schriftführerin Asli Özdemir   zu Recht erkannt:  I. Die Beschwerde wird gemäß § 279 BAO als unbegründet abgewiesen.
-
-| Predicted | Gold |
-|---|---|
-| `Sacha  Katzensteiner Blauensteiner Rechtsanwälte GmbH` | `Sacha  Katzensteiner Blauensteiner Rechtsanwälte GmbH` |
-
-**Missed by this rule (FN):**
-
-- `Bundesfinanzgericht` (organisation)
-- `Dr. Hans Blasina` (person)
-- `Mag. Monika Ahorn` (person)
-- `Gerald Cuny-Kreuzer` (person)
-- `Dipl. Ing.  Thomas Hrdinka` (person)
-- `Clarissa Maak` (person)
-- `Haidenweg 21, 5321 Koppl, Österreich` (address)
-- `Finanzamtes` (organisation)
-- `Finanzamt Österreich` (organisation)
-- `35-947/5347` (tax_number)
-
-</details>
-
----
-
-<details>
-<summary>⚠️ False Positives</summary>
-
-**Example 0** (doc_id: `deanon_BFG_20260814_TRAIN/134395.1`) (sent_id: `deanon_BFG_20260814_TRAIN/134395.1_1`)
-
-
-IM NAMEN DER REPUBLI K  Das Bundesfinanzgericht hat durch die Richterin Dr. Susanne Zankl in der Beschwerdesache  Dario Berenz, Haller 74, 8444 Michlgleinz, Österreich, vertreten durch CMS Reich-Rohrwig Hainz Rechtsanwälte GmbH,  Gauermanngasse 2-4, 1010 Wien, über die Beschwerde vom 21. November 2018 gegen den  Bescheid des Finanzamtes St. Johann Tamsweg Zell am See (nunmehr Finanzamt Österreich)  vom 25. Oktober 2018 betreffend Einkommensteuer 2016, Steuernummer 68-155/5685  zu  Recht erkannt:   Die Beschwerde wird gemäß § 279 BAO als unbegründet abgewiesen.
-
-**False Positives:**
-
-- `Rohrwig Hainz Rechtsanwälte GmbH` — partial — pred is substring of gold: `CMS Reich-Rohrwig Hainz Rechtsanwälte GmbH`
-
-> overlaps gold: 1  |  likely missing annotation: 0
-
-**Gold Entities:**
-
-- `Bundesfinanzgericht`(organisation)
-- `Dr. Susanne Zankl`(person)
-- `Dario Berenz`(person)
-- `Haller 74, 8444 Michlgleinz, Österreich`(address)
-- `CMS Reich-Rohrwig Hainz Rechtsanwälte GmbH`(organisation)
-- `Finanzamtes St. Johann Tamsweg Zell`(organisation)
-- `Finanzamt Österreich`(organisation)
-- `68-155/5685`(tax_number)
-
-**Example 1** (doc_id: `deanon_BFG_20260814_TRAIN/138766.1`) (sent_id: `deanon_BFG_20260814_TRAIN/138766.1_1`)
-
-
-IM NAMEN DER REPUBLI K  Das Bundesfinanzgericht hat durch die Richterin Priv.-Doz.in Sophie Szcygiel  in der Beschwerdesache Veronika Krenzin, LLM,  Allramstraße 3, 3925 Dietrichsbach, Österreich, vertreten durch ARNOLD Rechtsanwälte GmbH, Wipplingerstraße 10, 1010  Wien, über die Beschwerden vom 14. Juni 2019 gegen die Bescheide des Finanzamtes für  Gebühren, Verkehrsteuern und Glücksspiel als Vorgängerorganisation des Finanzamts  Österreich, Dienststelle Sonderzuständigkeiten, vom 9. Mai 2019 betreffend   50 Säumniszuschläge für die Monate   Jänner 2014 bis Februar 2017 und Mai 2017 bis April 2018,  Steuernummer 33-539/1315  zu Recht erkannt:     I. Den Beschwerden wird gemäß § 279 BAO teilweise Folge gegeben.
-
-**False Positives:**
-
-- `ARNOLD Rechtsanwälte GmbH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Bundesfinanzgericht`(organisation)
-- `Priv.-Doz.in Sophie Szcygiel`(person)
-- `Veronika Krenzin, LLM`(person)
-- `Allramstraße 3, 3925 Dietrichsbach, Österreich`(address)
-- `Finanzamtes für  Gebühren`(organisation)
-- `Finanzamts  Österreich`(organisation)
-- `33-539/1315`(tax_number)
-
-**Example 2** (doc_id: `deanon_BFG_20260814_TRAIN/140274.1`) (sent_id: `deanon_BFG_20260814_TRAIN/140274.1_1`)
-
-
-IM NAMEN DER REPUBLI K  Das Bundesfinanzgericht hat durch die Richterin Dr.in Stephanie Stöfhas  in der Beschwerdesache Techn R Cedric Greuel, MBA,  Breitenschützing 2, 9651 Aigen, Österreich, vertreten durch DSC Doralt Seist Csoklich Rechtsanwälte GmbH, Währinger  Straße 2-4, 1090 Wien, über die Beschwerde vom 14. Februar 2019 gegen den Bescheid des  Finanzamtes für Gebühren, Verkehrsteuern und Glücksspiel als Vorgängerorganisation des  Finanzamts Österreich Dienststelle Sonderzuständigkeiten vom 11. Jänner 2019 betreffend   Zahlungerserleichterungsansuchen für Glücksspielabgaben und Wettgebühren 2012  Steuernummer 93-237/4757  zu Recht erkannt:   I. Die Beschwerde wird gemäß § 279 BAO als unbegründet abgewiesen.
-
-**False Positives:**
-
-- `DSC Doralt Seist Csoklich Rechtsanwälte GmbH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Bundesfinanzgericht`(organisation)
-- `Dr.in Stephanie Stöfhas`(person)
-- `Techn R Cedric Greuel, MBA`(person)
-- `Breitenschützing 2, 9651 Aigen, Österreich`(address)
-- `Finanzamtes für Gebühren`(organisation)
-- `Finanzamts Österreich`(organisation)
-- `93-237/4757`(tax_number)
-
-**Example 3** (doc_id: `deanon_BFG_20260814_TRAIN/140710.1`) (sent_id: `deanon_BFG_20260814_TRAIN/140710.1_1`)
-
-
-IM NAMEN DER REPUBLI K  Das Bundesfinanzgericht erkennt durch die Richterin Mag. Judith Daniela Herdin-Winter in der  Beschwerdesache Fabian Träubler, Dr.-Stumpf-Straße 18, 4720 Sumeding, Österreich, vertreten durch DORDA Rechtsanwälte GmbH,  Universitätsring 10, 1010 Wien, über die Beschwerde vom 24. Mai 2017 gegen den Bescheid  des Finanzamtes für Gebühren, Verkehrsteuern und Glücksspiel (nunmehr Finanzamt  Österreich) vom 19. April 2017 betreffend Gebühren 18.12.2015, Erf. Nr. ***, Steuernummer  ***, zu Recht:   I. Die Beschwerde wird gemäß § 279 BAO als unbegründet abgewiesen.
-
-**False Positives:**
-
-- `DORDA Rechtsanwälte GmbH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Bundesfinanzgericht`(organisation)
-- `Mag. Judith Daniela Herdin-Winter`(person)
-- `Fabian Träubler`(person)
-- `Dr.-Stumpf-Straße 18, 4720 Sumeding, Österreich`(address)
-- `Finanzamtes für Gebühren`(organisation)
-- `Finanzamt  Österreich`(organisation)
-
-**Example 4** (doc_id: `deanon_BFG_20260814_TRAIN/144019.1`) (sent_id: `deanon_BFG_20260814_TRAIN/144019.1_1`)
-
-
-IM NAMEN DER REPUBLI K  Das Bundesfinanzgericht hat durch den Richter Univ.-Prof. Theobald Steuder  in der Beschwerdesache Amy Benedict,  Otto-Probst-Platz 17, 4656 Wahl, Österreich, vertreten durch Pacher & Partner Rechtsanwälte GmbH & Co KG,  Kaiserfeldgasse 1/II/3.
-
-**False Positives:**
-
-- `Pacher & Partner Rechtsanwälte GmbH` — partial — pred is substring of gold: `Pacher & Partner Rechtsanwälte GmbH & Co KG`
-
-> overlaps gold: 1  |  likely missing annotation: 0
-
-**Gold Entities:**
-
-- `Bundesfinanzgericht`(organisation)
-- `Univ.-Prof. Theobald Steuder`(person)
-- `Amy Benedict`(person)
-- `Otto-Probst-Platz 17, 4656 Wahl, Österreich`(address)
-- `Pacher & Partner Rechtsanwälte GmbH & Co KG`(organisation)
-
-**Example 5** (doc_id: `deanon_BFG_20260814_TRAIN/144400.1`) (sent_id: `deanon_BFG_20260814_TRAIN/144400.1_1`)
-
-
-IM NAMEN DER REPUBLI K  Das Bundesfinanzgericht hat durch die Richterin Univ.-Prof.in Roswitha Augustiny  in der Beschwerdesache Miriam Hillger,  Marktsiedlung 44, 4924 Nußbaum am Kobernaußer Walde, Österreich, vertreten durch Zacherl Schallaböck Proksch Manak Kraft Rechtsanwälte  GmbH, Teinfaltstraße 8-8A Tür 5.01, 1010 Wien, über die Beschwerde vom 7. Februar 2024  gegen den Bescheid des Finanzamt Freistadt Rohrbach Urfahr  vom 10. Jänner 2024 betreffend Abweisung eines Antrages  auf bescheidmäßige Festsetzung des Energiekrisenbeitrag-Strom (EKB-S) für den Zeitraum  01.12.2022 bis 30.06.2023, Steuernummer 14-958/5389, zu Recht erkannt:   I. Die Beschwerde wird gemäß § 279 BAO als unbegründet abgewiesen.
-
-**False Positives:**
-
-- `Proksch Manak Kraft Rechtsanwälte  GmbH` — partial — pred is substring of gold: `Zacherl Schallaböck Proksch Manak Kraft Rechtsanwälte  GmbH`
-
-> overlaps gold: 1  |  likely missing annotation: 0
-
-**Gold Entities:**
-
-- `Bundesfinanzgericht`(organisation)
-- `Univ.-Prof.in Roswitha Augustiny`(person)
-- `Miriam Hillger`(person)
-- `Marktsiedlung 44, 4924 Nußbaum am Kobernaußer Walde, Österreich`(address)
-- `Zacherl Schallaböck Proksch Manak Kraft Rechtsanwälte  GmbH`(organisation)
-- `Finanzamt Freistadt Rohrbach Urfahr`(organisation)
-- `14-958/5389`(tax_number)
-
-**Example 6** (doc_id: `deanon_BFG_20260814_TRAIN/145629.1`) (sent_id: `deanon_BFG_20260814_TRAIN/145629.1_1`)
-
-
-IM NAMEN DER REPUBLI K  Das Bundesfinanzgericht hat durch den Richter[...] in der Beschwerdesache Ulrike Philippzig, Klimaweg 7, 8543 Graschach, Österreich, vertreten durch Zacherl Schallaböck Proksch Manak Kraft Rechtsanwälte GmbH,  Teinfaltstraße 8/5.01, 1010 Wien, über die Beschwerde vom 21.6.2024 gegen den Bescheid des  Finanzamtes für Großbetriebe vom 28.5.2024 mit dem der Antrag vom 25.10.2023 auf  bescheidmäßige Festsetzung des Energiekrisenbeitrag-Strom iSd Bundesgesetz über den  Energiekrisenbeitrag-Strom (EKBSG) BGBl I 220/2022 idgF für den Zeitraum 12/2022 bis  06/2023 gemäß § 201 Abs 3 Z 1 BAO abgewiesen wurde, Steuernummer [...], zu Recht erkannt:   I. Die Beschwerde wird gemäß § 279 BAO als unbegründet abgewiesen.
-
-**False Positives:**
-
-- `Proksch Manak Kraft Rechtsanwälte GmbH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Bundesfinanzgericht`(organisation)
-- `Ulrike Philippzig`(person)
-- `Klimaweg 7, 8543 Graschach, Österreich`(address)
-- `Finanzamtes für Großbetriebe`(organisation)
-
-**Example 7** (doc_id: `deanon_BFG_20260814_TRAIN/146200.1`) (sent_id: `deanon_BFG_20260814_TRAIN/146200.1_1`)
-
-
-IM NAMEN DER REPUBLIK   Das Bundesfinanzgericht erkennt durch den Richter Dr. Gregor Lohwaßer  in der Beschwerdesache  Hermann Kirchenbaur, Bradirn 5, 4841 Schmidham, Österreich, vertreten durch Zacherl Schallaböck Proksch Manak Kraft  Rechtsanwälte GmbH, Teinfaltstraße 8-8A Tür 5.01, 1010 Wien, über die Beschwerde vom  12. Juni 2024 gegen den Bescheid des Finanzamtes Österreich vom 16. Mai 2024,  Steuernummer 67-467/1130, betreffend Festsetzung Energiekrisenbeitrag-Strom Juli bis  Dezember 2023 zu Recht:   I. Die Beschwerde wird gemäß § 279 BAO als unbegründet abgewiesen.
-
-**False Positives:**
-
-- `Proksch Manak Kraft  Rechtsanwälte GmbH` — partial — pred is substring of gold: `Zacherl Schallaböck Proksch Manak Kraft  Rechtsanwälte GmbH`
-
-> overlaps gold: 1  |  likely missing annotation: 0
-
-**Gold Entities:**
-
-- `Bundesfinanzgericht`(organisation)
-- `Dr. Gregor Lohwaßer`(person)
-- `Hermann Kirchenbaur`(person)
-- `Bradirn 5, 4841 Schmidham, Österreich`(address)
-- `Zacherl Schallaböck Proksch Manak Kraft  Rechtsanwälte GmbH`(organisation)
-- `Finanzamtes Österreich`(organisation)
-- `67-467/1130`(tax_number)
-
-**Example 8** (doc_id: `deanon_BFG_20260814_TRAIN/147805.1`) (sent_id: `deanon_BFG_20260814_TRAIN/147805.1_1`)
-
-
-IM NAMEN DER REPUBLI K  Das Bundesfinanzgericht hat durch die Richterin R. in der Beschwerdesache Janet Borjes,  Karl Höfinger-Promenade 26O, 5500 Winkl, Österreich, vertreten durch  Zacherl Schallaböck Proksch Manak Kraft Rechtsanwälte GmbH, Teinfaltstraße 8/5.01,  1010 Wien, über die Beschwerde vom 3. Dezember 2024 gegen den Bescheid des Finanzamtes  Österreich vom 7. November 2024 betreffend Festsetzung des Energiekrisenbeitrag-Strom  (EKB-S) für den Zeitraum 1. Jänner 2024 bis 30. Juni 2024, Steuernummer 52-122/5024, zu  Recht erkannt:   I. Die Beschwerde wird gemäß § 279 BAO als unbegründet abgewiesen.
-
-**False Positives:**
-
-- `Proksch Manak Kraft Rechtsanwälte GmbH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Bundesfinanzgericht`(organisation)
-- `Janet Borjes`(person)
-- `Karl Höfinger-Promenade 26O, 5500 Winkl, Österreich`(address)
-- `Finanzamtes  Österreich`(organisation)
-- `52-122/5024`(tax_number)
-
-**Example 9** (doc_id: `deanon_BFG_20260814_TRAIN/148988.1`) (sent_id: `deanon_BFG_20260814_TRAIN/148988.1_1`)
-
-
-BESCHLUSS  Das Bundesfinanzgericht hat durch den Richter Mag. Corbinian Stumm  in der Beschwerdesache Irene Bödiger,  Roller 8, 3151 St. Pölten, Österreich, vertreten durch BEURLE Rechtsanwälte GmbH & Co KG, Landstraße 9, 4020  Linz, betreffend die Beschwerde vom 22.4.2025 gegen den Bescheid des Finanzamtes  Österreich vom 24.3.2025 betreffend Abweisung eines Antrages auf bescheidmäßige  Festsetzung des Energiekrisenbeitrages-Strom (EKB-S) für den Zeitraum Jänner 2024 bis Juni  2024 beschlossen:  I. Gemäß § 278 Abs 1 BAO wird der angefochtene Bescheid vom 24.3.2025 aufgehoben und die  Sache zur Erledigung an das Finanzamt zurückverwiesen.
-
-**False Positives:**
-
-- `BEURLE Rechtsanwälte GmbH` — partial — pred is substring of gold: `BEURLE Rechtsanwälte GmbH & Co KG`
-
-> overlaps gold: 1  |  likely missing annotation: 0
-
-**Gold Entities:**
-
-- `Bundesfinanzgericht`(organisation)
-- `Mag. Corbinian Stumm`(person)
-- `Irene Bödiger`(person)
-- `Roller 8, 3151 St. Pölten, Österreich`(address)
-- `BEURLE Rechtsanwälte GmbH & Co KG`(organisation)
-- `Finanzamtes  Österreich`(organisation)
-- `Finanzamt`(organisation)
-
-**Example 10** (doc_id: `deanon_BFG_20260814_TRAIN/149106.1`) (sent_id: `deanon_BFG_20260814_TRAIN/149106.1_2`)
-
-
-Das Bundesfinanzgericht hat durch den Richter Priv.-Doz. Miroslav Spandl  in der Beschwerdesache Rebecca Wölzlein, LLM,  Lahnsattel 29x, 5203 Köstendorf, Österreich, vertreten durch Niederhuber & Partner Rechtsanwälte GmbH, Metahofgasse  16, 8020 Graz, über die Beschwerde vom 16. Juni 2023 gegen den Bescheid des Zollamtes  Österreich vom 12. Mai 2023, Zl. 230000/204741/03/2023, betreffend die Aussetzung der  Einhebung zu Recht erkannt:   I. Die Beschwerde wird gemäß § 279 BAO als unbegründet abgewiesen.
-
-**False Positives:**
-
-- `Niederhuber & Partner Rechtsanwälte GmbH` — no gold match — likely missing annotation
-
-> overlaps gold: 0  |  likely missing annotation: 1
-
-**Gold Entities:**
-
-- `Bundesfinanzgericht`(organisation)
-- `Priv.-Doz. Miroslav Spandl`(person)
-- `Rebecca Wölzlein, LLM`(person)
-- `Lahnsattel 29x, 5203 Köstendorf, Österreich`(address)
-- `Zollamtes  Österreich`(organisation)
-
-</details>
-
----
-
 ## `Generic_KG_Entity` 🏆
 
 **F1:** 0.002 | **Precision:** 0.228 | **Recall:** 0.001  
@@ -4606,7 +4600,7 @@ Matches generic corporate entities ending in KG (Kommanditgesellschaft) which we
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 18 | 61 | 18094 |
+| `organisation` | 18 | 61 | 18100 |
 
 </details>
 
@@ -5827,7 +5821,7 @@ Matches the abbreviation OGH (Oberster Gerichtshof).
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 17 | 67 | 17925 |
+| `organisation` | 17 | 67 | 17931 |
 
 </details>
 
@@ -6866,7 +6860,7 @@ Matches the abbreviation PVA (Pensionsversicherungsanstalt).
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 60 | 17049 |
+| `organisation` | 0 | 60 | 17055 |
 
 </details>
 
@@ -7793,7 +7787,7 @@ Matches organization names ending in .at (e.g., 'Logderfurt-Logistik.at', 'YNKW 
 
 | Class | TP | FP | FN |
 |---|---|---|---|
-| `organisation` | 0 | 2 | 17044 |
+| `organisation` | 0 | 2 | 17050 |
 
 </details>
 
