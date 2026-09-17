@@ -149,6 +149,8 @@ class NERLearner(RuleChef):
         seed_rules=None,
         start_batch=0,
         prune_with_refine=False,
+        holdout_fraction=0.0,
+        split_seed=42,
     ):
         if seed_rules is not None:
             self.dataset.rules = seed_rules
@@ -195,6 +197,8 @@ class NERLearner(RuleChef):
                         max_iterations=refine_per_batch,
                         iteration_callback=iteration_callback,
                         audit_interval=audit_interval,
+                        holdout_fraction=holdout_fraction,
+                        split_seed=split_seed,
                     )
                     self.dataset.rules = rules_so_far
                     result = (rules_so_far, _)
@@ -342,6 +346,8 @@ class NERLearner(RuleChef):
         max_iterations=3,
         iteration_callback=None,
         audit_interval=0,
+        holdout_fraction=0.0,
+        split_seed=42,
     ):
         return self.learner.evaluate_and_refine(
             rules,
@@ -350,4 +356,6 @@ class NERLearner(RuleChef):
             coordinator=self.coordinator,
             iteration_callback=iteration_callback,
             audit_interval=audit_interval,
+            holdout_fraction=holdout_fraction,
+            split_seed=split_seed,
         )

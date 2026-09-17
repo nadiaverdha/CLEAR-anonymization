@@ -46,6 +46,8 @@ def _synthesis_step(args, phase, start_batch=0):
         synthesis_strategy=args.synthesis_strategy,
         seed=args.seed,
         prune_with_refine=args.prune_with_refine,
+        holdout_fraction=args.holdout_fraction,
+        split_seed=args.seed,
     )
 
 
@@ -398,6 +400,7 @@ def main():
     parser.add_argument("--batch-size", type=int, default=20)
     parser.add_argument("--refine-per-batch", type=int, default=0)
     parser.add_argument("--refine-every", type=int, default=5)
+    parser.add_argument("--holdout_fraction", type=float, default=0.0)
     parser.add_argument("--synthesis-strategy", type=str, default="bulk")
     parser.add_argument("--sampling-strategy", default="balanced")
     parser.add_argument("--agentic", action="store_true")

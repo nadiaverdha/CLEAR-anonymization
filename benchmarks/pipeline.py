@@ -65,6 +65,8 @@ class SynthesisStep(Step):
         synthesis_strategy,
         seed=42,
         prune_with_refine=False,
+        holdout_fraction=0.0,
+        split_seed=42,
     ):
         self.batch_size = batch_size
         self.refine_per_batch = refine_per_batch
@@ -75,6 +77,8 @@ class SynthesisStep(Step):
         self.seed = seed
         self.synthesis_strategy = synthesis_strategy
         self.prune_with_refine = prune_with_refine
+        self.holdout_fraction = holdout_fraction
+        self.split_seed = split_seed
 
     def run(self, ctx: StepContext) -> StepContext:
         if self.synthesis_strategy != "bulk":
@@ -137,6 +141,8 @@ class SynthesisStep(Step):
             seed_rules=ctx.rules or None,
             start_batch=self.start_batch,
             prune_with_refine=self.prune_with_refine,
+            holdout_fraction=self.holdout_fraction,
+            split_seed=self.split_seed,
         )
         if fit_result is None:
             return replace(
