@@ -65,6 +65,7 @@ class NERLearner(RuleChef):
         rule_format: str = "regex",
         use_spacy_ner: bool = True,
         spacy_model: str = "de_core_news_sm",
+        temperature: float = 0.0,
     ):
 
         task = Task(
@@ -107,6 +108,7 @@ class NERLearner(RuleChef):
             synthesis_strategy=synthesis_strategy,
             use_spacy_ner=use_spacy_ner,
             spacy_model=spacy_model,
+            temperature=temperature,
         )
         self._max_counter_examples = max_counter_examples
         self._patch_regex_timeout()
