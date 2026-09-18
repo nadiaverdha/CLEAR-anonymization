@@ -123,11 +123,31 @@ def build_marked_text_relations(sentences, governor, dependent):
             ),
         ]
     spans.sort(key=lambda s: s[1]["start"])
-    out, cursor = [], 0
+    masked, cursor = [], 0
     for role, span in spans:
-        tag = f"{role}:{span.get('type', '')}"
-        out.append(text[cursor : span["start"]])
-        out.append(f"<{tag}>{text[span['start'] : span['end']]}</{tag}>")
+        tag = f"{role}"
+        masked.append(text[cursor : span["start"]])
+        masked.append(f"<{tag}>{span.get('type', '')}</{tag}>")
         cursor = span["end"]
-    out.append(text[cursor:])
-    return "".join(out)
+    masked.append(text[cursor:])
+    return "".join(masked), text
+
+
+def build_relation_examples(doc):
+    examples = []
+    for rels in recreate_sent_relations(doc.sentences).values():
+        for rel in rels:
+            masked_text, display_text = build_marked_text_relations(
+                doc.sentences, rel["governor"], rel["dependent"]
+            )
+            examples.append(
+                {
+                    "doc_id": doc.doc_id,
+                    "gov_sent_id": rel["governor"]["sent_id"],
+                    "dep_sent_id": rel["dependent"]["sent_id"],
+                    "text": masked_text,
+                    "display_text": display_text,
+                    "label": rel["label"],
+                }
+            )
+    return examples
