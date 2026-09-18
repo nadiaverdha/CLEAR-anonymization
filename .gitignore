@@ -208,7 +208,19 @@ __marimo__/
 
 
 # Project-specific
-reports/
+/reports/
 .vscode/
 nlp_cache.pkl
 clear_anonymization/preprocess/archive/
+data_quality/findok/rules/
+
+# data dumps / conllu at repo root and scratch dirs
+*.conllu
+*.connlu
+*.progress
+*.errors
+data/
+rulechef_data/
+collected_rules/
+*.md
+*.json
