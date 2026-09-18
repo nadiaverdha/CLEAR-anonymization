@@ -162,6 +162,7 @@ TITLES = {
     "Dr. Med. Univ.",
     "Univ.",
     "Med.",
+    "Dr.med.",
 }
 
 TOB = {"e.U.", "e.U", "e.G.", "e.G"}
