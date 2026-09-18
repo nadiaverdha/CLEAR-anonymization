@@ -33,6 +33,27 @@ def make_dataset(dataset_name, data, task):
                 source=dataset_name,
             )
         )
+    print(dataset)
+    return dataset
+
+
+def make_relation_dataset(dataset_name, examples, task):
+    dataset = Dataset(name=dataset_name, task=task)
+    for ex in examples:
+        dataset.examples.append(
+            Example(
+                id=str(uuid.uuid4())[:8],
+                input={
+                    "text": ex["text"],
+                    "display_text": ex["display_text"],
+                    "doc_id": ex["doc_id"],
+                    "gov_sent_id": ex["gov_sent_id"],
+                    "dep_sent_id": ex["dep_sent_id"],
+                },
+                expected_output={"label": ex["label"]},
+                source=dataset_name,
+            )
+        )
     return dataset
 
 
@@ -84,6 +105,7 @@ def prepare_split(
 ) -> DataSplit:
     """Load and sample one dataset into a DataSplit ready for training."""
     print(f"\nLoading {name} dataset...")
+
     train_all = load_ner_dataset_from_conll(train_dir)
 
     dev_all = load_ner_dataset_from_conll(test_dir) if test_dir else None
@@ -105,13 +127,14 @@ def prepare_split(
         pool_size=args.pool_size,
         train_ratio=args.train_ratio,
     )
+
     if dev_all:
         dev = [
             {
                 "doc_id": s.doc_id,
                 "sent_id": sent.sent_id,
                 "text": sent.text,
-                "entities": sent.labels,
+                "entities": [l for l in sent.labels],
             }
             for s in dev_all.samples
             for sent in s.sentences
