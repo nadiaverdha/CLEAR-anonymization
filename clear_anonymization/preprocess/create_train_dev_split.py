@@ -66,10 +66,12 @@ def label_distribution_sent(samples) -> Counter:
     return Counter(label["type"] for sample in samples for label in sample["entities"])
 
 
-def print_distribution(samples, name: str, fn=label_distribution_doc) -> None:
+def print_distribution(
+    samples, name: str, fn=label_distribution_doc, unit: str = "entities"
+) -> None:
     dist = fn(samples)
     total = sum(dist.values())
-    print(f"\n{name} ({len(samples)} sentences, {total} entities):")
+    print(f"\n{name} ({len(samples)} sentences, {total} {unit}):")
     for label, count in sorted(dist.items()):
         print(f"  {label}: {count} ({count / total:.1%})")
 
@@ -164,9 +166,15 @@ def split_dev_set_stratified_relations(data, dev_ratio=0.2, seed=42):
     train_samples = [samples[i] for i in train_idx]
     dev_samples = [samples[i] for i in dev_idx]
 
-    print_distribution(samples, "Full dataset", fn=label_distribution_relations)
-    print_distribution(train_samples, "Train", fn=label_distribution_relations)
-    print_distribution(dev_samples, "Dev", fn=label_distribution_relations)
+    print_distribution(
+        samples, "Full dataset", fn=label_distribution_relations, unit="relations"
+    )
+    print_distribution(
+        train_samples, "Train", fn=label_distribution_relations, unit="relations"
+    )
+    print_distribution(
+        dev_samples, "Dev", fn=label_distribution_relations, unit="relations"
+    )
     return NERData(samples=train_samples), NERData(samples=dev_samples)
 
 
@@ -179,10 +187,16 @@ def main():
         type=str,
         help="Path to the train data (JSON format)",
     )
+
+    parser.add_argument(
+        "--validate-file",
+        type=str,
+        help="Path to the validate data (JSON format) to merge with train-file before re-splitting",
+    )
     parser.add_argument(
         "--output-dir",
         type=str,
-        default="/share/nverdha/data/bfg/",
+        default="/share/nverdha/data/findok/",
         help="Path to the output directory",
     )
     parser.add_argument(
@@ -218,20 +232,26 @@ def main():
     )
 
     args = parser.parse_args()
-    print("loading data")
     full_train_data = load_ner_dataset_from_conll(Path(args.train_file))
-    print("loading finished.")
-
-    if args.stratified:
+    if args.relations:
+        if args.validate_file:
+            validate_data = load_ner_dataset_from_conll(Path(args.validate_file))
+            train_ids = {s.doc_id for s in full_train_data.samples}
+            dupes = train_ids & {s.doc_id for s in validate_data.samples}
+            if dupes:
+                raise ValueError(
+                    f"doc_id collision between train and validate: {dupes}"
+                )
+            full_train_data = NERData(
+                samples=full_train_data.samples + validate_data.samples
+            )
+        train_data, dev_data = split_dev_set_stratified_relations(
+            full_train_data, dev_ratio=args.dev_ratio, seed=args.seed
+        )
+    elif args.stratified:
         train_data, dev_data = split_dev_set_stratified(
             full_train_data, dev_ratio=args.dev_ratio, seed=args.seed
         )
-
-        if args.relations:
-            train_data, dev_data = split_dev_set_stratified_relations(
-                full_train_data, dev_ratio=args.dev_ratio, seed=args.seed
-            )
-
     else:
         train_data, dev_data = split_dev_set(
             full_train_data, dev_ratio=args.dev_ratio, seed=args.seed
