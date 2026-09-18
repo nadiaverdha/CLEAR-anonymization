@@ -8,6 +8,7 @@ python data_quality/collect_rules.py \
     --include-provenance \
     --output data_quality/findok/rules/organisation_rules.json
 
+
 organisation_experiments.txt is a plain text file, one experiment folder per line
 (blank lines and lines starting with # are ignored), e.g.:
 
