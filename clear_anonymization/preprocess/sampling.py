@@ -4,6 +4,7 @@ from itertools import combinations
 
 from clear_anonymization.ner_datasets.util import (
     build_marked_text_relations,
+    build_relation_examples,
     recreate_sent_relations,
 )
 
@@ -38,7 +39,10 @@ def build_examples(text, merged_windows):
     return examples
 
 
-def _doc_sentences(doc, classes):
+def _doc_sentences(
+    doc,
+    classes,
+):
     for sent in doc.sentences:
         entities = sorted(
             [l for l in sent.labels if l["type"] in classes],
@@ -63,7 +67,6 @@ def sample_few_shot(
     Returns (train, eval, counter_examples, selected_classes, n_train_docs, n_eval_docs).
     """
     rng = random.Random(seed)
-
     if not classes:
         all_labels = sorted(
             {
@@ -199,24 +202,34 @@ def sample_relation_few_shot(
     def _doc_examples(doc):
         relations_by_sent = relations_by_doc[doc.doc_id]
         examples = [
-            (
-                build_marked_text_relations(
-                    doc.sentences, rel["governor"], rel["dependent"]
-                ),
-                rel["label"],
-            )
-            for rels in relations_by_sent.values()
-            for rel in rels
-            if rel["label"] in relation_labels
+            ex for ex in build_relation_examples(doc) if ex["label"] in relation_labels
         ]
         if include_negatives:
-            examples += [
-                (build_marked_text_relations(doc.sentences, a, b), "")
-                for a, b in make_negative_examples(doc, relations_by_sent, seed=seed)
-            ]
+            for a, b in make_negative_examples(doc, relations_by_sent, seed=seed):
+                masked_text, display_text = build_marked_text_relations(
+                    doc.sentences, a, b
+                )
+                examples.append(
+                    {
+                        "doc_id": doc.doc_id,
+                        "gov_sent_id": a["sent_id"],
+                        "dep_sent_id": b["sent_id"],
+                        "text": masked_text,
+                        "display_text": display_text,
+                        "label": "",
+                    }
+                )
         return examples
 
+    eval_docs = pool[split_idx:]
     train_examples = [ex for doc in pool[:split_idx] for ex in _doc_examples(doc)]
-    eval_examples = [ex for doc in pool[split_idx:] for ex in _doc_examples(doc)]
+    eval_examples = [ex for doc in eval_docs for ex in _doc_examples(doc)]
 
-    return train_examples, eval_examples, relation_labels, n_train_docs, n_eval_docs
+    return (
+        train_examples,
+        eval_examples,
+        eval_docs,
+        relation_labels,
+        n_train_docs,
+        n_eval_docs,
+    )
