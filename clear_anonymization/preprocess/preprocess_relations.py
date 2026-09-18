@@ -1,8 +1,8 @@
 """ "
 python clear_anonymization/preprocess/preprocess_relations.py /
    --input-path /share/nverdha/data/findok/curated-docs-admin-2026-03-31-093327.zip /
-   --conllu-path /share/nverdha/data/findok/findok_train_corrected.conllu /
-   --output-path /share/nverdha/data/findok/findok_including_relations.conllu
+   --conllu-path /share/nverdha/data/findok/findok_manual_train.conllu /
+   --output-path /share/nverdha/data/findok/findok_manual_train_including_relations.conllu
 """
 
 import argparse
@@ -72,15 +72,23 @@ def get_doc_span(token):
     )
 
 
+def get_ner_tag(token):
+    misc = dict(p.split("=", 1) for p in token["misc"].split("|") if "=" in p)
+    return misc.get("NER", "O")
+
+
 def find_anchor_token(tokens, begin):
     for token in tokens:
         start, end = get_doc_span(token)
-        if start is not None and end is not None and start <= begin < end:
-            if begin != start:
-                print(
-                    f"  ⚠️  non-exact anchor match: begin={begin} → token span=[{start},{end})"
-                )
-            return token
+        if start is None or end is None or not (start <= begin < end):
+            continue
+        if get_ner_tag(token) == "O":
+            continue
+        if begin != start:
+            print(
+                f"  ⚠️   non-exact anchor match: begin={begin} → token span=[{start},{end})"
+            )
+        return token
     return None
 
 
@@ -114,6 +122,8 @@ def add_relations(sample, entities, relations, doc_id):
             continue
         if rel_label == "ax":
             rel_label = "tax_number_of"
+        if rel_label == "pers":
+            rel_label = "address_of"
         governor = entities.get(relation["@Governor"])
         dependent = entities.get(relation["@Dependent"])
         if not governor or not dependent:
@@ -142,6 +152,8 @@ def add_relations(sample, entities, relations, doc_id):
                 f"{doc_id}: relation {relation['%ID']} references a missing token"
             )
             continue
+        gov_start, _ = get_doc_span(gov_token)
+        dep_start, _ = get_doc_span(dep_token)
         add_relation_misc(gov_token, f"{rel_label}:governor:{dep_start}")
         add_relation_misc(dep_token, f"{rel_label}:dependent:{gov_start}")
         n_attached += 1
