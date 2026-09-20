@@ -4,10 +4,10 @@ from asyncio.log import logger
 from collections import defaultdict
 from pathlib import Path
 
+from benchmarks.util import make_dataset
 from rulechef.core import Rule, RuleFormat
 from rulechef.evaluation import evaluate_rules_individually
 
-from benchmarks.util import make_dataset
 from clear_anonymization.models.nerlearner import NERLearner
 from clear_anonymization.ner_datasets import load_ner_dataset
 from clear_anonymization.ner_datasets.ner_dataset import NERData, NERSample

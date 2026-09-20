@@ -50,12 +50,14 @@ def _print_metrics(m) -> None:
 def _print_per_sentence(label: str, rows: list[tuple[str, str, str]]) -> None:
     """rows: (sent_id, pred_text, gold_text)"""
     print(f"── {label} ({len(rows)}) ──")
+    seen_matches: set[str] = set()
     for sent_id, pred, start, gold in rows:
         if pred == gold:
-            print(f'"{sent_id}:{gold}" \\')
-
+            if gold not in seen_matches:
+                seen_matches.add(gold)
+                print(f'"{gold}" \\')
         else:
-            print(f"  [{sent_id}]  pred: {pred}  →  gold: {gold}")
+            print(f"pred: {pred}  →  gold: {gold}")
 
     print()
 
@@ -80,28 +82,31 @@ def _print_fp_classified(rows: list[tuple]) -> None:
 
     for sent_id, pred_dict, gold_entities in rows:
         reason = classify_fp(pred_dict, gold_entities)
+        etype = pred_dict.get("type") or pred_dict.get("label") or "_NONE"
         if reason == "truefp":
             partial.append(
                 (
-                    sent_id,
                     pred_dict["text"],
+                    etype,
                     _extract_gold_from_reason(pred_dict, gold_entities),
                 )
             )
         else:
-            missing.append((sent_id, pred_dict["text"]))
+            missing.append((pred_dict["text"], etype))
 
-    #  print(
-    #     f"── FP partial ({len(partial)}): {chr(10).join(repr(s) + ' ' + repr(t) + ' → ' + repr(g) for s, t, g in sorted(partial))}"
-    # )
     print(
         f"── FP partial ({len(partial)}): "
-        f"{chr(10).join(f'"{s}:{t}" \\' for s, t, g in sorted(partial))}"
+        f"{chr(10).join(f'"{t}":{typ}:{g} \\' for t, typ, g in sorted(partial))}"
     )
     print()
     print(
-        f"── FP missing annotation ({len(missing)}): {chr(10).join(t for s, t in sorted(missing))}"
+        f"── FP missing annotation ({len(missing)}): "
+        f"{chr(10).join(f'"{t}:{typ}",' for t, typ in sorted(missing))}"
     )
+    # print(
+    #   f"── FP missing annotation ({len(missing)}): "
+    #  f"{chr(10).join(f'{t}' for t, typ in sorted(missing))}"
+    # )
     print()
 
 
@@ -127,6 +132,12 @@ def main() -> None:
         default=500,
         help="Max per-sentence samples to keep for TP/FP printing; 0 = no cap",
     )
+    parser.add_argument(
+        "--corrections-dir",
+        required=False,
+        help="Path to test CoNLL data directory",
+        default="corrections.json",
+    )
     args = parser.parse_args()
 
     # Load rules
@@ -145,7 +156,9 @@ def main() -> None:
         sys.exit(1)
 
     rule = matched[0]
+
     _print_rule(rule)
+    # rule = "(?:Dr\.|Mag\.|Prof\.|MMag\.|Ing\.|DI\.|PhD\.|Dipl\.-Ing\.|Bakk\.\s+iur\.|MBA|BSc|LL\.M\.|Hon\.-Prof\.|Univ\.-Prof\.|Priv\.-Doz\.|PD|OMedR|HR|VetR|Techn|StR|OStR|KR|AR|RgR|ÖkR)\s+([A-Z][a-zäöüß]+(?:\s+[A-Z][a-zäöüß]+)*(?:+-[A-Z][a-zäöüß]+)*)\b"
 
     # Load config so we can build NERLearner (needed for _apply_rules)
     saved = json.loads(Path(args.rules_json).read_text())
@@ -222,8 +235,36 @@ def main() -> None:
                 seen_fp.add(fp_key)
                 fp_rows.append((sent_id, e, sample.expected))
 
-    _print_per_sentence("True Positives  (pred → gold)", tp_rows)
+    _print_per_sentence("True Positives  (pred → gold)", (tp_rows))
     _print_fp_classified(fp_rows)
+    corrections = []
+    seen_texts = set()
+    for sample in m.sample_matches:
+        for e in sample.false_positives:
+            if classify_fp(e, sample.expected) != "truefp":
+                continue
+            gold_text = _extract_gold_from_reason(e, sample.expected)
+            gold_entity = next(
+                (g for g in sample.expected if g["text"] == gold_text), None
+            )
+            if not gold_entity or "-" not in gold_entity["text"]:
+                continue
+            text = sample.input["text"]
+            if text in seen_texts:
+                continue
+            seen_texts.add(text)
+            corrections.append(
+                {
+                    "level": "correction",
+                    "input": {"text": text},
+                    "expected_output": {"entities": sample.expected},
+                    "text": f"Rule stops before hyphenated part of '{gold_entity['text']}'.",
+                }
+            )
+
+    out_path = Path(args.corrections_dir)
+    out_path.write_text(json.dumps(corrections[:5], ensure_ascii=False, indent=2))
+    print(f"\nWrote {min(5, len(corrections))} correction examples to {out_path}")
 
 
 if __name__ == "__main__":
