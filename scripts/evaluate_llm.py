@@ -3,12 +3,13 @@ import json
 from datetime import datetime
 from pathlib import Path
 
-from clear_anonymization.extractors import factory
-from clear_anonymization.extractors.llm import NERMode, PromptConfig
 from clear_anonymization.models.evaluator import (
     evaluate_char_level,
     evaluate_span_level,
 )
+
+from clear_anonymization.extractors import factory
+from clear_anonymization.extractors.llm import NERMode, PromptConfig
 from clear_anonymization.ner_datasets.ner_dataset import NERData, NERSample
 
 
