@@ -64,10 +64,24 @@ def main():
         default=None,
         help="JSON file with ['text:type', ...] patterns",
     )
+
+    parser.add_argument(
+        "--corrections-file",
+        default=None,
+        help="JSON file with ['sent_id:text:new_type', ...] corrections",
+    )
     parser.add_argument(
         "--changelog-name",
         default="CHANGELOG.md",
         help="Changelog filename within data_quality/<dataset-name>/, e.g. CHANGELOG_validation.md",
+    )
+
+    parser.add_argument(
+        "--skip-existing",
+        action=argparse.BooleanOptionalAction,
+        default=True,
+        help="Skip spans that already carry a non-O annotation (default). "
+        "Pass --no-skip-existing to overwrite/extend existing annotations instead.",
     )
 
     args = parser.parse_args()
@@ -77,8 +91,14 @@ def main():
         extra = json.loads(Path(args.patterns_file).read_text())
         args.patterns = args.patterns + extra
 
+    if args.corrections_file:
+        extra = json.loads(Path(args.corrections_file).read_text())
+        args.corrections = args.corrections + extra
+
     rules, rule_changes = _apply_rule_predictions(data, args.rules_json, args.rule_id)
-    pattern_changes = _apply_patterns(data, args.patterns)
+    pattern_changes = _apply_patterns(
+        data, args.patterns, skip_existing=args.skip_existing
+    )
 
     sent_index = {sent.sent_id: sent for s in data.samples for sent in s.sentences}
     correction_changes = _apply_corrections(data, sent_index, args.corrections)
