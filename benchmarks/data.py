@@ -33,7 +33,6 @@ def make_dataset(dataset_name, data, task):
                 source=dataset_name,
             )
         )
-    print(dataset)
     return dataset
 
 
