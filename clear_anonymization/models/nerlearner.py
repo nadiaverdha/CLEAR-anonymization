@@ -4,9 +4,9 @@ import signal
 import sys
 import time
 from contextlib import contextmanager
+from typing import List, Literal
 
 from openai import OpenAI
-from pydantic import BaseModel, Field, field_validator
 from rulechef import RuleChef, Task, TaskType
 from rulechef.coordinator import AgenticCoordinator
 from rulechef.core import RuleFormat
