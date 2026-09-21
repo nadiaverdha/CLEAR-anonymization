@@ -9,6 +9,7 @@ from data_quality.patch_missing_annotations.span_tagging import (
 def _apply_corrections(data, sent_index, correction_strs: list[str]) -> list[dict]:
     """Parse 'sent_id:text:new_type' corrections and overwrite the matching span's
     label (new_type='O' removes it). Returns the list of corrections actually applied."""
+
     corrections = []
     for c in correction_strs:
         parts = c.split(":", 2)
