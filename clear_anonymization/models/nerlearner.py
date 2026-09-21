@@ -5,13 +5,14 @@ import sys
 import time
 from contextlib import contextmanager
 
-from benchmarks.schema import NEROutput
 from openai import OpenAI
 from pydantic import BaseModel, Field, field_validator
 from rulechef import RuleChef, Task, TaskType
 from rulechef.coordinator import AgenticCoordinator
 from rulechef.core import RuleFormat
 from rulechef.training_logger import TrainingDataLogger
+
+from benchmarks.schemas import NEROutput
 
 
 @contextmanager
