@@ -4,7 +4,14 @@ import signal
 import sys
 import time
 from contextlib import contextmanager
-from typing import List, Literal
+
+from benchmarks.schema import NEROutput
+from openai import OpenAI
+from pydantic import BaseModel, Field, field_validator
+from rulechef import RuleChef, Task, TaskType
+from rulechef.coordinator import AgenticCoordinator
+from rulechef.core import RuleFormat
+from rulechef.training_logger import TrainingDataLogger
 
 
 @contextmanager
@@ -17,29 +24,11 @@ def _suppress_stdout():
         sys.stdout = old
 
 
-from openai import OpenAI
-from pydantic import BaseModel, Field, field_validator
-from rulechef import RuleChef, Task, TaskType
-from rulechef.coordinator import AgenticCoordinator
-from rulechef.core import RuleFormat
-from rulechef.training_logger import TrainingDataLogger
-
 RULE_FORMATS = {
     "regex": [RuleFormat.REGEX],
     "code": [RuleFormat.CODE],
     "spacy": [RuleFormat.SPACY],
 }
-
-
-class Entity(BaseModel):
-    text: str = Field(description="The matched text span")
-    start: int = Field(description="Start character offset")
-    end: int = Field(description="End character offset")
-    type: str = Field(description="Entity label")
-
-
-class NEROutput(BaseModel):
-    entities: List[Entity]
 
 
 class NERLearner(RuleChef):
