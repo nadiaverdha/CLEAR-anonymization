@@ -159,7 +159,7 @@ def setup_output_paths(args, selected_classes):
     ).strip()
     num_classes = len(selected_classes)
 
-    if args.rules_json:
+    if args.rules_json and getattr(args, "feedback", None):
         output_dir = Path(args.rules_json).parent
         output_dir.mkdir(parents=True, exist_ok=True)
     else:
@@ -167,14 +167,12 @@ def setup_output_paths(args, selected_classes):
             Path(f"reports/{args.dataset_name}/{model_name}") / selected_classes_str
         )
         base_name = date_str
-
         output_dir = base_dir / base_name
         if output_dir.exists():
             version = 1
             while (base_dir / f"{base_name}_v{version}").exists():
                 version += 1
             output_dir = base_dir / f"{base_name}_v{version}"
-
         output_dir.mkdir(parents=True, exist_ok=True)
 
     out_name = Path(args.output)
