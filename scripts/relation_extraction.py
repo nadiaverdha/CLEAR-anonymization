@@ -17,11 +17,7 @@ from benchmarks.schemas import RelationOutput
 from clear_anonymization.models.relationlearner import RelationLearner
 from clear_anonymization.ner_datasets import load_ner_dataset_from_conll
 from clear_anonymization.ner_datasets.util import build_relation_examples
-from clear_anonymization.preprocess.sampling import (
-    _doc_examples,
-    sample_relation_few_shot,
-    sample_relation_stratified,
-)
+from clear_anonymization.preprocess.sampling import sample_relation_stratified
 from scripts.create_md_report_rules_relations import create_md_report
 
 task = Task(
@@ -99,9 +95,8 @@ for rule in rules:
 
 executor = RuleExecutor()
 
-test_data = [
-    ex for doc in test_data_raw.samples for ex in _doc_examples(doc, relation_labels)
-]
+test_data = [ex for doc in test_data_raw.samples for ex in build_relation_examples(doc)]
+
 
 test_dataset = make_relation_dataset("findok_test", test_data, task)
 

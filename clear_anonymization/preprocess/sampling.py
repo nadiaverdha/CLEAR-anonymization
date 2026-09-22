@@ -87,6 +87,15 @@ def sample_few_shot(
     )
 
 
+def _doc_examples(doc, relation_labels, other_label="no_relation"):
+    examples = []
+    for ex in build_relation_examples(doc):
+        if ex["label"] not in relation_labels:
+            ex = {**ex, "label": other_label}
+        examples.append(ex)
+    return examples
+
+
 def sample_relation_stratified(
     train_data,
     shots_per_class,
