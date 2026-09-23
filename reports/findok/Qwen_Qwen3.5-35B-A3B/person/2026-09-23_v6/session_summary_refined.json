@@ -1,0 +1,334 @@
+{
+  "phases": [
+    "findok"
+  ],
+  "history": [
+    {
+      "phase": "train",
+      "dataset": "findok",
+      "num_rules": 4,
+      "t_learn": 81.6,
+      "timestamp": "2026-09-23T18:03:08.536074",
+      "num_train_docs": 247,
+      "num_eval_docs": 71,
+      "num_train_annotations": 414,
+      "num_eval_annotations": 107,
+      "batch_metrics": [
+        {
+          "batch": 0,
+          "num_rules": 4,
+          "exact_match": 0.9858485775224854,
+          "micro_f1": 0.5018934612471598,
+          "micro_precision": 0.6604651162790698,
+          "micro_recall": 0.40472312703583063,
+          "macro_f1": 0.5018934612471598,
+          "per_class": [
+            {
+              "label": "person",
+              "f1": 0.5018934612471598,
+              "precision": 0.6604651162790698,
+              "recall": 0.40472312703583063
+            }
+          ]
+        },
+        {
+          "batch": 1,
+          "num_rules": 3,
+          "exact_match": 0.9693950097615474,
+          "micro_f1": 0.25693225693225696,
+          "micro_precision": 0.22578655151141272,
+          "micro_recall": 0.2980456026058632,
+          "macro_f1": 0.25693225693225696,
+          "per_class": [
+            {
+              "label": "person",
+              "f1": 0.25693225693225696,
+              "precision": 0.22578655151141272,
+              "recall": 0.2980456026058632
+            }
+          ]
+        },
+        {
+          "batch": 2,
+          "num_rules": 4,
+          "exact_match": 0.9689210386737838,
+          "micro_f1": 0.22901572716027566,
+          "micro_precision": 0.20231033406181706,
+          "micro_recall": 0.26384364820846906,
+          "macro_f1": 0.22901572716027566,
+          "per_class": [
+            {
+              "label": "person",
+              "f1": 0.22901572716027566,
+              "precision": 0.20231033406181706,
+              "recall": 0.26384364820846906
+            }
+          ]
+        }
+      ],
+      "iteration_metrics": [
+        {
+          "iteration": 1,
+          "num_rules": 4,
+          "exact_match": 0.2676056338028169,
+          "micro_f1": 0.5363128491620112,
+          "micro_precision": 0.6666666666666666,
+          "micro_recall": 0.4485981308411215,
+          "macro_f1": 0.5363128491620112,
+          "per_class": [
+            {
+              "label": "person",
+              "f1": 0.5363128491620112,
+              "precision": 0.6666666666666666,
+              "recall": 0.4485981308411215
+            }
+          ]
+        }
+      ],
+      "rules_snapshot": [
+        {
+          "batch": 0,
+          "rules": [
+            {
+              "id": "45077246",
+              "name": "german_legal_person_special_titles",
+              "description": "Matches special legal titles (Senatspr\u00e4sident, Hofrat, etc.) followed by academic titles and names, capturing the FULL title and name sequence.",
+              "format": "regex",
+              "content": "\\b(?:Hofrat|Hofr\\u00e4tin|Senatspr\\u00e4sident|Senatspr\\u00e4sidentin|Vizepr\\u00e4sident|Vizepr\\u00e4sidentin|Pr\\u00e4sident|Pr\\u00e4sidentin|\\u00d6kR|OMedR|Landeshauptmann|Landeshauptmannin)\\s+(?:Hon\\.-?Prof\\.|PD\\s+Dr\\.|Dr\\.|Mag\\.|MMag\\.)?\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\-[A-Z][a-z]+)*)",
+              "priority": 10,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "f19839ac",
+              "name": "german_legal_person_in_case_context",
+              "description": "Captures names appearing immediately after 'in der Beschwerdesache' or 'in der Verwaltungsstrafsache', handling both full names and names with suffixes.",
+              "format": "regex",
+              "content": "(?:in\\s+der\\s+Beschwerdesache|in\\s+der\\s+Verwaltungsstrafsache)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+Bakk\\.(?:techn|phil|art)|LL\\.M\\.|M\\.B\\.L\\.|BA)?)\\b",
+              "priority": 8,
+              "output_template": {
+                "text": "$1",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "350d5e97",
+              "name": "german_legal_person_complex_and_double_titles",
+              "description": "Merged: Both rules target German academic titles (Professors, Doctors, Magisters) with similar name patterns. Merging reduces redundancy while maintaining coverage for complex and double titles.",
+              "format": "regex",
+              "content": "\\b(?:Univ\\.-?Prof\\.|Hon\\.-?Prof\\.|Priv\\.-?Doz\\.|Prof\\.|Mag\\.\\s+Dr\\.|Dr\\.\\s+Mag\\.)\\s+[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\-[A-Z][a-z]+)*",
+              "priority": 10,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "bcb02ba7",
+              "name": "german_legal_person_with_titles_and_abbreviations",
+              "description": "Merged: The 'legal_abbreviations' rule (RgR, KommR, HR) is a subset of the broader 'with_titles' rule. Merging them into a single comprehensive pattern for titles and abbreviations improves maintainability and reduces false positives from overlapping matches.",
+              "format": "regex",
+              "content": "\\b(?:Dr\\.|Dr\\.in|Mag\\.|Mag\\.in|MMag\\.|M\\.Mag\\.|Univ\\.-Prof\\.|Univ\\.-Prof\\.in|Hon\\.-Prof\\.|Hon\\.-Prof\\.in|Priv\\.-Doz\\.|Priv\\.-Doz\\.in|Dipl\\.-Ing\\.|Dipl\\.-Ing\\.in|Ing\\.|RgR|KommR|HR|Bakk\\.|Bakk\\.techn\\.|Bakk\\.phil\\.|Bakk\\.art\\.|LL\\.M\\.|M\\.B\\.L\\.|BA|B\\.A\\.)\\s+[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+(?:LL\\.|Bakk\\.(?:techn|phil|art)))?",
+              "priority": 10,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            }
+          ]
+        },
+        {
+          "batch": 1,
+          "rules": [
+            {
+              "id": "350d5e97",
+              "name": "german_legal_person_complex_and_double_titles",
+              "description": "Merged: Both rules target German academic titles (Professors, Doctors, Magisters) with similar name patterns. Merging reduces redundancy while maintaining coverage for complex and double titles.",
+              "format": "regex",
+              "content": "\\b(?:Univ\\.-?Prof\\.|Hon\\.-?Prof\\.|Priv\\.-?Doz\\.|Prof\\.|Mag\\.\\s+Dr\\.|Dr\\.\\s+Mag\\.)\\s+[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\-[A-Z][a-z]+)*",
+              "priority": 10,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "6d1f6b65",
+              "name": "german_legal_person_with_titles_and_abbreviations",
+              "description": "Captures German legal names with titles (Dr., Mag., Univ.-Prof., etc.) and handles complex suffixes (LL.M., Bakk. techn., BA, MSc) and double titles (Mag.Dr.).",
+              "format": "regex",
+              "content": "\\b(?:Dr\\.|Dr\\.in|Mag\\.|Mag\\.in|MMag\\.|M\\.Mag\\.|Mag\\.Dr\\.|Dr\\.Mag\\.|Univ\\.-Prof\\.|Univ\\.-Prof\\.in|Hon\\.-Prof\\.|Hon\\.-Prof\\.in|Priv\\.-Doz\\.|Priv\\.-Doz\\.in|Dipl\\.-Ing\\.|Dipl\\.-Ing\\.in|Ing\\.|RgR|KommR|HR|Bakk\\.|Bakk\\.techn\\.|Bakk\\.phil\\.|Bakk\\.art\\.|LL\\.M\\.|M\\.B\\.L\\.|BA|B\\.A\\.|MSc|BEd|MS)\\s+[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+(?:LL\\.|Bakk\\.(?:techn|phil|art)|M\\.B\\.L\\.|BA|B\\.A\\.|MSc|BEd|MS|MA|Dr\\.Mag\\.|Mag\\.Dr\\.)?)*",
+              "priority": 10,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "a92bb1e6",
+              "name": "german_legal_person_simple_name",
+              "description": "Captures simple two-word names (First Last) that appear in legal contexts but lack titles, specifically targeting cases where the name is followed by an address or comma.",
+              "format": "regex",
+              "content": "\\b([A-Z][a-z]+\\s+[A-Z][a-z]+)(?=,|\\s+geb\\.|\\s+wohnhaft|\\s+Mobilheimplatz|\\s+Haydnpark|\\s+Weichselfeldgasse|\\s+Wilhelm\\s+Buschgasse|\\s+Seif|\\s+Albert-Sc|\\s+Messe|\\s+Laderding|\\s+Laabachstra\u00dfe|\\s+Mattighofen|\\s+Gerlos|\\s+Allersgraben|\\s+Gstadt|\\s+Petzelsdorf|\\s+Longhini)",
+              "priority": 5,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            }
+          ]
+        },
+        {
+          "batch": 2,
+          "rules": [
+            {
+              "id": "970521ac",
+              "name": "german_legal_person_with_titles_and_abbreviations",
+              "description": "Captures German legal names with titles and complex suffixes (LL.M., Bakk. techn., M.B.L.) ensuring no trailing whitespace.",
+              "format": "regex",
+              "content": "\\b(?:Dr\\.|Dr\\.in|Mag\\.|Mag\\.in|MMag\\.|M\\.Mag\\.|Mag\\.Dr\\.|Dr\\.Mag\\.|Univ\\.-Prof\\.|Univ\\.-Prof\\.in|Hon\\.-Prof\\.|Hon\\.-Prof\\.in|Priv\\.-Doz\\.|Priv\\.-Doz\\.in|Dipl\\.-Ing\\.|Dipl\\.-Ing\\.in|Ing\\.|RgR|KommR|HR|Bakk\\.|Bakk\\.techn\\.|Bakk\\.phil\\.|Bakk\\.art\\.|LL\\.M\\.|M\\.B\\.L\\.|BA|B\\.A\\.|MSc|BEd|MS)\\s+[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+(?:LL\\.|Bakk\\.(?:techn|phil|art)|M\\.B\\.L\\.|BA|B\\.A\\.|MSc|BEd|MS|MA|Dr\\.Mag\\.|Mag\\.Dr\\.)?)*\\b",
+              "priority": 10,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "a92bb1e6",
+              "name": "german_legal_person_simple_name",
+              "description": "Captures simple two-word names (First Last) that appear in legal contexts but lack titles, specifically targeting cases where the name is followed by an address or comma.",
+              "format": "regex",
+              "content": "\\b([A-Z][a-z]+\\s+[A-Z][a-z]+)(?=,|\\s+geb\\.|\\s+wohnhaft|\\s+Mobilheimplatz|\\s+Haydnpark|\\s+Weichselfeldgasse|\\s+Wilhelm\\s+Buschgasse|\\s+Seif|\\s+Albert-Sc|\\s+Messe|\\s+Laderding|\\s+Laabachstra\u00dfe|\\s+Mattighofen|\\s+Gerlos|\\s+Allersgraben|\\s+Gstadt|\\s+Petzelsdorf|\\s+Longhini)",
+              "priority": 5,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "a0970e6d",
+              "name": "german_legal_person_simple_name_with_context",
+              "description": "Captures simple names followed by 'geb.' (born), 'vormals' (formerly), or specific legal context markers to avoid false positives on addresses.",
+              "format": "regex",
+              "content": "\\b([A-Z][a-z]+\\s+[A-Z][a-z]+)(?=\\s+geb\\.|\\s+vormals|\\s+der\\s+[A-Z][a-z]+\\s+mbH|\\s+der\\s+[A-Z][a-z]+\\s+GmbH|\\s+der\\s+[A-Z][a-z]+\\s+AG|\\s+der\\s+[A-Z][a-z]+\\s+mbH\\s+\\(|\\s+der\\s+[A-Z][a-z]+\\s+GmbH\\s+\\(|\\s+der\\s+[A-Z][a-z]+\\s+AG\\s+\\()",
+              "priority": 6,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            },
+            {
+              "id": "2c49bc8e",
+              "name": "german_legal_person_simple_name_address",
+              "description": "Captures simple names followed by address indicators, ensuring the match stops before the address number.",
+              "format": "regex",
+              "content": "\\b([A-Z][a-z]+\\s+[A-Z][a-z]+)(?=,\\s*[0-9]+\\s+[A-Z][a-z]+|\\s+wohnhaft|\\s+Mobilheimplatz|\\s+Haydnpark|\\s+Weichselfeldgasse|\\s+Wilhelm\\s+Buschgasse|\\s+Seif|\\s+Albert-Sc|\\s+Messe|\\s+Laderding|\\s+Laabachstra\u00dfe|\\s+Mattighofen|\\s+Gerlos|\\s+Allersgraben|\\s+Gstadt|\\s+Petzelsdorf|\\s+Longhini|\\s+Lembachstra\u00dfe|\\s+Herbeckstra\u00dfe|\\s+Jettsdorf|\\s+Stadion|\\s+Lassach|\\s+Sonnseite|\\s+Prof\\.\\s+Lehnergasse)",
+              "priority": 5,
+              "output_template": {
+                "text": "$0",
+                "start": "$start",
+                "end": "$end",
+                "type": "person"
+              },
+              "output_key": "entities"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "phase": "refine",
+      "dataset": "findok",
+      "num_rules": 4,
+      "micro_f1": 0.5363128491620112,
+      "micro_precision": 0.6666666666666666,
+      "micro_recall": 0.4485981308411215,
+      "iteration_metrics": [
+        {
+          "iteration": 1,
+          "num_rules": 4,
+          "exact_match": 0.2676056338028169,
+          "micro_f1": 0.5363128491620112,
+          "micro_precision": 0.6666666666666666,
+          "micro_recall": 0.4485981308411215,
+          "macro_f1": 0.5363128491620112,
+          "per_class": [
+            {
+              "label": "person",
+              "f1": 0.5363128491620112,
+              "precision": 0.6666666666666666,
+              "recall": 0.4485981308411215
+            }
+          ]
+        },
+        {
+          "iteration": 2,
+          "num_rules": 4,
+          "exact_match": 0.2676056338028169,
+          "micro_f1": 0.5363128491620112,
+          "micro_precision": 0.6666666666666666,
+          "micro_recall": 0.4485981308411215,
+          "macro_f1": 0.5363128491620112,
+          "per_class": [
+            {
+              "label": "person",
+              "f1": 0.5363128491620112,
+              "precision": 0.6666666666666666,
+              "recall": 0.4485981308411215
+            }
+          ]
+        },
+        {
+          "iteration": 3,
+          "num_rules": 4,
+          "exact_match": 0.2676056338028169,
+          "micro_f1": 0.5363128491620112,
+          "micro_precision": 0.6666666666666666,
+          "micro_recall": 0.4485981308411215,
+          "macro_f1": 0.5363128491620112,
+          "per_class": [
+            {
+              "label": "person",
+              "f1": 0.5363128491620112,
+              "precision": 0.6666666666666666,
+              "recall": 0.4485981308411215
+            }
+          ]
+        }
+      ],
+      "timestamp": "2026-09-23T18:04:15.475513"
+    }
+  ]
+}

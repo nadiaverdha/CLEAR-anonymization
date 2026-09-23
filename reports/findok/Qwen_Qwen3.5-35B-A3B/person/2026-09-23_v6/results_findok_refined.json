@@ -1,0 +1,331 @@
+{
+  "config": {
+    "shots": null,
+    "model": "Qwen/Qwen3.5-35B-A3B",
+    "format": "regex",
+    "max_rules": 20,
+    "max_samples": 200,
+    "max_iterations": 6,
+    "seed": 42,
+    "train_size": 160,
+    "eval_size": 40,
+    "test_size": 792,
+    "train_annotations": 247,
+    "eval_annotations": 71,
+    "test_annotations": 88613,
+    "use_grex": true,
+    "agentic": true,
+    "enable_critic": true,
+    "enable_prune": true,
+    "critic_interval": 20,
+    "audit_interval": 0,
+    "windows": false,
+    "sampling_strategy": "balanced",
+    "train_ratio": 0.8,
+    "pool_size": 200,
+    "batch_size": 100,
+    "refine_per_batch": 1,
+    "synthesis_strategy": "bulk",
+    "selected_classes": [
+      "person"
+    ],
+    "train_name": "findok",
+    "test_name": "findok",
+    "transfer_name": null,
+    "transfer_test_name": null,
+    "max_counter_examples": 10,
+    "refine_every": 10
+  },
+  "metadata": {
+    "best_batch_idx": 0,
+    "best_batch_f1": 0.5018934612471598,
+    "best_rules_serialized": [
+      {
+        "id": "45077246",
+        "name": "german_legal_person_special_titles",
+        "description": "Matches special legal titles (Senatspr\u00e4sident, Hofrat, etc.) followed by academic titles and names, capturing the FULL title and name sequence.",
+        "format": "regex",
+        "content": "\\b(?:Hofrat|Hofr\\u00e4tin|Senatspr\\u00e4sident|Senatspr\\u00e4sidentin|Vizepr\\u00e4sident|Vizepr\\u00e4sidentin|Pr\\u00e4sident|Pr\\u00e4sidentin|\\u00d6kR|OMedR|Landeshauptmann|Landeshauptmannin)\\s+(?:Hon\\.-?Prof\\.|PD\\s+Dr\\.|Dr\\.|Mag\\.|MMag\\.)?\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\-[A-Z][a-z]+)*)",
+        "priority": 10,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "f19839ac",
+        "name": "german_legal_person_in_case_context",
+        "description": "Captures names appearing immediately after 'in der Beschwerdesache' or 'in der Verwaltungsstrafsache', handling both full names and names with suffixes.",
+        "format": "regex",
+        "content": "(?:in\\s+der\\s+Beschwerdesache|in\\s+der\\s+Verwaltungsstrafsache)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+Bakk\\.(?:techn|phil|art)|LL\\.M\\.|M\\.B\\.L\\.|BA)?)\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "350d5e97",
+        "name": "german_legal_person_complex_and_double_titles",
+        "description": "Merged: Both rules target German academic titles (Professors, Doctors, Magisters) with similar name patterns. Merging reduces redundancy while maintaining coverage for complex and double titles.",
+        "format": "regex",
+        "content": "\\b(?:Univ\\.-?Prof\\.|Hon\\.-?Prof\\.|Priv\\.-?Doz\\.|Prof\\.|Mag\\.\\s+Dr\\.|Dr\\.\\s+Mag\\.)\\s+[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\-[A-Z][a-z]+)*",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "bcb02ba7",
+        "name": "german_legal_person_with_titles_and_abbreviations",
+        "description": "Merged: The 'legal_abbreviations' rule (RgR, KommR, HR) is a subset of the broader 'with_titles' rule. Merging them into a single comprehensive pattern for titles and abbreviations improves maintainability and reduces false positives from overlapping matches.",
+        "format": "regex",
+        "content": "\\b(?:Dr\\.|Dr\\.in|Mag\\.|Mag\\.in|MMag\\.|M\\.Mag\\.|Univ\\.-Prof\\.|Univ\\.-Prof\\.in|Hon\\.-Prof\\.|Hon\\.-Prof\\.in|Priv\\.-Doz\\.|Priv\\.-Doz\\.in|Dipl\\.-Ing\\.|Dipl\\.-Ing\\.in|Ing\\.|RgR|KommR|HR|Bakk\\.|Bakk\\.techn\\.|Bakk\\.phil\\.|Bakk\\.art\\.|LL\\.M\\.|M\\.B\\.L\\.|BA|B\\.A\\.)\\s+[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+(?:LL\\.|Bakk\\.(?:techn|phil|art)))?",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      }
+    ]
+  },
+  "results": {
+    "accuracy": 0.9858485775224854,
+    "micro_precision": 0.6604651162790698,
+    "micro_recall": 0.40472312703583063,
+    "micro_f1": 0.5018934612471598,
+    "macro_f1": 0.5018934612471598,
+    "num_rules": 4,
+    "learning_time_s": 81.6,
+    "eval_time_s": 3.852,
+    "per_query_ms": 0.04
+  },
+  "per_class": [
+    {
+      "label": "person",
+      "precision": 0.6604651162790698,
+      "recall": 0.40472312703583063,
+      "f1": 0.5018934612471598,
+      "tp": 994,
+      "fp": 511,
+      "fn": 1462
+    }
+  ],
+  "iteration_metrics": [
+    {
+      "iteration": 1,
+      "num_rules": 4,
+      "exact_match": 0.2676056338028169,
+      "micro_f1": 0.5363128491620112,
+      "micro_precision": 0.6666666666666666,
+      "micro_recall": 0.4485981308411215,
+      "macro_f1": 0.5363128491620112,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.5363128491620112,
+          "precision": 0.6666666666666666,
+          "recall": 0.4485981308411215
+        }
+      ]
+    }
+  ],
+  "batch_test_metrics": [
+    {
+      "batch": 0,
+      "num_rules": 4,
+      "exact_match": 0.9858485775224854,
+      "micro_f1": 0.5018934612471598,
+      "micro_precision": 0.6604651162790698,
+      "micro_recall": 0.40472312703583063,
+      "macro_f1": 0.5018934612471598,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.5018934612471598,
+          "precision": 0.6604651162790698,
+          "recall": 0.40472312703583063
+        }
+      ]
+    },
+    {
+      "batch": 1,
+      "num_rules": 3,
+      "exact_match": 0.9693950097615474,
+      "micro_f1": 0.25693225693225696,
+      "micro_precision": 0.22578655151141272,
+      "micro_recall": 0.2980456026058632,
+      "macro_f1": 0.25693225693225696,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.25693225693225696,
+          "precision": 0.22578655151141272,
+          "recall": 0.2980456026058632
+        }
+      ]
+    },
+    {
+      "batch": 2,
+      "num_rules": 4,
+      "exact_match": 0.9689210386737838,
+      "micro_f1": 0.22901572716027566,
+      "micro_precision": 0.20231033406181706,
+      "micro_recall": 0.26384364820846906,
+      "macro_f1": 0.22901572716027566,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.22901572716027566,
+          "precision": 0.20231033406181706,
+          "recall": 0.26384364820846906
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "45077246",
+      "name": "german_legal_person_special_titles",
+      "description": "Matches special legal titles (Senatspr\u00e4sident, Hofrat, etc.) followed by academic titles and names, capturing the FULL title and name sequence.",
+      "format": "regex",
+      "content": "\\b(?:Hofrat|Hofr\\u00e4tin|Senatspr\\u00e4sident|Senatspr\\u00e4sidentin|Vizepr\\u00e4sident|Vizepr\\u00e4sidentin|Pr\\u00e4sident|Pr\\u00e4sidentin|\\u00d6kR|OMedR|Landeshauptmann|Landeshauptmannin)\\s+(?:Hon\\.-?Prof\\.|PD\\s+Dr\\.|Dr\\.|Mag\\.|MMag\\.)?\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\-[A-Z][a-z]+)*)",
+      "priority": 10,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-09-23T18:01:46.529189"
+    },
+    {
+      "id": "f19839ac",
+      "name": "german_legal_person_in_case_context",
+      "description": "Captures names appearing immediately after 'in der Beschwerdesache' or 'in der Verwaltungsstrafsache', handling both full names and names with suffixes.",
+      "format": "regex",
+      "content": "(?:in\\s+der\\s+Beschwerdesache|in\\s+der\\s+Verwaltungsstrafsache)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+Bakk\\.(?:techn|phil|art)|LL\\.M\\.|M\\.B\\.L\\.|BA)?)\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-09-23T18:01:57.881920"
+    },
+    {
+      "id": "350d5e97",
+      "name": "german_legal_person_complex_and_double_titles",
+      "description": "Merged: Both rules target German academic titles (Professors, Doctors, Magisters) with similar name patterns. Merging reduces redundancy while maintaining coverage for complex and double titles.",
+      "format": "regex",
+      "content": "\\b(?:Univ\\.-?Prof\\.|Hon\\.-?Prof\\.|Priv\\.-?Doz\\.|Prof\\.|Mag\\.\\s+Dr\\.|Dr\\.\\s+Mag\\.)\\s+[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\-[A-Z][a-z]+)*",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-09-23T18:02:03.432371"
+    },
+    {
+      "id": "bcb02ba7",
+      "name": "german_legal_person_with_titles_and_abbreviations",
+      "description": "Merged: The 'legal_abbreviations' rule (RgR, KommR, HR) is a subset of the broader 'with_titles' rule. Merging them into a single comprehensive pattern for titles and abbreviations improves maintainability and reduces false positives from overlapping matches.",
+      "format": "regex",
+      "content": "\\b(?:Dr\\.|Dr\\.in|Mag\\.|Mag\\.in|MMag\\.|M\\.Mag\\.|Univ\\.-Prof\\.|Univ\\.-Prof\\.in|Hon\\.-Prof\\.|Hon\\.-Prof\\.in|Priv\\.-Doz\\.|Priv\\.-Doz\\.in|Dipl\\.-Ing\\.|Dipl\\.-Ing\\.in|Ing\\.|RgR|KommR|HR|Bakk\\.|Bakk\\.techn\\.|Bakk\\.phil\\.|Bakk\\.art\\.|LL\\.M\\.|M\\.B\\.L\\.|BA|B\\.A\\.)\\s+[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+(?:LL\\.|Bakk\\.(?:techn|phil|art)))?",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-09-23T18:02:03.432713"
+    }
+  ],
+  "best_rules": {
+    "batch": 0,
+    "micro_f1": 0.5018934612471598,
+    "rules": [
+      {
+        "id": "45077246",
+        "name": "german_legal_person_special_titles",
+        "description": "Matches special legal titles (Senatspr\u00e4sident, Hofrat, etc.) followed by academic titles and names, capturing the FULL title and name sequence.",
+        "format": "regex",
+        "content": "\\b(?:Hofrat|Hofr\\u00e4tin|Senatspr\\u00e4sident|Senatspr\\u00e4sidentin|Vizepr\\u00e4sident|Vizepr\\u00e4sidentin|Pr\\u00e4sident|Pr\\u00e4sidentin|\\u00d6kR|OMedR|Landeshauptmann|Landeshauptmannin)\\s+(?:Hon\\.-?Prof\\.|PD\\s+Dr\\.|Dr\\.|Mag\\.|MMag\\.)?\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\-[A-Z][a-z]+)*)",
+        "priority": 10,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "f19839ac",
+        "name": "german_legal_person_in_case_context",
+        "description": "Captures names appearing immediately after 'in der Beschwerdesache' or 'in der Verwaltungsstrafsache', handling both full names and names with suffixes.",
+        "format": "regex",
+        "content": "(?:in\\s+der\\s+Beschwerdesache|in\\s+der\\s+Verwaltungsstrafsache)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+Bakk\\.(?:techn|phil|art)|LL\\.M\\.|M\\.B\\.L\\.|BA)?)\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "350d5e97",
+        "name": "german_legal_person_complex_and_double_titles",
+        "description": "Merged: Both rules target German academic titles (Professors, Doctors, Magisters) with similar name patterns. Merging reduces redundancy while maintaining coverage for complex and double titles.",
+        "format": "regex",
+        "content": "\\b(?:Univ\\.-?Prof\\.|Hon\\.-?Prof\\.|Priv\\.-?Doz\\.|Prof\\.|Mag\\.\\s+Dr\\.|Dr\\.\\s+Mag\\.)\\s+[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\-[A-Z][a-z]+)*",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "bcb02ba7",
+        "name": "german_legal_person_with_titles_and_abbreviations",
+        "description": "Merged: The 'legal_abbreviations' rule (RgR, KommR, HR) is a subset of the broader 'with_titles' rule. Merging them into a single comprehensive pattern for titles and abbreviations improves maintainability and reduces false positives from overlapping matches.",
+        "format": "regex",
+        "content": "\\b(?:Dr\\.|Dr\\.in|Mag\\.|Mag\\.in|MMag\\.|M\\.Mag\\.|Univ\\.-Prof\\.|Univ\\.-Prof\\.in|Hon\\.-Prof\\.|Hon\\.-Prof\\.in|Priv\\.-Doz\\.|Priv\\.-Doz\\.in|Dipl\\.-Ing\\.|Dipl\\.-Ing\\.in|Ing\\.|RgR|KommR|HR|Bakk\\.|Bakk\\.techn\\.|Bakk\\.phil\\.|Bakk\\.art\\.|LL\\.M\\.|M\\.B\\.L\\.|BA|B\\.A\\.)\\s+[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+(?:LL\\.|Bakk\\.(?:techn|phil|art)))?",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      }
+    ]
+  }
+}
