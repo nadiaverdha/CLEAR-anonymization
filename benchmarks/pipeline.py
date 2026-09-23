@@ -64,7 +64,6 @@ class SynthesisStep(Step):
         phase,
         synthesis_strategy,
         seed=42,
-        prune_with_refine=False,
         holdout_fraction=0.0,
         split_seed=42,
     ):
@@ -76,7 +75,6 @@ class SynthesisStep(Step):
         self.phase = phase
         self.seed = seed
         self.synthesis_strategy = synthesis_strategy
-        self.prune_with_refine = prune_with_refine
         self.holdout_fraction = holdout_fraction
         self.split_seed = split_seed
 
@@ -132,7 +130,7 @@ class SynthesisStep(Step):
         fit_result = ctx.learner.fit_batched(
             train_for_chef,
             batch_size=self.batch_size,
-            eval_dataset=ctx.eval_dataset if self.refine_per_batch > 0 else None,
+            eval_dataset=ctx.eval_dataset,  # if self.refine_per_batch > 0 else None,
             refine_per_batch=self.refine_per_batch,
             refine_every=self.refine_every,
             iteration_callback=on_iteration,
@@ -140,7 +138,6 @@ class SynthesisStep(Step):
             audit_interval=self.audit_interval,
             seed_rules=ctx.rules or None,
             start_batch=self.start_batch,
-            prune_with_refine=self.prune_with_refine,
             holdout_fraction=self.holdout_fraction,
             split_seed=self.split_seed,
         )
