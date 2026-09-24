@@ -1,0 +1,8 @@
+  [
+    {
+      "level": "rule",
+      "rule_id": "55c77a67",
+      "text": "This rule fails to capture names with compound titles, such as MMag., Priv.-Doz.in DDr., Ing. Dipl.-Ing. Expand the rule to capture such person names."
+    }
+
+  ]
