@@ -1,0 +1,353 @@
+{
+  "config": {
+    "shots": null,
+    "model": "Qwen/Qwen3.5-35B-A3B",
+    "format": "regex",
+    "max_rules": 10,
+    "max_samples": 20,
+    "max_iterations": 1,
+    "seed": 42,
+    "train_size": 320,
+    "eval_size": 80,
+    "test_size": 477,
+    "train_annotations": 587,
+    "eval_annotations": 185,
+    "test_annotations": 22727,
+    "use_grex": true,
+    "agentic": false,
+    "enable_critic": true,
+    "enable_prune": true,
+    "critic_interval": 2,
+    "audit_interval": 0,
+    "windows": false,
+    "sampling_strategy": "balanced",
+    "train_ratio": 0.8,
+    "pool_size": 400,
+    "batch_size": 20,
+    "refine_per_batch": 0,
+    "synthesis_strategy": "bulk",
+    "selected_classes": [
+      "person"
+    ],
+    "train_name": "ris",
+    "test_name": "ris",
+    "transfer_name": null,
+    "transfer_test_name": null,
+    "max_counter_examples": 3,
+    "refine_every": 0
+  },
+  "metadata": {
+    "best_batch_idx": -1,
+    "best_batch_f1": 0.0,
+    "best_rules_serialized": [
+      {
+        "id": "e3249e95",
+        "name": "german_legal_person_complex_titles",
+        "description": "Matches complex academic titles (Univ.-Prof., Hon.-Prof., Priv.-Doz.) followed by Dr. and names, capturing the full title and name, including hyphenated surnames.",
+        "format": "regex",
+        "content": "\\b(?:Univ\\.-?Prof\\.|Hon\\.-?Prof\\.|Priv\\.-?Doz\\.|Prof\\.)\\s+Dr\\.?\\s+[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\-[A-Z][a-z]+)*",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "6de20d83",
+        "name": "german_legal_person_with_titles",
+        "description": "Matches standard titles (Dr., Mag., MMag., M.Mag.) followed by names, capturing the full title and name including German umlauts (\u00e4, \u00f6, \u00fc, \u00df) and hyphenated surnames.",
+        "format": "regex",
+        "content": "\\b(?:Dr\\.|Mag\\.|M\\.Mag\\.|MMag\\.)\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*(?:\\-[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*",
+        "priority": 9,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "662e9140",
+        "name": "german_legal_person_double_titles",
+        "description": "Matches double titles like 'Mag. Dr.' or 'Dr. Mag.' followed by names, capturing the full title and name.",
+        "format": "regex",
+        "content": "\\b(?:Mag\\.\\s+Dr\\.|Dr\\.\\s+Mag\\.)\\s+[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*",
+        "priority": 9,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "45077246",
+        "name": "german_legal_person_special_titles",
+        "description": "Matches special legal titles (Senatspr\u00e4sident, Hofrat, etc.) followed by academic titles and names, capturing the FULL title and name sequence.",
+        "format": "regex",
+        "content": "\\b(?:Hofrat|Hofr\\u00e4tin|Senatspr\\u00e4sident|Senatspr\\u00e4sidentin|Vizepr\\u00e4sident|Vizepr\\u00e4sidentin|Pr\\u00e4sident|Pr\\u00e4sidentin|\\u00d6kR|OMedR|Landeshauptmann|Landeshauptmannin)\\s+(?:Hon\\.-?Prof\\.|PD\\s+Dr\\.|Dr\\.|Mag\\.|MMag\\.)?\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\-[A-Z][a-z]+)*)",
+        "priority": 10,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "e7a4688e",
+        "name": "german_legal_person_without_titles",
+        "description": "Matches person names appearing after specific legal role indicators or conjunctions to capture names without titles, ensuring full name capture and excluding partial words.",
+        "format": "regex",
+        "content": "(?:Partei|Kl\\u00e4ger|Beklagte|Vertreter|Anwalt|Zeuge|Gutachter|Sachverst\\u00e4ndige|Vorsitzende|Vorsitzender|Mitglied|Mitglieder|durch|und|sowie)\\s+([A-Z][a-z]+\\s+[A-Z][a-z]+)(?:\\s|,|\\)|\\.|$)(?!\\s*(?:Gericht|Hof|Oberlandes|Landes|Spruch|Kopf|Der|Die|Dem|Den|Zivil|Straf|Handel|Sozial|Weg|Markt|Gruppe|GmbH|AG|Rechtsanw|Versand|Schaf|Zumtobel|Oberste|Landesgerichts|Bezirksgerichts|Zivilrechtssachen|Sozialrechtssachen|Urteilsver|Divitschek|Software|Unterlassung|Feststellung|Partei|Mag\\.\\s+Istjan|Tr\\.\\s+|Co\\.\\s+))",
+        "priority": 6,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "4c7a5074",
+        "name": "german_legal_person_standalone",
+        "description": "Captures standalone capitalized names (First Last) only when preceded by specific legal role indicators or conjunctions, with strict exclusion of headers and court names.",
+        "format": "regex",
+        "content": "(?:^|\\s|,|\\()(?:Partei|Kl\\u00e4ger|Beklagte|Vertreter|Anwalt|Zeuge|Gutachter|Sachverst\\u00e4ndige|Vorsitzende|Vorsitzender|Mitglied|Mitglieder|durch|und|sowie)\\s+([A-Z][a-z]+\\s+[A-Z][a-z]+)(?:\\s|,|\\)|\\.|$)(?!\\s*(?:Gericht|Hof|Oberlandes|Landes|Spruch|Kopf|Der|Die|Dem|Den|Zivil|Straf|Handel|Sozial|Weg|Markt|Gruppe|GmbH|AG|Rechtsanw|Versand|Schaf|Zumtobel|Oberste|Landesgerichts|Bezirksgerichts|Zivilrechtssachen|Sozialrechtssachen|Urteilsver|Divitschek|Software|Unterlassung|Feststellung|Partei|Mag\\.\\s+Istjan|Tr\\.\\s+|Co\\.\\s+))",
+        "priority": 5,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      }
+    ]
+  },
+  "results": {
+    "accuracy": 0.9674836098033176,
+    "micro_precision": 0.8839541547277937,
+    "micro_recall": 0.7389221556886227,
+    "micro_f1": 0.8049575994781474,
+    "macro_f1": 0.8049575994781474,
+    "num_rules": 6,
+    "learning_time_s": 0.0,
+    "eval_time_s": 2.683,
+    "per_query_ms": 0.12
+  },
+  "per_class": [
+    {
+      "label": "person",
+      "precision": 0.8839541547277937,
+      "recall": 0.7389221556886227,
+      "f1": 0.8049575994781474,
+      "tp": 3085,
+      "fp": 405,
+      "fn": 1090
+    }
+  ],
+  "iteration_metrics": [],
+  "batch_test_metrics": [],
+  "rules": [
+    {
+      "id": "e3249e95",
+      "name": "german_legal_person_complex_titles",
+      "description": "Matches complex academic titles (Univ.-Prof., Hon.-Prof., Priv.-Doz.) followed by Dr. and names, capturing the full title and name, including hyphenated surnames.",
+      "format": "regex",
+      "content": "\\b(?:Univ\\.-?Prof\\.|Hon\\.-?Prof\\.|Priv\\.-?Doz\\.|Prof\\.)\\s+Dr\\.?\\s+[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\-[A-Z][a-z]+)*",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-09-24T11:41:02.376402"
+    },
+    {
+      "id": "6de20d83",
+      "name": "german_legal_person_with_titles",
+      "description": "Matches standard titles (Dr., Mag., MMag., M.Mag.) followed by names, capturing the full title and name including German umlauts (\u00e4, \u00f6, \u00fc, \u00df) and hyphenated surnames.",
+      "format": "regex",
+      "content": "\\b(?:Dr\\.|Mag\\.|M\\.Mag\\.|MMag\\.)\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*(?:\\-[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-09-24T11:41:11.598487"
+    },
+    {
+      "id": "662e9140",
+      "name": "german_legal_person_double_titles",
+      "description": "Matches double titles like 'Mag. Dr.' or 'Dr. Mag.' followed by names, capturing the full title and name.",
+      "format": "regex",
+      "content": "\\b(?:Mag\\.\\s+Dr\\.|Dr\\.\\s+Mag\\.)\\s+[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-09-24T11:41:02.376412"
+    },
+    {
+      "id": "45077246",
+      "name": "german_legal_person_special_titles",
+      "description": "Matches special legal titles (Senatspr\u00e4sident, Hofrat, etc.) followed by academic titles and names, capturing the FULL title and name sequence.",
+      "format": "regex",
+      "content": "\\b(?:Hofrat|Hofr\\u00e4tin|Senatspr\\u00e4sident|Senatspr\\u00e4sidentin|Vizepr\\u00e4sident|Vizepr\\u00e4sidentin|Pr\\u00e4sident|Pr\\u00e4sidentin|\\u00d6kR|OMedR|Landeshauptmann|Landeshauptmannin)\\s+(?:Hon\\.-?Prof\\.|PD\\s+Dr\\.|Dr\\.|Mag\\.|MMag\\.)?\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\-[A-Z][a-z]+)*)",
+      "priority": 10,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-09-24T11:41:02.376414"
+    },
+    {
+      "id": "e7a4688e",
+      "name": "german_legal_person_without_titles",
+      "description": "Matches person names appearing after specific legal role indicators or conjunctions to capture names without titles, ensuring full name capture and excluding partial words.",
+      "format": "regex",
+      "content": "(?:Partei|Kl\\u00e4ger|Beklagte|Vertreter|Anwalt|Zeuge|Gutachter|Sachverst\\u00e4ndige|Vorsitzende|Vorsitzender|Mitglied|Mitglieder|durch|und|sowie)\\s+([A-Z][a-z]+\\s+[A-Z][a-z]+)(?:\\s|,|\\)|\\.|$)(?!\\s*(?:Gericht|Hof|Oberlandes|Landes|Spruch|Kopf|Der|Die|Dem|Den|Zivil|Straf|Handel|Sozial|Weg|Markt|Gruppe|GmbH|AG|Rechtsanw|Versand|Schaf|Zumtobel|Oberste|Landesgerichts|Bezirksgerichts|Zivilrechtssachen|Sozialrechtssachen|Urteilsver|Divitschek|Software|Unterlassung|Feststellung|Partei|Mag\\.\\s+Istjan|Tr\\.\\s+|Co\\.\\s+))",
+      "priority": 6,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-09-24T11:41:02.376416"
+    },
+    {
+      "id": "4c7a5074",
+      "name": "german_legal_person_standalone",
+      "description": "Captures standalone capitalized names (First Last) only when preceded by specific legal role indicators or conjunctions, with strict exclusion of headers and court names.",
+      "format": "regex",
+      "content": "(?:^|\\s|,|\\()(?:Partei|Kl\\u00e4ger|Beklagte|Vertreter|Anwalt|Zeuge|Gutachter|Sachverst\\u00e4ndige|Vorsitzende|Vorsitzender|Mitglied|Mitglieder|durch|und|sowie)\\s+([A-Z][a-z]+\\s+[A-Z][a-z]+)(?:\\s|,|\\)|\\.|$)(?!\\s*(?:Gericht|Hof|Oberlandes|Landes|Spruch|Kopf|Der|Die|Dem|Den|Zivil|Straf|Handel|Sozial|Weg|Markt|Gruppe|GmbH|AG|Rechtsanw|Versand|Schaf|Zumtobel|Oberste|Landesgerichts|Bezirksgerichts|Zivilrechtssachen|Sozialrechtssachen|Urteilsver|Divitschek|Software|Unterlassung|Feststellung|Partei|Mag\\.\\s+Istjan|Tr\\.\\s+|Co\\.\\s+))",
+      "priority": 5,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "created_at": "2026-09-24T11:41:02.376418"
+    }
+  ],
+  "best_rules": {
+    "batch": -1,
+    "micro_f1": 0.0,
+    "rules": [
+      {
+        "id": "e3249e95",
+        "name": "german_legal_person_complex_titles",
+        "description": "Matches complex academic titles (Univ.-Prof., Hon.-Prof., Priv.-Doz.) followed by Dr. and names, capturing the full title and name, including hyphenated surnames.",
+        "format": "regex",
+        "content": "\\b(?:Univ\\.-?Prof\\.|Hon\\.-?Prof\\.|Priv\\.-?Doz\\.|Prof\\.)\\s+Dr\\.?\\s+[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\-[A-Z][a-z]+)*",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "6de20d83",
+        "name": "german_legal_person_with_titles",
+        "description": "Matches standard titles (Dr., Mag., MMag., M.Mag.) followed by names, capturing the full title and name including German umlauts (\u00e4, \u00f6, \u00fc, \u00df) and hyphenated surnames.",
+        "format": "regex",
+        "content": "\\b(?:Dr\\.|Mag\\.|M\\.Mag\\.|MMag\\.)\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*(?:\\-[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*",
+        "priority": 9,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "662e9140",
+        "name": "german_legal_person_double_titles",
+        "description": "Matches double titles like 'Mag. Dr.' or 'Dr. Mag.' followed by names, capturing the full title and name.",
+        "format": "regex",
+        "content": "\\b(?:Mag\\.\\s+Dr\\.|Dr\\.\\s+Mag\\.)\\s+[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*",
+        "priority": 9,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "45077246",
+        "name": "german_legal_person_special_titles",
+        "description": "Matches special legal titles (Senatspr\u00e4sident, Hofrat, etc.) followed by academic titles and names, capturing the FULL title and name sequence.",
+        "format": "regex",
+        "content": "\\b(?:Hofrat|Hofr\\u00e4tin|Senatspr\\u00e4sident|Senatspr\\u00e4sidentin|Vizepr\\u00e4sident|Vizepr\\u00e4sidentin|Pr\\u00e4sident|Pr\\u00e4sidentin|\\u00d6kR|OMedR|Landeshauptmann|Landeshauptmannin)\\s+(?:Hon\\.-?Prof\\.|PD\\s+Dr\\.|Dr\\.|Mag\\.|MMag\\.)?\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\-[A-Z][a-z]+)*)",
+        "priority": 10,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "e7a4688e",
+        "name": "german_legal_person_without_titles",
+        "description": "Matches person names appearing after specific legal role indicators or conjunctions to capture names without titles, ensuring full name capture and excluding partial words.",
+        "format": "regex",
+        "content": "(?:Partei|Kl\\u00e4ger|Beklagte|Vertreter|Anwalt|Zeuge|Gutachter|Sachverst\\u00e4ndige|Vorsitzende|Vorsitzender|Mitglied|Mitglieder|durch|und|sowie)\\s+([A-Z][a-z]+\\s+[A-Z][a-z]+)(?:\\s|,|\\)|\\.|$)(?!\\s*(?:Gericht|Hof|Oberlandes|Landes|Spruch|Kopf|Der|Die|Dem|Den|Zivil|Straf|Handel|Sozial|Weg|Markt|Gruppe|GmbH|AG|Rechtsanw|Versand|Schaf|Zumtobel|Oberste|Landesgerichts|Bezirksgerichts|Zivilrechtssachen|Sozialrechtssachen|Urteilsver|Divitschek|Software|Unterlassung|Feststellung|Partei|Mag\\.\\s+Istjan|Tr\\.\\s+|Co\\.\\s+))",
+        "priority": 6,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "4c7a5074",
+        "name": "german_legal_person_standalone",
+        "description": "Captures standalone capitalized names (First Last) only when preceded by specific legal role indicators or conjunctions, with strict exclusion of headers and court names.",
+        "format": "regex",
+        "content": "(?:^|\\s|,|\\()(?:Partei|Kl\\u00e4ger|Beklagte|Vertreter|Anwalt|Zeuge|Gutachter|Sachverst\\u00e4ndige|Vorsitzende|Vorsitzender|Mitglied|Mitglieder|durch|und|sowie)\\s+([A-Z][a-z]+\\s+[A-Z][a-z]+)(?:\\s|,|\\)|\\.|$)(?!\\s*(?:Gericht|Hof|Oberlandes|Landes|Spruch|Kopf|Der|Die|Dem|Den|Zivil|Straf|Handel|Sozial|Weg|Markt|Gruppe|GmbH|AG|Rechtsanw|Versand|Schaf|Zumtobel|Oberste|Landesgerichts|Bezirksgerichts|Zivilrechtssachen|Sozialrechtssachen|Urteilsver|Divitschek|Software|Unterlassung|Feststellung|Partei|Mag\\.\\s+Istjan|Tr\\.\\s+|Co\\.\\s+))",
+        "priority": 5,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities"
+      }
+    ]
+  }
+}

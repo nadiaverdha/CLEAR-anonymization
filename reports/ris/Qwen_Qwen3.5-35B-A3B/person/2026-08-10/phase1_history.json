@@ -1,0 +1,39 @@
+[
+  {
+    "phase": "feedback",
+    "dataset": "ris",
+    "feedback_path": "reports/ris/Qwen_Qwen3.5-35B-A3B/person/2026-08-10/feedback.json",
+    "num_items": 1,
+    "task_level": 0,
+    "rule_level": 1,
+    "timestamp": "2026-09-24T11:41:14.299582"
+  },
+  {
+    "phase": "refine",
+    "dataset": "ris",
+    "num_rules": 6,
+    "micro_f1": 0.8049575994781474,
+    "micro_precision": 0.8839541547277937,
+    "micro_recall": 0.7389221556886227,
+    "iteration_metrics": [
+      {
+        "iteration": 1,
+        "num_rules": 6,
+        "exact_match": 0.9674836098033176,
+        "micro_f1": 0.8049575994781474,
+        "micro_precision": 0.8839541547277937,
+        "micro_recall": 0.7389221556886227,
+        "macro_f1": 0.8049575994781474,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.8049575994781474,
+            "precision": 0.8839541547277937,
+            "recall": 0.7389221556886227
+          }
+        ]
+      }
+    ],
+    "timestamp": "2026-09-24T11:42:28.363041"
+  }
+]
