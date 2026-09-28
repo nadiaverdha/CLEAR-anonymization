@@ -56,6 +56,19 @@ def make_relation_dataset(dataset_name, examples, task):
     return dataset
 
 
+def conll_to_sentences(dataset) -> list[dict]:
+    return [
+        {
+            "doc_id": s.doc_id,
+            "sent_id": sent.sent_id,
+            "text": sent.text,
+            "entities": list(sent.labels),
+        }
+        for s in dataset.samples
+        for sent in s.sentences
+    ]
+
+
 @dataclass
 class DataSplit:
     """Sampled, train/eval/dev-split data ready for a learning phase."""
@@ -64,10 +77,12 @@ class DataSplit:
     train: list
     eval: list
     dev: list
+    test: list
     counter_examples: list
     selected_classes: set
     n_train_docs: int
     n_eval_docs: int
+    n_dev_docs: int
     n_test_docs: int
 
 
@@ -86,6 +101,7 @@ class BenchmarkRun:
     iteration_metrics: list
     batch_test_metrics: list
     eval_results: Any
+    test_eval_results: Any
     t_learn: float
     t_eval: float
     rules: list
@@ -98,16 +114,20 @@ def prepare_split(
     *,
     name: str,
     train_dir: str,
+    dev_dir: str | None = None,
     test_dir: str | None = None,
     classes: str | None = None,
     fallback_dev: list | None = None,
+    fallback_test: list | None = None,
 ) -> DataSplit:
     """Load and sample one dataset into a DataSplit ready for training."""
     print(f"\nLoading {name} dataset...")
 
     train_all = load_ner_dataset_from_conll(train_dir)
 
-    dev_all = load_ner_dataset_from_conll(test_dir) if test_dir else None
+    dev_all = load_ner_dataset_from_conll(dev_dir) if dev_dir else None
+
+    test_all = load_ner_dataset_from_conll(test_dir) if test_dir else None
 
     class_list = [c.strip() for c in classes.split(",")] if classes else None
 
@@ -128,29 +148,35 @@ def prepare_split(
     )
 
     if dev_all:
-        dev = [
-            {
-                "doc_id": s.doc_id,
-                "sent_id": sent.sent_id,
-                "text": sent.text,
-                "entities": [l for l in sent.labels],
-            }
-            for s in dev_all.samples
-            for sent in s.sentences
-        ]
-        n_test_docs = len(dev_all.samples)
-        dev_label = f"{n_test_docs} source docs"
+        dev = conll_to_sentences(dev_all)
+        n_dev_docs = len(dev_all.samples)
+        dev_label = f"{n_dev_docs} source docs"
     elif fallback_dev is not None:
         dev = fallback_dev
-        n_test_docs = len(dev)
+        n_dev_docs = len({s["doc_id"] for s in dev})
         dev_label = "reusing phase 1 dev"
     else:
-        raise ValueError(f"prepare_split({name!r}): provide test_dir or fallback_dev")
+        raise ValueError(f"prepare_split({name!r}): provide dev_dir or fallback_dev")
+
+    if test_all:
+        test = conll_to_sentences(test_all)
+        n_test_docs = len(test_all.samples)
+        test_label = f"{n_test_docs} source docs"
+    elif fallback_test is not None:
+        test = fallback_test
+        n_test_docs = len({s["doc_id"] for s in test})
+        test_label = "reusing phase 1 test"
+    else:
+        raise ValueError(f"prepare_split({name!r}): provide test_dir or fallback_test")
 
     print(f"{'─' * 70}")
-    print(f"Source docs — train: {len(train_all.samples)}, dev: {dev_label}")
+    print(
+        f"Source docs — train: {len(train_all.samples)}, dev: {dev_label}, test: {test_label}"
+    )
     print(f"Sampled     — train docs: {n_train_docs}, eval docs: {n_eval_docs}")
-    print(f"Sentences   — train: {len(train)}, eval: {len(eval_)}, dev: {len(dev)}")
+    print(
+        f"Sentences   — train: {len(train)}, eval: {len(eval_)}, dev: {len(dev)}, test: {len(test)}"
+    )
     print_distribution(train, "TRAIN", fn=label_distribution_sent)
     print_distribution(eval_, "EVAL", fn=label_distribution_sent)
     print(
@@ -163,10 +189,12 @@ def prepare_split(
         train=train,
         eval=eval_,
         dev=dev,
+        test=test,
         counter_examples=counter_examples,
         selected_classes=selected_classes,
         n_train_docs=n_train_docs,
         n_eval_docs=n_eval_docs,
+        n_dev_docs=n_dev_docs,
         n_test_docs=n_test_docs,
     )
 

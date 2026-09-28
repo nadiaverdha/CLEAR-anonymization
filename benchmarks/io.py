@@ -71,6 +71,8 @@ def save_results(output_path: Path, run: BenchmarkRun):
             "max_samples": args.max_samples,
             "max_iterations": args.max_iterations,
             "seed": args.seed,
+            "dev_dir": args.dev_dir,
+            "test_dir": args.test_dir,
             "train_size": run.train_size,
             "eval_size": run.eval_size,
             "test_size": run.test_size,
@@ -124,6 +126,25 @@ def save_results(output_path: Path, run: BenchmarkRun):
         ],
         "iteration_metrics": run.iteration_metrics,
         "batch_test_metrics": run.batch_test_metrics,
+        "results_test": {
+            "accuracy": run.test_eval_results.exact_match,
+            "micro_precision": run.test_eval_results.micro_precision,
+            "micro_recall": run.test_eval_results.micro_recall,
+            "micro_f1": run.test_eval_results.micro_f1,
+            "macro_f1": run.test_eval_results.macro_f1,
+        },
+        "per_class_test": [
+            {
+                "label": cm.label,
+                "precision": cm.precision,
+                "recall": cm.recall,
+                "f1": cm.f1,
+                "tp": cm.tp,
+                "fp": cm.fp,
+                "fn": cm.fn,
+            }
+            for cm in (run.test_eval_results.per_class or [])
+        ],
         "rules": [
             {
                 "id": r.id,
