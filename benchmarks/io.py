@@ -101,7 +101,7 @@ def save_results(output_path: Path, run: BenchmarkRun):
             "refine_every": args.refine_every,
         },
         "metadata": run.metadata,
-        "results": {
+        "results_dev": {
             "accuracy": run.eval_results.exact_match,
             "micro_precision": run.eval_results.micro_precision,
             "micro_recall": run.eval_results.micro_recall,
@@ -112,7 +112,7 @@ def save_results(output_path: Path, run: BenchmarkRun):
             "eval_time_s": round(run.t_eval, 3),
             "per_query_ms": round(run.t_eval / len(run.test_data) * 1000, 2),
         },
-        "per_class": [
+        "per_class_dev": [
             {
                 "label": cm.label,
                 "precision": cm.precision,
@@ -197,7 +197,7 @@ def setup_output_paths(args, selected_classes):
         output_dir.mkdir(parents=True, exist_ok=True)
 
     out_name = Path(args.output)
-    if args.rules_json or getattr(args, "feedback", None):
+    if args.rules_json:
         out_name = out_name.with_stem(out_name.stem + "_refined")
 
     log_path = (output_dir / out_name).with_suffix(".training.jsonl")
@@ -212,11 +212,7 @@ def setup_output_paths(args, selected_classes):
     )
     print(f"Training log: {log_path}")
 
-    config_name = (
-        "config_refined.yaml"
-        if (args.rules_json or getattr(args, "feedback", None))
-        else "config.yaml"
-    )
+    config_name = "config_refined.yaml" if (args.rules_json) else "config.yaml"
     config_path = output_dir / config_name
     config_dict = {
         k.replace("_", "-"): v for k, v in vars(args).items() if k not in ("config",)

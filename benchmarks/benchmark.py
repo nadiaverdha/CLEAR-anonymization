@@ -45,7 +45,6 @@ def _synthesis_step(args, phase, start_batch=0):
         phase=phase,
         synthesis_strategy=args.synthesis_strategy,
         seed=args.seed,
-        prune_with_refine=args.prune_with_refine,
         holdout_fraction=args.holdout_fraction,
         split_seed=args.seed,
     )
@@ -73,7 +72,7 @@ def _run_phase(
     print_results(run)
     results = save_results(output_path, run)
     if not args.no_mdreport:
-        md_path = output_path.with_suffix(".rules_report.md")
+        md_path = output_path.with_suffix(".rules_report_dev.md")
         create_md_report(
             md_path,
             apply_rules_fn=ctx.learner.learner._apply_rules,
@@ -81,6 +80,19 @@ def _run_phase(
             test_dataset=ctx.dev_dataset,
             results_folder=output_dir,
             title=report_title,
+        )
+        md_path_test = output_path.with_suffix(".rules_report_test.md")
+        create_md_report(
+            md_path_test,
+            apply_rules_fn=ctx.learner.learner._apply_rules,
+            run=replace(
+                run,
+                test_size=ctx.split.n_test_docs,
+                test_annotations=len(ctx.split.test),
+            ),
+            test_dataset=ctx.test_dataset,
+            results_folder=output_dir,
+            title=f"{report_title} (TEST)",
         )
     plot_single(results, label=plot_label, output_path=plot_output_path)
     return ctx, results
@@ -96,6 +108,7 @@ def run_benchmark(args):
         args,
         name=args.train_name,
         train_dir=args.train_dir,
+        dev_dir=args.dev_dir,
         test_dir=args.test_dir,
         classes=args.classes,
     )
@@ -124,6 +137,7 @@ def run_benchmark(args):
         )
 
     checkpoint_path = output_dir / CHECKPOINT_FILE
+    run_suffix = "_refined" if args.rules_json else ""
 
     # 3. Phase 1
     phase1_history = []
@@ -138,7 +152,7 @@ def run_benchmark(args):
         )
         results = json.loads(phase1_path.read_text())
         phase1_rules = deserialize_rules(results["rules"])
-        phase1_history_path = output_dir / "phase1_history.json"
+        phase1_history_path = output_dir / f"phase1_history{run_suffix}.json"
         if phase1_history_path.exists():
             phase1_history = json.loads(phase1_history_path.read_text())
     else:
@@ -189,7 +203,6 @@ def run_benchmark(args):
 
         steps.append(EvaluationStep())
 
-        plot_suffix = "_refined" if (args.rules_json or args.feedback) else ""
         ctx, results = _run_phase(
             ctx,
             steps,
@@ -200,13 +213,14 @@ def run_benchmark(args):
                 test_data=split.dev,
                 train_size=split.n_train_docs,
                 eval_size=split.n_eval_docs,
-                test_size=split.n_test_docs,
+                test_size=split.n_dev_docs,
                 train_annotations=len(split.train),
                 eval_annotations=len(split.eval),
                 test_annotations=len(split.dev),
                 iteration_metrics=c.iteration_metrics,
                 batch_test_metrics=c.batch_metrics,
                 eval_results=c.eval_results,
+                test_eval_results=c.test_eval_results,
                 t_learn=c.t_learn,
                 t_eval=c.t_eval,
                 rules=c.rules,
@@ -222,11 +236,11 @@ def run_benchmark(args):
             args,
             f"Rule Evaluation Report — {args.model}",
             f"phase1 {args.dataset_name}",
-            output_dir / f"phase1_{args.dataset_name}{plot_suffix}.png",
+            output_dir / f"phase1_{args.dataset_name}{run_suffix}.png",
         )
         phase1_rules = ctx.rules
         phase1_history = ctx.history
-        (output_dir / "phase1_history.json").write_text(
+        (output_dir / f"phase1_history{run_suffix}.json").write_text(
             json.dumps(phase1_history, indent=2)
         )
 
@@ -244,9 +258,11 @@ def run_benchmark(args):
             args,
             name=args.transfer_name,
             train_dir=args.transfer_train_dir,
+            dev_dir=args.transfer_dev_dir,
             test_dir=args.transfer_test_dir,
             classes=transfer_classes,
-            fallback_dev=split.dev if not args.transfer_test_dir else None,
+            fallback_dev=split.dev if not args.transfer_dev_dir else None,
+            fallback_test=split.test if not args.transfer_test_dir else None,
         )
         seed_rule_count = len(phase1_rules)
         t_start_batch = 0
@@ -283,6 +299,9 @@ def run_benchmark(args):
 
         transfer_args = copy.copy(args)
         transfer_args.dataset_name = args.transfer_name
+        transfer_args.dev_dir = args.transfer_dev_dir or args.dev_dir
+        transfer_args.test_dir = args.transfer_test_dir or args.test_dir
+
         transfer_ctx, transfer_results = _run_phase(
             transfer_ctx,
             t_steps,
@@ -293,13 +312,14 @@ def run_benchmark(args):
                 test_data=transfer.dev,
                 train_size=split.n_train_docs + transfer.n_train_docs,
                 eval_size=split.n_eval_docs + transfer.n_eval_docs,
-                test_size=transfer.n_test_docs,
+                test_size=transfer.n_dev_docs,
                 train_annotations=len(split.train) + len(transfer.train),
                 eval_annotations=len(split.eval) + len(transfer.eval),
                 test_annotations=len(transfer.dev),
                 iteration_metrics=c.iteration_metrics,
                 batch_test_metrics=c.batch_metrics,
                 eval_results=c.eval_results,
+                test_eval_results=c.test_eval_results,
                 t_learn=c.t_learn,
                 t_eval=c.t_eval,
                 rules=c.rules,
@@ -336,7 +356,6 @@ def run_benchmark(args):
     phases = [args.dataset_name]
     if args.transfer_train_dir:
         phases.append(args.transfer_name)
-    run_suffix = "_refined" if (args.rules_json or args.feedback) else ""
     summary_path = output_dir / f"session_summary{run_suffix}.json"
     summary_path.write_text(
         json.dumps(
@@ -363,6 +382,7 @@ def main():
     # ── Phase 1 dataset ───────────────────────────────────────
     parser.add_argument("--train-dir", type=str)
     parser.add_argument("--test-dir", type=str)
+    parser.add_argument("--dev-dir", type=str)
     parser.add_argument("--dataset-name", type=str, default=None)
     parser.add_argument("--train-name", type=str, default="findok")
     parser.add_argument("--test-name", type=str, default="findok")
@@ -371,6 +391,7 @@ def main():
     # ── Transfer phase ────────────────────────────────────────
     parser.add_argument("--transfer-train-dir", type=str, default=None)
     parser.add_argument("--transfer-test-dir", type=str, default=None)
+    parser.add_argument("--transfer-dev-dir", type=str, default=None)
     parser.add_argument("--transfer-name", type=str, default=None)
     parser.add_argument("--transfer-test-name", type=str, default=None)
     parser.add_argument("--transfer-classes", type=str, default=None)
@@ -406,11 +427,6 @@ def main():
     parser.add_argument("--agentic", action="store_true")
     parser.add_argument("--enable-prune", action="store_true")
     parser.add_argument("--audit-interval", type=int, default=0)
-    parser.add_argument(
-        "--prune-with-refine",
-        action="store_true",
-        help=("Only run the per-batch prune audit (enable-prune) on batches "),
-    )
     parser.add_argument("--enable-critic", action="store_true")
     parser.add_argument("--critic-interval", type=int, default=0)
     parser.add_argument("--no-grex", action="store_true")
@@ -448,6 +464,40 @@ def main():
         parser.set_defaults(**{k.replace("-", "_"): v for k, v in config_args.items()})
 
     args = parser.parse_args()
+    if not args.dev_dir:
+        parser.error(
+            "--dev-dir is required. Note: in configs before 2026-09-28, "
+            "'test-dir' meant the DEV set — rename it to 'dev-dir'."
+        )
+    if not args.test_dir:
+        parser.error("--test-dir (held-out test set) is required.")
+    if Path(args.dev_dir).resolve() == Path(args.test_dir).resolve():
+        parser.error("--dev-dir and --test-dir point to the same file.")
+    if (
+        args.transfer_dev_dir
+        and args.transfer_test_dir
+        and Path(args.transfer_dev_dir).resolve()
+        == Path(args.transfer_test_dir).resolve()
+    ):
+        parser.error(
+            "--transfer-dev-dir and --transfer-test-dir point to the same file."
+        )
+
+    if args.feedback:
+        if not args.rules_json:
+            parser.error(
+                "--feedback requires --rules-json (feedback refines pre-learned rules)."
+            )
+        if not args.skip_synthesis:
+            parser.error(
+                "--feedback requires --skip-synthesis (otherwise feedback is ignored)."
+            )
+        if args.max_iterations > 0:
+            print(
+                f"--feedback: setting max-iterations {args.max_iterations} → 0 (feedback only, no refinement)"
+            )
+            args.max_iterations = 0
+
     run_benchmark(args)
 
 

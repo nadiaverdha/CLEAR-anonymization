@@ -87,6 +87,17 @@ def evaluate_excluding_frequent_entities(
     )
 
 
+# added helper function
+def _print_scores(title, r):
+    print(f"{title}:")
+    print(f"Accuracy (exact match):   {r.exact_match:.1%}")
+    print(f"Micro Precision:          {r.micro_precision:.1%}")
+    print(f"Micro Recall:             {r.micro_recall:.1%}")
+    print(f"Micro F1:                 {r.micro_f1:.1%}")
+    print(f"Macro F1:                 {r.macro_f1:.1%}")
+    print()
+
+
 def print_results(run: BenchmarkRun):
     args = run.args
     # 9. Print results
@@ -96,7 +107,7 @@ def print_results(run: BenchmarkRun):
     print("Configuration:")
     print(f"Shots per class:          {args.shots}")
     print(f"Training examples:        {len(run.train_data)} ")
-    print(f"Test examples:            {len(run.test_data)}")
+    print(f"Dev examples:            {len(run.test_data)}")
     print(f"Model:                    {args.model}")
     print(f"Max rules:                {args.max_rules}")
     print(f"Max samples in prompt:    {args.max_samples}")
@@ -104,13 +115,20 @@ def print_results(run: BenchmarkRun):
     print(f"Seed:                     {args.seed}")
     print()
 
-    print("Results:")
+    print("Dev Results:")
     print(f"Accuracy (exact match):   {run.eval_results.exact_match:.1%}")
 
     print(f"Micro Precision:          {run.eval_results.micro_precision:.1%}")
     print(f"Micro Recall:             {run.eval_results.micro_recall:.1%}")
     print(f"Micro F1:                 {run.eval_results.micro_f1:.1%}")
     print(f"Macro F1:                 {run.eval_results.macro_f1:.1%}")
+    print()
+    print("Test results:")
+    print(f"Accuracy (exact match):   {run.test_eval_results.exact_match:.1%}")
+    print(f"Micro Precision:          {run.test_eval_results.micro_precision:.1%}")
+    print(f"Micro Recall:             {run.test_eval_results.micro_recall:.1%}")
+    print(f"Micro F1:                 {run.test_eval_results.micro_f1:.1%}")
+    print(f"Macro F1:                 {run.test_eval_results.macro_f1:.1%}")
     print()
     print("Timing:")
     print(f"Learning:                 {run.t_learn:.1f}s")

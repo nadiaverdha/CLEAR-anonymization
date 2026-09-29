@@ -484,6 +484,7 @@ def main():
         iteration_metrics=[],
         batch_test_metrics=[],
         eval_results=None,
+        test_eval_results=None,
         t_learn=0.0,
         t_eval=0.0,
         selected_classes=config.get("selected_classes", []),

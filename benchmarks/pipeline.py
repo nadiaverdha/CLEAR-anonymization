@@ -23,6 +23,7 @@ class StepContext:
     learner: NERLearner
     eval_dataset: Dataset
     dev_dataset: Dataset
+    test_dataset: Dataset
     batch_metrics: list = field(default_factory=list)
     iteration_metrics: list = field(default_factory=list)
     best_rules: list = field(default_factory=list)
@@ -31,6 +32,7 @@ class StepContext:
     t_learn: float = 0.0
     t_eval: float = 0.0
     eval_results: Any = None
+    test_eval_results: Any = None
     rules_snapshot: list = field(default_factory=list)
     history: list = field(default_factory=list)
     checkpoint_path: Path | None = None
@@ -88,6 +90,7 @@ class SynthesisStep(Step):
         iteration_metrics = list(ctx.iteration_metrics)
         rules_snapshot = list(ctx.rules_snapshot)
         on_iteration = make_oniteration_callback(iteration_metrics)
+
         best = {
             "f1": ctx.best_f1,
             "rules": list(ctx.best_rules) if ctx.best_rules else [],
@@ -97,8 +100,14 @@ class SynthesisStep(Step):
         def on_batch(batch_idx, rules):
             rules_snapshot.append({"batch": batch_idx, "rules": serialize_rules(rules)})
             result, _ = evaluate_test(ctx.dev_dataset, rules, ctx.learner)
+            test_result, _ = evaluate_test(ctx.test_dataset, rules, ctx.learner)
             batch_metrics.append(
-                {"batch": batch_idx, "num_rules": len(rules), **eval_metrics(result)}
+                {
+                    "batch": batch_idx,
+                    "num_rules": len(rules),
+                    "dev": eval_metrics(result),
+                    "test": eval_metrics(test_result),
+                }
             )
             if result.micro_f1 > best["f1"]:
                 best["f1"] = result.micro_f1
@@ -107,6 +116,8 @@ class SynthesisStep(Step):
             print(
                 f"  [batch {batch_idx}] dev micro_f1={result.micro_f1:.3f}"
                 f"  P={result.micro_precision:.3f}  R={result.micro_recall:.3f}"
+                f"  | test micro_f1={test_result.micro_f1:.3f}"
+                f"  P={test_result.micro_precision:.3f}  R={test_result.micro_recall:.3f}",
             )
             if ctx.checkpoint_path:
                 save_checkpoint(
@@ -157,6 +168,8 @@ class SynthesisStep(Step):
             "phase": "train",
             "dataset": ctx.split.name,
             "num_rules": len(rules),
+            "best_batch_idx": best["batch_idx"],
+            "best_dev_f1": best["f1"],
             "t_learn": round(ctx.t_learn + new_t_learn, 1),
             "timestamp": datetime.now().isoformat(),
             "num_train_docs": len(ctx.split.train),
@@ -210,6 +223,8 @@ class RefinementStep(Step):
             "phase": "refine",
             "dataset": ctx.split.name,
             "num_rules": len(rules),
+            "best_batch_idx": ctx.best_batch_idx,
+            "best_dev_f1": ctx.best_f1,
             "micro_f1": refine_eval.micro_f1 if refine_eval else None,
             "micro_precision": refine_eval.micro_precision if refine_eval else None,
             "micro_recall": refine_eval.micro_recall if refine_eval else None,
@@ -248,8 +263,29 @@ class FeedbackStep(Step):
 
 class EvaluationStep(Step):
     def run(self, ctx: StepContext) -> StepContext:
-        eval_results, t_eval = evaluate_test(ctx.dev_dataset, ctx.rules, ctx.learner)
-        return replace(ctx, eval_results=eval_results, t_eval=t_eval)
+        dev_eval_results, t_eval_dev = evaluate_test(
+            ctx.dev_dataset, ctx.rules, ctx.learner
+        )
+        test_eval_results, t_eval_test = evaluate_test(
+            ctx.test_dataset, ctx.rules, ctx.learner
+        )
+        history_entry = {
+            "phase": "evaluate",
+            "dataset": ctx.split.name,
+            "num_rules": len(ctx.rules),
+            "dev": eval_metrics(dev_eval_results),
+            "test": eval_metrics(test_eval_results),
+            "t_eval_dev": round(t_eval_dev, 3),
+            "t_eval_test": round(t_eval_test, 3),
+            "timestamp": datetime.now().isoformat(),
+        }
+        return replace(
+            ctx,
+            history=ctx.history + [history_entry],
+            eval_results=dev_eval_results,
+            test_eval_results=test_eval_results,
+            t_eval=t_eval_dev,
+        )
 
 
 def build_context(
@@ -282,11 +318,13 @@ def build_context(
     )
     eval_dataset = make_dataset(f"{split.name}_eval", split.eval, learner.task)
     dev_dataset = make_dataset(f"{split.name}_dev", split.dev, learner.task)
+    test_dataset = make_dataset(f"{split.name}_test", split.test, learner.task)
     return StepContext(
         rules=rules or [],
         split=split,
         learner=learner,
         eval_dataset=eval_dataset,
         dev_dataset=dev_dataset,
+        test_dataset=test_dataset,
         checkpoint_path=checkpoint_path,
     )
