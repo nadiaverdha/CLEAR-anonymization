@@ -486,11 +486,11 @@ def main():
     if args.feedback:
         if not args.rules_json:
             parser.error(
-                "--feedback requires --rules-json (feedback refines pre-learned rules)."
+                "--feedback requires --rules-json (feedback is added on top to improve the provided rules)."
             )
         if not args.skip_synthesis:
             parser.error(
-                "--feedback requires --skip-synthesis (otherwise feedback is ignored)."
+                "--feedback requires --skip-synthesis."
             )
         if args.max_iterations > 0:
             print(
