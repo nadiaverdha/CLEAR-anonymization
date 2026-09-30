@@ -163,8 +163,7 @@ class NERLearner(RuleChef):
             # current batch should see its own examples but also some previous ones for the full picture
             # old self.dataset.examples.clear()
             if self.dataset.rules:
-                MAX_EXAMPLES = 200
-                # MAX_EXAMPLES = batch_size * 2
+                MAX_EXAMPLES = batch_size * 2
                 if len(self.dataset.examples) > MAX_EXAMPLES:
                     self.dataset.examples = self.dataset.examples[-MAX_EXAMPLES:]
             else:
