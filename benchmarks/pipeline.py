@@ -8,10 +8,18 @@ from typing import Any
 
 from rulechef.core import Dataset
 
-from benchmarks.data import BenchmarkRun, DataSplit, load_human_feedback, make_dataset
+from benchmarks.data import (
+    BenchmarkRun,
+    DataSplit,
+    _n_annotations,
+    load_human_feedback,
+    make_dataset,
+    make_relation_dataset,
+)
 from benchmarks.io import save_checkpoint, serialize_rules
 from benchmarks.reporting import eval_metrics, evaluate_test, make_oniteration_callback
 from clear_anonymization.models.nerlearner import NERLearner
+from clear_anonymization.models.relationlearner import RelationLearner
 
 CHECKPOINT_FILE = "checkpoint.json"
 
@@ -176,8 +184,8 @@ class SynthesisStep(Step):
             "num_eval_docs": ctx.split.n_eval_docs,
             "num_train_sentences": len(ctx.split.train),
             "num_eval_sentences": len(ctx.split.eval),
-            "num_train_annotations": sum(len(s["entities"]) for s in ctx.split.train),
-            "num_eval_annotations": sum(len(s["entities"]) for s in ctx.split.eval),
+            "num_train_annotations": _n_annotations(ctx.split.train),
+            "num_eval_annotations": _n_annotations(ctx.split.eval),
             "batch_metrics": batch_metrics,
             "iteration_metrics": iteration_metrics,
             "rules_snapshot": rules_snapshot,
@@ -298,29 +306,61 @@ def build_context(
     logger=None,
     rules: list | None = None,
 ) -> StepContext:
-    learner = NERLearner(
-        model=args.model,
-        dataset_name=split.name,
-        base_url=args.base_url,
-        use_grex=not args.no_grex,
-        max_rules=args.max_rules,
-        max_samples=args.max_samples,
-        max_counter_examples=args.max_counter_examples,
-        agentic=args.agentic,
-        enable_prune=args.enable_prune,
-        audit_interval=args.audit_interval,
-        enable_critic=args.enable_critic,
-        critic_interval=args.critic_interval,
-        logger=logger,
-        storage_path=storage_dir,
-        sampling_strategy=args.sampling_strategy,
-        synthesis_strategy=args.synthesis_strategy,
-        selected_classes=list(split.selected_classes),
-        rule_format=args.format,
-    )
-    eval_dataset = make_dataset(f"{split.name}_eval", split.eval, learner.task)
-    dev_dataset = make_dataset(f"{split.name}_dev", split.dev, learner.task)
-    test_dataset = make_dataset(f"{split.name}_test", split.test, learner.task)
+    if getattr(args, "task", "ner") == "relation":
+        learner = RelationLearner(
+            model=args.model,
+            dataset_name=split.name,
+            base_url=args.base_url,
+            use_grex=not args.no_grex,
+            max_rules=args.max_rules,
+            max_samples=args.max_samples,
+            max_counter_examples=args.max_counter_examples,
+            agentic=args.agentic,
+            enable_prune=args.enable_prune,
+            audit_interval=args.audit_interval,
+            enable_critic=args.enable_critic,
+            critic_interval=args.critic_interval,
+            logger=logger,
+            storage_path=storage_dir,
+            sampling_strategy=args.sampling_strategy,
+            synthesis_strategy=args.synthesis_strategy,
+            selected_classes=list(split.selected_classes),
+            rule_format=args.format,
+        )
+        eval_dataset = make_relation_dataset(
+            f"{split.name}_eval", split.eval, learner.task
+        )
+        dev_dataset = make_relation_dataset(
+            f"{split.name}_dev", split.dev, learner.task
+        )
+        test_dataset = make_relation_dataset(
+            f"{split.name}_test", split.test, learner.task
+        )
+
+    else:
+        learner = NERLearner(
+            model=args.model,
+            dataset_name=split.name,
+            base_url=args.base_url,
+            use_grex=not args.no_grex,
+            max_rules=args.max_rules,
+            max_samples=args.max_samples,
+            max_counter_examples=args.max_counter_examples,
+            agentic=args.agentic,
+            enable_prune=args.enable_prune,
+            audit_interval=args.audit_interval,
+            enable_critic=args.enable_critic,
+            critic_interval=args.critic_interval,
+            logger=logger,
+            storage_path=storage_dir,
+            sampling_strategy=args.sampling_strategy,
+            synthesis_strategy=args.synthesis_strategy,
+            selected_classes=list(split.selected_classes),
+            rule_format=args.format,
+        )
+        eval_dataset = make_dataset(f"{split.name}_eval", split.eval, learner.task)
+        dev_dataset = make_dataset(f"{split.name}_dev", split.dev, learner.task)
+        test_dataset = make_dataset(f"{split.name}_test", split.test, learner.task)
     return StepContext(
         rules=rules or [],
         split=split,

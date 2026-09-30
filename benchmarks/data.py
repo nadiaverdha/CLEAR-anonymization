@@ -10,11 +10,15 @@ from rulechef.core import Correction, Dataset, Example, Feedback, Rule, RuleForm
 from rulechef.training_logger import TrainingDataLogger
 
 from clear_anonymization.ner_datasets import load_ner_dataset_from_conll
+from clear_anonymization.ner_datasets.util import build_relation_examples
 from clear_anonymization.preprocess.create_train_dev_split import (
     label_distribution_sent,
     print_distribution,
 )
-from clear_anonymization.preprocess.sampling import sample_few_shot
+from clear_anonymization.preprocess.sampling import (
+    sample_few_shot,
+    sample_relation_stratified,
+)
 
 
 def make_dataset(dataset_name, data, task):
@@ -54,6 +58,10 @@ def make_relation_dataset(dataset_name, examples, task):
             )
         )
     return dataset
+
+
+def _n_annotations(examples):
+    return sum(len(s["entities"]) if "entities" in s else 1 for s in examples)
 
 
 def conll_to_sentences(dataset) -> list[dict]:
@@ -198,6 +206,68 @@ def prepare_split(
         n_eval_docs=n_eval_docs,
         n_dev_docs=n_dev_docs,
         n_test_docs=n_test_docs,
+    )
+
+
+def prepare_relation_split(
+    args,
+    *,
+    name: str,
+    train_dir: str,
+    dev_dir: str | None = None,
+    test_dir: str | None = None,
+    classes: str | None = None,
+    fallback_dev: list | None = None,
+    fallback_test: list | None = None,
+) -> DataSplit:
+
+    print(f"\nLoading {name} relation dataset...")
+    print(f"\nLoading {name} dataset...")
+
+    train_all = load_ner_dataset_from_conll(train_dir)
+
+    dev_all = load_ner_dataset_from_conll(dev_dir) if dev_dir else None
+
+    test_all = load_ner_dataset_from_conll(test_dir) if test_dir else None
+
+    class_list = [c.strip() for c in classes.split(",")] if classes else None
+
+    train, eval_, labels = sample_relation_stratified(
+        train_data=train_all.samples,
+        shots_per_class=args.shots,
+        seed=args.seed,
+        num_classes=args.num_classes,
+        classes=class_list,
+    )
+
+    def _examples(dataset):
+        return [
+            ex
+            for doc in dataset.samples
+            for ex in build_relation_examples(doc)
+            if ex["label"] in labels
+        ]
+
+    dev, test = _examples(dev_all), _examples(test_all)
+    print(f"{'─' * 70}")
+    print(f"Source docs — train: {len(train_all.samples)}")
+    print(
+        f"Sentences   — train: {len(train)}, eval: {len(eval_)}, dev: {len(dev)}, test: {len(test)}"
+    )
+    print(f"{'─' * 70}")
+
+    return DataSplit(
+        name=name,
+        train=train,
+        eval=eval_,
+        dev=dev,
+        test=test,
+        counter_examples=[],
+        selected_classes=labels,
+        n_train_docs=len({e["doc_id"] for e in train}),
+        n_eval_docs=len({e["doc_id"] for e in eval_}),
+        n_dev_docs=len(dev_all.samples),
+        n_test_docs=len(test_all.samples),
     )
 
 

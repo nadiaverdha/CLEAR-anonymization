@@ -9,7 +9,10 @@ from pathlib import Path
 import yaml
 
 from benchmarks.create_md_report_rules import create_md_report
-from benchmarks.data import BenchmarkRun, prepare_split
+from benchmarks.create_md_report_rules_relations import (
+    create_md_report as create_md_report_relations,
+)
+from benchmarks.data import BenchmarkRun, prepare_relation_split, prepare_split
 from benchmarks.io import (
     deserialize_rules,
     load_checkpoint,
@@ -27,7 +30,7 @@ from benchmarks.pipeline import (
     SynthesisStep,
     build_context,
 )
-from benchmarks.plot_metrics import plot_combined, plot_single, plot_by_sentences
+from benchmarks.plot_metrics import plot_by_sentences, plot_combined, plot_single
 from benchmarks.reporting import (
     print_per_class_breakdown,
     print_results,
@@ -72,8 +75,12 @@ def _run_phase(
     print_results(run)
     results = save_results(output_path, run)
     if not args.no_mdreport:
+        report_fn = (
+            create_md_report_relations if args.task == "relation" else create_md_report
+        )
+
         md_path = output_path.with_suffix(".rules_report_dev.md")
-        create_md_report(
+        report_fn(
             md_path,
             apply_rules_fn=ctx.learner.learner._apply_rules,
             run=run,
@@ -82,7 +89,7 @@ def _run_phase(
             title=report_title,
         )
         md_path_test = output_path.with_suffix(".rules_report_test.md")
-        create_md_report(
+        report_fn(
             md_path_test,
             apply_rules_fn=ctx.learner.learner._apply_rules,
             run=replace(
@@ -107,9 +114,9 @@ def _run_phase(
 
 
 def run_benchmark(args):
-
+    split_fn = prepare_relation_split if args.task == "relation" else prepare_split
     # 1. Load phase 1 data
-    split = prepare_split(
+    split = split_fn(
         args,
         name=args.train_name,
         train_dir=args.train_dir,
@@ -427,6 +434,7 @@ def main():
     parser.add_argument(
         "--format", type=str, default="regex", choices=["regex", "code", "spacy"]
     )
+    parser.add_argument("--task", choices=["ner", "relation"], default="ner")
     parser.add_argument("--max-rules", type=int, default=10)
     parser.add_argument("--max-samples", type=int, default=50)
     parser.add_argument("--max-counter-examples", type=int, default=10)
