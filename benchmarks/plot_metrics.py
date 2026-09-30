@@ -23,7 +23,9 @@ def _get(m, key, split="dev"):
     return m[key] if split == "dev" else None
 
 
-def _plot_ax(ax, metrics, title="Batch Metrics", xlabel="Batch", split="dev"):
+def _plot_ax(
+    ax, metrics, title="Batch Metrics", xlabel="Batch", split="dev", batch_size=None
+):
     if not metrics or len(metrics) <= 1 or (split != "dev" and split not in metrics[0]):
         ax.text(
             0.5,
@@ -35,11 +37,15 @@ def _plot_ax(ax, metrics, title="Batch Metrics", xlabel="Batch", split="dev"):
         )
         ax.set_title(title)
         return
-    steps = (
-        [m["batch"] for m in metrics]
-        if xlabel == "Batch"
-        else list(range(len(metrics)))
-    )
+    if batch_size:
+        steps = [
+            (m["batch"] + 1) * batch_size for m in metrics
+        ]  # for the sentence plot
+    elif xlabel == "Batch":
+        steps = [m["batch"] for m in metrics]  # for the batch plot
+    else:
+        steps = list(range(len(metrics)))
+
     ax.plot(
         steps,
         [_get(m, "micro_f1", split) for m in metrics],
@@ -99,6 +105,41 @@ def plot_single(data: dict, label: str, output_path: Path | None = None):
         xlabel="Iteration",
     )
 
+    plt.tight_layout()
+    if output_path:
+        plt.savefig(output_path, dpi=150, bbox_inches="tight")
+        print(f"Saved to {output_path}")
+    else:
+        plt.show()
+    plt.close(fig)
+
+
+def plot_by_sentences(data: dict, label: str, output_path: Path | None = None):
+    config = data.get("config", {})
+    model = config.get("model", "")
+    batch_size = config.get("batch_size", "")
+    if not batch_size:
+        print("No batch size in config, skipping sentences plot")
+        return
+    fig, axes = plt.subplots(1, 2, figsize=(14, 5))
+    fig.suptitle(f"{label} — {model}", fontsize=11)
+
+    _plot_ax(
+        axes[0],
+        data.get("batch_test_metrics", []),
+        title="Metrics by sentences (dev set)",
+        xlabel="Training sentences",
+        split="dev",
+        batch_size=batch_size,
+    )
+    _plot_ax(
+        axes[1],
+        data.get("batch_test_metrics", []),
+        title="Metrics by sentences (test set)",
+        xlabel="Training sentences",
+        split="test",
+        batch_size=batch_size,
+    )
     plt.tight_layout()
     if output_path:
         plt.savefig(output_path, dpi=150, bbox_inches="tight")
@@ -216,6 +257,11 @@ def main():
         phase1_data,
         label=f"phase1 ({phase1_data.get('config', {}).get('dataset_name', '')})",
         output_path=Path(f"{parent}/phase1.png"),
+    )
+    plot_by_sentences(
+        phase1_data,
+        label=f"phase1 ({phase1_data.get('config', {}).get('dataset_name', '')})",
+        output_path=Path(f"{parent}/phase1_sentences.png"),
     )
 
     if args.transfer:

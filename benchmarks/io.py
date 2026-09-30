@@ -23,6 +23,8 @@ def serialize_rules(rules) -> list:
             "priority": r.priority,
             "output_template": r.output_template,
             "output_key": r.output_key,
+            "validated_precision": r.validated_precision,
+            "validated_support": r.validated_support,
         }
         for r in rules
     ]
@@ -39,6 +41,8 @@ def deserialize_rules(rules_list: list) -> list:
             priority=r.get("priority", 5),
             output_template=r.get("output_template"),
             output_key=r.get("output_key"),
+            validated_precision=r.get("validated_precision", 0),
+            validated_support=r.get("validated_support", 0),
         )
         for r in rules_list
     ]
@@ -75,10 +79,12 @@ def save_results(output_path: Path, run: BenchmarkRun):
             "test_dir": args.test_dir,
             "train_size": run.train_size,
             "eval_size": run.eval_size,
+            "dev_size": run.dev_size,
             "test_size": run.test_size,
-            "train_annotations": run.train_annotations,
-            "eval_annotations": run.eval_annotations,
-            "test_annotations": run.test_annotations,
+            "train_sentences": run.train_sentences,
+            "eval_sentences": run.eval_sentences,
+            "dev_sentences": run.dev_sentences,
+            "test_sentences": run.test_sentences,
             "use_grex": not args.no_grex,
             "agentic": args.agentic,
             "enable_critic": args.enable_critic,

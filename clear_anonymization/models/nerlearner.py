@@ -140,7 +140,6 @@ class NERLearner(RuleChef):
         audit_interval=0,
         seed_rules=None,
         start_batch=0,
-        prune_with_refine=False,
         holdout_fraction=0.0,
         split_seed=42,
     ):
@@ -157,18 +156,15 @@ class NERLearner(RuleChef):
                 continue
             for ex in batch:
                 self.add_example({"text": ex["text"]}, {"entities": ex["entities"]})
-            should_audit = (
-                (batch_idx % refine_every == 0) if prune_with_refine else True
-            )
             batch_result = self.learn_rules(
                 run_evaluation=False,
                 incremental_only=(batch_idx > 0 or seed_rules is not None),
-                run_audit=should_audit,
             )
             # current batch should see its own examples but also some previous ones for the full picture
             # old self.dataset.examples.clear()
             if self.dataset.rules:
                 MAX_EXAMPLES = 200
+                # MAX_EXAMPLES = batch_size * 2
                 if len(self.dataset.examples) > MAX_EXAMPLES:
                     self.dataset.examples = self.dataset.examples[-MAX_EXAMPLES:]
             else:

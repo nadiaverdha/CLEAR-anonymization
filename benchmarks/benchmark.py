@@ -27,7 +27,7 @@ from benchmarks.pipeline import (
     SynthesisStep,
     build_context,
 )
-from benchmarks.plot_metrics import plot_combined, plot_single
+from benchmarks.plot_metrics import plot_combined, plot_single, plot_by_sentences
 from benchmarks.reporting import (
     print_per_class_breakdown,
     print_results,
@@ -88,13 +88,18 @@ def _run_phase(
             run=replace(
                 run,
                 test_size=ctx.split.n_test_docs,
-                test_annotations=len(ctx.split.test),
+                test_sentences=len(ctx.split.test),
             ),
             test_dataset=ctx.test_dataset,
             results_folder=output_dir,
             title=f"{report_title} (TEST)",
         )
     plot_single(results, label=plot_label, output_path=plot_output_path)
+    plot_by_sentences(
+        results,
+        label=plot_label,
+        output_path=plot_output_path.with_stem(plot_output_path.stem + "_sentences"),
+    )
     return ctx, results
 
 
@@ -171,7 +176,7 @@ def run_benchmark(args):
             args, split, storage_dir, checkpoint_path, logger, rules=seed_rules
         )
 
-        if resume_from and cp_phase == "phase1" and cp.get("best_rules"):
+        if resume_from and cp_phase == "phase1":
             ctx = replace(
                 ctx,
                 batch_metrics=cp.get("batch_metrics", []),
@@ -182,9 +187,10 @@ def run_benchmark(args):
                 t_learn=cp.get("t_learn", 0.0),
                 rules_snapshot=cp.get("rules_snapshot", []),
             )
-            print(
-                f"  Restored best rules (batch {ctx.best_batch_idx}, F1={ctx.best_f1:.3f})"
-            )
+            if ctx.best_rules:
+                print(
+                    f"  Restored best rules (batch {ctx.best_batch_idx}, F1={ctx.best_f1:.3f})"
+                )
 
         start_batch = (
             cp.get("completed_batches", 0)
@@ -213,10 +219,12 @@ def run_benchmark(args):
                 test_data=split.dev,
                 train_size=split.n_train_docs,
                 eval_size=split.n_eval_docs,
-                test_size=split.n_dev_docs,
-                train_annotations=len(split.train),
-                eval_annotations=len(split.eval),
-                test_annotations=len(split.dev),
+                dev_size=split.n_dev_docs,
+                test_size=split.n_test_docs,
+                train_sentences=len(split.train),
+                eval_sentences=len(split.eval),
+                dev_sentences=len(split.dev),
+                test_sentences=len(split.test),
                 iteration_metrics=c.iteration_metrics,
                 batch_test_metrics=c.batch_metrics,
                 eval_results=c.eval_results,
@@ -276,6 +284,9 @@ def run_benchmark(args):
             transfer_ctx = replace(
                 transfer_ctx,
                 rules=transfer_rules,
+                best_f1=cp.get("best_f1", 0.0),
+                best_rules=deserialize_rules(cp.get("best_rules", [])),
+                best_batch_idx=cp.get("best_batch_idx", -1),
                 batch_metrics=cp.get("batch_metrics", []),
                 iteration_metrics=cp.get("iteration_metrics", []),
                 t_learn=cp.get("t_learn", 0.0),
@@ -307,15 +318,17 @@ def run_benchmark(args):
             t_steps,
             lambda c: BenchmarkRun(
                 args=transfer_args,
-                train_data=split.train + transfer.train,
-                eval_data=split.eval + transfer.eval,
+                train_data=transfer.train,
+                eval_data=transfer.eval,
                 test_data=transfer.dev,
-                train_size=split.n_train_docs + transfer.n_train_docs,
-                eval_size=split.n_eval_docs + transfer.n_eval_docs,
-                test_size=transfer.n_dev_docs,
-                train_annotations=len(split.train) + len(transfer.train),
-                eval_annotations=len(split.eval) + len(transfer.eval),
-                test_annotations=len(transfer.dev),
+                train_size=transfer.n_train_docs,
+                eval_size=transfer.n_eval_docs,
+                dev_size=transfer.n_dev_docs,
+                test_size=transfer.n_test_docs,
+                train_sentences=len(transfer.train),
+                eval_sentences=len(transfer.eval),
+                dev_sentences=len(transfer.dev),
+                test_sentences=len(transfer.test),
                 iteration_metrics=c.iteration_metrics,
                 batch_test_metrics=c.batch_metrics,
                 eval_results=c.eval_results,
@@ -343,13 +356,13 @@ def run_benchmark(args):
             args,
             f"Rule Evaluation Report — {args.model} ({args.transfer_name})",
             f"transfer {args.transfer_name}",
-            output_dir / f"transfer_{args.transfer_name}.png",
+            output_dir / f"transfer_{args.transfer_name}{run_suffix}.png",
         )
         transfer_history = transfer_ctx.history
         plot_combined(
             results,
             transfer_results,
-            output_path=output_dir / "combined.png",
+            output_path=output_dir / f"combined{run_suffix}.png",
         )
 
     # 5. Session summary
@@ -421,7 +434,7 @@ def main():
     parser.add_argument("--batch-size", type=int, default=20)
     parser.add_argument("--refine-per-batch", type=int, default=0)
     parser.add_argument("--refine-every", type=int, default=5)
-    parser.add_argument("--holdout_fraction", type=float, default=0.0)
+    parser.add_argument("--holdout-fraction", type=float, default=0.0)
     parser.add_argument("--synthesis-strategy", type=str, default="bulk")
     parser.add_argument("--sampling-strategy", default="balanced")
     parser.add_argument("--agentic", action="store_true")
@@ -489,9 +502,7 @@ def main():
                 "--feedback requires --rules-json (feedback is added on top to improve the provided rules)."
             )
         if not args.skip_synthesis:
-            parser.error(
-                "--feedback requires --skip-synthesis."
-            )
+            parser.error("--feedback requires --skip-synthesis.")
         if args.max_iterations > 0:
             print(
                 f"--feedback: setting max-iterations {args.max_iterations} → 0 (feedback only, no refinement)"

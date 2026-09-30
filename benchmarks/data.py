@@ -94,10 +94,12 @@ class BenchmarkRun:
     test_data: list
     train_size: int
     eval_size: int
+    dev_size: int
     test_size: int
-    train_annotations: int
-    eval_annotations: int
-    test_annotations: int
+    train_sentences: int
+    eval_sentences: int
+    dev_sentences: int
+    test_sentences: int
     iteration_metrics: list
     batch_test_metrics: list
     eval_results: Any
