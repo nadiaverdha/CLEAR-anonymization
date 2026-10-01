@@ -9,9 +9,6 @@ from pathlib import Path
 import yaml
 
 from benchmarks.create_md_report_rules import create_md_report
-from benchmarks.create_md_report_rules_relations import (
-    create_md_report as create_md_report_relations,
-)
 from benchmarks.data import BenchmarkRun, prepare_relation_split, prepare_split
 from benchmarks.io import (
     deserialize_rules,
@@ -75,12 +72,8 @@ def _run_phase(
     print_results(run)
     results = save_results(output_path, run)
     if not args.no_mdreport:
-        report_fn = (
-            create_md_report_relations if args.task == "relation" else create_md_report
-        )
-
         md_path = output_path.with_suffix(".rules_report_dev.md")
-        report_fn(
+        create_md_report(
             md_path,
             apply_rules_fn=ctx.learner.learner._apply_rules,
             run=run,
@@ -89,7 +82,7 @@ def _run_phase(
             title=report_title,
         )
         md_path_test = output_path.with_suffix(".rules_report_test.md")
-        report_fn(
+        create_md_report(
             md_path_test,
             apply_rules_fn=ctx.learner.learner._apply_rules,
             run=replace(
