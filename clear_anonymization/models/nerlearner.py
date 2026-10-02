@@ -1,6 +1,5 @@
 import io
 import os
-import signal
 import sys
 import time
 from contextlib import contextmanager
@@ -101,32 +100,6 @@ class NERLearner(RuleChef):
             temperature=temperature,
         )
         self._max_counter_examples = max_counter_examples
-        self._patch_regex_timeout()
-
-    def _patch_regex_timeout(self, timeout_secs: int = 5) -> None:
-        original = self.learner.executor._execute_regex_rule
-        timed_out_rules: set[str] = set()
-
-        def _execute_with_timeout(rule, input_data, text_field=None):
-            if rule.id in timed_out_rules:
-                return []
-
-            def _handler(s, f):
-                raise TimeoutError()
-
-            old = signal.signal(signal.SIGALRM, _handler)
-            signal.alarm(timeout_secs)
-            try:
-                return original(rule, input_data, text_field)
-            except TimeoutError:
-                timed_out_rules.add(rule.id)
-                print(f"   ⚠ Regex timeout ({timeout_secs}s): {rule.name} — skipping")
-                return []
-            finally:
-                signal.alarm(0)
-                signal.signal(signal.SIGALRM, old)
-
-        self.learner.executor._execute_regex_rule = _execute_with_timeout
 
     def fit_batched(
         self,
