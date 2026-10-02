@@ -8,16 +8,19 @@ from clear_anonymization.ner_datasets.util import (
 )
 
 
-def _doc_sentences(
-    doc,
-    classes,
-):
+def _doc_sentences(doc, classes=None):
     for sent in doc.sentences:
-        entities = sorted(
-            [l for l in sent.labels if l["type"] in classes],
-            key=lambda x: x["start"],
+        labels = (
+            sent.labels
+            if classes is None
+            else [l for l in sent.labels if l["type"] in classes]
         )
-        yield {"text": sent.text, "entities": entities}
+        yield {
+            "doc_id": doc.doc_id,
+            "sent_id": sent.sent_id,
+            "text": sent.text,
+            "entities": sorted(labels, key=lambda x: x["start"]),
+        }
 
 
 def sample_few_shot(
@@ -73,10 +76,10 @@ def sample_few_shot(
 
     train_examples = [s for doc in pool[:split_idx] for s in doc if s["entities"]]
     eval_examples = [s for doc in pool[split_idx:] for s in doc if s["entities"]]
+
     negatives = [s for doc in neg_docs for s in doc] + [
         s for doc in pool for s in doc if not s["entities"]
     ]
-
     return (
         train_examples,
         eval_examples,
