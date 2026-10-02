@@ -263,7 +263,9 @@ def main():
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
     if args.relations:
-        train_path = output_dir / f"{args.dataset_name}_manual_train_relations_training.conllu"
+        train_path = (
+            output_dir / f"{args.dataset_name}_manual_train_relations_training.conllu"
+        )
         dev_path = output_dir / f"{args.dataset_name}_manual_train_relations_dev.conllu"
     else:
         train_path = output_dir / f"{args.dataset_name}_train_training.conllu"
