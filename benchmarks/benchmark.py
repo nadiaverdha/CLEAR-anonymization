@@ -9,7 +9,12 @@ from pathlib import Path
 import yaml
 
 from benchmarks.create_md_report_rules import create_md_report
-from benchmarks.data import BenchmarkRun, prepare_relation_split, prepare_split
+from benchmarks.data import (
+    BenchmarkRun,
+    load_human_feedback,
+    prepare_relation_split,
+    prepare_split,
+)
 from benchmarks.io import (
     deserialize_rules,
     load_checkpoint,
@@ -175,6 +180,21 @@ def run_benchmark(args):
         ctx = build_context(
             args, split, storage_dir, checkpoint_path, logger, rules=seed_rules
         )
+        if args.guidance:
+            print(f"Adding upfront guidance from {args.guidance}")
+            load_human_feedback(args.guidance, ctx.eval_dataset, ctx.learner)
+            guidance_items = json.loads(Path(args.guidance).read_text())
+            ctx = replace(
+                ctx,
+                history=ctx.history
+                + [
+                    {
+                        "phase": "guidance",
+                        "guidance_path": str(args.guidance),
+                        "guidance_items": guidance_items,
+                    }
+                ],
+            )
 
         if resume_from and cp_phase == "phase1":
             ctx = replace(
@@ -450,6 +470,7 @@ def main():
     parser.add_argument("--rules-json", type=str, default=None)
     parser.add_argument("--feedback", type=str, default=None)
     parser.add_argument("--skip-synthesis", action="store_true")
+    parser.add_argument("--guidance", type=str, default=None)
 
     # ── Output ────────────────────────────────────────────────
     parser.add_argument("--output", type=str, default="results_findok.json")

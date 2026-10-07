@@ -272,13 +272,13 @@ def prepare_relation_split(
 
 
 def load_human_feedback(feedback_path, eval_dataset, learner, rules=None):
-    def _norm(s):
-        return s.replace("\u2011", "-").replace("\u2010", "-")
-
     feedback_items = json.loads(Path(feedback_path).read_text())
     print(f"  Loading {len(feedback_items)} human feedback items")
+
     for fb in feedback_items:
         level = fb.get("level", "task")
+        if level not in ("task", "rule", "correction"):
+            raise ValueError(f"Feedback item {i}: unknown level '{level}'")
         if level == "correction":
             correction = Correction(
                 id=str(uuid.uuid4())[:8],
@@ -289,18 +289,23 @@ def load_human_feedback(feedback_path, eval_dataset, learner, rules=None):
             )
             eval_dataset.corrections.append(correction)
             print(f"✓ Added correction to eval dataset")
+            applied.append({"level": "correction", "text": fb.get("text")})
             continue
         text = fb["text"]
         target_id = ""
-        if level == "rule" and rules is not None:
+        if level == "rule":
             rule_name = fb.get("rule_name", "")
             rule_id = fb.get("rule_id", "")
-            matched = next((r for r in rules if r.id == rule_id), None)
-            if matched:
-                target_id = matched.id
-            else:
-                print(f"Rule not found: {rule_name} — treating as task-level")
+            if not rules:
+                print(f"No rules provided -> treating as task-level feedback")
                 level = "task"
+            else:
+                matched = next((r for r in rules if r.id == rule_id), None)
+                if matched:
+                    target_id = matched.id
+                else:
+                    print(f"Rule not found: {rule_name} — treating as task-level")
+                    level = "task"
         eval_dataset.structured_feedback.append(
             Feedback(
                 id=str(uuid.uuid4())[:8],
