@@ -5,9 +5,40 @@ from pathlib import Path
 
 import yaml
 from rulechef.core import Rule, RuleFormat
+from rulechef.evaluation import (
+    _get_entities,
+    _in_scope,
+    _match_entities,
+    _target_labels,
+)
 from rulechef.training_logger import TrainingDataLogger
 
 from benchmarks.data import BenchmarkRun
+
+
+def collect_false_negatives(test_eval, task_type, rules):
+    targets = _target_labels(rules)
+    records = []
+    for item in test_eval.failures:
+        pred = _get_entities(item["got"], task_type)
+        gold = _get_entities(item["expected"], task_type)
+        _, _, fn_list = _match_entities(pred, gold, task_type, mode="text")
+        fn_list = [g for g in fn_list if _in_scope(g, targets)]
+
+        for g in fn_list:
+            records.append(
+                {
+                    "doc_id": item["input"].get("doc_id", ""),
+                    "sent_id": item["input"].get("sent_id", ""),
+                    "missed": g.get("text"),
+                    "type": g.get("type") or g.get("label"),
+                    "start": g.get("start"),
+                    "end": g.get("end"),
+                    "predicted_in_sentence": [p.get("text") for p in pred],
+                    "sentence": item["input"].get("text", ""),
+                }
+            )
+    return records
 
 
 def serialize_rules(rules) -> list:

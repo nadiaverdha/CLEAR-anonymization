@@ -1,6 +1,7 @@
 import argparse
 import json
 import os
+import random
 from concurrent.futures import ProcessPoolExecutor
 from contextlib import contextmanager
 from datetime import datetime
@@ -12,7 +13,7 @@ from rulechef.evaluation import evaluate_dataset, evaluate_rules_individually
 from rulechef.executor import RuleExecutor
 
 from benchmarks.data import BenchmarkRun, make_dataset
-from benchmarks.io import deserialize_rules
+from benchmarks.io import collect_false_negatives, deserialize_rules
 from clear_anonymization.evaluation.evaluator import classify_fp
 from clear_anonymization.models.nerlearner import NERLearner, NEROutput
 from clear_anonymization.ner_datasets import (
@@ -36,6 +37,14 @@ def _write_table(f, headers: list[str], rows: list[list[str]]) -> None:
     f.write("\n")
 
 
+def _fn_span(r):
+    s, start, end = r["sentence"], r.get("start"), r.get("end")
+    if start is not None and end is not None and s[start:end] == r["missed"]:
+        return start, end
+    i = s.find(r["missed"])
+    return (i, i + len(r["missed"])) if i >= 0 else (None, None)
+
+
 def _write_relation_header(f, sample):
     inp = sample.input
     f.write(
@@ -46,6 +55,26 @@ def _write_relation_header(f, sample):
     gold_label = sample.expected[0]["label"] if sample.expected else ""
     f.write(f"\n{inp.get('text', inp.get('text', ''))}\n\n")
     f.write(f"**Predicted:** `{pred_label}`  **Gold:** `{gold_label}`\n\n")
+
+
+def append_false_negatives(file_path: Path, records, top_n: int = 50, seed: int = 42):
+    sample = random.Random(seed).sample(records, min(top_n, len(records)))
+    with file_path.open("a", encoding="utf-8") as f:
+        with _details_block(
+            f, f"❌ False Negatives ({len(records)}, showing {len(sample)})"
+        ):
+            for i, r in enumerate(sample):
+                start, end = _fn_span(r)
+                s = r["sentence"]
+                if start is not None:
+                    s = f"{s[:start]}**{s[start:end]}**{s[end:]}"
+                f.write(
+                    f"**Example {i}** (doc_id: `{r['doc_id']}`) "
+                    f"(sent_id: `{r['sent_id']}`)\n\n{s}\n\n"
+                )
+                f.write(f"- missed: `{r['missed']}` ({r['type']})\n")
+                preds = ", ".join(f"`{p}`" for p in r["predicted_in_sentence"]) or "—"
+                f.write(f"- predicted in sentence: {preds}\n\n")
 
 
 def write_summary_table(file_path: Path, metrics_list):
@@ -197,6 +226,7 @@ def append_overall_metrics(
                     ["Macro F1", f"{test_eval.macro_f1:.1%}"],
                 ],
             )
+    return test_eval
 
 
 def _classify_rules(metrics_list, top_n=10, min_matches=10, min_tp=5):
@@ -410,7 +440,7 @@ def create_md_report(
     rules = [r for r in run.rules if r.id not in exclude]
     is_relation = test_dataset.task.type == TaskType.CLASSIFICATION
 
-    append_overall_metrics(
+    test_eval = append_overall_metrics(
         file_path,
         apply_rules_fn,
         test_dataset,
@@ -437,7 +467,14 @@ def create_md_report(
         is_relation=is_relation,
     )
 
+    if not is_relation:
+        false_negatives = collect_false_negatives(
+            test_eval, test_dataset.task.type, rules
+        )
+        append_false_negatives(file_path, false_negatives, top_n=50)
+
     print(f"Report saved to {file_path}")
+    return test_eval
 
 
 def main():

@@ -78,7 +78,7 @@ def _run_phase(
     results = save_results(output_path, run)
     if not args.no_mdreport:
         md_path = output_path.with_suffix(".rules_report_dev.md")
-        create_md_report(
+        dev_eval = create_md_report(
             md_path,
             apply_rules_fn=ctx.learner.learner._apply_rules,
             run=run,
@@ -87,7 +87,7 @@ def _run_phase(
             title=report_title,
         )
         md_path_test = output_path.with_suffix(".rules_report_test.md")
-        create_md_report(
+        test_eval = create_md_report(
             md_path_test,
             apply_rules_fn=ctx.learner.learner._apply_rules,
             run=replace(
@@ -99,12 +99,14 @@ def _run_phase(
             results_folder=output_dir,
             title=f"{report_title} (TEST)",
         )
+
     plot_single(results, label=plot_label, output_path=plot_output_path)
     plot_by_sentences(
         results,
         label=plot_label,
         output_path=plot_output_path.with_stem(plot_output_path.stem + "_sentences"),
     )
+
     return ctx, results
 
 
