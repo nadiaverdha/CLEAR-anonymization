@@ -23,6 +23,17 @@ def _doc_sentences(doc, classes=None):
         }
 
 
+def _split_docs(docs, ratio):
+    idx = int(len(docs) * ratio)
+    return docs[:idx], docs[idx:]
+
+
+def _cap(sents, n, rng):
+    if n is None or len(sents) <= n:
+        return sents
+    return rng.sample(sents, n)
+
+
 def sample_few_shot(
     train_data,
     seed=42,
@@ -31,6 +42,8 @@ def sample_few_shot(
     pool_size=None,
     train_ratio=0.7,
     shuffle=True,
+    neg_ratio=None,
+    eval_neg_ratio=None,
 ):
     """
     train_data: list of NERSample (document level).
@@ -70,20 +83,44 @@ def sample_few_shot(
 
     pool = pos_docs[:pool_size] if pool_size else pos_docs
     split_idx = int(len(pool) * train_ratio)
-
+    train_docs, eval_docs = pool[:split_idx], pool[split_idx:]
     n_train_docs = split_idx
     n_eval_docs = len(pool) - split_idx
+
+    neg_train_docs, neg_eval_docs = _split_docs(neg_docs, train_ratio)
 
     train_examples = [s for doc in pool[:split_idx] for s in doc if s["entities"]]
     eval_examples = [s for doc in pool[split_idx:] for s in doc if s["entities"]]
 
-    negatives = [s for doc in neg_docs for s in doc] + [
-        s for doc in pool for s in doc if not s["entities"]
+    train_neg_pool = [
+        s for doc in train_docs + neg_train_docs for s in doc if not s["entities"]
     ]
+    eval_neg_pool = [
+        s for doc in eval_docs + neg_eval_docs for s in doc if not s["entities"]
+    ]
+    if eval_neg_ratio is None:
+        eval_neg_ratio = neg_ratio
+
+    train_negatives = (
+        _cap(train_neg_pool, int(neg_ratio * len(train_examples)), rng)
+        if neg_ratio is not None
+        else []
+    )
+    eval_negatives = (
+        _cap(eval_neg_pool, int(eval_neg_ratio * len(eval_examples)), rng)
+        if eval_neg_ratio is not None
+        else []
+    )
+    if train_negatives:
+        train_examples = train_examples + train_negatives
+        rng.shuffle(train_examples)
+    if eval_negatives:
+        eval_examples = eval_examples + eval_negatives
+        rng.shuffle(eval_examples)
     return (
         train_examples,
         eval_examples,
-        negatives,
+        [],
         classes,
         n_train_docs,
         n_eval_docs,

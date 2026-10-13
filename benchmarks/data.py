@@ -155,6 +155,8 @@ def prepare_split(
         classes=class_list,
         pool_size=args.pool_size,
         train_ratio=args.train_ratio,
+        neg_ratio=getattr(args, "neg_ratio", None),
+        eval_neg_ratio=getattr(args, "eval_neg_ratio", None),
     )
 
     if dev_all:
@@ -184,9 +186,18 @@ def prepare_split(
         f"Source docs — train: {len(train_all.samples)}, dev: {dev_label}, test: {test_label}"
     )
     print(f"Sampled     — train docs: {n_train_docs}, eval docs: {n_eval_docs}")
+    n_eval_neg = sum(1 for s in eval_ if not s["entities"])
+    n_train_neg = sum(1 for s in train if not s["entities"])
+    print(
+        f"Negatives   — train: {n_train_neg}, eval: {n_eval_neg} "
+        f"(neg_ratio={getattr(args, 'neg_ratio', None)}, "
+        f"eval_neg_ratio={getattr(args, 'eval_neg_ratio', None)})"
+    )
+
     print(
         f"Sentences   — train: {len(train)}, eval: {len(eval_)}, dev: {len(dev)}, test: {len(test)}"
     )
+    print()
     print_distribution(train, "TRAIN", fn=label_distribution_sent)
     print_distribution(eval_, "EVAL", fn=label_distribution_sent)
     print(

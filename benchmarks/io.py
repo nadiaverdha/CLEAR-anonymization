@@ -125,6 +125,8 @@ def save_results(output_path: Path, run: BenchmarkRun):
             "windows": args.windows,
             "sampling_strategy": args.sampling_strategy,
             "train_ratio": args.train_ratio,
+            "neg_ratio": getattr(args, "neg_ratio", None),
+            "eval_neg_ratio": getattr(args, "eval_neg_ratio", None),
             "pool_size": args.pool_size,
             "batch_size": args.batch_size,
             "refine_per_batch": args.refine_per_batch,

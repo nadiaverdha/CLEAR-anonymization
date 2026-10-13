@@ -442,6 +442,8 @@ def main():
     parser.add_argument("--num-classes", type=int, default=None)
     parser.add_argument("--train-ratio", type=float, default=0.8)
     parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--neg-ratio", type=float, default=None)
+    parser.add_argument("--eval-neg-ratio", type=float, default=None)
 
     # ── Learner ───────────────────────────────────────────────
     parser.add_argument("--model", type=str, default="google/gemma-3-27b-it")
