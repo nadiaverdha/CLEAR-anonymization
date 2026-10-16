@@ -38,6 +38,7 @@ from benchmarks.reporting import (
     print_results,
     print_rule_summary,
 )
+from rulechef.training_logger import TrainingDataLogger
 
 
 def _synthesis_step(args, phase, start_batch=0):
@@ -140,10 +141,21 @@ def run_benchmark(args):
         out_name = Path(args.output)
         if args.rules_json:
             out_name = out_name.with_stem(out_name.stem + "_refined")
-        logger = None
+        logger = TrainingDataLogger(
+            str((output_dir / out_name).with_suffix(".training.jsonl")),
+            run_metadata={
+                "benchmark": args.dataset_name,
+                "model": args.model,
+                "format": args.format,
+                "num_classes": len(split.selected_classes),
+                "resumed_phase": cp_phase,
+                "resumed_from_batch": cp.get("completed_batches", 0),
+            },
+        )
         print(
             f"\nResuming from {resume_from}/{CHECKPOINT_FILE} (phase: {cp_phase}) — skipping to batch {cp.get('completed_batches', 0)}"
         )
+
     else:
         storage_dir, output_dir, out_name, logger = setup_output_paths(
             args, split.selected_classes
