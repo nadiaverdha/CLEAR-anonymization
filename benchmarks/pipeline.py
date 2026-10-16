@@ -67,6 +67,7 @@ class SynthesisStep(Step):
         self,
         *,
         batch_size,
+        past_batches,
         refine_per_batch,
         refine_every,
         audit_interval,
@@ -78,6 +79,7 @@ class SynthesisStep(Step):
         split_seed=42,
     ):
         self.batch_size = batch_size
+        self.past_batches = past_batches
         self.refine_per_batch = refine_per_batch
         self.refine_every = refine_every
         self.audit_interval = audit_interval
@@ -149,6 +151,7 @@ class SynthesisStep(Step):
         fit_result = ctx.learner.fit_batched(
             train_for_chef,
             batch_size=self.batch_size,
+            past_batches=self.past_batches,
             eval_dataset=ctx.eval_dataset,  # if self.refine_per_batch > 0 else None,
             refine_per_batch=self.refine_per_batch,
             refine_every=self.refine_every,
@@ -172,10 +175,12 @@ class SynthesisStep(Step):
             )
 
         rules, new_t_learn = fit_result
+        final_rules = best["rules"] if best["rules"] else rules
         history_entry = {
             "phase": "train",
             "dataset": ctx.split.name,
-            "num_rules": len(rules),
+            "num_rules": len(final_rules),
+            "num_rules_last_batch": len(rules),
             "best_batch_idx": best["batch_idx"],
             "best_dev_f1": best["f1"],
             "t_learn": round(ctx.t_learn + new_t_learn, 1),
@@ -193,7 +198,7 @@ class SynthesisStep(Step):
 
         return replace(
             ctx,
-            rules=rules,
+            rules=final_rules,
             batch_metrics=batch_metrics,
             iteration_metrics=iteration_metrics,
             best_f1=best["f1"],
