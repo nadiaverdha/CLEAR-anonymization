@@ -85,7 +85,9 @@ class NERLearner(RuleChef):
             client=client,
             dataset_name=dataset_name,
             model=model,
-            allowed_formats=RULE_FORMATS[rule_format],
+            allowed_formats=list(
+                map(lambda r: RULE_FORMATS[r][0], rule_format.split(","))
+            ),
             use_grex=use_grex,
             max_rules=max_rules,
             max_samples=max_samples,
@@ -106,6 +108,7 @@ class NERLearner(RuleChef):
         train_data,
         eval_dataset,
         batch_size=40,
+        past_batches=2,
         refine_per_batch=1,
         refine_every=1,
         iteration_callback=None,
@@ -134,14 +137,11 @@ class NERLearner(RuleChef):
                 incremental_only=(batch_idx > 0 or seed_rules is not None),
             )
             # current batch should see its own examples but also some previous ones for the full picture
-            # old self.dataset.examples.clear()
-            if self.dataset.rules:
-                MAX_EXAMPLES = batch_size * 2
-                if len(self.dataset.examples) > MAX_EXAMPLES:
-                    self.dataset.examples = self.dataset.examples[-MAX_EXAMPLES:]
-            else:
-                # no rules yet — full synthesis path, must stay within token budget
-                self.dataset.examples.clear()
+            if past_batches >= 0:
+                keep = batch_size * past_batches
+                self.dataset.examples = (
+                    self.dataset.examples[-keep:] if keep > 0 else []
+                )
 
             if batch_result:
                 result = batch_result

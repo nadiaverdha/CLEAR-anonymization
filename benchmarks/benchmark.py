@@ -43,6 +43,7 @@ from benchmarks.reporting import (
 def _synthesis_step(args, phase, start_batch=0):
     return SynthesisStep(
         batch_size=args.batch_size,
+        past_batches=args.past_batches,
         refine_per_batch=args.refine_per_batch,
         refine_every=args.refine_every,
         audit_interval=args.audit_interval,
@@ -457,6 +458,12 @@ def main():
     parser.add_argument("--max-counter-examples", type=int, default=10)
     parser.add_argument("--max-iterations", type=int, default=3)
     parser.add_argument("--batch-size", type=int, default=20)
+    parser.add_argument(
+        "--past-batches",
+        type=int,
+        default=2,
+        help="Number of past batches to consider for patch refinement (default: 2)",
+    )
     parser.add_argument("--refine-per-batch", type=int, default=0)
     parser.add_argument("--refine-every", type=int, default=5)
     parser.add_argument("--holdout-fraction", type=float, default=0.0)
@@ -468,7 +475,6 @@ def main():
     parser.add_argument("--enable-critic", action="store_true")
     parser.add_argument("--critic-interval", type=int, default=0)
     parser.add_argument("--no-grex", action="store_true")
-    parser.add_argument("--windows", action="store_true")
 
     # ── Rules / feedback ──────────────────────────────────────
     parser.add_argument("--rules-json", type=str, default=None)

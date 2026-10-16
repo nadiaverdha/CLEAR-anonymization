@@ -56,6 +56,7 @@ def serialize_rules(rules) -> list:
             "output_key": r.output_key,
             "validated_precision": r.validated_precision,
             "validated_support": r.validated_support,
+            "created_at": r.created_at.isoformat() if r.created_at else None,
         }
         for r in rules
     ]
@@ -72,8 +73,11 @@ def deserialize_rules(rules_list: list) -> list:
             priority=r.get("priority", 5),
             output_template=r.get("output_template"),
             output_key=r.get("output_key"),
-            validated_precision=r.get("validated_precision", 0),
-            validated_support=r.get("validated_support", 0),
+            validated_precision=r.get("validated_precision"),
+            validated_support=r.get("validated_support"),
+            created_at=datetime.fromisoformat(r["created_at"])
+            if r.get("created_at")
+            else datetime.now(),
         )
         for r in rules_list
     ]
@@ -122,13 +126,13 @@ def save_results(output_path: Path, run: BenchmarkRun):
             "enable_prune": args.enable_prune,
             "critic_interval": args.critic_interval,
             "audit_interval": args.audit_interval,
-            "windows": args.windows,
             "sampling_strategy": args.sampling_strategy,
             "train_ratio": args.train_ratio,
             "neg_ratio": getattr(args, "neg_ratio", None),
             "eval_neg_ratio": getattr(args, "eval_neg_ratio", None),
             "pool_size": args.pool_size,
             "batch_size": args.batch_size,
+            "past_batches": args.past_batches,
             "refine_per_batch": args.refine_per_batch,
             "synthesis_strategy": args.synthesis_strategy,
             "selected_classes": run.selected_classes,
@@ -184,20 +188,7 @@ def save_results(output_path: Path, run: BenchmarkRun):
             }
             for cm in (run.test_eval_results.per_class or [])
         ],
-        "rules": [
-            {
-                "id": r.id,
-                "name": r.name,
-                "description": r.description,
-                "format": r.format.value,
-                "content": r.content,
-                "priority": r.priority,
-                "output_template": r.output_template,
-                "output_key": r.output_key,
-                "created_at": r.created_at.isoformat(),
-            }
-            for r in run.rules
-        ],
+        "rules": serialize_rules(run.rules),
         "best_rules": {
             "batch": run.metadata.get("best_batch_idx"),
             "micro_f1": run.metadata.get("best_batch_f1"),
