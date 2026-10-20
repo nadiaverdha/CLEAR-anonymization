@@ -81,16 +81,18 @@ def sample_few_shot(
         rng.shuffle(pos_docs)
         rng.shuffle(neg_docs)
 
-    pool = pos_docs[:pool_size] if pool_size else pos_docs
-    split_idx = int(len(pool) * train_ratio)
-    train_docs, eval_docs = pool[:split_idx], pool[split_idx:]
-    n_train_docs = split_idx
-    n_eval_docs = len(pool) - split_idx
-
+    train_all, eval_all = _split_docs(pos_docs, train_ratio)
     neg_train_docs, neg_eval_docs = _split_docs(neg_docs, train_ratio)
 
-    train_examples = [s for doc in pool[:split_idx] for s in doc if s["entities"]]
-    eval_examples = [s for doc in pool[split_idx:] for s in doc if s["entities"]]
+    if shuffle:
+        rng.shuffle(train_all)
+    train_docs = train_all[:pool_size] if pool_size is not None else train_all
+    n_train_docs = len(train_docs)
+    eval_docs = eval_all
+    n_eval_docs = len(eval_docs)
+
+    train_examples = [s for doc in train_docs for s in doc if s["entities"]]
+    eval_examples = [s for doc in eval_docs for s in doc if s["entities"]]
 
     train_neg_pool = [
         s for doc in train_docs + neg_train_docs for s in doc if not s["entities"]
