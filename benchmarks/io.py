@@ -141,6 +141,7 @@ def save_results(output_path: Path, run: BenchmarkRun):
             "transfer_name": args.transfer_name,
             "transfer_test_name": args.transfer_test_name,
             "max_counter_examples": args.max_counter_examples,
+            "interleave_failures": args.interleave_failures,
             "refine_every": args.refine_every,
         },
         "metadata": run.metadata,

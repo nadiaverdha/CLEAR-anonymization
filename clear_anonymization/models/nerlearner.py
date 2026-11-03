@@ -12,6 +12,7 @@ from rulechef.core import RuleFormat
 from rulechef.training_logger import TrainingDataLogger
 
 from benchmarks.schemas import NEROutput
+from collections import Counter
 
 
 @contextmanager
@@ -41,6 +42,7 @@ class NERLearner(RuleChef):
         max_rules: int = 100,
         max_samples: int = 50,
         max_counter_examples: int = 50,
+        interleave_failures: bool = False,
         logger: TrainingDataLogger | None = None,
         storage_path: str = ".",
         sampling_strategy: str = "balanced",
@@ -55,6 +57,7 @@ class NERLearner(RuleChef):
         use_spacy_ner: bool = True,
         spacy_model: str = "de_core_news_sm",
         temperature: float = 0.0,
+        seed: int | None = 42,
     ):
 
         task = Task(
@@ -92,6 +95,7 @@ class NERLearner(RuleChef):
             max_rules=max_rules,
             max_samples=max_samples,
             max_counter_examples=max_counter_examples,
+            interleave_failures=interleave_failures,
             coordinator=coordinator,
             training_logger=logger,
             storage_path=storage_path,
@@ -100,8 +104,36 @@ class NERLearner(RuleChef):
             use_spacy_ner=use_spacy_ner,
             spacy_model=spacy_model,
             temperature=temperature,
+            seed=seed,
         )
         self._max_counter_examples = max_counter_examples
+
+    def _log_missed_entities(self, batch_idx, batch):
+        """Log how concentrated the missed gold entities are in the window the patch prompt sees."""
+        if not self.dataset.rules:
+            return  # first batch: full synthesis, no failures yet
+        window = [
+            (e.input["text"], e.expected_output.get("entities", []))
+            for e in self.dataset.examples
+        ]
+        window += [(ex["text"], ex["entities"]) for ex in batch]
+
+        missed = Counter()
+        n_failing = 0
+        for text, gold in window:
+            pred = self.extract({"text": text}, validate=False)
+            got = {(e["start"], e["end"]) for e in pred.get("entities", [])}
+            miss = [e["text"] for e in gold if (e["start"], e["end"]) not in got]
+            n_failing += bool(miss)
+            missed.update(miss)
+
+        total = sum(missed.values())
+        top = missed.most_common(5)
+        top_share = top[0][1] / total if total else 0.0
+        print(
+            f"  [missed] batch {batch_idx + 1}: sentences_with_FN={n_failing}/{len(window)} "
+            f"missed={total} distinct={len(missed)} top1_share={top_share:.0%} top5={top}"
+        )
 
     def fit_batched(
         self,
@@ -130,6 +162,7 @@ class NERLearner(RuleChef):
         for batch_idx, batch in enumerate(batches):
             if batch_idx < start_batch:
                 continue
+            self._log_missed_entities(batch_idx, batch)
             for ex in batch:
                 self.add_example({"text": ex["text"]}, {"entities": ex["entities"]})
             batch_result = self.learn_rules(
