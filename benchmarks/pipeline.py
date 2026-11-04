@@ -351,6 +351,7 @@ def build_context(
             max_rules=args.max_rules,
             max_samples=args.max_samples,
             max_counter_examples=args.max_counter_examples,
+            interleave_failures=args.interleave_failures,
             agentic=args.agentic,
             enable_prune=args.enable_prune,
             audit_interval=args.audit_interval,
