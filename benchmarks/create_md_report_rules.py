@@ -125,7 +125,7 @@ def append_overall_metrics(
         rules,
         test_dataset,
         apply_rules_fn,
-        mode="text",
+        mode="exact",
     )
     with md_path.open("a", encoding="utf-8") as f:
         with _details_block(f, "Configuration"):
@@ -453,7 +453,7 @@ def create_md_report(
         rules,
         test_dataset,
         apply_rules_fn,
-        mode="text",
+        mode="exact",
         max_samples=100,
         in_context=True,
     )
