@@ -143,6 +143,8 @@ def save_results(output_path: Path, run: BenchmarkRun):
             "max_counter_examples": args.max_counter_examples,
             "interleave_failures": args.interleave_failures,
             "refine_every": args.refine_every,
+            "overlap_strategy": getattr(args, "overlap_strategy", "longest"),
+            "cross_type_overlaps": getattr(args, "cross_type_overlaps", None),
         },
         "metadata": run.metadata,
         "results_dev": {

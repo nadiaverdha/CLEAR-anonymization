@@ -530,7 +530,15 @@ def main():
         type=TaskType.NER,
         text_field="text",
     )
-    executor = RuleExecutor()
+    overlap_strategy = config.get("overlap_strategy", "longest")
+    cross_type_overlaps = config.get("cross_type_overlaps", True)
+    if cross_type_overlaps is None:
+        cross_type_overlaps = len(selected_classes) > 1
+    executor = RuleExecutor(
+        overlap_strategy=overlap_strategy,
+        cross_type_overlaps=cross_type_overlaps,
+    )
+    print(f"Overlap: strategy={overlap_strategy}, cross_type={cross_type_overlaps}")
 
     results_folder = os.path.dirname(args.rules_json)
     test_data_raw = load_ner_dataset_from_conll(

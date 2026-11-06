@@ -7,6 +7,7 @@ from dataclasses import replace
 from pathlib import Path
 
 import yaml
+from rulechef.training_logger import TrainingDataLogger
 
 from benchmarks.create_md_report_rules import create_md_report
 from benchmarks.data import (
@@ -38,7 +39,6 @@ from benchmarks.reporting import (
     print_results,
     print_rule_summary,
 )
-from rulechef.training_logger import TrainingDataLogger
 
 
 def _synthesis_step(args, phase, start_batch=0):
