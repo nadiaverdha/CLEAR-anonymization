@@ -8,16 +8,17 @@ from texttable import Texttable
 
 def load_results(results_path: Path) -> dict:
     data = json.loads(results_path.read_text())
-    results = data.get("results", {})
-    config = data.get("config", {})
+    results = data["results_test"]
+    config = data["config"]
+    best_rules = data["best_rules"]
     return {
-        "train_data": config.get("train_name", "Unknown"),
-        "test_data": config.get("test_name", "Unknown"),
+        "train_data": config["train_name"],
+        "test_data": config["test_name"],
         "transfer_data": config.get("transfer_name", "null"),
         "f1": f"{results.get('micro_f1', 0):.1%}".replace("%", r"\%"),
         "precision": f"{results.get('micro_precision', 0):.1%}".replace("%", r"\%"),
         "recall": f"{results.get('micro_recall', 0):.1%}".replace("%", r"\%"),
-        "num_rules": results.get("num_rules", 0),
+        "num_rules": len(best_rules["rules"]),
         "max_rules": config.get("max_rules", 0),
         "iterations": config.get("max_iterations", 0),
         "model": config.get("model", "Unknown"),

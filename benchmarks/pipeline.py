@@ -8,10 +8,18 @@ from typing import Any
 
 from rulechef.core import Dataset
 
-from benchmarks.data import BenchmarkRun, DataSplit, load_human_feedback, make_dataset
+from benchmarks.data import (
+    BenchmarkRun,
+    DataSplit,
+    _n_annotations,
+    load_human_feedback,
+    make_dataset,
+    make_relation_dataset,
+)
 from benchmarks.io import save_checkpoint, serialize_rules
 from benchmarks.reporting import eval_metrics, evaluate_test, make_oniteration_callback
 from clear_anonymization.models.nerlearner import NERLearner
+from clear_anonymization.models.relationlearner import RelationLearner
 
 CHECKPOINT_FILE = "checkpoint.json"
 
@@ -23,6 +31,7 @@ class StepContext:
     learner: NERLearner
     eval_dataset: Dataset
     dev_dataset: Dataset
+    test_dataset: Dataset
     batch_metrics: list = field(default_factory=list)
     iteration_metrics: list = field(default_factory=list)
     best_rules: list = field(default_factory=list)
@@ -31,6 +40,7 @@ class StepContext:
     t_learn: float = 0.0
     t_eval: float = 0.0
     eval_results: Any = None
+    test_eval_results: Any = None
     rules_snapshot: list = field(default_factory=list)
     history: list = field(default_factory=list)
     checkpoint_path: Path | None = None
@@ -57,6 +67,7 @@ class SynthesisStep(Step):
         self,
         *,
         batch_size,
+        past_batches,
         refine_per_batch,
         refine_every,
         audit_interval,
@@ -64,9 +75,11 @@ class SynthesisStep(Step):
         phase,
         synthesis_strategy,
         seed=42,
-        prune_with_refine=False,
+        holdout_fraction=0.0,
+        split_seed=42,
     ):
         self.batch_size = batch_size
+        self.past_batches = past_batches
         self.refine_per_batch = refine_per_batch
         self.refine_every = refine_every
         self.audit_interval = audit_interval
@@ -74,7 +87,8 @@ class SynthesisStep(Step):
         self.phase = phase
         self.seed = seed
         self.synthesis_strategy = synthesis_strategy
-        self.prune_with_refine = prune_with_refine
+        self.holdout_fraction = holdout_fraction
+        self.split_seed = split_seed
 
     def run(self, ctx: StepContext) -> StepContext:
         if self.synthesis_strategy != "bulk":
@@ -86,6 +100,7 @@ class SynthesisStep(Step):
         iteration_metrics = list(ctx.iteration_metrics)
         rules_snapshot = list(ctx.rules_snapshot)
         on_iteration = make_oniteration_callback(iteration_metrics)
+
         best = {
             "f1": ctx.best_f1,
             "rules": list(ctx.best_rules) if ctx.best_rules else [],
@@ -95,8 +110,14 @@ class SynthesisStep(Step):
         def on_batch(batch_idx, rules):
             rules_snapshot.append({"batch": batch_idx, "rules": serialize_rules(rules)})
             result, _ = evaluate_test(ctx.dev_dataset, rules, ctx.learner)
+            test_result, _ = evaluate_test(ctx.test_dataset, rules, ctx.learner)
             batch_metrics.append(
-                {"batch": batch_idx, "num_rules": len(rules), **eval_metrics(result)}
+                {
+                    "batch": batch_idx,
+                    "num_rules": len(rules),
+                    "dev": eval_metrics(result),
+                    "test": eval_metrics(test_result),
+                }
             )
             if result.micro_f1 > best["f1"]:
                 best["f1"] = result.micro_f1
@@ -105,6 +126,8 @@ class SynthesisStep(Step):
             print(
                 f"  [batch {batch_idx}] dev micro_f1={result.micro_f1:.3f}"
                 f"  P={result.micro_precision:.3f}  R={result.micro_recall:.3f}"
+                f"  | test micro_f1={test_result.micro_f1:.3f}"
+                f"  P={test_result.micro_precision:.3f}  R={test_result.micro_recall:.3f}",
             )
             if ctx.checkpoint_path:
                 save_checkpoint(
@@ -128,7 +151,8 @@ class SynthesisStep(Step):
         fit_result = ctx.learner.fit_batched(
             train_for_chef,
             batch_size=self.batch_size,
-            eval_dataset=ctx.eval_dataset if self.refine_per_batch > 0 else None,
+            past_batches=self.past_batches,
+            eval_dataset=ctx.eval_dataset,  # if self.refine_per_batch > 0 else None,
             refine_per_batch=self.refine_per_batch,
             refine_every=self.refine_every,
             iteration_callback=on_iteration,
@@ -136,7 +160,8 @@ class SynthesisStep(Step):
             audit_interval=self.audit_interval,
             seed_rules=ctx.rules or None,
             start_batch=self.start_batch,
-            prune_with_refine=self.prune_with_refine,
+            holdout_fraction=self.holdout_fraction,
+            split_seed=self.split_seed,
         )
         if fit_result is None:
             return replace(
@@ -150,16 +175,22 @@ class SynthesisStep(Step):
             )
 
         rules, new_t_learn = fit_result
+        final_rules = best["rules"] if best["rules"] else rules
         history_entry = {
             "phase": "train",
             "dataset": ctx.split.name,
-            "num_rules": len(rules),
+            "num_rules": len(final_rules),
+            "num_rules_last_batch": len(rules),
+            "best_batch_idx": best["batch_idx"],
+            "best_dev_f1": best["f1"],
             "t_learn": round(ctx.t_learn + new_t_learn, 1),
             "timestamp": datetime.now().isoformat(),
-            "num_train_docs": len(ctx.split.train),
-            "num_eval_docs": len(ctx.split.eval),
-            "num_train_annotations": sum(len(s["entities"]) for s in ctx.split.train),
-            "num_eval_annotations": sum(len(s["entities"]) for s in ctx.split.eval),
+            "num_train_docs": ctx.split.n_train_docs,
+            "num_eval_docs": ctx.split.n_eval_docs,
+            "num_train_sentences": len(ctx.split.train),
+            "num_eval_sentences": len(ctx.split.eval),
+            "num_train_annotations": _n_annotations(ctx.split.train),
+            "num_eval_annotations": _n_annotations(ctx.split.eval),
             "batch_metrics": batch_metrics,
             "iteration_metrics": iteration_metrics,
             "rules_snapshot": rules_snapshot,
@@ -167,7 +198,7 @@ class SynthesisStep(Step):
 
         return replace(
             ctx,
-            rules=rules,
+            rules=final_rules,
             batch_metrics=batch_metrics,
             iteration_metrics=iteration_metrics,
             best_f1=best["f1"],
@@ -207,6 +238,8 @@ class RefinementStep(Step):
             "phase": "refine",
             "dataset": ctx.split.name,
             "num_rules": len(rules),
+            "best_batch_idx": ctx.best_batch_idx,
+            "best_dev_f1": ctx.best_f1,
             "micro_f1": refine_eval.micro_f1 if refine_eval else None,
             "micro_precision": refine_eval.micro_precision if refine_eval else None,
             "micro_recall": refine_eval.micro_recall if refine_eval else None,
@@ -245,8 +278,29 @@ class FeedbackStep(Step):
 
 class EvaluationStep(Step):
     def run(self, ctx: StepContext) -> StepContext:
-        eval_results, t_eval = evaluate_test(ctx.dev_dataset, ctx.rules, ctx.learner)
-        return replace(ctx, eval_results=eval_results, t_eval=t_eval)
+        dev_eval_results, t_eval_dev = evaluate_test(
+            ctx.dev_dataset, ctx.rules, ctx.learner
+        )
+        test_eval_results, t_eval_test = evaluate_test(
+            ctx.test_dataset, ctx.rules, ctx.learner
+        )
+        history_entry = {
+            "phase": "evaluate",
+            "dataset": ctx.split.name,
+            "num_rules": len(ctx.rules),
+            "dev": eval_metrics(dev_eval_results),
+            "test": eval_metrics(test_eval_results),
+            "t_eval_dev": round(t_eval_dev, 3),
+            "t_eval_test": round(t_eval_test, 3),
+            "timestamp": datetime.now().isoformat(),
+        }
+        return replace(
+            ctx,
+            history=ctx.history + [history_entry],
+            eval_results=dev_eval_results,
+            test_eval_results=test_eval_results,
+            t_eval=t_eval_dev,
+        )
 
 
 def build_context(
@@ -257,33 +311,68 @@ def build_context(
     logger=None,
     rules: list | None = None,
 ) -> StepContext:
-    learner = NERLearner(
-        model=args.model,
-        dataset_name=split.name,
-        base_url=args.base_url,
-        use_grex=not args.no_grex,
-        max_rules=args.max_rules,
-        max_samples=args.max_samples,
-        max_counter_examples=args.max_counter_examples,
-        agentic=args.agentic,
-        enable_prune=args.enable_prune,
-        audit_interval=args.audit_interval,
-        enable_critic=args.enable_critic,
-        critic_interval=args.critic_interval,
-        logger=logger,
-        storage_path=storage_dir,
-        sampling_strategy=args.sampling_strategy,
-        synthesis_strategy=args.synthesis_strategy,
-        selected_classes=list(split.selected_classes),
-        rule_format=args.format,
-    )
-    eval_dataset = make_dataset(f"{split.name}_eval", split.eval, learner.task)
-    dev_dataset = make_dataset(f"{split.name}_dev", split.dev, learner.task)
+    if getattr(args, "task", "ner") == "relation":
+        learner = RelationLearner(
+            model=args.model,
+            dataset_name=split.name,
+            base_url=args.base_url,
+            use_grex=not args.no_grex,
+            max_rules=args.max_rules,
+            max_samples=args.max_samples,
+            max_counter_examples=args.max_counter_examples,
+            agentic=args.agentic,
+            enable_prune=args.enable_prune,
+            audit_interval=args.audit_interval,
+            enable_critic=args.enable_critic,
+            critic_interval=args.critic_interval,
+            logger=logger,
+            storage_path=storage_dir,
+            sampling_strategy=args.sampling_strategy,
+            synthesis_strategy=args.synthesis_strategy,
+            selected_classes=list(split.selected_classes),
+            rule_format=args.format,
+        )
+        eval_dataset = make_relation_dataset(
+            f"{split.name}_eval", split.eval, learner.task
+        )
+        dev_dataset = make_relation_dataset(
+            f"{split.name}_dev", split.dev, learner.task
+        )
+        test_dataset = make_relation_dataset(
+            f"{split.name}_test", split.test, learner.task
+        )
+
+    else:
+        learner = NERLearner(
+            model=args.model,
+            dataset_name=split.name,
+            base_url=args.base_url,
+            use_grex=not args.no_grex,
+            max_rules=args.max_rules,
+            max_samples=args.max_samples,
+            max_counter_examples=args.max_counter_examples,
+            interleave_failures=args.interleave_failures,
+            agentic=args.agentic,
+            enable_prune=args.enable_prune,
+            audit_interval=args.audit_interval,
+            enable_critic=args.enable_critic,
+            critic_interval=args.critic_interval,
+            logger=logger,
+            storage_path=storage_dir,
+            sampling_strategy=args.sampling_strategy,
+            synthesis_strategy=args.synthesis_strategy,
+            selected_classes=list(split.selected_classes),
+            rule_format=args.format,
+        )
+        eval_dataset = make_dataset(f"{split.name}_eval", split.eval, learner.task)
+        dev_dataset = make_dataset(f"{split.name}_dev", split.dev, learner.task)
+        test_dataset = make_dataset(f"{split.name}_test", split.test, learner.task)
     return StepContext(
         rules=rules or [],
         split=split,
         learner=learner,
         eval_dataset=eval_dataset,
         dev_dataset=dev_dataset,
+        test_dataset=test_dataset,
         checkpoint_path=checkpoint_path,
     )

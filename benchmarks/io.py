@@ -5,9 +5,40 @@ from pathlib import Path
 
 import yaml
 from rulechef.core import Rule, RuleFormat
+from rulechef.evaluation import (
+    _get_entities,
+    _in_scope,
+    _match_entities,
+    _target_labels,
+)
 from rulechef.training_logger import TrainingDataLogger
 
 from benchmarks.data import BenchmarkRun
+
+
+def collect_false_negatives(test_eval, task_type, rules):
+    targets = _target_labels(rules)
+    records = []
+    for item in test_eval.failures:
+        pred = _get_entities(item["got"], task_type)
+        gold = _get_entities(item["expected"], task_type)
+        _, _, fn_list = _match_entities(pred, gold, task_type, mode="text")
+        fn_list = [g for g in fn_list if _in_scope(g, targets)]
+
+        for g in fn_list:
+            records.append(
+                {
+                    "doc_id": item["input"].get("doc_id", ""),
+                    "sent_id": item["input"].get("sent_id", ""),
+                    "missed": g.get("text"),
+                    "type": g.get("type") or g.get("label"),
+                    "start": g.get("start"),
+                    "end": g.get("end"),
+                    "predicted_in_sentence": [p.get("text") for p in pred],
+                    "sentence": item["input"].get("text", ""),
+                }
+            )
+    return records
 
 
 def serialize_rules(rules) -> list:
@@ -23,6 +54,9 @@ def serialize_rules(rules) -> list:
             "priority": r.priority,
             "output_template": r.output_template,
             "output_key": r.output_key,
+            "validated_precision": r.validated_precision,
+            "validated_support": r.validated_support,
+            "created_at": r.created_at.isoformat() if r.created_at else None,
         }
         for r in rules
     ]
@@ -39,6 +73,11 @@ def deserialize_rules(rules_list: list) -> list:
             priority=r.get("priority", 5),
             output_template=r.get("output_template"),
             output_key=r.get("output_key"),
+            validated_precision=r.get("validated_precision"),
+            validated_support=r.get("validated_support"),
+            created_at=datetime.fromisoformat(r["created_at"])
+            if r.get("created_at")
+            else datetime.now(),
         )
         for r in rules_list
     ]
@@ -71,23 +110,29 @@ def save_results(output_path: Path, run: BenchmarkRun):
             "max_samples": args.max_samples,
             "max_iterations": args.max_iterations,
             "seed": args.seed,
+            "dev_dir": args.dev_dir,
+            "test_dir": args.test_dir,
             "train_size": run.train_size,
             "eval_size": run.eval_size,
+            "dev_size": run.dev_size,
             "test_size": run.test_size,
-            "train_annotations": run.train_annotations,
-            "eval_annotations": run.eval_annotations,
-            "test_annotations": run.test_annotations,
+            "train_sentences": run.train_sentences,
+            "eval_sentences": run.eval_sentences,
+            "dev_sentences": run.dev_sentences,
+            "test_sentences": run.test_sentences,
             "use_grex": not args.no_grex,
             "agentic": args.agentic,
             "enable_critic": args.enable_critic,
             "enable_prune": args.enable_prune,
             "critic_interval": args.critic_interval,
             "audit_interval": args.audit_interval,
-            "windows": args.windows,
             "sampling_strategy": args.sampling_strategy,
             "train_ratio": args.train_ratio,
+            "neg_ratio": getattr(args, "neg_ratio", None),
+            "eval_neg_ratio": getattr(args, "eval_neg_ratio", None),
             "pool_size": args.pool_size,
             "batch_size": args.batch_size,
+            "past_batches": args.past_batches,
             "refine_per_batch": args.refine_per_batch,
             "synthesis_strategy": args.synthesis_strategy,
             "selected_classes": run.selected_classes,
@@ -96,10 +141,11 @@ def save_results(output_path: Path, run: BenchmarkRun):
             "transfer_name": args.transfer_name,
             "transfer_test_name": args.transfer_test_name,
             "max_counter_examples": args.max_counter_examples,
+            "interleave_failures": args.interleave_failures,
             "refine_every": args.refine_every,
         },
         "metadata": run.metadata,
-        "results": {
+        "results_dev": {
             "accuracy": run.eval_results.exact_match,
             "micro_precision": run.eval_results.micro_precision,
             "micro_recall": run.eval_results.micro_recall,
@@ -110,7 +156,7 @@ def save_results(output_path: Path, run: BenchmarkRun):
             "eval_time_s": round(run.t_eval, 3),
             "per_query_ms": round(run.t_eval / len(run.test_data) * 1000, 2),
         },
-        "per_class": [
+        "per_class_dev": [
             {
                 "label": cm.label,
                 "precision": cm.precision,
@@ -124,20 +170,26 @@ def save_results(output_path: Path, run: BenchmarkRun):
         ],
         "iteration_metrics": run.iteration_metrics,
         "batch_test_metrics": run.batch_test_metrics,
-        "rules": [
+        "results_test": {
+            "accuracy": run.test_eval_results.exact_match,
+            "micro_precision": run.test_eval_results.micro_precision,
+            "micro_recall": run.test_eval_results.micro_recall,
+            "micro_f1": run.test_eval_results.micro_f1,
+            "macro_f1": run.test_eval_results.macro_f1,
+        },
+        "per_class_test": [
             {
-                "id": r.id,
-                "name": r.name,
-                "description": r.description,
-                "format": r.format.value,
-                "content": r.content,
-                "priority": r.priority,
-                "output_template": r.output_template,
-                "output_key": r.output_key,
-                "created_at": r.created_at.isoformat(),
+                "label": cm.label,
+                "precision": cm.precision,
+                "recall": cm.recall,
+                "f1": cm.f1,
+                "tp": cm.tp,
+                "fp": cm.fp,
+                "fn": cm.fn,
             }
-            for r in run.rules
+            for cm in (run.test_eval_results.per_class or [])
         ],
+        "rules": serialize_rules(run.rules),
         "best_rules": {
             "batch": run.metadata.get("best_batch_idx"),
             "micro_f1": run.metadata.get("best_batch_f1"),
@@ -159,7 +211,7 @@ def setup_output_paths(args, selected_classes):
     ).strip()
     num_classes = len(selected_classes)
 
-    if args.rules_json:
+    if args.rules_json and getattr(args, "feedback", None):
         output_dir = Path(args.rules_json).parent
         output_dir.mkdir(parents=True, exist_ok=True)
     else:
@@ -167,18 +219,16 @@ def setup_output_paths(args, selected_classes):
             Path(f"reports/{args.dataset_name}/{model_name}") / selected_classes_str
         )
         base_name = date_str
-
         output_dir = base_dir / base_name
         if output_dir.exists():
             version = 1
             while (base_dir / f"{base_name}_v{version}").exists():
                 version += 1
             output_dir = base_dir / f"{base_name}_v{version}"
-
         output_dir.mkdir(parents=True, exist_ok=True)
 
     out_name = Path(args.output)
-    if args.rules_json or getattr(args, "feedback", None):
+    if args.rules_json:
         out_name = out_name.with_stem(out_name.stem + "_refined")
 
     log_path = (output_dir / out_name).with_suffix(".training.jsonl")
@@ -193,11 +243,7 @@ def setup_output_paths(args, selected_classes):
     )
     print(f"Training log: {log_path}")
 
-    config_name = (
-        "config_refined.yaml"
-        if (args.rules_json or getattr(args, "feedback", None))
-        else "config.yaml"
-    )
+    config_name = "config_refined.yaml" if (args.rules_json) else "config.yaml"
     config_path = output_dir / config_name
     config_dict = {
         k.replace("_", "-"): v for k, v in vars(args).items() if k not in ("config",)

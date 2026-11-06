@@ -1,0 +1,1411 @@
+{
+  "config": {
+    "shots": null,
+    "model": "Qwen/Qwen3.5-35B-A3B",
+    "format": "regex",
+    "max_rules": 30,
+    "max_samples": 200,
+    "max_iterations": 1,
+    "seed": 42,
+    "train_size": 1525,
+    "eval_size": 382,
+    "test_size": 477,
+    "train_annotations": 7018,
+    "eval_annotations": 1839,
+    "test_annotations": 22727,
+    "use_grex": true,
+    "agentic": false,
+    "enable_critic": true,
+    "enable_prune": false,
+    "critic_interval": 2,
+    "audit_interval": 0,
+    "windows": false,
+    "sampling_strategy": "balanced",
+    "train_ratio": 0.8,
+    "pool_size": null,
+    "batch_size": 50,
+    "refine_per_batch": 0,
+    "synthesis_strategy": "bulk",
+    "selected_classes": [
+      "organisation"
+    ],
+    "train_name": "ris_train",
+    "test_name": "ris_train",
+    "transfer_name": null,
+    "transfer_test_name": null,
+    "max_counter_examples": 10,
+    "refine_every": 5
+  },
+  "metadata": {
+    "best_batch_idx": -1,
+    "best_batch_f1": 0.0,
+    "best_rules_serialized": [
+      {
+        "id": "69f4d34d",
+        "name": "Oberste_Gerichtshof",
+        "description": "Matches the Supreme Court of Austria in nominative or genitive case.",
+        "format": "regex",
+        "content": "\\bOberste(?:n)?\\s+Gerichtshof(?:s)?\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "7d387332",
+        "name": "Oberlandesgericht_City",
+        "description": "Matches Regional High Courts with city names, ensuring 'Graz' is included.",
+        "format": "regex",
+        "content": "\\bOberlandesgerichts?\\s+(?:Wien|Linz|Innsbruck|Salzburg|Graz|Klagenfurt|Eisenstadt|St.\\s+P\u00f6lten|Bregenz|Feldkirch|Leoben|Lienz|Villach|Wels|Linz)\\b",
+        "priority": 9,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "ad43d7bd",
+        "name": "OGH_Abbreviation",
+        "description": "Matches the abbreviation OGH (Oberster Gerichtshof).",
+        "format": "regex",
+        "content": "\\bOGH\\b",
+        "priority": 11,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "abcf145d",
+        "name": "Bezirksgericht_Handelsgericht",
+        "description": "Matches District Courts for Commercial Matters (Handelssachen).",
+        "format": "regex",
+        "content": "\\bBezirksgerichts?\\s+f\u00fcr\\s+Handelssachen\\s+(?:Wien|Linz|Salzburg|Innsbruck|Graz|Klagenfurt|Bregenz|Feldkirch|Leoben|Lienz|Villach|Wels|St.\\s+P\u00f6lten)\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "ac276403",
+        "name": "Law_Firm_OG_KG_GmbH",
+        "description": "Matches law firms identified by suffixes OG, KG, or GmbH, allowing for slashes, hyphens, and 'und'/'&' in names, ensuring full name capture including 'GmbH & Co KG'.",
+        "format": "regex",
+        "content": "(?<![\\w])([A-Z][a-zA-Z]+(?:\\s+[A-Z][a-zA-Z]+)*|[A-Z][a-zA-Z]+(?:-[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\+[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\s+und\\s+[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\s*&\\s*[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\s+&\\s*[A-Z][a-zA-Z]+)+|[A-Za-z]+(?:/[A-Za-z]+)+)\\s+(?:Rechtsanw\u00e4lte|Anw\u00e4lte|Anwaltsgesellschaft)\\s+(?:OG|KG|GmbH|mbH|GmbH\\s+&\\s+Co\\s+KG)\\b",
+        "priority": 7,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "a5f09bd3",
+        "name": "Law_Firm_Rechtsanwaelte_OG",
+        "description": "Matches law firms ending in 'Rechtsanw\u00e4lte OG' with flexible name structures including hyphens and '&' or 'und'.",
+        "format": "regex",
+        "content": "\\b([A-Z][a-zA-Z]+(?:\\s+[A-Z][a-zA-Z]+)*|[A-Z][a-zA-Z]+(?:-[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\+[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\s+und\\s+[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\s*&\\s*[A-Z][a-zA-Z]+)+)\\s+Rechtsanw\u00e4lte\\s+OG\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "4f019849",
+        "name": "Verfassungsgerichtshof",
+        "description": "Matches the Constitutional Court (Verfassungsgerichtshof) in nominative or genitive case.",
+        "format": "regex",
+        "content": "\\bVerfassungsgerichtshof(?:s)?\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "bb537474",
+        "name": "Bezirksgericht_City_Extended",
+        "description": "Matches District Courts with city names, including specific missing cities like Ried im Innkreis, M\u00f6dling, Floridsdorf, and districts.",
+        "format": "regex",
+        "content": "\\bBezirksgerichts?\\s+(?:Melk|Steyr|Feldbach|Rohrbach|Enns|Donaustadt|F\u00fcnfthau|Innere\\s+Stadt\\s+Wien|Schwechat|Liesing|Gmunden|Bad\\s+Ischl|Wels|Telfs|Neusiedl\\s+am\\s+See|Favoriten|Josefstadt|Hietzing|Graz-West|Graz-Ost|Kirchdorf\\s+an\\s+der\\s+Krems|Amstetten|V\u00f6cklabruck|D\u00f6bling|St\\.\\s+P\u00f6ltten|Kufstein|Laa\\s+an\\s+der\\s+Thaya|Schwaz|Hall|Dornbirn|Bludenz|Lustenau|Hohenems|Rankweil|Schaan|Vaduz|Balzers|Triesen|Triesenberg|Eschen|Mauren|Gamprin|Planken|Schellenberg|Au|Ruggell|Bregenz|Feldkirch|Leoben|Lienz|Villach|Wels|Salzburg|Innsbruck|Eisenstadt|Klagenfurt|Graz|Wien|Linz|Bregenz|Feldkirch|Leoben|Lienz|Villach|Wels|St\\.\\s+P\u00f6ltten|Schwaz|Hall|Innsbruck|Dornbirn|Bludenz|Feldkirch|Bregenz|Lustenau|Dornbirn|Hohenems|Rankweil|Schaan|Vaduz|Balzers|Triesen|Triesenberg|Eschen|Mauren|Gamprin|Planken|Schellenberg|Au|Ruggell|Ried\\s+im\\s+Innkreis|M\u00f6dling|Floridsdorf|F\u00fcrstenfeld|Grieskirchen|Neulengbach|Deutschlandsberg|Hermagor|Freistadt)\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "d93c350a",
+        "name": "Landesgericht_City_Extended",
+        "description": "Matches Regional Courts with city names, ensuring 'St. P\u00f6lten', 'Hermagor', 'Leoben', 'Salzburg', 'Graz', 'Wien', 'Linz', 'Innsbruck', 'Klagenfurt', 'Bregenz', 'Feldkirch', 'Leoben', 'Lienz', 'Villach', 'Wels', 'Schwechat', 'Liesing', 'Gmunden', 'Bad Ischl', 'Telfs', 'Neusiedl am See', 'Favoriten', 'F\u00fcnfthau', 'Josefstadt', 'Hietzing', 'Ried im Innkreis', 'Krems an der Donau', 'Eisenstadt', 'Korneuburg', 'Laa an der Thaya', 'Wiener Neustadt', 'Steyr' are included.",
+        "format": "regex",
+        "content": "\\bLandesgerichts?\\s+(?:f\u00fcr\\s+Zivilrechtssachen\\s+(?:Graz|Wien|Linz|Salzburg|Innsbruck|Eisenstadt|Klagenfurt|Bregenz|Feldkirch|Leoben|Lienz|Villach|Wels|St\\.\\s+P\u00f6lten|Schwechat|Liesing|Gmunden|Bad\\s+Ischl|Wels|Telfs|Neusiedl\\s+am\\s+See|Favoriten|F\u00fcnfthau|Josefstadt|Hietzing|Graz|Wien|Linz|Salzburg|Innsbruck|Eisenstadt|Klagenfurt|Bregenz|Feldkirch|Leoben|Lienz|Villach|Wels|St\\.\\s+P\u00f6lten)|Eisenstadt|Salzburg|Innsbruck|Korneuburg|Laa\\s+an\\s+der\\s+Thaya|Wels|Linz|Salzburg|Innsbruck|Eisenstadt|Klagenfurt|Bregenz|Feldkirch|Leoben|Lienz|Villach|Wels|St\\.\\s+P\u00f6lten|Schwechat|Liesing|Gmunden|Bad\\s+Ischl|Wels|Telfs|Neusiedl\\s+am\\s+See|Favoriten|F\u00fcnfthau|Josefstadt|Hietzing|Graz|Wien|Linz|Salzburg|Innsbruck|Eisenstadt|Klagenfurt|Bregenz|Feldkirch|Leoben|Lienz|Villach|Wels|St\\.\\s+P\u00f6lten|Steyr|Wiener\\s+Neustadt|Graz|Wien|Linz|Salzburg|Innsbruck|Eisenstadt|Klagenfurt|Bregenz|Feldkirch|Leoben|Lienz|Villach|Wels|St\\.\\s+P\u00f6lten|Ried\\s+im\\s+Innkreis|Krems\\s+an\\s+der\\s+Donau|Feldkirch|Graz|Wien|Linz|Salzburg|Innsbruck|Eisenstadt|Klagenfurt|Bregenz|Feldkirch|Leoben|Lienz|Villach|Wels|St\\.\\s+P\u00f6lten|Schwechat|Liesing|Gmunden|Bad\\s+Ischl|Wels|Telfs|Neusiedl\\s+am\\s+See|Favoriten|F\u00fcnfthau|Josefstadt|Hietzing|Graz|Wien|Linz|Salzburg|Innsbruck|Eisenstadt|Klagenfurt|Bregenz|Feldkirch|Leoben|Lienz|Villach|Wels|St\\.\\s+P\u00f6lten|Hermagor)\\b",
+        "priority": 9,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "b3f6167e",
+        "name": "Magistrat_Wien",
+        "description": "Matches the Magistrat der Stadt Wien.",
+        "format": "regex",
+        "content": "\\bMagistrat\\s+der\\s+Stadt\\s+Wien\\b",
+        "priority": 9,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "d6aad400",
+        "name": "Verein_Organisation",
+        "description": "Matches organizations starting with 'Verein' (Association) capturing the full name.",
+        "format": "regex",
+        "content": "\\bVerein\\s+f\u00fcr\\s+[A-Z][a-zA-Z]+(?:\\s+[A-Z][a-zA-Z]+)*",
+        "priority": 7,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "29819c24",
+        "name": "Landesgericht_Strafsachen",
+        "description": "Matches Regional Courts for Criminal Matters (Landesgericht f\u00fcr Strafsachen).",
+        "format": "regex",
+        "content": "\\bLandesgerichts?\\s+f\u00fcr\\s+Strafsachen\\s+(?:Wien|Linz|Salzburg|Innsbruck|Graz|Klagenfurt|Bregenz|Feldkirch|Leoben|Lienz|Villach|Wels|St.\\s+P\u00f6lten|Eisenstadt)\\b",
+        "priority": 9,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "d4143cce",
+        "name": "Bezirksgericht_Grieskirchen",
+        "description": "Matches District Court Grieskirchen specifically.",
+        "format": "regex",
+        "content": "\\bBezirksgerichts?\\s+Grieskirchen\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "d619a589",
+        "name": "VwGH_Abbreviation",
+        "description": "Matches the abbreviation VwGH (Verwaltungsgerichtshof).",
+        "format": "regex",
+        "content": "\\bVwGH\\b",
+        "priority": 11,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "f8d063bd",
+        "name": "PVA_Abbreviation",
+        "description": "Matches the abbreviation PVA (Pensionsversicherungsanstalt).",
+        "format": "regex",
+        "content": "\\bPVA\\b",
+        "priority": 11,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "93985d06",
+        "name": "SAK_Abbreviation",
+        "description": "Matches the abbreviation SAK (Schweizer Ausgleichskasse).",
+        "format": "regex",
+        "content": "\\bSAK\\b",
+        "priority": 11,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "88d65288",
+        "name": "Schweizer_Ausgleichskasse_SAK",
+        "description": "Matches the full name 'Schweizer Ausgleichskasse SAK' including the abbreviation.",
+        "format": "regex",
+        "content": "\\bSchweizer\\s+Ausgleichskasse\\s+(?:SAK|\\(SAK\\))\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "66a6c49d",
+        "name": "Wien_Telekom_Betriebe_GmbH",
+        "description": "Matches the specific entity 'Wien-Telekom Betriebe GmbH'.",
+        "format": "regex",
+        "content": "\\bWien\\-[Tt]elekom\\s+Betriebe\\s+GmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "19ebbf47",
+        "name": "Gesellschaft_mbh_Specific",
+        "description": "Specifically matches 'Gesellschaft mbH' (lowercase g) which the generic rule might miss if the name structure is complex, e.g., 'Kress M\u00f6bel gesellschaft mbH'.",
+        "format": "regex",
+        "content": "(?<![\\w])([A-Z][a-zA-Z]+(?:\\s+[A-Z][a-zA-Z]+)*|[A-Z][a-zA-Z]+(?:-[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\+[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\s+und\\s+[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\s*&\\s*[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\s+&\\s*[A-Z][a-zA-Z]+)+)\\s+gesellschaft\\s+mbH\\b",
+        "priority": 6,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "ec038233",
+        "name": "OGK_Abbreviation",
+        "description": "Matches the abbreviation \u00d6GK (\u00d6sterreichische Gebietskrankenkasse).",
+        "format": "regex",
+        "content": "\\b\u00d6GK\\b",
+        "priority": 11,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "faeb40bb",
+        "name": "Vorarlberger_Gebietskrankenkasse",
+        "description": "Matches the specific entity 'Vorarlberger Gebietskrankenkasse'.",
+        "format": "regex",
+        "content": "\\bVorarlberger\\s+Gebietskrankenkasse\\b",
+        "priority": 11,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "ec998e7c",
+        "name": "Bezirksgericht_Spittal_G\u00fcssing_Sch\u00e4rding",
+        "description": "Matches District Courts for specific missing cities: Spittal an der Drau, G\u00fcssing, Sch\u00e4rding.",
+        "format": "regex",
+        "content": "\\bBezirksgerichts?\\s+(?:Spittal\\s+an\\s+der\\s+Drau|G\u00fcssing|Sch\u00e4rding)\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "a11c5340",
+        "name": "Landesgericht_Krems",
+        "description": "Matches Regional Courts for Krems an der Donau.",
+        "format": "regex",
+        "content": "\\bLandesgerichts?\\s+(?:Krems\\s+an\\s+der\\s+Donau)\\b",
+        "priority": 9,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "8d2a6af2",
+        "name": "Domain_Organisation",
+        "description": "Matches organization names ending in .at (e.g., 'Logderfurt-Logistik.at', 'YNKW Elektro.at').",
+        "format": "regex",
+        "content": "\\b[A-Z][a-zA-Z]+(?:[-+&][A-Z][a-zA-Z]+)*\\.at\\b",
+        "priority": 4,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "b649abaa",
+        "name": "Hyphenated_Gesellschaft_mbh",
+        "description": "Matches hyphenated corporate names ending in 'Gesellschaft mbH' (lowercase), e.g., 'WienTransport Werke -GesmbH'.",
+        "format": "regex",
+        "content": "(?<![\\w])([A-Z][a-zA-Z]+(?:\\s+[A-Z][a-zA-Z]+)*|[A-Z][a-zA-Z]+(?:-[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\+[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\s+und\\s+[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\s*&\\s*[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\s+&\\s*[A-Z][a-zA-Z]+)+)\\s*-GesmbH\\b",
+        "priority": 6,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "a858714a",
+        "name": "Bezirksgerichts_Leopoldstadt",
+        "description": "Matches 'Bezirksgerichts Leopoldstadt' specifically to handle the missing case in the extended city list.",
+        "format": "regex",
+        "content": "\\bBezirksgerichts?\\s+Leopoldstadt\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "2d7a84d3",
+        "name": "Generic_KG_Entity",
+        "description": "Matches generic corporate entities ending in KG (Kommanditgesellschaft) which were previously missing.",
+        "format": "regex",
+        "content": "(?<![\\w])(?:[A-Z][a-zA-Z]+(?:\\s+[A-Z][a-zA-Z]+)*|[A-Z][a-zA-Z]+(?:-[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\+[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\s+und\\s+[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\s*&\\s*[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\s+&\\s*[A-Z][a-zA-Z]+)+)\\s+KG\\b",
+        "priority": 6,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "5952d33c",
+        "name": "Hyphenated_Ampersand_Corporate_Name",
+        "description": "Matches corporate names with hyphens, plus signs, or ampersands, including 'GmbH & Co KG' and 'AG' suffixes.",
+        "format": "regex",
+        "content": "(?<![\\w])([A-Z][a-zA-Z]+(?:-[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\+[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\s*&\\s*[A-Z][a-zA-Z]+)+)\\s+(?:GmbH\\s*&\\s*Co\\s*KG|GmbH|AG|Aktiengesellschaft|Gesellschaft\\s+mbH)\\b",
+        "priority": 6,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "38c29e5b",
+        "name": "Slash_Separated_Corporate_Name",
+        "description": "Matches corporate names with slash-separated components (e.g., 'urbanek/lind/schmied/reisch Rechtsanw\u00e4lte OG').",
+        "format": "regex",
+        "content": "(?<![\\w])([A-Za-z]+(?:/[A-Za-z]+)+)\\s+(?:Rechtsanw\u00e4lte|Anw\u00e4lte|Anwaltsgesellschaft)\\s+(?:OG|KG|GmbH|mbH|GmbH\\s+&\\s+Co\\s+KG)\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      }
+    ]
+  },
+  "results": {
+    "accuracy": 0.9804637655651868,
+    "micro_precision": 0.9743219849971149,
+    "micro_recall": 0.8413054309915297,
+    "micro_f1": 0.9029411764705882,
+    "macro_f1": 0.9029411764705882,
+    "num_rules": 29,
+    "learning_time_s": 0.0,
+    "eval_time_s": 10.418,
+    "per_query_ms": 0.46
+  },
+  "per_class": [
+    {
+      "label": "organisation",
+      "precision": 0.9743219849971149,
+      "recall": 0.8413054309915297,
+      "f1": 0.9029411764705882,
+      "tp": 3377,
+      "fp": 89,
+      "fn": 637
+    }
+  ],
+  "iteration_metrics": [],
+  "batch_test_metrics": [],
+  "rules": [
+    {
+      "id": "69f4d34d",
+      "name": "Oberste_Gerichtshof",
+      "description": "Matches the Supreme Court of Austria in nominative or genitive case.",
+      "format": "regex",
+      "content": "\\bOberste(?:n)?\\s+Gerichtshof(?:s)?\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-09-24T11:58:14.151131"
+    },
+    {
+      "id": "7d387332",
+      "name": "Oberlandesgericht_City",
+      "description": "Matches Regional High Courts with city names, ensuring 'Graz' is included.",
+      "format": "regex",
+      "content": "\\bOberlandesgerichts?\\s+(?:Wien|Linz|Innsbruck|Salzburg|Graz|Klagenfurt|Eisenstadt|St.\\s+P\u00f6lten|Bregenz|Feldkirch|Leoben|Lienz|Villach|Wels|Linz)\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-09-24T11:58:14.151142"
+    },
+    {
+      "id": "ad43d7bd",
+      "name": "OGH_Abbreviation",
+      "description": "Matches the abbreviation OGH (Oberster Gerichtshof).",
+      "format": "regex",
+      "content": "\\bOGH\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-09-24T11:58:14.151145"
+    },
+    {
+      "id": "abcf145d",
+      "name": "Bezirksgericht_Handelsgericht",
+      "description": "Matches District Courts for Commercial Matters (Handelssachen).",
+      "format": "regex",
+      "content": "\\bBezirksgerichts?\\s+f\u00fcr\\s+Handelssachen\\s+(?:Wien|Linz|Salzburg|Innsbruck|Graz|Klagenfurt|Bregenz|Feldkirch|Leoben|Lienz|Villach|Wels|St.\\s+P\u00f6lten)\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-09-24T11:58:14.151148"
+    },
+    {
+      "id": "ac276403",
+      "name": "Law_Firm_OG_KG_GmbH",
+      "description": "Matches law firms identified by suffixes OG, KG, or GmbH, allowing for slashes, hyphens, and 'und'/'&' in names, ensuring full name capture including 'GmbH & Co KG'.",
+      "format": "regex",
+      "content": "(?<![\\w])([A-Z][a-zA-Z]+(?:\\s+[A-Z][a-zA-Z]+)*|[A-Z][a-zA-Z]+(?:-[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\+[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\s+und\\s+[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\s*&\\s*[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\s+&\\s*[A-Z][a-zA-Z]+)+|[A-Za-z]+(?:/[A-Za-z]+)+)\\s+(?:Rechtsanw\u00e4lte|Anw\u00e4lte|Anwaltsgesellschaft)\\s+(?:OG|KG|GmbH|mbH|GmbH\\s+&\\s+Co\\s+KG)\\b",
+      "priority": 7,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-09-24T11:58:14.151152"
+    },
+    {
+      "id": "a5f09bd3",
+      "name": "Law_Firm_Rechtsanwaelte_OG",
+      "description": "Matches law firms ending in 'Rechtsanw\u00e4lte OG' with flexible name structures including hyphens and '&' or 'und'.",
+      "format": "regex",
+      "content": "\\b([A-Z][a-zA-Z]+(?:\\s+[A-Z][a-zA-Z]+)*|[A-Z][a-zA-Z]+(?:-[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\+[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\s+und\\s+[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\s*&\\s*[A-Z][a-zA-Z]+)+)\\s+Rechtsanw\u00e4lte\\s+OG\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-09-24T11:58:14.151155"
+    },
+    {
+      "id": "4f019849",
+      "name": "Verfassungsgerichtshof",
+      "description": "Matches the Constitutional Court (Verfassungsgerichtshof) in nominative or genitive case.",
+      "format": "regex",
+      "content": "\\bVerfassungsgerichtshof(?:s)?\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-09-24T11:58:14.151158"
+    },
+    {
+      "id": "bb537474",
+      "name": "Bezirksgericht_City_Extended",
+      "description": "Matches District Courts with city names, including specific missing cities like Ried im Innkreis, M\u00f6dling, Floridsdorf, and districts.",
+      "format": "regex",
+      "content": "\\bBezirksgerichts?\\s+(?:Melk|Steyr|Feldbach|Rohrbach|Enns|Donaustadt|F\u00fcnfthau|Innere\\s+Stadt\\s+Wien|Schwechat|Liesing|Gmunden|Bad\\s+Ischl|Wels|Telfs|Neusiedl\\s+am\\s+See|Favoriten|Josefstadt|Hietzing|Graz-West|Graz-Ost|Kirchdorf\\s+an\\s+der\\s+Krems|Amstetten|V\u00f6cklabruck|D\u00f6bling|St\\.\\s+P\u00f6ltten|Kufstein|Laa\\s+an\\s+der\\s+Thaya|Schwaz|Hall|Dornbirn|Bludenz|Lustenau|Hohenems|Rankweil|Schaan|Vaduz|Balzers|Triesen|Triesenberg|Eschen|Mauren|Gamprin|Planken|Schellenberg|Au|Ruggell|Bregenz|Feldkirch|Leoben|Lienz|Villach|Wels|Salzburg|Innsbruck|Eisenstadt|Klagenfurt|Graz|Wien|Linz|Bregenz|Feldkirch|Leoben|Lienz|Villach|Wels|St\\.\\s+P\u00f6ltten|Schwaz|Hall|Innsbruck|Dornbirn|Bludenz|Feldkirch|Bregenz|Lustenau|Dornbirn|Hohenems|Rankweil|Schaan|Vaduz|Balzers|Triesen|Triesenberg|Eschen|Mauren|Gamprin|Planken|Schellenberg|Au|Ruggell|Ried\\s+im\\s+Innkreis|M\u00f6dling|Floridsdorf|F\u00fcrstenfeld|Grieskirchen|Neulengbach|Deutschlandsberg|Hermagor|Freistadt)\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-09-24T11:58:14.151160"
+    },
+    {
+      "id": "d93c350a",
+      "name": "Landesgericht_City_Extended",
+      "description": "Matches Regional Courts with city names, ensuring 'St. P\u00f6lten', 'Hermagor', 'Leoben', 'Salzburg', 'Graz', 'Wien', 'Linz', 'Innsbruck', 'Klagenfurt', 'Bregenz', 'Feldkirch', 'Leoben', 'Lienz', 'Villach', 'Wels', 'Schwechat', 'Liesing', 'Gmunden', 'Bad Ischl', 'Telfs', 'Neusiedl am See', 'Favoriten', 'F\u00fcnfthau', 'Josefstadt', 'Hietzing', 'Ried im Innkreis', 'Krems an der Donau', 'Eisenstadt', 'Korneuburg', 'Laa an der Thaya', 'Wiener Neustadt', 'Steyr' are included.",
+      "format": "regex",
+      "content": "\\bLandesgerichts?\\s+(?:f\u00fcr\\s+Zivilrechtssachen\\s+(?:Graz|Wien|Linz|Salzburg|Innsbruck|Eisenstadt|Klagenfurt|Bregenz|Feldkirch|Leoben|Lienz|Villach|Wels|St\\.\\s+P\u00f6lten|Schwechat|Liesing|Gmunden|Bad\\s+Ischl|Wels|Telfs|Neusiedl\\s+am\\s+See|Favoriten|F\u00fcnfthau|Josefstadt|Hietzing|Graz|Wien|Linz|Salzburg|Innsbruck|Eisenstadt|Klagenfurt|Bregenz|Feldkirch|Leoben|Lienz|Villach|Wels|St\\.\\s+P\u00f6lten)|Eisenstadt|Salzburg|Innsbruck|Korneuburg|Laa\\s+an\\s+der\\s+Thaya|Wels|Linz|Salzburg|Innsbruck|Eisenstadt|Klagenfurt|Bregenz|Feldkirch|Leoben|Lienz|Villach|Wels|St\\.\\s+P\u00f6lten|Schwechat|Liesing|Gmunden|Bad\\s+Ischl|Wels|Telfs|Neusiedl\\s+am\\s+See|Favoriten|F\u00fcnfthau|Josefstadt|Hietzing|Graz|Wien|Linz|Salzburg|Innsbruck|Eisenstadt|Klagenfurt|Bregenz|Feldkirch|Leoben|Lienz|Villach|Wels|St\\.\\s+P\u00f6lten|Steyr|Wiener\\s+Neustadt|Graz|Wien|Linz|Salzburg|Innsbruck|Eisenstadt|Klagenfurt|Bregenz|Feldkirch|Leoben|Lienz|Villach|Wels|St\\.\\s+P\u00f6lten|Ried\\s+im\\s+Innkreis|Krems\\s+an\\s+der\\s+Donau|Feldkirch|Graz|Wien|Linz|Salzburg|Innsbruck|Eisenstadt|Klagenfurt|Bregenz|Feldkirch|Leoben|Lienz|Villach|Wels|St\\.\\s+P\u00f6lten|Schwechat|Liesing|Gmunden|Bad\\s+Ischl|Wels|Telfs|Neusiedl\\s+am\\s+See|Favoriten|F\u00fcnfthau|Josefstadt|Hietzing|Graz|Wien|Linz|Salzburg|Innsbruck|Eisenstadt|Klagenfurt|Bregenz|Feldkirch|Leoben|Lienz|Villach|Wels|St\\.\\s+P\u00f6lten|Hermagor)\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-09-24T11:58:14.151163"
+    },
+    {
+      "id": "b3f6167e",
+      "name": "Magistrat_Wien",
+      "description": "Matches the Magistrat der Stadt Wien.",
+      "format": "regex",
+      "content": "\\bMagistrat\\s+der\\s+Stadt\\s+Wien\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-09-24T11:58:14.151166"
+    },
+    {
+      "id": "d6aad400",
+      "name": "Verein_Organisation",
+      "description": "Matches organizations starting with 'Verein' (Association) capturing the full name.",
+      "format": "regex",
+      "content": "\\bVerein\\s+f\u00fcr\\s+[A-Z][a-zA-Z]+(?:\\s+[A-Z][a-zA-Z]+)*",
+      "priority": 7,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-09-24T11:58:14.151169"
+    },
+    {
+      "id": "29819c24",
+      "name": "Landesgericht_Strafsachen",
+      "description": "Matches Regional Courts for Criminal Matters (Landesgericht f\u00fcr Strafsachen).",
+      "format": "regex",
+      "content": "\\bLandesgerichts?\\s+f\u00fcr\\s+Strafsachen\\s+(?:Wien|Linz|Salzburg|Innsbruck|Graz|Klagenfurt|Bregenz|Feldkirch|Leoben|Lienz|Villach|Wels|St.\\s+P\u00f6lten|Eisenstadt)\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-09-24T11:58:14.151172"
+    },
+    {
+      "id": "d4143cce",
+      "name": "Bezirksgericht_Grieskirchen",
+      "description": "Matches District Court Grieskirchen specifically.",
+      "format": "regex",
+      "content": "\\bBezirksgerichts?\\s+Grieskirchen\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-09-24T11:58:14.151174"
+    },
+    {
+      "id": "d619a589",
+      "name": "VwGH_Abbreviation",
+      "description": "Matches the abbreviation VwGH (Verwaltungsgerichtshof).",
+      "format": "regex",
+      "content": "\\bVwGH\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-09-24T11:58:14.151177"
+    },
+    {
+      "id": "f8d063bd",
+      "name": "PVA_Abbreviation",
+      "description": "Matches the abbreviation PVA (Pensionsversicherungsanstalt).",
+      "format": "regex",
+      "content": "\\bPVA\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-09-24T11:58:14.151180"
+    },
+    {
+      "id": "93985d06",
+      "name": "SAK_Abbreviation",
+      "description": "Matches the abbreviation SAK (Schweizer Ausgleichskasse).",
+      "format": "regex",
+      "content": "\\bSAK\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-09-24T11:58:14.151183"
+    },
+    {
+      "id": "88d65288",
+      "name": "Schweizer_Ausgleichskasse_SAK",
+      "description": "Matches the full name 'Schweizer Ausgleichskasse SAK' including the abbreviation.",
+      "format": "regex",
+      "content": "\\bSchweizer\\s+Ausgleichskasse\\s+(?:SAK|\\(SAK\\))\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-09-24T11:58:14.151185"
+    },
+    {
+      "id": "66a6c49d",
+      "name": "Wien_Telekom_Betriebe_GmbH",
+      "description": "Matches the specific entity 'Wien-Telekom Betriebe GmbH'.",
+      "format": "regex",
+      "content": "\\bWien\\-[Tt]elekom\\s+Betriebe\\s+GmbH\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-09-24T11:58:14.151188"
+    },
+    {
+      "id": "19ebbf47",
+      "name": "Gesellschaft_mbh_Specific",
+      "description": "Specifically matches 'Gesellschaft mbH' (lowercase g) which the generic rule might miss if the name structure is complex, e.g., 'Kress M\u00f6bel gesellschaft mbH'.",
+      "format": "regex",
+      "content": "(?<![\\w])([A-Z][a-zA-Z]+(?:\\s+[A-Z][a-zA-Z]+)*|[A-Z][a-zA-Z]+(?:-[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\+[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\s+und\\s+[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\s*&\\s*[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\s+&\\s*[A-Z][a-zA-Z]+)+)\\s+gesellschaft\\s+mbH\\b",
+      "priority": 6,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-09-24T11:58:14.151191"
+    },
+    {
+      "id": "ec038233",
+      "name": "OGK_Abbreviation",
+      "description": "Matches the abbreviation \u00d6GK (\u00d6sterreichische Gebietskrankenkasse).",
+      "format": "regex",
+      "content": "\\b\u00d6GK\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-09-24T11:58:14.151194"
+    },
+    {
+      "id": "faeb40bb",
+      "name": "Vorarlberger_Gebietskrankenkasse",
+      "description": "Matches the specific entity 'Vorarlberger Gebietskrankenkasse'.",
+      "format": "regex",
+      "content": "\\bVorarlberger\\s+Gebietskrankenkasse\\b",
+      "priority": 11,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-09-24T11:58:14.151197"
+    },
+    {
+      "id": "ec998e7c",
+      "name": "Bezirksgericht_Spittal_G\u00fcssing_Sch\u00e4rding",
+      "description": "Matches District Courts for specific missing cities: Spittal an der Drau, G\u00fcssing, Sch\u00e4rding.",
+      "format": "regex",
+      "content": "\\bBezirksgerichts?\\s+(?:Spittal\\s+an\\s+der\\s+Drau|G\u00fcssing|Sch\u00e4rding)\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-09-24T11:58:14.151199"
+    },
+    {
+      "id": "a11c5340",
+      "name": "Landesgericht_Krems",
+      "description": "Matches Regional Courts for Krems an der Donau.",
+      "format": "regex",
+      "content": "\\bLandesgerichts?\\s+(?:Krems\\s+an\\s+der\\s+Donau)\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-09-24T11:58:14.151202"
+    },
+    {
+      "id": "8d2a6af2",
+      "name": "Domain_Organisation",
+      "description": "Matches organization names ending in .at (e.g., 'Logderfurt-Logistik.at', 'YNKW Elektro.at').",
+      "format": "regex",
+      "content": "\\b[A-Z][a-zA-Z]+(?:[-+&][A-Z][a-zA-Z]+)*\\.at\\b",
+      "priority": 4,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-09-24T11:58:14.151205"
+    },
+    {
+      "id": "b649abaa",
+      "name": "Hyphenated_Gesellschaft_mbh",
+      "description": "Matches hyphenated corporate names ending in 'Gesellschaft mbH' (lowercase), e.g., 'WienTransport Werke -GesmbH'.",
+      "format": "regex",
+      "content": "(?<![\\w])([A-Z][a-zA-Z]+(?:\\s+[A-Z][a-zA-Z]+)*|[A-Z][a-zA-Z]+(?:-[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\+[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\s+und\\s+[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\s*&\\s*[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\s+&\\s*[A-Z][a-zA-Z]+)+)\\s*-GesmbH\\b",
+      "priority": 6,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-09-24T11:58:14.151207"
+    },
+    {
+      "id": "a858714a",
+      "name": "Bezirksgerichts_Leopoldstadt",
+      "description": "Matches 'Bezirksgerichts Leopoldstadt' specifically to handle the missing case in the extended city list.",
+      "format": "regex",
+      "content": "\\bBezirksgerichts?\\s+Leopoldstadt\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-09-24T11:58:14.151210"
+    },
+    {
+      "id": "2d7a84d3",
+      "name": "Generic_KG_Entity",
+      "description": "Matches generic corporate entities ending in KG (Kommanditgesellschaft) which were previously missing.",
+      "format": "regex",
+      "content": "(?<![\\w])(?:[A-Z][a-zA-Z]+(?:\\s+[A-Z][a-zA-Z]+)*|[A-Z][a-zA-Z]+(?:-[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\+[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\s+und\\s+[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\s*&\\s*[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\s+&\\s*[A-Z][a-zA-Z]+)+)\\s+KG\\b",
+      "priority": 6,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-09-24T11:58:14.151213"
+    },
+    {
+      "id": "5952d33c",
+      "name": "Hyphenated_Ampersand_Corporate_Name",
+      "description": "Matches corporate names with hyphens, plus signs, or ampersands, including 'GmbH & Co KG' and 'AG' suffixes.",
+      "format": "regex",
+      "content": "(?<![\\w])([A-Z][a-zA-Z]+(?:-[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\+[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\s*&\\s*[A-Z][a-zA-Z]+)+)\\s+(?:GmbH\\s*&\\s*Co\\s*KG|GmbH|AG|Aktiengesellschaft|Gesellschaft\\s+mbH)\\b",
+      "priority": 6,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-09-24T11:58:32.429428"
+    },
+    {
+      "id": "38c29e5b",
+      "name": "Slash_Separated_Corporate_Name",
+      "description": "Matches corporate names with slash-separated components (e.g., 'urbanek/lind/schmied/reisch Rechtsanw\u00e4lte OG').",
+      "format": "regex",
+      "content": "(?<![\\w])([A-Za-z]+(?:/[A-Za-z]+)+)\\s+(?:Rechtsanw\u00e4lte|Anw\u00e4lte|Anwaltsgesellschaft)\\s+(?:OG|KG|GmbH|mbH|GmbH\\s+&\\s+Co\\s+KG)\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-09-24T11:58:14.151219"
+    }
+  ],
+  "best_rules": {
+    "batch": -1,
+    "micro_f1": 0.0,
+    "rules": [
+      {
+        "id": "69f4d34d",
+        "name": "Oberste_Gerichtshof",
+        "description": "Matches the Supreme Court of Austria in nominative or genitive case.",
+        "format": "regex",
+        "content": "\\bOberste(?:n)?\\s+Gerichtshof(?:s)?\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "7d387332",
+        "name": "Oberlandesgericht_City",
+        "description": "Matches Regional High Courts with city names, ensuring 'Graz' is included.",
+        "format": "regex",
+        "content": "\\bOberlandesgerichts?\\s+(?:Wien|Linz|Innsbruck|Salzburg|Graz|Klagenfurt|Eisenstadt|St.\\s+P\u00f6lten|Bregenz|Feldkirch|Leoben|Lienz|Villach|Wels|Linz)\\b",
+        "priority": 9,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "ad43d7bd",
+        "name": "OGH_Abbreviation",
+        "description": "Matches the abbreviation OGH (Oberster Gerichtshof).",
+        "format": "regex",
+        "content": "\\bOGH\\b",
+        "priority": 11,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "abcf145d",
+        "name": "Bezirksgericht_Handelsgericht",
+        "description": "Matches District Courts for Commercial Matters (Handelssachen).",
+        "format": "regex",
+        "content": "\\bBezirksgerichts?\\s+f\u00fcr\\s+Handelssachen\\s+(?:Wien|Linz|Salzburg|Innsbruck|Graz|Klagenfurt|Bregenz|Feldkirch|Leoben|Lienz|Villach|Wels|St.\\s+P\u00f6lten)\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "ac276403",
+        "name": "Law_Firm_OG_KG_GmbH",
+        "description": "Matches law firms identified by suffixes OG, KG, or GmbH, allowing for slashes, hyphens, and 'und'/'&' in names, ensuring full name capture including 'GmbH & Co KG'.",
+        "format": "regex",
+        "content": "(?<![\\w])([A-Z][a-zA-Z]+(?:\\s+[A-Z][a-zA-Z]+)*|[A-Z][a-zA-Z]+(?:-[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\+[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\s+und\\s+[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\s*&\\s*[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\s+&\\s*[A-Z][a-zA-Z]+)+|[A-Za-z]+(?:/[A-Za-z]+)+)\\s+(?:Rechtsanw\u00e4lte|Anw\u00e4lte|Anwaltsgesellschaft)\\s+(?:OG|KG|GmbH|mbH|GmbH\\s+&\\s+Co\\s+KG)\\b",
+        "priority": 7,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "a5f09bd3",
+        "name": "Law_Firm_Rechtsanwaelte_OG",
+        "description": "Matches law firms ending in 'Rechtsanw\u00e4lte OG' with flexible name structures including hyphens and '&' or 'und'.",
+        "format": "regex",
+        "content": "\\b([A-Z][a-zA-Z]+(?:\\s+[A-Z][a-zA-Z]+)*|[A-Z][a-zA-Z]+(?:-[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\+[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\s+und\\s+[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\s*&\\s*[A-Z][a-zA-Z]+)+)\\s+Rechtsanw\u00e4lte\\s+OG\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "4f019849",
+        "name": "Verfassungsgerichtshof",
+        "description": "Matches the Constitutional Court (Verfassungsgerichtshof) in nominative or genitive case.",
+        "format": "regex",
+        "content": "\\bVerfassungsgerichtshof(?:s)?\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "bb537474",
+        "name": "Bezirksgericht_City_Extended",
+        "description": "Matches District Courts with city names, including specific missing cities like Ried im Innkreis, M\u00f6dling, Floridsdorf, and districts.",
+        "format": "regex",
+        "content": "\\bBezirksgerichts?\\s+(?:Melk|Steyr|Feldbach|Rohrbach|Enns|Donaustadt|F\u00fcnfthau|Innere\\s+Stadt\\s+Wien|Schwechat|Liesing|Gmunden|Bad\\s+Ischl|Wels|Telfs|Neusiedl\\s+am\\s+See|Favoriten|Josefstadt|Hietzing|Graz-West|Graz-Ost|Kirchdorf\\s+an\\s+der\\s+Krems|Amstetten|V\u00f6cklabruck|D\u00f6bling|St\\.\\s+P\u00f6ltten|Kufstein|Laa\\s+an\\s+der\\s+Thaya|Schwaz|Hall|Dornbirn|Bludenz|Lustenau|Hohenems|Rankweil|Schaan|Vaduz|Balzers|Triesen|Triesenberg|Eschen|Mauren|Gamprin|Planken|Schellenberg|Au|Ruggell|Bregenz|Feldkirch|Leoben|Lienz|Villach|Wels|Salzburg|Innsbruck|Eisenstadt|Klagenfurt|Graz|Wien|Linz|Bregenz|Feldkirch|Leoben|Lienz|Villach|Wels|St\\.\\s+P\u00f6ltten|Schwaz|Hall|Innsbruck|Dornbirn|Bludenz|Feldkirch|Bregenz|Lustenau|Dornbirn|Hohenems|Rankweil|Schaan|Vaduz|Balzers|Triesen|Triesenberg|Eschen|Mauren|Gamprin|Planken|Schellenberg|Au|Ruggell|Ried\\s+im\\s+Innkreis|M\u00f6dling|Floridsdorf|F\u00fcrstenfeld|Grieskirchen|Neulengbach|Deutschlandsberg|Hermagor|Freistadt)\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "d93c350a",
+        "name": "Landesgericht_City_Extended",
+        "description": "Matches Regional Courts with city names, ensuring 'St. P\u00f6lten', 'Hermagor', 'Leoben', 'Salzburg', 'Graz', 'Wien', 'Linz', 'Innsbruck', 'Klagenfurt', 'Bregenz', 'Feldkirch', 'Leoben', 'Lienz', 'Villach', 'Wels', 'Schwechat', 'Liesing', 'Gmunden', 'Bad Ischl', 'Telfs', 'Neusiedl am See', 'Favoriten', 'F\u00fcnfthau', 'Josefstadt', 'Hietzing', 'Ried im Innkreis', 'Krems an der Donau', 'Eisenstadt', 'Korneuburg', 'Laa an der Thaya', 'Wiener Neustadt', 'Steyr' are included.",
+        "format": "regex",
+        "content": "\\bLandesgerichts?\\s+(?:f\u00fcr\\s+Zivilrechtssachen\\s+(?:Graz|Wien|Linz|Salzburg|Innsbruck|Eisenstadt|Klagenfurt|Bregenz|Feldkirch|Leoben|Lienz|Villach|Wels|St\\.\\s+P\u00f6lten|Schwechat|Liesing|Gmunden|Bad\\s+Ischl|Wels|Telfs|Neusiedl\\s+am\\s+See|Favoriten|F\u00fcnfthau|Josefstadt|Hietzing|Graz|Wien|Linz|Salzburg|Innsbruck|Eisenstadt|Klagenfurt|Bregenz|Feldkirch|Leoben|Lienz|Villach|Wels|St\\.\\s+P\u00f6lten)|Eisenstadt|Salzburg|Innsbruck|Korneuburg|Laa\\s+an\\s+der\\s+Thaya|Wels|Linz|Salzburg|Innsbruck|Eisenstadt|Klagenfurt|Bregenz|Feldkirch|Leoben|Lienz|Villach|Wels|St\\.\\s+P\u00f6lten|Schwechat|Liesing|Gmunden|Bad\\s+Ischl|Wels|Telfs|Neusiedl\\s+am\\s+See|Favoriten|F\u00fcnfthau|Josefstadt|Hietzing|Graz|Wien|Linz|Salzburg|Innsbruck|Eisenstadt|Klagenfurt|Bregenz|Feldkirch|Leoben|Lienz|Villach|Wels|St\\.\\s+P\u00f6lten|Steyr|Wiener\\s+Neustadt|Graz|Wien|Linz|Salzburg|Innsbruck|Eisenstadt|Klagenfurt|Bregenz|Feldkirch|Leoben|Lienz|Villach|Wels|St\\.\\s+P\u00f6lten|Ried\\s+im\\s+Innkreis|Krems\\s+an\\s+der\\s+Donau|Feldkirch|Graz|Wien|Linz|Salzburg|Innsbruck|Eisenstadt|Klagenfurt|Bregenz|Feldkirch|Leoben|Lienz|Villach|Wels|St\\.\\s+P\u00f6lten|Schwechat|Liesing|Gmunden|Bad\\s+Ischl|Wels|Telfs|Neusiedl\\s+am\\s+See|Favoriten|F\u00fcnfthau|Josefstadt|Hietzing|Graz|Wien|Linz|Salzburg|Innsbruck|Eisenstadt|Klagenfurt|Bregenz|Feldkirch|Leoben|Lienz|Villach|Wels|St\\.\\s+P\u00f6lten|Hermagor)\\b",
+        "priority": 9,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "b3f6167e",
+        "name": "Magistrat_Wien",
+        "description": "Matches the Magistrat der Stadt Wien.",
+        "format": "regex",
+        "content": "\\bMagistrat\\s+der\\s+Stadt\\s+Wien\\b",
+        "priority": 9,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "d6aad400",
+        "name": "Verein_Organisation",
+        "description": "Matches organizations starting with 'Verein' (Association) capturing the full name.",
+        "format": "regex",
+        "content": "\\bVerein\\s+f\u00fcr\\s+[A-Z][a-zA-Z]+(?:\\s+[A-Z][a-zA-Z]+)*",
+        "priority": 7,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "29819c24",
+        "name": "Landesgericht_Strafsachen",
+        "description": "Matches Regional Courts for Criminal Matters (Landesgericht f\u00fcr Strafsachen).",
+        "format": "regex",
+        "content": "\\bLandesgerichts?\\s+f\u00fcr\\s+Strafsachen\\s+(?:Wien|Linz|Salzburg|Innsbruck|Graz|Klagenfurt|Bregenz|Feldkirch|Leoben|Lienz|Villach|Wels|St.\\s+P\u00f6lten|Eisenstadt)\\b",
+        "priority": 9,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "d4143cce",
+        "name": "Bezirksgericht_Grieskirchen",
+        "description": "Matches District Court Grieskirchen specifically.",
+        "format": "regex",
+        "content": "\\bBezirksgerichts?\\s+Grieskirchen\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "d619a589",
+        "name": "VwGH_Abbreviation",
+        "description": "Matches the abbreviation VwGH (Verwaltungsgerichtshof).",
+        "format": "regex",
+        "content": "\\bVwGH\\b",
+        "priority": 11,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "f8d063bd",
+        "name": "PVA_Abbreviation",
+        "description": "Matches the abbreviation PVA (Pensionsversicherungsanstalt).",
+        "format": "regex",
+        "content": "\\bPVA\\b",
+        "priority": 11,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "93985d06",
+        "name": "SAK_Abbreviation",
+        "description": "Matches the abbreviation SAK (Schweizer Ausgleichskasse).",
+        "format": "regex",
+        "content": "\\bSAK\\b",
+        "priority": 11,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "88d65288",
+        "name": "Schweizer_Ausgleichskasse_SAK",
+        "description": "Matches the full name 'Schweizer Ausgleichskasse SAK' including the abbreviation.",
+        "format": "regex",
+        "content": "\\bSchweizer\\s+Ausgleichskasse\\s+(?:SAK|\\(SAK\\))\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "66a6c49d",
+        "name": "Wien_Telekom_Betriebe_GmbH",
+        "description": "Matches the specific entity 'Wien-Telekom Betriebe GmbH'.",
+        "format": "regex",
+        "content": "\\bWien\\-[Tt]elekom\\s+Betriebe\\s+GmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "19ebbf47",
+        "name": "Gesellschaft_mbh_Specific",
+        "description": "Specifically matches 'Gesellschaft mbH' (lowercase g) which the generic rule might miss if the name structure is complex, e.g., 'Kress M\u00f6bel gesellschaft mbH'.",
+        "format": "regex",
+        "content": "(?<![\\w])([A-Z][a-zA-Z]+(?:\\s+[A-Z][a-zA-Z]+)*|[A-Z][a-zA-Z]+(?:-[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\+[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\s+und\\s+[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\s*&\\s*[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\s+&\\s*[A-Z][a-zA-Z]+)+)\\s+gesellschaft\\s+mbH\\b",
+        "priority": 6,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "ec038233",
+        "name": "OGK_Abbreviation",
+        "description": "Matches the abbreviation \u00d6GK (\u00d6sterreichische Gebietskrankenkasse).",
+        "format": "regex",
+        "content": "\\b\u00d6GK\\b",
+        "priority": 11,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "faeb40bb",
+        "name": "Vorarlberger_Gebietskrankenkasse",
+        "description": "Matches the specific entity 'Vorarlberger Gebietskrankenkasse'.",
+        "format": "regex",
+        "content": "\\bVorarlberger\\s+Gebietskrankenkasse\\b",
+        "priority": 11,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "ec998e7c",
+        "name": "Bezirksgericht_Spittal_G\u00fcssing_Sch\u00e4rding",
+        "description": "Matches District Courts for specific missing cities: Spittal an der Drau, G\u00fcssing, Sch\u00e4rding.",
+        "format": "regex",
+        "content": "\\bBezirksgerichts?\\s+(?:Spittal\\s+an\\s+der\\s+Drau|G\u00fcssing|Sch\u00e4rding)\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "a11c5340",
+        "name": "Landesgericht_Krems",
+        "description": "Matches Regional Courts for Krems an der Donau.",
+        "format": "regex",
+        "content": "\\bLandesgerichts?\\s+(?:Krems\\s+an\\s+der\\s+Donau)\\b",
+        "priority": 9,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "8d2a6af2",
+        "name": "Domain_Organisation",
+        "description": "Matches organization names ending in .at (e.g., 'Logderfurt-Logistik.at', 'YNKW Elektro.at').",
+        "format": "regex",
+        "content": "\\b[A-Z][a-zA-Z]+(?:[-+&][A-Z][a-zA-Z]+)*\\.at\\b",
+        "priority": 4,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "b649abaa",
+        "name": "Hyphenated_Gesellschaft_mbh",
+        "description": "Matches hyphenated corporate names ending in 'Gesellschaft mbH' (lowercase), e.g., 'WienTransport Werke -GesmbH'.",
+        "format": "regex",
+        "content": "(?<![\\w])([A-Z][a-zA-Z]+(?:\\s+[A-Z][a-zA-Z]+)*|[A-Z][a-zA-Z]+(?:-[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\+[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\s+und\\s+[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\s*&\\s*[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\s+&\\s*[A-Z][a-zA-Z]+)+)\\s*-GesmbH\\b",
+        "priority": 6,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "a858714a",
+        "name": "Bezirksgerichts_Leopoldstadt",
+        "description": "Matches 'Bezirksgerichts Leopoldstadt' specifically to handle the missing case in the extended city list.",
+        "format": "regex",
+        "content": "\\bBezirksgerichts?\\s+Leopoldstadt\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "2d7a84d3",
+        "name": "Generic_KG_Entity",
+        "description": "Matches generic corporate entities ending in KG (Kommanditgesellschaft) which were previously missing.",
+        "format": "regex",
+        "content": "(?<![\\w])(?:[A-Z][a-zA-Z]+(?:\\s+[A-Z][a-zA-Z]+)*|[A-Z][a-zA-Z]+(?:-[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\+[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\s+und\\s+[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\s*&\\s*[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\s+&\\s*[A-Z][a-zA-Z]+)+)\\s+KG\\b",
+        "priority": 6,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "5952d33c",
+        "name": "Hyphenated_Ampersand_Corporate_Name",
+        "description": "Matches corporate names with hyphens, plus signs, or ampersands, including 'GmbH & Co KG' and 'AG' suffixes.",
+        "format": "regex",
+        "content": "(?<![\\w])([A-Z][a-zA-Z]+(?:-[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\+[A-Z][a-zA-Z]+)+|[A-Z][a-zA-Z]+(?:\\s*&\\s*[A-Z][a-zA-Z]+)+)\\s+(?:GmbH\\s*&\\s*Co\\s*KG|GmbH|AG|Aktiengesellschaft|Gesellschaft\\s+mbH)\\b",
+        "priority": 6,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "38c29e5b",
+        "name": "Slash_Separated_Corporate_Name",
+        "description": "Matches corporate names with slash-separated components (e.g., 'urbanek/lind/schmied/reisch Rechtsanw\u00e4lte OG').",
+        "format": "regex",
+        "content": "(?<![\\w])([A-Za-z]+(?:/[A-Za-z]+)+)\\s+(?:Rechtsanw\u00e4lte|Anw\u00e4lte|Anwaltsgesellschaft)\\s+(?:OG|KG|GmbH|mbH|GmbH\\s+&\\s+Co\\s+KG)\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      }
+    ]
+  }
+}

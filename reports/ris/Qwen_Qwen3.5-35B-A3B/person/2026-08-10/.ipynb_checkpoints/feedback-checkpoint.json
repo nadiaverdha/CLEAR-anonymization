@@ -1,0 +1,8 @@
+  [
+    {
+      "level": "rule",
+      "rule_id": "6de20d83",
+      "text": "The rule fails to capture names with letters like ä,ü,ö,ß. Please update the rule to capture such letters."
+    }
+
+  ]

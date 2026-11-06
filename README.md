@@ -96,7 +96,8 @@ Then run:
 ```bash
 python benchmarks/benchmark.py \
   --train-dir data/findok/data/{dataset_name}/{dataset_name}_train.conllu \
-  --test-dir data/findok//{dataset_name}/{dataset_name}_dev.conllu \
+  --dev-dir data/findok//{dataset_name}/{dataset_name}_dev.conllu \
+  --test-dir data/findok//{dataset_name}/{dataset_name}_val.conllu \
   --dataset-name findok \
   --classes organisation \
   --model Qwen/Qwen3.5-35B-A3B \
@@ -117,10 +118,12 @@ python benchmarks/benchmark.py --config benchmarks/config.yaml
 | Argument | Default | Description |
 |---|---|---|
 | `--train-dir` | — | CoNLL-U training data |
-| `--test-dir` | — | CoNLL-U dev / test data |
+| `--dev-dir` | — | CoNLL-U dev data: used for best batch selection and human feedback |
+| `--test-dir` | — | CoNLL-U test data |
 | `--transfer-train-dir:` | — | CoNLL-U transfer train data  |
-| `--transfer-val-dir:` | — | CoNLL-U transfer dev / test data if not provided uses test-dir  |
-| `--dataset-name` | `findok` | Dataset name |
+| `--transfer-dev-dir:` | — | CoNLL-U transfer dev data, falls back to phase 1 dev set  |
+| `--transfer-test-dir:` | — | CoNLL-U transfer test data, falls back to phase 1 test set  |
+| `--dataset-name` | `findok` | Dataset name; defaults to train name|
 | `--classes` | all | Comma-separated entity classes to learn |
 | `--model` | `Qwen/Qwen3.5-35B-A3B` | vLLM model name |
 | `--base-url` | `http://localhost:8000/v1` | OpenAI-compatible endpoint |
@@ -129,10 +132,12 @@ python benchmarks/benchmark.py --config benchmarks/config.yaml
 | `--max-iterations` | 3 | Refinement iterations after synthesis |
 | `--sampling-strategy` | `balanced` | How to sample training examples |
 | `--seed` | 42 | Random seed for reproducibility |
-| `--rules-json` | — | Seed training with existing rules |
+| `--rules-json` | — | Seed training with existing rules; outputs get a _refined suffix |
 | `--skip-synthesis` | false | Skip synthesis, only run refinement |
 | `--agentic` | false | Enable agentic LLM feedback loop |
 | `--enable-critic` | false | Enable LLM-based rule critique |
+| `--feedback` | - | Human feedback JSON; requires `--rules-json` & `--skip-synthesis` |
+| `--holdout-fraction` | 0.0 | Fraction of validation data held out during refinement |
 | `--no-mdreport` | false | Skip generating the Markdown report |
 
 ### Resuming after a crash
@@ -156,8 +161,9 @@ python  benchmarks/benchmark.py \
   --test-dir data/ler/split/dev.conllu \
   --dataset-name ler \
   --transfer-train-dir data/findok/split/train.conllu \
+  --transfer-dev-dir data/findok/split/test.conllu \
   --transfer-test-dir data/findok/split/dev.conllu \
-  --transfer-dataset-name findok \
+  --transfer-name findok \
   --transfer-continuation synthesize_and_refine \
   --model Qwen/Qwen3.5-35B-A3B
 ```
@@ -173,8 +179,11 @@ Results are written to `reports/{dataset}/{model}/{classes}/{date}/`:
 | File | Contents |
 |---|---|
 | `results_findok.json` | Metrics, per-class breakdown, learned rules |
-| `results_findok.rules_report.md` | Human-readable rule evaluation report |
+| `results_findok.rules_report_dev.md` | Rule evaluation report on the dev set|
+| `results_findok.rules_report_test.md` | Rule evaluation report on the test set|
 | `results_findok.training.jsonl` | Per-iteration training log |
+| `phase1_findok.png` | Metrics per batch (dev, test) and per refinement iteration |
+| `phase1_findok_sentences.png` | Metrics per batch (dev, test) and per refinement iteration - per sentences seen  |
 | `config.yaml` | Exact config used for this run |
 | `session_summary.json` | Full training history across all phases |
 
@@ -186,7 +195,7 @@ Results are written to `reports/{dataset}/{model}/{classes}/{date}/`:
 
 First, serve a model locally using [vLLM](https://docs.vllm.ai/):
 ```bash
-python -m vllm.entrypoints.openai.api_server   --model google/gemma-3-27b-it  --host 0.0.0.0   --port 8000
+python -m vllm.entrypoints.openai.api_server   --model  Qwen/Qwen3.5-35B-A3B  --host 0.0.0.0   --port 8000
 ```
 
 Then run extraction:

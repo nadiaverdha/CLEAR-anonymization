@@ -17,8 +17,16 @@ def _load(path: Path) -> dict:
     return json.loads(path.read_text())
 
 
-def _plot_ax(ax, metrics, final_results=None, title="Batch Metrics", xlabel="Batch"):
-    if not metrics or len(metrics) <= 1:
+def _get(m, key, split="dev"):
+    if split in m:
+        return m[split][key]
+    return m[key] if split == "dev" else None
+
+
+def _plot_ax(
+    ax, metrics, title="Batch Metrics", xlabel="Batch", split="dev", batch_size=None
+):
+    if not metrics or len(metrics) <= 1 or (split != "dev" and split not in metrics[0]):
         ax.text(
             0.5,
             0.5,
@@ -29,28 +37,32 @@ def _plot_ax(ax, metrics, final_results=None, title="Batch Metrics", xlabel="Bat
         )
         ax.set_title(title)
         return
-    steps = (
-        [m["batch"] for m in metrics]
-        if xlabel == "Batch"
-        else list(range(len(metrics)))
-    )
+    if batch_size:
+        steps = [
+            (m["batch"] + 1) * batch_size for m in metrics
+        ]  # for the sentence plot
+    elif xlabel == "Batch":
+        steps = [m["batch"] for m in metrics]  # for the batch plot
+    else:
+        steps = list(range(len(metrics)))
+
     ax.plot(
         steps,
-        [m["micro_f1"] for m in metrics],
+        [_get(m, "micro_f1", split) for m in metrics],
         label="F1",
         color=COLORS["f1"],
         linewidth=1.5,
     )
     ax.plot(
         steps,
-        [m["micro_precision"] for m in metrics],
+        [_get(m, "micro_precision", split) for m in metrics],
         label="Precision",
         color=COLORS["precision"],
         linewidth=1.5,
     )
     ax.plot(
         steps,
-        [m["micro_recall"] for m in metrics],
+        [_get(m, "micro_recall", split) for m in metrics],
         label="Recall",
         color=COLORS["recall"],
         linewidth=1.5,
@@ -69,23 +81,65 @@ def plot_single(data: dict, label: str, output_path: Path | None = None):
     model = config.get("model", "")
     dataset = label
 
-    fig, axes = plt.subplots(1, 2, figsize=(14, 5))
+    fig, axes = plt.subplots(1, 3, figsize=(20, 5))
     fig.suptitle(f"{dataset} — {model}", fontsize=11)
 
     _plot_ax(
         axes[0],
         data.get("batch_test_metrics", []),
-        final_results=data.get("results"),
         title="Batch Metrics (dev set)",
         xlabel="Batch",
+        split="dev",
     )
     _plot_ax(
         axes[1],
+        data.get("batch_test_metrics", []),
+        title="Batch Metrics (test set)",
+        xlabel="Batch",
+        split="test",
+    )
+    _plot_ax(
+        axes[2],
         data.get("iteration_metrics", []),
-        title="Refinement Iterations",
+        title="Refinement Iterations (refine set)",
         xlabel="Iteration",
     )
 
+    plt.tight_layout()
+    if output_path:
+        plt.savefig(output_path, dpi=150, bbox_inches="tight")
+        print(f"Saved to {output_path}")
+    else:
+        plt.show()
+    plt.close(fig)
+
+
+def plot_by_sentences(data: dict, label: str, output_path: Path | None = None):
+    config = data.get("config", {})
+    model = config.get("model", "")
+    batch_size = config.get("batch_size", "")
+    if not batch_size:
+        print("No batch size in config, skipping sentences plot")
+        return
+    fig, axes = plt.subplots(1, 2, figsize=(14, 5))
+    fig.suptitle(f"{label} — {model}", fontsize=11)
+
+    _plot_ax(
+        axes[0],
+        data.get("batch_test_metrics", []),
+        title="Metrics by sentences (dev set)",
+        xlabel="Training sentences",
+        split="dev",
+        batch_size=batch_size,
+    )
+    _plot_ax(
+        axes[1],
+        data.get("batch_test_metrics", []),
+        title="Metrics by sentences (test set)",
+        xlabel="Training sentences",
+        split="test",
+        batch_size=batch_size,
+    )
     plt.tight_layout()
     if output_path:
         plt.savefig(output_path, dpi=150, bbox_inches="tight")
@@ -121,8 +175,11 @@ def plot_combined(
         ("micro_precision", COLORS["precision"], "Precision", "--"),
         ("micro_recall", COLORS["recall"], "Recall", ":"),
     ]:
-        all_y = [m[key] for m in p1_batch] + [m[key] for m in tr_batch]
+        all_y = [_get(m, key) for m in p1_batch] + [_get(m, key) for m in tr_batch]
         ax.plot(all_x, all_y, label=label, color=color, linewidth=1.5, linestyle=ls)
+    if all_x and all("test" in m for m in p1_batch + tr_batch):
+        test_y = [m["test"]["micro_f1"] for m in p1_batch + tr_batch]
+        ax.plot(all_x, test_y, label="Test F1", color="green", linewidth=1.5)
 
     if p1_x:
         ax.axvspan(
@@ -200,6 +257,11 @@ def main():
         phase1_data,
         label=f"phase1 ({phase1_data.get('config', {}).get('dataset_name', '')})",
         output_path=Path(f"{parent}/phase1.png"),
+    )
+    plot_by_sentences(
+        phase1_data,
+        label=f"phase1 ({phase1_data.get('config', {}).get('dataset_name', '')})",
+        output_path=Path(f"{parent}/phase1_sentences.png"),
     )
 
     if args.transfer:

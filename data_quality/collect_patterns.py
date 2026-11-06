@@ -3,8 +3,8 @@
 Usage
 -----
 python data_quality/collect_patterns.py \
-    --input-dir /share/nverdha/data/bfg/final/findok_train.conllu \
-    --output data_quality/findok/existing_annotations/organisation_annotations.json \
+    --input-dir /share/nverdha/data/findok/findok_train.conllu \
+    --output data_quality/findok/existing_annotations/organisation_annotations_14072026.json \
     --classes organisation
 """
 

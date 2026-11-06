@@ -1,10 +1,18 @@
 import io
 import os
-import signal
 import sys
 import time
 from contextlib import contextmanager
 from typing import List, Literal
+
+from openai import OpenAI
+from rulechef import RuleChef, Task, TaskType
+from rulechef.coordinator import AgenticCoordinator
+from rulechef.core import RuleFormat
+from rulechef.training_logger import TrainingDataLogger
+
+from benchmarks.schemas import NEROutput
+from collections import Counter
 
 
 @contextmanager
@@ -17,29 +25,11 @@ def _suppress_stdout():
         sys.stdout = old
 
 
-from openai import OpenAI
-from pydantic import BaseModel, Field, field_validator
-from rulechef import RuleChef, Task, TaskType
-from rulechef.coordinator import AgenticCoordinator
-from rulechef.core import RuleFormat
-from rulechef.training_logger import TrainingDataLogger
-
 RULE_FORMATS = {
     "regex": [RuleFormat.REGEX],
     "code": [RuleFormat.CODE],
     "spacy": [RuleFormat.SPACY],
 }
-
-
-class Entity(BaseModel):
-    text: str = Field(description="The matched text span")
-    start: int = Field(description="Start character offset")
-    end: int = Field(description="End character offset")
-    type: str = Field(description="Entity label")
-
-
-class NEROutput(BaseModel):
-    entities: List[Entity]
 
 
 class NERLearner(RuleChef):
@@ -52,6 +42,7 @@ class NERLearner(RuleChef):
         max_rules: int = 100,
         max_samples: int = 50,
         max_counter_examples: int = 50,
+        interleave_failures: bool = False,
         logger: TrainingDataLogger | None = None,
         storage_path: str = ".",
         sampling_strategy: str = "balanced",
@@ -65,6 +56,8 @@ class NERLearner(RuleChef):
         rule_format: str = "regex",
         use_spacy_ner: bool = True,
         spacy_model: str = "de_core_news_sm",
+        temperature: float = 0.0,
+        seed: int | None = 42,
     ):
 
         task = Task(
@@ -95,11 +88,14 @@ class NERLearner(RuleChef):
             client=client,
             dataset_name=dataset_name,
             model=model,
-            allowed_formats=RULE_FORMATS[rule_format],
+            allowed_formats=list(
+                map(lambda r: RULE_FORMATS[r][0], rule_format.split(","))
+            ),
             use_grex=use_grex,
             max_rules=max_rules,
             max_samples=max_samples,
             max_counter_examples=max_counter_examples,
+            interleave_failures=interleave_failures,
             coordinator=coordinator,
             training_logger=logger,
             storage_path=storage_path,
@@ -107,40 +103,44 @@ class NERLearner(RuleChef):
             synthesis_strategy=synthesis_strategy,
             use_spacy_ner=use_spacy_ner,
             spacy_model=spacy_model,
+            temperature=temperature,
+            seed=seed,
         )
         self._max_counter_examples = max_counter_examples
-        self._patch_regex_timeout()
 
-    def _patch_regex_timeout(self, timeout_secs: int = 5) -> None:
-        original = self.learner.executor._execute_regex_rule
-        timed_out_rules: set[str] = set()
+    def _log_missed_entities(self, batch_idx, batch):
+        """Log how concentrated the missed gold entities are in the window the patch prompt sees."""
+        if not self.dataset.rules:
+            return  # first batch: full synthesis, no failures yet
+        window = [
+            (e.input["text"], e.expected_output.get("entities", []))
+            for e in self.dataset.examples
+        ]
+        window += [(ex["text"], ex["entities"]) for ex in batch]
 
-        def _execute_with_timeout(rule, input_data, text_field=None):
-            if rule.id in timed_out_rules:
-                return []
+        missed = Counter()
+        n_failing = 0
+        for text, gold in window:
+            pred = self.extract({"text": text}, validate=False)
+            got = {(e["start"], e["end"]) for e in pred.get("entities", [])}
+            miss = [e["text"] for e in gold if (e["start"], e["end"]) not in got]
+            n_failing += bool(miss)
+            missed.update(miss)
 
-            def _handler(s, f):
-                raise TimeoutError()
-
-            old = signal.signal(signal.SIGALRM, _handler)
-            signal.alarm(timeout_secs)
-            try:
-                return original(rule, input_data, text_field)
-            except TimeoutError:
-                timed_out_rules.add(rule.id)
-                print(f"   ⚠ Regex timeout ({timeout_secs}s): {rule.name} — skipping")
-                return []
-            finally:
-                signal.alarm(0)
-                signal.signal(signal.SIGALRM, old)
-
-        self.learner.executor._execute_regex_rule = _execute_with_timeout
+        total = sum(missed.values())
+        top = missed.most_common(5)
+        top_share = top[0][1] / total if total else 0.0
+        print(
+            f"  [missed] batch {batch_idx + 1}: sentences_with_FN={n_failing}/{len(window)} "
+            f"missed={total} distinct={len(missed)} top1_share={top_share:.0%} top5={top}"
+        )
 
     def fit_batched(
         self,
         train_data,
         eval_dataset,
         batch_size=40,
+        past_batches=2,
         refine_per_batch=1,
         refine_every=1,
         iteration_callback=None,
@@ -148,7 +148,8 @@ class NERLearner(RuleChef):
         audit_interval=0,
         seed_rules=None,
         start_batch=0,
-        prune_with_refine=False,
+        holdout_fraction=0.0,
+        split_seed=42,
     ):
         if seed_rules is not None:
             self.dataset.rules = seed_rules
@@ -161,25 +162,19 @@ class NERLearner(RuleChef):
         for batch_idx, batch in enumerate(batches):
             if batch_idx < start_batch:
                 continue
+            self._log_missed_entities(batch_idx, batch)
             for ex in batch:
                 self.add_example({"text": ex["text"]}, {"entities": ex["entities"]})
-            should_audit = (
-                (batch_idx % refine_every == 0) if prune_with_refine else True
-            )
             batch_result = self.learn_rules(
                 run_evaluation=False,
                 incremental_only=(batch_idx > 0 or seed_rules is not None),
-                run_audit=should_audit,
             )
             # current batch should see its own examples but also some previous ones for the full picture
-            # old self.dataset.examples.clear()
-            if self.dataset.rules:
-                MAX_EXAMPLES = 200
-                if len(self.dataset.examples) > MAX_EXAMPLES:
-                    self.dataset.examples = self.dataset.examples[-MAX_EXAMPLES:]
-            else:
-                # no rules yet — full synthesis path, must stay within token budget
-                self.dataset.examples.clear()
+            if past_batches >= 0:
+                keep = batch_size * past_batches
+                self.dataset.examples = (
+                    self.dataset.examples[-keep:] if keep > 0 else []
+                )
 
             if batch_result:
                 result = batch_result
@@ -195,6 +190,8 @@ class NERLearner(RuleChef):
                         max_iterations=refine_per_batch,
                         iteration_callback=iteration_callback,
                         audit_interval=audit_interval,
+                        holdout_fraction=holdout_fraction,
+                        split_seed=split_seed,
                     )
                     self.dataset.rules = rules_so_far
                     result = (rules_so_far, _)
@@ -342,6 +339,8 @@ class NERLearner(RuleChef):
         max_iterations=3,
         iteration_callback=None,
         audit_interval=0,
+        holdout_fraction=0.0,
+        split_seed=42,
     ):
         return self.learner.evaluate_and_refine(
             rules,
@@ -350,4 +349,6 @@ class NERLearner(RuleChef):
             coordinator=self.coordinator,
             iteration_callback=iteration_callback,
             audit_interval=audit_interval,
+            holdout_fraction=holdout_fraction,
+            split_seed=split_seed,
         )

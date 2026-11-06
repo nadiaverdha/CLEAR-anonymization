@@ -1,0 +1,44 @@
+{
+  "phases": [
+    "ris_train"
+  ],
+  "history": [
+    {
+      "phase": "feedback",
+      "dataset": "ris_train",
+      "feedback_path": "reports/ris/Qwen_Qwen3.5-35B-A3B/organisation/2026-07-20/feedback.json",
+      "num_items": 1,
+      "task_level": 0,
+      "rule_level": 1,
+      "timestamp": "2026-09-24T11:58:43.196635"
+    },
+    {
+      "phase": "refine",
+      "dataset": "ris_train",
+      "num_rules": 29,
+      "micro_f1": 0.9029411764705882,
+      "micro_precision": 0.9743219849971149,
+      "micro_recall": 0.8413054309915297,
+      "iteration_metrics": [
+        {
+          "iteration": 1,
+          "num_rules": 29,
+          "exact_match": 0.9804637655651868,
+          "micro_f1": 0.9029411764705882,
+          "micro_precision": 0.9743219849971149,
+          "micro_recall": 0.8413054309915297,
+          "macro_f1": 0.9029411764705882,
+          "per_class": [
+            {
+              "label": "organisation",
+              "f1": 0.9029411764705882,
+              "precision": 0.9743219849971149,
+              "recall": 0.8413054309915297
+            }
+          ]
+        }
+      ],
+      "timestamp": "2026-09-24T11:59:34.140871"
+    }
+  ]
+}

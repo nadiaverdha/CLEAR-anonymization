@@ -2,6 +2,8 @@ import argparse
 import json
 from pathlib import Path
 
+from clear_anonymization.models.evaluator import check_overlap
+from clear_anonymization.ner_datasets.ler_dataset import LERData, LERSample
 from sklearn.metrics import (
     auc,
     classification_report,
@@ -12,8 +14,6 @@ from tqdm.auto import tqdm
 
 from clear_anonymization.extractors import factory
 from clear_anonymization.extractors.llm import LLMExtractor
-from clear_anonymization.models.evaluator import check_overlap
-from clear_anonymization.ner_datasets.ler_dataset import LERData, LERSample
 
 
 def evaluate_gliner(ground_truth, gliner_baseline, threshold=1):

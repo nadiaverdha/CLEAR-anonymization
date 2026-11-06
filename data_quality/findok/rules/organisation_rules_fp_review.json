@@ -527598,8 +527598,8 @@
         "gold_entities": []
       },
       {
-        "text": "Die ausländischen Pensionszahlungen setzten sich aus einer staatlichen  Rente der Alters- und Hinterlassenenversicherung (AHV) Liechtenstein in Höhe von brutto CHF  18.928,00, einer staatlichen Rente der Alters- und Hinterlassenenversicherung (AHV) Schweiz  in Höhe von brutto CHF 1.548,00 sowie aus zwei Pensionskassenrenten und zwar eine Witwen- Rente von der X Pensionskasse AG in Höhe von brutto CHF 19.490,30 und Alters-Rente von der  Firmenpensionskasse YZ in Höhe von brutto CHF 7.210,00 zusammen.",
-        "predicted": "X Pensionskasse AG",
+        "text": "Die ausländischen Pensionszahlungen setzten sich aus einer staatlichen  Rente der Alters- und Hinterlassenenversicherung (AHV) Liechtenstein in Höhe von brutto CHF  18.928,00, einer staatlichen Rente der Alters- und Hinterlassenenversicherung (AHV) Schweiz  in Höhe von brutto CHF 1.548,00 sowie aus zwei Pensionskassenrenten und zwar eine Witwen- Rente von der X  in Höhe von brutto CHF 19.490,30 und Alters-Rente von der  Firmenpensionskasse YZ in Höhe von brutto CHF 7.210,00 zusammen.",
+        "predicted": "X Pensionskasse AG",Pensionskasse AG
         "reason": "no gold match — likely missing annotation",
         "gold_entities": []
       },

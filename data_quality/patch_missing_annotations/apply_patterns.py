@@ -6,7 +6,7 @@ from data_quality.patch_missing_annotations.span_tagging import (
 )
 
 
-def _apply_patterns(data, pattern_strs: list[str]) -> list[dict]:
+def _apply_patterns(data, pattern_strs: list[str], skip_existing=True) -> list[dict]:
     """Parse 'text:type' patterns and tag every matching span that isn't already
     annotated. Returns the list of annotations actually added."""
 
@@ -33,7 +33,7 @@ def _apply_patterns(data, pattern_strs: list[str]) -> list[dict]:
                         ps,
                         pe,
                         entity_type,
-                        skip_existing=True,
+                        skip_existing=skip_existing,
                         token_spans=token_spans,
                     )
                     if new_labels is not None:

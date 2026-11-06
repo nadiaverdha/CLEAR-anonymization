@@ -1,0 +1,44 @@
+{
+  "phases": [
+    "findok"
+  ],
+  "history": [
+    {
+      "phase": "feedback",
+      "dataset": "findok",
+      "feedback_path": "reports/findok/Qwen_Qwen3.5-35B-A3B/person/2026-08-29_v3/feedback.json",
+      "num_items": 1,
+      "task_level": 0,
+      "rule_level": 1,
+      "timestamp": "2026-09-24T13:16:53.532438"
+    },
+    {
+      "phase": "refine",
+      "dataset": "findok",
+      "num_rules": 3,
+      "micro_f1": 0.660143198090692,
+      "micro_precision": 0.7975778546712803,
+      "micro_recall": 0.5631107491856677,
+      "iteration_metrics": [
+        {
+          "iteration": 1,
+          "num_rules": 3,
+          "exact_match": 0.9887826842562604,
+          "micro_f1": 0.660143198090692,
+          "micro_precision": 0.7975778546712803,
+          "micro_recall": 0.5631107491856677,
+          "macro_f1": 0.660143198090692,
+          "per_class": [
+            {
+              "label": "person",
+              "f1": 0.660143198090692,
+              "precision": 0.7975778546712803,
+              "recall": 0.5631107491856677
+            }
+          ]
+        }
+      ],
+      "timestamp": "2026-09-24T13:18:22.788735"
+    }
+  ]
+}

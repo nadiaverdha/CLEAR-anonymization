@@ -1,0 +1,1985 @@
+[
+  {
+    "phase": "train",
+    "dataset": "ris_train",
+    "num_rules": 5,
+    "t_learn": 332.3,
+    "timestamp": "2026-09-23T16:42:21.641365",
+    "num_train_docs": 289,
+    "num_eval_docs": 57,
+    "num_train_annotations": 1379,
+    "num_eval_annotations": 332,
+    "batch_metrics": [
+      {
+        "batch": 0,
+        "num_rules": 3,
+        "exact_match": 0.9656795881550578,
+        "micro_f1": 0.6496832457204476,
+        "micro_precision": 0.7429099876695437,
+        "micro_recall": 0.577245508982036,
+        "macro_f1": 0.6496832457204476,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.6496832457204476,
+            "precision": 0.7429099876695437,
+            "recall": 0.577245508982036
+          }
+        ]
+      },
+      {
+        "batch": 1,
+        "num_rules": 4,
+        "exact_match": 0.9667356008272099,
+        "micro_f1": 0.7693535514764565,
+        "micro_precision": 0.8650912354172898,
+        "micro_recall": 0.6926946107784431,
+        "macro_f1": 0.7693535514764565,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.7693535514764565,
+            "precision": 0.8650912354172898,
+            "recall": 0.6926946107784431
+          }
+        ]
+      },
+      {
+        "batch": 2,
+        "num_rules": 4,
+        "exact_match": 0.9667356008272099,
+        "micro_f1": 0.7693535514764565,
+        "micro_precision": 0.8650912354172898,
+        "micro_recall": 0.6926946107784431,
+        "macro_f1": 0.7693535514764565,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.7693535514764565,
+            "precision": 0.8650912354172898,
+            "recall": 0.6926946107784431
+          }
+        ]
+      },
+      {
+        "batch": 3,
+        "num_rules": 5,
+        "exact_match": 0.2235666828001936,
+        "micro_f1": 0.2062568334920467,
+        "micro_precision": 0.12093638845231201,
+        "micro_recall": 0.7003592814371258,
+        "macro_f1": 0.2062568334920467,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.2062568334920467,
+            "precision": 0.12093638845231201,
+            "recall": 0.7003592814371258
+          }
+        ]
+      },
+      {
+        "batch": 4,
+        "num_rules": 5,
+        "exact_match": 0.2235666828001936,
+        "micro_f1": 0.2062568334920467,
+        "micro_precision": 0.12093638845231201,
+        "micro_recall": 0.7003592814371258,
+        "macro_f1": 0.2062568334920467,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.2062568334920467,
+            "precision": 0.12093638845231201,
+            "recall": 0.7003592814371258
+          }
+        ]
+      },
+      {
+        "batch": 5,
+        "num_rules": 4,
+        "exact_match": 0.967527610331324,
+        "micro_f1": 0.7751979600053684,
+        "micro_precision": 0.8815628815628815,
+        "micro_recall": 0.6917365269461078,
+        "macro_f1": 0.7751979600053684,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.7751979600053684,
+            "precision": 0.8815628815628815,
+            "recall": 0.6917365269461078
+          }
+        ]
+      },
+      {
+        "batch": 6,
+        "num_rules": 4,
+        "exact_match": 0.967527610331324,
+        "micro_f1": 0.7751979600053684,
+        "micro_precision": 0.8815628815628815,
+        "micro_recall": 0.6917365269461078,
+        "macro_f1": 0.7751979600053684,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.7751979600053684,
+            "precision": 0.8815628815628815,
+            "recall": 0.6917365269461078
+          }
+        ]
+      },
+      {
+        "batch": 7,
+        "num_rules": 5,
+        "exact_match": 0.9212830553966648,
+        "micro_f1": 0.25142495250158325,
+        "micro_precision": 0.22475938856387997,
+        "micro_recall": 0.2852694610778443,
+        "macro_f1": 0.25142495250158325,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.25142495250158325,
+            "precision": 0.22475938856387997,
+            "recall": 0.2852694610778443
+          }
+        ]
+      },
+      {
+        "batch": 8,
+        "num_rules": 7,
+        "exact_match": 0.9002068024816298,
+        "micro_f1": 0.23746855041610218,
+        "micro_precision": 0.19922065270336092,
+        "micro_recall": 0.2938922155688623,
+        "macro_f1": 0.23746855041610218,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.23746855041610218,
+            "precision": 0.19922065270336092,
+            "recall": 0.2938922155688623
+          }
+        ]
+      },
+      {
+        "batch": 9,
+        "num_rules": 8,
+        "exact_match": 0.42473709684516214,
+        "micro_f1": 0.06703026997545677,
+        "micro_precision": 0.03782120326204031,
+        "micro_recall": 0.29437125748502996,
+        "macro_f1": 0.06703026997545677,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.06703026997545677,
+            "precision": 0.03782120326204031,
+            "recall": 0.29437125748502996
+          }
+        ]
+      },
+      {
+        "batch": 10,
+        "num_rules": 8,
+        "exact_match": 0.41778501342016106,
+        "micro_f1": 0.06368700608887162,
+        "micro_precision": 0.03570598489250436,
+        "micro_recall": 0.29437125748502996,
+        "macro_f1": 0.06368700608887162,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.06368700608887162,
+            "precision": 0.03570598489250436,
+            "recall": 0.29437125748502996
+          }
+        ]
+      },
+      {
+        "batch": 11,
+        "num_rules": 8,
+        "exact_match": 0.41778501342016106,
+        "micro_f1": 0.06368700608887162,
+        "micro_precision": 0.03570598489250436,
+        "micro_recall": 0.29437125748502996,
+        "macro_f1": 0.06368700608887162,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.06368700608887162,
+            "precision": 0.03570598489250436,
+            "recall": 0.29437125748502996
+          }
+        ]
+      },
+      {
+        "batch": 12,
+        "num_rules": 5,
+        "exact_match": 0.4239450873410481,
+        "micro_f1": 0.06068127805650911,
+        "micro_precision": 0.034100014838996884,
+        "micro_recall": 0.27520958083832336,
+        "macro_f1": 0.06068127805650911,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.06068127805650911,
+            "precision": 0.034100014838996884,
+            "recall": 0.27520958083832336
+          }
+        ]
+      },
+      {
+        "batch": 13,
+        "num_rules": 5,
+        "exact_match": 0.4239450873410481,
+        "micro_f1": 0.06068127805650911,
+        "micro_precision": 0.034100014838996884,
+        "micro_recall": 0.27520958083832336,
+        "macro_f1": 0.06068127805650911,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.06068127805650911,
+            "precision": 0.034100014838996884,
+            "recall": 0.27520958083832336
+          }
+        ]
+      },
+      {
+        "batch": 14,
+        "num_rules": 5,
+        "exact_match": 0.4239450873410481,
+        "micro_f1": 0.06068127805650911,
+        "micro_precision": 0.034100014838996884,
+        "micro_recall": 0.27520958083832336,
+        "macro_f1": 0.06068127805650911,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.06068127805650911,
+            "precision": 0.034100014838996884,
+            "recall": 0.27520958083832336
+          }
+        ]
+      }
+    ],
+    "iteration_metrics": [
+      {
+        "iteration": 1,
+        "num_rules": 3,
+        "exact_match": 0.07567567567567568,
+        "micro_f1": 0.576893649579189,
+        "micro_precision": 0.6744186046511628,
+        "micro_recall": 0.5040106951871658,
+        "macro_f1": 0.576893649579189,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.576893649579189,
+            "precision": 0.6744186046511628,
+            "recall": 0.5040106951871658
+          }
+        ]
+      },
+      {
+        "iteration": 2,
+        "num_rules": 3,
+        "exact_match": 0.07567567567567568,
+        "micro_f1": 0.576893649579189,
+        "micro_precision": 0.6744186046511628,
+        "micro_recall": 0.5040106951871658,
+        "macro_f1": 0.576893649579189,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.576893649579189,
+            "precision": 0.6744186046511628,
+            "recall": 0.5040106951871658
+          }
+        ]
+      },
+      {
+        "iteration": 3,
+        "num_rules": 3,
+        "exact_match": 0.07567567567567568,
+        "micro_f1": 0.576893649579189,
+        "micro_precision": 0.6744186046511628,
+        "micro_recall": 0.5040106951871658,
+        "macro_f1": 0.576893649579189,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.576893649579189,
+            "precision": 0.6744186046511628,
+            "recall": 0.5040106951871658
+          }
+        ]
+      },
+      {
+        "iteration": 1,
+        "num_rules": 4,
+        "exact_match": 0.11891891891891893,
+        "micro_f1": 0.7298937784522003,
+        "micro_precision": 0.843859649122807,
+        "micro_recall": 0.643048128342246,
+        "macro_f1": 0.7298937784522003,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.7298937784522003,
+            "precision": 0.843859649122807,
+            "recall": 0.643048128342246
+          }
+        ]
+      },
+      {
+        "iteration": 2,
+        "num_rules": 4,
+        "exact_match": 0.11891891891891893,
+        "micro_f1": 0.7298937784522003,
+        "micro_precision": 0.843859649122807,
+        "micro_recall": 0.643048128342246,
+        "macro_f1": 0.7298937784522003,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.7298937784522003,
+            "precision": 0.843859649122807,
+            "recall": 0.643048128342246
+          }
+        ]
+      },
+      {
+        "iteration": 3,
+        "num_rules": 4,
+        "exact_match": 0.11891891891891893,
+        "micro_f1": 0.7298937784522003,
+        "micro_precision": 0.843859649122807,
+        "micro_recall": 0.643048128342246,
+        "macro_f1": 0.7298937784522003,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.7298937784522003,
+            "precision": 0.843859649122807,
+            "recall": 0.643048128342246
+          }
+        ]
+      },
+      {
+        "iteration": 1,
+        "num_rules": 5,
+        "exact_match": 0.08108108108108109,
+        "micro_f1": 0.5830903790087464,
+        "micro_precision": 0.5170630816959669,
+        "micro_recall": 0.6684491978609626,
+        "macro_f1": 0.5830903790087464,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.5830903790087464,
+            "precision": 0.5170630816959669,
+            "recall": 0.6684491978609626
+          }
+        ]
+      },
+      {
+        "iteration": 2,
+        "num_rules": 5,
+        "exact_match": 0.08108108108108109,
+        "micro_f1": 0.5830903790087464,
+        "micro_precision": 0.5170630816959669,
+        "micro_recall": 0.6684491978609626,
+        "macro_f1": 0.5830903790087464,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.5830903790087464,
+            "precision": 0.5170630816959669,
+            "recall": 0.6684491978609626
+          }
+        ]
+      },
+      {
+        "iteration": 3,
+        "num_rules": 5,
+        "exact_match": 0.08108108108108109,
+        "micro_f1": 0.5830903790087464,
+        "micro_precision": 0.5170630816959669,
+        "micro_recall": 0.6684491978609626,
+        "macro_f1": 0.5830903790087464,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.5830903790087464,
+            "precision": 0.5170630816959669,
+            "recall": 0.6684491978609626
+          }
+        ]
+      },
+      {
+        "iteration": 1,
+        "num_rules": 4,
+        "exact_match": 0.13513513513513514,
+        "micro_f1": 0.7374045801526716,
+        "micro_precision": 0.8594306049822064,
+        "micro_recall": 0.6457219251336899,
+        "macro_f1": 0.7374045801526716,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.7374045801526716,
+            "precision": 0.8594306049822064,
+            "recall": 0.6457219251336899
+          }
+        ]
+      },
+      {
+        "iteration": 2,
+        "num_rules": 4,
+        "exact_match": 0.13513513513513514,
+        "micro_f1": 0.7374045801526716,
+        "micro_precision": 0.8594306049822064,
+        "micro_recall": 0.6457219251336899,
+        "macro_f1": 0.7374045801526716,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.7374045801526716,
+            "precision": 0.8594306049822064,
+            "recall": 0.6457219251336899
+          }
+        ]
+      },
+      {
+        "iteration": 3,
+        "num_rules": 4,
+        "exact_match": 0.13513513513513514,
+        "micro_f1": 0.7374045801526716,
+        "micro_precision": 0.8594306049822064,
+        "micro_recall": 0.6457219251336899,
+        "macro_f1": 0.7374045801526716,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.7374045801526716,
+            "precision": 0.8594306049822064,
+            "recall": 0.6457219251336899
+          }
+        ]
+      },
+      {
+        "iteration": 1,
+        "num_rules": 5,
+        "exact_match": 0.07027027027027027,
+        "micro_f1": 0.2838196286472149,
+        "micro_precision": 0.28157894736842104,
+        "micro_recall": 0.28609625668449196,
+        "macro_f1": 0.2838196286472149,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.2838196286472149,
+            "precision": 0.28157894736842104,
+            "recall": 0.28609625668449196
+          }
+        ]
+      },
+      {
+        "iteration": 2,
+        "num_rules": 7,
+        "exact_match": 0.08108108108108109,
+        "micro_f1": 0.2888888888888889,
+        "micro_precision": 0.2826086956521739,
+        "micro_recall": 0.29545454545454547,
+        "macro_f1": 0.2888888888888889,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.2888888888888889,
+            "precision": 0.2826086956521739,
+            "recall": 0.29545454545454547
+          }
+        ]
+      },
+      {
+        "iteration": 3,
+        "num_rules": 7,
+        "exact_match": 0.08108108108108109,
+        "micro_f1": 0.2888888888888889,
+        "micro_precision": 0.2826086956521739,
+        "micro_recall": 0.29545454545454547,
+        "macro_f1": 0.2888888888888889,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.2888888888888889,
+            "precision": 0.2826086956521739,
+            "recall": 0.29545454545454547
+          }
+        ]
+      },
+      {
+        "iteration": 1,
+        "num_rules": 8,
+        "exact_match": 0.016216216216216217,
+        "micro_f1": 0.21143680922633348,
+        "micro_precision": 0.16504126031507876,
+        "micro_recall": 0.29411764705882354,
+        "macro_f1": 0.21143680922633348,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.21143680922633348,
+            "precision": 0.16504126031507876,
+            "recall": 0.29411764705882354
+          }
+        ]
+      },
+      {
+        "iteration": 2,
+        "num_rules": 8,
+        "exact_match": 0.016216216216216217,
+        "micro_f1": 0.21143680922633348,
+        "micro_precision": 0.16504126031507876,
+        "micro_recall": 0.29411764705882354,
+        "macro_f1": 0.21143680922633348,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.21143680922633348,
+            "precision": 0.16504126031507876,
+            "recall": 0.29411764705882354
+          }
+        ]
+      },
+      {
+        "iteration": 3,
+        "num_rules": 8,
+        "exact_match": 0.016216216216216217,
+        "micro_f1": 0.21143680922633348,
+        "micro_precision": 0.16504126031507876,
+        "micro_recall": 0.29411764705882354,
+        "macro_f1": 0.21143680922633348,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.21143680922633348,
+            "precision": 0.16504126031507876,
+            "recall": 0.29411764705882354
+          }
+        ]
+      },
+      {
+        "iteration": 1,
+        "num_rules": 5,
+        "exact_match": 0.0,
+        "micro_f1": 0.23307436182019978,
+        "micro_precision": 0.18453427065026362,
+        "micro_recall": 0.31626506024096385,
+        "macro_f1": 0.23307436182019978,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.23307436182019978,
+            "precision": 0.18453427065026362,
+            "recall": 0.31626506024096385
+          }
+        ]
+      },
+      {
+        "iteration": 2,
+        "num_rules": 5,
+        "exact_match": 0.0,
+        "micro_f1": 0.23307436182019978,
+        "micro_precision": 0.18453427065026362,
+        "micro_recall": 0.31626506024096385,
+        "macro_f1": 0.23307436182019978,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.23307436182019978,
+            "precision": 0.18453427065026362,
+            "recall": 0.31626506024096385
+          }
+        ]
+      },
+      {
+        "iteration": 3,
+        "num_rules": 5,
+        "exact_match": 0.0,
+        "micro_f1": 0.23307436182019978,
+        "micro_precision": 0.18453427065026362,
+        "micro_recall": 0.31626506024096385,
+        "macro_f1": 0.23307436182019978,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.23307436182019978,
+            "precision": 0.18453427065026362,
+            "recall": 0.31626506024096385
+          }
+        ]
+      },
+      {
+        "iteration": 1,
+        "num_rules": 5,
+        "exact_match": 0.0,
+        "micro_f1": 0.23307436182019978,
+        "micro_precision": 0.18453427065026362,
+        "micro_recall": 0.31626506024096385,
+        "macro_f1": 0.23307436182019978,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.23307436182019978,
+            "precision": 0.18453427065026362,
+            "recall": 0.31626506024096385
+          }
+        ]
+      },
+      {
+        "iteration": 2,
+        "num_rules": 5,
+        "exact_match": 0.0,
+        "micro_f1": 0.23307436182019978,
+        "micro_precision": 0.18453427065026362,
+        "micro_recall": 0.31626506024096385,
+        "macro_f1": 0.23307436182019978,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.23307436182019978,
+            "precision": 0.18453427065026362,
+            "recall": 0.31626506024096385
+          }
+        ]
+      },
+      {
+        "iteration": 3,
+        "num_rules": 5,
+        "exact_match": 0.0,
+        "micro_f1": 0.23307436182019978,
+        "micro_precision": 0.18453427065026362,
+        "micro_recall": 0.31626506024096385,
+        "macro_f1": 0.23307436182019978,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.23307436182019978,
+            "precision": 0.18453427065026362,
+            "recall": 0.31626506024096385
+          }
+        ]
+      }
+    ],
+    "rules_snapshot": [
+      {
+        "batch": 0,
+        "rules": [
+          {
+            "id": "55c77a67",
+            "name": "German Legal Person (Titles)",
+            "description": "Matches academic/professional titles followed by a valid name, excluding cases where the title is followed by another title or abbreviation.",
+            "format": "regex",
+            "content": "(?:Dr\\.|Mag\\.|Mag\\.\\s+Dr\\.|Dr\\.\\s+Mag\\.|Priv\\.-Doz\\.|Priv\\.-Doz\\.in|Univ\\.-Prof\\.|Univ\\.-Prof\\.in|Hon\\.-Prof\\.|Hon\\.-Prof\\.in|PhD|OSR|VetR|KommR|Bakk\\.\\s+phil\\.|LLB|BSc|Dipl\\.-Ing\\.|Dipl\\.-Ing\\.in|DDr\\.|DDr\\.in|Mag\\.\\s+MBA\\s+MSc|Mag\\.\\s+MSc|Mag\\.\\s+MBA|Mag\\.\\s+in|Mag\\.a|Dr\\.in|Ing\\.|RgR|\u00d6kR|Techn\\s+R)\\s+(?!(?:Dr\\.|Mag\\.|Rg\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|KommR|Techn\\s+R|\u00d6kR|LL\\.M\\.|BSc|Dipl\\.-Ing\\.|PhD|MA|LLB|MSc|MBA|Bakk\\.))([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*(?:\\s+-\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*)",
+            "priority": 8,
+            "output_template": {
+              "text": "$0",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "451550d3",
+            "name": "German Legal Person (Frau/Herr Context)",
+            "description": "Matches names preceded by 'Frau' or 'Herr', capturing the full name including suffixes, while excluding titles from the match.",
+            "format": "regex",
+            "content": "(?:Frau\\s+|Herr\\s+)(?=[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*(?:\\s+-\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*(?:\\s+(?:LL\\.M\\.|BSc|Dipl\\.-Ing\\.|PhD|MA|LLB|MSc|MBA|Bakk\\.))*)",
+            "priority": 7,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "520f8603",
+            "name": "German Legal Person (Context: In der Beschwerdesache)",
+            "description": "Captures names following legal context phrases, ensuring the name is at least 2 words or contains a specific pattern to avoid abbreviations.",
+            "format": "regex",
+            "content": "(?:in\\s+der\\s+Beschwerdesache|in\\s+der\\s+Verwaltungsstrafsache|in\\s+der\\s+Finanzstrafsache|in\\s+der\\s+Beschwerde-\\s+sache)\\s+(?!(?:Dr\\.|Mag\\.|Rg\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|KommR|Techn\\s+R|\u00d6kR|LL\\.M\\.|BSc|Dipl\\.-Ing\\.|PhD|MA|LLB|MSc|MBA|Bakk\\.))([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)+)",
+            "priority": 9,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          }
+        ]
+      },
+      {
+        "batch": 1,
+        "rules": [
+          {
+            "id": "451550d3",
+            "name": "German Legal Person (Frau/Herr Context)",
+            "description": "Matches names preceded by 'Frau' or 'Herr', capturing the full name including suffixes, while excluding titles from the match.",
+            "format": "regex",
+            "content": "(?:Frau\\s+|Herr\\s+)(?=[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*(?:\\s+-\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*(?:\\s+(?:LL\\.M\\.|BSc|Dipl\\.-Ing\\.|PhD|MA|LLB|MSc|MBA|Bakk\\.))*)",
+            "priority": 7,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "520f8603",
+            "name": "German Legal Person (Context: In der Beschwerdesache)",
+            "description": "Captures names following legal context phrases, ensuring the name is at least 2 words or contains a specific pattern to avoid abbreviations.",
+            "format": "regex",
+            "content": "(?:in\\s+der\\s+Beschwerdesache|in\\s+der\\s+Verwaltungsstrafsache|in\\s+der\\s+Finanzstrafsache|in\\s+der\\s+Beschwerde-\\s+sache)\\s+(?!(?:Dr\\.|Mag\\.|Rg\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|KommR|Techn\\s+R|\u00d6kR|LL\\.M\\.|BSc|Dipl\\.-Ing\\.|PhD|MA|LLB|MSc|MBA|Bakk\\.))([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)+)",
+            "priority": 9,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "02d4e9ed",
+            "name": "German Legal Person (Titles)",
+            "description": "Matches academic/professional titles followed by a valid name, explicitly handling consecutive titles like 'Univ.-Prof. Dr.' and 'Hon.-Prof. PD Dr.'.",
+            "format": "regex",
+            "content": "(?:Dr\\.|Mag\\.|Mag\\.\\s+Dr\\.|Dr\\.\\s+Mag\\.|Priv\\.-Doz\\.|Priv\\.-Doz\\.in|Univ\\.-Prof\\.|Univ\\.-Prof\\.in|Hon\\.-Prof\\.|Hon\\.-Prof\\.in|PhD|OSR|VetR|KommR|Bakk\\.\\s+phil\\.|LLB|BSc|Dipl\\.-Ing\\.|Dipl\\.-Ing\\.in|DDr\\.|DDr\\.in|Mag\\.\\s+MBA\\s+MSc|Mag\\.\\s+MSc|Mag\\.\\s+MBA|Mag\\.\\s+in|Mag\\.a|Dr\\.in|Ing\\.|RgR|\\u00d6kR|Techn\\s+R|Prof\\.|Prof\\.\\s+Dr\\.|Dr\\.\\s+Prof\\.|PD\\s+Dr\\.|Dr\\.\\s+PD\\.|MMag\\.|MMag\\.\\s+Dr\\.|DI\\.|DI\\s+Dr\\.|Dr\\.\\s+DI\\.|Dipl\\.\\s+Dr\\.|Dr\\.\\s+Dipl\\.)\\s+(?:(?:Dr\\.|Mag\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|PD\\s+Dr\\.|MMag\\.|DI\\.|Dipl\\.)\\s+)*([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)*(?:\\s+-\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)*)",
+            "priority": 8,
+            "output_template": {
+              "text": "$0",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "2eb4a4f6",
+            "name": "German Legal Person (Standalone Names)",
+            "description": "Captures full names (First Last) that appear without titles, specifically in contexts like 'durch den Senatspr\u00e4sidenten [Name]' or 'durch die Hofr\u00e4te [Name]'.",
+            "format": "regex",
+            "content": "(?:durch\\s+(?:den|die|der|des)\\s+(?:Senatspr\u00e4sident|Senatspr\u00e4sidentin|Vizepr\u00e4sident|Vizepr\u00e4sidentin|Hofrat|Hofr\u00e4tin|Hofr\u00e4te|Gesch\u00e4ftsf\u00fchrer|Gesch\u00e4ftsf\u00fchrerin)\\s+|als\\s+(?:Vorsitzender|Vorsitzende|Vorsitzender|Vorsitzende)\\s+|und\\s+|sowie\\s+)([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)",
+            "priority": 5,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          }
+        ]
+      },
+      {
+        "batch": 2,
+        "rules": [
+          {
+            "id": "451550d3",
+            "name": "German Legal Person (Frau/Herr Context)",
+            "description": "Matches names preceded by 'Frau' or 'Herr', capturing the full name including suffixes, while excluding titles from the match.",
+            "format": "regex",
+            "content": "(?:Frau\\s+|Herr\\s+)(?=[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*(?:\\s+-\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*(?:\\s+(?:LL\\.M\\.|BSc|Dipl\\.-Ing\\.|PhD|MA|LLB|MSc|MBA|Bakk\\.))*)",
+            "priority": 7,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "520f8603",
+            "name": "German Legal Person (Context: In der Beschwerdesache)",
+            "description": "Captures names following legal context phrases, ensuring the name is at least 2 words or contains a specific pattern to avoid abbreviations.",
+            "format": "regex",
+            "content": "(?:in\\s+der\\s+Beschwerdesache|in\\s+der\\s+Verwaltungsstrafsache|in\\s+der\\s+Finanzstrafsache|in\\s+der\\s+Beschwerde-\\s+sache)\\s+(?!(?:Dr\\.|Mag\\.|Rg\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|KommR|Techn\\s+R|\u00d6kR|LL\\.M\\.|BSc|Dipl\\.-Ing\\.|PhD|MA|LLB|MSc|MBA|Bakk\\.))([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)+)",
+            "priority": 9,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "02d4e9ed",
+            "name": "German Legal Person (Titles)",
+            "description": "Matches academic/professional titles followed by a valid name, explicitly handling consecutive titles like 'Univ.-Prof. Dr.' and 'Hon.-Prof. PD Dr.'.",
+            "format": "regex",
+            "content": "(?:Dr\\.|Mag\\.|Mag\\.\\s+Dr\\.|Dr\\.\\s+Mag\\.|Priv\\.-Doz\\.|Priv\\.-Doz\\.in|Univ\\.-Prof\\.|Univ\\.-Prof\\.in|Hon\\.-Prof\\.|Hon\\.-Prof\\.in|PhD|OSR|VetR|KommR|Bakk\\.\\s+phil\\.|LLB|BSc|Dipl\\.-Ing\\.|Dipl\\.-Ing\\.in|DDr\\.|DDr\\.in|Mag\\.\\s+MBA\\s+MSc|Mag\\.\\s+MSc|Mag\\.\\s+MBA|Mag\\.\\s+in|Mag\\.a|Dr\\.in|Ing\\.|RgR|\\u00d6kR|Techn\\s+R|Prof\\.|Prof\\.\\s+Dr\\.|Dr\\.\\s+Prof\\.|PD\\s+Dr\\.|Dr\\.\\s+PD\\.|MMag\\.|MMag\\.\\s+Dr\\.|DI\\.|DI\\s+Dr\\.|Dr\\.\\s+DI\\.|Dipl\\.\\s+Dr\\.|Dr\\.\\s+Dipl\\.)\\s+(?:(?:Dr\\.|Mag\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|PD\\s+Dr\\.|MMag\\.|DI\\.|Dipl\\.)\\s+)*([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)*(?:\\s+-\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)*)",
+            "priority": 8,
+            "output_template": {
+              "text": "$0",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "2eb4a4f6",
+            "name": "German Legal Person (Standalone Names)",
+            "description": "Captures full names (First Last) that appear without titles, specifically in contexts like 'durch den Senatspr\u00e4sidenten [Name]' or 'durch die Hofr\u00e4te [Name]'.",
+            "format": "regex",
+            "content": "(?:durch\\s+(?:den|die|der|des)\\s+(?:Senatspr\u00e4sident|Senatspr\u00e4sidentin|Vizepr\u00e4sident|Vizepr\u00e4sidentin|Hofrat|Hofr\u00e4tin|Hofr\u00e4te|Gesch\u00e4ftsf\u00fchrer|Gesch\u00e4ftsf\u00fchrerin)\\s+|als\\s+(?:Vorsitzender|Vorsitzende|Vorsitzender|Vorsitzende)\\s+|und\\s+|sowie\\s+)([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)",
+            "priority": 5,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          }
+        ]
+      },
+      {
+        "batch": 3,
+        "rules": [
+          {
+            "id": "451550d3",
+            "name": "German Legal Person (Frau/Herr Context)",
+            "description": "Matches names preceded by 'Frau' or 'Herr', capturing the full name including suffixes, while excluding titles from the match.",
+            "format": "regex",
+            "content": "(?:Frau\\s+|Herr\\s+)(?=[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*(?:\\s+-\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*(?:\\s+(?:LL\\.M\\.|BSc|Dipl\\.-Ing\\.|PhD|MA|LLB|MSc|MBA|Bakk\\.))*)",
+            "priority": 7,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "520f8603",
+            "name": "German Legal Person (Context: In der Beschwerdesache)",
+            "description": "Captures names following legal context phrases, ensuring the name is at least 2 words or contains a specific pattern to avoid abbreviations.",
+            "format": "regex",
+            "content": "(?:in\\s+der\\s+Beschwerdesache|in\\s+der\\s+Verwaltungsstrafsache|in\\s+der\\s+Finanzstrafsache|in\\s+der\\s+Beschwerde-\\s+sache)\\s+(?!(?:Dr\\.|Mag\\.|Rg\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|KommR|Techn\\s+R|\u00d6kR|LL\\.M\\.|BSc|Dipl\\.-Ing\\.|PhD|MA|LLB|MSc|MBA|Bakk\\.))([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)+)",
+            "priority": 9,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "02d4e9ed",
+            "name": "German Legal Person (Titles)",
+            "description": "Matches academic/professional titles followed by a valid name, explicitly handling consecutive titles and hyphenated surnames.",
+            "format": "regex",
+            "content": "(?:Dr\\.|Mag\\.|Mag\\.\\s+Dr\\.|Dr\\.\\s+Mag\\.|Priv\\.-Doz\\.|Priv\\.-Doz\\.in|Univ\\.-Prof\\.|Univ\\.-Prof\\.in|Hon\\.-Prof\\.|Hon\\.-Prof\\.in|PhD|OSR|VetR|KommR|Bakk\\.\\s+phil\\.|LLB|BSc|Dipl\\.-Ing\\.|Dipl\\.-Ing\\.in|DDr\\.|DDr\\.in|Mag\\.\\s+MBA\\s+MSc|Mag\\.\\s+MSc|Mag\\.\\s+MBA|Mag\\.\\s+in|Mag\\.a|Dr\\.in|Ing\\.|RgR|\\u00d6kR|Techn\\s+R|Prof\\.|Prof\\.\\s+Dr\\.|Dr\\.\\s+Prof\\.|PD\\s+Dr\\.|Dr\\.\\s+PD\\.|MMag\\.|MMag\\.\\s+Dr\\.|DI\\.|DI\\s+Dr\\.|Dr\\.\\s+DI\\.|Dipl\\.\\s+Dr\\.|Dr\\.\\s+Dipl\\.)\\s+(?:(?:Dr\\.|Mag\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|PD\\s+Dr\\.|MMag\\.|DI\\.|Dipl\\.)\\s+)*([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)*(?:\\s+-\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)*)",
+            "priority": 8,
+            "output_template": {
+              "text": "$0",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "d43545ed",
+            "name": "German Legal Person (Standalone Names)",
+            "description": "Captures full names (First Last) or single surnames that appear without titles, specifically in contexts like 'durch den Senatspr\u00e4sidenten [Name]' or 'die Hofr\u00e4te [Name]'.",
+            "format": "regex",
+            "content": "(?:durch\\s+(?:den|die|der|des)\\s+(?:Senatspr\u00e4sident|Senatspr\u00e4sidentin|Vizepr\u00e4sident|Vizepr\u00e4sidentin|Hofrat|Hofr\u00e4tin|Hofr\u00e4te|Gesch\u00e4ftsf\u00fchrer|Gesch\u00e4ftsf\u00fchrerin)\\s+|als\\s+(?:Vorsitzender|Vorsitzende|Vorsitzender|Vorsitzende)\\s+|und\\s+|sowie\\s+|,\\s+)([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)*(?:\\s+-\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)*)",
+            "priority": 6,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "2e0d1ea0",
+            "name": "German Legal Person (Sentence Start)",
+            "description": "Captures names at the beginning of a sentence or after a comma, handling both full names and single surnames.",
+            "format": "regex",
+            "content": "(?:^|,\\s+)([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)*(?:\\s+-\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)*)",
+            "priority": 4,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          }
+        ]
+      },
+      {
+        "batch": 4,
+        "rules": [
+          {
+            "id": "451550d3",
+            "name": "German Legal Person (Frau/Herr Context)",
+            "description": "Matches names preceded by 'Frau' or 'Herr', capturing the full name including suffixes, while excluding titles from the match.",
+            "format": "regex",
+            "content": "(?:Frau\\s+|Herr\\s+)(?=[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*(?:\\s+-\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*(?:\\s+(?:LL\\.M\\.|BSc|Dipl\\.-Ing\\.|PhD|MA|LLB|MSc|MBA|Bakk\\.))*)",
+            "priority": 7,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "520f8603",
+            "name": "German Legal Person (Context: In der Beschwerdesache)",
+            "description": "Captures names following legal context phrases, ensuring the name is at least 2 words or contains a specific pattern to avoid abbreviations.",
+            "format": "regex",
+            "content": "(?:in\\s+der\\s+Beschwerdesache|in\\s+der\\s+Verwaltungsstrafsache|in\\s+der\\s+Finanzstrafsache|in\\s+der\\s+Beschwerde-\\s+sache)\\s+(?!(?:Dr\\.|Mag\\.|Rg\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|KommR|Techn\\s+R|\u00d6kR|LL\\.M\\.|BSc|Dipl\\.-Ing\\.|PhD|MA|LLB|MSc|MBA|Bakk\\.))([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)+)",
+            "priority": 9,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "02d4e9ed",
+            "name": "German Legal Person (Titles)",
+            "description": "Matches academic/professional titles followed by a valid name, explicitly handling consecutive titles and hyphenated surnames.",
+            "format": "regex",
+            "content": "(?:Dr\\.|Mag\\.|Mag\\.\\s+Dr\\.|Dr\\.\\s+Mag\\.|Priv\\.-Doz\\.|Priv\\.-Doz\\.in|Univ\\.-Prof\\.|Univ\\.-Prof\\.in|Hon\\.-Prof\\.|Hon\\.-Prof\\.in|PhD|OSR|VetR|KommR|Bakk\\.\\s+phil\\.|LLB|BSc|Dipl\\.-Ing\\.|Dipl\\.-Ing\\.in|DDr\\.|DDr\\.in|Mag\\.\\s+MBA\\s+MSc|Mag\\.\\s+MSc|Mag\\.\\s+MBA|Mag\\.\\s+in|Mag\\.a|Dr\\.in|Ing\\.|RgR|\\u00d6kR|Techn\\s+R|Prof\\.|Prof\\.\\s+Dr\\.|Dr\\.\\s+Prof\\.|PD\\s+Dr\\.|Dr\\.\\s+PD\\.|MMag\\.|MMag\\.\\s+Dr\\.|DI\\.|DI\\s+Dr\\.|Dr\\.\\s+DI\\.|Dipl\\.\\s+Dr\\.|Dr\\.\\s+Dipl\\.)\\s+(?:(?:Dr\\.|Mag\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|PD\\s+Dr\\.|MMag\\.|DI\\.|Dipl\\.)\\s+)*([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)*(?:\\s+-\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)*)",
+            "priority": 8,
+            "output_template": {
+              "text": "$0",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "d43545ed",
+            "name": "German Legal Person (Standalone Names)",
+            "description": "Captures full names (First Last) or single surnames that appear without titles, specifically in contexts like 'durch den Senatspr\u00e4sidenten [Name]' or 'die Hofr\u00e4te [Name]'.",
+            "format": "regex",
+            "content": "(?:durch\\s+(?:den|die|der|des)\\s+(?:Senatspr\u00e4sident|Senatspr\u00e4sidentin|Vizepr\u00e4sident|Vizepr\u00e4sidentin|Hofrat|Hofr\u00e4tin|Hofr\u00e4te|Gesch\u00e4ftsf\u00fchrer|Gesch\u00e4ftsf\u00fchrerin)\\s+|als\\s+(?:Vorsitzender|Vorsitzende|Vorsitzender|Vorsitzende)\\s+|und\\s+|sowie\\s+|,\\s+)([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)*(?:\\s+-\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)*)",
+            "priority": 6,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "2e0d1ea0",
+            "name": "German Legal Person (Sentence Start)",
+            "description": "Captures names at the beginning of a sentence or after a comma, handling both full names and single surnames.",
+            "format": "regex",
+            "content": "(?:^|,\\s+)([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)*(?:\\s+-\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df]+)*)",
+            "priority": 4,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          }
+        ]
+      },
+      {
+        "batch": 5,
+        "rules": [
+          {
+            "id": "451550d3",
+            "name": "German Legal Person (Frau/Herr Context)",
+            "description": "Matches names preceded by 'Frau' or 'Herr', capturing the full name including suffixes, while excluding titles from the match.",
+            "format": "regex",
+            "content": "(?:Frau\\s+|Herr\\s+)(?=[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*(?:\\s+-\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*(?:\\s+(?:LL\\.M\\.|BSc|Dipl\\.-Ing\\.|PhD|MA|LLB|MSc|MBA|Bakk\\.))*)",
+            "priority": 7,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "520f8603",
+            "name": "German Legal Person (Context: In der Beschwerdesache)",
+            "description": "Captures names following legal context phrases, ensuring the name is at least 2 words or contains a specific pattern to avoid abbreviations.",
+            "format": "regex",
+            "content": "(?:in\\s+der\\s+Beschwerdesache|in\\s+der\\s+Verwaltungsstrafsache|in\\s+der\\s+Finanzstrafsache|in\\s+der\\s+Beschwerde-\\s+sache)\\s+(?!(?:Dr\\.|Mag\\.|Rg\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|KommR|Techn\\s+R|\u00d6kR|LL\\.M\\.|BSc|Dipl\\.-Ing\\.|PhD|MA|LLB|MSc|MBA|Bakk\\.))([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)+)",
+            "priority": 9,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "94626f7a",
+            "name": "German Legal Person (Titles)",
+            "description": "Matches academic/professional titles followed by a valid name, explicitly handling consecutive titles, hyphenated surnames, and accented characters.",
+            "format": "regex",
+            "content": "(?:Dr\\.|Mag\\.|Mag\\.\\s+Dr\\.|Dr\\.\\s+Mag\\.|Priv\\.-Doz\\.|Priv\\.-Doz\\.in|Univ\\.-Prof\\.|Univ\\.-Prof\\.in|Hon\\.-Prof\\.|Hon\\.-Prof\\.in|PhD|OSR|VetR|KommR|Bakk\\.\\s+phil\\.|LLB|BSc|Dipl\\.-Ing\\.|Dipl\\.-Ing\\.in|DDr\\.|DDr\\.in|Mag\\.\\s+MBA\\s+MSc|Mag\\.\\s+MSc|Mag\\.\\s+MBA|Mag\\.\\s+in|Mag\\.a|Dr\\.in|Ing\\.|RgR|\\u00d6kR|Techn\\s+R|Prof\\.|Prof\\.\\s+Dr\\.|Dr\\.\\s+Prof\\.|PD\\s+Dr\\.|Dr\\.\\s+PD\\.|MMag\\.|MMag\\.\\s+Dr\\.|DI\\.|DI\\s+Dr\\.|Dr\\.\\s+DI\\.|Dipl\\.\\s+Dr\\.|Dr\\.\\s+Dipl\\.|OStR|OMedR|StR|Bgm\\.\\s+Dr\\.|Dr\\.\\s+Bgm\\.)\\s+(?:(?:Dr\\.|Mag\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|PD\\s+Dr\\.|MMag\\.|DI\\.|Dipl\\.)\\s+)*([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00dfe\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00dfe\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+)*(?:\\s+-\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00dfe\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+)*)",
+            "priority": 8,
+            "output_template": {
+              "text": "$0",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "304f2f31",
+            "name": "German Legal Person (Standalone Names)",
+            "description": "Captures full names (First Last) or single surnames that appear without titles, specifically in contexts like 'durch den Senatspr\u00e4sidenten [Name]' or 'des Zeugen [Name]'. Excludes common legal nouns.",
+            "format": "regex",
+            "content": "(?:durch\\s+(?:den|die|der|des)\\s+(?:Senatspr\u00e4sident|Senatspr\u00e4sidentin|Vizepr\u00e4sident|Vizepr\u00e4sidentin|Hofrat|Hofr\u00e4tin|Hofr\u00e4te|Gesch\u00e4ftsf\u00fchrer|Gesch\u00e4ftsf\u00fchrerin|Generalanwalt|Generalanw\u00e4ltin|Privatbeteiligte|Privatbeteiligter|Zeuge|Zeugin)|als\\s+(?:Vorsitzender|Vorsitzende|Vorsitzender|Vorsitzende)|des\\s+(?:Zeugen|Zeugin|Privatbeteiligten|Privatbeteiligtenin)|,\\s+(?:und|sowie)\\s+)([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00dfe]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00dfe]+)*(?:\\s+-\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00dfe]+)*)",
+            "priority": 6,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          }
+        ]
+      },
+      {
+        "batch": 6,
+        "rules": [
+          {
+            "id": "451550d3",
+            "name": "German Legal Person (Frau/Herr Context)",
+            "description": "Matches names preceded by 'Frau' or 'Herr', capturing the full name including suffixes, while excluding titles from the match.",
+            "format": "regex",
+            "content": "(?:Frau\\s+|Herr\\s+)(?=[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*(?:\\s+-\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*(?:\\s+(?:LL\\.M\\.|BSc|Dipl\\.-Ing\\.|PhD|MA|LLB|MSc|MBA|Bakk\\.))*)",
+            "priority": 7,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "520f8603",
+            "name": "German Legal Person (Context: In der Beschwerdesache)",
+            "description": "Captures names following legal context phrases, ensuring the name is at least 2 words or contains a specific pattern to avoid abbreviations.",
+            "format": "regex",
+            "content": "(?:in\\s+der\\s+Beschwerdesache|in\\s+der\\s+Verwaltungsstrafsache|in\\s+der\\s+Finanzstrafsache|in\\s+der\\s+Beschwerde-\\s+sache)\\s+(?!(?:Dr\\.|Mag\\.|Rg\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|KommR|Techn\\s+R|\u00d6kR|LL\\.M\\.|BSc|Dipl\\.-Ing\\.|PhD|MA|LLB|MSc|MBA|Bakk\\.))([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)+)",
+            "priority": 9,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "94626f7a",
+            "name": "German Legal Person (Titles)",
+            "description": "Matches academic/professional titles followed by a valid name, explicitly handling consecutive titles, hyphenated surnames, and accented characters.",
+            "format": "regex",
+            "content": "(?:Dr\\.|Mag\\.|Mag\\.\\s+Dr\\.|Dr\\.\\s+Mag\\.|Priv\\.-Doz\\.|Priv\\.-Doz\\.in|Univ\\.-Prof\\.|Univ\\.-Prof\\.in|Hon\\.-Prof\\.|Hon\\.-Prof\\.in|PhD|OSR|VetR|KommR|Bakk\\.\\s+phil\\.|LLB|BSc|Dipl\\.-Ing\\.|Dipl\\.-Ing\\.in|DDr\\.|DDr\\.in|Mag\\.\\s+MBA\\s+MSc|Mag\\.\\s+MSc|Mag\\.\\s+MBA|Mag\\.\\s+in|Mag\\.a|Dr\\.in|Ing\\.|RgR|\\u00d6kR|Techn\\s+R|Prof\\.|Prof\\.\\s+Dr\\.|Dr\\.\\s+Prof\\.|PD\\s+Dr\\.|Dr\\.\\s+PD\\.|MMag\\.|MMag\\.\\s+Dr\\.|DI\\.|DI\\s+Dr\\.|Dr\\.\\s+DI\\.|Dipl\\.\\s+Dr\\.|Dr\\.\\s+Dipl\\.|OStR|OMedR|StR|Bgm\\.\\s+Dr\\.|Dr\\.\\s+Bgm\\.)\\s+(?:(?:Dr\\.|Mag\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|PD\\s+Dr\\.|MMag\\.|DI\\.|Dipl\\.)\\s+)*([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00dfe\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00dfe\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+)*(?:\\s+-\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00dfe\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+)*)",
+            "priority": 8,
+            "output_template": {
+              "text": "$0",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "304f2f31",
+            "name": "German Legal Person (Standalone Names)",
+            "description": "Captures full names (First Last) or single surnames that appear without titles, specifically in contexts like 'durch den Senatspr\u00e4sidenten [Name]' or 'des Zeugen [Name]'. Excludes common legal nouns.",
+            "format": "regex",
+            "content": "(?:durch\\s+(?:den|die|der|des)\\s+(?:Senatspr\u00e4sident|Senatspr\u00e4sidentin|Vizepr\u00e4sident|Vizepr\u00e4sidentin|Hofrat|Hofr\u00e4tin|Hofr\u00e4te|Gesch\u00e4ftsf\u00fchrer|Gesch\u00e4ftsf\u00fchrerin|Generalanwalt|Generalanw\u00e4ltin|Privatbeteiligte|Privatbeteiligter|Zeuge|Zeugin)|als\\s+(?:Vorsitzender|Vorsitzende|Vorsitzender|Vorsitzende)|des\\s+(?:Zeugen|Zeugin|Privatbeteiligten|Privatbeteiligtenin)|,\\s+(?:und|sowie)\\s+)([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00dfe]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00dfe]+)*(?:\\s+-\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00dfe]+)*)",
+            "priority": 6,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          }
+        ]
+      },
+      {
+        "batch": 7,
+        "rules": [
+          {
+            "id": "451550d3",
+            "name": "German Legal Person (Frau/Herr Context)",
+            "description": "Matches names preceded by 'Frau' or 'Herr', capturing the full name including suffixes, while excluding titles from the match.",
+            "format": "regex",
+            "content": "(?:Frau\\s+|Herr\\s+)(?=[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*(?:\\s+-\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*(?:\\s+(?:LL\\.M\\.|BSc|Dipl\\.-Ing\\.|PhD|MA|LLB|MSc|MBA|Bakk\\.))*)",
+            "priority": 7,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "520f8603",
+            "name": "German Legal Person (Context: In der Beschwerdesache)",
+            "description": "Captures names following legal context phrases, ensuring the name is at least 2 words or contains a specific pattern to avoid abbreviations.",
+            "format": "regex",
+            "content": "(?:in\\s+der\\s+Beschwerdesache|in\\s+der\\s+Verwaltungsstrafsache|in\\s+der\\s+Finanzstrafsache|in\\s+der\\s+Beschwerde-\\s+sache)\\s+(?!(?:Dr\\.|Mag\\.|Rg\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|KommR|Techn\\s+R|\u00d6kR|LL\\.M\\.|BSc|Dipl\\.-Ing\\.|PhD|MA|LLB|MSc|MBA|Bakk\\.))([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)+)",
+            "priority": 9,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "5eb792f7",
+            "name": "German Legal Person (Titles)",
+            "description": "Matches academic/professional titles followed by a valid name, explicitly handling consecutive titles, hyphenated surnames, and accented characters.",
+            "format": "regex",
+            "content": "(?:Dr\\.|Mag\\.|Mag\\.\\s+Dr\\.|Dr\\.\\s+Mag\\.|Priv\\.-Doz\\.|Priv\\.-Doz\\.in|Univ\\.-Prof\\.|Univ\\.-Prof\\.in|Hon\\.-Prof\\.|Hon\\.-Prof\\.in|PhD|OSR|VetR|KommR|Bakk\\.\\s+phil\\.|LLB|BSc|Dipl\\.-Ing\\.|Dipl\\.-Ing\\.in|DDr\\.|DDr\\.in|Mag\\.\\s+MBA\\s+MSc|Mag\\.\\s+MSc|Mag\\.\\s+MBA|Mag\\.\\s+in|Mag\\.a|Dr\\.in|Ing\\.|RgR|\\u00d6kR|Techn\\s+R|Prof\\.|Prof\\.\\s+Dr\\.|Dr\\.\\s+Prof\\.|PD\\s+Dr\\.|Dr\\.\\s+PD\\.|MMag\\.|MMag\\.\\s+Dr\\.|DI\\.|DI\\s+Dr\\.|Dr\\.\\s+DI\\.|Dipl\\.\\s+Dr\\.|Dr\\.\\s+Dipl\\.|OStR|OMedR|StR|Bgm\\.\\s+Dr\\.|Dr\\.\\s+Bgm\\.)\\s+(?:(?:Dr\\.|Mag\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|PD\\s+Dr\\.|MMag\\.|DI\\.|Dipl\\.)\\s+)*([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00dfe\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00dfe\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+)*(?:\\s+-\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00dfe\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+)*(?:\\s+\\w+)?)",
+            "priority": 8,
+            "output_template": {
+              "text": "$0",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "1f7a71b7",
+            "name": "German Legal Person (Standalone Names)",
+            "description": "Captures full names (First Last) or single surnames that appear without titles, specifically in contexts like 'Angeklagten [Name]', 'durch [Name]', or 'Verfahren gegen [Name]'.",
+            "format": "regex",
+            "content": "(?:Angeklagten|Angeklagter|Angeklagte|Verfahren gegen|durch|von|mit|bei|in der Sache|des|der|dem)\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00dfe\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00dfe\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+)+)",
+            "priority": 7,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "9b2b3eca",
+            "name": "German Legal Person (Hofrat Context)",
+            "description": "Captures names preceded by 'Hofrat' or 'Hofr\u00e4tin' when no academic title (Dr., Mag.) is present immediately before the name.",
+            "format": "regex",
+            "content": "(?:Hofrat|Hofr\u00e4tin|Hofr\u00e4tinnen|Hofr\u00e4tinnen)\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00dfe\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00dfe\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+)+)",
+            "priority": 6,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          }
+        ]
+      },
+      {
+        "batch": 8,
+        "rules": [
+          {
+            "id": "451550d3",
+            "name": "German Legal Person (Frau/Herr Context)",
+            "description": "Matches names preceded by 'Frau' or 'Herr', capturing the full name including suffixes, while excluding titles from the match.",
+            "format": "regex",
+            "content": "(?:Frau\\s+|Herr\\s+)(?=[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*(?:\\s+-\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*(?:\\s+(?:LL\\.M\\.|BSc|Dipl\\.-Ing\\.|PhD|MA|LLB|MSc|MBA|Bakk\\.))*)",
+            "priority": 7,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "520f8603",
+            "name": "German Legal Person (Context: In der Beschwerdesache)",
+            "description": "Captures names following legal context phrases, ensuring the name is at least 2 words or contains a specific pattern to avoid abbreviations.",
+            "format": "regex",
+            "content": "(?:in\\s+der\\s+Beschwerdesache|in\\s+der\\s+Verwaltungsstrafsache|in\\s+der\\s+Finanzstrafsache|in\\s+der\\s+Beschwerde-\\s+sache)\\s+(?!(?:Dr\\.|Mag\\.|Rg\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|KommR|Techn\\s+R|\u00d6kR|LL\\.M\\.|BSc|Dipl\\.-Ing\\.|PhD|MA|LLB|MSc|MBA|Bakk\\.))([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)+)",
+            "priority": 9,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "cdddb33e",
+            "name": "German Legal Person (Titles)",
+            "description": "Matches academic/professional titles followed by a valid name, explicitly stopping before sentence connectors or institution names.",
+            "format": "regex",
+            "content": "(?:Dr\\.|Mag\\.|Mag\\.\\s+Dr\\.|Dr\\.\\s+Mag\\.|Priv\\.-Doz\\.|Priv\\.-Doz\\.in|Univ\\.-Prof\\.|Univ\\.-Prof\\.in|Hon\\.-Prof\\.|Hon\\.-Prof\\.in|PhD|OSR|VetR|KommR|Bakk\\.\\s+phil\\.|LLB|BSc|Dipl\\.-Ing\\.|Dipl\\.-Ing\\.in|DDr\\.|DDr\\.in|Mag\\.\\s+MBA\\s+MSc|Mag\\.\\s+MSc|Mag\\.\\s+MBA|Mag\\.\\s+in|Mag\\.a|Dr\\.in|Ing\\.|RgR|\\u00d6kR|Techn\\s+R|Prof\\.|Prof\\.\\s+Dr\\.|Dr\\.\\s+Prof\\.|PD\\s+Dr\\.|Dr\\.\\s+PD\\.|MMag\\.|MMag\\.\\s+Dr\\.|DI\\.|DI\\s+Dr\\.|Dr\\.\\s+DI\\.|Dipl\\.\\s+Dr\\.|Dr\\.\\s+Dipl\\.|OStR|OMedR|StR|Bgm\\.\\s+Dr\\.|Dr\\.\\s+Bgm\\.)\\s+(?:(?:Dr\\.|Mag\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|PD\\s+Dr\\.|MMag\\.|DI\\.|Dipl\\.)\\s+)*([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00dfe\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00dfe\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+)*(?:\\s+-\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00dfe\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+)*(?:\\s+\\w+)?)(?![\\s]*(?:als|und|sowie|mit|von|bei|in|des|der|dem|zu|f\\u00fcr|nach|vor|\\u00fcber|unter|ohne|gegen|durch|an|auf|aus|oder|bzw|etc|u\\.a|z\\.B|d\\.h|i\\.e|s\\.t\\.|n\\.w\\.)|\\s*(?:Obersten\\s+Gerichtshofs|Oberlandesgerichts|Landesgerichts|Bezirksgerichts|Handelsgerichts|Staatsanwaltschaft|Gerichtshofs|Gericht|Anwalt|Rechtsanwalt|Notar|Kanzlei|Firma|Gesellschaft|AG|GmbH|KG|OHG|UG|e\\.V\\.|e\\.G\\.|b\\.V\\.|a\\.D\\.|a\\.R\\.|a\\.S\\.|a\\.M\\.|a\\.K\\.|a\\.P\\.|a\\.W\\.|a\\.Z\\.|a\\.H\\.|a\\.L\\.|a\\.B\\.|a\\.F\\.|a\\.G\\.|a\\.J\\.|a\\.K\\.|a\\.L\\.|a\\.M\\.|a\\.N\\.|a\\.O\\.|a\\.P\\.|a\\.Q\\.|a\\.R\\.|a\\.S\\.|a\\.T\\.|a\\.U\\.|a\\.V\\.|a\\.W\\.|a\\.X\\.|a\\.Y\\.|a\\.Z\\.)\\b)",
+            "priority": 8,
+            "output_template": {
+              "text": "$0",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "9b2b3eca",
+            "name": "German Legal Person (Hofrat Context)",
+            "description": "Captures names preceded by 'Hofrat' or 'Hofr\u00e4tin' when no academic title (Dr., Mag.) is present immediately before the name.",
+            "format": "regex",
+            "content": "(?:Hofrat|Hofr\u00e4tin|Hofr\u00e4tinnen|Hofr\u00e4tinnen)\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00dfe\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00dfe\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+)+)",
+            "priority": 6,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "5e5c7947",
+            "name": "German Legal Person (Standalone Names)",
+            "description": "Captures full names (First Last) or single surnames that appear without titles, specifically in contexts like 'Angeklagten [Name]', 'durch [Name]', or 'Verfahren gegen [Name]', but excludes matches where the name is preceded by a legal institution noun.",
+            "format": "regex",
+            "content": "(?<!\\w)(?:Angeklagten|Angeklagter|Angeklagte|Verfahren gegen|durch|von|mit|bei|in der Sache|des|der|dem|gegen|nach|vor|unter|\\u00fcber|auf|aus|zu|f\\u00fcr|ohne|sowie|oder|bzw|u\\.a|z\\.B|d\\.h|i\\.e|s\\.t\\.|n\\.w\\.)\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00dfe\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00dfe\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+)+)(?![\\s]*(?:als|und|sowie|mit|von|bei|in|des|der|dem|zu|f\\u00fcr|nach|vor|\\u00fcber|unter|ohne|gegen|durch|an|auf|aus|oder|bzw|etc|u\\.a|z\\.B|d\\.h|i\\.e|s\\.t\\.|n\\.w\\.)|\\s*(?:Obersten\\s+Gerichtshofs|Oberlandesgerichts|Landesgerichts|Bezirksgerichts|Handelsgerichts|Staatsanwaltschaft|Gerichtshofs|Gericht|Anwalt|Rechtsanwalt|Notar|Kanzlei|Firma|Gesellschaft|AG|GmbH|KG|OHG|UG|e\\.V\\.|e\\.G\\.|b\\.V\\.|a\\.D\\.|a\\.R\\.|a\\.S\\.|a\\.M\\.|a\\.K\\.|a\\.P\\.|a\\.W\\.|a\\.Z\\.|a\\.H\\.|a\\.L\\.|a\\.B\\.|a\\.F\\.|a\\.G\\.|a\\.J\\.|a\\.K\\.|a\\.L\\.|a\\.M\\.|a\\.N\\.|a\\.O\\.|a\\.P\\.|a\\.Q\\.|a\\.R\\.|a\\.S\\.|a\\.T\\.|a\\.U\\.|a\\.V\\.|a\\.W\\.|a\\.X\\.|a\\.Y\\.|a\\.Z\\.)\\b)",
+            "priority": 7,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "33e772fc",
+            "name": "German Legal Person (Standalone Names - Preposition Start)",
+            "description": "Captures standalone names at the start of a clause or after specific prepositions that are not institution names, ensuring at least two words or a specific pattern.",
+            "format": "regex",
+            "content": "(?<!\\w)(?:als|durch|von|mit|bei|in|des|der|dem|gegen|nach|vor|unter|\\u00fcber|auf|aus|zu|f\\u00fcr|ohne|sowie|oder|bzw|u\\.a|z\\.B|d\\.h|i\\.e|s\\.t\\.|n\\.w\\.)\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00dfe\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00dfe\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+)+)(?![\\s]*(?:als|und|sowie|mit|von|bei|in|des|der|dem|zu|f\\u00fcr|nach|vor|\\u00fcber|unter|ohne|gegen|durch|an|auf|aus|oder|bzw|etc|u\\.a|z\\.B|d\\.h|i\\.e|s\\.t\\.|n\\.w\\.)|\\s*(?:Obersten\\s+Gerichtshofs|Oberlandesgerichts|Landesgerichts|Bezirksgerichts|Handelsgerichts|Staatsanwaltschaft|Gerichtshofs|Gericht|Anwalt|Rechtsanwalt|Notar|Kanzlei|Firma|Gesellschaft|AG|GmbH|KG|OHG|UG|e\\.V\\.|e\\.G\\.|b\\.V\\.|a\\.D\\.|a\\.R\\.|a\\.S\\.|a\\.M\\.|a\\.K\\.|a\\.P\\.|a\\.W\\.|a\\.Z\\.|a\\.H\\.|a\\.L\\.|a\\.B\\.|a\\.F\\.|a\\.G\\.|a\\.J\\.|a\\.K\\.|a\\.L\\.|a\\.M\\.|a\\.N\\.|a\\.O\\.|a\\.P\\.|a\\.Q\\.|a\\.R\\.|a\\.S\\.|a\\.T\\.|a\\.U\\.|a\\.V\\.|a\\.W\\.|a\\.X\\.|a\\.Y\\.|a\\.Z\\.)\\b)",
+            "priority": 6,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "49d8b63d",
+            "name": "German Legal Person (Standalone Names - Start of Sentence)",
+            "description": "Captures names at the very beginning of a sentence or after a period, ensuring they are not institution names.",
+            "format": "regex",
+            "content": "(?:^|\\.)\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00dfe\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00dfe\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+)+)(?![\\s]*(?:als|und|sowie|mit|von|bei|in|des|der|dem|zu|f\\u00fcr|nach|vor|\\u00fcber|unter|ohne|gegen|durch|an|auf|aus|oder|bzw|etc|u\\.a|z\\.B|d\\.h|i\\.e|s\\.t\\.|n\\.w\\.)|\\s*(?:Obersten\\s+Gerichtshofs|Oberlandesgerichts|Landesgerichts|Bezirksgerichts|Handelsgerichts|Staatsanwaltschaft|Gerichtshofs|Gericht|Anwalt|Rechtsanwalt|Notar|Kanzlei|Firma|Gesellschaft|AG|GmbH|KG|OHG|UG|e\\.V\\.|e\\.G\\.|b\\.V\\.|a\\.D\\.|a\\.R\\.|a\\.S\\.|a\\.M\\.|a\\.K\\.|a\\.P\\.|a\\.W\\.|a\\.Z\\.|a\\.H\\.|a\\.L\\.|a\\.B\\.|a\\.F\\.|a\\.G\\.|a\\.J\\.|a\\.K\\.|a\\.L\\.|a\\.M\\.|a\\.N\\.|a\\.O\\.|a\\.P\\.|a\\.Q\\.|a\\.R\\.|a\\.S\\.|a\\.T\\.|a\\.U\\.|a\\.V\\.|a\\.W\\.|a\\.X\\.|a\\.Y\\.|a\\.Z\\.)\\b)",
+            "priority": 5,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          }
+        ]
+      },
+      {
+        "batch": 9,
+        "rules": [
+          {
+            "id": "451550d3",
+            "name": "German Legal Person (Frau/Herr Context)",
+            "description": "Matches names preceded by 'Frau' or 'Herr', capturing the full name including suffixes, while excluding titles from the match.",
+            "format": "regex",
+            "content": "(?:Frau\\s+|Herr\\s+)(?=[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*(?:\\s+-\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*(?:\\s+(?:LL\\.M\\.|BSc|Dipl\\.-Ing\\.|PhD|MA|LLB|MSc|MBA|Bakk\\.))*)",
+            "priority": 7,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "520f8603",
+            "name": "German Legal Person (Context: In der Beschwerdesache)",
+            "description": "Captures names following legal context phrases, ensuring the name is at least 2 words or contains a specific pattern to avoid abbreviations.",
+            "format": "regex",
+            "content": "(?:in\\s+der\\s+Beschwerdesache|in\\s+der\\s+Verwaltungsstrafsache|in\\s+der\\s+Finanzstrafsache|in\\s+der\\s+Beschwerde-\\s+sache)\\s+(?!(?:Dr\\.|Mag\\.|Rg\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|KommR|Techn\\s+R|\u00d6kR|LL\\.M\\.|BSc|Dipl\\.-Ing\\.|PhD|MA|LLB|MSc|MBA|Bakk\\.))([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)+)",
+            "priority": 9,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "dd5eaad6",
+            "name": "German Legal Person (Titles)",
+            "description": "Matches academic/professional titles followed by a valid name, explicitly stopping before sentence connectors or institution names.",
+            "format": "regex",
+            "content": "(?:Dr\\.|Mag\\.|Mag\\.\\s+Dr\\.|Dr\\.\\s+Mag\\.|Priv\\.-Doz\\.|Priv\\.-Doz\\.in|Univ\\.-Prof\\.|Univ\\.-Prof\\.in|Hon\\.-Prof\\.|Hon\\.-Prof\\.in|PhD|OSR|VetR|KommR|Bakk\\.\\s+phil\\.|LLB|BSc|Dipl\\.-Ing\\.|Dipl\\.-Ing\\.in|DDr\\.|DDr\\.in|Mag\\.\\s+MBA\\s+MSc|Mag\\.\\s+MSc|Mag\\.\\s+MBA|Mag\\.\\s+in|Mag\\.a|Dr\\.in|Ing\\.|RgR|\\u00d6kR|Techn\\s+R|Prof\\.|Prof\\.\\s+Dr\\.|Dr\\.\\s+Prof\\.|PD\\s+Dr\\.|Dr\\.\\s+PD\\.|MMag\\.|MMag\\.\\s+Dr\\.|DI\\.|DI\\s+Dr\\.|Dr\\.\\s+DI\\.|Dipl\\.\\s+Dr\\.|Dr\\.\\s+Dipl\\.|OStR|OMedR|StR|Bgm\\.\\s+Dr\\.|Dr\\.\\s+Bgm\\.)\\s+(?:(?:Dr\\.|Mag\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|PD\\s+Dr\\.|MMag\\.|DI\\.|Dipl\\.)\\s+)*([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00c9\u00e9\u00e8\u00ea\u00ee\u00f4\u00fb]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00c9\u00e9\u00e8\u00ea\u00ee\u00f4\u00fb]+)*(?:\\s+-\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00c9\u00e9\u00e8\u00ea\u00ee\u00f4\u00fb]+)*(?:\\s+\\w+)?)(?![\\s]*(?:als|und|sowie|mit|von|bei|in|des|der|dem|zu|f\u00fcr|nach|vor|\u00fcber|unter|ohne|gegen|durch|an|auf|aus|oder|bzw|etc|u\\.a|z\\.B|d\\.h|i\\.e|s\\.t\\.|n\\.w\\.)|\\s*(?:Obersten\\s+Gerichtshofs|Oberlandesgerichts|Landesgerichts|Bezirksgerichts|Handelsgerichts|Staatsanwaltschaft|Gerichtshofs|Gericht|Anwalt|Rechtsanwalt|Notar|Kanzlei|Firma|Gesellschaft|AG|GmbH|KG|OHG|UG|e\\.V\\.|e\\.G\\.|b\\.V\\.|a\\.D\\.|a\\.R\\.|a\\.S\\.|a\\.M\\.|a\\.K\\.|a\\.P\\.|a\\.W\\.|a\\.Z\\.|a\\.H\\.|a\\.L\\.|a\\.B\\.|a\\.F\\.|a\\.G\\.|a\\.J\\.|a\\.K\\.|a\\.L\\.|a\\.M\\.|a\\.N\\.|a\\.O\\.|a\\.P\\.|a\\.Q\\.|a\\.R\\.|a\\.S\\.|a\\.T\\.|a\\.U\\.|a\\.V\\.|a\\.W\\.|a\\.X\\.|a\\.Y\\.|a\\.Z\\.)\\b)",
+            "priority": 8,
+            "output_template": {
+              "text": "$0",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "9b2b3eca",
+            "name": "German Legal Person (Hofrat Context)",
+            "description": "Captures names preceded by 'Hofrat' or 'Hofr\u00e4tin' when no academic title (Dr., Mag.) is present immediately before the name.",
+            "format": "regex",
+            "content": "(?:Hofrat|Hofr\u00e4tin|Hofr\u00e4tinnen|Hofr\u00e4tinnen)\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00dfe\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00dfe\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+)+)",
+            "priority": 6,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "9ce4c893",
+            "name": "German Legal Person (Standalone Names)",
+            "description": "Captures full names or single surnames in legal contexts, explicitly excluding preceding role nouns (Angeklagten, Mitangeklagten) and trailing connectors.",
+            "format": "regex",
+            "content": "(?<!\\w)(?<!Angeklagten\\s)(?<!Mitangeklagten\\s)(?<!Angeklagte\\s)(?<!Angeklagter\\s)(?<!des\\s)(?<!der\\s)(?<!dem\\s)(?<!von\\s)(?<!durch\\s)(?<!bei\\s)(?<!in\\s)(?<!nach\\s)(?<!vor\\s)(?<!unter\\s)(?<!\u00fcber\\s)(?<!auf\\s)(?<!aus\\s)(?<!zu\\s)(?<!f\u00fcr\\s)(?<!ohne\\s)(?<!sowie\\s)(?<!oder\\s)(?<!bzw\\s)(?<!u\\.a\\s)(?<!z\\.B\\s)(?<!d\\.h\\s)(?<!i\\.e\\s)(?<!s\\.t\\.\\s)(?<!n\\.w\\.\\s)(?:Angeklagten|Angeklagter|Angeklagte|Verfahren gegen|durch|von|mit|bei|in der Sache|des|der|dem|gegen|nach|vor|unter|\u00fcber|auf|aus|zu|f\u00fcr|ohne|sowie|oder|bzw|u\\.a|z\\.B|d\\.h|i\\.e|s\\.t\\.|n\\.w\\.)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00c9\u00e9\u00e8\u00ea\u00ee\u00f4\u00fb]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00c9\u00e9\u00e8\u00ea\u00ee\u00f4\u00fb]+)*)(?![\\s]*(?:als|und|sowie|mit|von|bei|in|des|der|dem|zu|f\u00fcr|nach|vor|\u00fcber|unter|ohne|gegen|durch|an|auf|aus|oder|bzw|etc|u\\.a|z\\.B|d\\.h|i\\.e|s\\.t\\.|n\\.w\\.)|\\s*(?:Obersten\\s+Gerichtshofs|Oberlandesgerichts|Landesgerichts|Bezirksgerichts|Handelsgerichts|Staatsanwaltschaft|Gerichtshofs|Gericht|Anwalt|Rechtsanwalt|Notar|Kanzlei|Firma|Gesellschaft|AG|GmbH|KG|OHG|UG|e\\.V\\.|e\\.G\\.|b\\.V\\.|a\\.D\\.|a\\.R\\.|a\\.S\\.|a\\.M\\.|a\\.K\\.|a\\.P\\.|a\\.W\\.|a\\.Z\\.|a\\.H\\.|a\\.L\\.|a\\.B\\.|a\\.F\\.|a\\.G\\.|a\\.J\\.|a\\.K\\.|a\\.L\\.|a\\.M\\.|a\\.N\\.|a\\.O\\.|a\\.P\\.|a\\.Q\\.|a\\.R\\.|a\\.S\\.|a\\.T\\.|a\\.U\\.|a\\.V\\.|a\\.W\\.|a\\.X\\.|a\\.Y\\.|a\\.Z\\.)\\b)",
+            "priority": 7,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "33e772fc",
+            "name": "German Legal Person (Standalone Names - Preposition Start)",
+            "description": "Captures standalone names at the start of a clause or after specific prepositions that are not institution names, ensuring at least two words or a specific pattern.",
+            "format": "regex",
+            "content": "(?<!\\w)(?:als|durch|von|mit|bei|in|des|der|dem|gegen|nach|vor|unter|\\u00fcber|auf|aus|zu|f\\u00fcr|ohne|sowie|oder|bzw|u\\.a|z\\.B|d\\.h|i\\.e|s\\.t\\.|n\\.w\\.)\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00dfe\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00dfe\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+)+)(?![\\s]*(?:als|und|sowie|mit|von|bei|in|des|der|dem|zu|f\\u00fcr|nach|vor|\\u00fcber|unter|ohne|gegen|durch|an|auf|aus|oder|bzw|etc|u\\.a|z\\.B|d\\.h|i\\.e|s\\.t\\.|n\\.w\\.)|\\s*(?:Obersten\\s+Gerichtshofs|Oberlandesgerichts|Landesgerichts|Bezirksgerichts|Handelsgerichts|Staatsanwaltschaft|Gerichtshofs|Gericht|Anwalt|Rechtsanwalt|Notar|Kanzlei|Firma|Gesellschaft|AG|GmbH|KG|OHG|UG|e\\.V\\.|e\\.G\\.|b\\.V\\.|a\\.D\\.|a\\.R\\.|a\\.S\\.|a\\.M\\.|a\\.K\\.|a\\.P\\.|a\\.W\\.|a\\.Z\\.|a\\.H\\.|a\\.L\\.|a\\.B\\.|a\\.F\\.|a\\.G\\.|a\\.J\\.|a\\.K\\.|a\\.L\\.|a\\.M\\.|a\\.N\\.|a\\.O\\.|a\\.P\\.|a\\.Q\\.|a\\.R\\.|a\\.S\\.|a\\.T\\.|a\\.U\\.|a\\.V\\.|a\\.W\\.|a\\.X\\.|a\\.Y\\.|a\\.Z\\.)\\b)",
+            "priority": 6,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "9c5b5cd1",
+            "name": "German Legal Person (Single Surname Context)",
+            "description": "Captures single surnames following specific legal prepositions or role indicators where the name is not preceded by a title.",
+            "format": "regex",
+            "content": "(?<!\\w)(?<!Angeklagten\\s)(?<!Mitangeklagten\\s)(?<!Angeklagte\\s)(?<!Angeklagter\\s)(?<!des\\s)(?<!der\\s)(?<!dem\\s)(?<!von\\s)(?<!durch\\s)(?<!bei\\s)(?<!in\\s)(?<!nach\\s)(?<!vor\\s)(?<!unter\\s)(?<!\u00fcber\\s)(?<!auf\\s)(?<!aus\\s)(?<!zu\\s)(?<!f\u00fcr\\s)(?<!ohne\\s)(?<!sowie\\s)(?<!oder\\s)(?<!bzw\\s)(?<!u\\.a\\s)(?<!z\\.B\\s)(?<!d\\.h\\s)(?<!i\\.e\\s)(?<!s\\.t\\.\\s)(?<!n\\.w\\.\\s)(?:Angeklagten|Angeklagter|Angeklagte|Verfahren gegen|durch|von|mit|bei|in der Sache|des|der|dem|gegen|nach|vor|unter|\u00fcber|auf|aus|zu|f\u00fcr|ohne|sowie|oder|bzw|u\\.a|z\\.B|d\\.h|i\\.e|s\\.t\\.|n\\.w\\.)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00c9\u00e9\u00e8\u00ea\u00ee\u00f4\u00fb]+)(?![\\s]*(?:als|und|sowie|mit|von|bei|in|des|der|dem|zu|f\u00fcr|nach|vor|\u00fcber|unter|ohne|gegen|durch|an|auf|aus|oder|bzw|etc|u\\.a|z\\.B|d\\.h|i\\.e|s\\.t\\.|n\\.w\\.)|\\s*(?:Obersten\\s+Gerichtshofs|Oberlandesgerichts|Landesgerichts|Bezirksgerichts|Handelsgerichts|Staatsanwaltschaft|Gerichtshofs|Gericht|Anwalt|Rechtsanwalt|Notar|Kanzlei|Firma|Gesellschaft|AG|GmbH|KG|OHG|UG|e\\.V\\.|e\\.G\\.|b\\.V\\.|a\\.D\\.|a\\.R\\.|a\\.S\\.|a\\.M\\.|a\\.K\\.|a\\.P\\.|a\\.W\\.|a\\.Z\\.|a\\.H\\.|a\\.L\\.|a\\.B\\.|a\\.F\\.|a\\.G\\.|a\\.J\\.|a\\.K\\.|a\\.L\\.|a\\.M\\.|a\\.N\\.|a\\.O\\.|a\\.P\\.|a\\.Q\\.|a\\.R\\.|a\\.S\\.|a\\.T\\.|a\\.U\\.|a\\.V\\.|a\\.W\\.|a\\.X\\.|a\\.Y\\.|a\\.Z\\.)\\b)",
+            "priority": 6,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "2bef8c3f",
+            "name": "German Legal Person (Start of Sentence)",
+            "description": "Captures names at the very beginning of a sentence or after a period, ensuring they are not institution names.",
+            "format": "regex",
+            "content": "(?:^|\\.)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00c9\u00e9\u00e8\u00ea\u00ee\u00f4\u00fb]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00c9\u00e9\u00e8\u00ea\u00ee\u00f4\u00fb]+)+)(?![\\s]*(?:als|und|sowie|mit|von|bei|in|des|der|dem|zu|f\u00fcr|nach|vor|\u00fcber|unter|ohne|gegen|durch|an|auf|aus|oder|bzw|etc|u\\.a|z\\.B|d\\.h|i\\.e|s\\.t\\.|n\\.w\\.)|\\s*(?:Obersten\\s+Gerichtshofs|Oberlandesgerichts|Landesgerichts|Bezirksgerichts|Handelsgerichts|Staatsanwaltschaft|Gerichtshofs|Gericht|Anwalt|Rechtsanwalt|Notar|Kanzlei|Firma|Gesellschaft|AG|GmbH|KG|OHG|UG|e\\.V\\.|e\\.G\\.|b\\.V\\.|a\\.D\\.|a\\.R\\.|a\\.S\\.|a\\.M\\.|a\\.K\\.|a\\.P\\.|a\\.W\\.|a\\.Z\\.|a\\.H\\.|a\\.L\\.|a\\.B\\.|a\\.F\\.|a\\.G\\.|a\\.J\\.|a\\.K\\.|a\\.L\\.|a\\.M\\.|a\\.N\\.|a\\.O\\.|a\\.P\\.|a\\.Q\\.|a\\.R\\.|a\\.S\\.|a\\.T\\.|a\\.U\\.|a\\.V\\.|a\\.W\\.|a\\.X\\.|a\\.Y\\.|a\\.Z\\.)\\b)",
+            "priority": 5,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          }
+        ]
+      },
+      {
+        "batch": 10,
+        "rules": [
+          {
+            "id": "451550d3",
+            "name": "German Legal Person (Frau/Herr Context)",
+            "description": "Matches names preceded by 'Frau' or 'Herr', capturing the full name including suffixes, while excluding titles from the match.",
+            "format": "regex",
+            "content": "(?:Frau\\s+|Herr\\s+)(?=[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*(?:\\s+-\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*(?:\\s+(?:LL\\.M\\.|BSc|Dipl\\.-Ing\\.|PhD|MA|LLB|MSc|MBA|Bakk\\.))*)",
+            "priority": 7,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "520f8603",
+            "name": "German Legal Person (Context: In der Beschwerdesache)",
+            "description": "Captures names following legal context phrases, ensuring the name is at least 2 words or contains a specific pattern to avoid abbreviations.",
+            "format": "regex",
+            "content": "(?:in\\s+der\\s+Beschwerdesache|in\\s+der\\s+Verwaltungsstrafsache|in\\s+der\\s+Finanzstrafsache|in\\s+der\\s+Beschwerde-\\s+sache)\\s+(?!(?:Dr\\.|Mag\\.|Rg\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|KommR|Techn\\s+R|\u00d6kR|LL\\.M\\.|BSc|Dipl\\.-Ing\\.|PhD|MA|LLB|MSc|MBA|Bakk\\.))([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)+)",
+            "priority": 9,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "30d55854",
+            "name": "German Legal Person (Titles)",
+            "description": "Matches academic/professional titles followed by a valid name, explicitly stopping before sentence connectors, conjunctions, or role indicators.",
+            "format": "regex",
+            "content": "(?:Dr\\.|Mag\\.|Mag\\.\\s+Dr\\.|Dr\\.\\s+Mag\\.|Priv\\.-Doz\\.|Priv\\.-Doz\\.in|Univ\\.-Prof\\.|Univ\\.-Prof\\.in|Hon\\.-Prof\\.|Hon\\.-Prof\\.in|PhD|OSR|VetR|KommR|Bakk\\.\\s+phil\\.|LLB|BSc|Dipl\\.-Ing\\.|Dipl\\.-Ing\\.in|DDr\\.|DDr\\.in|Mag\\.\\s+MBA\\s+MSc|Mag\\.\\s+MSc|Mag\\.\\s+MBA|Mag\\.\\s+in|Mag\\.a|Dr\\.in|Ing\\.|RgR|\\u00d6kR|Techn\\s+R|Prof\\.|Prof\\.\\s+Dr\\.|Dr\\.\\s+Prof\\.|PD\\s+Dr\\.|Dr\\.\\s+PD\\.|MMag\\.|MMag\\.\\s+Dr\\.|DI\\.|DI\\s+Dr\\.|Dr\\.\\s+DI\\.|Dipl\\.\\s+Dr\\.|Dr\\.\\s+Dipl\\.|OStR|OMedR|StR|Bgm\\.\\s+Dr\\.|Dr\\.\\s+Bgm\\.)\\s+(?:(?:Dr\\.|Mag\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|PD\\s+Dr\\.|MMag\\.|DI\\.|Dipl\\.)\\s+)*([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+)*(?:\\s+-\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+)*(?:\\s+\\w+)?)(?![\\s]*(?:als|und|sowie|mit|von|bei|in|des|der|dem|zu|f\\u00fcr|nach|vor|\\u00fcber|unter|ohne|gegen|durch|an|auf|aus|oder|bzw|etc|u\\.a|z\\.B|d\\.h|i\\.e|s\\.t\\.|n\\.w\\.)|\\s*(?:Obersten\\s+Gerichtshofs|Oberlandesgerichts|Landesgerichts|Bezirksgerichts|Handelsgerichts|Staatsanwaltschaft|Gerichtshofs|Gericht|Anwalt|Rechtsanwalt|Notar|Kanzlei|Firma|Gesellschaft|AG|GmbH|KG|OHG|UG|e\\.V\\.|e\\.G\\.|b\\.V\\.|a\\.D\\.|a\\.R\\.|a\\.S\\.|a\\.M\\.|a\\.K\\.|a\\.P\\.|a\\.W\\.|a\\.Z\\.|a\\.H\\.|a\\.L\\.|a\\.B\\.|a\\.F\\.|a\\.G\\.|a\\.J\\.|a\\.K\\.|a\\.L\\.|a\\.M\\.|a\\.N\\.|a\\.O\\.|a\\.P\\.|a\\.Q\\.|a\\.R\\.|a\\.S\\.|a\\.T\\.|a\\.U\\.|a\\.V\\.|a\\.W\\.|a\\.X\\.|a\\.Y\\.|a\\.Z\\.)\\b)",
+            "priority": 8,
+            "output_template": {
+              "text": "$0",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "9b2b3eca",
+            "name": "German Legal Person (Hofrat Context)",
+            "description": "Captures names preceded by 'Hofrat' or 'Hofr\u00e4tin' when no academic title (Dr., Mag.) is present immediately before the name.",
+            "format": "regex",
+            "content": "(?:Hofrat|Hofr\u00e4tin|Hofr\u00e4tinnen|Hofr\u00e4tinnen)\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00dfe\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00dfe\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+)+)",
+            "priority": 6,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "33532df9",
+            "name": "German Legal Person (Standalone Names)",
+            "description": "Captures full names or single surnames in legal contexts, explicitly excluding preceding role nouns (Angeklagten, Mitangeklagten) and trailing connectors, with stricter context requirements.",
+            "format": "regex",
+            "content": "(?<!\\w)(?<!Angeklagten\\s)(?<!Mitangeklagten\\s)(?<!Angeklagte\\s)(?<!Angeklagter\\s)(?<!des\\s)(?<!der\\s)(?<!dem\\s)(?<!von\\s)(?<!durch\\s)(?<!bei\\s)(?<!in\\s)(?<!nach\\s)(?<!vor\\s)(?<!unter\\s)(?<!\\u00fcber\\s)(?<!auf\\s)(?<!aus\\s)(?<!zu\\s)(?<!f\\u00fcr\\s)(?<!ohne\\s)(?<!sowie\\s)(?<!oder\\s)(?<!bzw\\s)(?<!u\\.a\\s)(?<!z\\.B\\s)(?<!d\\.h\\s)(?<!i\\.e\\s)(?<!s\\.t\\.\\s)(?<!n\\.w\\.\\s)(?:als|durch|von|mit|bei|in der Sache|des|der|dem|gegen|nach|vor|unter|\\u00fcber|auf|aus|zu|f\\u00fcr|ohne|sowie|oder|bzw|u\\.a|z\\.B|d\\.h|i\\.e|s\\.t\\.|n\\.w\\.)\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+)*)(?![\\s]*(?:als|und|sowie|mit|von|bei|in|des|der|dem|zu|f\\u00fcr|nach|vor|\\u00fcber|unter|ohne|gegen|durch|an|auf|aus|oder|bzw|etc|u\\.a|z\\.B|d\\.h|i\\.e|s\\.t\\.|n\\.w\\.)|\\s*(?:Obersten\\s+Gerichtshofs|Oberlandesgerichts|Landesgerichts|Bezirksgerichts|Handelsgerichts|Staatsanwaltschaft|Gerichtshofs|Gericht|Anwalt|Rechtsanwalt|Notar|Kanzlei|Firma|Gesellschaft|AG|GmbH|KG|OHG|UG|e\\.V\\.|e\\.G\\.|b\\.V\\.|a\\.D\\.|a\\.R\\.|a\\.S\\.|a\\.M\\.|a\\.K\\.|a\\.P\\.|a\\.W\\.|a\\.Z\\.|a\\.H\\.|a\\.L\\.|a\\.B\\.|a\\.F\\.|a\\.G\\.|a\\.J\\.|a\\.K\\.|a\\.L\\.|a\\.M\\.|a\\.N\\.|a\\.O\\.|a\\.P\\.|a\\.Q\\.|a\\.R\\.|a\\.S\\.|a\\.T\\.|a\\.U\\.|a\\.V\\.|a\\.W\\.|a\\.X\\.|a\\.Y\\.|a\\.Z\\.)\\b)",
+            "priority": 7,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "ea4ecce6",
+            "name": "German Legal Person (Standalone Names - Preposition Start)",
+            "description": "Captures standalone names at the start of a clause or after specific prepositions, ensuring at least two words or a specific pattern to avoid abbreviations and institution names.",
+            "format": "regex",
+            "content": "(?<!\\w)(?:als|durch|von|mit|bei|in|des|der|dem|gegen|nach|vor|unter|\\u00fcber|auf|aus|zu|f\\u00fcr|ohne|sowie|oder|bzw|u\\.a|z\\.B|d\\.h|i\\.e|s\\.t\\.|n\\.w\\.)\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+)+)(?![\\s]*(?:als|und|sowie|mit|von|bei|in|des|der|dem|zu|f\\u00fcr|nach|vor|\\u00fcber|unter|ohne|gegen|durch|an|auf|aus|oder|bzw|etc|u\\.a|z\\.B|d\\.h|i\\.e|s\\.t\\.|n\\.w\\.)|\\s*(?:Obersten\\s+Gerichtshofs|Oberlandesgerichts|Landesgerichts|Bezirksgerichts|Handelsgerichts|Staatsanwaltschaft|Gerichtshofs|Gericht|Anwalt|Rechtsanwalt|Notar|Kanzlei|Firma|Gesellschaft|AG|GmbH|KG|OHG|UG|e\\.V\\.|e\\.G\\.|b\\.V\\.|a\\.D\\.|a\\.R\\.|a\\.S\\.|a\\.M\\.|a\\.K\\.|a\\.P\\.|a\\.W\\.|a\\.Z\\.|a\\.H\\.|a\\.L\\.|a\\.B\\.|a\\.F\\.|a\\.G\\.|a\\.J\\.|a\\.K\\.|a\\.L\\.|a\\.M\\.|a\\.N\\.|a\\.O\\.|a\\.P\\.|a\\.Q\\.|a\\.R\\.|a\\.S\\.|a\\.T\\.|a\\.U\\.|a\\.V\\.|a\\.W\\.|a\\.X\\.|a\\.Y\\.|a\\.Z\\.)\\b)",
+            "priority": 6,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "9c5b5cd1",
+            "name": "German Legal Person (Single Surname Context)",
+            "description": "Captures single surnames following specific legal prepositions or role indicators where the name is not preceded by a title.",
+            "format": "regex",
+            "content": "(?<!\\w)(?<!Angeklagten\\s)(?<!Mitangeklagten\\s)(?<!Angeklagte\\s)(?<!Angeklagter\\s)(?<!des\\s)(?<!der\\s)(?<!dem\\s)(?<!von\\s)(?<!durch\\s)(?<!bei\\s)(?<!in\\s)(?<!nach\\s)(?<!vor\\s)(?<!unter\\s)(?<!\u00fcber\\s)(?<!auf\\s)(?<!aus\\s)(?<!zu\\s)(?<!f\u00fcr\\s)(?<!ohne\\s)(?<!sowie\\s)(?<!oder\\s)(?<!bzw\\s)(?<!u\\.a\\s)(?<!z\\.B\\s)(?<!d\\.h\\s)(?<!i\\.e\\s)(?<!s\\.t\\.\\s)(?<!n\\.w\\.\\s)(?:Angeklagten|Angeklagter|Angeklagte|Verfahren gegen|durch|von|mit|bei|in der Sache|des|der|dem|gegen|nach|vor|unter|\u00fcber|auf|aus|zu|f\u00fcr|ohne|sowie|oder|bzw|u\\.a|z\\.B|d\\.h|i\\.e|s\\.t\\.|n\\.w\\.)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00c9\u00e9\u00e8\u00ea\u00ee\u00f4\u00fb]+)(?![\\s]*(?:als|und|sowie|mit|von|bei|in|des|der|dem|zu|f\u00fcr|nach|vor|\u00fcber|unter|ohne|gegen|durch|an|auf|aus|oder|bzw|etc|u\\.a|z\\.B|d\\.h|i\\.e|s\\.t\\.|n\\.w\\.)|\\s*(?:Obersten\\s+Gerichtshofs|Oberlandesgerichts|Landesgerichts|Bezirksgerichts|Handelsgerichts|Staatsanwaltschaft|Gerichtshofs|Gericht|Anwalt|Rechtsanwalt|Notar|Kanzlei|Firma|Gesellschaft|AG|GmbH|KG|OHG|UG|e\\.V\\.|e\\.G\\.|b\\.V\\.|a\\.D\\.|a\\.R\\.|a\\.S\\.|a\\.M\\.|a\\.K\\.|a\\.P\\.|a\\.W\\.|a\\.Z\\.|a\\.H\\.|a\\.L\\.|a\\.B\\.|a\\.F\\.|a\\.G\\.|a\\.J\\.|a\\.K\\.|a\\.L\\.|a\\.M\\.|a\\.N\\.|a\\.O\\.|a\\.P\\.|a\\.Q\\.|a\\.R\\.|a\\.S\\.|a\\.T\\.|a\\.U\\.|a\\.V\\.|a\\.W\\.|a\\.X\\.|a\\.Y\\.|a\\.Z\\.)\\b)",
+            "priority": 6,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "3ba5fd61",
+            "name": "German Legal Person (Start of Sentence)",
+            "description": "Captures names at the very beginning of a sentence or after a period, ensuring they are not institution names.",
+            "format": "regex",
+            "content": "(?:^|\\.)\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+)+)(?![\\s]*(?:als|und|sowie|mit|von|bei|in|des|der|dem|zu|f\\u00fcr|nach|vor|\\u00fcber|unter|ohne|gegen|durch|an|auf|aus|oder|bzw|etc|u\\.a|z\\.B|d\\.h|i\\.e|s\\.t\\.|n\\.w\\.)|\\s*(?:Obersten\\s+Gerichtshofs|Oberlandesgerichts|Landesgerichts|Bezirksgerichts|Handelsgerichts|Staatsanwaltschaft|Gerichtshofs|Gericht|Anwalt|Rechtsanwalt|Notar|Kanzlei|Firma|Gesellschaft|AG|GmbH|KG|OHG|UG|e\\.V\\.|e\\.G\\.|b\\.V\\.|a\\.D\\.|a\\.R\\.|a\\.S\\.|a\\.M\\.|a\\.K\\.|a\\.P\\.|a\\.W\\.|a\\.Z\\.|a\\.H\\.|a\\.L\\.|a\\.B\\.|a\\.F\\.|a\\.G\\.|a\\.J\\.|a\\.K\\.|a\\.L\\.|a\\.M\\.|a\\.N\\.|a\\.O\\.|a\\.P\\.|a\\.Q\\.|a\\.R\\.|a\\.S\\.|a\\.T\\.|a\\.U\\.|a\\.V\\.|a\\.W\\.|a\\.X\\.|a\\.Y\\.|a\\.Z\\.)\\b)",
+            "priority": 5,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          }
+        ]
+      },
+      {
+        "batch": 11,
+        "rules": [
+          {
+            "id": "451550d3",
+            "name": "German Legal Person (Frau/Herr Context)",
+            "description": "Matches names preceded by 'Frau' or 'Herr', capturing the full name including suffixes, while excluding titles from the match.",
+            "format": "regex",
+            "content": "(?:Frau\\s+|Herr\\s+)(?=[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*(?:\\s+-\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*(?:\\s+(?:LL\\.M\\.|BSc|Dipl\\.-Ing\\.|PhD|MA|LLB|MSc|MBA|Bakk\\.))*)",
+            "priority": 7,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "520f8603",
+            "name": "German Legal Person (Context: In der Beschwerdesache)",
+            "description": "Captures names following legal context phrases, ensuring the name is at least 2 words or contains a specific pattern to avoid abbreviations.",
+            "format": "regex",
+            "content": "(?:in\\s+der\\s+Beschwerdesache|in\\s+der\\s+Verwaltungsstrafsache|in\\s+der\\s+Finanzstrafsache|in\\s+der\\s+Beschwerde-\\s+sache)\\s+(?!(?:Dr\\.|Mag\\.|Rg\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|KommR|Techn\\s+R|\u00d6kR|LL\\.M\\.|BSc|Dipl\\.-Ing\\.|PhD|MA|LLB|MSc|MBA|Bakk\\.))([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)+)",
+            "priority": 9,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "30d55854",
+            "name": "German Legal Person (Titles)",
+            "description": "Matches academic/professional titles followed by a valid name, explicitly stopping before sentence connectors, conjunctions, or role indicators.",
+            "format": "regex",
+            "content": "(?:Dr\\.|Mag\\.|Mag\\.\\s+Dr\\.|Dr\\.\\s+Mag\\.|Priv\\.-Doz\\.|Priv\\.-Doz\\.in|Univ\\.-Prof\\.|Univ\\.-Prof\\.in|Hon\\.-Prof\\.|Hon\\.-Prof\\.in|PhD|OSR|VetR|KommR|Bakk\\.\\s+phil\\.|LLB|BSc|Dipl\\.-Ing\\.|Dipl\\.-Ing\\.in|DDr\\.|DDr\\.in|Mag\\.\\s+MBA\\s+MSc|Mag\\.\\s+MSc|Mag\\.\\s+MBA|Mag\\.\\s+in|Mag\\.a|Dr\\.in|Ing\\.|RgR|\\u00d6kR|Techn\\s+R|Prof\\.|Prof\\.\\s+Dr\\.|Dr\\.\\s+Prof\\.|PD\\s+Dr\\.|Dr\\.\\s+PD\\.|MMag\\.|MMag\\.\\s+Dr\\.|DI\\.|DI\\s+Dr\\.|Dr\\.\\s+DI\\.|Dipl\\.\\s+Dr\\.|Dr\\.\\s+Dipl\\.|OStR|OMedR|StR|Bgm\\.\\s+Dr\\.|Dr\\.\\s+Bgm\\.)\\s+(?:(?:Dr\\.|Mag\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|PD\\s+Dr\\.|MMag\\.|DI\\.|Dipl\\.)\\s+)*([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+)*(?:\\s+-\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+)*(?:\\s+\\w+)?)(?![\\s]*(?:als|und|sowie|mit|von|bei|in|des|der|dem|zu|f\\u00fcr|nach|vor|\\u00fcber|unter|ohne|gegen|durch|an|auf|aus|oder|bzw|etc|u\\.a|z\\.B|d\\.h|i\\.e|s\\.t\\.|n\\.w\\.)|\\s*(?:Obersten\\s+Gerichtshofs|Oberlandesgerichts|Landesgerichts|Bezirksgerichts|Handelsgerichts|Staatsanwaltschaft|Gerichtshofs|Gericht|Anwalt|Rechtsanwalt|Notar|Kanzlei|Firma|Gesellschaft|AG|GmbH|KG|OHG|UG|e\\.V\\.|e\\.G\\.|b\\.V\\.|a\\.D\\.|a\\.R\\.|a\\.S\\.|a\\.M\\.|a\\.K\\.|a\\.P\\.|a\\.W\\.|a\\.Z\\.|a\\.H\\.|a\\.L\\.|a\\.B\\.|a\\.F\\.|a\\.G\\.|a\\.J\\.|a\\.K\\.|a\\.L\\.|a\\.M\\.|a\\.N\\.|a\\.O\\.|a\\.P\\.|a\\.Q\\.|a\\.R\\.|a\\.S\\.|a\\.T\\.|a\\.U\\.|a\\.V\\.|a\\.W\\.|a\\.X\\.|a\\.Y\\.|a\\.Z\\.)\\b)",
+            "priority": 8,
+            "output_template": {
+              "text": "$0",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "9b2b3eca",
+            "name": "German Legal Person (Hofrat Context)",
+            "description": "Captures names preceded by 'Hofrat' or 'Hofr\u00e4tin' when no academic title (Dr., Mag.) is present immediately before the name.",
+            "format": "regex",
+            "content": "(?:Hofrat|Hofr\u00e4tin|Hofr\u00e4tinnen|Hofr\u00e4tinnen)\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00dfe\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00dfe\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+)+)",
+            "priority": 6,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "33532df9",
+            "name": "German Legal Person (Standalone Names)",
+            "description": "Captures full names or single surnames in legal contexts, explicitly excluding preceding role nouns (Angeklagten, Mitangeklagten) and trailing connectors, with stricter context requirements.",
+            "format": "regex",
+            "content": "(?<!\\w)(?<!Angeklagten\\s)(?<!Mitangeklagten\\s)(?<!Angeklagte\\s)(?<!Angeklagter\\s)(?<!des\\s)(?<!der\\s)(?<!dem\\s)(?<!von\\s)(?<!durch\\s)(?<!bei\\s)(?<!in\\s)(?<!nach\\s)(?<!vor\\s)(?<!unter\\s)(?<!\\u00fcber\\s)(?<!auf\\s)(?<!aus\\s)(?<!zu\\s)(?<!f\\u00fcr\\s)(?<!ohne\\s)(?<!sowie\\s)(?<!oder\\s)(?<!bzw\\s)(?<!u\\.a\\s)(?<!z\\.B\\s)(?<!d\\.h\\s)(?<!i\\.e\\s)(?<!s\\.t\\.\\s)(?<!n\\.w\\.\\s)(?:als|durch|von|mit|bei|in der Sache|des|der|dem|gegen|nach|vor|unter|\\u00fcber|auf|aus|zu|f\\u00fcr|ohne|sowie|oder|bzw|u\\.a|z\\.B|d\\.h|i\\.e|s\\.t\\.|n\\.w\\.)\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+)*)(?![\\s]*(?:als|und|sowie|mit|von|bei|in|des|der|dem|zu|f\\u00fcr|nach|vor|\\u00fcber|unter|ohne|gegen|durch|an|auf|aus|oder|bzw|etc|u\\.a|z\\.B|d\\.h|i\\.e|s\\.t\\.|n\\.w\\.)|\\s*(?:Obersten\\s+Gerichtshofs|Oberlandesgerichts|Landesgerichts|Bezirksgerichts|Handelsgerichts|Staatsanwaltschaft|Gerichtshofs|Gericht|Anwalt|Rechtsanwalt|Notar|Kanzlei|Firma|Gesellschaft|AG|GmbH|KG|OHG|UG|e\\.V\\.|e\\.G\\.|b\\.V\\.|a\\.D\\.|a\\.R\\.|a\\.S\\.|a\\.M\\.|a\\.K\\.|a\\.P\\.|a\\.W\\.|a\\.Z\\.|a\\.H\\.|a\\.L\\.|a\\.B\\.|a\\.F\\.|a\\.G\\.|a\\.J\\.|a\\.K\\.|a\\.L\\.|a\\.M\\.|a\\.N\\.|a\\.O\\.|a\\.P\\.|a\\.Q\\.|a\\.R\\.|a\\.S\\.|a\\.T\\.|a\\.U\\.|a\\.V\\.|a\\.W\\.|a\\.X\\.|a\\.Y\\.|a\\.Z\\.)\\b)",
+            "priority": 7,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "ea4ecce6",
+            "name": "German Legal Person (Standalone Names - Preposition Start)",
+            "description": "Captures standalone names at the start of a clause or after specific prepositions, ensuring at least two words or a specific pattern to avoid abbreviations and institution names.",
+            "format": "regex",
+            "content": "(?<!\\w)(?:als|durch|von|mit|bei|in|des|der|dem|gegen|nach|vor|unter|\\u00fcber|auf|aus|zu|f\\u00fcr|ohne|sowie|oder|bzw|u\\.a|z\\.B|d\\.h|i\\.e|s\\.t\\.|n\\.w\\.)\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+)+)(?![\\s]*(?:als|und|sowie|mit|von|bei|in|des|der|dem|zu|f\\u00fcr|nach|vor|\\u00fcber|unter|ohne|gegen|durch|an|auf|aus|oder|bzw|etc|u\\.a|z\\.B|d\\.h|i\\.e|s\\.t\\.|n\\.w\\.)|\\s*(?:Obersten\\s+Gerichtshofs|Oberlandesgerichts|Landesgerichts|Bezirksgerichts|Handelsgerichts|Staatsanwaltschaft|Gerichtshofs|Gericht|Anwalt|Rechtsanwalt|Notar|Kanzlei|Firma|Gesellschaft|AG|GmbH|KG|OHG|UG|e\\.V\\.|e\\.G\\.|b\\.V\\.|a\\.D\\.|a\\.R\\.|a\\.S\\.|a\\.M\\.|a\\.K\\.|a\\.P\\.|a\\.W\\.|a\\.Z\\.|a\\.H\\.|a\\.L\\.|a\\.B\\.|a\\.F\\.|a\\.G\\.|a\\.J\\.|a\\.K\\.|a\\.L\\.|a\\.M\\.|a\\.N\\.|a\\.O\\.|a\\.P\\.|a\\.Q\\.|a\\.R\\.|a\\.S\\.|a\\.T\\.|a\\.U\\.|a\\.V\\.|a\\.W\\.|a\\.X\\.|a\\.Y\\.|a\\.Z\\.)\\b)",
+            "priority": 6,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "9c5b5cd1",
+            "name": "German Legal Person (Single Surname Context)",
+            "description": "Captures single surnames following specific legal prepositions or role indicators where the name is not preceded by a title.",
+            "format": "regex",
+            "content": "(?<!\\w)(?<!Angeklagten\\s)(?<!Mitangeklagten\\s)(?<!Angeklagte\\s)(?<!Angeklagter\\s)(?<!des\\s)(?<!der\\s)(?<!dem\\s)(?<!von\\s)(?<!durch\\s)(?<!bei\\s)(?<!in\\s)(?<!nach\\s)(?<!vor\\s)(?<!unter\\s)(?<!\u00fcber\\s)(?<!auf\\s)(?<!aus\\s)(?<!zu\\s)(?<!f\u00fcr\\s)(?<!ohne\\s)(?<!sowie\\s)(?<!oder\\s)(?<!bzw\\s)(?<!u\\.a\\s)(?<!z\\.B\\s)(?<!d\\.h\\s)(?<!i\\.e\\s)(?<!s\\.t\\.\\s)(?<!n\\.w\\.\\s)(?:Angeklagten|Angeklagter|Angeklagte|Verfahren gegen|durch|von|mit|bei|in der Sache|des|der|dem|gegen|nach|vor|unter|\u00fcber|auf|aus|zu|f\u00fcr|ohne|sowie|oder|bzw|u\\.a|z\\.B|d\\.h|i\\.e|s\\.t\\.|n\\.w\\.)\\s+([A-Z][a-z\u00e4\u00f6\u00fc\u00df\u00c4\u00d6\u00dc\u00c9\u00e9\u00e8\u00ea\u00ee\u00f4\u00fb]+)(?![\\s]*(?:als|und|sowie|mit|von|bei|in|des|der|dem|zu|f\u00fcr|nach|vor|\u00fcber|unter|ohne|gegen|durch|an|auf|aus|oder|bzw|etc|u\\.a|z\\.B|d\\.h|i\\.e|s\\.t\\.|n\\.w\\.)|\\s*(?:Obersten\\s+Gerichtshofs|Oberlandesgerichts|Landesgerichts|Bezirksgerichts|Handelsgerichts|Staatsanwaltschaft|Gerichtshofs|Gericht|Anwalt|Rechtsanwalt|Notar|Kanzlei|Firma|Gesellschaft|AG|GmbH|KG|OHG|UG|e\\.V\\.|e\\.G\\.|b\\.V\\.|a\\.D\\.|a\\.R\\.|a\\.S\\.|a\\.M\\.|a\\.K\\.|a\\.P\\.|a\\.W\\.|a\\.Z\\.|a\\.H\\.|a\\.L\\.|a\\.B\\.|a\\.F\\.|a\\.G\\.|a\\.J\\.|a\\.K\\.|a\\.L\\.|a\\.M\\.|a\\.N\\.|a\\.O\\.|a\\.P\\.|a\\.Q\\.|a\\.R\\.|a\\.S\\.|a\\.T\\.|a\\.U\\.|a\\.V\\.|a\\.W\\.|a\\.X\\.|a\\.Y\\.|a\\.Z\\.)\\b)",
+            "priority": 6,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "3ba5fd61",
+            "name": "German Legal Person (Start of Sentence)",
+            "description": "Captures names at the very beginning of a sentence or after a period, ensuring they are not institution names.",
+            "format": "regex",
+            "content": "(?:^|\\.)\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+)+)(?![\\s]*(?:als|und|sowie|mit|von|bei|in|des|der|dem|zu|f\\u00fcr|nach|vor|\\u00fcber|unter|ohne|gegen|durch|an|auf|aus|oder|bzw|etc|u\\.a|z\\.B|d\\.h|i\\.e|s\\.t\\.|n\\.w\\.)|\\s*(?:Obersten\\s+Gerichtshofs|Oberlandesgerichts|Landesgerichts|Bezirksgerichts|Handelsgerichts|Staatsanwaltschaft|Gerichtshofs|Gericht|Anwalt|Rechtsanwalt|Notar|Kanzlei|Firma|Gesellschaft|AG|GmbH|KG|OHG|UG|e\\.V\\.|e\\.G\\.|b\\.V\\.|a\\.D\\.|a\\.R\\.|a\\.S\\.|a\\.M\\.|a\\.K\\.|a\\.P\\.|a\\.W\\.|a\\.Z\\.|a\\.H\\.|a\\.L\\.|a\\.B\\.|a\\.F\\.|a\\.G\\.|a\\.J\\.|a\\.K\\.|a\\.L\\.|a\\.M\\.|a\\.N\\.|a\\.O\\.|a\\.P\\.|a\\.Q\\.|a\\.R\\.|a\\.S\\.|a\\.T\\.|a\\.U\\.|a\\.V\\.|a\\.W\\.|a\\.X\\.|a\\.Y\\.|a\\.Z\\.)\\b)",
+            "priority": 5,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          }
+        ]
+      },
+      {
+        "batch": 12,
+        "rules": [
+          {
+            "id": "451550d3",
+            "name": "German Legal Person (Frau/Herr Context)",
+            "description": "Matches names preceded by 'Frau' or 'Herr', capturing the full name including suffixes, while excluding titles from the match.",
+            "format": "regex",
+            "content": "(?:Frau\\s+|Herr\\s+)(?=[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*(?:\\s+-\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*(?:\\s+(?:LL\\.M\\.|BSc|Dipl\\.-Ing\\.|PhD|MA|LLB|MSc|MBA|Bakk\\.))*)",
+            "priority": 7,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "520f8603",
+            "name": "German Legal Person (Context: In der Beschwerdesache)",
+            "description": "Captures names following legal context phrases, ensuring the name is at least 2 words or contains a specific pattern to avoid abbreviations.",
+            "format": "regex",
+            "content": "(?:in\\s+der\\s+Beschwerdesache|in\\s+der\\s+Verwaltungsstrafsache|in\\s+der\\s+Finanzstrafsache|in\\s+der\\s+Beschwerde-\\s+sache)\\s+(?!(?:Dr\\.|Mag\\.|Rg\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|KommR|Techn\\s+R|\u00d6kR|LL\\.M\\.|BSc|Dipl\\.-Ing\\.|PhD|MA|LLB|MSc|MBA|Bakk\\.))([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)+)",
+            "priority": 9,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "6a9aea73",
+            "name": "German Legal Person (Titles)",
+            "description": "Matches academic/professional titles followed by a valid name, explicitly stopping before sentence connectors, conjunctions, or role indicators.",
+            "format": "regex",
+            "content": "(?:Dr\\.|Mag\\.|Mag\\.\\s+Dr\\.|Dr\\.\\s+Mag\\.|Priv\\.-Doz\\.|Priv\\.-Doz\\.in|Univ\\.-Prof\\.|Univ\\.-Prof\\.in|Hon\\.-Prof\\.|Hon\\.-Prof\\.in|PhD|OSR|VetR|KommR|Bakk\\.\\s+phil\\.|LLB|BSc|Dipl\\.-Ing\\.|Dipl\\.-Ing\\.in|DDr\\.|DDr\\.in|Mag\\.\\s+MBA\\s+MSc|Mag\\.\\s+MSc|Mag\\.\\s+MBA|Mag\\.\\s+in|Mag\\.a|Dr\\.in|Ing\\.|RgR|\\u00d6kR|Techn\\s+R|Prof\\.|Prof\\.\\s+Dr\\.|Dr\\.\\s+Prof\\.|PD\\s+Dr\\.|Dr\\.\\s+PD\\.|MMag\\.|MMag\\.\\s+Dr\\.|DI\\.|DI\\s+Dr\\.|Dr\\.\\s+DI\\.|Dipl\\.\\s+Dr\\.|Dr\\.\\s+Dipl\\.|OStR|OMedR|StR|Bgm\\.\\s+Dr\\.|Dr\\.\\s+Bgm\\.)\\s+(?:(?:Dr\\.|Mag\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|PD\\s+Dr\\.|MMag\\.|DI\\.|Dipl\\.)\\s+)*([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+)*(?:\\s+-\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+)*(?:\\s+\\w+)?)(?![\\s]*(?:als|und|sowie|mit|von|bei|in|des|der|dem|zu|f\\u00fcr|nach|vor|\\u00fcber|unter|ohne|gegen|durch|an|auf|aus|oder|bzw|etc|u\\.a|z\\.B|d\\.h|i\\.e|s\\.t\\.|n\\.w\\.)|\\s*(?:Obersten\\s+Gerichtshofs|Oberlandesgerichts|Landesgerichts|Bezirksgerichts|Handelsgerichts|Staatsanwaltschaft|Gerichtshofs|Gericht|Anwalt|Rechtsanwalt|Notar|Kanzlei|Firma|Gesellschaft|AG|GmbH|KG|OHG|UG|e\\.V\\.|e\\.G\\.|b\\.V\\.|a\\.D\\.|a\\.R\\.|a\\.S\\.|a\\.M\\.|a\\.K\\.|a\\.P\\.|a\\.W\\.|a\\.Z\\.|a\\.H\\.|a\\.L\\.|a\\.B\\.|a\\.F\\.|a\\.G\\.|a\\.J\\.|a\\.K\\.|a\\.L\\.|a\\.M\\.|a\\.N\\.|a\\.O\\.|a\\.P\\.|a\\.Q\\.|a\\.R\\.|a\\.S\\.|a\\.T\\.|a\\.U\\.|a\\.V\\.|a\\.W\\.|a\\.X\\.|a\\.Y\\.|a\\.Z\\.)\\b|\\s*(?:Vorsitzenden|Vorsitzende|Vorsitzender|Senatspr\\u00e4sidenten|Senatspr\\u00e4sidentin|Hofr\\u00e4te|Hofr\\u00e4tin|Hofrat|Vizepr\\u00e4sidenten|Vizepr\\u00e4sidentin|Pr\\u00e4sidenten|Pr\\u00e4sidentin|Pr\\u00e4sident|Revisionsgericht|Oberlandesgerichts|Landesgerichts|Bezirksgerichts|Handelsgerichts|Staatsanwaltschaft|Gerichtshofs|Gericht|Anwalt|Rechtsanwalt|Notar|Kanzlei|Firma|Gesellschaft|AG|GmbH|KG|OHG|UG|e\\.V\\.|e\\.G\\.|b\\.V\\.|a\\.D\\.|a\\.R\\.|a\\.S\\.|a\\.M\\.|a\\.K\\.|a\\.P\\.|a\\.W\\.|a\\.Z\\.|a\\.H\\.|a\\.L\\.|a\\.B\\.|a\\.F\\.|a\\.G\\.|a\\.J\\.|a\\.K\\.|a\\.L\\.|a\\.M\\.|a\\.N\\.|a\\.O\\.|a\\.P\\.|a\\.Q\\.|a\\.R\\.|a\\.S\\.|a\\.T\\.|a\\.U\\.|a\\.V\\.|a\\.W\\.|a\\.X\\.|a\\.Y\\.|a\\.Z\\.)\\b)",
+            "priority": 8,
+            "output_template": {
+              "text": "$0",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "9feba3b7",
+            "name": "German Legal Person (Hofrat Context)",
+            "description": "Captures names preceded by 'Hofrat' or 'Hofr\u00e4tin' when no academic title (Dr., Mag.) is present immediately before the name.",
+            "format": "regex",
+            "content": "(?:Hofr\\u00e4te|Hofr\\u00e4tin|Hofrat)\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+)*)(?![\\s]*(?:als|und|sowie|mit|von|bei|in|des|der|dem|zu|f\\u00fcr|nach|vor|\\u00fcber|unter|ohne|gegen|durch|an|auf|aus|oder|bzw|etc|u\\.a|z\\.B|d\\.h|i\\.e|s\\.t\\.|n\\.w\\.)|\\s*(?:Obersten\\s+Gerichtshofs|Oberlandesgerichts|Landesgerichts|Bezirksgerichts|Handelsgerichts|Staatsanwaltschaft|Gerichtshofs|Gericht|Anwalt|Rechtsanwalt|Notar|Kanzlei|Firma|Gesellschaft|AG|GmbH|KG|OHG|UG|e\\.V\\.|e\\.G\\.|b\\.V\\.|a\\.D\\.|a\\.R\\.|a\\.S\\.|a\\.M\\.|a\\.K\\.|a\\.P\\.|a\\.W\\.|a\\.Z\\.|a\\.H\\.|a\\.L\\.|a\\.B\\.|a\\.F\\.|a\\.G\\.|a\\.J\\.|a\\.K\\.|a\\.L\\.|a\\.M\\.|a\\.N\\.|a\\.O\\.|a\\.P\\.|a\\.Q\\.|a\\.R\\.|a\\.S\\.|a\\.T\\.|a\\.U\\.|a\\.V\\.|a\\.W\\.|a\\.X\\.|a\\.Y\\.|a\\.Z\\.)\\b)",
+            "priority": 7,
+            "output_template": {
+              "text": "$0",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "f824ad41",
+            "name": "German Legal Person (Standalone Names)",
+            "description": "Captures full names or single surnames in legal contexts, explicitly excluding preceding role nouns (Angeklagten, Mitangeklagten) and trailing connectors, with stricter context requirements.",
+            "format": "regex",
+            "content": "(?<!\\w)(?<!Angeklagten\\s)(?<!Mitangeklagten\\s)(?<!Angeklagte\\s)(?<!Angeklagter\\s)(?<!des\\s)(?<!der\\s)(?<!dem\\s)(?<!von\\s)(?<!durch\\s)(?<!bei\\s)(?<!in\\s)(?<!nach\\s)(?<!vor\\s)(?<!unter\\s)(?<!\\u00fcber\\s)(?<!auf\\s)(?<!aus\\s)(?<!zu\\s)(?<!f\\u00fcr\\s)(?<!ohne\\s)(?<!sowie\\s)(?<!oder\\s)(?<!bzw\\s)(?<!u\\.a\\s)(?<!z\\.B\\s)(?<!d\\.h\\s)(?<!i\\.e\\s)(?<!s\\.t\\.\\s)(?<!n\\.w\\.\\s)(?:als|durch|von|mit|bei|in der Sache|des|der|dem|gegen|nach|vor|unter|\\u00fcber|auf|aus|zu|f\\u00fcr|ohne|sowie|oder|bzw|u\\.a|z\\.B|d\\.h|i\\.e|s\\.t\\.|n\\.w\\.)\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+)*)(?![\\s]*(?:als|und|sowie|mit|von|bei|in|des|der|dem|zu|f\\u00fcr|nach|vor|\\u00fcber|unter|ohne|gegen|durch|an|auf|aus|oder|bzw|etc|u\\.a|z\\.B|d\\.h|i\\.e|s\\.t\\.|n\\.w\\.)|\\s*(?:Obersten\\s+Gerichtshofs|Oberlandesgerichts|Landesgerichts|Bezirksgerichts|Handelsgerichts|Staatsanwaltschaft|Gerichtshofs|Gericht|Anwalt|Rechtsanwalt|Notar|Kanzlei|Firma|Gesellschaft|AG|GmbH|KG|OHG|UG|e\\.V\\.|e\\.G\\.|b\\.V\\.|a\\.D\\.|a\\.R\\.|a\\.S\\.|a\\.M\\.|a\\.K\\.|a\\.P\\.|a\\.W\\.|a\\.Z\\.|a\\.H\\.|a\\.L\\.|a\\.B\\.|a\\.F\\.|a\\.G\\.|a\\.J\\.|a\\.K\\.|a\\.L\\.|a\\.M\\.|a\\.N\\.|a\\.O\\.|a\\.P\\.|a\\.Q\\.|a\\.R\\.|a\\.S\\.|a\\.T\\.|a\\.U\\.|a\\.V\\.|a\\.W\\.|a\\.X\\.|a\\.Y\\.|a\\.Z\\.)\\b|\\s*(?:Vorsitzenden|Vorsitzende|Vorsitzender|Senatspr\\u00e4sidenten|Senatspr\\u00e4sidentin|Hofr\\u00e4te|Hofr\\u00e4tin|Hofrat|Vizepr\\u00e4sidenten|Vizepr\\u00e4sidentin|Pr\\u00e4sidenten|Pr\\u00e4sidentin|Pr\\u00e4sident|Revisionsgericht|Oberlandesgerichts|Landesgerichts|Bezirksgerichts|Handelsgerichts|Staatsanwaltschaft|Gerichtshofs|Gericht|Anwalt|Rechtsanwalt|Notar|Kanzlei|Firma|Gesellschaft|AG|GmbH|KG|OHG|UG|e\\.V\\.|e\\.G\\.|b\\.V\\.|a\\.D\\.|a\\.R\\.|a\\.S\\.|a\\.M\\.|a\\.K\\.|a\\.P\\.|a\\.W\\.|a\\.Z\\.|a\\.H\\.|a\\.L\\.|a\\.B\\.|a\\.F\\.|a\\.G\\.|a\\.J\\.|a\\.K\\.|a\\.L\\.|a\\.M\\.|a\\.N\\.|a\\.O\\.|a\\.P\\.|a\\.Q\\.|a\\.R\\.|a\\.S\\.|a\\.T\\.|a\\.U\\.|a\\.V\\.|a\\.W\\.|a\\.X\\.|a\\.Y\\.|a\\.Z\\.)\\b)",
+            "priority": 6,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          }
+        ]
+      },
+      {
+        "batch": 13,
+        "rules": [
+          {
+            "id": "451550d3",
+            "name": "German Legal Person (Frau/Herr Context)",
+            "description": "Matches names preceded by 'Frau' or 'Herr', capturing the full name including suffixes, while excluding titles from the match.",
+            "format": "regex",
+            "content": "(?:Frau\\s+|Herr\\s+)(?=[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*(?:\\s+-\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*(?:\\s+(?:LL\\.M\\.|BSc|Dipl\\.-Ing\\.|PhD|MA|LLB|MSc|MBA|Bakk\\.))*)",
+            "priority": 7,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "520f8603",
+            "name": "German Legal Person (Context: In der Beschwerdesache)",
+            "description": "Captures names following legal context phrases, ensuring the name is at least 2 words or contains a specific pattern to avoid abbreviations.",
+            "format": "regex",
+            "content": "(?:in\\s+der\\s+Beschwerdesache|in\\s+der\\s+Verwaltungsstrafsache|in\\s+der\\s+Finanzstrafsache|in\\s+der\\s+Beschwerde-\\s+sache)\\s+(?!(?:Dr\\.|Mag\\.|Rg\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|KommR|Techn\\s+R|\u00d6kR|LL\\.M\\.|BSc|Dipl\\.-Ing\\.|PhD|MA|LLB|MSc|MBA|Bakk\\.))([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)+)",
+            "priority": 9,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "6a9aea73",
+            "name": "German Legal Person (Titles)",
+            "description": "Matches academic/professional titles followed by a valid name, explicitly stopping before sentence connectors, conjunctions, or role indicators.",
+            "format": "regex",
+            "content": "(?:Dr\\.|Mag\\.|Mag\\.\\s+Dr\\.|Dr\\.\\s+Mag\\.|Priv\\.-Doz\\.|Priv\\.-Doz\\.in|Univ\\.-Prof\\.|Univ\\.-Prof\\.in|Hon\\.-Prof\\.|Hon\\.-Prof\\.in|PhD|OSR|VetR|KommR|Bakk\\.\\s+phil\\.|LLB|BSc|Dipl\\.-Ing\\.|Dipl\\.-Ing\\.in|DDr\\.|DDr\\.in|Mag\\.\\s+MBA\\s+MSc|Mag\\.\\s+MSc|Mag\\.\\s+MBA|Mag\\.\\s+in|Mag\\.a|Dr\\.in|Ing\\.|RgR|\\u00d6kR|Techn\\s+R|Prof\\.|Prof\\.\\s+Dr\\.|Dr\\.\\s+Prof\\.|PD\\s+Dr\\.|Dr\\.\\s+PD\\.|MMag\\.|MMag\\.\\s+Dr\\.|DI\\.|DI\\s+Dr\\.|Dr\\.\\s+DI\\.|Dipl\\.\\s+Dr\\.|Dr\\.\\s+Dipl\\.|OStR|OMedR|StR|Bgm\\.\\s+Dr\\.|Dr\\.\\s+Bgm\\.)\\s+(?:(?:Dr\\.|Mag\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|PD\\s+Dr\\.|MMag\\.|DI\\.|Dipl\\.)\\s+)*([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+)*(?:\\s+-\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+)*(?:\\s+\\w+)?)(?![\\s]*(?:als|und|sowie|mit|von|bei|in|des|der|dem|zu|f\\u00fcr|nach|vor|\\u00fcber|unter|ohne|gegen|durch|an|auf|aus|oder|bzw|etc|u\\.a|z\\.B|d\\.h|i\\.e|s\\.t\\.|n\\.w\\.)|\\s*(?:Obersten\\s+Gerichtshofs|Oberlandesgerichts|Landesgerichts|Bezirksgerichts|Handelsgerichts|Staatsanwaltschaft|Gerichtshofs|Gericht|Anwalt|Rechtsanwalt|Notar|Kanzlei|Firma|Gesellschaft|AG|GmbH|KG|OHG|UG|e\\.V\\.|e\\.G\\.|b\\.V\\.|a\\.D\\.|a\\.R\\.|a\\.S\\.|a\\.M\\.|a\\.K\\.|a\\.P\\.|a\\.W\\.|a\\.Z\\.|a\\.H\\.|a\\.L\\.|a\\.B\\.|a\\.F\\.|a\\.G\\.|a\\.J\\.|a\\.K\\.|a\\.L\\.|a\\.M\\.|a\\.N\\.|a\\.O\\.|a\\.P\\.|a\\.Q\\.|a\\.R\\.|a\\.S\\.|a\\.T\\.|a\\.U\\.|a\\.V\\.|a\\.W\\.|a\\.X\\.|a\\.Y\\.|a\\.Z\\.)\\b|\\s*(?:Vorsitzenden|Vorsitzende|Vorsitzender|Senatspr\\u00e4sidenten|Senatspr\\u00e4sidentin|Hofr\\u00e4te|Hofr\\u00e4tin|Hofrat|Vizepr\\u00e4sidenten|Vizepr\\u00e4sidentin|Pr\\u00e4sidenten|Pr\\u00e4sidentin|Pr\\u00e4sident|Revisionsgericht|Oberlandesgerichts|Landesgerichts|Bezirksgerichts|Handelsgerichts|Staatsanwaltschaft|Gerichtshofs|Gericht|Anwalt|Rechtsanwalt|Notar|Kanzlei|Firma|Gesellschaft|AG|GmbH|KG|OHG|UG|e\\.V\\.|e\\.G\\.|b\\.V\\.|a\\.D\\.|a\\.R\\.|a\\.S\\.|a\\.M\\.|a\\.K\\.|a\\.P\\.|a\\.W\\.|a\\.Z\\.|a\\.H\\.|a\\.L\\.|a\\.B\\.|a\\.F\\.|a\\.G\\.|a\\.J\\.|a\\.K\\.|a\\.L\\.|a\\.M\\.|a\\.N\\.|a\\.O\\.|a\\.P\\.|a\\.Q\\.|a\\.R\\.|a\\.S\\.|a\\.T\\.|a\\.U\\.|a\\.V\\.|a\\.W\\.|a\\.X\\.|a\\.Y\\.|a\\.Z\\.)\\b)",
+            "priority": 8,
+            "output_template": {
+              "text": "$0",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "9feba3b7",
+            "name": "German Legal Person (Hofrat Context)",
+            "description": "Captures names preceded by 'Hofrat' or 'Hofr\u00e4tin' when no academic title (Dr., Mag.) is present immediately before the name.",
+            "format": "regex",
+            "content": "(?:Hofr\\u00e4te|Hofr\\u00e4tin|Hofrat)\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+)*)(?![\\s]*(?:als|und|sowie|mit|von|bei|in|des|der|dem|zu|f\\u00fcr|nach|vor|\\u00fcber|unter|ohne|gegen|durch|an|auf|aus|oder|bzw|etc|u\\.a|z\\.B|d\\.h|i\\.e|s\\.t\\.|n\\.w\\.)|\\s*(?:Obersten\\s+Gerichtshofs|Oberlandesgerichts|Landesgerichts|Bezirksgerichts|Handelsgerichts|Staatsanwaltschaft|Gerichtshofs|Gericht|Anwalt|Rechtsanwalt|Notar|Kanzlei|Firma|Gesellschaft|AG|GmbH|KG|OHG|UG|e\\.V\\.|e\\.G\\.|b\\.V\\.|a\\.D\\.|a\\.R\\.|a\\.S\\.|a\\.M\\.|a\\.K\\.|a\\.P\\.|a\\.W\\.|a\\.Z\\.|a\\.H\\.|a\\.L\\.|a\\.B\\.|a\\.F\\.|a\\.G\\.|a\\.J\\.|a\\.K\\.|a\\.L\\.|a\\.M\\.|a\\.N\\.|a\\.O\\.|a\\.P\\.|a\\.Q\\.|a\\.R\\.|a\\.S\\.|a\\.T\\.|a\\.U\\.|a\\.V\\.|a\\.W\\.|a\\.X\\.|a\\.Y\\.|a\\.Z\\.)\\b)",
+            "priority": 7,
+            "output_template": {
+              "text": "$0",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "f824ad41",
+            "name": "German Legal Person (Standalone Names)",
+            "description": "Captures full names or single surnames in legal contexts, explicitly excluding preceding role nouns (Angeklagten, Mitangeklagten) and trailing connectors, with stricter context requirements.",
+            "format": "regex",
+            "content": "(?<!\\w)(?<!Angeklagten\\s)(?<!Mitangeklagten\\s)(?<!Angeklagte\\s)(?<!Angeklagter\\s)(?<!des\\s)(?<!der\\s)(?<!dem\\s)(?<!von\\s)(?<!durch\\s)(?<!bei\\s)(?<!in\\s)(?<!nach\\s)(?<!vor\\s)(?<!unter\\s)(?<!\\u00fcber\\s)(?<!auf\\s)(?<!aus\\s)(?<!zu\\s)(?<!f\\u00fcr\\s)(?<!ohne\\s)(?<!sowie\\s)(?<!oder\\s)(?<!bzw\\s)(?<!u\\.a\\s)(?<!z\\.B\\s)(?<!d\\.h\\s)(?<!i\\.e\\s)(?<!s\\.t\\.\\s)(?<!n\\.w\\.\\s)(?:als|durch|von|mit|bei|in der Sache|des|der|dem|gegen|nach|vor|unter|\\u00fcber|auf|aus|zu|f\\u00fcr|ohne|sowie|oder|bzw|u\\.a|z\\.B|d\\.h|i\\.e|s\\.t\\.|n\\.w\\.)\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+)*)(?![\\s]*(?:als|und|sowie|mit|von|bei|in|des|der|dem|zu|f\\u00fcr|nach|vor|\\u00fcber|unter|ohne|gegen|durch|an|auf|aus|oder|bzw|etc|u\\.a|z\\.B|d\\.h|i\\.e|s\\.t\\.|n\\.w\\.)|\\s*(?:Obersten\\s+Gerichtshofs|Oberlandesgerichts|Landesgerichts|Bezirksgerichts|Handelsgerichts|Staatsanwaltschaft|Gerichtshofs|Gericht|Anwalt|Rechtsanwalt|Notar|Kanzlei|Firma|Gesellschaft|AG|GmbH|KG|OHG|UG|e\\.V\\.|e\\.G\\.|b\\.V\\.|a\\.D\\.|a\\.R\\.|a\\.S\\.|a\\.M\\.|a\\.K\\.|a\\.P\\.|a\\.W\\.|a\\.Z\\.|a\\.H\\.|a\\.L\\.|a\\.B\\.|a\\.F\\.|a\\.G\\.|a\\.J\\.|a\\.K\\.|a\\.L\\.|a\\.M\\.|a\\.N\\.|a\\.O\\.|a\\.P\\.|a\\.Q\\.|a\\.R\\.|a\\.S\\.|a\\.T\\.|a\\.U\\.|a\\.V\\.|a\\.W\\.|a\\.X\\.|a\\.Y\\.|a\\.Z\\.)\\b|\\s*(?:Vorsitzenden|Vorsitzende|Vorsitzender|Senatspr\\u00e4sidenten|Senatspr\\u00e4sidentin|Hofr\\u00e4te|Hofr\\u00e4tin|Hofrat|Vizepr\\u00e4sidenten|Vizepr\\u00e4sidentin|Pr\\u00e4sidenten|Pr\\u00e4sidentin|Pr\\u00e4sident|Revisionsgericht|Oberlandesgerichts|Landesgerichts|Bezirksgerichts|Handelsgerichts|Staatsanwaltschaft|Gerichtshofs|Gericht|Anwalt|Rechtsanwalt|Notar|Kanzlei|Firma|Gesellschaft|AG|GmbH|KG|OHG|UG|e\\.V\\.|e\\.G\\.|b\\.V\\.|a\\.D\\.|a\\.R\\.|a\\.S\\.|a\\.M\\.|a\\.K\\.|a\\.P\\.|a\\.W\\.|a\\.Z\\.|a\\.H\\.|a\\.L\\.|a\\.B\\.|a\\.F\\.|a\\.G\\.|a\\.J\\.|a\\.K\\.|a\\.L\\.|a\\.M\\.|a\\.N\\.|a\\.O\\.|a\\.P\\.|a\\.Q\\.|a\\.R\\.|a\\.S\\.|a\\.T\\.|a\\.U\\.|a\\.V\\.|a\\.W\\.|a\\.X\\.|a\\.Y\\.|a\\.Z\\.)\\b)",
+            "priority": 6,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          }
+        ]
+      },
+      {
+        "batch": 14,
+        "rules": [
+          {
+            "id": "451550d3",
+            "name": "German Legal Person (Frau/Herr Context)",
+            "description": "Matches names preceded by 'Frau' or 'Herr', capturing the full name including suffixes, while excluding titles from the match.",
+            "format": "regex",
+            "content": "(?:Frau\\s+|Herr\\s+)(?=[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*(?:\\s+-\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)*(?:\\s+(?:LL\\.M\\.|BSc|Dipl\\.-Ing\\.|PhD|MA|LLB|MSc|MBA|Bakk\\.))*)",
+            "priority": 7,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "520f8603",
+            "name": "German Legal Person (Context: In der Beschwerdesache)",
+            "description": "Captures names following legal context phrases, ensuring the name is at least 2 words or contains a specific pattern to avoid abbreviations.",
+            "format": "regex",
+            "content": "(?:in\\s+der\\s+Beschwerdesache|in\\s+der\\s+Verwaltungsstrafsache|in\\s+der\\s+Finanzstrafsache|in\\s+der\\s+Beschwerde-\\s+sache)\\s+(?!(?:Dr\\.|Mag\\.|Rg\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|KommR|Techn\\s+R|\u00d6kR|LL\\.M\\.|BSc|Dipl\\.-Ing\\.|PhD|MA|LLB|MSc|MBA|Bakk\\.))([A-Z][a-z\u00e4\u00f6\u00fc\u00df]+(?:\\s+[A-Z][a-z\u00e4\u00f6\u00fc\u00df]+)+)",
+            "priority": 9,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "6a9aea73",
+            "name": "German Legal Person (Titles)",
+            "description": "Matches academic/professional titles followed by a valid name, explicitly stopping before sentence connectors, conjunctions, or role indicators.",
+            "format": "regex",
+            "content": "(?:Dr\\.|Mag\\.|Mag\\.\\s+Dr\\.|Dr\\.\\s+Mag\\.|Priv\\.-Doz\\.|Priv\\.-Doz\\.in|Univ\\.-Prof\\.|Univ\\.-Prof\\.in|Hon\\.-Prof\\.|Hon\\.-Prof\\.in|PhD|OSR|VetR|KommR|Bakk\\.\\s+phil\\.|LLB|BSc|Dipl\\.-Ing\\.|Dipl\\.-Ing\\.in|DDr\\.|DDr\\.in|Mag\\.\\s+MBA\\s+MSc|Mag\\.\\s+MSc|Mag\\.\\s+MBA|Mag\\.\\s+in|Mag\\.a|Dr\\.in|Ing\\.|RgR|\\u00d6kR|Techn\\s+R|Prof\\.|Prof\\.\\s+Dr\\.|Dr\\.\\s+Prof\\.|PD\\s+Dr\\.|Dr\\.\\s+PD\\.|MMag\\.|MMag\\.\\s+Dr\\.|DI\\.|DI\\s+Dr\\.|Dr\\.\\s+DI\\.|Dipl\\.\\s+Dr\\.|Dr\\.\\s+Dipl\\.|OStR|OMedR|StR|Bgm\\.\\s+Dr\\.|Dr\\.\\s+Bgm\\.)\\s+(?:(?:Dr\\.|Mag\\.|Priv\\.-Doz\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|PD\\s+Dr\\.|MMag\\.|DI\\.|Dipl\\.)\\s+)*([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+)*(?:\\s+-\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+)*(?:\\s+\\w+)?)(?![\\s]*(?:als|und|sowie|mit|von|bei|in|des|der|dem|zu|f\\u00fcr|nach|vor|\\u00fcber|unter|ohne|gegen|durch|an|auf|aus|oder|bzw|etc|u\\.a|z\\.B|d\\.h|i\\.e|s\\.t\\.|n\\.w\\.)|\\s*(?:Obersten\\s+Gerichtshofs|Oberlandesgerichts|Landesgerichts|Bezirksgerichts|Handelsgerichts|Staatsanwaltschaft|Gerichtshofs|Gericht|Anwalt|Rechtsanwalt|Notar|Kanzlei|Firma|Gesellschaft|AG|GmbH|KG|OHG|UG|e\\.V\\.|e\\.G\\.|b\\.V\\.|a\\.D\\.|a\\.R\\.|a\\.S\\.|a\\.M\\.|a\\.K\\.|a\\.P\\.|a\\.W\\.|a\\.Z\\.|a\\.H\\.|a\\.L\\.|a\\.B\\.|a\\.F\\.|a\\.G\\.|a\\.J\\.|a\\.K\\.|a\\.L\\.|a\\.M\\.|a\\.N\\.|a\\.O\\.|a\\.P\\.|a\\.Q\\.|a\\.R\\.|a\\.S\\.|a\\.T\\.|a\\.U\\.|a\\.V\\.|a\\.W\\.|a\\.X\\.|a\\.Y\\.|a\\.Z\\.)\\b|\\s*(?:Vorsitzenden|Vorsitzende|Vorsitzender|Senatspr\\u00e4sidenten|Senatspr\\u00e4sidentin|Hofr\\u00e4te|Hofr\\u00e4tin|Hofrat|Vizepr\\u00e4sidenten|Vizepr\\u00e4sidentin|Pr\\u00e4sidenten|Pr\\u00e4sidentin|Pr\\u00e4sident|Revisionsgericht|Oberlandesgerichts|Landesgerichts|Bezirksgerichts|Handelsgerichts|Staatsanwaltschaft|Gerichtshofs|Gericht|Anwalt|Rechtsanwalt|Notar|Kanzlei|Firma|Gesellschaft|AG|GmbH|KG|OHG|UG|e\\.V\\.|e\\.G\\.|b\\.V\\.|a\\.D\\.|a\\.R\\.|a\\.S\\.|a\\.M\\.|a\\.K\\.|a\\.P\\.|a\\.W\\.|a\\.Z\\.|a\\.H\\.|a\\.L\\.|a\\.B\\.|a\\.F\\.|a\\.G\\.|a\\.J\\.|a\\.K\\.|a\\.L\\.|a\\.M\\.|a\\.N\\.|a\\.O\\.|a\\.P\\.|a\\.Q\\.|a\\.R\\.|a\\.S\\.|a\\.T\\.|a\\.U\\.|a\\.V\\.|a\\.W\\.|a\\.X\\.|a\\.Y\\.|a\\.Z\\.)\\b)",
+            "priority": 8,
+            "output_template": {
+              "text": "$0",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "9feba3b7",
+            "name": "German Legal Person (Hofrat Context)",
+            "description": "Captures names preceded by 'Hofrat' or 'Hofr\u00e4tin' when no academic title (Dr., Mag.) is present immediately before the name.",
+            "format": "regex",
+            "content": "(?:Hofr\\u00e4te|Hofr\\u00e4tin|Hofrat)\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+)*)(?![\\s]*(?:als|und|sowie|mit|von|bei|in|des|der|dem|zu|f\\u00fcr|nach|vor|\\u00fcber|unter|ohne|gegen|durch|an|auf|aus|oder|bzw|etc|u\\.a|z\\.B|d\\.h|i\\.e|s\\.t\\.|n\\.w\\.)|\\s*(?:Obersten\\s+Gerichtshofs|Oberlandesgerichts|Landesgerichts|Bezirksgerichts|Handelsgerichts|Staatsanwaltschaft|Gerichtshofs|Gericht|Anwalt|Rechtsanwalt|Notar|Kanzlei|Firma|Gesellschaft|AG|GmbH|KG|OHG|UG|e\\.V\\.|e\\.G\\.|b\\.V\\.|a\\.D\\.|a\\.R\\.|a\\.S\\.|a\\.M\\.|a\\.K\\.|a\\.P\\.|a\\.W\\.|a\\.Z\\.|a\\.H\\.|a\\.L\\.|a\\.B\\.|a\\.F\\.|a\\.G\\.|a\\.J\\.|a\\.K\\.|a\\.L\\.|a\\.M\\.|a\\.N\\.|a\\.O\\.|a\\.P\\.|a\\.Q\\.|a\\.R\\.|a\\.S\\.|a\\.T\\.|a\\.U\\.|a\\.V\\.|a\\.W\\.|a\\.X\\.|a\\.Y\\.|a\\.Z\\.)\\b)",
+            "priority": 7,
+            "output_template": {
+              "text": "$0",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          },
+          {
+            "id": "f824ad41",
+            "name": "German Legal Person (Standalone Names)",
+            "description": "Captures full names or single surnames in legal contexts, explicitly excluding preceding role nouns (Angeklagten, Mitangeklagten) and trailing connectors, with stricter context requirements.",
+            "format": "regex",
+            "content": "(?<!\\w)(?<!Angeklagten\\s)(?<!Mitangeklagten\\s)(?<!Angeklagte\\s)(?<!Angeklagter\\s)(?<!des\\s)(?<!der\\s)(?<!dem\\s)(?<!von\\s)(?<!durch\\s)(?<!bei\\s)(?<!in\\s)(?<!nach\\s)(?<!vor\\s)(?<!unter\\s)(?<!\\u00fcber\\s)(?<!auf\\s)(?<!aus\\s)(?<!zu\\s)(?<!f\\u00fcr\\s)(?<!ohne\\s)(?<!sowie\\s)(?<!oder\\s)(?<!bzw\\s)(?<!u\\.a\\s)(?<!z\\.B\\s)(?<!d\\.h\\s)(?<!i\\.e\\s)(?<!s\\.t\\.\\s)(?<!n\\.w\\.\\s)(?:als|durch|von|mit|bei|in der Sache|des|der|dem|gegen|nach|vor|unter|\\u00fcber|auf|aus|zu|f\\u00fcr|ohne|sowie|oder|bzw|u\\.a|z\\.B|d\\.h|i\\.e|s\\.t\\.|n\\.w\\.)\\s+([A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+(?:\\s+[A-Z][a-z\\u00e4\\u00f6\\u00fc\\u00df\\u00c4\\u00d6\\u00dc\\u00c9\\u00e9\\u00e8\\u00ea\\u00ee\\u00f4\\u00fb]+)*)(?![\\s]*(?:als|und|sowie|mit|von|bei|in|des|der|dem|zu|f\\u00fcr|nach|vor|\\u00fcber|unter|ohne|gegen|durch|an|auf|aus|oder|bzw|etc|u\\.a|z\\.B|d\\.h|i\\.e|s\\.t\\.|n\\.w\\.)|\\s*(?:Obersten\\s+Gerichtshofs|Oberlandesgerichts|Landesgerichts|Bezirksgerichts|Handelsgerichts|Staatsanwaltschaft|Gerichtshofs|Gericht|Anwalt|Rechtsanwalt|Notar|Kanzlei|Firma|Gesellschaft|AG|GmbH|KG|OHG|UG|e\\.V\\.|e\\.G\\.|b\\.V\\.|a\\.D\\.|a\\.R\\.|a\\.S\\.|a\\.M\\.|a\\.K\\.|a\\.P\\.|a\\.W\\.|a\\.Z\\.|a\\.H\\.|a\\.L\\.|a\\.B\\.|a\\.F\\.|a\\.G\\.|a\\.J\\.|a\\.K\\.|a\\.L\\.|a\\.M\\.|a\\.N\\.|a\\.O\\.|a\\.P\\.|a\\.Q\\.|a\\.R\\.|a\\.S\\.|a\\.T\\.|a\\.U\\.|a\\.V\\.|a\\.W\\.|a\\.X\\.|a\\.Y\\.|a\\.Z\\.)\\b|\\s*(?:Vorsitzenden|Vorsitzende|Vorsitzender|Senatspr\\u00e4sidenten|Senatspr\\u00e4sidentin|Hofr\\u00e4te|Hofr\\u00e4tin|Hofrat|Vizepr\\u00e4sidenten|Vizepr\\u00e4sidentin|Pr\\u00e4sidenten|Pr\\u00e4sidentin|Pr\\u00e4sident|Revisionsgericht|Oberlandesgerichts|Landesgerichts|Bezirksgerichts|Handelsgerichts|Staatsanwaltschaft|Gerichtshofs|Gericht|Anwalt|Rechtsanwalt|Notar|Kanzlei|Firma|Gesellschaft|AG|GmbH|KG|OHG|UG|e\\.V\\.|e\\.G\\.|b\\.V\\.|a\\.D\\.|a\\.R\\.|a\\.S\\.|a\\.M\\.|a\\.K\\.|a\\.P\\.|a\\.W\\.|a\\.Z\\.|a\\.H\\.|a\\.L\\.|a\\.B\\.|a\\.F\\.|a\\.G\\.|a\\.J\\.|a\\.K\\.|a\\.L\\.|a\\.M\\.|a\\.N\\.|a\\.O\\.|a\\.P\\.|a\\.Q\\.|a\\.R\\.|a\\.S\\.|a\\.T\\.|a\\.U\\.|a\\.V\\.|a\\.W\\.|a\\.X\\.|a\\.Y\\.|a\\.Z\\.)\\b)",
+            "priority": 6,
+            "output_template": {
+              "text": "$1",
+              "start": "$start",
+              "end": "$end",
+              "type": "person"
+            },
+            "output_key": "entities"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "phase": "refine",
+    "dataset": "ris_train",
+    "num_rules": 4,
+    "micro_f1": 0.8184818481848185,
+    "micro_precision": 0.9051094890510949,
+    "micro_recall": 0.7469879518072289,
+    "iteration_metrics": [
+      {
+        "iteration": 1,
+        "num_rules": 4,
+        "exact_match": 0.10526315789473684,
+        "micro_f1": 0.8184818481848185,
+        "micro_precision": 0.9051094890510949,
+        "micro_recall": 0.7469879518072289,
+        "macro_f1": 0.8184818481848185,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.8184818481848185,
+            "precision": 0.9051094890510949,
+            "recall": 0.7469879518072289
+          }
+        ]
+      }
+    ],
+    "timestamp": "2026-09-23T16:43:27.271634"
+  }
+]

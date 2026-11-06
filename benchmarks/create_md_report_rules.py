@@ -1,6 +1,7 @@
 import argparse
 import json
 import os
+import random
 from concurrent.futures import ProcessPoolExecutor
 from contextlib import contextmanager
 from datetime import datetime
@@ -12,7 +13,7 @@ from rulechef.evaluation import evaluate_dataset, evaluate_rules_individually
 from rulechef.executor import RuleExecutor
 
 from benchmarks.data import BenchmarkRun, make_dataset
-from benchmarks.io import deserialize_rules
+from benchmarks.io import collect_false_negatives, deserialize_rules
 from clear_anonymization.evaluation.evaluator import classify_fp
 from clear_anonymization.models.nerlearner import NERLearner, NEROutput
 from clear_anonymization.ner_datasets import (
@@ -34,6 +35,46 @@ def _write_table(f, headers: list[str], rows: list[list[str]]) -> None:
     for row in rows:
         f.write("| " + " | ".join(str(c) for c in row) + " |\n")
     f.write("\n")
+
+
+def _fn_span(r):
+    s, start, end = r["sentence"], r.get("start"), r.get("end")
+    if start is not None and end is not None and s[start:end] == r["missed"]:
+        return start, end
+    i = s.find(r["missed"])
+    return (i, i + len(r["missed"])) if i >= 0 else (None, None)
+
+
+def _write_relation_header(f, sample):
+    inp = sample.input
+    f.write(
+        f"(doc_id: `{inp.get('doc_id', '')}`) (gov_sent: `{inp.get('gov_sent_id', '')}`, dep_sent: `{inp.get('dep_sent_id', '')}`)\n\n"
+    )
+    f.write(f"\n{inp.get('display_text', inp.get('text', ''))}\n\n")
+    pred_label = sample.rule_output[0]["label"] if sample.rule_output else ""
+    gold_label = sample.expected[0]["label"] if sample.expected else ""
+    f.write(f"\n{inp.get('text', inp.get('text', ''))}\n\n")
+    f.write(f"**Predicted:** `{pred_label}`  **Gold:** `{gold_label}`\n\n")
+
+
+def append_false_negatives(file_path: Path, records, top_n: int = 50, seed: int = 42):
+    sample = random.Random(seed).sample(records, min(top_n, len(records)))
+    with file_path.open("a", encoding="utf-8") as f:
+        with _details_block(
+            f, f"❌ False Negatives ({len(records)}, showing {len(sample)})"
+        ):
+            for i, r in enumerate(sample):
+                start, end = _fn_span(r)
+                s = r["sentence"]
+                if start is not None:
+                    s = f"{s[:start]}**{s[start:end]}**{s[end:]}"
+                f.write(
+                    f"**Example {i}** (doc_id: `{r['doc_id']}`) "
+                    f"(sent_id: `{r['sent_id']}`)\n\n{s}\n\n"
+                )
+                f.write(f"- missed: `{r['missed']}` ({r['type']})\n")
+                preds = ", ".join(f"`{p}`" for p in r["predicted_in_sentence"]) or "—"
+                f.write(f"- predicted in sentence: {preds}\n\n")
 
 
 def write_summary_table(file_path: Path, metrics_list):
@@ -68,7 +109,13 @@ def write_summary_table(file_path: Path, metrics_list):
 
 
 def append_overall_metrics(
-    md_path, apply_rules_fn, test_dataset, run, results_folder, rules=None
+    md_path,
+    apply_rules_fn,
+    test_dataset,
+    run,
+    results_folder,
+    rules=None,
+    is_relation=False,
 ):
     config = run.args
     if rules is None:
@@ -78,7 +125,7 @@ def append_overall_metrics(
         rules,
         test_dataset,
         apply_rules_fn,
-        mode="text",
+        mode="exact",
     )
     with md_path.open("a", encoding="utf-8") as f:
         with _details_block(f, "Configuration"):
@@ -105,10 +152,12 @@ def append_overall_metrics(
                     ["Shots per class", getattr(config, "shots", "N/A")],
                     ["Training documents", run.train_size],
                     ["Validation documents", run.eval_size],
+                    ["Dev documents", run.dev_size],
                     ["Test documents", run.test_size],
-                    ["Train sentences", run.train_annotations],
-                    ["Validation sentences", run.eval_annotations],
-                    ["Test sentences", run.test_annotations],
+                    ["Train sentences", run.train_sentences],
+                    ["Validation sentences", run.eval_sentences],
+                    ["Dev sentences", run.dev_sentences],
+                    ["Test sentences", run.test_sentences],
                     ["Model", getattr(config, "model", "N/A")],
                     ["Max rules", getattr(config, "max_rules", "N/A")],
                     ["Max samples in prompt", getattr(config, "max_samples", "N/A")],
@@ -165,20 +214,26 @@ def append_overall_metrics(
                     ["True Positives", test_eval.total_tp],
                     ["False Positives", test_eval.total_fp],
                     ["False Negatives", test_eval.total_fn],
-                    ["Total Gold Entities", test_eval.total_tp + test_eval.total_fn],
+                    [
+                        "Total Gold Relations"
+                        if is_relation
+                        else "Total Gold Entities",
+                        test_eval.total_tp + test_eval.total_fn,
+                    ],
                     ["Micro Precision", f"{test_eval.micro_precision:.1%}"],
                     ["Micro Recall", f"{test_eval.micro_recall:.1%}"],
                     ["Micro F1", f"{test_eval.micro_f1:.1%}"],
                     ["Macro F1", f"{test_eval.macro_f1:.1%}"],
                 ],
             )
+    return test_eval
 
 
-def _classify_rules(metrics_list, top_n=10):
-    with_matches = [m for m in metrics_list if m.matches > 10]
+def _classify_rules(metrics_list, top_n=10, min_matches=10, min_tp=5):
+    with_matches = [m for m in metrics_list if m.matches > min_matches]
     no_matches_ids = {m.rule_id for m in metrics_list if m.matches == 0}
     best = sorted(
-        [m for m in with_matches if m.true_positives >= 5],
+        [m for m in with_matches if m.true_positives >= min_tp],
         key=lambda m: (m.precision, m.true_positives),
         reverse=True,
     )[:top_n]
@@ -202,7 +257,12 @@ def _rule_badge(rule_id, best_ids, worst_ids, no_matches_ids):
 
 
 def _write_rule_detail(
-    f, metric, rules_by_id: dict, top_n_examples: int = 30, badge: str = ""
+    f,
+    metric,
+    rules_by_id: dict,
+    top_n_examples: int = 30,
+    badge: str = "",
+    is_relation: bool = False,
 ) -> None:
     f.write(f"## `{metric.rule_name}` {badge}\n\n")
     f.write(
@@ -242,7 +302,7 @@ def _write_rule_detail(
             )
 
     if metric.sample_matches:
-        _write_sample_blocks(f, metric, top_n_examples)
+        _write_sample_blocks(f, metric, top_n_examples, is_relation=is_relation)
 
 
 def _dedup_samples(samples):
@@ -256,7 +316,7 @@ def _dedup_samples(samples):
     return result
 
 
-def _write_sample_blocks(f, metric, top_n: int):
+def _write_sample_blocks(f, metric, top_n: int, is_relation: bool = False):
     hits = _dedup_samples([s for s in metric.sample_matches if s.tp > 0])[:top_n]
     fps = _dedup_samples([s for s in metric.sample_matches if s.fp > 0])[:top_n]
 
@@ -267,9 +327,14 @@ def _write_sample_blocks(f, metric, top_n: int):
             for i, sample in enumerate(samples):
                 render_fn(i, sample)
 
+    def render_relation(i, sample):
+        f.write(f"**Example {i}** ")
+        _write_relation_header(f, sample)
+
     def render_hit(i, sample):
         doc_id = sample.input.get("doc_id", "")
         sent_id = sample.input.get("sent_id", "")
+
         f.write(f"**Example {i}** (doc_id: `{doc_id}`) (sent_id: `{sent_id}`)\n\n")
         f.write(f"\n{sample.input['text']}\n\n")
         matched_gold_texts = {gold["text"] for _, gold in (sample.matched_pairs or [])}
@@ -318,8 +383,12 @@ def _write_sample_blocks(f, metric, top_n: int):
                 f.write(f"- `{g['text']}`({g.get('type', '')})\n")
             f.write("\n")
 
-    _block("✅ Worked", hits, render_hit)
-    _block("⚠️ False Positives", fps, render_fp)
+    if is_relation:
+        _block("✅ Worked", hits, render_relation)
+        _block("⚠️ False Positives", fps, render_relation)
+    else:
+        _block("✅ Worked", hits, render_hit)
+        _block("⚠️ False Positives", fps, render_fp)
 
 
 def append_rule_metrics(
@@ -327,16 +396,29 @@ def append_rule_metrics(
     metrics_list,
     rules=None,
     top_n_examples: int = 15,
+    is_relation: bool = False,
 ) -> None:
     rules_by_id = {r.id: r for r in rules} if rules else {}
-    best_ids, worst_ids, no_matches_ids = _classify_rules(metrics_list)
+    if is_relation:
+        best_ids, worst_ids, no_matches_ids = _classify_rules(
+            metrics_list, min_matches=0, min_tp=1
+        )
+    else:
+        best_ids, worst_ids, no_matches_ids = _classify_rules(metrics_list)
     sorted_metrics = sorted(metrics_list, key=lambda m: m.precision, reverse=True)
 
     with file_path.open("a", encoding="utf-8") as f:
         with _details_block(f, "📋 All Rules"):
             for metric in sorted_metrics:
                 badge = _rule_badge(metric.rule_id, best_ids, worst_ids, no_matches_ids)
-                _write_rule_detail(f, metric, rules_by_id, top_n_examples, badge=badge)
+                _write_rule_detail(
+                    f,
+                    metric,
+                    rules_by_id,
+                    top_n_examples,
+                    badge=badge,
+                    is_relation=is_relation,
+                )
 
 
 def create_md_report(
@@ -356,15 +438,22 @@ def create_md_report(
 
     exclude = exclude_rule_ids or set()
     rules = [r for r in run.rules if r.id not in exclude]
+    is_relation = test_dataset.task.type == TaskType.CLASSIFICATION
 
-    append_overall_metrics(
-        file_path, apply_rules_fn, test_dataset, run, results_folder, rules=rules
+    test_eval = append_overall_metrics(
+        file_path,
+        apply_rules_fn,
+        test_dataset,
+        run,
+        results_folder,
+        rules=rules,
+        is_relation=is_relation,
     )
     rule_metrics = evaluate_rules_individually(
         rules,
         test_dataset,
         apply_rules_fn,
-        mode="text",
+        mode="exact",
         max_samples=100,
         in_context=True,
     )
@@ -375,9 +464,17 @@ def create_md_report(
         rule_metrics,
         top_n_examples=100,
         rules=rules,
+        is_relation=is_relation,
     )
 
+    if not is_relation:
+        false_negatives = collect_false_negatives(
+            test_eval, test_dataset.task.type, rules
+        )
+        append_false_negatives(file_path, false_negatives, top_n=50)
+
     print(f"Report saved to {file_path}")
+    return test_eval
 
 
 def main():
@@ -477,13 +574,16 @@ def main():
         test_data=test_data,
         train_size=config.get("train_size", 0),
         eval_size=config.get("eval_size", 0),
+        dev_size=config.get("dev_size", 0),
         test_size=len(test_data_raw.samples),
-        train_annotations=config.get("train_annotations", 0),
-        eval_annotations=config.get("eval_annotations", 0),
-        test_annotations=len(test_data),
+        train_sentences=config.get("train_sentences", 0),
+        eval_sentences=config.get("eval_sentences", 0),
+        dev_sentences=config.get("dev_sentences", 0),
+        test_sentences=len(test_data),
         iteration_metrics=[],
         batch_test_metrics=[],
         eval_results=None,
+        test_eval_results=None,
         t_learn=0.0,
         t_eval=0.0,
         selected_classes=config.get("selected_classes", []),

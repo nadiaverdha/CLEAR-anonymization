@@ -1,50 +1,37 @@
 import random
 import re
-from itertools import combinations
+from collections import defaultdict
 
 from clear_anonymization.ner_datasets.util import (
-    build_marked_text_relations,
+    build_relation_examples,
     recreate_sent_relations,
 )
 
 
-def select_windows(text, entities, window_size=20):
-    merged_windows = []
-    for ent in entities:
-        start = max(0, ent["start"] - window_size)
-        end = min(len(text), ent["end"] + window_size)
-        if merged_windows and start <= merged_windows[-1][1]:
-            merged_windows[-1][1] = max(end, merged_windows[-1][1])
-            merged_windows[-1][2].append(ent)
-        else:
-            merged_windows.append([start, end, [ent]])
-    return merged_windows
-
-
-def build_examples(text, merged_windows):
-    examples = []
-    for start, end, window_entities in merged_windows:
-        snippet = text[start:end]
-        adjusted_entities = [
-            {
-                "text": e["text"],
-                "start": e["start"] - start,
-                "end": e["end"] - start,
-                "type": e["type"],
-            }
-            for e in window_entities
-        ]
-        examples.append({"text": snippet, "entities": adjusted_entities})
-    return examples
-
-
-def _doc_sentences(doc, classes):
+def _doc_sentences(doc, classes=None):
     for sent in doc.sentences:
-        entities = sorted(
-            [l for l in sent.labels if l["type"] in classes],
-            key=lambda x: x["start"],
+        labels = (
+            sent.labels
+            if classes is None
+            else [l for l in sent.labels if l["type"] in classes]
         )
-        yield {"text": sent.text, "entities": entities}
+        yield {
+            "doc_id": doc.doc_id,
+            "sent_id": sent.sent_id,
+            "text": sent.text,
+            "entities": sorted(labels, key=lambda x: x["start"]),
+        }
+
+
+def _split_docs(docs, ratio):
+    idx = int(len(docs) * ratio)
+    return docs[:idx], docs[idx:]
+
+
+def _cap(sents, n, rng):
+    if n is None or len(sents) <= n:
+        return sents
+    return rng.sample(sents, n)
 
 
 def sample_few_shot(
@@ -55,6 +42,8 @@ def sample_few_shot(
     pool_size=None,
     train_ratio=0.7,
     shuffle=True,
+    neg_ratio=None,
+    eval_neg_ratio=None,
 ):
     """
     train_data: list of NERSample (document level).
@@ -63,7 +52,6 @@ def sample_few_shot(
     Returns (train, eval, counter_examples, selected_classes, n_train_docs, n_eval_docs).
     """
     rng = random.Random(seed)
-
     if not classes:
         all_labels = sorted(
             {
@@ -93,130 +81,92 @@ def sample_few_shot(
         rng.shuffle(pos_docs)
         rng.shuffle(neg_docs)
 
-    pool = pos_docs[:pool_size] if pool_size else pos_docs
-    split_idx = int(len(pool) * train_ratio)
+    train_all, eval_all = _split_docs(pos_docs, train_ratio)
+    neg_train_docs, neg_eval_docs = _split_docs(neg_docs, train_ratio)
 
-    n_train_docs = split_idx
-    n_eval_docs = len(pool) - split_idx
+    if shuffle:
+        rng.shuffle(train_all)
+    train_docs = train_all[:pool_size] if pool_size is not None else train_all
+    n_train_docs = len(train_docs)
+    eval_docs = eval_all
+    n_eval_docs = len(eval_docs)
 
-    train_examples = [s for doc in pool[:split_idx] for s in doc if s["entities"]]
-    eval_examples = [s for doc in pool[split_idx:] for s in doc if s["entities"]]
-    negatives = [s for doc in neg_docs for s in doc] + [
-        s for doc in pool for s in doc if not s["entities"]
+    train_examples = [s for doc in train_docs for s in doc if s["entities"]]
+    eval_examples = [s for doc in eval_docs for s in doc if s["entities"]]
+
+    train_neg_pool = [
+        s for doc in train_docs + neg_train_docs for s in doc if not s["entities"]
     ]
+    eval_neg_pool = [
+        s for doc in eval_docs + neg_eval_docs for s in doc if not s["entities"]
+    ]
+    if eval_neg_ratio is None:
+        eval_neg_ratio = neg_ratio
 
+    train_negatives = (
+        _cap(train_neg_pool, int(neg_ratio * len(train_examples)), rng)
+        if neg_ratio is not None
+        else []
+    )
+    eval_negatives = (
+        _cap(eval_neg_pool, int(eval_neg_ratio * len(eval_examples)), rng)
+        if eval_neg_ratio is not None
+        else []
+    )
+    if train_negatives:
+        train_examples = train_examples + train_negatives
+        rng.shuffle(train_examples)
+    if eval_negatives:
+        eval_examples = eval_examples + eval_negatives
+        rng.shuffle(eval_examples)
     return (
         train_examples,
         eval_examples,
-        negatives,
+        [],
         classes,
         n_train_docs,
         n_eval_docs,
     )
 
 
-def make_negative_examples(sample, relations_by_sent, seed=0):
-    rng = random.Random(seed)
-    negatives = []
-    for sent in sample.sentences:
-        entities = [{**label, "sent_id": sent.sent_id} for label in (sent.labels or [])]
-        if len(entities) < 2:
-            continue
-        linked = {
-            frozenset(
-                [
-                    (rel["governor"]["start"], rel["governor"]["sent_id"]),
-                    (rel["dependent"]["start"], rel["dependent"]["sent_id"]),
-                ]
-            )
-            for rel in relations_by_sent[sent.sent_id]
-        }
-
-        candidates = [
-            (a, b)
-            for a, b in combinations(entities, 2)
-            if frozenset([(a["start"], a["sent_id"]), (b["start"], b["sent_id"])])
-            not in linked
-        ]
-
-        n_pos = max(len(relations_by_sent[sent.sent_id]), 1)
-        k = min(len(candidates), n_pos)
-        negatives.extend(rng.sample(candidates, k))
-    return negatives
+def _doc_examples(doc, relation_labels, other_label="no_relation"):
+    examples = []
+    for ex in build_relation_examples(doc):
+        if ex["label"] not in relation_labels:
+            ex = {**ex, "label": other_label}
+        examples.append(ex)
+    return examples
 
 
-def sample_relation_few_shot(
+def sample_relation_stratified(
     train_data,
+    shots_per_class,
     seed=42,
-    train_ratio=0.7,
-    relation_labels=None,
-    num_labels=None,
-    pool_size=None,
-    shuffle=True,
-    include_negatives=True,
+    num_classes=None,
+    classes=None,
 ):
-    """
-    train_data: list of NERSample (document level).
-    Shuffle and train/eval split are at document level so a document's
-    relations never straddle both sets.
-    Returns (train_examples, eval_examples, n_train_docs, n_eval_docs).
-    """
     rng = random.Random(seed)
-    relations_by_doc = {
-        doc.doc_id: recreate_sent_relations(doc.sentences) for doc in train_data
-    }
-    if not relation_labels:
-        all_labels = sorted(
-            {
-                rel["label"]
-                for relations_by_sent in relations_by_doc.values()
-                for rels in relations_by_sent.values()
-                for rel in rels
-            }
-        )
-        if num_labels and num_labels < len(all_labels):
-            rng.shuffle(all_labels)
-            relation_labels = set(all_labels[:num_labels])
-        else:
-            relation_labels = set(all_labels)
-    pos_docs, neg_docs = [], []
-
+    by_label = defaultdict(list)
     for doc in train_data:
-        relations_by_sent = relations_by_doc[doc.doc_id]
-        has_target = any(
-            rel["label"] in relation_labels
-            for rels in relations_by_sent.values()
-            for rel in rels
-        )
-        (pos_docs if has_target else neg_docs).append(doc)
-    if shuffle:
-        rng.shuffle(pos_docs)
-        rng.shuffle(neg_docs)
-    pool = pos_docs[:pool_size] if pool_size else pos_docs
-    split_idx = int(len(pool) * train_ratio)
-    n_train_docs, n_eval_docs = split_idx, len(pool) - split_idx
+        for ex in build_relation_examples(doc):
+            by_label[ex["label"]].append(ex)
 
-    def _doc_examples(doc):
-        relations_by_sent = relations_by_doc[doc.doc_id]
-        examples = [
-            (
-                build_marked_text_relations(
-                    doc.sentences, rel["governor"], rel["dependent"]
-                ),
-                rel["label"],
-            )
-            for rels in relations_by_sent.values()
-            for rel in rels
-            if rel["label"] in relation_labels
-        ]
-        if include_negatives:
-            examples += [
-                (build_marked_text_relations(doc.sentences, a, b), "")
-                for a, b in make_negative_examples(doc, relations_by_sent, seed=seed)
-            ]
-        return examples
+    labels = sorted(by_label.keys())
+    if classes:
+        missing = set(classes) - set(labels)
+        if missing:
+            print(f"WARNING: classes not found in dataset: {missing}")
+        labels = sorted(c for c in classes if c in by_label)
+    elif num_classes and num_classes < len(labels):
+        rng.shuffle(labels)
+        labels = sorted(labels[:num_classes])
 
-    train_examples = [ex for doc in pool[:split_idx] for ex in _doc_examples(doc)]
-    eval_examples = [ex for doc in pool[split_idx:] for ex in _doc_examples(doc)]
+    sampled = []
+    remaining = []
+    for label in labels:
+        examples = by_label[label]
+        rng.shuffle(examples)
+        sampled.extend(examples[:shots_per_class])
+        remaining.extend(examples[shots_per_class:])
 
-    return train_examples, eval_examples, relation_labels, n_train_docs, n_eval_docs
+    return sampled, remaining, set(labels)

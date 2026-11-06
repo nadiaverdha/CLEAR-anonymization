@@ -4,7 +4,7 @@
   -----
   python data_quality/evaluate_rules.py \
       --rules-json data_quality/findok/rules/organisation_rules.json \
-      --data-dir /share/nverdha/data/bfg/final/findok_train_corrected.conllu \
+      --data-dir /share/nverdha/data/findok/findok_train_corrected.conllu \
       --output data_quality/findok/rules/organisation_rules_evaluated.json \
       --sample-size 50000 \
       --workers 2
