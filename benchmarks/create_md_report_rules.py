@@ -2,22 +2,20 @@ import argparse
 import json
 import os
 import random
-from concurrent.futures import ProcessPoolExecutor
 from contextlib import contextmanager
 from datetime import datetime
 from pathlib import Path
 from types import SimpleNamespace
 
-from rulechef.core import Rule, RuleFormat, Task, TaskType
+from rulechef.core import Task, TaskType
 from rulechef.evaluation import evaluate_dataset, evaluate_rules_individually
 from rulechef.executor import RuleExecutor
 
 from benchmarks.data import BenchmarkRun, make_dataset
 from benchmarks.io import collect_false_negatives, deserialize_rules
 from clear_anonymization.evaluation.evaluator import classify_fp
-from clear_anonymization.models.nerlearner import NERLearner, NEROutput
+from clear_anonymization.models.nerlearner import NEROutput
 from clear_anonymization.ner_datasets import (
-    get_dataset_class_definitions,
     load_ner_dataset_from_conll,
 )
 
@@ -27,6 +25,13 @@ def _details_block(f, summary: str):
     f.write(f"<details>\n<summary>{summary}</summary>\n\n")
     yield
     f.write("</details>\n\n---\n\n")
+
+
+@contextmanager
+def _headline_block(f, headline: str, h_size: int = 3):
+    f.write(f"<h{h_size}>{headline}</h{h_size}>\n\n")
+    yield
+    f.write("\n\n")
 
 
 def _write_table(f, headers: list[str], rows: list[list[str]]) -> None:
@@ -226,6 +231,23 @@ def append_overall_metrics(
                     ["Macro F1", f"{test_eval.macro_f1:.1%}"],
                 ],
             )
+
+            if len(test_eval.per_class) > 1:
+                for cl in test_eval.per_class:
+                    with _headline_block(f, cl.label):
+                        _write_table(
+                            f,
+                            ["Metric", "Value"],
+                            [
+                                ["True Positives", cl.tp],
+                                ["False Positives", cl.fp],
+                                ["False Negatives", cl.fn],
+                                ["Precision", f"{cl.precision:.1%}"],
+                                ["Recall", f"{cl.recall:.1%}"],
+                                ["F1", f"{cl.f1:.1%}"],
+                            ],
+                        )
+
     return test_eval
 
 
