@@ -1,0 +1,777 @@
+{
+  "phase": "phase1",
+  "completed_batches": 8,
+  "rules": [
+    {
+      "id": "6a745f6b",
+      "name": "title_person",
+      "description": "Matches person names preceded by academic or professional titles (Dr., Mag., Univ.-Prof., Hon.-Prof., PhD, etc.), capturing the full title and name.",
+      "format": "regex",
+      "content": "(?:Dr\\.|Mag\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|PhD|Vizepr\\.|Senatspr\\.|Hofrat|Hofr\\u00e4t|Prof\\.?)\\s+(?:[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+MBA)?(?:\\s+und\\s+[A-Z][a-z]+)*)",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities"
+    },
+    {
+      "id": "bf74fc42",
+      "name": "complex_title_person",
+      "description": "Matches person names with complex multi-part titles like 'Univ.-Prof. Dr.', 'Hon.-Prof. PD Dr.', 'MMag.', 'Mag. Dr.', 'DI', 'Ing.', 'Bakk. iur.'.",
+      "format": "regex",
+      "content": "(?:Univ\\.-Prof\\.\\s+Dr\\.|Hon\\.-Prof\\.\\s+PD\\s+Dr\\.|MMag\\.|Mag\\.\\s+Dr\\.|DI\\s+[A-Z][a-z]+|Ing\\.|Bakk\\.\\s+iur\\.\\s+[A-Z][a-z]+)\\s+[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+MBA)?(?:\\s+und\\s+[A-Z][a-z]+)*",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities"
+    },
+    {
+      "id": "d3e3549e",
+      "name": "standalone_person",
+      "description": "Matches standalone person names in legal contexts where no title is present, e.g., after 'wurde', 'durch', 'gegen', or at the start of a sentence.",
+      "format": "regex",
+      "content": "(?:wurde|durch|gegen|als|von|mit)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+      "priority": 7,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities"
+    },
+    {
+      "id": "4b3da139",
+      "name": "party_person",
+      "description": "Matches person names appearing after legal role indicators like 'klagenden Partei', 'beklagte Partei', 'Antragsteller', 'Antragsgegner'.",
+      "format": "regex",
+      "content": "(?:klagenden Partei|beklagte Partei|gegen|Antragsteller|Antragsgegner|Vater|Mutter|Elternteil|Gesch\\u00e4ftsf\\u00fchrer|Pr\\u00e4sident|Mitglied)\\s+(?:der|die|des|dem)?\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+      "priority": 6,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities"
+    }
+  ],
+  "best_rules": [
+    {
+      "id": "6a745f6b",
+      "name": "title_person",
+      "description": "Matches person names preceded by academic or professional titles (Dr., Mag., Univ.-Prof., Hon.-Prof., PhD, etc.), capturing the full title and name.",
+      "format": "regex",
+      "content": "(?:Dr\\.|Mag\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|PhD|Vizepr\\.|Senatspr\\.|Hofrat|Hofr\\u00e4t|Prof\\.?)\\s+(?:[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+MBA)?(?:\\s+und\\s+[A-Z][a-z]+)*)",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities"
+    },
+    {
+      "id": "bf74fc42",
+      "name": "complex_title_person",
+      "description": "Matches person names with complex multi-part titles like 'Univ.-Prof. Dr.', 'Hon.-Prof. PD Dr.', 'MMag.', 'Mag. Dr.', 'DI', 'Ing.', 'Bakk. iur.'.",
+      "format": "regex",
+      "content": "(?:Univ\\.-Prof\\.\\s+Dr\\.|Hon\\.-Prof\\.\\s+PD\\s+Dr\\.|MMag\\.|Mag\\.\\s+Dr\\.|DI\\s+[A-Z][a-z]+|Ing\\.|Bakk\\.\\s+iur\\.\\s+[A-Z][a-z]+)\\s+[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+MBA)?(?:\\s+und\\s+[A-Z][a-z]+)*",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities"
+    },
+    {
+      "id": "d3e3549e",
+      "name": "standalone_person",
+      "description": "Matches standalone person names in legal contexts where no title is present, e.g., after 'wurde', 'durch', 'gegen', or at the start of a sentence.",
+      "format": "regex",
+      "content": "(?:wurde|durch|gegen|als|von|mit)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+      "priority": 7,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities"
+    },
+    {
+      "id": "4b3da139",
+      "name": "party_person",
+      "description": "Matches person names appearing after legal role indicators like 'klagenden Partei', 'beklagte Partei', 'Antragsteller', 'Antragsgegner'.",
+      "format": "regex",
+      "content": "(?:klagenden Partei|beklagte Partei|gegen|Antragsteller|Antragsgegner|Vater|Mutter|Elternteil|Gesch\\u00e4ftsf\\u00fchrer|Pr\\u00e4sident|Mitglied)\\s+(?:der|die|des|dem)?\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+      "priority": 6,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities"
+    }
+  ],
+  "best_f1": 0.44688932547478716,
+  "best_batch_idx": 1,
+  "batch_metrics": [
+    {
+      "batch": 0,
+      "num_rules": 3,
+      "exact_match": 0.946583359000308,
+      "micro_f1": 0.010972835541281948,
+      "micro_precision": 0.012431776834445117,
+      "micro_recall": 0.009820359281437126,
+      "macro_f1": 0.010972835541281948,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.010972835541281948,
+          "precision": 0.012431776834445117,
+          "recall": 0.009820359281437126
+        }
+      ]
+    },
+    {
+      "batch": 1,
+      "num_rules": 4,
+      "exact_match": 0.9499273991287895,
+      "micro_f1": 0.44688932547478716,
+      "micro_precision": 0.4930635838150289,
+      "micro_recall": 0.408622754491018,
+      "macro_f1": 0.44688932547478716,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.44688932547478716,
+          "precision": 0.4930635838150289,
+          "recall": 0.408622754491018
+        }
+      ]
+    },
+    {
+      "batch": 2,
+      "num_rules": 4,
+      "exact_match": 0.9499273991287895,
+      "micro_f1": 0.44688932547478716,
+      "micro_precision": 0.4930635838150289,
+      "micro_recall": 0.408622754491018,
+      "macro_f1": 0.44688932547478716,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.44688932547478716,
+          "precision": 0.4930635838150289,
+          "recall": 0.408622754491018
+        }
+      ]
+    },
+    {
+      "batch": 3,
+      "num_rules": 4,
+      "exact_match": 0.9499273991287895,
+      "micro_f1": 0.44688932547478716,
+      "micro_precision": 0.4930635838150289,
+      "micro_recall": 0.408622754491018,
+      "macro_f1": 0.44688932547478716,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.44688932547478716,
+          "precision": 0.4930635838150289,
+          "recall": 0.408622754491018
+        }
+      ]
+    },
+    {
+      "batch": 4,
+      "num_rules": 4,
+      "exact_match": 0.9499273991287895,
+      "micro_f1": 0.44688932547478716,
+      "micro_precision": 0.4930635838150289,
+      "micro_recall": 0.408622754491018,
+      "macro_f1": 0.44688932547478716,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.44688932547478716,
+          "precision": 0.4930635838150289,
+          "recall": 0.408622754491018
+        }
+      ]
+    },
+    {
+      "batch": 5,
+      "num_rules": 4,
+      "exact_match": 0.9499273991287895,
+      "micro_f1": 0.44688932547478716,
+      "micro_precision": 0.4930635838150289,
+      "micro_recall": 0.408622754491018,
+      "macro_f1": 0.44688932547478716,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.44688932547478716,
+          "precision": 0.4930635838150289,
+          "recall": 0.408622754491018
+        }
+      ]
+    },
+    {
+      "batch": 6,
+      "num_rules": 4,
+      "exact_match": 0.9499273991287895,
+      "micro_f1": 0.44688932547478716,
+      "micro_precision": 0.4930635838150289,
+      "micro_recall": 0.408622754491018,
+      "macro_f1": 0.44688932547478716,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.44688932547478716,
+          "precision": 0.4930635838150289,
+          "recall": 0.408622754491018
+        }
+      ]
+    },
+    {
+      "batch": 7,
+      "num_rules": 4,
+      "exact_match": 0.9499273991287895,
+      "micro_f1": 0.44688932547478716,
+      "micro_precision": 0.4930635838150289,
+      "micro_recall": 0.408622754491018,
+      "macro_f1": 0.44688932547478716,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.44688932547478716,
+          "precision": 0.4930635838150289,
+          "recall": 0.408622754491018
+        }
+      ]
+    }
+  ],
+  "iteration_metrics": [],
+  "rules_snapshot": [
+    {
+      "batch": 0,
+      "rules": [
+        {
+          "id": "1c5d2a9b",
+          "name": "title_person",
+          "description": "Matches person names preceded by academic or professional titles (Dr., Mag., Univ.-Prof., Hon.-Prof., PhD, etc.)",
+          "format": "regex",
+          "content": "(?:Dr\\.|Mag\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|PhD|Vizepr\\.|Senatspr\\.|Hofrat|Hofr\\u00e4t|Prof\\.?)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+MBA)?(?:\\s+und\\s+[A-Z][a-z]+)?)",
+          "priority": 9,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "4b3da139",
+          "name": "party_person",
+          "description": "Matches person names appearing after legal role indicators like 'klagenden Partei', 'beklagte Partei', 'gegen', 'Antragsteller', 'Antragsgegner'",
+          "format": "regex",
+          "content": "(?:klagenden Partei|beklagte Partei|gegen|Antragsteller|Antragsgegner|Vater|Mutter|Elternteil|Gesch\\u00e4ftsf\\u00fchrer|Pr\\u00e4sident|Mitglied)\\s+(?:der|die|des|dem)?\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+          "priority": 8,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "c1903b31",
+          "name": "criminal_person",
+          "description": "Matches person names in criminal cases after 'Strafsache gegen'",
+          "format": "regex",
+          "content": "(?:Strafsache gegen)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+          "priority": 7,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        }
+      ]
+    },
+    {
+      "batch": 1,
+      "rules": [
+        {
+          "id": "6a745f6b",
+          "name": "title_person",
+          "description": "Matches person names preceded by academic or professional titles (Dr., Mag., Univ.-Prof., Hon.-Prof., PhD, etc.), capturing the full title and name.",
+          "format": "regex",
+          "content": "(?:Dr\\.|Mag\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|PhD|Vizepr\\.|Senatspr\\.|Hofrat|Hofr\\u00e4t|Prof\\.?)\\s+(?:[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+MBA)?(?:\\s+und\\s+[A-Z][a-z]+)*)",
+          "priority": 9,
+          "output_template": {
+            "text": "$0",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "bf74fc42",
+          "name": "complex_title_person",
+          "description": "Matches person names with complex multi-part titles like 'Univ.-Prof. Dr.', 'Hon.-Prof. PD Dr.', 'MMag.', 'Mag. Dr.', 'DI', 'Ing.', 'Bakk. iur.'.",
+          "format": "regex",
+          "content": "(?:Univ\\.-Prof\\.\\s+Dr\\.|Hon\\.-Prof\\.\\s+PD\\s+Dr\\.|MMag\\.|Mag\\.\\s+Dr\\.|DI\\s+[A-Z][a-z]+|Ing\\.|Bakk\\.\\s+iur\\.\\s+[A-Z][a-z]+)\\s+[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+MBA)?(?:\\s+und\\s+[A-Z][a-z]+)*",
+          "priority": 8,
+          "output_template": {
+            "text": "$0",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "d3e3549e",
+          "name": "standalone_person",
+          "description": "Matches standalone person names in legal contexts where no title is present, e.g., after 'wurde', 'durch', 'gegen', or at the start of a sentence.",
+          "format": "regex",
+          "content": "(?:wurde|durch|gegen|als|von|mit)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+          "priority": 7,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "4b3da139",
+          "name": "party_person",
+          "description": "Matches person names appearing after legal role indicators like 'klagenden Partei', 'beklagte Partei', 'Antragsteller', 'Antragsgegner'.",
+          "format": "regex",
+          "content": "(?:klagenden Partei|beklagte Partei|gegen|Antragsteller|Antragsgegner|Vater|Mutter|Elternteil|Gesch\\u00e4ftsf\\u00fchrer|Pr\\u00e4sident|Mitglied)\\s+(?:der|die|des|dem)?\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+          "priority": 6,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        }
+      ]
+    },
+    {
+      "batch": 2,
+      "rules": [
+        {
+          "id": "6a745f6b",
+          "name": "title_person",
+          "description": "Matches person names preceded by academic or professional titles (Dr., Mag., Univ.-Prof., Hon.-Prof., PhD, etc.), capturing the full title and name.",
+          "format": "regex",
+          "content": "(?:Dr\\.|Mag\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|PhD|Vizepr\\.|Senatspr\\.|Hofrat|Hofr\\u00e4t|Prof\\.?)\\s+(?:[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+MBA)?(?:\\s+und\\s+[A-Z][a-z]+)*)",
+          "priority": 9,
+          "output_template": {
+            "text": "$0",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "bf74fc42",
+          "name": "complex_title_person",
+          "description": "Matches person names with complex multi-part titles like 'Univ.-Prof. Dr.', 'Hon.-Prof. PD Dr.', 'MMag.', 'Mag. Dr.', 'DI', 'Ing.', 'Bakk. iur.'.",
+          "format": "regex",
+          "content": "(?:Univ\\.-Prof\\.\\s+Dr\\.|Hon\\.-Prof\\.\\s+PD\\s+Dr\\.|MMag\\.|Mag\\.\\s+Dr\\.|DI\\s+[A-Z][a-z]+|Ing\\.|Bakk\\.\\s+iur\\.\\s+[A-Z][a-z]+)\\s+[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+MBA)?(?:\\s+und\\s+[A-Z][a-z]+)*",
+          "priority": 8,
+          "output_template": {
+            "text": "$0",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "d3e3549e",
+          "name": "standalone_person",
+          "description": "Matches standalone person names in legal contexts where no title is present, e.g., after 'wurde', 'durch', 'gegen', or at the start of a sentence.",
+          "format": "regex",
+          "content": "(?:wurde|durch|gegen|als|von|mit)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+          "priority": 7,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "4b3da139",
+          "name": "party_person",
+          "description": "Matches person names appearing after legal role indicators like 'klagenden Partei', 'beklagte Partei', 'Antragsteller', 'Antragsgegner'.",
+          "format": "regex",
+          "content": "(?:klagenden Partei|beklagte Partei|gegen|Antragsteller|Antragsgegner|Vater|Mutter|Elternteil|Gesch\\u00e4ftsf\\u00fchrer|Pr\\u00e4sident|Mitglied)\\s+(?:der|die|des|dem)?\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+          "priority": 6,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        }
+      ]
+    },
+    {
+      "batch": 3,
+      "rules": [
+        {
+          "id": "6a745f6b",
+          "name": "title_person",
+          "description": "Matches person names preceded by academic or professional titles (Dr., Mag., Univ.-Prof., Hon.-Prof., PhD, etc.), capturing the full title and name.",
+          "format": "regex",
+          "content": "(?:Dr\\.|Mag\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|PhD|Vizepr\\.|Senatspr\\.|Hofrat|Hofr\\u00e4t|Prof\\.?)\\s+(?:[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+MBA)?(?:\\s+und\\s+[A-Z][a-z]+)*)",
+          "priority": 9,
+          "output_template": {
+            "text": "$0",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "bf74fc42",
+          "name": "complex_title_person",
+          "description": "Matches person names with complex multi-part titles like 'Univ.-Prof. Dr.', 'Hon.-Prof. PD Dr.', 'MMag.', 'Mag. Dr.', 'DI', 'Ing.', 'Bakk. iur.'.",
+          "format": "regex",
+          "content": "(?:Univ\\.-Prof\\.\\s+Dr\\.|Hon\\.-Prof\\.\\s+PD\\s+Dr\\.|MMag\\.|Mag\\.\\s+Dr\\.|DI\\s+[A-Z][a-z]+|Ing\\.|Bakk\\.\\s+iur\\.\\s+[A-Z][a-z]+)\\s+[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+MBA)?(?:\\s+und\\s+[A-Z][a-z]+)*",
+          "priority": 8,
+          "output_template": {
+            "text": "$0",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "d3e3549e",
+          "name": "standalone_person",
+          "description": "Matches standalone person names in legal contexts where no title is present, e.g., after 'wurde', 'durch', 'gegen', or at the start of a sentence.",
+          "format": "regex",
+          "content": "(?:wurde|durch|gegen|als|von|mit)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+          "priority": 7,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "4b3da139",
+          "name": "party_person",
+          "description": "Matches person names appearing after legal role indicators like 'klagenden Partei', 'beklagte Partei', 'Antragsteller', 'Antragsgegner'.",
+          "format": "regex",
+          "content": "(?:klagenden Partei|beklagte Partei|gegen|Antragsteller|Antragsgegner|Vater|Mutter|Elternteil|Gesch\\u00e4ftsf\\u00fchrer|Pr\\u00e4sident|Mitglied)\\s+(?:der|die|des|dem)?\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+          "priority": 6,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        }
+      ]
+    },
+    {
+      "batch": 4,
+      "rules": [
+        {
+          "id": "6a745f6b",
+          "name": "title_person",
+          "description": "Matches person names preceded by academic or professional titles (Dr., Mag., Univ.-Prof., Hon.-Prof., PhD, etc.), capturing the full title and name.",
+          "format": "regex",
+          "content": "(?:Dr\\.|Mag\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|PhD|Vizepr\\.|Senatspr\\.|Hofrat|Hofr\\u00e4t|Prof\\.?)\\s+(?:[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+MBA)?(?:\\s+und\\s+[A-Z][a-z]+)*)",
+          "priority": 9,
+          "output_template": {
+            "text": "$0",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "bf74fc42",
+          "name": "complex_title_person",
+          "description": "Matches person names with complex multi-part titles like 'Univ.-Prof. Dr.', 'Hon.-Prof. PD Dr.', 'MMag.', 'Mag. Dr.', 'DI', 'Ing.', 'Bakk. iur.'.",
+          "format": "regex",
+          "content": "(?:Univ\\.-Prof\\.\\s+Dr\\.|Hon\\.-Prof\\.\\s+PD\\s+Dr\\.|MMag\\.|Mag\\.\\s+Dr\\.|DI\\s+[A-Z][a-z]+|Ing\\.|Bakk\\.\\s+iur\\.\\s+[A-Z][a-z]+)\\s+[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+MBA)?(?:\\s+und\\s+[A-Z][a-z]+)*",
+          "priority": 8,
+          "output_template": {
+            "text": "$0",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "d3e3549e",
+          "name": "standalone_person",
+          "description": "Matches standalone person names in legal contexts where no title is present, e.g., after 'wurde', 'durch', 'gegen', or at the start of a sentence.",
+          "format": "regex",
+          "content": "(?:wurde|durch|gegen|als|von|mit)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+          "priority": 7,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "4b3da139",
+          "name": "party_person",
+          "description": "Matches person names appearing after legal role indicators like 'klagenden Partei', 'beklagte Partei', 'Antragsteller', 'Antragsgegner'.",
+          "format": "regex",
+          "content": "(?:klagenden Partei|beklagte Partei|gegen|Antragsteller|Antragsgegner|Vater|Mutter|Elternteil|Gesch\\u00e4ftsf\\u00fchrer|Pr\\u00e4sident|Mitglied)\\s+(?:der|die|des|dem)?\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+          "priority": 6,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        }
+      ]
+    },
+    {
+      "batch": 5,
+      "rules": [
+        {
+          "id": "6a745f6b",
+          "name": "title_person",
+          "description": "Matches person names preceded by academic or professional titles (Dr., Mag., Univ.-Prof., Hon.-Prof., PhD, etc.), capturing the full title and name.",
+          "format": "regex",
+          "content": "(?:Dr\\.|Mag\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|PhD|Vizepr\\.|Senatspr\\.|Hofrat|Hofr\\u00e4t|Prof\\.?)\\s+(?:[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+MBA)?(?:\\s+und\\s+[A-Z][a-z]+)*)",
+          "priority": 9,
+          "output_template": {
+            "text": "$0",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "bf74fc42",
+          "name": "complex_title_person",
+          "description": "Matches person names with complex multi-part titles like 'Univ.-Prof. Dr.', 'Hon.-Prof. PD Dr.', 'MMag.', 'Mag. Dr.', 'DI', 'Ing.', 'Bakk. iur.'.",
+          "format": "regex",
+          "content": "(?:Univ\\.-Prof\\.\\s+Dr\\.|Hon\\.-Prof\\.\\s+PD\\s+Dr\\.|MMag\\.|Mag\\.\\s+Dr\\.|DI\\s+[A-Z][a-z]+|Ing\\.|Bakk\\.\\s+iur\\.\\s+[A-Z][a-z]+)\\s+[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+MBA)?(?:\\s+und\\s+[A-Z][a-z]+)*",
+          "priority": 8,
+          "output_template": {
+            "text": "$0",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "d3e3549e",
+          "name": "standalone_person",
+          "description": "Matches standalone person names in legal contexts where no title is present, e.g., after 'wurde', 'durch', 'gegen', or at the start of a sentence.",
+          "format": "regex",
+          "content": "(?:wurde|durch|gegen|als|von|mit)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+          "priority": 7,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "4b3da139",
+          "name": "party_person",
+          "description": "Matches person names appearing after legal role indicators like 'klagenden Partei', 'beklagte Partei', 'Antragsteller', 'Antragsgegner'.",
+          "format": "regex",
+          "content": "(?:klagenden Partei|beklagte Partei|gegen|Antragsteller|Antragsgegner|Vater|Mutter|Elternteil|Gesch\\u00e4ftsf\\u00fchrer|Pr\\u00e4sident|Mitglied)\\s+(?:der|die|des|dem)?\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+          "priority": 6,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        }
+      ]
+    },
+    {
+      "batch": 6,
+      "rules": [
+        {
+          "id": "6a745f6b",
+          "name": "title_person",
+          "description": "Matches person names preceded by academic or professional titles (Dr., Mag., Univ.-Prof., Hon.-Prof., PhD, etc.), capturing the full title and name.",
+          "format": "regex",
+          "content": "(?:Dr\\.|Mag\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|PhD|Vizepr\\.|Senatspr\\.|Hofrat|Hofr\\u00e4t|Prof\\.?)\\s+(?:[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+MBA)?(?:\\s+und\\s+[A-Z][a-z]+)*)",
+          "priority": 9,
+          "output_template": {
+            "text": "$0",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "bf74fc42",
+          "name": "complex_title_person",
+          "description": "Matches person names with complex multi-part titles like 'Univ.-Prof. Dr.', 'Hon.-Prof. PD Dr.', 'MMag.', 'Mag. Dr.', 'DI', 'Ing.', 'Bakk. iur.'.",
+          "format": "regex",
+          "content": "(?:Univ\\.-Prof\\.\\s+Dr\\.|Hon\\.-Prof\\.\\s+PD\\s+Dr\\.|MMag\\.|Mag\\.\\s+Dr\\.|DI\\s+[A-Z][a-z]+|Ing\\.|Bakk\\.\\s+iur\\.\\s+[A-Z][a-z]+)\\s+[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+MBA)?(?:\\s+und\\s+[A-Z][a-z]+)*",
+          "priority": 8,
+          "output_template": {
+            "text": "$0",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "d3e3549e",
+          "name": "standalone_person",
+          "description": "Matches standalone person names in legal contexts where no title is present, e.g., after 'wurde', 'durch', 'gegen', or at the start of a sentence.",
+          "format": "regex",
+          "content": "(?:wurde|durch|gegen|als|von|mit)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+          "priority": 7,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "4b3da139",
+          "name": "party_person",
+          "description": "Matches person names appearing after legal role indicators like 'klagenden Partei', 'beklagte Partei', 'Antragsteller', 'Antragsgegner'.",
+          "format": "regex",
+          "content": "(?:klagenden Partei|beklagte Partei|gegen|Antragsteller|Antragsgegner|Vater|Mutter|Elternteil|Gesch\\u00e4ftsf\\u00fchrer|Pr\\u00e4sident|Mitglied)\\s+(?:der|die|des|dem)?\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+          "priority": 6,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        }
+      ]
+    },
+    {
+      "batch": 7,
+      "rules": [
+        {
+          "id": "6a745f6b",
+          "name": "title_person",
+          "description": "Matches person names preceded by academic or professional titles (Dr., Mag., Univ.-Prof., Hon.-Prof., PhD, etc.), capturing the full title and name.",
+          "format": "regex",
+          "content": "(?:Dr\\.|Mag\\.|Univ\\.-Prof\\.|Hon\\.-Prof\\.|PhD|Vizepr\\.|Senatspr\\.|Hofrat|Hofr\\u00e4t|Prof\\.?)\\s+(?:[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+MBA)?(?:\\s+und\\s+[A-Z][a-z]+)*)",
+          "priority": 9,
+          "output_template": {
+            "text": "$0",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "bf74fc42",
+          "name": "complex_title_person",
+          "description": "Matches person names with complex multi-part titles like 'Univ.-Prof. Dr.', 'Hon.-Prof. PD Dr.', 'MMag.', 'Mag. Dr.', 'DI', 'Ing.', 'Bakk. iur.'.",
+          "format": "regex",
+          "content": "(?:Univ\\.-Prof\\.\\s+Dr\\.|Hon\\.-Prof\\.\\s+PD\\s+Dr\\.|MMag\\.|Mag\\.\\s+Dr\\.|DI\\s+[A-Z][a-z]+|Ing\\.|Bakk\\.\\s+iur\\.\\s+[A-Z][a-z]+)\\s+[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*(?:\\s+MBA)?(?:\\s+und\\s+[A-Z][a-z]+)*",
+          "priority": 8,
+          "output_template": {
+            "text": "$0",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "d3e3549e",
+          "name": "standalone_person",
+          "description": "Matches standalone person names in legal contexts where no title is present, e.g., after 'wurde', 'durch', 'gegen', or at the start of a sentence.",
+          "format": "regex",
+          "content": "(?:wurde|durch|gegen|als|von|mit)\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)",
+          "priority": 7,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        },
+        {
+          "id": "4b3da139",
+          "name": "party_person",
+          "description": "Matches person names appearing after legal role indicators like 'klagenden Partei', 'beklagte Partei', 'Antragsteller', 'Antragsgegner'.",
+          "format": "regex",
+          "content": "(?:klagenden Partei|beklagte Partei|gegen|Antragsteller|Antragsgegner|Vater|Mutter|Elternteil|Gesch\\u00e4ftsf\\u00fchrer|Pr\\u00e4sident|Mitglied)\\s+(?:der|die|des|dem)?\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*)",
+          "priority": 6,
+          "output_template": {
+            "text": "$1",
+            "start": "$start",
+            "end": "$end",
+            "type": "person"
+          },
+          "output_key": "entities"
+        }
+      ]
+    }
+  ],
+  "timestamp": "2026-07-28T14:32:58.475026"
+}

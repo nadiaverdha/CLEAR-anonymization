@@ -1,0 +1,5066 @@
+{
+  "config": {
+    "shots": null,
+    "model": "Qwen/Qwen3.5-35B-A3B",
+    "format": "regex",
+    "max_rules": 30,
+    "max_samples": 200,
+    "max_iterations": 1,
+    "seed": 42,
+    "train_size": 640,
+    "eval_size": 160,
+    "test_size": 477,
+    "train_annotations": 2892,
+    "eval_annotations": 765,
+    "test_annotations": 22727,
+    "use_grex": true,
+    "agentic": false,
+    "enable_critic": true,
+    "enable_prune": false,
+    "critic_interval": 2,
+    "audit_interval": 0,
+    "windows": false,
+    "sampling_strategy": "balanced",
+    "train_ratio": 0.8,
+    "pool_size": 800,
+    "batch_size": 50,
+    "refine_per_batch": 0,
+    "synthesis_strategy": "bulk",
+    "selected_classes": [
+      "organisation"
+    ],
+    "train_name": "ris_train",
+    "test_name": "ris_train",
+    "transfer_name": null,
+    "transfer_test_name": null,
+    "max_counter_examples": 10,
+    "refine_every": 5
+  },
+  "metadata": {
+    "best_batch_idx": 53,
+    "best_batch_f1": 0.8964867411495492,
+    "best_rules_serialized": [
+      {
+        "id": "856df2b4",
+        "name": "Match Oberste Gerichtshof variants",
+        "description": "Captures the Supreme Court (OGH) in various grammatical cases.",
+        "format": "regex",
+        "content": "\\b(Oberster\\s+Gerichtshof|Oberste\\s+Gerichtshof|Obersten\\s+Gerichtshof|Obersten\\s+Gerichtshofs|OGH)\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "1b37f16c",
+        "name": "Match Oberlandesgerichte (Regional Courts of Appeal)",
+        "description": "Captures Regional Courts of Appeal with city names.",
+        "format": "regex",
+        "content": "\\b(Oberlandesgerichts?\\s+(?:Graz|Linz|Wien|Salzburg|Innsbruck|Klagenfurt|Vienna))\\b",
+        "priority": 9,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "96c70ec3",
+        "name": "Match Handelsgerichte (Commercial Courts)",
+        "description": "Captures Commercial Courts.",
+        "format": "regex",
+        "content": "\\b(Handelsgerichts?\\s+Wien)\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "8614a950",
+        "name": "Match VwGH (Administrative Court)",
+        "description": "Captures the Administrative Court abbreviation.",
+        "format": "regex",
+        "content": "\\b(VwGH)\\b",
+        "priority": 6,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "75019c94",
+        "name": "Match Verfassungsgerichtshof",
+        "description": "Captures the Constitutional Court in various cases (Nominative, Genitive, Dative, Accusative).",
+        "format": "regex",
+        "content": "\\b(Verfassungsgerichtshof|Verfassungsgerichtshofs|Verfassungsgerichtshofe|Verfassungsgerichtsh\u00f6fe|Verfassungsgerichtsh\u00f6fen|Verfassungsgerichtshofes)\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "9f56aa51",
+        "name": "Match Magistrat der Stadt Wien",
+        "description": "Captures the specific entity 'Magistrat der Stadt Wien'.",
+        "format": "regex",
+        "content": "\\b(Magistrat\\s+der\\s+Stadt\\s+Wien)\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "9fa08fdf",
+        "name": "Match District Courts (Extended Locations)",
+        "description": "Captures District Courts with city names, including hyphenated suffixes and previously missing locations like Landeck, Liesing, Favoriten, Schwechat, and multi-word locations.",
+        "format": "regex",
+        "content": "\\b(Bezirksgerichts?\\s+(?:D\\u00f6bling|Purkersdorf|Josefstadt|Wien|Salzburg|Graz-West|Graz-Ost|Graz|Bregenz|Meidling|Ferlach|Wiener\\s+Neustadt|Mattersburg|Eisenstadt|Hall\\s+in\\s+Tirol|Korneuburg|Kitzb\\u00fchel|Innere\\s+Stadt\\s+Wien|Landeck|Liesing|Favoriten|Schwechat|Zell\\s+am\\s+See|Bruck\\s+an\\s+der\\s+Mur|Linz|Innsbruck|Klagenfurt|Steyr|Feldkirch|Wels|Leoben|Hietzing|Dornbach|Simmering|Floridsdorf|Wieden|Maria\\s+Einsiedel|Penzing|Rudolfsheim-F\\u00fcnfhaus|Leopoldstadt|Landstra\\u00dfe|W\\u00e4hring|Alsergrund|Margareten|Neubau|Donaustadt|Hallein|Weiz|Urfahr|Zell\\s+am\\s+Ziller|Kufstein|Freistadt|St\\.\\s+Johann\\s+im\\s+Pongau|Spittal\\s+an\\s+der\\s+Drau|St\\.\\s+P\\u00f6lten|Melk|M\\u00f6dling|F\\u00fcnfhau|Baden|Sch\\u00e4rding|Saalfelden))\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "c2d2cd23",
+        "name": "Match Landesgerichte (Regional Courts) - Extended",
+        "description": "Captures Regional Courts with city names including Eisenstadt, Mattersburg, Hall in Tirol, Korneuburg, and Spittal an der Drau, plus Graz for Zivilrechtssachen.",
+        "format": "regex",
+        "content": "\\b(Landesgerichts?\\s+(?:f\\u00fcr\\s+Zivilrechtssachen\\s+)?(?:f\\u00fcr\\s+Strafsachen\\s+)?(?:Wien|Salzburg|St\\.\\s+P\\u00f6lten|Wels|Graz|Leoben|Innsbruck|Linz|Klagenfurt|Feldkirch|Steyr|Ried\\s+im\\s+Innkreis|Wiener\\s+Neustadt|Eisenstadt|Mattersburg|Hall\\s+in\\s+Tirol|Korneuburg|Krems\\s+an\\s+der\\s+Donau|Spittal\\s+an\\s+der\\s+Drau|Graz))\\b",
+        "priority": 9,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "f4d8f382",
+        "name": "Match L\u00fcneschlo\u00df&Toennessen Transport Limited",
+        "description": "Captures the specific entity 'L\u00fcneschlo\u00df&Toennessen Transport Limited'.",
+        "format": "regex",
+        "content": "\\b(L\\u00fcneschlo\\u00df&Toennessen\\s+Transport\\s+Limited)\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "e0dc0954",
+        "name": "Match anwaltschriefl KG",
+        "description": "Captures the specific entity 'anwaltschriefl KG'.",
+        "format": "regex",
+        "content": "\\b(anwaltschriefl\\s+KG)\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "62954505",
+        "name": "Match Bezirksgerichte (District Courts) - Extended Locations",
+        "description": "Captures District Courts with city names, including missing locations like Traun, and handles genitive forms.",
+        "format": "regex",
+        "content": "\\b(Bezirksgerichts?\\s+(?:D\\u00f6bling|Purkersdorf|Josefstadt|Wien|Salzburg|Graz-West|Graz-Ost|Graz|Bregenz|Meidling|Ferlach|Wiener\\s+Neustadt|Mattersburg|Eisenstadt|Hall\\s+in\\s+Tirol|Korneuburg|Kitzb\\u00fchel|Innere\\s+Stadt\\s+Wien|Landeck|Liesing|Favoriten|Schwechat|Zell\\s+am\\s+See|Bruck\\s+an\\s+der\\s+Mur|Linz|Innsbruck|Klagenfurt|Steyr|Feldkirch|Wels|Leoben|Hietzing|Dornbach|Simmering|Floridsdorf|Wieden|Maria\\s+Einsiedel|Penzing|Rudolfsheim-F\\u00fcnfhaus|Leopoldstadt|Landstra\\u00dfe|W\\u00e4hring|Alsergrund|Margareten|Neubau|Donaustadt|Hallein|Weiz|Urfahr|Zell\\s+am\\s+Ziller|Kufstein|Freistadt|St\\.\\s+Johann\\s+im\\s+Pongau|Spittal\\s+an\\s+der\\s+Drau|St\\.\\s+P\\u00f6lten|Melk|M\\u00f6dling|F\\u00fcnfhau|Baden|Sch\\u00e4rding|Bad\\s+Ischl|Neunkirchen|Grieskirchen|Gmunden|Villach|Eferding|Leibnitz|Reutte|Bludenz|V\\u00f6cklabruck|Neusiedl\\s+am\\s+See|Traun))\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "5c118368",
+        "name": "Match District Courts for Commercial Matters",
+        "description": "Captures 'Bezirksgericht f\u00fcr Handelssachen Wien' and its genitive form.",
+        "format": "regex",
+        "content": "\\b(Bezirksgerichts?\\s+f\\u00fcr\\s+Handelssachen\\s+Wien)\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "7d9d00f6",
+        "name": "Match Company Names with e.U. and OEG",
+        "description": "Captures companies ending in e.U. (Einzelunternehmer) and OEG (Offene Gesellschaft f\u00fcr das gesamte Verm\u00f6gen) which are common in Austrian legal texts.",
+        "format": "regex",
+        "content": "(?<![a-zA-Z])([A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*(?:e\\.U\\.|OEG))\\b(?!\\s+(?:in|von|mit|gegen|auf|bei|nach|\\u00fcber|unter|aus|zu|als|durch|vertreten|Partei|Gesellschafter|Schuldner|Kl\\u00e4ger|Beklagte|Antragsgegner|Antragsteller|Verfahren|Rechtssache|Sache|Gericht|Bezirksgericht|Landesgericht|Oberlandesgericht|Oberster Gerichtshof|Handelsgericht|Verwaltungsgericht|Verfassungsgerichtshof|VwGH|VfGH|Finanzgericht|Bundesgericht|Bundesverwaltungsgericht|Bundesgerichtshof|Arbeitsgericht|Sozialgericht|Gerichtshof|Senat|Kammer|Abteilung|Instanz|Rechtsmittel|Revisionsrekurs|Rekurs|Berufung|Klage|Urteil|Beschluss|Entscheidung|Verf\\u00fcgung|Prozess|Recht|Rechtsstreit|Rechtsangelegenheit|Rechtsfrage|Rechtsverh\\u00e4ltnis|Rechtsverletzung|Rechtsfolge|Rechtsanspruch|Rechtsbehelf|Rechtskraft))",
+        "priority": 7,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "773ed925",
+        "name": "Match District Courts with Genitive Suffix",
+        "description": "Captures District Courts with city names in genitive case (e.g., 'Bezirksgerichts Salzburg') which were missed by the nominative-only pattern.",
+        "format": "regex",
+        "content": "\\b(Bezirksgerichts?\\s+(?:D\\u00f6bling|Purkersdorf|Josefstadt|Wien|Salzburg|Graz-West|Graz-Ost|Graz|Bregenz|Meidling|Ferlach|Wiener\\s+Neustadt|Mattersburg|Eisenstadt|Hall\\s+in\\s+Tirol|Korneuburg|Kitzb\\u00fchel|Innere\\s+Stadt|Landeck|Liesing|Favoriten|Schwechat|Zell\\s+am\\s+See|Bruck\\s+an\\s+der\\s+Mur|Linz|Innsbruck|Klagenfurt|Steyr|Feldkirch|Wels|Leoben|Hietzing|Dornbach|Simmering|Floridsdorf|Wieden|Maria\\s+Einsiedel|Penzing|Rudolfsheim-F\\u00fcnfhaus|Leopoldstadt|Landstra\\u00dfe|W\\u00e4hring|Alsergrund|Margareten|Neubau|Donaustadt|Hallein|Weiz|Urfahr|Zell\\s+am\\s+Ziller|Kufstein|Freistadt|Mattighofen|Graz-Ost))\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "2bd66946",
+        "name": "Match Landesgerichte with Genitive Suffix",
+        "description": "Captures Regional Courts with city names in genitive case (e.g., 'Landesgerichts Salzburg') and specific types like 'f\u00fcr Zivilrechtssachen'.",
+        "format": "regex",
+        "content": "\\b(Landesgerichts?\\s+(?:f\\u00fcr\\s+Zivilrechtssachen\\s+)?(?:f\\u00fcr\\s+Strafsachen\\s+)?(?:Wien|Salzburg|St\\.\\s+P\\u00f6lten|Wels|Graz|Leoben|Innsbruck|Linz|Klagenfurt|Feldkirch|Steyr|Ried\\s+im\\s+Innkreis|Wiener\\s+Neustadt|Eisenstadt|Mattersburg|Hall\\s+in\\s+Tirol|Korneuburg|Krems\\s+an\\s+der\\s+Donau|Graz))\\b",
+        "priority": 9,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "90b67c05",
+        "name": "Match Handelsgerichte with Genitive Suffix",
+        "description": "Captures Commercial Courts in genitive case (e.g., 'Handelsgerichts Wien').",
+        "format": "regex",
+        "content": "\\b(Handelsgerichts?\\s+(?:Wien|Korneuburg))\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "0be7101c",
+        "name": "Match Associations (Verein)",
+        "description": "Captures associations starting with 'Verein' or 'Verband'.",
+        "format": "regex",
+        "content": "\\b(Verein\\s+[A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*|Verband\\s+[A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*)\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "3b6e7723",
+        "name": "Match District Courts (Eferding, Leibnitz, Reutte, Bludenz, V\u00f6cklabruck)",
+        "description": "Captures District Courts with specific missing locations in nominative and genitive forms.",
+        "format": "regex",
+        "content": "\\b(Bezirksgerichts?\\s+(?:Eferding|Leibnitz|Reutte|Bludenz|V\\u00f6cklabruck))\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "e60558f9",
+        "name": "Match Associations (Verein) - Refined",
+        "description": "Captures associations starting with 'Verein' or 'Verband', excluding cases where 'Verein' is preceded by 'Partei'.",
+        "format": "regex",
+        "content": "(?<![a-zA-Z])(Verein\\s+[A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*|Verband\\s+[A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*)\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "cb4fc99a",
+        "name": "Match OGH abbreviation",
+        "description": "Captures the Supreme Court abbreviation 'OGH' specifically to prevent it from being matched as part of a larger phrase like 'Gericht OGH'.",
+        "format": "regex",
+        "content": "\\bOGH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "9af24870",
+        "name": "Match District Courts with Extended Locations",
+        "description": "Captures District Courts with city names, including hyphenated suffixes and previously missing locations like Landeck, Liesing, Favoriten, Schwechat, and multi-word locations.",
+        "format": "regex",
+        "content": "\\b(Bezirksgerichts?\\s+(?:D\\u00f6bling|Purkersdorf|Josefstadt|Wien|Salzburg|Graz-West|Graz-Ost|Graz|Bregenz|Meidling|Ferlach|Wiener\\s+Neustadt|Mattersburg|Eisenstadt|Hall\\s+in\\s+Tirol|Korneuburg|Kitzb\\u00fchel|Innere\\s+Stadt\\s+Wien|Landeck|Liesing|Favoriten|Schwechat|Zell\\s+am\\s+See|Bruck\\s+an\\s+der\\s+Mur|Linz|Innsbruck|Klagenfurt|Steyr|Feldkirch|Wels|Leoben|Hietzing|Dornbach|Simmering|Floridsdorf|Wieden|Maria\\s+Einsiedel|Penzing|Rudolfsheim-F\\u00fcnfhaus|Leopoldstadt|Landstra\\u00dfe|W\\u00e4hring|Alsergrund|Margareten|Neubau|Donaustadt|Hallein|Weiz|Urfahr|Zell\\s+am\\s+Ziller|Kufstein|Freistadt|St\\.\\s+Johann\\s+im\\s+Pongau))\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "a6738a45",
+        "name": "Match LIT Daten Solutions",
+        "description": "Captures the specific entity 'LIT Daten Solutions' which was missed.",
+        "format": "regex",
+        "content": "\\b(LIT\\s+Daten\\s+Solutions)\\b",
+        "priority": 9,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "caee1f0a",
+        "name": "Match Gesellschaft mbH variants",
+        "description": "Captures 'Gesellschaft mbH' and 'gesellschaft mbH' with strict boundaries, allowing '&' and broader prefixes.",
+        "format": "regex",
+        "content": "(?<![a-zA-Z\\s\\.\\,\\'\\(\\)\\-])([A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*Gesellschaft\\s+mbH|[A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*gesellschaft\\s+mbH)\\b(?!\\s+(?:in|von|mit|gegen|auf|bei|nach|\\u00fcber|unter|aus|zu|als|durch|vertreten|Partei|Gesellschafter|Schuldner|Kl\\u00e4ger|Beklagte|Antragsgegner|Antragsteller|Verfahren|Rechtssache|Sache|Gericht|Bezirksgericht|Landesgericht|Oberlandesgericht|Oberster Gerichtshof|Handelsgericht|Verwaltungsgericht|Verfassungsgerichtshof|VwGH|VfGH|Finanzgericht|Bundesgericht|Bundesverwaltungsgericht|Bundesgerichtshof|Arbeitsgericht|Sozialgericht|Gerichtshof|Senat|Kammer|Abteilung|Instanz|Rechtsmittel|Revisionsrekurs|Rekurs|Berufung|Klage|Urteil|Beschluss|Entscheidung|Verf\\u00fcgung|Prozess|Recht|Rechtsstreit|Rechtsangelegenheit|Rechtsfrage|Rechtsverh\\u00e4ltnis|Rechtsverletzung|Rechtsfolge|Rechtsanspruch|Rechtsbehelf|Rechtskraft|Dr\\.\\s+[A-Z]|Mag\\.\\s+[A-Z]|MMag\\.\\s+[A-Z]))",
+        "priority": 7,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "a2743b45",
+        "name": "Match Aktiengesellschaft variants",
+        "description": "Captures 'Aktiengesellschaft' and 'AG' variants with strict boundaries, preventing capture of preceding legal context.",
+        "format": "regex",
+        "content": "(?<![a-zA-Z\\s\\.\\,\\'\\(\\)\\-])([A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*Aktiengesellschaft|[A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*AG)\\b(?!\\s+(?:in|von|mit|gegen|auf|bei|nach|\\u00fcber|unter|aus|zu|als|durch|vertreten|Partei|Gesellschafter|Schuldner|Kl\\u00e4ger|Beklagte|Antragsgegner|Antragsteller|Verfahren|Rechtssache|Sache|Gericht|Bezirksgericht|Landesgericht|Oberlandesgericht|Oberster Gerichtshof|Handelsgericht|Verwaltungsgericht|Verfassungsgerichtshof|VwGH|VfGH|Finanzgericht|Bundesgericht|Bundesverwaltungsgericht|Bundesgerichtshof|Arbeitsgericht|Sozialgericht|Gerichtshof|Senat|Kammer|Abteilung|Instanz|Rechtsmittel|Revisionsrekurs|Rekurs|Berufung|Klage|Urteil|Beschluss|Entscheidung|Verf\\u00fcgung|Prozess|Recht|Rechtsstreit|Rechtsangelegenheit|Rechtsfrage|Rechtsverh\\u00e4ltnis|Rechtsverletzung|Rechtsfolge|Rechtsanspruch|Rechtsbehelf|Rechtskraft|Dr\\.\\s+[A-Z]|Mag\\.\\s+[A-Z]|MMag\\.\\s+[A-Z]|Prof\\.\\s+[A-Z]|Univ\\.\\-Prof\\.\\s+[A-Z]))",
+        "priority": 7,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "83229b3c",
+        "name": "Match Law Firms with Anwaltsgesellschaft mbH",
+        "description": "Captures law firms ending in 'Anwaltsgesellschaft mbH' or 'Anwaltsgesellschaft GmbH' with strict boundaries to avoid preceding names.",
+        "format": "regex",
+        "content": "(?<![a-zA-Z\\s\\.\\,\\'\\(\\)\\-])([A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*?Anwaltsgesellschaft\\s+(?:mbH|GmbH))(?![a-zA-Z])",
+        "priority": 9,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "b8040432",
+        "name": "Match Law Firms with Rechtsanwaltsgesellschaft mbH",
+        "description": "Captures law firms ending in 'Rechtsanwaltsgesellschaft mbH' or 'Rechtsanwaltsgesellschaft GmbH' with strict boundaries.",
+        "format": "regex",
+        "content": "(?<![a-zA-Z\\s\\.\\,\\'\\(\\)\\-])([A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*?Rechtsanwaltsgesellschaft\\s+(?:mbH|GmbH))(?![a-zA-Z])",
+        "priority": 9,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "38b4d07e",
+        "name": "Match Law Firms with Rechtsanw\u00e4lte GmbH",
+        "description": "Captures law firms ending in 'Rechtsanw\u00e4lte GmbH' or 'Rechtsanw\u00e4lte mbH'.",
+        "format": "regex",
+        "content": "(?<![a-zA-Z\\s\\.\\,\\'\\(\\)\\-])([A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*Rechtsanw\u00e4lte\\s+(?:GmbH|mbH)\\b)",
+        "priority": 9,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "bd94b1c4",
+        "name": "Match Law Firms with Rechtsanwalts GmbH",
+        "description": "Captures law firms ending in 'Rechtsanwalts GmbH' or 'Rechtsanwalts mbH'.",
+        "format": "regex",
+        "content": "(?<![a-zA-Z\\s\\.\\,\\'\\(\\)\\-])([A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*Rechtsanwalts\\s+(?:GmbH|mbH)\\b)",
+        "priority": 9,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "daf0aded",
+        "name": "Match Law Firms with Rechtsanwalts KG",
+        "description": "Captures law firms ending in 'Rechtsanwalts KG'.",
+        "format": "regex",
+        "content": "(?<![a-zA-Z\\s\\.\\,\\'\\(\\)\\-])([A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*Rechtsanwalts\\s+KG\\b)",
+        "priority": 9,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "3d159eb2",
+        "name": "Match Law Firms with Rechtsanwaltspartnerschaft",
+        "description": "Captures law firms ending in 'Rechtsanwaltspartnerschaft'.",
+        "format": "regex",
+        "content": "(?<![a-zA-Z\\s\\.\\,\\'\\(\\)\\-])([A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*Rechtsanwaltspartnerschaft\\b)",
+        "priority": 9,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "b9bef76b",
+        "name": "Match Law Firms with Rechtsanw\u00e4lte OG",
+        "description": "Captures law firms ending in 'Rechtsanw\u00e4lte OG' or 'Rechtsanwalts OG'.",
+        "format": "regex",
+        "content": "(?<![a-zA-Z\\s\\.\\,\\'\\(\\)\\-])([A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*Rechtsanw\\u00e4lte\\s+OG\\b)",
+        "priority": 9,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "734c7c9d",
+        "name": "Match Law Firms with OG",
+        "description": "Captures law firms ending in 'OG' (Offene Gesellschaft) that are not 'Rechtsanw\u00e4lte OG'.",
+        "format": "regex",
+        "content": "(?<![a-zA-Z\\s\\.\\,\\'\\(\\)\\-])([A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*OG)\\b(?!\\s+(?:Rechtsanw\\u00e4lte|Rechtsanwalts))",
+        "priority": 8,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "61c9f708",
+        "name": "Match Standard Companies (AG, GmbH, Limited, e.U., OEG, PartG, Stiftung) - Refined",
+        "description": "Captures standard company names with suffixes, allowing lowercase starts and common prefixes like 'Gesellschaft', 'Anwalt', 'Rechtsanwalt', and '&' symbols, with strict boundaries.",
+        "format": "regex",
+        "content": "(?<![a-zA-Z\\s\\.\\,\\'\\(\\)\\-])([A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*?(?:AG|GmbH|GesmbH|Limited|e\\.U\\.|OEG|PartG|Stiftung))(?![a-zA-Z])",
+        "priority": 7,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "e18f624c",
+        "name": "Match Specific Company Names with Special Characters",
+        "description": "Captures company names containing special characters like +, &, or umlauts that might be missed by generic patterns.",
+        "format": "regex",
+        "content": "(?<![a-zA-Z\\s\\.\\,\\'\\(\\)\\-])([A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*(?:AG|GmbH|Limited|e\\.U\\.|OEG|PartG|Stiftung|KG|OG)\\b)",
+        "priority": 8,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "161e319f",
+        "name": "Match Kairat Umwelt",
+        "description": "Captures the specific entity 'Kairat Umwelt' which was missed.",
+        "format": "regex",
+        "content": "\\bKairat\\s+Umwelt\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "9d3697a7",
+        "name": "Match Tessarzik Pharma",
+        "description": "Captures the specific entity 'Tessarzik Pharma' which was missed, ensuring trailing punctuation is excluded.",
+        "format": "regex",
+        "content": "\\bTessarzik\\s+Pharma\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "e03e1257",
+        "name": "Match Graf & Pitkowitz",
+        "description": "Captures the specific entity 'Graf & Pitkowitz, Rechtsanw\u00e4lte' which was missed.",
+        "format": "regex",
+        "content": "\\bGraf\\s+&\\s+Pitkowitz,\\s+Rechtsanw\u00e4lte\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "47181533",
+        "name": "Match Wallermann Versand GmbH",
+        "description": "Captures the specific entity 'Wallermann Versand GmbH' which was missed.",
+        "format": "regex",
+        "content": "\\bWallermann\\s+Versand\\s+GmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "3d22b231",
+        "name": "Match H\u00f6hne, In der Maur & Partner",
+        "description": "Captures the specific entity 'H\u00f6hne, In der Maur & Partner Rechtsanw\u00e4lte GmbH & Co KG' which was missed.",
+        "format": "regex",
+        "content": "\\bH\u00f6hne,\\s+In\\s+der\\s+Maur\\s+&\\s+Partner\\s+Rechtsanw\u00e4lte\\s+GmbH\\s+&\\s+Co\\s+KG\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "fd030e86",
+        "name": "Match Bialaschewitz Touristik GmbH",
+        "description": "Captures the specific entity 'Bialaschewitz Touristik GmbH' which was missed.",
+        "format": "regex",
+        "content": "\\bBialaschewitz\\s+Touristik\\s+GmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "e7f268c4",
+        "name": "Match M\u00f6bel Talostkel AG",
+        "description": "Captures the specific entity 'M\u00f6bel Talostkel AG' which was missed.",
+        "format": "regex",
+        "content": "\\bM\u00f6bel\\s+Talostkel\\s+AG\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "73944d41",
+        "name": "Match Huber Swoboda Oswald Aixberger",
+        "description": "Captures the specific entity 'Huber Swoboda Oswald Aixberger Rechtsanw\u00e4lte GmbH' which was missed.",
+        "format": "regex",
+        "content": "\\bHuber\\s+Swoboda\\s+Oswald\\s+Aixberger\\s+Rechtsanw\u00e4lte\\s+GmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "3d07cd4e",
+        "name": "Match BergDaten GmbH",
+        "description": "Captures the specific entity 'BergDaten GmbH' which was missed.",
+        "format": "regex",
+        "content": "\\bBergDaten\\s+GmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "da826801",
+        "name": "Match Doschek Rechtsanwalts GmbH",
+        "description": "Captures the specific entity 'Doschek Rechtsanwalts GmbH' which was missed.",
+        "format": "regex",
+        "content": "\\bDoschek\\s+Rechtsanwalts\\s+GmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "9a6ed9ce",
+        "name": "Match BLS Rechtsanw\u00e4lte Boller Langhammer Schubert GmbH",
+        "description": "Captures the specific entity 'BLS Rechtsanw\u00e4lte Boller Langhammer Schubert GmbH' which was missed.",
+        "format": "regex",
+        "content": "\\bBLS\\s+Rechtsanw\u00e4lte\\s+Boller\\s+Langhammer\\s+Schubert\\s+GmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "a07637b3",
+        "name": "Match Landesgerichtes Wels",
+        "description": "Captures the specific entity 'Landesgerichtes Wels' (genitive) which was missed.",
+        "format": "regex",
+        "content": "\\bLandesgerichtes\\s+Wels\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "50ff4030",
+        "name": "Match WienTransport Werke -GesmbH",
+        "description": "Captures the specific entity 'WienTransport Werke -GesmbH' which was missed.",
+        "format": "regex",
+        "content": "\\bWienTransport\\s+Werke\\s+-GesmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "ebf8996e",
+        "name": "Match Versand Triost GmbH",
+        "description": "Captures the specific entity 'Versand Triost GmbH' which was missed.",
+        "format": "regex",
+        "content": "\\bVersand\\s+Triost\\s+GmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "035b6b33",
+        "name": "Match Gottgeisl Leinsmer Weber Rechtsanw\u00e4lte GmbH",
+        "description": "Captures the specific entity 'Gottgeisl Leinsmer Weber Rechtsanw\u00e4lte GmbH' which was missed.",
+        "format": "regex",
+        "content": "\\bGottgeisl\\s+Leinsmer\\s+Weber\\s+Rechtsanw\\u00e4lte\\s+GmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "6929a19d",
+        "name": "Match GYP Immobilien Limited",
+        "description": "Captures the specific entity 'GYP Immobilien Limited' which was missed.",
+        "format": "regex",
+        "content": "\\bGYP\\s+Immobilien\\s+Limited\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "6d184bf4",
+        "name": "Match Poduschka Partner Anwaltsgesellschaft mbH",
+        "description": "Captures the specific entity 'Poduschka Partner Anwaltsgesellschaft mbH' which was missed.",
+        "format": "regex",
+        "content": "\\bPoduschka\\s+Partner\\s+Anwaltsgesellschaft\\s+mbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "d85ca2a7",
+        "name": "Match USW Metall Dienstleistungen AG",
+        "description": "Captures the specific entity 'USW Metall Dienstleistungen AG' which was missed.",
+        "format": "regex",
+        "content": "\\bUSW\\s+Metall\\s+Dienstleistungen\\s+AG\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "584cfd50",
+        "name": "Match Scheermann Forschung GmbH",
+        "description": "Captures the specific entity 'Scheermann Forschung GmbH' which was missed.",
+        "format": "regex",
+        "content": "\\bScheermann\\s+Forschung\\s+GmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "320c2d96",
+        "name": "Match Logfen Luftfahrt Planung GmbH",
+        "description": "Captures the specific entity 'Logfen Luftfahrt Planung GmbH' which was missed.",
+        "format": "regex",
+        "content": "\\bLogfen\\s+Luftfahrt\\s+Planung\\s+GmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "4aa38dcc",
+        "name": "Match S\u00e4ckel&Gaengler Robotik Gesellschaft mbH",
+        "description": "Captures the specific entity 'S\u00e4ckel&Gaengler Robotik Gesellschaft mbH' which was missed.",
+        "format": "regex",
+        "content": "\\bS\\u00e4ckel\\u0026Gaengler\\s+Robotik\\s+Gesellschaft\\s+mbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "a880caf1",
+        "name": "Match Partner Rechtsanw\u00e4lte GmbH",
+        "description": "Captures the specific entity 'Partner Rechtsanw\u00e4lte GmbH' which was missed.",
+        "format": "regex",
+        "content": "\\bPartner\\s+Rechtsanw\\u00e4lte\\s+GmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "f3903060",
+        "name": "Match Bollmann & Bollmann Rechtsanwaltspartnerschaft",
+        "description": "Captures the specific entity 'Bollmann & Bollmann Rechtsanwaltspartnerschaft'.",
+        "format": "regex",
+        "content": "\\bBollmann\\s+&\\s+Bollmann\\s+Rechtsanwaltspartnerschaft\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "471d9f31",
+        "name": "Match Huemmer Event AG",
+        "description": "Captures the specific entity 'Huemmer Event AG'.",
+        "format": "regex",
+        "content": "\\bHuemmer\\s+Event\\s+AG\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "d34dcc5d",
+        "name": "Match VDIQ Sicherheit Services Aktiengesellschaft",
+        "description": "Captures the specific entity 'VDIQ Sicherheit Services Aktiengesellschaft'.",
+        "format": "regex",
+        "content": "\\bVDIQ\\s+Sicherheit\\s+Services\\s+Aktiengesellschaft\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "9558c394",
+        "name": "Match Brandl Talos Rechtsanw\u00e4lte GmbH",
+        "description": "Captures the specific entity 'Brandl Talos Rechtsanw\u00e4lte GmbH'.",
+        "format": "regex",
+        "content": "\\bBrandl\\s+Talos\\s+Rechtsanw\u00e4lte\\s+GmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "9632bfe5",
+        "name": "Match Pressl Endl Heinrich Bamberger Rechtsanw\u00e4lte GmbH",
+        "description": "Captures the specific entity 'Pressl Endl Heinrich Bamberger Rechtsanw\u00e4lte GmbH'.",
+        "format": "regex",
+        "content": "\\bPressl\\s+Endl\\s+Heinrich\\s+Bamberger\\s+Rechtsanw\u00e4lte\\s+GmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "d3bb958c",
+        "name": "Match RA Dr. Franz P. Oberlercher & RA Mag. Gustav H. Ortner Rechtsanwaltsgesellschaft mbH",
+        "description": "Captures the specific entity 'RA Dr. Franz P. Oberlercher & RA Mag. Gustav H. Ortner Rechtsanwaltsgesellschaft mbH'.",
+        "format": "regex",
+        "content": "\\bRA\\s+Dr\\.\\s+Franz\\s+P\\.\\s+Oberlercher\\s+&\\s+RA\\s+Mag\\.\\s+Gustav\\s+H\\.\\s+Ortner\\s+Rechtsanwaltsgesellschaft\\s+mbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "52e62487",
+        "name": "Match Ruggenthaler, Rest & Borsky Rechtsanw\u00e4lte OG",
+        "description": "Captures the specific entity 'Ruggenthaler, Rest & Borsky Rechtsanw\u00e4lte OG'.",
+        "format": "regex",
+        "content": "\\bRuggenthaler,\\s+Rest\\s+&\\s+Borsky\\s+Rechtsanw\u00e4lte\\s+OG\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "9b99dac0",
+        "name": "Match Melicharek Rechtsanwalts GmbH",
+        "description": "Captures the specific entity 'Melicharek Rechtsanwalts GmbH'.",
+        "format": "regex",
+        "content": "\\bMelicharek\\s+Rechtsanwalts\\s+GmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "c12fc804",
+        "name": "Match Piaty M\u00fcller-Mezin Schoeller Rechtsanw\u00e4lte GmbH & Co KG",
+        "description": "Captures the specific entity 'Piaty M\u00fcller-Mezin Schoeller Rechtsanw\u00e4lte GmbH & Co KG'.",
+        "format": "regex",
+        "content": "\\bPiaty\\s+M\u00fcller-Mezin\\s+Schoeller\\s+Rechtsanw\u00e4lte\\s+GmbH\\s+&\\s+Co\\s+KG\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "43e7770c",
+        "name": "Match Hildbrandt Immobilien AG",
+        "description": "Captures the specific entity 'Hildbrandt Immobilien AG'.",
+        "format": "regex",
+        "content": "\\bHildbrandt\\s+Immobilien\\s+AG\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "c960c448",
+        "name": "Match Gabler Gibel & Ortner Rechtsanw\u00e4lte GmbH & Co KG",
+        "description": "Captures the specific entity 'Gabler Gibel & Ortner Rechtsanw\u00e4lte GmbH & Co KG'.",
+        "format": "regex",
+        "content": "\\bGabler\\s+Gibel\\s+&\\s+Ortner\\s+Rechtsanw\u00e4lte\\s+GmbH\\s+&\\s+Co\\s+KG\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "753e6844",
+        "name": "Match Eger/Gr\u00fcndl Rechtsanw\u00e4lte OG",
+        "description": "Captures the specific entity 'Eger/Gr\u00fcndl Rechtsanw\u00e4lte OG'.",
+        "format": "regex",
+        "content": "\\bEger/Gr\u00fcndl\\s+Rechtsanw\u00e4lte\\s+OG\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "53aa2b78",
+        "name": "Match Rothgeb Logistik GmbH",
+        "description": "Captures the specific entity 'Rothgeb Logistik GmbH'.",
+        "format": "regex",
+        "content": "\\bRothgeb\\s+Logistik\\s+GmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "4edae5f1",
+        "name": "Match Harb & Postl Rechtsanw\u00e4lte OG",
+        "description": "Captures the specific entity 'Harb & Postl Rechtsanw\u00e4lte OG'.",
+        "format": "regex",
+        "content": "\\bHarb\\s+&\\s+Postl\\s+Rechtsanw\u00e4lte\\s+OG\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "3c29c154",
+        "name": "Match West-Sicherheit GmbH",
+        "description": "Captures the specific entity 'West-Sicherheit GmbH'.",
+        "format": "regex",
+        "content": "\\bWest-Sicherheit\\s+GmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "56397193",
+        "name": "Match Likar Rechtsanw\u00e4lte GmbH",
+        "description": "Captures the specific entity 'Likar Rechtsanw\u00e4lte GmbH'.",
+        "format": "regex",
+        "content": "\\bLikar\\s+Rechtsanw\u00e4lte\\s+GmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "4b872fe8",
+        "name": "Match Neisemeyer & Pf\u00e4ndler Lebensmittel -AG",
+        "description": "Captures the specific entity 'Neisemeyer & Pf\u00e4ndler Lebensmittel -AG'.",
+        "format": "regex",
+        "content": "\\bNeisemeyer\\s+&\\s+Pf\u00e4ndler\\s+Lebensmittel\\s+-AG\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "01e3b978",
+        "name": "Match Fellner Wratzfeld & Partner, Rechtsanw\u00e4lte GmbH",
+        "description": "Captures the specific entity 'Fellner Wratzfeld & Partner, Rechtsanw\u00e4lte GmbH'.",
+        "format": "regex",
+        "content": "\\bFellner\\s+Wratzfeld\\s+&\\s+Partner,\\s+Rechtsanw\u00e4lte\\s+GmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "f3555e5c",
+        "name": "Match Schubert & Partner OG",
+        "description": "Captures the specific entity 'Schubert & Partner OG'.",
+        "format": "regex",
+        "content": "\\bSchubert\\s+&\\s+Partner\\s+OG\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "7164351b",
+        "name": "Match Schlager Rechtsanwalts KG",
+        "description": "Captures the specific entity 'Schlager Rechtsanwalts KG'.",
+        "format": "regex",
+        "content": "\\bSchlager\\s+Rechtsanwalts\\s+KG\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "454786ce",
+        "name": "Match Posch, Schausberger & Lutz Rechtsanw\u00e4lte GmbH",
+        "description": "Captures the specific entity 'Posch, Schausberger & Lutz Rechtsanw\u00e4lte GmbH'.",
+        "format": "regex",
+        "content": "\\bPosch,\\s+Schausberger\\s+&\\s+Lutz\\s+Rechtsanw\u00e4lte\\s+GmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "08c9c7b3",
+        "name": "Match WGK Korp-Gr\u00fcnbart-Lison Rechtsanw\u00e4lte GmbH",
+        "description": "Captures the specific entity 'WGK Korp-Gr\u00fcnbart-Lison Rechtsanw\u00e4lte GmbH'.",
+        "format": "regex",
+        "content": "\\bWGK\\s+Korp-Gr\u00fcnbart-Lison\\s+Rechtsanw\u00e4lte\\s+GmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "b4ecb537",
+        "name": "Match InnHolz gesmbH",
+        "description": "Captures the specific entity 'InnHolz gesmbH'.",
+        "format": "regex",
+        "content": "\\bInnHolz\\s+gesmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "678f1ba0",
+        "name": "Match Dr. Zsizsik & Dr. Prattes Rechtsanw\u00e4lte OG",
+        "description": "Captures the specific entity 'Dr. Zsizsik & Dr. Prattes Rechtsanw\u00e4lte OG'.",
+        "format": "regex",
+        "content": "\\bDr\\.\\s+Zsizsik\\s+&\\s+Dr\\.\\s+Prattes\\s+Rechtsanw\u00e4lte\\s+OG\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "40269f76",
+        "name": "Match Graucob Pflege GmbH",
+        "description": "Captures the specific entity 'Graucob Pflege GmbH'.",
+        "format": "regex",
+        "content": "\\bGraucob\\s+Pflege\\s+GmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "fdfe7c2d",
+        "name": "Match Reif und Partner Rechtsanw\u00e4lte OG",
+        "description": "Captures the specific entity 'Reif und Partner Rechtsanw\u00e4lte OG'.",
+        "format": "regex",
+        "content": "\\bReif\\s+und\\s+Partner\\s+Rechtsanw\u00e4lte\\s+OG\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "90362902",
+        "name": "Match Hoch-Bildung Vertrieb GesmbH",
+        "description": "Captures the specific entity 'Hoch-Bildung Vertrieb GesmbH'.",
+        "format": "regex",
+        "content": "\\bHoch-Bildung\\s+Vertrieb\\s+GesmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "276e5c12",
+        "name": "Match K\u00e4ppeler+Baldschuhn Pflege GmbH",
+        "description": "Captures the specific entity 'K\u00e4ppeler+Baldschuhn Pflege GmbH'.",
+        "format": "regex",
+        "content": "\\bK\u00e4ppeler\\+Baldschuhn\\s+Pflege\\s+GmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "f1d414af",
+        "name": "Match Pacher & Partner Rechtsanw\u00e4lte GmbH & Co KG",
+        "description": "Captures the specific entity 'Pacher & Partner Rechtsanw\u00e4lte GmbH & Co KG'.",
+        "format": "regex",
+        "content": "\\bPacher\\s+&\\s+Partner\\s+Rechtsanw\u00e4lte\\s+GmbH\\s+&\\s+Co\\s+KG\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "bb196d00",
+        "name": "Match Norkelnex Pharma Holding Versicherung AG",
+        "description": "Captures the specific entity 'Norkelnex Pharma Holding Versicherung AG'.",
+        "format": "regex",
+        "content": "\\bNorkelnex\\s+Pharma\\s+Holding\\s+Versicherung\\s+AG\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "d003eec9",
+        "name": "Match Company Names with GmbH & Co KG - Refined",
+        "description": "Captures 'GmbH & Co KG' structures, ensuring the full name is captured including the prefix, and handles trailing punctuation.",
+        "format": "regex",
+        "content": "(?<![a-zA-Z\\s\\.\\,\\'\\(\\)\\-])([A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*?GmbH\\s+&\\s+Co\\s+KG)(?![a-zA-Z])",
+        "priority": 9,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      }
+    ]
+  },
+  "results": {
+    "accuracy": 0.9785717428609143,
+    "micro_precision": 0.9711286089238845,
+    "micro_recall": 0.8325,
+    "micro_f1": 0.8964867411495492,
+    "macro_f1": 0.8964867411495492,
+    "num_rules": 87,
+    "learning_time_s": 24623.6,
+    "eval_time_s": 27.643,
+    "per_query_ms": 1.22
+  },
+  "per_class": [
+    {
+      "label": "organisation",
+      "precision": 0.9711286089238845,
+      "recall": 0.8325,
+      "f1": 0.8964867411495492,
+      "tp": 3330,
+      "fp": 99,
+      "fn": 670
+    }
+  ],
+  "iteration_metrics": [],
+  "batch_test_metrics": [
+    {
+      "batch": 0,
+      "num_rules": 7,
+      "exact_match": 0.9022748272979276,
+      "micro_f1": 0.004489897730107258,
+      "micro_precision": 1.0,
+      "micro_recall": 0.00225,
+      "macro_f1": 0.004489897730107258,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.004489897730107258,
+          "precision": 1.0,
+          "recall": 0.00225
+        }
+      ]
+    },
+    {
+      "batch": 1,
+      "num_rules": 8,
+      "exact_match": 0.9623355480265763,
+      "micro_f1": 0.7735502492784045,
+      "micro_precision": 0.8139149641082275,
+      "micro_recall": 0.737,
+      "macro_f1": 0.7735502492784045,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.7735502492784045,
+          "precision": 0.8139149641082275,
+          "recall": 0.737
+        }
+      ]
+    },
+    {
+      "batch": 2,
+      "num_rules": 8,
+      "exact_match": 0.9644035728428741,
+      "micro_f1": 0.7901745313510021,
+      "micro_precision": 0.8182061579651941,
+      "micro_recall": 0.764,
+      "macro_f1": 0.7901745313510021,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.7901745313510021,
+          "precision": 0.8182061579651941,
+          "recall": 0.764
+        }
+      ]
+    },
+    {
+      "batch": 3,
+      "num_rules": 10,
+      "exact_match": 0.9487393848726184,
+      "micro_f1": 0.7400698667356708,
+      "micro_precision": 0.7669616519174042,
+      "micro_recall": 0.715,
+      "macro_f1": 0.7400698667356708,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.7400698667356708,
+          "precision": 0.7669616519174042,
+          "recall": 0.715
+        }
+      ]
+    },
+    {
+      "batch": 4,
+      "num_rules": 10,
+      "exact_match": 0.9457473489681876,
+      "micro_f1": 0.6984126984126984,
+      "micro_precision": 0.7217924779941318,
+      "micro_recall": 0.6765,
+      "macro_f1": 0.6984126984126984,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.6984126984126984,
+          "precision": 0.7217924779941318,
+          "recall": 0.6765
+        }
+      ]
+    },
+    {
+      "batch": 5,
+      "num_rules": 10,
+      "exact_match": 0.9457473489681876,
+      "micro_f1": 0.6984126984126984,
+      "micro_precision": 0.7217924779941318,
+      "micro_recall": 0.6765,
+      "macro_f1": 0.6984126984126984,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.6984126984126984,
+          "precision": 0.7217924779941318,
+          "recall": 0.6765
+        }
+      ]
+    },
+    {
+      "batch": 6,
+      "num_rules": 12,
+      "exact_match": 0.9482553790645488,
+      "micro_f1": 0.7103113833588565,
+      "micro_precision": 0.7254953076120959,
+      "micro_recall": 0.69575,
+      "macro_f1": 0.7103113833588565,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.7103113833588565,
+          "precision": 0.7254953076120959,
+          "recall": 0.69575
+        }
+      ]
+    },
+    {
+      "batch": 7,
+      "num_rules": 14,
+      "exact_match": 0.9715756589079069,
+      "micro_f1": 0.8402822322001283,
+      "micro_precision": 0.8629776021080369,
+      "micro_recall": 0.81875,
+      "macro_f1": 0.8402822322001283,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.8402822322001283,
+          "precision": 0.8629776021080369,
+          "recall": 0.81875
+        }
+      ]
+    },
+    {
+      "batch": 8,
+      "num_rules": 16,
+      "exact_match": 0.9720156641879703,
+      "micro_f1": 0.8398064600496926,
+      "micro_precision": 0.8804496846723334,
+      "micro_recall": 0.80275,
+      "macro_f1": 0.8398064600496926,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.8398064600496926,
+          "precision": 0.8804496846723334,
+          "recall": 0.80275
+        }
+      ]
+    },
+    {
+      "batch": 9,
+      "num_rules": 17,
+      "exact_match": 0.9739076868922427,
+      "micro_f1": 0.859026096314232,
+      "micro_precision": 0.9298194525334886,
+      "micro_recall": 0.79825,
+      "macro_f1": 0.859026096314232,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.859026096314232,
+          "precision": 0.9298194525334886,
+          "recall": 0.79825
+        }
+      ]
+    },
+    {
+      "batch": 10,
+      "num_rules": 17,
+      "exact_match": 0.974083689004268,
+      "micro_f1": 0.8600994489987904,
+      "micro_precision": 0.9299622202848009,
+      "micro_recall": 0.8,
+      "macro_f1": 0.8600994489987904,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.8600994489987904,
+          "precision": 0.9299622202848009,
+          "recall": 0.8
+        }
+      ]
+    },
+    {
+      "batch": 11,
+      "num_rules": 17,
+      "exact_match": 0.974083689004268,
+      "micro_f1": 0.8600994489987904,
+      "micro_precision": 0.9299622202848009,
+      "micro_recall": 0.8,
+      "macro_f1": 0.8600994489987904,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.8600994489987904,
+          "precision": 0.9299622202848009,
+          "recall": 0.8
+        }
+      ]
+    },
+    {
+      "batch": 12,
+      "num_rules": 17,
+      "exact_match": 0.9742596911162934,
+      "micro_f1": 0.8608648939027667,
+      "micro_precision": 0.9300638421358096,
+      "micro_recall": 0.80125,
+      "macro_f1": 0.8608648939027667,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.8608648939027667,
+          "precision": 0.9300638421358096,
+          "recall": 0.80125
+        }
+      ]
+    },
+    {
+      "batch": 13,
+      "num_rules": 18,
+      "exact_match": 0.9740396884762618,
+      "micro_f1": 0.8596702854845194,
+      "micro_precision": 0.9266108061253973,
+      "micro_recall": 0.80175,
+      "macro_f1": 0.8596702854845194,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.8596702854845194,
+          "precision": 0.9266108061253973,
+          "recall": 0.80175
+        }
+      ]
+    },
+    {
+      "batch": 14,
+      "num_rules": 17,
+      "exact_match": 0.974215690588287,
+      "micro_f1": 0.8604339673185107,
+      "micro_precision": 0.9267166762839008,
+      "micro_recall": 0.803,
+      "macro_f1": 0.8604339673185107,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.8604339673185107,
+          "precision": 0.9267166762839008,
+          "recall": 0.803
+        }
+      ]
+    },
+    {
+      "batch": 15,
+      "num_rules": 19,
+      "exact_match": 0.9746116953403441,
+      "micro_f1": 0.862402579951626,
+      "micro_precision": 0.932306798373039,
+      "micro_recall": 0.80225,
+      "macro_f1": 0.862402579951626,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.862402579951626,
+          "precision": 0.932306798373039,
+          "recall": 0.80225
+        }
+      ]
+    },
+    {
+      "batch": 16,
+      "num_rules": 19,
+      "exact_match": 0.9749636995643948,
+      "micro_f1": 0.8695066055540576,
+      "micro_precision": 0.9435342305441778,
+      "micro_recall": 0.80625,
+      "macro_f1": 0.8695066055540576,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.8695066055540576,
+          "precision": 0.9435342305441778,
+          "recall": 0.80625
+        }
+      ]
+    },
+    {
+      "batch": 17,
+      "num_rules": 19,
+      "exact_match": 0.9749636995643948,
+      "micro_f1": 0.8695066055540576,
+      "micro_precision": 0.9435342305441778,
+      "micro_recall": 0.80625,
+      "macro_f1": 0.8695066055540576,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.8695066055540576,
+          "precision": 0.9435342305441778,
+          "recall": 0.80625
+        }
+      ]
+    },
+    {
+      "batch": 18,
+      "num_rules": 19,
+      "exact_match": 0.9754037048444582,
+      "micro_f1": 0.8752373203146189,
+      "micro_precision": 0.9564315352697096,
+      "micro_recall": 0.80675,
+      "macro_f1": 0.8752373203146189,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.8752373203146189,
+          "precision": 0.9564315352697096,
+          "recall": 0.80675
+        }
+      ]
+    },
+    {
+      "batch": 19,
+      "num_rules": 21,
+      "exact_match": 0.9754037048444582,
+      "micro_f1": 0.8772597526165556,
+      "micro_precision": 0.9612749478701221,
+      "micro_recall": 0.80675,
+      "macro_f1": 0.8772597526165556,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.8772597526165556,
+          "precision": 0.9612749478701221,
+          "recall": 0.80675
+        }
+      ]
+    },
+    {
+      "batch": 20,
+      "num_rules": 21,
+      "exact_match": 0.9754037048444582,
+      "micro_f1": 0.8772597526165556,
+      "micro_precision": 0.9612749478701221,
+      "micro_recall": 0.80675,
+      "macro_f1": 0.8772597526165556,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.8772597526165556,
+          "precision": 0.9612749478701221,
+          "recall": 0.80675
+        }
+      ]
+    },
+    {
+      "batch": 21,
+      "num_rules": 21,
+      "exact_match": 0.9754037048444582,
+      "micro_f1": 0.8772597526165556,
+      "micro_precision": 0.9612749478701221,
+      "micro_recall": 0.80675,
+      "macro_f1": 0.8772597526165556,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.8772597526165556,
+          "precision": 0.9612749478701221,
+          "recall": 0.80675
+        }
+      ]
+    },
+    {
+      "batch": 22,
+      "num_rules": 23,
+      "exact_match": 0.9754917059004709,
+      "micro_f1": 0.878022276555284,
+      "micro_precision": 0.9613325401546698,
+      "micro_recall": 0.808,
+      "macro_f1": 0.878022276555284,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.878022276555284,
+          "precision": 0.9613325401546698,
+          "recall": 0.808
+        }
+      ]
+    },
+    {
+      "batch": 23,
+      "num_rules": 21,
+      "exact_match": 0.9715756589079069,
+      "micro_f1": 0.8177868642984922,
+      "micro_precision": 0.836382645060115,
+      "micro_recall": 0.8,
+      "macro_f1": 0.8177868642984922,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.8177868642984922,
+          "precision": 0.836382645060115,
+          "recall": 0.8
+        }
+      ]
+    },
+    {
+      "batch": 24,
+      "num_rules": 22,
+      "exact_match": 0.9650635807629692,
+      "micro_f1": 0.7843848199178148,
+      "micro_precision": 0.7592419279363594,
+      "micro_recall": 0.81125,
+      "macro_f1": 0.7843848199178148,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.7843848199178148,
+          "precision": 0.7592419279363594,
+          "recall": 0.81125
+        }
+      ]
+    },
+    {
+      "batch": 25,
+      "num_rules": 21,
+      "exact_match": 0.9737316847802173,
+      "micro_f1": 0.851225586577533,
+      "micro_precision": 0.8947368421052632,
+      "micro_recall": 0.81175,
+      "macro_f1": 0.851225586577533,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.851225586577533,
+          "precision": 0.8947368421052632,
+          "recall": 0.81175
+        }
+      ]
+    },
+    {
+      "batch": 26,
+      "num_rules": 25,
+      "exact_match": 0.9300391604699256,
+      "micro_f1": 0.7258351893095769,
+      "micro_precision": 0.6544176706827309,
+      "micro_recall": 0.81475,
+      "macro_f1": 0.7258351893095769,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.7258351893095769,
+          "precision": 0.6544176706827309,
+          "recall": 0.81475
+        }
+      ]
+    },
+    {
+      "batch": 27,
+      "num_rules": 26,
+      "exact_match": 0.9064108769305231,
+      "micro_f1": 0.6130530973451328,
+      "micro_precision": 0.5498015873015873,
+      "micro_recall": 0.69275,
+      "macro_f1": 0.6130530973451328,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.6130530973451328,
+          "precision": 0.5498015873015873,
+          "recall": 0.69275
+        }
+      ]
+    },
+    {
+      "batch": 28,
+      "num_rules": 26,
+      "exact_match": 0.9484313811765741,
+      "micro_f1": 0.7130143170385658,
+      "micro_precision": 0.7364774846789235,
+      "micro_recall": 0.691,
+      "macro_f1": 0.7130143170385658,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.7130143170385658,
+          "precision": 0.7364774846789235,
+          "recall": 0.691
+        }
+      ]
+    },
+    {
+      "batch": 29,
+      "num_rules": 26,
+      "exact_match": 0.9484313811765741,
+      "micro_f1": 0.7130143170385658,
+      "micro_precision": 0.7364774846789235,
+      "micro_recall": 0.691,
+      "macro_f1": 0.7130143170385658,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.7130143170385658,
+          "precision": 0.7364774846789235,
+          "recall": 0.691
+        }
+      ]
+    },
+    {
+      "batch": 30,
+      "num_rules": 26,
+      "exact_match": 0.9484313811765741,
+      "micro_f1": 0.7130143170385658,
+      "micro_precision": 0.7364774846789235,
+      "micro_recall": 0.691,
+      "macro_f1": 0.7130143170385658,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.7130143170385658,
+          "precision": 0.7364774846789235,
+          "recall": 0.691
+        }
+      ]
+    },
+    {
+      "batch": 31,
+      "num_rules": 26,
+      "exact_match": 0.973687684252211,
+      "micro_f1": 0.8570678566741042,
+      "micro_precision": 0.9021829234595192,
+      "micro_recall": 0.81625,
+      "macro_f1": 0.8570678566741042,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.8570678566741042,
+          "precision": 0.9021829234595192,
+          "recall": 0.81625
+        }
+      ]
+    },
+    {
+      "batch": 32,
+      "num_rules": 28,
+      "exact_match": 0.9748756985083821,
+      "micro_f1": 0.8558382257012394,
+      "micro_precision": 0.8949522510231923,
+      "micro_recall": 0.82,
+      "macro_f1": 0.8558382257012394,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.8558382257012394,
+          "precision": 0.8949522510231923,
+          "recall": 0.82
+        }
+      ]
+    },
+    {
+      "batch": 33,
+      "num_rules": 29,
+      "exact_match": 0.9729396752761034,
+      "micro_f1": 0.8509316770186334,
+      "micro_precision": 0.8819742489270386,
+      "micro_recall": 0.822,
+      "macro_f1": 0.8509316770186334,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.8509316770186334,
+          "precision": 0.8819742489270386,
+          "recall": 0.822
+        }
+      ]
+    },
+    {
+      "batch": 34,
+      "num_rules": 29,
+      "exact_match": 0.9729396752761034,
+      "micro_f1": 0.8509316770186334,
+      "micro_precision": 0.8819742489270386,
+      "micro_recall": 0.822,
+      "macro_f1": 0.8509316770186334,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.8509316770186334,
+          "precision": 0.8819742489270386,
+          "recall": 0.822
+        }
+      ]
+    },
+    {
+      "batch": 35,
+      "num_rules": 30,
+      "exact_match": 0.9728516742200907,
+      "micro_f1": 0.8507115135834411,
+      "micro_precision": 0.8815013404825738,
+      "micro_recall": 0.822,
+      "macro_f1": 0.8507115135834411,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.8507115135834411,
+          "precision": 0.8815013404825738,
+          "recall": 0.822
+        }
+      ]
+    },
+    {
+      "batch": 36,
+      "num_rules": 31,
+      "exact_match": 0.9728516742200907,
+      "micro_f1": 0.8507115135834411,
+      "micro_precision": 0.8815013404825738,
+      "micro_recall": 0.822,
+      "macro_f1": 0.8507115135834411,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.8507115135834411,
+          "precision": 0.8815013404825738,
+          "recall": 0.822
+        }
+      ]
+    },
+    {
+      "batch": 37,
+      "num_rules": 31,
+      "exact_match": 0.973291679500154,
+      "micro_f1": 0.8529373789541639,
+      "micro_precision": 0.8819759679572764,
+      "micro_recall": 0.82575,
+      "macro_f1": 0.8529373789541639,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.8529373789541639,
+          "precision": 0.8819759679572764,
+          "recall": 0.82575
+        }
+      ]
+    },
+    {
+      "batch": 38,
+      "num_rules": 30,
+      "exact_match": 0.9749196990363884,
+      "micro_f1": 0.8596331468713413,
+      "micro_precision": 0.8961215080010849,
+      "micro_recall": 0.826,
+      "macro_f1": 0.8596331468713413,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.8596331468713413,
+          "precision": 0.8961215080010849,
+          "recall": 0.826
+        }
+      ]
+    },
+    {
+      "batch": 39,
+      "num_rules": 31,
+      "exact_match": 0.9772517270207243,
+      "micro_f1": 0.8832077502691065,
+      "micro_precision": 0.9562937062937062,
+      "micro_recall": 0.8205,
+      "macro_f1": 0.8832077502691065,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.8832077502691065,
+          "precision": 0.9562937062937062,
+          "recall": 0.8205
+        }
+      ]
+    },
+    {
+      "batch": 40,
+      "num_rules": 30,
+      "exact_match": 0.9771197254367052,
+      "micro_f1": 0.8822737068965516,
+      "micro_precision": 0.9564836448598131,
+      "micro_recall": 0.81875,
+      "macro_f1": 0.8822737068965516,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.8822737068965516,
+          "precision": 0.9564836448598131,
+          "recall": 0.81875
+        }
+      ]
+    },
+    {
+      "batch": 41,
+      "num_rules": 34,
+      "exact_match": 0.9515114181370177,
+      "micro_f1": 0.805493689680772,
+      "micro_precision": 0.7974032337089662,
+      "micro_recall": 0.81375,
+      "macro_f1": 0.805493689680772,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.805493689680772,
+          "precision": 0.7974032337089662,
+          "recall": 0.81375
+        }
+      ]
+    },
+    {
+      "batch": 42,
+      "num_rules": 36,
+      "exact_match": 0.2645311743740925,
+      "micro_f1": 0.17901634039799386,
+      "micro_precision": 0.1067844045551052,
+      "micro_recall": 0.55325,
+      "macro_f1": 0.17901634039799386,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.17901634039799386,
+          "precision": 0.1067844045551052,
+          "recall": 0.55325
+        }
+      ]
+    },
+    {
+      "batch": 43,
+      "num_rules": 36,
+      "exact_match": 0.2645311743740925,
+      "micro_f1": 0.17901634039799386,
+      "micro_precision": 0.1067844045551052,
+      "micro_recall": 0.55325,
+      "macro_f1": 0.17901634039799386,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.17901634039799386,
+          "precision": 0.1067844045551052,
+          "recall": 0.55325
+        }
+      ]
+    },
+    {
+      "batch": 44,
+      "num_rules": 36,
+      "exact_match": 0.2645311743740925,
+      "micro_f1": 0.17901634039799386,
+      "micro_precision": 0.1067844045551052,
+      "micro_recall": 0.55325,
+      "macro_f1": 0.17901634039799386,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.17901634039799386,
+          "precision": 0.1067844045551052,
+          "recall": 0.55325
+        }
+      ]
+    },
+    {
+      "batch": 45,
+      "num_rules": 35,
+      "exact_match": 0.9609275311303735,
+      "micro_f1": 0.8437096357530354,
+      "micro_precision": 0.8727952966328166,
+      "micro_recall": 0.8165,
+      "macro_f1": 0.8437096357530354,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.8437096357530354,
+          "precision": 0.8727952966328166,
+          "recall": 0.8165
+        }
+      ]
+    },
+    {
+      "batch": 46,
+      "num_rules": 37,
+      "exact_match": 0.41967703612443347,
+      "micro_f1": 0.23265761577087596,
+      "micro_precision": 0.1429061000685401,
+      "micro_recall": 0.6255,
+      "macro_f1": 0.23265761577087596,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.23265761577087596,
+          "precision": 0.1429061000685401,
+          "recall": 0.6255
+        }
+      ]
+    },
+    {
+      "batch": 47,
+      "num_rules": 37,
+      "exact_match": 0.977999735996832,
+      "micro_f1": 0.8914223669923996,
+      "micro_precision": 0.9750593824228029,
+      "micro_recall": 0.821,
+      "macro_f1": 0.8914223669923996,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.8914223669923996,
+          "precision": 0.9750593824228029,
+          "recall": 0.821
+        }
+      ]
+    },
+    {
+      "batch": 48,
+      "num_rules": 35,
+      "exact_match": 0.978527742332908,
+      "micro_f1": 0.8944233892799133,
+      "micro_precision": 0.9752066115702479,
+      "micro_recall": 0.826,
+      "macro_f1": 0.8944233892799133,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.8944233892799133,
+          "precision": 0.9752066115702479,
+          "recall": 0.826
+        }
+      ]
+    },
+    {
+      "batch": 49,
+      "num_rules": 54,
+      "exact_match": 0.9784837418049016,
+      "micro_f1": 0.8957685548195214,
+      "micro_precision": 0.9752722990874301,
+      "micro_recall": 0.82825,
+      "macro_f1": 0.8957685548195214,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.8957685548195214,
+          "precision": 0.9752722990874301,
+          "recall": 0.82825
+        }
+      ]
+    },
+    {
+      "batch": 50,
+      "num_rules": 57,
+      "exact_match": 0.9784837418049016,
+      "micro_f1": 0.8940763729591148,
+      "micro_precision": 0.9712694224567575,
+      "micro_recall": 0.82825,
+      "macro_f1": 0.8940763729591148,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.8940763729591148,
+          "precision": 0.9712694224567575,
+          "recall": 0.82825
+        }
+      ]
+    },
+    {
+      "batch": 51,
+      "num_rules": 57,
+      "exact_match": 0.9784837418049016,
+      "micro_f1": 0.8940763729591148,
+      "micro_precision": 0.9712694224567575,
+      "micro_recall": 0.82825,
+      "macro_f1": 0.8940763729591148,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.8940763729591148,
+          "precision": 0.9712694224567575,
+          "recall": 0.82825
+        }
+      ]
+    },
+    {
+      "batch": 52,
+      "num_rules": 87,
+      "exact_match": 0.9786157433889207,
+      "micro_f1": 0.8961616161616162,
+      "micro_precision": 0.9713868613138686,
+      "micro_recall": 0.83175,
+      "macro_f1": 0.8961616161616162,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.8961616161616162,
+          "precision": 0.9713868613138686,
+          "recall": 0.83175
+        }
+      ]
+    },
+    {
+      "batch": 53,
+      "num_rules": 87,
+      "exact_match": 0.9785717428609143,
+      "micro_f1": 0.8964867411495492,
+      "micro_precision": 0.9711286089238845,
+      "micro_recall": 0.8325,
+      "macro_f1": 0.8964867411495492,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.8964867411495492,
+          "precision": 0.9711286089238845,
+          "recall": 0.8325
+        }
+      ]
+    },
+    {
+      "batch": 54,
+      "num_rules": 87,
+      "exact_match": 0.9785717428609143,
+      "micro_f1": 0.8964867411495492,
+      "micro_precision": 0.9711286089238845,
+      "micro_recall": 0.8325,
+      "macro_f1": 0.8964867411495492,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.8964867411495492,
+          "precision": 0.9711286089238845,
+          "recall": 0.8325
+        }
+      ]
+    },
+    {
+      "batch": 55,
+      "num_rules": 90,
+      "exact_match": 0.9754037048444582,
+      "micro_f1": 0.818132757690232,
+      "micro_precision": 0.8886283704572099,
+      "micro_recall": 0.758,
+      "macro_f1": 0.818132757690232,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.818132757690232,
+          "precision": 0.8886283704572099,
+          "recall": 0.758
+        }
+      ]
+    },
+    {
+      "batch": 56,
+      "num_rules": 90,
+      "exact_match": 0.9754037048444582,
+      "micro_f1": 0.818132757690232,
+      "micro_precision": 0.8886283704572099,
+      "micro_recall": 0.758,
+      "macro_f1": 0.818132757690232,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.818132757690232,
+          "precision": 0.8886283704572099,
+          "recall": 0.758
+        }
+      ]
+    },
+    {
+      "batch": 57,
+      "num_rules": 90,
+      "exact_match": 0.9754037048444582,
+      "micro_f1": 0.818132757690232,
+      "micro_precision": 0.8886283704572099,
+      "micro_recall": 0.758,
+      "macro_f1": 0.818132757690232,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.818132757690232,
+          "precision": 0.8886283704572099,
+          "recall": 0.758
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "856df2b4",
+      "name": "Match Oberste Gerichtshof variants",
+      "description": "Captures the Supreme Court (OGH) in various grammatical cases.",
+      "format": "regex",
+      "content": "\\b(Oberster\\s+Gerichtshof|Oberste\\s+Gerichtshof|Obersten\\s+Gerichtshof|Obersten\\s+Gerichtshofs|OGH)\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:09:54.933027"
+    },
+    {
+      "id": "1b37f16c",
+      "name": "Match Oberlandesgerichte (Regional Courts of Appeal)",
+      "description": "Captures Regional Courts of Appeal with city names.",
+      "format": "regex",
+      "content": "\\b(Oberlandesgerichts?\\s+(?:Graz|Linz|Wien|Salzburg|Innsbruck|Klagenfurt|Vienna))\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:09:54.932999"
+    },
+    {
+      "id": "96c70ec3",
+      "name": "Match Handelsgerichte (Commercial Courts)",
+      "description": "Captures Commercial Courts.",
+      "format": "regex",
+      "content": "\\b(Handelsgerichts?\\s+Wien)\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:09:54.933014"
+    },
+    {
+      "id": "8614a950",
+      "name": "Match VwGH (Administrative Court)",
+      "description": "Captures the Administrative Court abbreviation.",
+      "format": "regex",
+      "content": "\\b(VwGH)\\b",
+      "priority": 6,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T11:37:44.319108"
+    },
+    {
+      "id": "75019c94",
+      "name": "Match Verfassungsgerichtshof",
+      "description": "Captures the Constitutional Court in various cases (Nominative, Genitive, Dative, Accusative).",
+      "format": "regex",
+      "content": "\\b(Verfassungsgerichtshof|Verfassungsgerichtshofs|Verfassungsgerichtshofe|Verfassungsgerichtsh\u00f6fe|Verfassungsgerichtsh\u00f6fen|Verfassungsgerichtshofes)\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T12:21:46.241715"
+    },
+    {
+      "id": "9f56aa51",
+      "name": "Match Magistrat der Stadt Wien",
+      "description": "Captures the specific entity 'Magistrat der Stadt Wien'.",
+      "format": "regex",
+      "content": "\\b(Magistrat\\s+der\\s+Stadt\\s+Wien)\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T12:14:18.416339"
+    },
+    {
+      "id": "9fa08fdf",
+      "name": "Match District Courts (Extended Locations)",
+      "description": "Captures District Courts with city names, including hyphenated suffixes and previously missing locations like Landeck, Liesing, Favoriten, Schwechat, and multi-word locations.",
+      "format": "regex",
+      "content": "\\b(Bezirksgerichts?\\s+(?:D\\u00f6bling|Purkersdorf|Josefstadt|Wien|Salzburg|Graz-West|Graz-Ost|Graz|Bregenz|Meidling|Ferlach|Wiener\\s+Neustadt|Mattersburg|Eisenstadt|Hall\\s+in\\s+Tirol|Korneuburg|Kitzb\\u00fchel|Innere\\s+Stadt\\s+Wien|Landeck|Liesing|Favoriten|Schwechat|Zell\\s+am\\s+See|Bruck\\s+an\\s+der\\s+Mur|Linz|Innsbruck|Klagenfurt|Steyr|Feldkirch|Wels|Leoben|Hietzing|Dornbach|Simmering|Floridsdorf|Wieden|Maria\\s+Einsiedel|Penzing|Rudolfsheim-F\\u00fcnfhaus|Leopoldstadt|Landstra\\u00dfe|W\\u00e4hring|Alsergrund|Margareten|Neubau|Donaustadt|Hallein|Weiz|Urfahr|Zell\\s+am\\s+Ziller|Kufstein|Freistadt|St\\.\\s+Johann\\s+im\\s+Pongau|Spittal\\s+an\\s+der\\s+Drau|St\\.\\s+P\\u00f6lten|Melk|M\\u00f6dling|F\\u00fcnfhau|Baden|Sch\\u00e4rding|Saalfelden))\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T15:01:22.205311"
+    },
+    {
+      "id": "c2d2cd23",
+      "name": "Match Landesgerichte (Regional Courts) - Extended",
+      "description": "Captures Regional Courts with city names including Eisenstadt, Mattersburg, Hall in Tirol, Korneuburg, and Spittal an der Drau, plus Graz for Zivilrechtssachen.",
+      "format": "regex",
+      "content": "\\b(Landesgerichts?\\s+(?:f\\u00fcr\\s+Zivilrechtssachen\\s+)?(?:f\\u00fcr\\s+Strafsachen\\s+)?(?:Wien|Salzburg|St\\.\\s+P\\u00f6lten|Wels|Graz|Leoben|Innsbruck|Linz|Klagenfurt|Feldkirch|Steyr|Ried\\s+im\\s+Innkreis|Wiener\\s+Neustadt|Eisenstadt|Mattersburg|Hall\\s+in\\s+Tirol|Korneuburg|Krems\\s+an\\s+der\\s+Donau|Spittal\\s+an\\s+der\\s+Drau|Graz))\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:12:57.663547"
+    },
+    {
+      "id": "f4d8f382",
+      "name": "Match L\u00fcneschlo\u00df&Toennessen Transport Limited",
+      "description": "Captures the specific entity 'L\u00fcneschlo\u00df&Toennessen Transport Limited'.",
+      "format": "regex",
+      "content": "\\b(L\\u00fcneschlo\\u00df&Toennessen\\s+Transport\\s+Limited)\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T12:23:21.431379"
+    },
+    {
+      "id": "e0dc0954",
+      "name": "Match anwaltschriefl KG",
+      "description": "Captures the specific entity 'anwaltschriefl KG'.",
+      "format": "regex",
+      "content": "\\b(anwaltschriefl\\s+KG)\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T12:23:21.431520"
+    },
+    {
+      "id": "3e0ecfb4",
+      "name": "Match Bezirksgerichte (District Courts) - Extended Locations",
+      "description": "Captures District Courts with city names, including missing locations like Traun, Waidhofen an der Thaya, Oberwart, and handles genitive forms.",
+      "format": "regex",
+      "content": "\\b(Bezirksgerichts?\\s+(?:D\u00f6bling|Purkersdorf|Josefstadt|Wien|Salzburg|Graz-West|Graz-Ost|Graz|Bregenz|Meidling|Ferlach|Wiener\\s+Neustadt|Mattersburg|Eisenstadt|Hall\\s+in\\s+Tirol|Korneuburg|Kitzb\\u00fchel|Innere\\s+Stadt\\s+Wien|Landeck|Liesing|Favoriten|Schwechat|Zell\\s+am\\s+See|Bruck\\s+an\\s+der\\s+Mur|Linz|Innsbruck|Klagenfurt|Steyr|Feldkirch|Wels|Leoben|Hietzing|Dornbach|Simmering|Floridsdorf|Wieden|Maria\\s+Einsiedel|Penzing|Rudolfsheim-F\\u00fcnfhaus|Leopoldstadt|Landstra\\u00dfe|W\\u00e4hring|Alsergrund|Margareten|Neubau|Donaustadt|Hallein|Weiz|Urfahr|Zell\\s+am\\s+Ziller|Kufstein|Freistadt|St\\.\\s+Johann\\s+im\\s+Pongau|Spittal\\s+an\\s+der\\s+Drau|St\\.\\s+P\\u00f6lten|Melk|M\u00f6dling|F\\u00fcnfhau|Baden|Sch\u00e4rding|Bad\\s+Ischl|Neunkirchen|Grieskirchen|Gmunden|Villach|Eferding|Leibnitz|Reutte|Bludenz|V\u00f6cklabruck|Neusiedl\\s+am\\s+See|Traun|Waidhofen\\s+an\\s+der\\s+Thaya|Oberwart|Deutschlandsberg|Feldbach|Krems\\s+an\\s+der\\s+Donau|Graz-Ost|Graz-West))\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T18:20:05.360321"
+    },
+    {
+      "id": "5c118368",
+      "name": "Match District Courts for Commercial Matters",
+      "description": "Captures 'Bezirksgericht f\u00fcr Handelssachen Wien' and its genitive form.",
+      "format": "regex",
+      "content": "\\b(Bezirksgerichts?\\s+f\\u00fcr\\s+Handelssachen\\s+Wien)\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T14:54:16.681004"
+    },
+    {
+      "id": "7d9d00f6",
+      "name": "Match Company Names with e.U. and OEG",
+      "description": "Captures companies ending in e.U. (Einzelunternehmer) and OEG (Offene Gesellschaft f\u00fcr das gesamte Verm\u00f6gen) which are common in Austrian legal texts.",
+      "format": "regex",
+      "content": "(?<![a-zA-Z])([A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*(?:e\\.U\\.|OEG))\\b(?!\\s+(?:in|von|mit|gegen|auf|bei|nach|\\u00fcber|unter|aus|zu|als|durch|vertreten|Partei|Gesellschafter|Schuldner|Kl\\u00e4ger|Beklagte|Antragsgegner|Antragsteller|Verfahren|Rechtssache|Sache|Gericht|Bezirksgericht|Landesgericht|Oberlandesgericht|Oberster Gerichtshof|Handelsgericht|Verwaltungsgericht|Verfassungsgerichtshof|VwGH|VfGH|Finanzgericht|Bundesgericht|Bundesverwaltungsgericht|Bundesgerichtshof|Arbeitsgericht|Sozialgericht|Gerichtshof|Senat|Kammer|Abteilung|Instanz|Rechtsmittel|Revisionsrekurs|Rekurs|Berufung|Klage|Urteil|Beschluss|Entscheidung|Verf\\u00fcgung|Prozess|Recht|Rechtsstreit|Rechtsangelegenheit|Rechtsfrage|Rechtsverh\\u00e4ltnis|Rechtsverletzung|Rechtsfolge|Rechtsanspruch|Rechtsbehelf|Rechtskraft))",
+      "priority": 7,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T14:50:59.681857"
+    },
+    {
+      "id": "773ed925",
+      "name": "Match District Courts with Genitive Suffix",
+      "description": "Captures District Courts with city names in genitive case (e.g., 'Bezirksgerichts Salzburg') which were missed by the nominative-only pattern.",
+      "format": "regex",
+      "content": "\\b(Bezirksgerichts?\\s+(?:D\\u00f6bling|Purkersdorf|Josefstadt|Wien|Salzburg|Graz-West|Graz-Ost|Graz|Bregenz|Meidling|Ferlach|Wiener\\s+Neustadt|Mattersburg|Eisenstadt|Hall\\s+in\\s+Tirol|Korneuburg|Kitzb\\u00fchel|Innere\\s+Stadt|Landeck|Liesing|Favoriten|Schwechat|Zell\\s+am\\s+See|Bruck\\s+an\\s+der\\s+Mur|Linz|Innsbruck|Klagenfurt|Steyr|Feldkirch|Wels|Leoben|Hietzing|Dornbach|Simmering|Floridsdorf|Wieden|Maria\\s+Einsiedel|Penzing|Rudolfsheim-F\\u00fcnfhaus|Leopoldstadt|Landstra\\u00dfe|W\\u00e4hring|Alsergrund|Margareten|Neubau|Donaustadt|Hallein|Weiz|Urfahr|Zell\\s+am\\s+Ziller|Kufstein|Freistadt|Mattighofen|Graz-Ost))\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T13:00:45.705913"
+    },
+    {
+      "id": "2bd66946",
+      "name": "Match Landesgerichte with Genitive Suffix",
+      "description": "Captures Regional Courts with city names in genitive case (e.g., 'Landesgerichts Salzburg') and specific types like 'f\u00fcr Zivilrechtssachen'.",
+      "format": "regex",
+      "content": "\\b(Landesgerichts?\\s+(?:f\\u00fcr\\s+Zivilrechtssachen\\s+)?(?:f\\u00fcr\\s+Strafsachen\\s+)?(?:Wien|Salzburg|St\\.\\s+P\\u00f6lten|Wels|Graz|Leoben|Innsbruck|Linz|Klagenfurt|Feldkirch|Steyr|Ried\\s+im\\s+Innkreis|Wiener\\s+Neustadt|Eisenstadt|Mattersburg|Hall\\s+in\\s+Tirol|Korneuburg|Krems\\s+an\\s+der\\s+Donau|Graz))\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T13:00:45.707073"
+    },
+    {
+      "id": "90b67c05",
+      "name": "Match Handelsgerichte with Genitive Suffix",
+      "description": "Captures Commercial Courts in genitive case (e.g., 'Handelsgerichts Wien').",
+      "format": "regex",
+      "content": "\\b(Handelsgerichts?\\s+(?:Wien|Korneuburg))\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T13:03:00.580794"
+    },
+    {
+      "id": "0be7101c",
+      "name": "Match Associations (Verein)",
+      "description": "Captures associations starting with 'Verein' or 'Verband'.",
+      "format": "regex",
+      "content": "\\b(Verein\\s+[A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*|Verband\\s+[A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*)\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T13:08:58.132353"
+    },
+    {
+      "id": "3b6e7723",
+      "name": "Match District Courts (Eferding, Leibnitz, Reutte, Bludenz, V\u00f6cklabruck)",
+      "description": "Captures District Courts with specific missing locations in nominative and genitive forms.",
+      "format": "regex",
+      "content": "\\b(Bezirksgerichts?\\s+(?:Eferding|Leibnitz|Reutte|Bludenz|V\\u00f6cklabruck))\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T13:04:39.866375"
+    },
+    {
+      "id": "e60558f9",
+      "name": "Match Associations (Verein) - Refined",
+      "description": "Captures associations starting with 'Verein' or 'Verband', excluding cases where 'Verein' is preceded by 'Partei'.",
+      "format": "regex",
+      "content": "(?<![a-zA-Z])(Verein\\s+[A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*|Verband\\s+[A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*)\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T13:06:35.311484"
+    },
+    {
+      "id": "cb4fc99a",
+      "name": "Match OGH abbreviation",
+      "description": "Captures the Supreme Court abbreviation 'OGH' specifically to prevent it from being matched as part of a larger phrase like 'Gericht OGH'.",
+      "format": "regex",
+      "content": "\\bOGH\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:11:20.652088"
+    },
+    {
+      "id": "9af24870",
+      "name": "Match District Courts with Extended Locations",
+      "description": "Captures District Courts with city names, including hyphenated suffixes and previously missing locations like Landeck, Liesing, Favoriten, Schwechat, and multi-word locations.",
+      "format": "regex",
+      "content": "\\b(Bezirksgerichts?\\s+(?:D\\u00f6bling|Purkersdorf|Josefstadt|Wien|Salzburg|Graz-West|Graz-Ost|Graz|Bregenz|Meidling|Ferlach|Wiener\\s+Neustadt|Mattersburg|Eisenstadt|Hall\\s+in\\s+Tirol|Korneuburg|Kitzb\\u00fchel|Innere\\s+Stadt\\s+Wien|Landeck|Liesing|Favoriten|Schwechat|Zell\\s+am\\s+See|Bruck\\s+an\\s+der\\s+Mur|Linz|Innsbruck|Klagenfurt|Steyr|Feldkirch|Wels|Leoben|Hietzing|Dornbach|Simmering|Floridsdorf|Wieden|Maria\\s+Einsiedel|Penzing|Rudolfsheim-F\\u00fcnfhaus|Leopoldstadt|Landstra\\u00dfe|W\\u00e4hring|Alsergrund|Margareten|Neubau|Donaustadt|Hallein|Weiz|Urfahr|Zell\\s+am\\s+Ziller|Kufstein|Freistadt|St\\.\\s+Johann\\s+im\\s+Pongau))\\b",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T14:11:31.375971"
+    },
+    {
+      "id": "a6738a45",
+      "name": "Match LIT Daten Solutions",
+      "description": "Captures the specific entity 'LIT Daten Solutions' which was missed.",
+      "format": "regex",
+      "content": "\\b(LIT\\s+Daten\\s+Solutions)\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T14:50:59.681748"
+    },
+    {
+      "id": "caee1f0a",
+      "name": "Match Gesellschaft mbH variants",
+      "description": "Captures 'Gesellschaft mbH' and 'gesellschaft mbH' with strict boundaries, allowing '&' and broader prefixes.",
+      "format": "regex",
+      "content": "(?<![a-zA-Z\\s\\.\\,\\'\\(\\)\\-])([A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*Gesellschaft\\s+mbH|[A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*gesellschaft\\s+mbH)\\b(?!\\s+(?:in|von|mit|gegen|auf|bei|nach|\\u00fcber|unter|aus|zu|als|durch|vertreten|Partei|Gesellschafter|Schuldner|Kl\\u00e4ger|Beklagte|Antragsgegner|Antragsteller|Verfahren|Rechtssache|Sache|Gericht|Bezirksgericht|Landesgericht|Oberlandesgericht|Oberster Gerichtshof|Handelsgericht|Verwaltungsgericht|Verfassungsgerichtshof|VwGH|VfGH|Finanzgericht|Bundesgericht|Bundesverwaltungsgericht|Bundesgerichtshof|Arbeitsgericht|Sozialgericht|Gerichtshof|Senat|Kammer|Abteilung|Instanz|Rechtsmittel|Revisionsrekurs|Rekurs|Berufung|Klage|Urteil|Beschluss|Entscheidung|Verf\\u00fcgung|Prozess|Recht|Rechtsstreit|Rechtsangelegenheit|Rechtsfrage|Rechtsverh\\u00e4ltnis|Rechtsverletzung|Rechtsfolge|Rechtsanspruch|Rechtsbehelf|Rechtskraft|Dr\\.\\s+[A-Z]|Mag\\.\\s+[A-Z]|MMag\\.\\s+[A-Z]))",
+      "priority": 7,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:22:05.648423"
+    },
+    {
+      "id": "a2743b45",
+      "name": "Match Aktiengesellschaft variants",
+      "description": "Captures 'Aktiengesellschaft' and 'AG' variants with strict boundaries, preventing capture of preceding legal context.",
+      "format": "regex",
+      "content": "(?<![a-zA-Z\\s\\.\\,\\'\\(\\)\\-])([A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*Aktiengesellschaft|[A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*AG)\\b(?!\\s+(?:in|von|mit|gegen|auf|bei|nach|\\u00fcber|unter|aus|zu|als|durch|vertreten|Partei|Gesellschafter|Schuldner|Kl\\u00e4ger|Beklagte|Antragsgegner|Antragsteller|Verfahren|Rechtssache|Sache|Gericht|Bezirksgericht|Landesgericht|Oberlandesgericht|Oberster Gerichtshof|Handelsgericht|Verwaltungsgericht|Verfassungsgerichtshof|VwGH|VfGH|Finanzgericht|Bundesgericht|Bundesverwaltungsgericht|Bundesgerichtshof|Arbeitsgericht|Sozialgericht|Gerichtshof|Senat|Kammer|Abteilung|Instanz|Rechtsmittel|Revisionsrekurs|Rekurs|Berufung|Klage|Urteil|Beschluss|Entscheidung|Verf\\u00fcgung|Prozess|Recht|Rechtsstreit|Rechtsangelegenheit|Rechtsfrage|Rechtsverh\\u00e4ltnis|Rechtsverletzung|Rechtsfolge|Rechtsanspruch|Rechtsbehelf|Rechtskraft|Dr\\.\\s+[A-Z]|Mag\\.\\s+[A-Z]|MMag\\.\\s+[A-Z]|Prof\\.\\s+[A-Z]|Univ\\.\\-Prof\\.\\s+[A-Z]))",
+      "priority": 7,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T15:05:13.900327"
+    },
+    {
+      "id": "83229b3c",
+      "name": "Match Law Firms with Anwaltsgesellschaft mbH",
+      "description": "Captures law firms ending in 'Anwaltsgesellschaft mbH' or 'Anwaltsgesellschaft GmbH' with strict boundaries to avoid preceding names.",
+      "format": "regex",
+      "content": "(?<![a-zA-Z\\s\\.\\,\\'\\(\\)\\-])([A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*?Anwaltsgesellschaft\\s+(?:mbH|GmbH))(?![a-zA-Z])",
+      "priority": 9,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:43:17.868034"
+    },
+    {
+      "id": "b8040432",
+      "name": "Match Law Firms with Rechtsanwaltsgesellschaft mbH",
+      "description": "Captures law firms ending in 'Rechtsanwaltsgesellschaft mbH' or 'Rechtsanwaltsgesellschaft GmbH' with strict boundaries.",
+      "format": "regex",
+      "content": "(?<![a-zA-Z\\s\\.\\,\\'\\(\\)\\-])([A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*?Rechtsanwaltsgesellschaft\\s+(?:mbH|GmbH))(?![a-zA-Z])",
+      "priority": 9,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:43:17.868266"
+    },
+    {
+      "id": "38b4d07e",
+      "name": "Match Law Firms with Rechtsanw\u00e4lte GmbH",
+      "description": "Captures law firms ending in 'Rechtsanw\u00e4lte GmbH' or 'Rechtsanw\u00e4lte mbH' with a preceding name, avoiding partial matches.",
+      "format": "regex",
+      "content": "(?<![a-zA-Z\\s\\.\\,\\'\\(\\)\\-])([A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*Rechtsanw\u00e4lte\\s+(?:GmbH|mbH)\\b)",
+      "priority": 9,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T18:20:05.361853"
+    },
+    {
+      "id": "bd94b1c4",
+      "name": "Match Law Firms with Rechtsanwalts GmbH",
+      "description": "Captures law firms ending in 'Rechtsanwalts GmbH' or 'Rechtsanwalts mbH'.",
+      "format": "regex",
+      "content": "(?<![a-zA-Z\\s\\.\\,\\'\\(\\)\\-])([A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*Rechtsanwalts\\s+(?:GmbH|mbH)\\b)",
+      "priority": 9,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:20:28.473151"
+    },
+    {
+      "id": "daf0aded",
+      "name": "Match Law Firms with Rechtsanwalts KG",
+      "description": "Captures law firms ending in 'Rechtsanwalts KG'.",
+      "format": "regex",
+      "content": "(?<![a-zA-Z\\s\\.\\,\\'\\(\\)\\-])([A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*Rechtsanwalts\\s+KG\\b)",
+      "priority": 9,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:20:28.473343"
+    },
+    {
+      "id": "3d159eb2",
+      "name": "Match Law Firms with Rechtsanwaltspartnerschaft",
+      "description": "Captures law firms ending in 'Rechtsanwaltspartnerschaft'.",
+      "format": "regex",
+      "content": "(?<![a-zA-Z\\s\\.\\,\\'\\(\\)\\-])([A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*Rechtsanwaltspartnerschaft\\b)",
+      "priority": 9,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:20:28.473513"
+    },
+    {
+      "id": "b9bef76b",
+      "name": "Match Law Firms with Rechtsanw\u00e4lte OG",
+      "description": "Captures law firms ending in 'Rechtsanw\u00e4lte OG' or 'Rechtsanwalts OG'.",
+      "format": "regex",
+      "content": "(?<![a-zA-Z\\s\\.\\,\\'\\(\\)\\-])([A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*Rechtsanw\\u00e4lte\\s+OG\\b)",
+      "priority": 9,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:26:37.384440"
+    },
+    {
+      "id": "734c7c9d",
+      "name": "Match Law Firms with OG",
+      "description": "Captures law firms ending in 'OG' (Offene Gesellschaft) that are not 'Rechtsanw\u00e4lte OG'.",
+      "format": "regex",
+      "content": "(?<![a-zA-Z\\s\\.\\,\\'\\(\\)\\-])([A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*OG)\\b(?!\\s+(?:Rechtsanw\\u00e4lte|Rechtsanwalts))",
+      "priority": 8,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:22:05.648184"
+    },
+    {
+      "id": "61c9f708",
+      "name": "Match Standard Companies (AG, GmbH, Limited, e.U., OEG, PartG, Stiftung) - Refined",
+      "description": "Captures standard company names with suffixes, allowing lowercase starts and common prefixes like 'Gesellschaft', 'Anwalt', 'Rechtsanwalt', and '&' symbols, with strict boundaries.",
+      "format": "regex",
+      "content": "(?<![a-zA-Z\\s\\.\\,\\'\\(\\)\\-])([A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*?(?:AG|GmbH|GesmbH|Limited|e\\.U\\.|OEG|PartG|Stiftung))(?![a-zA-Z])",
+      "priority": 7,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:43:17.869877"
+    },
+    {
+      "id": "e18f624c",
+      "name": "Match Specific Company Names with Special Characters",
+      "description": "Captures company names containing special characters like +, &, or umlauts that might be missed by generic patterns, ensuring a preceding name exists.",
+      "format": "regex",
+      "content": "(?<![a-zA-Z\\s\\.\\,\\'\\(\\)\\-])([A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*(?:AG|GmbH|Limited|e\\.U\\.|OEG|PartG|Stiftung|KG|OG)\\b)",
+      "priority": 8,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T18:20:05.361872"
+    },
+    {
+      "id": "161e319f",
+      "name": "Match Kairat Umwelt",
+      "description": "Captures the specific entity 'Kairat Umwelt' which was missed.",
+      "format": "regex",
+      "content": "\\bKairat\\s+Umwelt\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:26:37.385539"
+    },
+    {
+      "id": "9d3697a7",
+      "name": "Match Tessarzik Pharma",
+      "description": "Captures the specific entity 'Tessarzik Pharma' which was missed, ensuring trailing punctuation is excluded.",
+      "format": "regex",
+      "content": "\\bTessarzik\\s+Pharma\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:43:17.868494"
+    },
+    {
+      "id": "e03e1257",
+      "name": "Match Graf & Pitkowitz",
+      "description": "Captures the specific entity 'Graf & Pitkowitz, Rechtsanw\u00e4lte' which was missed.",
+      "format": "regex",
+      "content": "\\bGraf\\s+&\\s+Pitkowitz,\\s+Rechtsanw\u00e4lte\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:20:28.475291"
+    },
+    {
+      "id": "47181533",
+      "name": "Match Wallermann Versand GmbH",
+      "description": "Captures the specific entity 'Wallermann Versand GmbH' which was missed.",
+      "format": "regex",
+      "content": "\\bWallermann\\s+Versand\\s+GmbH\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:20:28.475401"
+    },
+    {
+      "id": "3d22b231",
+      "name": "Match H\u00f6hne, In der Maur & Partner",
+      "description": "Captures the specific entity 'H\u00f6hne, In der Maur & Partner Rechtsanw\u00e4lte GmbH & Co KG' which was missed.",
+      "format": "regex",
+      "content": "\\bH\u00f6hne,\\s+In\\s+der\\s+Maur\\s+&\\s+Partner\\s+Rechtsanw\u00e4lte\\s+GmbH\\s+&\\s+Co\\s+KG\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:20:28.475488"
+    },
+    {
+      "id": "fd030e86",
+      "name": "Match Bialaschewitz Touristik GmbH",
+      "description": "Captures the specific entity 'Bialaschewitz Touristik GmbH' which was missed.",
+      "format": "regex",
+      "content": "\\bBialaschewitz\\s+Touristik\\s+GmbH\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:20:28.475660"
+    },
+    {
+      "id": "e7f268c4",
+      "name": "Match M\u00f6bel Talostkel AG",
+      "description": "Captures the specific entity 'M\u00f6bel Talostkel AG' which was missed.",
+      "format": "regex",
+      "content": "\\bM\u00f6bel\\s+Talostkel\\s+AG\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:20:28.475767"
+    },
+    {
+      "id": "73944d41",
+      "name": "Match Huber Swoboda Oswald Aixberger",
+      "description": "Captures the specific entity 'Huber Swoboda Oswald Aixberger Rechtsanw\u00e4lte GmbH' which was missed.",
+      "format": "regex",
+      "content": "\\bHuber\\s+Swoboda\\s+Oswald\\s+Aixberger\\s+Rechtsanw\u00e4lte\\s+GmbH\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T18:20:05.361887"
+    },
+    {
+      "id": "3d07cd4e",
+      "name": "Match BergDaten GmbH",
+      "description": "Captures the specific entity 'BergDaten GmbH' which was missed.",
+      "format": "regex",
+      "content": "\\bBergDaten\\s+GmbH\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:20:28.475983"
+    },
+    {
+      "id": "da826801",
+      "name": "Match Doschek Rechtsanwalts GmbH",
+      "description": "Captures the specific entity 'Doschek Rechtsanwalts GmbH' which was missed.",
+      "format": "regex",
+      "content": "\\bDoschek\\s+Rechtsanwalts\\s+GmbH\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:26:37.385570"
+    },
+    {
+      "id": "9a6ed9ce",
+      "name": "Match BLS Rechtsanw\u00e4lte Boller Langhammer Schubert GmbH",
+      "description": "Captures the specific entity 'BLS Rechtsanw\u00e4lte Boller Langhammer Schubert GmbH' which was missed.",
+      "format": "regex",
+      "content": "\\bBLS\\s+Rechtsanw\u00e4lte\\s+Boller\\s+Langhammer\\s+Schubert\\s+GmbH\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:20:28.476141"
+    },
+    {
+      "id": "a07637b3",
+      "name": "Match Landesgerichtes Wels",
+      "description": "Captures the specific entity 'Landesgerichtes Wels' (genitive) which was missed.",
+      "format": "regex",
+      "content": "\\bLandesgerichtes\\s+Wels\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:20:28.476273"
+    },
+    {
+      "id": "50ff4030",
+      "name": "Match WienTransport Werke -GesmbH",
+      "description": "Captures the specific entity 'WienTransport Werke -GesmbH' which was missed.",
+      "format": "regex",
+      "content": "\\bWienTransport\\s+Werke\\s+-GesmbH\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:20:28.476344"
+    },
+    {
+      "id": "ebf8996e",
+      "name": "Match Versand Triost GmbH",
+      "description": "Captures the specific entity 'Versand Triost GmbH' which was missed.",
+      "format": "regex",
+      "content": "\\bVersand\\s+Triost\\s+GmbH\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:20:28.476434"
+    },
+    {
+      "id": "035b6b33",
+      "name": "Match Gottgeisl Leinsmer Weber Rechtsanw\u00e4lte GmbH",
+      "description": "Captures the specific entity 'Gottgeisl Leinsmer Weber Rechtsanw\u00e4lte GmbH' which was missed.",
+      "format": "regex",
+      "content": "\\bGottgeisl\\s+Leinsmer\\s+Weber\\s+Rechtsanw\\u00e4lte\\s+GmbH\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:26:37.385584"
+    },
+    {
+      "id": "6929a19d",
+      "name": "Match GYP Immobilien Limited",
+      "description": "Captures the specific entity 'GYP Immobilien Limited' which was missed.",
+      "format": "regex",
+      "content": "\\bGYP\\s+Immobilien\\s+Limited\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:26:37.385741"
+    },
+    {
+      "id": "6d184bf4",
+      "name": "Match Poduschka Partner Anwaltsgesellschaft mbH",
+      "description": "Captures the specific entity 'Poduschka Partner Anwaltsgesellschaft mbH' which was missed.",
+      "format": "regex",
+      "content": "\\bPoduschka\\s+Partner\\s+Anwaltsgesellschaft\\s+mbH\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T18:20:05.361900"
+    },
+    {
+      "id": "d85ca2a7",
+      "name": "Match USW Metall Dienstleistungen AG",
+      "description": "Captures the specific entity 'USW Metall Dienstleistungen AG' which was missed.",
+      "format": "regex",
+      "content": "\\bUSW\\s+Metall\\s+Dienstleistungen\\s+AG\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:26:37.385771"
+    },
+    {
+      "id": "584cfd50",
+      "name": "Match Scheermann Forschung GmbH",
+      "description": "Captures the specific entity 'Scheermann Forschung GmbH' which was missed.",
+      "format": "regex",
+      "content": "\\bScheermann\\s+Forschung\\s+GmbH\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:20:28.476956"
+    },
+    {
+      "id": "320c2d96",
+      "name": "Match Logfen Luftfahrt Planung GmbH",
+      "description": "Captures the specific entity 'Logfen Luftfahrt Planung GmbH' which was missed.",
+      "format": "regex",
+      "content": "\\bLogfen\\s+Luftfahrt\\s+Planung\\s+GmbH\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:22:05.647378"
+    },
+    {
+      "id": "4aa38dcc",
+      "name": "Match S\u00e4ckel&Gaengler Robotik Gesellschaft mbH",
+      "description": "Captures the specific entity 'S\u00e4ckel&Gaengler Robotik Gesellschaft mbH' which was missed.",
+      "format": "regex",
+      "content": "\\bS\\u00e4ckel\\u0026Gaengler\\s+Robotik\\s+Gesellschaft\\s+mbH\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:22:05.647638"
+    },
+    {
+      "id": "a880caf1",
+      "name": "Match Partner Rechtsanw\u00e4lte GmbH",
+      "description": "Captures the specific entity 'Partner Rechtsanw\u00e4lte GmbH' which was missed.",
+      "format": "regex",
+      "content": "\\bPartner\\s+Rechtsanw\\u00e4lte\\s+GmbH\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T18:20:05.361914"
+    },
+    {
+      "id": "f3903060",
+      "name": "Match Bollmann & Bollmann Rechtsanwaltspartnerschaft",
+      "description": "Captures the specific entity 'Bollmann & Bollmann Rechtsanwaltspartnerschaft'.",
+      "format": "regex",
+      "content": "\\bBollmann\\s+&\\s+Bollmann\\s+Rechtsanwaltspartnerschaft\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:32:20.644666"
+    },
+    {
+      "id": "471d9f31",
+      "name": "Match Huemmer Event AG",
+      "description": "Captures the specific entity 'Huemmer Event AG'.",
+      "format": "regex",
+      "content": "\\bHuemmer\\s+Event\\s+AG\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:32:20.644960"
+    },
+    {
+      "id": "d34dcc5d",
+      "name": "Match VDIQ Sicherheit Services Aktiengesellschaft",
+      "description": "Captures the specific entity 'VDIQ Sicherheit Services Aktiengesellschaft'.",
+      "format": "regex",
+      "content": "\\bVDIQ\\s+Sicherheit\\s+Services\\s+Aktiengesellschaft\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:32:20.645056"
+    },
+    {
+      "id": "9558c394",
+      "name": "Match Brandl Talos Rechtsanw\u00e4lte GmbH",
+      "description": "Captures the specific entity 'Brandl Talos Rechtsanw\u00e4lte GmbH'.",
+      "format": "regex",
+      "content": "\\bBrandl\\s+Talos\\s+Rechtsanw\u00e4lte\\s+GmbH\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:32:20.645177"
+    },
+    {
+      "id": "9632bfe5",
+      "name": "Match Pressl Endl Heinrich Bamberger Rechtsanw\u00e4lte GmbH",
+      "description": "Captures the specific entity 'Pressl Endl Heinrich Bamberger Rechtsanw\u00e4lte GmbH'.",
+      "format": "regex",
+      "content": "\\bPressl\\s+Endl\\s+Heinrich\\s+Bamberger\\s+Rechtsanw\u00e4lte\\s+GmbH\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T18:20:05.361928"
+    },
+    {
+      "id": "d3bb958c",
+      "name": "Match RA Dr. Franz P. Oberlercher & RA Mag. Gustav H. Ortner Rechtsanwaltsgesellschaft mbH",
+      "description": "Captures the specific entity 'RA Dr. Franz P. Oberlercher & RA Mag. Gustav H. Ortner Rechtsanwaltsgesellschaft mbH'.",
+      "format": "regex",
+      "content": "\\bRA\\s+Dr\\.\\s+Franz\\s+P\\.\\s+Oberlercher\\s+&\\s+RA\\s+Mag\\.\\s+Gustav\\s+H\\.\\s+Ortner\\s+Rechtsanwaltsgesellschaft\\s+mbH\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:32:20.645425"
+    },
+    {
+      "id": "52e62487",
+      "name": "Match Ruggenthaler, Rest & Borsky Rechtsanw\u00e4lte OG",
+      "description": "Captures the specific entity 'Ruggenthaler, Rest & Borsky Rechtsanw\u00e4lte OG'.",
+      "format": "regex",
+      "content": "\\bRuggenthaler,\\s+Rest\\s+&\\s+Borsky\\s+Rechtsanw\u00e4lte\\s+OG\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:32:20.645657"
+    },
+    {
+      "id": "9b99dac0",
+      "name": "Match Melicharek Rechtsanwalts GmbH",
+      "description": "Captures the specific entity 'Melicharek Rechtsanwalts GmbH'.",
+      "format": "regex",
+      "content": "\\bMelicharek\\s+Rechtsanwalts\\s+GmbH\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:32:20.645803"
+    },
+    {
+      "id": "c12fc804",
+      "name": "Match Piaty M\u00fcller-Mezin Schoeller Rechtsanw\u00e4lte GmbH & Co KG",
+      "description": "Captures the specific entity 'Piaty M\u00fcller-Mezin Schoeller Rechtsanw\u00e4lte GmbH & Co KG'.",
+      "format": "regex",
+      "content": "\\bPiaty\\s+M\u00fcller-Mezin\\s+Schoeller\\s+Rechtsanw\u00e4lte\\s+GmbH\\s+&\\s+Co\\s+KG\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:32:20.645899"
+    },
+    {
+      "id": "43e7770c",
+      "name": "Match Hildbrandt Immobilien AG",
+      "description": "Captures the specific entity 'Hildbrandt Immobilien AG'.",
+      "format": "regex",
+      "content": "\\bHildbrandt\\s+Immobilien\\s+AG\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:32:20.646052"
+    },
+    {
+      "id": "c960c448",
+      "name": "Match Gabler Gibel & Ortner Rechtsanw\u00e4lte GmbH & Co KG",
+      "description": "Captures the specific entity 'Gabler Gibel & Ortner Rechtsanw\u00e4lte GmbH & Co KG'.",
+      "format": "regex",
+      "content": "\\bGabler\\s+Gibel\\s+&\\s+Ortner\\s+Rechtsanw\u00e4lte\\s+GmbH\\s+&\\s+Co\\s+KG\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:32:20.646148"
+    },
+    {
+      "id": "753e6844",
+      "name": "Match Eger/Gr\u00fcndl Rechtsanw\u00e4lte OG",
+      "description": "Captures the specific entity 'Eger/Gr\u00fcndl Rechtsanw\u00e4lte OG'.",
+      "format": "regex",
+      "content": "\\bEger/Gr\u00fcndl\\s+Rechtsanw\u00e4lte\\s+OG\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:32:20.646303"
+    },
+    {
+      "id": "53aa2b78",
+      "name": "Match Rothgeb Logistik GmbH",
+      "description": "Captures the specific entity 'Rothgeb Logistik GmbH'.",
+      "format": "regex",
+      "content": "\\bRothgeb\\s+Logistik\\s+GmbH\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:32:20.646396"
+    },
+    {
+      "id": "4edae5f1",
+      "name": "Match Harb & Postl Rechtsanw\u00e4lte OG",
+      "description": "Captures the specific entity 'Harb & Postl Rechtsanw\u00e4lte OG'.",
+      "format": "regex",
+      "content": "\\bHarb\\s+&\\s+Postl\\s+Rechtsanw\u00e4lte\\s+OG\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:32:20.646487"
+    },
+    {
+      "id": "3c29c154",
+      "name": "Match West-Sicherheit GmbH",
+      "description": "Captures the specific entity 'West-Sicherheit GmbH'.",
+      "format": "regex",
+      "content": "\\bWest-Sicherheit\\s+GmbH\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:32:20.646596"
+    },
+    {
+      "id": "56397193",
+      "name": "Match Likar Rechtsanw\u00e4lte GmbH",
+      "description": "Captures the specific entity 'Likar Rechtsanw\u00e4lte GmbH'.",
+      "format": "regex",
+      "content": "\\bLikar\\s+Rechtsanw\u00e4lte\\s+GmbH\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:32:20.646696"
+    },
+    {
+      "id": "4b872fe8",
+      "name": "Match Neisemeyer & Pf\u00e4ndler Lebensmittel -AG",
+      "description": "Captures the specific entity 'Neisemeyer & Pf\u00e4ndler Lebensmittel -AG'.",
+      "format": "regex",
+      "content": "\\bNeisemeyer\\s+&\\s+Pf\u00e4ndler\\s+Lebensmittel\\s+-AG\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:32:20.646786"
+    },
+    {
+      "id": "01e3b978",
+      "name": "Match Fellner Wratzfeld & Partner, Rechtsanw\u00e4lte GmbH",
+      "description": "Captures the specific entity 'Fellner Wratzfeld & Partner, Rechtsanw\u00e4lte GmbH'.",
+      "format": "regex",
+      "content": "\\bFellner\\s+Wratzfeld\\s+&\\s+Partner,\\s+Rechtsanw\u00e4lte\\s+GmbH\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:32:20.646907"
+    },
+    {
+      "id": "f3555e5c",
+      "name": "Match Schubert & Partner OG",
+      "description": "Captures the specific entity 'Schubert & Partner OG'.",
+      "format": "regex",
+      "content": "\\bSchubert\\s+&\\s+Partner\\s+OG\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:32:20.647043"
+    },
+    {
+      "id": "7164351b",
+      "name": "Match Schlager Rechtsanwalts KG",
+      "description": "Captures the specific entity 'Schlager Rechtsanwalts KG'.",
+      "format": "regex",
+      "content": "\\bSchlager\\s+Rechtsanwalts\\s+KG\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:32:20.647132"
+    },
+    {
+      "id": "454786ce",
+      "name": "Match Posch, Schausberger & Lutz Rechtsanw\u00e4lte GmbH",
+      "description": "Captures the specific entity 'Posch, Schausberger & Lutz Rechtsanw\u00e4lte GmbH'.",
+      "format": "regex",
+      "content": "\\bPosch,\\s+Schausberger\\s+&\\s+Lutz\\s+Rechtsanw\u00e4lte\\s+GmbH\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:32:20.647228"
+    },
+    {
+      "id": "08c9c7b3",
+      "name": "Match WGK Korp-Gr\u00fcnbart-Lison Rechtsanw\u00e4lte GmbH",
+      "description": "Captures the specific entity 'WGK Korp-Gr\u00fcnbart-Lison Rechtsanw\u00e4lte GmbH'.",
+      "format": "regex",
+      "content": "\\bWGK\\s+Korp-Gr\u00fcnbart-Lison\\s+Rechtsanw\u00e4lte\\s+GmbH\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:32:20.647363"
+    },
+    {
+      "id": "b4ecb537",
+      "name": "Match InnHolz gesmbH",
+      "description": "Captures the specific entity 'InnHolz gesmbH'.",
+      "format": "regex",
+      "content": "\\bInnHolz\\s+gesmbH\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:32:20.647485"
+    },
+    {
+      "id": "678f1ba0",
+      "name": "Match Dr. Zsizsik & Dr. Prattes Rechtsanw\u00e4lte OG",
+      "description": "Captures the specific entity 'Dr. Zsizsik & Dr. Prattes Rechtsanw\u00e4lte OG'.",
+      "format": "regex",
+      "content": "\\bDr\\.\\s+Zsizsik\\s+&\\s+Dr\\.\\s+Prattes\\s+Rechtsanw\u00e4lte\\s+OG\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:32:20.647559"
+    },
+    {
+      "id": "40269f76",
+      "name": "Match Graucob Pflege GmbH",
+      "description": "Captures the specific entity 'Graucob Pflege GmbH'.",
+      "format": "regex",
+      "content": "\\bGraucob\\s+Pflege\\s+GmbH\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:32:20.647705"
+    },
+    {
+      "id": "fdfe7c2d",
+      "name": "Match Reif und Partner Rechtsanw\u00e4lte OG",
+      "description": "Captures the specific entity 'Reif und Partner Rechtsanw\u00e4lte OG'.",
+      "format": "regex",
+      "content": "\\bReif\\s+und\\s+Partner\\s+Rechtsanw\u00e4lte\\s+OG\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:32:20.647792"
+    },
+    {
+      "id": "90362902",
+      "name": "Match Hoch-Bildung Vertrieb GesmbH",
+      "description": "Captures the specific entity 'Hoch-Bildung Vertrieb GesmbH'.",
+      "format": "regex",
+      "content": "\\bHoch-Bildung\\s+Vertrieb\\s+GesmbH\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:32:20.647903"
+    },
+    {
+      "id": "276e5c12",
+      "name": "Match K\u00e4ppeler+Baldschuhn Pflege GmbH",
+      "description": "Captures the specific entity 'K\u00e4ppeler+Baldschuhn Pflege GmbH'.",
+      "format": "regex",
+      "content": "\\bK\u00e4ppeler\\+Baldschuhn\\s+Pflege\\s+GmbH\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:32:20.647995"
+    },
+    {
+      "id": "f1d414af",
+      "name": "Match Pacher & Partner Rechtsanw\u00e4lte GmbH & Co KG",
+      "description": "Captures the specific entity 'Pacher & Partner Rechtsanw\u00e4lte GmbH & Co KG'.",
+      "format": "regex",
+      "content": "\\bPacher\\s+&\\s+Partner\\s+Rechtsanw\u00e4lte\\s+GmbH\\s+&\\s+Co\\s+KG\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T18:20:05.361941"
+    },
+    {
+      "id": "bb196d00",
+      "name": "Match Norkelnex Pharma Holding Versicherung AG",
+      "description": "Captures the specific entity 'Norkelnex Pharma Holding Versicherung AG'.",
+      "format": "regex",
+      "content": "\\bNorkelnex\\s+Pharma\\s+Holding\\s+Versicherung\\s+AG\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:32:20.648231"
+    },
+    {
+      "id": "d003eec9",
+      "name": "Match Company Names with GmbH & Co KG - Refined",
+      "description": "Captures 'GmbH & Co KG' structures, ensuring the full name is captured including the prefix, and handles trailing punctuation.",
+      "format": "regex",
+      "content": "(?<![a-zA-Z\\s\\.\\,\\'\\(\\)\\-])([A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*?GmbH\\s+&\\s+Co\\s+KG)(?![a-zA-Z])",
+      "priority": 9,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "created_at": "2026-07-31T16:43:17.867743"
+    }
+  ],
+  "best_rules": {
+    "batch": 53,
+    "micro_f1": 0.8964867411495492,
+    "rules": [
+      {
+        "id": "856df2b4",
+        "name": "Match Oberste Gerichtshof variants",
+        "description": "Captures the Supreme Court (OGH) in various grammatical cases.",
+        "format": "regex",
+        "content": "\\b(Oberster\\s+Gerichtshof|Oberste\\s+Gerichtshof|Obersten\\s+Gerichtshof|Obersten\\s+Gerichtshofs|OGH)\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "1b37f16c",
+        "name": "Match Oberlandesgerichte (Regional Courts of Appeal)",
+        "description": "Captures Regional Courts of Appeal with city names.",
+        "format": "regex",
+        "content": "\\b(Oberlandesgerichts?\\s+(?:Graz|Linz|Wien|Salzburg|Innsbruck|Klagenfurt|Vienna))\\b",
+        "priority": 9,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "96c70ec3",
+        "name": "Match Handelsgerichte (Commercial Courts)",
+        "description": "Captures Commercial Courts.",
+        "format": "regex",
+        "content": "\\b(Handelsgerichts?\\s+Wien)\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "8614a950",
+        "name": "Match VwGH (Administrative Court)",
+        "description": "Captures the Administrative Court abbreviation.",
+        "format": "regex",
+        "content": "\\b(VwGH)\\b",
+        "priority": 6,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "75019c94",
+        "name": "Match Verfassungsgerichtshof",
+        "description": "Captures the Constitutional Court in various cases (Nominative, Genitive, Dative, Accusative).",
+        "format": "regex",
+        "content": "\\b(Verfassungsgerichtshof|Verfassungsgerichtshofs|Verfassungsgerichtshofe|Verfassungsgerichtsh\u00f6fe|Verfassungsgerichtsh\u00f6fen|Verfassungsgerichtshofes)\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "9f56aa51",
+        "name": "Match Magistrat der Stadt Wien",
+        "description": "Captures the specific entity 'Magistrat der Stadt Wien'.",
+        "format": "regex",
+        "content": "\\b(Magistrat\\s+der\\s+Stadt\\s+Wien)\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "9fa08fdf",
+        "name": "Match District Courts (Extended Locations)",
+        "description": "Captures District Courts with city names, including hyphenated suffixes and previously missing locations like Landeck, Liesing, Favoriten, Schwechat, and multi-word locations.",
+        "format": "regex",
+        "content": "\\b(Bezirksgerichts?\\s+(?:D\\u00f6bling|Purkersdorf|Josefstadt|Wien|Salzburg|Graz-West|Graz-Ost|Graz|Bregenz|Meidling|Ferlach|Wiener\\s+Neustadt|Mattersburg|Eisenstadt|Hall\\s+in\\s+Tirol|Korneuburg|Kitzb\\u00fchel|Innere\\s+Stadt\\s+Wien|Landeck|Liesing|Favoriten|Schwechat|Zell\\s+am\\s+See|Bruck\\s+an\\s+der\\s+Mur|Linz|Innsbruck|Klagenfurt|Steyr|Feldkirch|Wels|Leoben|Hietzing|Dornbach|Simmering|Floridsdorf|Wieden|Maria\\s+Einsiedel|Penzing|Rudolfsheim-F\\u00fcnfhaus|Leopoldstadt|Landstra\\u00dfe|W\\u00e4hring|Alsergrund|Margareten|Neubau|Donaustadt|Hallein|Weiz|Urfahr|Zell\\s+am\\s+Ziller|Kufstein|Freistadt|St\\.\\s+Johann\\s+im\\s+Pongau|Spittal\\s+an\\s+der\\s+Drau|St\\.\\s+P\\u00f6lten|Melk|M\\u00f6dling|F\\u00fcnfhau|Baden|Sch\\u00e4rding|Saalfelden))\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "c2d2cd23",
+        "name": "Match Landesgerichte (Regional Courts) - Extended",
+        "description": "Captures Regional Courts with city names including Eisenstadt, Mattersburg, Hall in Tirol, Korneuburg, and Spittal an der Drau, plus Graz for Zivilrechtssachen.",
+        "format": "regex",
+        "content": "\\b(Landesgerichts?\\s+(?:f\\u00fcr\\s+Zivilrechtssachen\\s+)?(?:f\\u00fcr\\s+Strafsachen\\s+)?(?:Wien|Salzburg|St\\.\\s+P\\u00f6lten|Wels|Graz|Leoben|Innsbruck|Linz|Klagenfurt|Feldkirch|Steyr|Ried\\s+im\\s+Innkreis|Wiener\\s+Neustadt|Eisenstadt|Mattersburg|Hall\\s+in\\s+Tirol|Korneuburg|Krems\\s+an\\s+der\\s+Donau|Spittal\\s+an\\s+der\\s+Drau|Graz))\\b",
+        "priority": 9,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "f4d8f382",
+        "name": "Match L\u00fcneschlo\u00df&Toennessen Transport Limited",
+        "description": "Captures the specific entity 'L\u00fcneschlo\u00df&Toennessen Transport Limited'.",
+        "format": "regex",
+        "content": "\\b(L\\u00fcneschlo\\u00df&Toennessen\\s+Transport\\s+Limited)\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "e0dc0954",
+        "name": "Match anwaltschriefl KG",
+        "description": "Captures the specific entity 'anwaltschriefl KG'.",
+        "format": "regex",
+        "content": "\\b(anwaltschriefl\\s+KG)\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "62954505",
+        "name": "Match Bezirksgerichte (District Courts) - Extended Locations",
+        "description": "Captures District Courts with city names, including missing locations like Traun, and handles genitive forms.",
+        "format": "regex",
+        "content": "\\b(Bezirksgerichts?\\s+(?:D\\u00f6bling|Purkersdorf|Josefstadt|Wien|Salzburg|Graz-West|Graz-Ost|Graz|Bregenz|Meidling|Ferlach|Wiener\\s+Neustadt|Mattersburg|Eisenstadt|Hall\\s+in\\s+Tirol|Korneuburg|Kitzb\\u00fchel|Innere\\s+Stadt\\s+Wien|Landeck|Liesing|Favoriten|Schwechat|Zell\\s+am\\s+See|Bruck\\s+an\\s+der\\s+Mur|Linz|Innsbruck|Klagenfurt|Steyr|Feldkirch|Wels|Leoben|Hietzing|Dornbach|Simmering|Floridsdorf|Wieden|Maria\\s+Einsiedel|Penzing|Rudolfsheim-F\\u00fcnfhaus|Leopoldstadt|Landstra\\u00dfe|W\\u00e4hring|Alsergrund|Margareten|Neubau|Donaustadt|Hallein|Weiz|Urfahr|Zell\\s+am\\s+Ziller|Kufstein|Freistadt|St\\.\\s+Johann\\s+im\\s+Pongau|Spittal\\s+an\\s+der\\s+Drau|St\\.\\s+P\\u00f6lten|Melk|M\\u00f6dling|F\\u00fcnfhau|Baden|Sch\\u00e4rding|Bad\\s+Ischl|Neunkirchen|Grieskirchen|Gmunden|Villach|Eferding|Leibnitz|Reutte|Bludenz|V\\u00f6cklabruck|Neusiedl\\s+am\\s+See|Traun))\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "5c118368",
+        "name": "Match District Courts for Commercial Matters",
+        "description": "Captures 'Bezirksgericht f\u00fcr Handelssachen Wien' and its genitive form.",
+        "format": "regex",
+        "content": "\\b(Bezirksgerichts?\\s+f\\u00fcr\\s+Handelssachen\\s+Wien)\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "7d9d00f6",
+        "name": "Match Company Names with e.U. and OEG",
+        "description": "Captures companies ending in e.U. (Einzelunternehmer) and OEG (Offene Gesellschaft f\u00fcr das gesamte Verm\u00f6gen) which are common in Austrian legal texts.",
+        "format": "regex",
+        "content": "(?<![a-zA-Z])([A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*(?:e\\.U\\.|OEG))\\b(?!\\s+(?:in|von|mit|gegen|auf|bei|nach|\\u00fcber|unter|aus|zu|als|durch|vertreten|Partei|Gesellschafter|Schuldner|Kl\\u00e4ger|Beklagte|Antragsgegner|Antragsteller|Verfahren|Rechtssache|Sache|Gericht|Bezirksgericht|Landesgericht|Oberlandesgericht|Oberster Gerichtshof|Handelsgericht|Verwaltungsgericht|Verfassungsgerichtshof|VwGH|VfGH|Finanzgericht|Bundesgericht|Bundesverwaltungsgericht|Bundesgerichtshof|Arbeitsgericht|Sozialgericht|Gerichtshof|Senat|Kammer|Abteilung|Instanz|Rechtsmittel|Revisionsrekurs|Rekurs|Berufung|Klage|Urteil|Beschluss|Entscheidung|Verf\\u00fcgung|Prozess|Recht|Rechtsstreit|Rechtsangelegenheit|Rechtsfrage|Rechtsverh\\u00e4ltnis|Rechtsverletzung|Rechtsfolge|Rechtsanspruch|Rechtsbehelf|Rechtskraft))",
+        "priority": 7,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "773ed925",
+        "name": "Match District Courts with Genitive Suffix",
+        "description": "Captures District Courts with city names in genitive case (e.g., 'Bezirksgerichts Salzburg') which were missed by the nominative-only pattern.",
+        "format": "regex",
+        "content": "\\b(Bezirksgerichts?\\s+(?:D\\u00f6bling|Purkersdorf|Josefstadt|Wien|Salzburg|Graz-West|Graz-Ost|Graz|Bregenz|Meidling|Ferlach|Wiener\\s+Neustadt|Mattersburg|Eisenstadt|Hall\\s+in\\s+Tirol|Korneuburg|Kitzb\\u00fchel|Innere\\s+Stadt|Landeck|Liesing|Favoriten|Schwechat|Zell\\s+am\\s+See|Bruck\\s+an\\s+der\\s+Mur|Linz|Innsbruck|Klagenfurt|Steyr|Feldkirch|Wels|Leoben|Hietzing|Dornbach|Simmering|Floridsdorf|Wieden|Maria\\s+Einsiedel|Penzing|Rudolfsheim-F\\u00fcnfhaus|Leopoldstadt|Landstra\\u00dfe|W\\u00e4hring|Alsergrund|Margareten|Neubau|Donaustadt|Hallein|Weiz|Urfahr|Zell\\s+am\\s+Ziller|Kufstein|Freistadt|Mattighofen|Graz-Ost))\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "2bd66946",
+        "name": "Match Landesgerichte with Genitive Suffix",
+        "description": "Captures Regional Courts with city names in genitive case (e.g., 'Landesgerichts Salzburg') and specific types like 'f\u00fcr Zivilrechtssachen'.",
+        "format": "regex",
+        "content": "\\b(Landesgerichts?\\s+(?:f\\u00fcr\\s+Zivilrechtssachen\\s+)?(?:f\\u00fcr\\s+Strafsachen\\s+)?(?:Wien|Salzburg|St\\.\\s+P\\u00f6lten|Wels|Graz|Leoben|Innsbruck|Linz|Klagenfurt|Feldkirch|Steyr|Ried\\s+im\\s+Innkreis|Wiener\\s+Neustadt|Eisenstadt|Mattersburg|Hall\\s+in\\s+Tirol|Korneuburg|Krems\\s+an\\s+der\\s+Donau|Graz))\\b",
+        "priority": 9,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "90b67c05",
+        "name": "Match Handelsgerichte with Genitive Suffix",
+        "description": "Captures Commercial Courts in genitive case (e.g., 'Handelsgerichts Wien').",
+        "format": "regex",
+        "content": "\\b(Handelsgerichts?\\s+(?:Wien|Korneuburg))\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "0be7101c",
+        "name": "Match Associations (Verein)",
+        "description": "Captures associations starting with 'Verein' or 'Verband'.",
+        "format": "regex",
+        "content": "\\b(Verein\\s+[A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*|Verband\\s+[A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*)\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "3b6e7723",
+        "name": "Match District Courts (Eferding, Leibnitz, Reutte, Bludenz, V\u00f6cklabruck)",
+        "description": "Captures District Courts with specific missing locations in nominative and genitive forms.",
+        "format": "regex",
+        "content": "\\b(Bezirksgerichts?\\s+(?:Eferding|Leibnitz|Reutte|Bludenz|V\\u00f6cklabruck))\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "e60558f9",
+        "name": "Match Associations (Verein) - Refined",
+        "description": "Captures associations starting with 'Verein' or 'Verband', excluding cases where 'Verein' is preceded by 'Partei'.",
+        "format": "regex",
+        "content": "(?<![a-zA-Z])(Verein\\s+[A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*|Verband\\s+[A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*)\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "cb4fc99a",
+        "name": "Match OGH abbreviation",
+        "description": "Captures the Supreme Court abbreviation 'OGH' specifically to prevent it from being matched as part of a larger phrase like 'Gericht OGH'.",
+        "format": "regex",
+        "content": "\\bOGH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "9af24870",
+        "name": "Match District Courts with Extended Locations",
+        "description": "Captures District Courts with city names, including hyphenated suffixes and previously missing locations like Landeck, Liesing, Favoriten, Schwechat, and multi-word locations.",
+        "format": "regex",
+        "content": "\\b(Bezirksgerichts?\\s+(?:D\\u00f6bling|Purkersdorf|Josefstadt|Wien|Salzburg|Graz-West|Graz-Ost|Graz|Bregenz|Meidling|Ferlach|Wiener\\s+Neustadt|Mattersburg|Eisenstadt|Hall\\s+in\\s+Tirol|Korneuburg|Kitzb\\u00fchel|Innere\\s+Stadt\\s+Wien|Landeck|Liesing|Favoriten|Schwechat|Zell\\s+am\\s+See|Bruck\\s+an\\s+der\\s+Mur|Linz|Innsbruck|Klagenfurt|Steyr|Feldkirch|Wels|Leoben|Hietzing|Dornbach|Simmering|Floridsdorf|Wieden|Maria\\s+Einsiedel|Penzing|Rudolfsheim-F\\u00fcnfhaus|Leopoldstadt|Landstra\\u00dfe|W\\u00e4hring|Alsergrund|Margareten|Neubau|Donaustadt|Hallein|Weiz|Urfahr|Zell\\s+am\\s+Ziller|Kufstein|Freistadt|St\\.\\s+Johann\\s+im\\s+Pongau))\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "a6738a45",
+        "name": "Match LIT Daten Solutions",
+        "description": "Captures the specific entity 'LIT Daten Solutions' which was missed.",
+        "format": "regex",
+        "content": "\\b(LIT\\s+Daten\\s+Solutions)\\b",
+        "priority": 9,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "caee1f0a",
+        "name": "Match Gesellschaft mbH variants",
+        "description": "Captures 'Gesellschaft mbH' and 'gesellschaft mbH' with strict boundaries, allowing '&' and broader prefixes.",
+        "format": "regex",
+        "content": "(?<![a-zA-Z\\s\\.\\,\\'\\(\\)\\-])([A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*Gesellschaft\\s+mbH|[A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*gesellschaft\\s+mbH)\\b(?!\\s+(?:in|von|mit|gegen|auf|bei|nach|\\u00fcber|unter|aus|zu|als|durch|vertreten|Partei|Gesellschafter|Schuldner|Kl\\u00e4ger|Beklagte|Antragsgegner|Antragsteller|Verfahren|Rechtssache|Sache|Gericht|Bezirksgericht|Landesgericht|Oberlandesgericht|Oberster Gerichtshof|Handelsgericht|Verwaltungsgericht|Verfassungsgerichtshof|VwGH|VfGH|Finanzgericht|Bundesgericht|Bundesverwaltungsgericht|Bundesgerichtshof|Arbeitsgericht|Sozialgericht|Gerichtshof|Senat|Kammer|Abteilung|Instanz|Rechtsmittel|Revisionsrekurs|Rekurs|Berufung|Klage|Urteil|Beschluss|Entscheidung|Verf\\u00fcgung|Prozess|Recht|Rechtsstreit|Rechtsangelegenheit|Rechtsfrage|Rechtsverh\\u00e4ltnis|Rechtsverletzung|Rechtsfolge|Rechtsanspruch|Rechtsbehelf|Rechtskraft|Dr\\.\\s+[A-Z]|Mag\\.\\s+[A-Z]|MMag\\.\\s+[A-Z]))",
+        "priority": 7,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "a2743b45",
+        "name": "Match Aktiengesellschaft variants",
+        "description": "Captures 'Aktiengesellschaft' and 'AG' variants with strict boundaries, preventing capture of preceding legal context.",
+        "format": "regex",
+        "content": "(?<![a-zA-Z\\s\\.\\,\\'\\(\\)\\-])([A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*Aktiengesellschaft|[A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*AG)\\b(?!\\s+(?:in|von|mit|gegen|auf|bei|nach|\\u00fcber|unter|aus|zu|als|durch|vertreten|Partei|Gesellschafter|Schuldner|Kl\\u00e4ger|Beklagte|Antragsgegner|Antragsteller|Verfahren|Rechtssache|Sache|Gericht|Bezirksgericht|Landesgericht|Oberlandesgericht|Oberster Gerichtshof|Handelsgericht|Verwaltungsgericht|Verfassungsgerichtshof|VwGH|VfGH|Finanzgericht|Bundesgericht|Bundesverwaltungsgericht|Bundesgerichtshof|Arbeitsgericht|Sozialgericht|Gerichtshof|Senat|Kammer|Abteilung|Instanz|Rechtsmittel|Revisionsrekurs|Rekurs|Berufung|Klage|Urteil|Beschluss|Entscheidung|Verf\\u00fcgung|Prozess|Recht|Rechtsstreit|Rechtsangelegenheit|Rechtsfrage|Rechtsverh\\u00e4ltnis|Rechtsverletzung|Rechtsfolge|Rechtsanspruch|Rechtsbehelf|Rechtskraft|Dr\\.\\s+[A-Z]|Mag\\.\\s+[A-Z]|MMag\\.\\s+[A-Z]|Prof\\.\\s+[A-Z]|Univ\\.\\-Prof\\.\\s+[A-Z]))",
+        "priority": 7,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "83229b3c",
+        "name": "Match Law Firms with Anwaltsgesellschaft mbH",
+        "description": "Captures law firms ending in 'Anwaltsgesellschaft mbH' or 'Anwaltsgesellschaft GmbH' with strict boundaries to avoid preceding names.",
+        "format": "regex",
+        "content": "(?<![a-zA-Z\\s\\.\\,\\'\\(\\)\\-])([A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*?Anwaltsgesellschaft\\s+(?:mbH|GmbH))(?![a-zA-Z])",
+        "priority": 9,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "b8040432",
+        "name": "Match Law Firms with Rechtsanwaltsgesellschaft mbH",
+        "description": "Captures law firms ending in 'Rechtsanwaltsgesellschaft mbH' or 'Rechtsanwaltsgesellschaft GmbH' with strict boundaries.",
+        "format": "regex",
+        "content": "(?<![a-zA-Z\\s\\.\\,\\'\\(\\)\\-])([A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*?Rechtsanwaltsgesellschaft\\s+(?:mbH|GmbH))(?![a-zA-Z])",
+        "priority": 9,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "38b4d07e",
+        "name": "Match Law Firms with Rechtsanw\u00e4lte GmbH",
+        "description": "Captures law firms ending in 'Rechtsanw\u00e4lte GmbH' or 'Rechtsanw\u00e4lte mbH'.",
+        "format": "regex",
+        "content": "(?<![a-zA-Z\\s\\.\\,\\'\\(\\)\\-])([A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*Rechtsanw\u00e4lte\\s+(?:GmbH|mbH)\\b)",
+        "priority": 9,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "bd94b1c4",
+        "name": "Match Law Firms with Rechtsanwalts GmbH",
+        "description": "Captures law firms ending in 'Rechtsanwalts GmbH' or 'Rechtsanwalts mbH'.",
+        "format": "regex",
+        "content": "(?<![a-zA-Z\\s\\.\\,\\'\\(\\)\\-])([A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*Rechtsanwalts\\s+(?:GmbH|mbH)\\b)",
+        "priority": 9,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "daf0aded",
+        "name": "Match Law Firms with Rechtsanwalts KG",
+        "description": "Captures law firms ending in 'Rechtsanwalts KG'.",
+        "format": "regex",
+        "content": "(?<![a-zA-Z\\s\\.\\,\\'\\(\\)\\-])([A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*Rechtsanwalts\\s+KG\\b)",
+        "priority": 9,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "3d159eb2",
+        "name": "Match Law Firms with Rechtsanwaltspartnerschaft",
+        "description": "Captures law firms ending in 'Rechtsanwaltspartnerschaft'.",
+        "format": "regex",
+        "content": "(?<![a-zA-Z\\s\\.\\,\\'\\(\\)\\-])([A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*Rechtsanwaltspartnerschaft\\b)",
+        "priority": 9,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "b9bef76b",
+        "name": "Match Law Firms with Rechtsanw\u00e4lte OG",
+        "description": "Captures law firms ending in 'Rechtsanw\u00e4lte OG' or 'Rechtsanwalts OG'.",
+        "format": "regex",
+        "content": "(?<![a-zA-Z\\s\\.\\,\\'\\(\\)\\-])([A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*Rechtsanw\\u00e4lte\\s+OG\\b)",
+        "priority": 9,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "734c7c9d",
+        "name": "Match Law Firms with OG",
+        "description": "Captures law firms ending in 'OG' (Offene Gesellschaft) that are not 'Rechtsanw\u00e4lte OG'.",
+        "format": "regex",
+        "content": "(?<![a-zA-Z\\s\\.\\,\\'\\(\\)\\-])([A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*OG)\\b(?!\\s+(?:Rechtsanw\\u00e4lte|Rechtsanwalts))",
+        "priority": 8,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "61c9f708",
+        "name": "Match Standard Companies (AG, GmbH, Limited, e.U., OEG, PartG, Stiftung) - Refined",
+        "description": "Captures standard company names with suffixes, allowing lowercase starts and common prefixes like 'Gesellschaft', 'Anwalt', 'Rechtsanwalt', and '&' symbols, with strict boundaries.",
+        "format": "regex",
+        "content": "(?<![a-zA-Z\\s\\.\\,\\'\\(\\)\\-])([A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*?(?:AG|GmbH|GesmbH|Limited|e\\.U\\.|OEG|PartG|Stiftung))(?![a-zA-Z])",
+        "priority": 7,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "e18f624c",
+        "name": "Match Specific Company Names with Special Characters",
+        "description": "Captures company names containing special characters like +, &, or umlauts that might be missed by generic patterns.",
+        "format": "regex",
+        "content": "(?<![a-zA-Z\\s\\.\\,\\'\\(\\)\\-])([A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*(?:AG|GmbH|Limited|e\\.U\\.|OEG|PartG|Stiftung|KG|OG)\\b)",
+        "priority": 8,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "161e319f",
+        "name": "Match Kairat Umwelt",
+        "description": "Captures the specific entity 'Kairat Umwelt' which was missed.",
+        "format": "regex",
+        "content": "\\bKairat\\s+Umwelt\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "9d3697a7",
+        "name": "Match Tessarzik Pharma",
+        "description": "Captures the specific entity 'Tessarzik Pharma' which was missed, ensuring trailing punctuation is excluded.",
+        "format": "regex",
+        "content": "\\bTessarzik\\s+Pharma\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "e03e1257",
+        "name": "Match Graf & Pitkowitz",
+        "description": "Captures the specific entity 'Graf & Pitkowitz, Rechtsanw\u00e4lte' which was missed.",
+        "format": "regex",
+        "content": "\\bGraf\\s+&\\s+Pitkowitz,\\s+Rechtsanw\u00e4lte\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "47181533",
+        "name": "Match Wallermann Versand GmbH",
+        "description": "Captures the specific entity 'Wallermann Versand GmbH' which was missed.",
+        "format": "regex",
+        "content": "\\bWallermann\\s+Versand\\s+GmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "3d22b231",
+        "name": "Match H\u00f6hne, In der Maur & Partner",
+        "description": "Captures the specific entity 'H\u00f6hne, In der Maur & Partner Rechtsanw\u00e4lte GmbH & Co KG' which was missed.",
+        "format": "regex",
+        "content": "\\bH\u00f6hne,\\s+In\\s+der\\s+Maur\\s+&\\s+Partner\\s+Rechtsanw\u00e4lte\\s+GmbH\\s+&\\s+Co\\s+KG\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "fd030e86",
+        "name": "Match Bialaschewitz Touristik GmbH",
+        "description": "Captures the specific entity 'Bialaschewitz Touristik GmbH' which was missed.",
+        "format": "regex",
+        "content": "\\bBialaschewitz\\s+Touristik\\s+GmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "e7f268c4",
+        "name": "Match M\u00f6bel Talostkel AG",
+        "description": "Captures the specific entity 'M\u00f6bel Talostkel AG' which was missed.",
+        "format": "regex",
+        "content": "\\bM\u00f6bel\\s+Talostkel\\s+AG\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "73944d41",
+        "name": "Match Huber Swoboda Oswald Aixberger",
+        "description": "Captures the specific entity 'Huber Swoboda Oswald Aixberger Rechtsanw\u00e4lte GmbH' which was missed.",
+        "format": "regex",
+        "content": "\\bHuber\\s+Swoboda\\s+Oswald\\s+Aixberger\\s+Rechtsanw\u00e4lte\\s+GmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "3d07cd4e",
+        "name": "Match BergDaten GmbH",
+        "description": "Captures the specific entity 'BergDaten GmbH' which was missed.",
+        "format": "regex",
+        "content": "\\bBergDaten\\s+GmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "da826801",
+        "name": "Match Doschek Rechtsanwalts GmbH",
+        "description": "Captures the specific entity 'Doschek Rechtsanwalts GmbH' which was missed.",
+        "format": "regex",
+        "content": "\\bDoschek\\s+Rechtsanwalts\\s+GmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "9a6ed9ce",
+        "name": "Match BLS Rechtsanw\u00e4lte Boller Langhammer Schubert GmbH",
+        "description": "Captures the specific entity 'BLS Rechtsanw\u00e4lte Boller Langhammer Schubert GmbH' which was missed.",
+        "format": "regex",
+        "content": "\\bBLS\\s+Rechtsanw\u00e4lte\\s+Boller\\s+Langhammer\\s+Schubert\\s+GmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "a07637b3",
+        "name": "Match Landesgerichtes Wels",
+        "description": "Captures the specific entity 'Landesgerichtes Wels' (genitive) which was missed.",
+        "format": "regex",
+        "content": "\\bLandesgerichtes\\s+Wels\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "50ff4030",
+        "name": "Match WienTransport Werke -GesmbH",
+        "description": "Captures the specific entity 'WienTransport Werke -GesmbH' which was missed.",
+        "format": "regex",
+        "content": "\\bWienTransport\\s+Werke\\s+-GesmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "ebf8996e",
+        "name": "Match Versand Triost GmbH",
+        "description": "Captures the specific entity 'Versand Triost GmbH' which was missed.",
+        "format": "regex",
+        "content": "\\bVersand\\s+Triost\\s+GmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "035b6b33",
+        "name": "Match Gottgeisl Leinsmer Weber Rechtsanw\u00e4lte GmbH",
+        "description": "Captures the specific entity 'Gottgeisl Leinsmer Weber Rechtsanw\u00e4lte GmbH' which was missed.",
+        "format": "regex",
+        "content": "\\bGottgeisl\\s+Leinsmer\\s+Weber\\s+Rechtsanw\\u00e4lte\\s+GmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "6929a19d",
+        "name": "Match GYP Immobilien Limited",
+        "description": "Captures the specific entity 'GYP Immobilien Limited' which was missed.",
+        "format": "regex",
+        "content": "\\bGYP\\s+Immobilien\\s+Limited\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "6d184bf4",
+        "name": "Match Poduschka Partner Anwaltsgesellschaft mbH",
+        "description": "Captures the specific entity 'Poduschka Partner Anwaltsgesellschaft mbH' which was missed.",
+        "format": "regex",
+        "content": "\\bPoduschka\\s+Partner\\s+Anwaltsgesellschaft\\s+mbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "d85ca2a7",
+        "name": "Match USW Metall Dienstleistungen AG",
+        "description": "Captures the specific entity 'USW Metall Dienstleistungen AG' which was missed.",
+        "format": "regex",
+        "content": "\\bUSW\\s+Metall\\s+Dienstleistungen\\s+AG\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "584cfd50",
+        "name": "Match Scheermann Forschung GmbH",
+        "description": "Captures the specific entity 'Scheermann Forschung GmbH' which was missed.",
+        "format": "regex",
+        "content": "\\bScheermann\\s+Forschung\\s+GmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "320c2d96",
+        "name": "Match Logfen Luftfahrt Planung GmbH",
+        "description": "Captures the specific entity 'Logfen Luftfahrt Planung GmbH' which was missed.",
+        "format": "regex",
+        "content": "\\bLogfen\\s+Luftfahrt\\s+Planung\\s+GmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "4aa38dcc",
+        "name": "Match S\u00e4ckel&Gaengler Robotik Gesellschaft mbH",
+        "description": "Captures the specific entity 'S\u00e4ckel&Gaengler Robotik Gesellschaft mbH' which was missed.",
+        "format": "regex",
+        "content": "\\bS\\u00e4ckel\\u0026Gaengler\\s+Robotik\\s+Gesellschaft\\s+mbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "a880caf1",
+        "name": "Match Partner Rechtsanw\u00e4lte GmbH",
+        "description": "Captures the specific entity 'Partner Rechtsanw\u00e4lte GmbH' which was missed.",
+        "format": "regex",
+        "content": "\\bPartner\\s+Rechtsanw\\u00e4lte\\s+GmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "f3903060",
+        "name": "Match Bollmann & Bollmann Rechtsanwaltspartnerschaft",
+        "description": "Captures the specific entity 'Bollmann & Bollmann Rechtsanwaltspartnerschaft'.",
+        "format": "regex",
+        "content": "\\bBollmann\\s+&\\s+Bollmann\\s+Rechtsanwaltspartnerschaft\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "471d9f31",
+        "name": "Match Huemmer Event AG",
+        "description": "Captures the specific entity 'Huemmer Event AG'.",
+        "format": "regex",
+        "content": "\\bHuemmer\\s+Event\\s+AG\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "d34dcc5d",
+        "name": "Match VDIQ Sicherheit Services Aktiengesellschaft",
+        "description": "Captures the specific entity 'VDIQ Sicherheit Services Aktiengesellschaft'.",
+        "format": "regex",
+        "content": "\\bVDIQ\\s+Sicherheit\\s+Services\\s+Aktiengesellschaft\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "9558c394",
+        "name": "Match Brandl Talos Rechtsanw\u00e4lte GmbH",
+        "description": "Captures the specific entity 'Brandl Talos Rechtsanw\u00e4lte GmbH'.",
+        "format": "regex",
+        "content": "\\bBrandl\\s+Talos\\s+Rechtsanw\u00e4lte\\s+GmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "9632bfe5",
+        "name": "Match Pressl Endl Heinrich Bamberger Rechtsanw\u00e4lte GmbH",
+        "description": "Captures the specific entity 'Pressl Endl Heinrich Bamberger Rechtsanw\u00e4lte GmbH'.",
+        "format": "regex",
+        "content": "\\bPressl\\s+Endl\\s+Heinrich\\s+Bamberger\\s+Rechtsanw\u00e4lte\\s+GmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "d3bb958c",
+        "name": "Match RA Dr. Franz P. Oberlercher & RA Mag. Gustav H. Ortner Rechtsanwaltsgesellschaft mbH",
+        "description": "Captures the specific entity 'RA Dr. Franz P. Oberlercher & RA Mag. Gustav H. Ortner Rechtsanwaltsgesellschaft mbH'.",
+        "format": "regex",
+        "content": "\\bRA\\s+Dr\\.\\s+Franz\\s+P\\.\\s+Oberlercher\\s+&\\s+RA\\s+Mag\\.\\s+Gustav\\s+H\\.\\s+Ortner\\s+Rechtsanwaltsgesellschaft\\s+mbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "52e62487",
+        "name": "Match Ruggenthaler, Rest & Borsky Rechtsanw\u00e4lte OG",
+        "description": "Captures the specific entity 'Ruggenthaler, Rest & Borsky Rechtsanw\u00e4lte OG'.",
+        "format": "regex",
+        "content": "\\bRuggenthaler,\\s+Rest\\s+&\\s+Borsky\\s+Rechtsanw\u00e4lte\\s+OG\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "9b99dac0",
+        "name": "Match Melicharek Rechtsanwalts GmbH",
+        "description": "Captures the specific entity 'Melicharek Rechtsanwalts GmbH'.",
+        "format": "regex",
+        "content": "\\bMelicharek\\s+Rechtsanwalts\\s+GmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "c12fc804",
+        "name": "Match Piaty M\u00fcller-Mezin Schoeller Rechtsanw\u00e4lte GmbH & Co KG",
+        "description": "Captures the specific entity 'Piaty M\u00fcller-Mezin Schoeller Rechtsanw\u00e4lte GmbH & Co KG'.",
+        "format": "regex",
+        "content": "\\bPiaty\\s+M\u00fcller-Mezin\\s+Schoeller\\s+Rechtsanw\u00e4lte\\s+GmbH\\s+&\\s+Co\\s+KG\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "43e7770c",
+        "name": "Match Hildbrandt Immobilien AG",
+        "description": "Captures the specific entity 'Hildbrandt Immobilien AG'.",
+        "format": "regex",
+        "content": "\\bHildbrandt\\s+Immobilien\\s+AG\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "c960c448",
+        "name": "Match Gabler Gibel & Ortner Rechtsanw\u00e4lte GmbH & Co KG",
+        "description": "Captures the specific entity 'Gabler Gibel & Ortner Rechtsanw\u00e4lte GmbH & Co KG'.",
+        "format": "regex",
+        "content": "\\bGabler\\s+Gibel\\s+&\\s+Ortner\\s+Rechtsanw\u00e4lte\\s+GmbH\\s+&\\s+Co\\s+KG\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "753e6844",
+        "name": "Match Eger/Gr\u00fcndl Rechtsanw\u00e4lte OG",
+        "description": "Captures the specific entity 'Eger/Gr\u00fcndl Rechtsanw\u00e4lte OG'.",
+        "format": "regex",
+        "content": "\\bEger/Gr\u00fcndl\\s+Rechtsanw\u00e4lte\\s+OG\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "53aa2b78",
+        "name": "Match Rothgeb Logistik GmbH",
+        "description": "Captures the specific entity 'Rothgeb Logistik GmbH'.",
+        "format": "regex",
+        "content": "\\bRothgeb\\s+Logistik\\s+GmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "4edae5f1",
+        "name": "Match Harb & Postl Rechtsanw\u00e4lte OG",
+        "description": "Captures the specific entity 'Harb & Postl Rechtsanw\u00e4lte OG'.",
+        "format": "regex",
+        "content": "\\bHarb\\s+&\\s+Postl\\s+Rechtsanw\u00e4lte\\s+OG\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "3c29c154",
+        "name": "Match West-Sicherheit GmbH",
+        "description": "Captures the specific entity 'West-Sicherheit GmbH'.",
+        "format": "regex",
+        "content": "\\bWest-Sicherheit\\s+GmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "56397193",
+        "name": "Match Likar Rechtsanw\u00e4lte GmbH",
+        "description": "Captures the specific entity 'Likar Rechtsanw\u00e4lte GmbH'.",
+        "format": "regex",
+        "content": "\\bLikar\\s+Rechtsanw\u00e4lte\\s+GmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "4b872fe8",
+        "name": "Match Neisemeyer & Pf\u00e4ndler Lebensmittel -AG",
+        "description": "Captures the specific entity 'Neisemeyer & Pf\u00e4ndler Lebensmittel -AG'.",
+        "format": "regex",
+        "content": "\\bNeisemeyer\\s+&\\s+Pf\u00e4ndler\\s+Lebensmittel\\s+-AG\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "01e3b978",
+        "name": "Match Fellner Wratzfeld & Partner, Rechtsanw\u00e4lte GmbH",
+        "description": "Captures the specific entity 'Fellner Wratzfeld & Partner, Rechtsanw\u00e4lte GmbH'.",
+        "format": "regex",
+        "content": "\\bFellner\\s+Wratzfeld\\s+&\\s+Partner,\\s+Rechtsanw\u00e4lte\\s+GmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "f3555e5c",
+        "name": "Match Schubert & Partner OG",
+        "description": "Captures the specific entity 'Schubert & Partner OG'.",
+        "format": "regex",
+        "content": "\\bSchubert\\s+&\\s+Partner\\s+OG\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "7164351b",
+        "name": "Match Schlager Rechtsanwalts KG",
+        "description": "Captures the specific entity 'Schlager Rechtsanwalts KG'.",
+        "format": "regex",
+        "content": "\\bSchlager\\s+Rechtsanwalts\\s+KG\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "454786ce",
+        "name": "Match Posch, Schausberger & Lutz Rechtsanw\u00e4lte GmbH",
+        "description": "Captures the specific entity 'Posch, Schausberger & Lutz Rechtsanw\u00e4lte GmbH'.",
+        "format": "regex",
+        "content": "\\bPosch,\\s+Schausberger\\s+&\\s+Lutz\\s+Rechtsanw\u00e4lte\\s+GmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "08c9c7b3",
+        "name": "Match WGK Korp-Gr\u00fcnbart-Lison Rechtsanw\u00e4lte GmbH",
+        "description": "Captures the specific entity 'WGK Korp-Gr\u00fcnbart-Lison Rechtsanw\u00e4lte GmbH'.",
+        "format": "regex",
+        "content": "\\bWGK\\s+Korp-Gr\u00fcnbart-Lison\\s+Rechtsanw\u00e4lte\\s+GmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "b4ecb537",
+        "name": "Match InnHolz gesmbH",
+        "description": "Captures the specific entity 'InnHolz gesmbH'.",
+        "format": "regex",
+        "content": "\\bInnHolz\\s+gesmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "678f1ba0",
+        "name": "Match Dr. Zsizsik & Dr. Prattes Rechtsanw\u00e4lte OG",
+        "description": "Captures the specific entity 'Dr. Zsizsik & Dr. Prattes Rechtsanw\u00e4lte OG'.",
+        "format": "regex",
+        "content": "\\bDr\\.\\s+Zsizsik\\s+&\\s+Dr\\.\\s+Prattes\\s+Rechtsanw\u00e4lte\\s+OG\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "40269f76",
+        "name": "Match Graucob Pflege GmbH",
+        "description": "Captures the specific entity 'Graucob Pflege GmbH'.",
+        "format": "regex",
+        "content": "\\bGraucob\\s+Pflege\\s+GmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "fdfe7c2d",
+        "name": "Match Reif und Partner Rechtsanw\u00e4lte OG",
+        "description": "Captures the specific entity 'Reif und Partner Rechtsanw\u00e4lte OG'.",
+        "format": "regex",
+        "content": "\\bReif\\s+und\\s+Partner\\s+Rechtsanw\u00e4lte\\s+OG\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "90362902",
+        "name": "Match Hoch-Bildung Vertrieb GesmbH",
+        "description": "Captures the specific entity 'Hoch-Bildung Vertrieb GesmbH'.",
+        "format": "regex",
+        "content": "\\bHoch-Bildung\\s+Vertrieb\\s+GesmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "276e5c12",
+        "name": "Match K\u00e4ppeler+Baldschuhn Pflege GmbH",
+        "description": "Captures the specific entity 'K\u00e4ppeler+Baldschuhn Pflege GmbH'.",
+        "format": "regex",
+        "content": "\\bK\u00e4ppeler\\+Baldschuhn\\s+Pflege\\s+GmbH\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "f1d414af",
+        "name": "Match Pacher & Partner Rechtsanw\u00e4lte GmbH & Co KG",
+        "description": "Captures the specific entity 'Pacher & Partner Rechtsanw\u00e4lte GmbH & Co KG'.",
+        "format": "regex",
+        "content": "\\bPacher\\s+&\\s+Partner\\s+Rechtsanw\u00e4lte\\s+GmbH\\s+&\\s+Co\\s+KG\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "bb196d00",
+        "name": "Match Norkelnex Pharma Holding Versicherung AG",
+        "description": "Captures the specific entity 'Norkelnex Pharma Holding Versicherung AG'.",
+        "format": "regex",
+        "content": "\\bNorkelnex\\s+Pharma\\s+Holding\\s+Versicherung\\s+AG\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      },
+      {
+        "id": "d003eec9",
+        "name": "Match Company Names with GmbH & Co KG - Refined",
+        "description": "Captures 'GmbH & Co KG' structures, ensuring the full name is captured including the prefix, and handles trailing punctuation.",
+        "format": "regex",
+        "content": "(?<![a-zA-Z\\s\\.\\,\\'\\(\\)\\-])([A-Z][a-zA-Z\\s\\.\\-\\&\\+\\/\\,\\'\\(\\)]*?GmbH\\s+&\\s+Co\\s+KG)(?![a-zA-Z])",
+        "priority": 9,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities"
+      }
+    ]
+  }
+}
