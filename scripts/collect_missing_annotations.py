@@ -149,6 +149,7 @@ def main():
         mode="text",
         max_samples=config.get("max_samples"),
         iou_threshold=0.5,
+        scope_to_rule_labels=True,
     )
 
     missing = collect_missing_annotation_samples(rule_metrics, text_to_doc_id)
