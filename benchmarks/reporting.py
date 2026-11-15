@@ -51,6 +51,7 @@ def evaluate_test(test_dataset, rules, chef, mode="text", iou_threshold=1):
         chef.learner._apply_rules,
         mode=mode,
         iou_threshold=iou_threshold,
+        scope_to_rule_labels=True,
     )
     t_eval = time.time() - t0
 
@@ -84,6 +85,7 @@ def evaluate_excluding_frequent_entities(
         mode=mode,
         iou_threshold=iou_threshold,
         exclude_texts=excluded,
+        scope_to_rule_labels=True,
     )
 
 

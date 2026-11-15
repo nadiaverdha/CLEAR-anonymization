@@ -59,6 +59,7 @@ class NERLearner(RuleChef):
         seed: int | None = 42,
         overlap_strategy: str | None = "longest",
         cross_type_overlaps: bool = True,
+        scope_to_rule_labels=True,
     ):
 
         task = Task(
@@ -108,6 +109,7 @@ class NERLearner(RuleChef):
             seed=seed,
             overlap_strategy=overlap_strategy,
             cross_type_overlaps=cross_type_overlaps,
+            scope_to_rule_labels=scope_to_rule_labels,
         )
         self._max_counter_examples = max_counter_examples
 
