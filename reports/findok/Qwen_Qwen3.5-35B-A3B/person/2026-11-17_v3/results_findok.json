@@ -1,0 +1,3954 @@
+{
+  "config": {
+    "shots": null,
+    "model": "Qwen/Qwen3.5-35B-A3B",
+    "format": "regex",
+    "max_rules": 10,
+    "max_samples": 150,
+    "max_iterations": 6,
+    "seed": 42,
+    "dev_dir": "/share/nverdha/data/findok/findok_val_corrected.conllu",
+    "test_dir": "/share/nverdha/data/findok/findok_test_corrected.conllu",
+    "train_size": 3148,
+    "eval_size": 787,
+    "dev_size": 492,
+    "test_size": 495,
+    "train_sentences": 7310,
+    "eval_sentences": 2144,
+    "dev_sentences": 61673,
+    "test_sentences": 61001,
+    "use_grex": true,
+    "agentic": false,
+    "enable_critic": true,
+    "enable_prune": false,
+    "critic_interval": 20,
+    "audit_interval": 0,
+    "sampling_strategy": "balanced",
+    "train_ratio": 0.8,
+    "neg_ratio": 0.2,
+    "eval_neg_ratio": null,
+    "pool_size": null,
+    "batch_size": 100,
+    "past_batches": 2,
+    "refine_per_batch": 1,
+    "synthesis_strategy": "bulk",
+    "selected_classes": [
+      "person"
+    ],
+    "train_name": "findok",
+    "test_name": "findok",
+    "transfer_name": null,
+    "transfer_test_name": null,
+    "max_counter_examples": 10,
+    "interleave_failures": false,
+    "refine_every": 2,
+    "overlap_strategy": "longest",
+    "cross_type_overlaps": null,
+    "max_patch_f1_drop": null
+  },
+  "metadata": {
+    "best_batch_idx": 71,
+    "best_batch_f1": 0.4918497519489723,
+    "best_rules_serialized": [
+      {
+        "id": "7078c2ee",
+        "name": "Names after 'Frau' or 'Herr' (Accusative/Dative)",
+        "description": "Captures full title and name following 'Herrn' or 'Frau', ensuring the name includes at least a first and last name (or title + first + last) to avoid partial matches.",
+        "format": "regex",
+        "content": "(?:Herrn|Frau)\\s+(?:(?:Dr\\.(?:\\s+Priv\\.-Doz\\.)?|Dr\\.in|Mag\\.(?:\\s+Univ\\.-Prof\\.)?|Mag\\.a|Univ\\.-Prof\\.(?:\\.in)?|Priv\\.-Doz\\.(?:\\.in)?|Hon\\.-Prof\\.(?:\\.in)?|Hon\\.-Prof\\.|MedR|KommR|Ing\\.|Bakk\\.(?:\\s+iur\\.)?|LLM|BSc|RA\\.?|StB\\.?|Gf-?|\\u00d6kR|Dipl\\.-Ing\\.|RgR|OStR|HR|Fr\\.PhD|Mag\\.|VetR|DDr\\.|LL\\.B\\.(?:\\s+LL\\.M\\.)?|B\\.iur\\.(?:\\s|\\s+r\\.\\s+nat\\.)?|i\\.iur\\.(?:\\s|\\s+r\\.\\s+nat\\.)?|Bakk\\.(?:\\s+r\\.\\s+nat\\.|\\s+art\\.)?|LL\\.M\\.(?:\\s|\\s+LL\\.B\\.)?|M\\.B\\.L\\.|LL\\.B\\.|MBA|MSc|\\u00d6kR\\s+Dipl\\.-Ing\\.|DI|Dipl\\.(?:\\s+Kff\\.)?|StR|\\u00d6kR\\s+Dipl\\.-Ing\\.)\\s+)?([A-Z][a-z\\u00df]+(?:\\s+[A-Z][a-z\\u00df]+)+)(?=\\s|,|\\.|\\n|$)",
+        "priority": 9,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities",
+        "validated_precision": 0.6483516483516484,
+        "validated_support": 91,
+        "created_at": "2026-11-17T15:08:09.949520"
+      },
+      {
+        "id": "8fd8f42b",
+        "name": "Names after 'Bf,' (Comma separated)",
+        "description": "Captures full title and name immediately following 'Bf,' or 'Bf.', handling missing spaces and ensuring valid name structure.",
+        "format": "regex",
+        "content": "Bf[.,]\\s+(?:(?:Dr\\.(?:\\s+Priv\\.-Doz\\.)?|Dr\\.in|Mag\\.(?:\\s+Univ\\.-Prof\\.)?|Mag\\.a|Univ\\.-Prof\\.(?:\\.in)?|Priv\\.-Doz\\.(?:\\.in)?|Hon\\.-Prof\\.(?:\\.in)?|Hon\\.-Prof\\.|MedR|KommR|Ing\\.|Bakk\\.(?:\\s+iur\\.)?|LLM|BSc|RA\\.?|StB\\.?|Gf-?|\\u00d6kR|Dipl\\.-Ing\\.|RgR|OStR|HR|Fr\\.PhD|Mag\\.|VetR|DDr\\.|LL\\.B\\.(?:\\s+LL\\.M\\.)?|B\\.iur\\.(?:\\s+|\\s+r\\.\\s+nat\\.)?|i\\.iur\\.(?:\\s+|\\s+r\\.\\s+nat\\.)?|Bakk\\.(?:\\s+r\\.\\s+nat\\.|\\s+art\\.)?|LL\\.M\\.(?:\\s+|\\s+LL\\.B\\.)?|M\\.B\\.L\\.|LL\\.B\\.|MBA|MSc|\\u00d6kR\\s+Dipl\\.-Ing\\.|DI|Dipl\\.(?:\\s+Kff\\.)?|StR|\\u00d6kR\\s+Dipl\\.-Ing\\.)\\s+)?([A-Z][a-z\\u00df]+(?:\\s+[A-Z][a-z\\u00df]+)*(?:\\s+(?:LL\\.M\\.|LLM|BSc|B\\.iur\\.|i\\.iur\\.|Bakk\\.(?:\\s+r\\.\\s+nat\\.|\\s+art\\.)?|LL\\.M\\.|M\\.B\\.L\\.|LL\\.B\\.|MBA|MSc|PhD|MA|BSc)?)?(?=\\s|,|\\.|\\n|$))",
+        "priority": 8,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities",
+        "validated_precision": 0.0,
+        "validated_support": 5,
+        "created_at": "2026-11-17T15:16:53.747430"
+      },
+      {
+        "id": "45258c48",
+        "name": "Names after 'von' (Befunden/Gutachten)",
+        "description": "Captures the name following 'von' in specific contexts using a capture group to exclude the context phrase.",
+        "format": "regex",
+        "content": "(?:Befunden|Gutachten|Stellungnahme|Aussage|Schreiben|Einspruch|Antrag|Ansuchen|E-Mail|Mail|Bescheinigung|Bescheid|Verf\\u00fcgung|Urteil|Entscheidung|Klage|Rechtsmittel|Vertretung|Anwalt|Rechtsanwalt|Notar|Gericht|Beh\\u00f6rde|Amt|Finanzamt|Magistrat|Bundesfinanzgericht|Verwaltungsgericht|Verwaltungsstrafbeh\\u00f6rde|VfGH|OGH|VwGH|BFG)\\s+(?:von\\s+)(?:(?:Dr\\.|Mag\\.|Univ\\.-?Prof\\.|Hon\\.-?Prof\\.|Priv\\.-?Doz\\.|Ing\\.|Bakk\\.|LL\\.M\\.|LLM|BSc|B\\.iur\\.|i\\.iur\\.|M\\.B\\.L\\.|LL\\.B\\.|MBA|MSc|PhD|MA|StR|RA\\.|StB\\.|MedR|KommR|VetR|DDr\\.|RgR|OStR|HR|Fr\\.PhD|\\u00d6kR|DI|Dipl\\.|Techn R|KommR|KzlR)\\s+)?([A-Z][a-z\\u00df]+(?:\\s+[A-Z][a-z\\u00df]+)+)(?=\\s|,|\\.|\\n|$)",
+        "priority": 8,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities",
+        "validated_precision": 0.0,
+        "validated_support": 10,
+        "created_at": "2026-11-17T15:16:53.747453"
+      },
+      {
+        "id": "284fd772",
+        "name": "Names after 'Beschwerde des' (Genitive)",
+        "description": "Captures the name following 'Beschwerde des/der', excluding common non-person nouns, and handling split titles.",
+        "format": "regex",
+        "content": "(?:Beschwerde\\s+(?:des|der)\\s+)(?:(?:Dr\\.|Mag\\.|Univ\\.-?Prof\\.|Hon\\.-?Prof\\.|Priv\\.-?Doz\\.|Ing\\.|Bakk\\.|LL\\.M\\.|LLM|BSc|B\\.iur\\.|i\\.iur\\.|M\\.B\\.L\\.|LL\\.B\\.|MBA|MSc|PhD|MA|StR|RA\\.|StB\\.|MedR|KommR|VetR|DDr\\.|RgR|OStR|HR|Fr\\.PhD|\\u00d6kR|DI|Dipl\\.|Techn R|KommR|KzlR)\\s+)?([A-Z][a-z\\u00df]+(?:\\s+[A-Z][a-z\\u00df]+)+)(?!\\s+(?:Abgabepflichtigen|Verein|Gesellschaft|AG|mbH|GmbH|KG|UG|Stiftung|Beh\\u00f6rde|Amt|Finanzamt|Gericht|Kommission|Ausschuss|Komitee|Firma|Unternehmen|Organisation|Institution|Partei|Bewegung|Bund|Land|Stadt|Gemeinde|Bezirk|Kreis|Region|Kanton|Kommune|Verband|Kammer|Institute|Institut|Forschung|Lehrstuhl|Klinik|Krankenhaus|Hochschule|Universit\\u00e4t|Schule|Akademie|Zentrum|Institut|B\\u00fcro|Praxis|Wohnung|Haus|Geb\\u00e4ude|Grundst\\u00fcck|Fl\\u00e4che|Land|Gebiet|Territorium|Staat|Reich|Kaiserreich|Republik|Monarchie|Demokratie|Diktatur|Faschismus|Kommunismus|Sozialismus|Kapitalismus|Liberalismus|Konservatismus|Nationalismus|Internationalismus|Globalismus|Regionalismus|F\\u00f6deralismus|Zentralismus|Autokratie|Oligarchie|Anarchie|Totalitarismus|Demokratie|Rechtsstaat|Verfassungsstaat|Sozialstaat|Wohlfahrtsstaat|Marktwirtschaft|Planwirtschaft|Mischwirtschaft|Sozialmarktwirtschaft|Freie Marktwirtschaft|Sozialistische Marktwirtschaft|Kapitalistische Marktwirtschaft|Neoliberale Marktwirtschaft|Sozialdemokratische Marktwirtschaft|Konservative Marktwirtschaft|Libert\\u00e4re Marktwirtschaft|Anarchistische Marktwirtschaft|Faschistische Marktwirtschaft|Kommunistische Marktwirtschaft|Sozialistische Planwirtschaft|Kapitalistische Planwirtschaft|Neoliberale Planwirtschaft|Sozialdemokratische Planwirtschaft|Konservative Planwirtschaft|Libert\\u00e4re Planwirtschaft|Anarchistische Planwirtschaft|Faschistische Planwirtschaft|Kommunistische Planwirtschaft|Sozialistische Mischwirtschaft|Kapitalistische Mischwirtschaft|Neoliberale Mischwirtschaft|Sozialdemokratische Mischwirtschaft|Konservative Mischwirtschaft|Libert\\u00e4re Mischwirtschaft|Anarchistische Mischwirtschaft|Faschistische Mischwirtschaft|Kommunistische Mischwirtschaft|Sozialistische Marktwirtschaft|Kapitalistische Marktwirtschaft|Neoliberale Marktwirtschaft|Sozialdemokratische Marktwirtschaft|Konservative Marktwirtschaft|Libert\\u00e4re Marktwirtschaft|Anarchistische Marktwirtschaft|Faschistische Marktwirtschaft|Kommunistische Marktwirtschaft|Sozialistische Planwirtschaft|Kapitalistische Planwirtschaft|Neoliberale Planwirtschaft|Sozialdemokratische Planwirtschaft|Konservative Planwirtschaft|Libert\\u00e4re Planwirtschaft|Anarchistische Planwirtschaft|Faschistische Planwirtschaft|Kommunistische Planwirtschaft|Sozialistische Mischwirtschaft|Kapitalistische Mischwirtschaft|Neoliberale Mischwirtschaft|Sozialdemokratische Mischwirtschaft|Konservative Mischwirtschaft|Libert\\u00e4re Mischwirtschaft|Anarchistische Mischwirtschaft|Faschistische Mischwirtschaft|Kommunistische Mischwirtschaft)(?=\\s|,|\\.|\\n|$))",
+        "priority": 8,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities",
+        "validated_precision": 0.8225806451612904,
+        "validated_support": 62,
+        "created_at": "2026-11-17T15:16:53.747479"
+      },
+      {
+        "id": "494f2df2",
+        "name": "Names after 'Arbeitsplatz des' (Contextual)",
+        "description": "Captures full title and name following 'Arbeitsplatz des' or 'Arbeitsplatz der', ensuring valid name structure.",
+        "format": "regex",
+        "content": "(?:Arbeitsplatz\\s+(?:des|der)\\s+)(?:(?:Dr\\.(?:\\s+Priv\\.-Doz\\.)?|Dr\\.in|Mag\\.(?:\\s+Univ\\.-Prof\\.)?|Mag\\.a|Univ\\.-Prof\\.(?:\\.in)?|Priv\\.-Doz\\.(?:\\.in)?|Hon\\.-Prof\\.(?:\\.in)?|Hon\\.-Prof\\.|MedR|KommR|Ing\\.|Bakk\\.(?:\\s+iur\\.)?|LLM|BSc|RA\\.?|StB\\.?|Gf-?|\\u00d6kR|Dipl\\.-Ing\\.|RgR|OStR|HR|Fr\\.PhD|Mag\\.|VetR|DDr\\.|LL\\.B\\.(?:\\s+LL\\.M\\.)?|B\\.iur\\.(?:\\s|\\s+r\\.\\s+nat\\.)?|i\\.iur\\.(?:\\s|\\s+r\\.\\s+nat\\.)?|Bakk\\.(?:\\s+r\\.\\s+nat\\.|\\s+art\\.)?|LL\\.M\\.(?:\\s|\\s+LL\\.B\\.)?|M\\.B\\.L\\.|LL\\.B\\.|MBA|MSc|\\u00d6kR\\s+Dipl\\.-Ing\\.|DI|Dipl\\.(?:\\s+Kff\\.)?|StR|\\u00d6kR\\s+Dipl\\.-Ing\\.)\\s+)?([A-Z][a-z\\u00df]+(?:\\s+[A-Z][a-z\\u00df]+)*(?:\\s+(?:LL\\.M\\.|LLM|BSc|B\\.iur\\.|i\\.iur\\.|Bakk\\.(?:\\s+r\\.\\s+nat\\.|\\s+art\\.)?|LL\\.M\\.|M\\.B\\.L\\.|LL\\.B\\.|MBA|MSc|PhD|MA|BSc)?)?(?=\\s|,|\\.|\\n|$))",
+        "priority": 7,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities",
+        "validated_precision": 0.0,
+        "validated_support": 0,
+        "created_at": "2026-11-17T15:16:53.747501"
+      },
+      {
+        "id": "c40bbb94",
+        "name": "Names after 'Herrn' or 'Frau' (Accusative/Dative)",
+        "description": "Captures full title and name following 'Herrn' or 'Frau', ensuring the name includes at least a first and last name (or title + first + last) to avoid partial matches.",
+        "format": "regex",
+        "content": "(?:Herrn|Frau)\\s+(?:(?:Dr\\.(?:\\s+Priv\\.-Doz\\.)?|Dr\\.in|Mag\\.(?:\\s+Univ\\.-Prof\\.)?|Mag\\.a|Univ\\.-Prof\\.(?:\\.in)?|Priv\\.-Doz\\.(?:\\.in)?|Hon\\.-Prof\\.(?:\\.in)?|Hon\\.-Prof\\.|MedR|KommR|Ing\\.|Bakk\\.(?:\\s+iur\\.)?|LLM|BSc|RA\\.?|StB\\.?|Gf-?|\\u00d6kR|Dipl\\.-Ing\\.|RgR|OStR|HR|Fr\\.PhD|Mag\\.|VetR|DDr\\.|LL\\.B\\.(?:\\s+LL\\.M\\.)?|B\\.iur\\.(?:\\s|\\s+r\\.\\s+nat\\.)?|i\\.iur\\.(?:\\s|\\s+r\\.\\s+nat\\.)?|Bakk\\.(?:\\s+r\\.\\s+nat\\.|\\s+art\\.)?|LL\\.M\\.(?:\\s|\\s+LL\\.B\\.)?|M\\.B\\.L\\.|LL\\.B\\.|MBA|MSc|\\u00d6kR\\s+Dipl\\.-Ing\\.|DI|Dipl\\.(?:\\s+Kff\\.)?|StR|\\u00d6kR\\s+Dipl\\.-Ing\\.)\\s+)?([A-Z][a-z\\u00df]+(?:\\s+[A-Z][a-z\\u00df]+)+)(?=\\s|,|\\.|\\n|$)",
+        "priority": 9,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities",
+        "validated_precision": 0.6483516483516484,
+        "validated_support": 91,
+        "created_at": "2026-11-17T15:16:53.747404"
+      },
+      {
+        "id": "19a6a077",
+        "name": "Single Word Names after 'Herrn' or 'Frau'",
+        "description": "Captures single-word names following 'Herrn' or 'Frau' in contexts where the name is a surname only (e.g., 'Herrn Hus').",
+        "format": "regex",
+        "content": "(?:Herrn|Frau)\\s+([A-Z][a-z\\u00df]+)(?=\\s|,|\\.|\\n|$)",
+        "priority": 6,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities",
+        "validated_precision": 0.2727272727272727,
+        "validated_support": 165,
+        "created_at": "2026-11-17T15:10:03.442591"
+      },
+      {
+        "id": "de0eb9fb",
+        "name": "Names with Split Titles (e.g. Univ- Prof.)",
+        "description": "Captures full title and name following legal titles including complex multi-word titles like 'Techn R', 'Univ.-Prof.in', 'Priv.-Doz.in', ensuring the full name is captured even with spaces in titles.",
+        "format": "regex",
+        "content": "(?:Techn\\s+R\\s+|Techn\\.\\s*R\\s+|Techn\\.R\\s+|Univ\\.-?Prof\\.(?:\\.in)?\\s+|Priv\\.-?Doz\\.(?:\\.in)?\\s+|Hon\\.-?Prof\\.(?:\\.in)?\\s+|Hon\\.-?Prof\\.|Dr\\.(?:\\s+Priv\\.-Doz\\.)?\\s+|Dr\\.in\\s+|Mag\\.(?:\\s+Univ\\.-Prof\\.)?\\s+|Mag\\.a\\s+|Ing\\.|Bakk\\.(?:\\s+iur\\.)?\\s+|LLM\\s+|BSc\\s+|RA\\.?\\s+|StB\\.?\\s+|Gf-?\\s+|\\u00d6kR\\s+|Dipl\\.-Ing\\.|RgR\\s+|OStR\\s+|HR\\s+|Fr\\.PhD\\s+|VetR\\s+|DDr\\.|LL\\.B\\.(?:\\s+LL\\.M\\.)?\\s+|B\\.iur\\.(?:\\s+r\\.\\s+nat\\.)?\\s+|i\\.iur\\.(?:\\s+r\\.\\s+nat\\.)?\\s+|Bakk\\.(?:\\s+r\\.\\s+nat\\.|\\s+art\\.)?\\s+|LL\\.M\\.(?:\\s+LL\\.B\\.)?\\s+|M\\.B\\.L\\.|LL\\.B\\.|MBA\\s+|MSc\\s+|DI\\s+|Dipl\\.(?:\\s+Kff\\.)?\\s+|StR\\s+|KommR\\s+|KzlR\\s+)([A-Z][a-z\\u00df]+(?:\\s+[A-Z][a-z\\u00df]+)+)(?=\\s|,|\\.|\\n|$)",
+        "priority": 9,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities",
+        "validated_precision": 0.7550744248985115,
+        "validated_support": 739,
+        "created_at": "2026-11-17T15:16:53.747521"
+      },
+      {
+        "id": "48220079",
+        "name": "Names after 'von' (General Context)",
+        "description": "Captures the name following 'von' in broader legal contexts, handling split titles and ensuring full name capture.",
+        "format": "regex",
+        "content": "(?:Befunden|Gutachten|Stellungnahme|Aussage|Schreiben|Einspruch|Antrag|Ansuchen|E-Mail|Mail|Bescheinigung|Bescheid|Verf\\u00fcgung|Urteil|Entscheidung|Klage|Rechtsmittel|Vertretung|Anwalt|Rechtsanwalt|Notar|Gericht|Beh\\u00f6rde|Amt|Finanzamt|Magistrat|Bundesfinanzgericht|Verwaltungsgericht|Verwaltungsstrafbeh\\u00f6rde|VfGH|OGH|VwGH|BFG|Online\\s+Wettprodukt|Liegenschaft|Zeitraum|Angaben|des|der)\\s+(?:von\\s+)(?:(?:Dr\\.|Mag\\.|Univ\\.-?Prof\\.|Hon\\.-?Prof\\.|Priv\\.-?Doz\\.|Ing\\.|Bakk\\.|LL\\.M\\.|LLM|BSc|B\\.iur\\.|i\\.iur\\.|M\\.B\\.L\\.|LL\\.B\\.|MBA|MSc|PhD|MA|StR|RA\\.|StB\\.|MedR|KommR|VetR|DDr\\.|RgR|OStR|HR|Fr\\.PhD|\\u00d6kR|DI|Dipl\\.|Techn\\s+R|KommR|KzlR)\\s+)?([A-Z][a-z\\u00df]+(?:\\s+[A-Z][a-z\\u00df]+)+)(?=\\s|,|\\.|\\n|$)",
+        "priority": 8,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities",
+        "validated_precision": 0.25,
+        "validated_support": 16,
+        "created_at": "2026-11-17T15:16:53.747543"
+      },
+      {
+        "id": "d7c5313e",
+        "name": "Names after 'durch' (Judge/Representative)",
+        "description": "Captures the name following 'durch den Richter' or 'durch die Richterin', handling split titles and ensuring full name capture.",
+        "format": "regex",
+        "content": "(?:durch\\s+(?:den\\s+)?(?:Richter|Richterin)\\s+)(?:(?:Dr\\.|Mag\\.|Univ\\.-?Prof\\.|Hon\\.-?Prof\\.|Priv\\.-?Doz\\.|Ing\\.|Bakk\\.|LL\\.M\\.|LLM|BSc|B\\.iur\\.|i\\.iur\\.|M\\.B\\.L\\.|LL\\.B\\.|MBA|MSc|PhD|MA|StR|RA\\.|StB\\.|MedR|KommR|VetR|DDr\\.|RgR|OStR|HR|Fr\\.PhD|\\u00d6kR|DI|Dipl\\.|Techn\\s+R|KommR|KzlR)\\s+)?([A-Z][a-z\\u00df]+(?:\\s+[A-Z][a-z\\u00df]+)+)(?=\\s|,|\\.|\\n|$)",
+        "priority": 9,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities",
+        "validated_precision": 0.0,
+        "validated_support": 243,
+        "created_at": "2026-11-17T15:16:53.747564"
+      },
+      {
+        "id": "8ee5a0d4",
+        "name": "Names after 'in der Beschwerdesache' context",
+        "description": "Captures the name following 'in der Beschwerdesache' with titles, using a capture group to exclude the context phrase.",
+        "format": "regex",
+        "content": "(?:in\\s+der\\s+Beschwerdesache|in\\s+der\\s+Sache|in\\s+der\\s+Revisionssache|in\\s+der\\s+Verwaltungsstrafsache)\\s+(?:(?:Dr\\.(?:\\s+Priv\\.-Doz\\.)?|Dr\\.in|Mag\\.(?:\\s+Univ\\.-Prof\\.)?|Mag\\.a|Univ\\.-Prof\\.(?:\\.in)?|Priv\\.-Doz\\.(?:\\.in)?|Hon\\.-Prof\\.(?:\\.in)?|Hon\\.-Prof\\.|MedR|KommR|Ing\\.|Bakk\\.(?:\\s+iur\\.)?|LLM|BSc|RA\\.?|StB\\.?|Gf-?|\\u00d6kR|Dipl\\.-Ing\\.|RgR|OStR|HR|Fr\\.PhD|Mag\\.|VetR|DDr\\.|LL\\.B\\.(?:\\s+LL\\.M\\.)?|B\\.iur\\.(?:\\s|\\s+r\\.\\s+nat\\.)?|i\\.iur\\.(?:\\s|\\s+r\\.\\s+nat\\.)?|Bakk\\.(?:\\s+r\\.\\s+r\\.\\s+nat\\.|\\s+art\\.|\\s+techn\\.)?|LL\\.M\\.(?:\\s|\\s+LL\\.B\\.)?|M\\.B\\.L\\.|LL\\.B\\.|MBA|MSc|\\u00d6kR\\s+Dipl\\.-Ing\\.|DI|Dipl\\.(?:\\s+Kff\\.)?|StR|\\u00d6kR\\s+Dipl\\.-Ing\\.|Techn\\s+R|KommR|KzlR)\\s+)?([A-Z][a-z\\u00df]+(?:\\s+[A-Z][a-z\\u00df]+)+)(?=\\s|,|\\.|\\n|$)",
+        "priority": 9,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities",
+        "validated_precision": 0.7762237762237763,
+        "validated_support": 429,
+        "created_at": "2026-11-17T15:15:26.146697"
+      },
+      {
+        "id": "bb3830e3",
+        "name": "Names after 'von' (Family/Relation Context)",
+        "description": "Captures names following 'von' in contexts like 'Kindesmutter von', 'Vater von', etc., ensuring the name is a person.",
+        "format": "regex",
+        "content": "(?:Kindesmutter|Vater|Mutter|Sohn|Tochter|Ehefrau|Ehemann|Elternteil|Angeh\u00f6rige|Angeh\u00f6riger)\\s+(?:von\\s+)?([A-Z][a-z\\u00df]+(?:\\s+[A-Z][a-z\\u00df]+)+)(?=\\s|,|\\.|\\n|$)",
+        "priority": 8,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities",
+        "validated_precision": 0.5,
+        "validated_support": 4,
+        "created_at": "2026-11-17T15:16:53.746691"
+      },
+      {
+        "id": "e1aefbb2",
+        "name": "Names with 'VetR' and similar standalone titles",
+        "description": "Captures names immediately following specific standalone titles like 'VetR', 'Ing.', 'Bakk.' without requiring 'Herrn/Frau' prefix.",
+        "format": "regex",
+        "content": "(?:VetR|Ing\\.|Bakk\\.|Dipl\\.-Ing\\.|RA\\.|StB\\.|MedR|KommR|OStR|HR|Fr\\.PhD|KzlR|Techn\\s+R)\\s+([A-Z][a-z\\u00df]+(?:\\s+[A-Z][a-z\\u00df]+)+)(?=\\s|,|\\.|\\n|$)",
+        "priority": 9,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities",
+        "validated_precision": 0.49038461538461536,
+        "validated_support": 104,
+        "created_at": "2026-11-17T15:16:53.747092"
+      }
+    ]
+  },
+  "results_dev": {
+    "accuracy": 0.9827801469038315,
+    "micro_precision": 0.7147270854788877,
+    "micro_recall": 0.3749324689357104,
+    "micro_f1": 0.4918497519489723,
+    "macro_f1": 0.4918497519489723,
+    "num_rules": 13,
+    "learning_time_s": 4476.7,
+    "eval_time_s": 6.591,
+    "per_query_ms": 0.11
+  },
+  "per_class_dev": [
+    {
+      "label": "person",
+      "precision": 0.7147270854788877,
+      "recall": 0.3749324689357104,
+      "f1": 0.4918497519489723,
+      "tp": 694,
+      "fp": 277,
+      "fn": 1157
+    }
+  ],
+  "iteration_metrics": [
+    {
+      "iteration": 1,
+      "num_rules": 6,
+      "exact_match": 0.2219626168224299,
+      "micro_f1": 0.0850546780072904,
+      "micro_precision": 0.13725490196078433,
+      "micro_recall": 0.061619718309859156,
+      "macro_f1": 0.0850546780072904,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.0850546780072904,
+          "precision": 0.13725490196078433,
+          "recall": 0.061619718309859156
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 4,
+      "exact_match": 0.22897196261682243,
+      "micro_f1": 0.12602100350058343,
+      "micro_precision": 0.18685121107266436,
+      "micro_recall": 0.09507042253521127,
+      "macro_f1": 0.12602100350058343,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.12602100350058343,
+          "precision": 0.18685121107266436,
+          "recall": 0.09507042253521127
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 9,
+      "exact_match": 0.15654205607476634,
+      "micro_f1": 0.08413001912045888,
+      "micro_precision": 0.0537371763556424,
+      "micro_recall": 0.1936619718309859,
+      "macro_f1": 0.08413001912045888,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.08413001912045888,
+          "precision": 0.0537371763556424,
+          "recall": 0.1936619718309859
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 11,
+      "exact_match": 0.22429906542056074,
+      "micro_f1": 0.16227608008429928,
+      "micro_precision": 0.2020997375328084,
+      "micro_recall": 0.13556338028169015,
+      "macro_f1": 0.16227608008429928,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.16227608008429928,
+          "precision": 0.2020997375328084,
+          "recall": 0.13556338028169015
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 5,
+      "exact_match": 0.1705607476635514,
+      "micro_f1": 0.01226993865030675,
+      "micro_precision": 0.020242914979757085,
+      "micro_recall": 0.008802816901408451,
+      "macro_f1": 0.01226993865030675,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.01226993865030675,
+          "precision": 0.020242914979757085,
+          "recall": 0.008802816901408451
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 8,
+      "exact_match": 0.1939252336448598,
+      "micro_f1": 0.14823261117445838,
+      "micro_precision": 0.21035598705501618,
+      "micro_recall": 0.11443661971830986,
+      "macro_f1": 0.14823261117445838,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.14823261117445838,
+          "precision": 0.21035598705501618,
+          "recall": 0.11443661971830986
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 8,
+      "exact_match": 0.1939252336448598,
+      "micro_f1": 0.14823261117445838,
+      "micro_precision": 0.21035598705501618,
+      "micro_recall": 0.11443661971830986,
+      "macro_f1": 0.14823261117445838,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.14823261117445838,
+          "precision": 0.21035598705501618,
+          "recall": 0.11443661971830986
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 8,
+      "exact_match": 0.18925233644859812,
+      "micro_f1": 0.12160898035547238,
+      "micro_precision": 0.12974051896207583,
+      "micro_recall": 0.11443661971830986,
+      "macro_f1": 0.12160898035547238,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.12160898035547238,
+          "precision": 0.12974051896207583,
+          "recall": 0.11443661971830986
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 9,
+      "exact_match": 0.014018691588785047,
+      "micro_f1": 0.0007221520129987363,
+      "micro_precision": 0.0004023335345001006,
+      "micro_recall": 0.0035211267605633804,
+      "macro_f1": 0.0007221520129987363,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.0007221520129987363,
+          "precision": 0.0004023335345001006,
+          "recall": 0.0035211267605633804
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 7,
+      "exact_match": 0.17289719626168223,
+      "micro_f1": 0.1369047619047619,
+      "micro_precision": 0.15681818181818183,
+      "micro_recall": 0.12147887323943662,
+      "macro_f1": 0.1369047619047619,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.1369047619047619,
+          "precision": 0.15681818181818183,
+          "recall": 0.12147887323943662
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 8,
+      "exact_match": 0.17289719626168223,
+      "micro_f1": 0.1369047619047619,
+      "micro_precision": 0.15681818181818183,
+      "micro_recall": 0.12147887323943662,
+      "macro_f1": 0.1369047619047619,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.1369047619047619,
+          "precision": 0.15681818181818183,
+          "recall": 0.12147887323943662
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 8,
+      "exact_match": 0.1939252336448598,
+      "micro_f1": 0.1596806387225549,
+      "micro_precision": 0.18433179723502305,
+      "micro_recall": 0.14084507042253522,
+      "macro_f1": 0.1596806387225549,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.1596806387225549,
+          "precision": 0.18433179723502305,
+          "recall": 0.14084507042253522
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 9,
+      "exact_match": 0.016355140186915886,
+      "micro_f1": 0.03553835327234342,
+      "micro_precision": 0.01974198592650508,
+      "micro_recall": 0.17781690140845072,
+      "macro_f1": 0.03553835327234342,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.03553835327234342,
+          "precision": 0.01974198592650508,
+          "recall": 0.17781690140845072
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 8,
+      "exact_match": 0.014018691588785047,
+      "micro_f1": 0.0,
+      "micro_precision": 0.0,
+      "micro_recall": 0.0,
+      "macro_f1": 0.0,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 10,
+      "exact_match": 0.20327102803738317,
+      "micro_f1": 0.1464318813716404,
+      "micro_precision": 0.15459882583170254,
+      "micro_recall": 0.13908450704225353,
+      "macro_f1": 0.1464318813716404,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.1464318813716404,
+          "precision": 0.15459882583170254,
+          "recall": 0.13908450704225353
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 11,
+      "exact_match": 0.016355140186915886,
+      "micro_f1": 0.018138261464750168,
+      "micro_precision": 0.01004548900682335,
+      "micro_recall": 0.09330985915492958,
+      "macro_f1": 0.018138261464750168,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.018138261464750168,
+          "precision": 0.01004548900682335,
+          "recall": 0.09330985915492958
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 10,
+      "exact_match": 0.21728971962616822,
+      "micro_f1": 0.16986855409504548,
+      "micro_precision": 0.1995249406175772,
+      "micro_recall": 0.14788732394366197,
+      "macro_f1": 0.16986855409504548,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.16986855409504548,
+          "precision": 0.1995249406175772,
+          "recall": 0.14788732394366197
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 7,
+      "exact_match": 0.21728971962616822,
+      "micro_f1": 0.18340611353711792,
+      "micro_precision": 0.2413793103448276,
+      "micro_recall": 0.14788732394366197,
+      "macro_f1": 0.18340611353711792,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.18340611353711792,
+          "precision": 0.2413793103448276,
+          "recall": 0.14788732394366197
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 9,
+      "exact_match": 0.04439252336448598,
+      "micro_f1": 0.1048689138576779,
+      "micro_precision": 0.08123791102514506,
+      "micro_recall": 0.14788732394366197,
+      "macro_f1": 0.1048689138576779,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.1048689138576779,
+          "precision": 0.08123791102514506,
+          "recall": 0.14788732394366197
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 6,
+      "exact_match": 0.18457943925233644,
+      "micro_f1": 0.17005988023952096,
+      "micro_precision": 0.26591760299625467,
+      "micro_recall": 0.125,
+      "macro_f1": 0.17005988023952096,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.17005988023952096,
+          "precision": 0.26591760299625467,
+          "recall": 0.125
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 11,
+      "exact_match": 0.19158878504672897,
+      "micro_f1": 0.11574952561669828,
+      "micro_precision": 0.07922077922077922,
+      "micro_recall": 0.2147887323943662,
+      "macro_f1": 0.11574952561669828,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.11574952561669828,
+          "precision": 0.07922077922077922,
+          "recall": 0.2147887323943662
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 9,
+      "exact_match": 0.20327102803738317,
+      "micro_f1": 0.18314255983350675,
+      "micro_precision": 0.22391857506361323,
+      "micro_recall": 0.15492957746478872,
+      "macro_f1": 0.18314255983350675,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.18314255983350675,
+          "precision": 0.22391857506361323,
+          "recall": 0.15492957746478872
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 8,
+      "exact_match": 0.17289719626168223,
+      "micro_f1": 0.011655011655011654,
+      "micro_precision": 0.017241379310344827,
+      "micro_recall": 0.008802816901408451,
+      "macro_f1": 0.011655011655011654,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.011655011655011654,
+          "precision": 0.017241379310344827,
+          "recall": 0.008802816901408451
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 10,
+      "exact_match": 0.14018691588785046,
+      "micro_f1": 0.14124293785310732,
+      "micro_precision": 0.15182186234817813,
+      "micro_recall": 0.13204225352112675,
+      "macro_f1": 0.14124293785310732,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.14124293785310732,
+          "precision": 0.15182186234817813,
+          "recall": 0.13204225352112675
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 9,
+      "exact_match": 0.19158878504672897,
+      "micro_f1": 0.15288220551378445,
+      "micro_precision": 0.26521739130434785,
+      "micro_recall": 0.1073943661971831,
+      "macro_f1": 0.15288220551378445,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.15288220551378445,
+          "precision": 0.26521739130434785,
+          "recall": 0.1073943661971831
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 9,
+      "exact_match": 0.22429906542056074,
+      "micro_f1": 0.19216182048040453,
+      "micro_precision": 0.34080717488789236,
+      "micro_recall": 0.13380281690140844,
+      "macro_f1": 0.19216182048040453,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.19216182048040453,
+          "precision": 0.34080717488789236,
+          "recall": 0.13380281690140844
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 9,
+      "exact_match": 0.22429906542056074,
+      "micro_f1": 0.20075282308657466,
+      "micro_precision": 0.34934497816593885,
+      "micro_recall": 0.14084507042253522,
+      "macro_f1": 0.20075282308657466,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.20075282308657466,
+          "precision": 0.34934497816593885,
+          "recall": 0.14084507042253522
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 10,
+      "exact_match": 0.17289719626168223,
+      "micro_f1": 0.17938931297709926,
+      "micro_precision": 0.19583333333333333,
+      "micro_recall": 0.16549295774647887,
+      "macro_f1": 0.17938931297709926,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.17938931297709926,
+          "precision": 0.19583333333333333,
+          "recall": 0.16549295774647887
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 11,
+      "exact_match": 0.16822429906542055,
+      "micro_f1": 0.17407407407407408,
+      "micro_precision": 0.18359375,
+      "micro_recall": 0.16549295774647887,
+      "macro_f1": 0.17407407407407408,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.17407407407407408,
+          "precision": 0.18359375,
+          "recall": 0.16549295774647887
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 8,
+      "exact_match": 0.1985981308411215,
+      "micro_f1": 0.18959537572254337,
+      "micro_precision": 0.2760942760942761,
+      "micro_recall": 0.1443661971830986,
+      "macro_f1": 0.18959537572254337,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.18959537572254337,
+          "precision": 0.2760942760942761,
+          "recall": 0.1443661971830986
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 8,
+      "exact_match": 0.20794392523364486,
+      "micro_f1": 0.20275344180225283,
+      "micro_precision": 0.35064935064935066,
+      "micro_recall": 0.1426056338028169,
+      "macro_f1": 0.20275344180225283,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.20275344180225283,
+          "precision": 0.35064935064935066,
+          "recall": 0.1426056338028169
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 11,
+      "exact_match": 0.21261682242990654,
+      "micro_f1": 0.16435432230522948,
+      "micro_precision": 0.2086720867208672,
+      "micro_recall": 0.13556338028169015,
+      "macro_f1": 0.16435432230522948,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.16435432230522948,
+          "precision": 0.2086720867208672,
+          "recall": 0.13556338028169015
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 10,
+      "exact_match": 0.3060747663551402,
+      "micro_f1": 0.44212962962962965,
+      "micro_precision": 0.6452702702702703,
+      "micro_recall": 0.3362676056338028,
+      "macro_f1": 0.44212962962962965,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.44212962962962965,
+          "precision": 0.6452702702702703,
+          "recall": 0.3362676056338028
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 13,
+      "exact_match": 0.2383177570093458,
+      "micro_f1": 0.20041753653444677,
+      "micro_precision": 0.24615384615384617,
+      "micro_recall": 0.16901408450704225,
+      "macro_f1": 0.20041753653444677,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.20041753653444677,
+          "precision": 0.24615384615384617,
+          "recall": 0.16901408450704225
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 13,
+      "exact_match": 0.1985981308411215,
+      "micro_f1": 0.14225053078556263,
+      "micro_precision": 0.17914438502673796,
+      "micro_recall": 0.11795774647887323,
+      "macro_f1": 0.14225053078556263,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.14225053078556263,
+          "precision": 0.17914438502673796,
+          "recall": 0.11795774647887323
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 12,
+      "exact_match": 0.26401869158878505,
+      "micro_f1": 0.454842219804135,
+      "micro_precision": 0.5954415954415955,
+      "micro_recall": 0.36795774647887325,
+      "macro_f1": 0.454842219804135,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.454842219804135,
+          "precision": 0.5954415954415955,
+          "recall": 0.36795774647887325
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 13,
+      "exact_match": 0.3130841121495327,
+      "micro_f1": 0.44956140350877194,
+      "micro_precision": 0.5959302325581395,
+      "micro_recall": 0.3609154929577465,
+      "macro_f1": 0.44956140350877194,
+      "per_class": [
+        {
+          "label": "person",
+          "f1": 0.44956140350877194,
+          "precision": 0.5959302325581395,
+          "recall": 0.3609154929577465
+        }
+      ]
+    }
+  ],
+  "batch_test_metrics": [
+    {
+      "batch": 0,
+      "num_rules": 6,
+      "dev": {
+        "exact_match": 0.9801858187537497,
+        "micro_f1": 0.08629441624365482,
+        "micro_precision": 0.13120176405733186,
+        "micro_recall": 0.06428957320367369,
+        "macro_f1": 0.08629441624365482,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.08629441624365482,
+            "precision": 0.13120176405733186,
+            "recall": 0.06428957320367369
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.983082244553368,
+        "micro_f1": 0.05971370143149285,
+        "micro_precision": 0.08784596871239471,
+        "micro_recall": 0.045229244114002476,
+        "macro_f1": 0.05971370143149285,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.05971370143149285,
+            "precision": 0.08784596871239471,
+            "recall": 0.045229244114002476
+          }
+        ]
+      }
+    },
+    {
+      "batch": 1,
+      "num_rules": 5,
+      "dev": {
+        "exact_match": 0.9808668298931461,
+        "micro_f1": 0.08831521739130435,
+        "micro_precision": 0.11893870082342177,
+        "micro_recall": 0.07023230686115613,
+        "macro_f1": 0.08831521739130435,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.08831521739130435,
+            "precision": 0.11893870082342177,
+            "recall": 0.07023230686115613
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9833773216832511,
+        "micro_f1": 0.06207928197456994,
+        "micro_precision": 0.07830188679245283,
+        "micro_recall": 0.051425030978934326,
+        "macro_f1": 0.06207928197456994,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.06207928197456994,
+            "precision": 0.07830188679245283,
+            "recall": 0.051425030978934326
+          }
+        ]
+      }
+    },
+    {
+      "batch": 2,
+      "num_rules": 5,
+      "dev": {
+        "exact_match": 0.9803317497121917,
+        "micro_f1": 0.17999282897095734,
+        "micro_precision": 0.267590618336887,
+        "micro_recall": 0.13560237709346298,
+        "macro_f1": 0.17999282897095734,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.17999282897095734,
+            "precision": 0.267590618336887,
+            "recall": 0.13560237709346298
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9838199373780757,
+        "micro_f1": 0.20190779014308427,
+        "micro_precision": 0.28159645232815966,
+        "micro_recall": 0.15737298636926889,
+        "macro_f1": 0.20190779014308427,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.20190779014308427,
+            "precision": 0.28159645232815966,
+            "recall": 0.15737298636926889
+          }
+        ]
+      }
+    },
+    {
+      "batch": 3,
+      "num_rules": 7,
+      "dev": {
+        "exact_match": 0.9811100481572163,
+        "micro_f1": 0.2929171668667467,
+        "micro_precision": 0.5648148148148148,
+        "micro_recall": 0.19773095623987033,
+        "macro_f1": 0.2929171668667467,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.2929171668667467,
+            "precision": 0.5648148148148148,
+            "recall": 0.19773095623987033
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9844264848117243,
+        "micro_f1": 0.3405958203646065,
+        "micro_precision": 0.6031496062992125,
+        "micro_recall": 0.2372986369268897,
+        "macro_f1": 0.3405958203646065,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.3405958203646065,
+            "precision": 0.6031496062992125,
+            "recall": 0.2372986369268897
+          }
+        ]
+      }
+    },
+    {
+      "batch": 4,
+      "num_rules": 9,
+      "dev": {
+        "exact_match": 0.9773969159924116,
+        "micro_f1": 0.14695222405271827,
+        "micro_precision": 0.1883445945945946,
+        "micro_recall": 0.12047541869259859,
+        "macro_f1": 0.14695222405271827,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.14695222405271827,
+            "precision": 0.1883445945945946,
+            "recall": 0.12047541869259859
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.981508499860658,
+        "micro_f1": 0.14656488549618318,
+        "micro_precision": 0.1908548707753479,
+        "micro_recall": 0.11895910780669144,
+        "macro_f1": 0.14656488549618318,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.14656488549618318,
+            "precision": 0.1908548707753479,
+            "recall": 0.11895910780669144
+          }
+        ]
+      }
+    },
+    {
+      "batch": 5,
+      "num_rules": 9,
+      "dev": {
+        "exact_match": 0.9772834141358455,
+        "micro_f1": 0.14556135770234985,
+        "micro_precision": 0.1838417147568013,
+        "micro_recall": 0.12047541869259859,
+        "macro_f1": 0.14556135770234985,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.14556135770234985,
+            "precision": 0.1838417147568013,
+            "recall": 0.12047541869259859
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9813609612957165,
+        "micro_f1": 0.14662084765177547,
+        "micro_precision": 0.191044776119403,
+        "micro_recall": 0.11895910780669144,
+        "macro_f1": 0.14662084765177547,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.14662084765177547,
+            "precision": 0.191044776119403,
+            "recall": 0.11895910780669144
+          }
+        ]
+      }
+    },
+    {
+      "batch": 6,
+      "num_rules": 8,
+      "dev": {
+        "exact_match": 0.9767321194039531,
+        "micro_f1": 0.14486680634540558,
+        "micro_precision": 0.16241610738255033,
+        "micro_recall": 0.1307401404646137,
+        "macro_f1": 0.14486680634540558,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.14486680634540558,
+            "precision": 0.16241610738255033,
+            "recall": 0.1307401404646137
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9809511319486566,
+        "micro_f1": 0.14325068870523414,
+        "micro_precision": 0.16124031007751938,
+        "micro_recall": 0.1288723667905824,
+        "macro_f1": 0.14325068870523414,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.14325068870523414,
+            "precision": 0.16124031007751938,
+            "recall": 0.1288723667905824
+          }
+        ]
+      }
+    },
+    {
+      "batch": 7,
+      "num_rules": 5,
+      "dev": {
+        "exact_match": 0.9454056069917144,
+        "micro_f1": 0.007618283881315157,
+        "micro_precision": 0.006056742110296462,
+        "micro_recall": 0.010264721772015126,
+        "macro_f1": 0.007618283881315157,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.007618283881315157,
+            "precision": 0.006056742110296462,
+            "recall": 0.010264721772015126
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9489844428779856,
+        "micro_f1": 0.0013245033112582781,
+        "micro_precision": 0.00102880658436214,
+        "micro_recall": 0.0018587360594795538,
+        "macro_f1": 0.0013245033112582781,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.0013245033112582781,
+            "precision": 0.00102880658436214,
+            "recall": 0.0018587360594795538
+          }
+        ]
+      }
+    },
+    {
+      "batch": 8,
+      "num_rules": 4,
+      "dev": {
+        "exact_match": 0.9454866797464044,
+        "micro_f1": 0.008028734417916754,
+        "micro_precision": 0.00659264399722415,
+        "micro_recall": 0.010264721772015126,
+        "macro_f1": 0.008028734417916754,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.008028734417916754,
+            "precision": 0.00659264399722415,
+            "recall": 0.010264721772015126
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9490172292257504,
+        "micro_f1": 0.00140548137737175,
+        "micro_precision": 0.0011299435028248588,
+        "micro_recall": 0.0018587360594795538,
+        "macro_f1": 0.00140548137737175,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.00140548137737175,
+            "precision": 0.0011299435028248588,
+            "recall": 0.0018587360594795538
+          }
+        ]
+      }
+    },
+    {
+      "batch": 9,
+      "num_rules": 6,
+      "dev": {
+        "exact_match": 0.9456326107048465,
+        "micro_f1": 0.028641571194762683,
+        "micro_precision": 0.02304906157392163,
+        "micro_recall": 0.037817396002161,
+        "macro_f1": 0.028641571194762683,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.028641571194762683,
+            "precision": 0.02304906157392163,
+            "recall": 0.037817396002161
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9491483746168096,
+        "micro_f1": 0.016937514305333027,
+        "micro_precision": 0.013430127041742287,
+        "micro_recall": 0.02292441140024783,
+        "macro_f1": 0.016937514305333027,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.016937514305333027,
+            "precision": 0.013430127041742287,
+            "recall": 0.02292441140024783
+          }
+        ]
+      }
+    },
+    {
+      "batch": 10,
+      "num_rules": 8,
+      "dev": {
+        "exact_match": 0.9456163961539085,
+        "micro_f1": 0.09551208285385501,
+        "micro_precision": 0.07404103479036575,
+        "micro_recall": 0.13452188006482982,
+        "macro_f1": 0.09551208285385501,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.09551208285385501,
+            "precision": 0.07404103479036575,
+            "recall": 0.13452188006482982
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9493450927033983,
+        "micro_f1": 0.09164191769198132,
+        "micro_precision": 0.0696774193548387,
+        "micro_recall": 0.13382899628252787,
+        "macro_f1": 0.09164191769198132,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.09164191769198132,
+            "precision": 0.0696774193548387,
+            "recall": 0.13382899628252787
+          }
+        ]
+      }
+    },
+    {
+      "batch": 11,
+      "num_rules": 8,
+      "dev": {
+        "exact_match": 0.9456163961539085,
+        "micro_f1": 0.09551208285385501,
+        "micro_precision": 0.07404103479036575,
+        "micro_recall": 0.13452188006482982,
+        "macro_f1": 0.09551208285385501,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.09551208285385501,
+            "precision": 0.07404103479036575,
+            "recall": 0.13452188006482982
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9493450927033983,
+        "micro_f1": 0.09164191769198132,
+        "micro_precision": 0.0696774193548387,
+        "micro_recall": 0.13382899628252787,
+        "macro_f1": 0.09164191769198132,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.09164191769198132,
+            "precision": 0.0696774193548387,
+            "recall": 0.13382899628252787
+          }
+        ]
+      }
+    },
+    {
+      "batch": 12,
+      "num_rules": 8,
+      "dev": {
+        "exact_match": 0.9456163961539085,
+        "micro_f1": 0.09551208285385501,
+        "micro_precision": 0.07404103479036575,
+        "micro_recall": 0.13452188006482982,
+        "macro_f1": 0.09551208285385501,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.09551208285385501,
+            "precision": 0.07404103479036575,
+            "recall": 0.13452188006482982
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9493450927033983,
+        "micro_f1": 0.09164191769198132,
+        "micro_precision": 0.0696774193548387,
+        "micro_recall": 0.13382899628252787,
+        "macro_f1": 0.09164191769198132,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.09164191769198132,
+            "precision": 0.0696774193548387,
+            "recall": 0.13382899628252787
+          }
+        ]
+      }
+    },
+    {
+      "batch": 13,
+      "num_rules": 8,
+      "dev": {
+        "exact_match": 0.9456163961539085,
+        "micro_f1": 0.09551208285385501,
+        "micro_precision": 0.07404103479036575,
+        "micro_recall": 0.13452188006482982,
+        "macro_f1": 0.09551208285385501,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.09551208285385501,
+            "precision": 0.07404103479036575,
+            "recall": 0.13452188006482982
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9493450927033983,
+        "micro_f1": 0.09164191769198132,
+        "micro_precision": 0.0696774193548387,
+        "micro_recall": 0.13382899628252787,
+        "macro_f1": 0.09164191769198132,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.09164191769198132,
+            "precision": 0.0696774193548387,
+            "recall": 0.13382899628252787
+          }
+        ]
+      }
+    },
+    {
+      "batch": 14,
+      "num_rules": 8,
+      "dev": {
+        "exact_match": 0.9454542506445284,
+        "micro_f1": 0.085995510274564,
+        "micro_precision": 0.06319796954314721,
+        "micro_recall": 0.13452188006482982,
+        "macro_f1": 0.085995510274564,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.085995510274564,
+            "precision": 0.06319796954314721,
+            "recall": 0.13452188006482982
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9493942722250455,
+        "micro_f1": 0.08174077578051087,
+        "micro_precision": 0.0588395532552438,
+        "micro_recall": 0.13382899628252787,
+        "macro_f1": 0.08174077578051087,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.08174077578051087,
+            "precision": 0.0588395532552438,
+            "recall": 0.13382899628252787
+          }
+        ]
+      }
+    },
+    {
+      "batch": 15,
+      "num_rules": 9,
+      "dev": {
+        "exact_match": 0.06827947399996757,
+        "micro_f1": 0.0011655794028083751,
+        "micro_precision": 0.0005860999192961892,
+        "micro_recall": 0.10318746623446785,
+        "macro_f1": 0.0011655794028083751,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.0011655794028083751,
+            "precision": 0.0005860999192961892,
+            "recall": 0.10318746623446785
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.06235963344863199,
+        "micro_f1": 0.0008530723056614112,
+        "micro_precision": 0.00042869033537978207,
+        "micro_recall": 0.0848822800495663,
+        "macro_f1": 0.0008530723056614112,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.0008530723056614112,
+            "precision": 0.00042869033537978207,
+            "recall": 0.0848822800495663
+          }
+        ]
+      }
+    },
+    {
+      "batch": 16,
+      "num_rules": 7,
+      "dev": {
+        "exact_match": 0.8862224960679714,
+        "micro_f1": 0.04749665878482574,
+        "micro_precision": 0.029329608938547486,
+        "micro_recall": 0.12479740680713128,
+        "macro_f1": 0.04749665878482574,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.04749665878482574,
+            "precision": 0.029329608938547486,
+            "recall": 0.12479740680713128
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.8907394960738348,
+        "micro_f1": 0.046054785550583864,
+        "micro_precision": 0.02795072194992714,
+        "micro_recall": 0.13073110285006195,
+        "macro_f1": 0.046054785550583864,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.046054785550583864,
+            "precision": 0.02795072194992714,
+            "recall": 0.13073110285006195
+          }
+        ]
+      }
+    },
+    {
+      "batch": 17,
+      "num_rules": 7,
+      "dev": {
+        "exact_match": 0.8862224960679714,
+        "micro_f1": 0.04749665878482574,
+        "micro_precision": 0.029329608938547486,
+        "micro_recall": 0.12479740680713128,
+        "macro_f1": 0.04749665878482574,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.04749665878482574,
+            "precision": 0.029329608938547486,
+            "recall": 0.12479740680713128
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.8907394960738348,
+        "micro_f1": 0.046054785550583864,
+        "micro_precision": 0.02795072194992714,
+        "micro_recall": 0.13073110285006195,
+        "macro_f1": 0.046054785550583864,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.046054785550583864,
+            "precision": 0.02795072194992714,
+            "recall": 0.13073110285006195
+          }
+        ]
+      }
+    },
+    {
+      "batch": 18,
+      "num_rules": 7,
+      "dev": {
+        "exact_match": 0.8862387106189095,
+        "micro_f1": 0.05160892361468078,
+        "micro_precision": 0.03186896901980701,
+        "micro_recall": 0.13560237709346298,
+        "macro_f1": 0.05160892361468078,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.05160892361468078,
+            "precision": 0.03186896901980701,
+            "recall": 0.13560237709346298
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.8907558892477172,
+        "micro_f1": 0.04889228418640183,
+        "micro_precision": 0.02967280434494635,
+        "micro_recall": 0.13878562577447337,
+        "macro_f1": 0.04889228418640183,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.04889228418640183,
+            "precision": 0.02967280434494635,
+            "recall": 0.13878562577447337
+          }
+        ]
+      }
+    },
+    {
+      "batch": 19,
+      "num_rules": 7,
+      "dev": {
+        "exact_match": 0.8862387106189095,
+        "micro_f1": 0.05160892361468078,
+        "micro_precision": 0.03186896901980701,
+        "micro_recall": 0.13560237709346298,
+        "macro_f1": 0.05160892361468078,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.05160892361468078,
+            "precision": 0.03186896901980701,
+            "recall": 0.13560237709346298
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.8907558892477172,
+        "micro_f1": 0.04889228418640183,
+        "micro_precision": 0.02967280434494635,
+        "micro_recall": 0.13878562577447337,
+        "macro_f1": 0.04889228418640183,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.04889228418640183,
+            "precision": 0.02967280434494635,
+            "recall": 0.13878562577447337
+          }
+        ]
+      }
+    },
+    {
+      "batch": 20,
+      "num_rules": 8,
+      "dev": {
+        "exact_match": 0.8862387106189095,
+        "micro_f1": 0.05160892361468078,
+        "micro_precision": 0.03186896901980701,
+        "micro_recall": 0.13560237709346298,
+        "macro_f1": 0.05160892361468078,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.05160892361468078,
+            "precision": 0.03186896901980701,
+            "recall": 0.13560237709346298
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.8907558892477172,
+        "micro_f1": 0.04889228418640183,
+        "micro_precision": 0.02967280434494635,
+        "micro_recall": 0.13878562577447337,
+        "macro_f1": 0.04889228418640183,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.04889228418640183,
+            "precision": 0.02967280434494635,
+            "recall": 0.13878562577447337
+          }
+        ]
+      }
+    },
+    {
+      "batch": 21,
+      "num_rules": 8,
+      "dev": {
+        "exact_match": 0.887000794512996,
+        "micro_f1": 0.06183435011891222,
+        "micro_precision": 0.03823529411764706,
+        "micro_recall": 0.1615343057806591,
+        "macro_f1": 0.06183435011891222,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.06183435011891222,
+            "precision": 0.03823529411764706,
+            "recall": 0.1615343057806591
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.8912804708119539,
+        "micro_f1": 0.05711159737417944,
+        "micro_precision": 0.03467977677385065,
+        "micro_recall": 0.16171003717472118,
+        "macro_f1": 0.05711159737417944,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.05711159737417944,
+            "precision": 0.03467977677385065,
+            "recall": 0.16171003717472118
+          }
+        ]
+      }
+    },
+    {
+      "batch": 22,
+      "num_rules": 9,
+      "dev": {
+        "exact_match": 0.9058258881520276,
+        "micro_f1": 0.07511622216784929,
+        "micro_precision": 0.04855290210343192,
+        "micro_recall": 0.1658562938951918,
+        "macro_f1": 0.07511622216784929,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.07511622216784929,
+            "precision": 0.04855290210343192,
+            "recall": 0.1658562938951918
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9097227914296487,
+        "micro_f1": 0.06942277691107644,
+        "micro_precision": 0.043928923988154,
+        "micro_recall": 0.1654275092936803,
+        "macro_f1": 0.06942277691107644,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.06942277691107644,
+            "precision": 0.043928923988154,
+            "recall": 0.1654275092936803
+          }
+        ]
+      }
+    },
+    {
+      "batch": 23,
+      "num_rules": 11,
+      "dev": {
+        "exact_match": 0.9057772444992136,
+        "micro_f1": 0.07452360723388762,
+        "micro_precision": 0.048058860363180966,
+        "micro_recall": 0.1658562938951918,
+        "macro_f1": 0.07452360723388762,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.07452360723388762,
+            "precision": 0.048058860363180966,
+            "recall": 0.1658562938951918
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9097063982557663,
+        "micro_f1": 0.06896551724137932,
+        "micro_precision": 0.04356338717572198,
+        "micro_recall": 0.1654275092936803,
+        "macro_f1": 0.06896551724137932,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.06896551724137932,
+            "precision": 0.04356338717572198,
+            "recall": 0.1654275092936803
+          }
+        ]
+      }
+    },
+    {
+      "batch": 24,
+      "num_rules": 7,
+      "dev": {
+        "exact_match": 0.9814181246250385,
+        "micro_f1": 0.21341261975553352,
+        "micro_precision": 0.27465986394557823,
+        "micro_recall": 0.17450027012425715,
+        "macro_f1": 0.21341261975553352,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.21341261975553352,
+            "precision": 0.27465986394557823,
+            "recall": 0.17450027012425715
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.983705185160899,
+        "micro_f1": 0.18368093669959748,
+        "micro_precision": 0.22430741733690795,
+        "micro_recall": 0.15551425030978935,
+        "macro_f1": 0.18368093669959748,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.18368093669959748,
+            "precision": 0.22430741733690795,
+            "recall": 0.15551425030978935
+          }
+        ]
+      }
+    },
+    {
+      "batch": 25,
+      "num_rules": 7,
+      "dev": {
+        "exact_match": 0.9814181246250385,
+        "micro_f1": 0.21341261975553352,
+        "micro_precision": 0.27465986394557823,
+        "micro_recall": 0.17450027012425715,
+        "macro_f1": 0.21341261975553352,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.21341261975553352,
+            "precision": 0.27465986394557823,
+            "recall": 0.17450027012425715
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.983705185160899,
+        "micro_f1": 0.18368093669959748,
+        "micro_precision": 0.22430741733690795,
+        "micro_recall": 0.15551425030978935,
+        "macro_f1": 0.18368093669959748,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.18368093669959748,
+            "precision": 0.22430741733690795,
+            "recall": 0.15551425030978935
+          }
+        ]
+      }
+    },
+    {
+      "batch": 26,
+      "num_rules": 7,
+      "dev": {
+        "exact_match": 0.0676308919624471,
+        "micro_f1": 0.001118886249621688,
+        "micro_precision": 0.0005626268216196274,
+        "micro_recall": 0.09886547811993517,
+        "macro_f1": 0.001118886249621688,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.001118886249621688,
+            "precision": 0.0005626268216196274,
+            "recall": 0.09886547811993517
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.0619825904493369,
+        "micro_f1": 0.0008851239952751833,
+        "micro_precision": 0.00044479944869927485,
+        "micro_recall": 0.08798017348203221,
+        "macro_f1": 0.0008851239952751833,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.0008851239952751833,
+            "precision": 0.00044479944869927485,
+            "recall": 0.08798017348203221
+          }
+        ]
+      }
+    },
+    {
+      "batch": 27,
+      "num_rules": 9,
+      "dev": {
+        "exact_match": 0.9652197882379647,
+        "micro_f1": 0.011211308798440166,
+        "micro_precision": 0.010213143872113677,
+        "micro_recall": 0.01242571582928147,
+        "macro_f1": 0.011211308798440166,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.011211308798440166,
+            "precision": 0.010213143872113677,
+            "recall": 0.01242571582928147
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9676398747561515,
+        "micro_f1": 0.008726899383983574,
+        "micro_precision": 0.007449605609114811,
+        "micro_recall": 0.010532837670384139,
+        "macro_f1": 0.008726899383983574,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.008726899383983574,
+            "precision": 0.007449605609114811,
+            "recall": 0.010532837670384139
+          }
+        ]
+      }
+    },
+    {
+      "batch": 28,
+      "num_rules": 12,
+      "dev": {
+        "exact_match": 0.9226565920256838,
+        "micro_f1": 0.08450312717164696,
+        "micro_precision": 0.05688622754491018,
+        "micro_recall": 0.16423554835224202,
+        "macro_f1": 0.08450312717164696,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.08450312717164696,
+            "precision": 0.05688622754491018,
+            "recall": 0.16423554835224202
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9275421714398124,
+        "micro_f1": 0.07969189749666718,
+        "micro_precision": 0.05236519369281682,
+        "micro_recall": 0.16666666666666666,
+        "macro_f1": 0.07969189749666718,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.07969189749666718,
+            "precision": 0.05236519369281682,
+            "recall": 0.16666666666666666
+          }
+        ]
+      }
+    },
+    {
+      "batch": 29,
+      "num_rules": 12,
+      "dev": {
+        "exact_match": 0.9213269988487669,
+        "micro_f1": 0.061770761839396025,
+        "micro_precision": 0.041405962458594035,
+        "micro_recall": 0.12155591572123177,
+        "macro_f1": 0.061770761839396025,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.061770761839396025,
+            "precision": 0.041405962458594035,
+            "recall": 0.12155591572123177
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.92636186292028,
+        "micro_f1": 0.06191950464396285,
+        "micro_precision": 0.04062681369704005,
+        "micro_recall": 0.13011152416356878,
+        "macro_f1": 0.06191950464396285,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.06191950464396285,
+            "precision": 0.04062681369704005,
+            "recall": 0.13011152416356878
+          }
+        ]
+      }
+    },
+    {
+      "batch": 30,
+      "num_rules": 8,
+      "dev": {
+        "exact_match": 0.9368929677492582,
+        "micro_f1": 0.10708924103419518,
+        "micro_precision": 0.07746138996138996,
+        "micro_recall": 0.17341977309562398,
+        "macro_f1": 0.10708924103419518,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.10708924103419518,
+            "precision": 0.07746138996138996,
+            "recall": 0.17341977309562398
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9422140620645563,
+        "micro_f1": 0.10206297502714441,
+        "micro_precision": 0.07208588957055215,
+        "micro_recall": 0.17472118959107807,
+        "macro_f1": 0.10206297502714441,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.10206297502714441,
+            "precision": 0.07208588957055215,
+            "recall": 0.17472118959107807
+          }
+        ]
+      }
+    },
+    {
+      "batch": 31,
+      "num_rules": 11,
+      "dev": {
+        "exact_match": 0.9800723168971835,
+        "micro_f1": 0.2024367385192128,
+        "micro_precision": 0.24,
+        "micro_recall": 0.17504051863857376,
+        "macro_f1": 0.2024367385192128,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.2024367385192128,
+            "precision": 0.24,
+            "recall": 0.17504051863857376
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9828035605973673,
+        "micro_f1": 0.1958904109589041,
+        "micro_precision": 0.21898928024502298,
+        "micro_recall": 0.1771995043370508,
+        "macro_f1": 0.1958904109589041,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.1958904109589041,
+            "precision": 0.21898928024502298,
+            "recall": 0.1771995043370508
+          }
+        ]
+      }
+    },
+    {
+      "batch": 32,
+      "num_rules": 7,
+      "dev": {
+        "exact_match": 0.9711056702284631,
+        "micro_f1": 0.18171557562076748,
+        "micro_precision": 0.19019492025989368,
+        "micro_recall": 0.17396002160994056,
+        "macro_f1": 0.18171557562076748,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.18171557562076748,
+            "precision": 0.19019492025989368,
+            "recall": 0.17396002160994056
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9738037081359322,
+        "micro_f1": 0.17393939393939395,
+        "micro_precision": 0.17022538552787664,
+        "micro_recall": 0.177819083023544,
+        "macro_f1": 0.17393939393939395,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.17393939393939395,
+            "precision": 0.17022538552787664,
+            "recall": 0.177819083023544
+          }
+        ]
+      }
+    },
+    {
+      "batch": 33,
+      "num_rules": 8,
+      "dev": {
+        "exact_match": 0.06575000405363773,
+        "micro_f1": 0.0010764800865889993,
+        "micro_precision": 0.0005411863514576544,
+        "micro_recall": 0.09886547811993517,
+        "macro_f1": 0.0010764800865889993,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.0010764800865889993,
+            "precision": 0.0005411863514576544,
+            "recall": 0.09886547811993517
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.05967115293191915,
+        "micro_f1": 0.0008393864085353607,
+        "micro_precision": 0.0004217337474357082,
+        "micro_recall": 0.08674101610904585,
+        "macro_f1": 0.0008393864085353607,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.0008393864085353607,
+            "precision": 0.0004217337474357082,
+            "recall": 0.08674101610904585
+          }
+        ]
+      }
+    },
+    {
+      "batch": 34,
+      "num_rules": 7,
+      "dev": {
+        "exact_match": 0.9711056702284631,
+        "micro_f1": 0.18171557562076748,
+        "micro_precision": 0.19019492025989368,
+        "micro_recall": 0.17396002160994056,
+        "macro_f1": 0.18171557562076748,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.18171557562076748,
+            "precision": 0.19019492025989368,
+            "recall": 0.17396002160994056
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9738037081359322,
+        "micro_f1": 0.17393939393939395,
+        "micro_precision": 0.17022538552787664,
+        "micro_recall": 0.177819083023544,
+        "macro_f1": 0.17393939393939395,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.17393939393939395,
+            "precision": 0.17022538552787664,
+            "recall": 0.177819083023544
+          }
+        ]
+      }
+    },
+    {
+      "batch": 35,
+      "num_rules": 7,
+      "dev": {
+        "exact_match": 0.9711056702284631,
+        "micro_f1": 0.18227990970654626,
+        "micro_precision": 0.19078558771411694,
+        "micro_recall": 0.17450027012425715,
+        "macro_f1": 0.18227990970654626,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.18227990970654626,
+            "precision": 0.19078558771411694,
+            "recall": 0.17450027012425715
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9738037081359322,
+        "micro_f1": 0.17393939393939395,
+        "micro_precision": 0.17022538552787664,
+        "micro_recall": 0.177819083023544,
+        "macro_f1": 0.17393939393939395,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.17393939393939395,
+            "precision": 0.17022538552787664,
+            "recall": 0.177819083023544
+          }
+        ]
+      }
+    },
+    {
+      "batch": 36,
+      "num_rules": 5,
+      "dev": {
+        "exact_match": 0.9713488884925332,
+        "micro_f1": 0.19528178243774574,
+        "micro_precision": 0.24812656119900084,
+        "micro_recall": 0.16099405726634253,
+        "macro_f1": 0.19528178243774574,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.19528178243774574,
+            "precision": 0.24812656119900084,
+            "recall": 0.16099405726634253
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9741807511352273,
+        "micro_f1": 0.19050991501416428,
+        "micro_precision": 0.22231404958677686,
+        "micro_recall": 0.16666666666666666,
+        "macro_f1": 0.19050991501416428,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.19050991501416428,
+            "precision": 0.22231404958677686,
+            "recall": 0.16666666666666666
+          }
+        ]
+      }
+    },
+    {
+      "batch": 37,
+      "num_rules": 6,
+      "dev": {
+        "exact_match": 0.9138520908663434,
+        "micro_f1": 0.07070296627387242,
+        "micro_precision": 0.04718004338394794,
+        "micro_recall": 0.14100486223662884,
+        "macro_f1": 0.07070296627387242,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.07070296627387242,
+            "precision": 0.04718004338394794,
+            "recall": 0.14100486223662884
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9199193455844986,
+        "micro_f1": 0.06641198942109902,
+        "micro_precision": 0.04352850539291217,
+        "micro_recall": 0.14002478314745972,
+        "macro_f1": 0.06641198942109902,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.06641198942109902,
+            "precision": 0.04352850539291217,
+            "recall": 0.14002478314745972
+          }
+        ]
+      }
+    },
+    {
+      "batch": 38,
+      "num_rules": 8,
+      "dev": {
+        "exact_match": 0.9801371751009356,
+        "micro_f1": 0.21359223300970875,
+        "micro_precision": 0.3798342541436464,
+        "micro_recall": 0.14856834143706105,
+        "macro_f1": 0.21359223300970875,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.21359223300970875,
+            "precision": 0.3798342541436464,
+            "recall": 0.14856834143706105
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9832133899444271,
+        "micro_f1": 0.21664464993394975,
+        "micro_precision": 0.3744292237442922,
+        "micro_recall": 0.1524163568773234,
+        "macro_f1": 0.21664464993394975,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.21664464993394975,
+            "precision": 0.3744292237442922,
+            "recall": 0.1524163568773234
+          }
+        ]
+      }
+    },
+    {
+      "batch": 39,
+      "num_rules": 8,
+      "dev": {
+        "exact_match": 0.9796993822256093,
+        "micro_f1": 0.028615622583139984,
+        "micro_precision": 0.050340136054421766,
+        "micro_recall": 0.019989195029713667,
+        "macro_f1": 0.028615622583139984,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.028615622583139984,
+            "precision": 0.050340136054421766,
+            "recall": 0.019989195029713667
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9825412698152489,
+        "micro_f1": 0.03152364273204904,
+        "micro_precision": 0.05373134328358209,
+        "micro_recall": 0.022304832713754646,
+        "macro_f1": 0.03152364273204904,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.03152364273204904,
+            "precision": 0.05373134328358209,
+            "recall": 0.022304832713754646
+          }
+        ]
+      }
+    },
+    {
+      "batch": 40,
+      "num_rules": 9,
+      "dev": {
+        "exact_match": 0.9471081348402056,
+        "micro_f1": 0.11734073945495574,
+        "micro_precision": 0.08644501278772379,
+        "micro_recall": 0.18260399783900594,
+        "macro_f1": 0.11734073945495574,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.11734073945495574,
+            "precision": 0.08644501278772379,
+            "recall": 0.18260399783900594
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9559023622563565,
+        "micro_f1": 0.11382459120832449,
+        "micro_precision": 0.08659127625201939,
+        "micro_recall": 0.16604708798017348,
+        "macro_f1": 0.11382459120832449,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.11382459120832449,
+            "precision": 0.08659127625201939,
+            "recall": 0.16604708798017348
+          }
+        ]
+      }
+    },
+    {
+      "batch": 41,
+      "num_rules": 9,
+      "dev": {
+        "exact_match": 0.95604235240705,
+        "micro_f1": 0.11207417859302558,
+        "micro_precision": 0.08938906752411575,
+        "micro_recall": 0.1501890869800108,
+        "macro_f1": 0.11207417859302558,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.11207417859302558,
+            "precision": 0.08938906752411575,
+            "recall": 0.1501890869800108
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9621645546794315,
+        "micro_f1": 0.12035731076633757,
+        "micro_precision": 0.09696969696969697,
+        "micro_recall": 0.15861214374225527,
+        "macro_f1": 0.12035731076633757,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.12035731076633757,
+            "precision": 0.09696969696969697,
+            "recall": 0.15861214374225527
+          }
+        ]
+      }
+    },
+    {
+      "batch": 42,
+      "num_rules": 9,
+      "dev": {
+        "exact_match": 0.9783049308449403,
+        "micro_f1": 0.2029296177206145,
+        "micro_precision": 0.29957805907172996,
+        "micro_recall": 0.15343057806591032,
+        "macro_f1": 0.2029296177206145,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.2029296177206145,
+            "precision": 0.29957805907172996,
+            "recall": 0.15343057806591032
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9818035769905411,
+        "micro_f1": 0.204718112754898,
+        "micro_precision": 0.28861330326944756,
+        "micro_recall": 0.15861214374225527,
+        "macro_f1": 0.204718112754898,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.204718112754898,
+            "precision": 0.28861330326944756,
+            "recall": 0.15861214374225527
+          }
+        ]
+      }
+    },
+    {
+      "batch": 43,
+      "num_rules": 7,
+      "dev": {
+        "exact_match": 0.9780292834789941,
+        "micro_f1": 0.17339755464987033,
+        "micro_precision": 0.2759433962264151,
+        "micro_recall": 0.12641815235008103,
+        "macro_f1": 0.17339755464987033,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.17339755464987033,
+            "precision": 0.2759433962264151,
+            "recall": 0.12641815235008103
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9815248930345404,
+        "micro_f1": 0.1802252816020025,
+        "micro_precision": 0.27586206896551724,
+        "micro_recall": 0.13382899628252787,
+        "macro_f1": 0.1802252816020025,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.1802252816020025,
+            "precision": 0.27586206896551724,
+            "recall": 0.13382899628252787
+          }
+        ]
+      }
+    },
+    {
+      "batch": 44,
+      "num_rules": 7,
+      "dev": {
+        "exact_match": 0.9777536361130479,
+        "micro_f1": 0.17212210371460096,
+        "micro_precision": 0.2695852534562212,
+        "micro_recall": 0.12641815235008103,
+        "macro_f1": 0.17212210371460096,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.17212210371460096,
+            "precision": 0.2695852534562212,
+            "recall": 0.12641815235008103
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9809839182964214,
+        "micro_f1": 0.17688194158782392,
+        "micro_precision": 0.2631578947368421,
+        "micro_recall": 0.1332094175960347,
+        "macro_f1": 0.17688194158782392,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.17688194158782392,
+            "precision": 0.2631578947368421,
+            "recall": 0.1332094175960347
+          }
+        ]
+      }
+    },
+    {
+      "batch": 45,
+      "num_rules": 8,
+      "dev": {
+        "exact_match": 0.7890000486436528,
+        "micro_f1": 0.02828557959247813,
+        "micro_precision": 0.015661252900232018,
+        "micro_recall": 0.1458670988654781,
+        "macro_f1": 0.02828557959247813,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.02828557959247813,
+            "precision": 0.015661252900232018,
+            "recall": 0.1458670988654781
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.7868067736594482,
+        "micro_f1": 0.0263938944244223,
+        "micro_precision": 0.014431436188709864,
+        "micro_recall": 0.15427509293680297,
+        "macro_f1": 0.0263938944244223,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.0263938944244223,
+            "precision": 0.014431436188709864,
+            "recall": 0.15427509293680297
+          }
+        ]
+      }
+    },
+    {
+      "batch": 46,
+      "num_rules": 10,
+      "dev": {
+        "exact_match": 0.7889838340927148,
+        "micro_f1": 0.028282616665793747,
+        "micro_precision": 0.01565943626029463,
+        "micro_recall": 0.1458670988654781,
+        "macro_f1": 0.028282616665793747,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.028282616665793747,
+            "precision": 0.01565943626029463,
+            "recall": 0.1458670988654781
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.7867412009639186,
+        "micro_f1": 0.02638830012717253,
+        "micro_precision": 0.014428091319967551,
+        "micro_recall": 0.15427509293680297,
+        "macro_f1": 0.02638830012717253,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.02638830012717253,
+            "precision": 0.014428091319967551,
+            "recall": 0.15427509293680297
+          }
+        ]
+      }
+    },
+    {
+      "batch": 47,
+      "num_rules": 9,
+      "dev": {
+        "exact_match": 0.9782887162940023,
+        "micro_f1": 0.17032163742690057,
+        "micro_precision": 0.2632768361581921,
+        "micro_recall": 0.12587790383576444,
+        "macro_f1": 0.17032163742690057,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.17032163742690057,
+            "precision": 0.2632768361581921,
+            "recall": 0.12587790383576444
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9812626022524221,
+        "micro_f1": 0.17803184973458552,
+        "micro_precision": 0.26107784431137726,
+        "micro_recall": 0.13506815365551425,
+        "macro_f1": 0.17803184973458552,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.17803184973458552,
+            "precision": 0.26107784431137726,
+            "recall": 0.13506815365551425
+          }
+        ]
+      }
+    },
+    {
+      "batch": 48,
+      "num_rules": 9,
+      "dev": {
+        "exact_match": 0.9798453131840513,
+        "micro_f1": 0.22783855149000382,
+        "micro_precision": 0.3775,
+        "micro_recall": 0.16315505132360886,
+        "macro_f1": 0.22783855149000382,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.22783855149000382,
+            "precision": 0.3775,
+            "recall": 0.16315505132360886
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9826888083801905,
+        "micro_f1": 0.22890559732664997,
+        "micro_precision": 0.35128205128205126,
+        "micro_recall": 0.1697645600991326,
+        "macro_f1": 0.22890559732664997,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.22890559732664997,
+            "precision": 0.35128205128205126,
+            "recall": 0.1697645600991326
+          }
+        ]
+      }
+    },
+    {
+      "batch": 49,
+      "num_rules": 10,
+      "dev": {
+        "exact_match": 0.06829568855090558,
+        "micro_f1": 0.001114019601874962,
+        "micro_precision": 0.0005601657845841152,
+        "micro_recall": 0.09886547811993517,
+        "macro_f1": 0.001114019601874962,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.001114019601874962,
+            "precision": 0.0005601657845841152,
+            "recall": 0.09886547811993517
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.062064556318748874,
+        "micro_f1": 0.0008809916740082638,
+        "micro_precision": 0.0004427123928293063,
+        "micro_recall": 0.08798017348203221,
+        "macro_f1": 0.0008809916740082638,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.0008809916740082638,
+            "precision": 0.0004427123928293063,
+            "recall": 0.08798017348203221
+          }
+        ]
+      }
+    },
+    {
+      "batch": 50,
+      "num_rules": 9,
+      "dev": {
+        "exact_match": 0.9798453131840513,
+        "micro_f1": 0.22783855149000382,
+        "micro_precision": 0.3775,
+        "micro_recall": 0.16315505132360886,
+        "macro_f1": 0.22783855149000382,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.22783855149000382,
+            "precision": 0.3775,
+            "recall": 0.16315505132360886
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9826888083801905,
+        "micro_f1": 0.22890559732664997,
+        "micro_precision": 0.35128205128205126,
+        "micro_recall": 0.1697645600991326,
+        "macro_f1": 0.22890559732664997,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.22890559732664997,
+            "precision": 0.35128205128205126,
+            "recall": 0.1697645600991326
+          }
+        ]
+      }
+    },
+    {
+      "batch": 51,
+      "num_rules": 10,
+      "dev": {
+        "exact_match": 0.9358552364892254,
+        "micro_f1": 0.10597873453024229,
+        "micro_precision": 0.0782295419454452,
+        "micro_recall": 0.16423554835224202,
+        "macro_f1": 0.10597873453024229,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.10597873453024229,
+            "precision": 0.0782295419454452,
+            "recall": 0.16423554835224202
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9413944033704366,
+        "micro_f1": 0.10403963414634146,
+        "micro_precision": 0.07512383048981838,
+        "micro_recall": 0.1691449814126394,
+        "macro_f1": 0.10403963414634146,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.10403963414634146,
+            "precision": 0.07512383048981838,
+            "recall": 0.1691449814126394
+          }
+        ]
+      }
+    },
+    {
+      "batch": 52,
+      "num_rules": 9,
+      "dev": {
+        "exact_match": 0.9798777422859274,
+        "micro_f1": 0.22966867469879518,
+        "micro_precision": 0.37888198757763975,
+        "micro_recall": 0.1647757968665586,
+        "macro_f1": 0.22966867469879518,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.22966867469879518,
+            "precision": 0.37888198757763975,
+            "recall": 0.1647757968665586
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9826888083801905,
+        "micro_f1": 0.23102585487906588,
+        "micro_precision": 0.35331632653061223,
+        "micro_recall": 0.17162329615861213,
+        "macro_f1": 0.23102585487906588,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.23102585487906588,
+            "precision": 0.35331632653061223,
+            "recall": 0.17162329615861213
+          }
+        ]
+      }
+    },
+    {
+      "batch": 53,
+      "num_rules": 9,
+      "dev": {
+        "exact_match": 0.9798777422859274,
+        "micro_f1": 0.22966867469879518,
+        "micro_precision": 0.37888198757763975,
+        "micro_recall": 0.1647757968665586,
+        "macro_f1": 0.22966867469879518,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.22966867469879518,
+            "precision": 0.37888198757763975,
+            "recall": 0.1647757968665586
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9826888083801905,
+        "micro_f1": 0.23102585487906588,
+        "micro_precision": 0.35331632653061223,
+        "micro_recall": 0.17162329615861213,
+        "macro_f1": 0.23102585487906588,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.23102585487906588,
+            "precision": 0.35331632653061223,
+            "recall": 0.17162329615861213
+          }
+        ]
+      }
+    },
+    {
+      "batch": 54,
+      "num_rules": 10,
+      "dev": {
+        "exact_match": 0.8152838357141698,
+        "micro_f1": 0.04085556356645037,
+        "micro_precision": 0.022983843709862773,
+        "micro_recall": 0.1836844948676391,
+        "macro_f1": 0.04085556356645037,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.04085556356645037,
+            "precision": 0.022983843709862773,
+            "recall": 0.1836844948676391
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.8129866723496336,
+        "micro_f1": 0.03735944867609721,
+        "micro_precision": 0.02069935691318328,
+        "micro_recall": 0.19144981412639406,
+        "macro_f1": 0.03735944867609721,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.03735944867609721,
+            "precision": 0.02069935691318328,
+            "recall": 0.19144981412639406
+          }
+        ]
+      }
+    },
+    {
+      "batch": 55,
+      "num_rules": 12,
+      "dev": {
+        "exact_match": 0.06891184148655002,
+        "micro_f1": 0.0011302523718407448,
+        "micro_precision": 0.0005683573237783406,
+        "micro_recall": 0.09940572663425176,
+        "macro_f1": 0.0011302523718407448,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.0011302523718407448,
+            "precision": 0.0005683573237783406,
+            "recall": 0.09940572663425176
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.06272028327404469,
+        "micro_f1": 0.0009014620587765783,
+        "micro_precision": 0.00045301965916562587,
+        "micro_recall": 0.08921933085501858,
+        "macro_f1": 0.0009014620587765783,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.0009014620587765783,
+            "precision": 0.00045301965916562587,
+            "recall": 0.08921933085501858
+          }
+        ]
+      }
+    },
+    {
+      "batch": 56,
+      "num_rules": 5,
+      "dev": {
+        "exact_match": 0.9796831676746712,
+        "micro_f1": 0.2172573189522342,
+        "micro_precision": 0.3785234899328859,
+        "micro_recall": 0.15235008103727715,
+        "macro_f1": 0.2172573189522342,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.2172573189522342,
+            "precision": 0.3785234899328859,
+            "recall": 0.15235008103727715
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9826724152063081,
+        "micro_f1": 0.22184300341296928,
+        "micro_precision": 0.3561643835616438,
+        "micro_recall": 0.161090458488228,
+        "macro_f1": 0.22184300341296928,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.22184300341296928,
+            "precision": 0.3561643835616438,
+            "recall": 0.161090458488228
+          }
+        ]
+      }
+    },
+    {
+      "batch": 57,
+      "num_rules": 8,
+      "dev": {
+        "exact_match": 0.9351255816970149,
+        "micro_f1": 0.10884588804422944,
+        "micro_precision": 0.08001016002032003,
+        "micro_recall": 0.17017828200972449,
+        "macro_f1": 0.10884588804422944,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.10884588804422944,
+            "precision": 0.08001016002032003,
+            "recall": 0.17017828200972449
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9407222832412584,
+        "micro_f1": 0.10522345841976238,
+        "micro_precision": 0.07563025210084033,
+        "micro_recall": 0.17286245353159851,
+        "macro_f1": 0.10522345841976238,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.10522345841976238,
+            "precision": 0.07563025210084033,
+            "recall": 0.17286245353159851
+          }
+        ]
+      }
+    },
+    {
+      "batch": 58,
+      "num_rules": 8,
+      "dev": {
+        "exact_match": 0.9351255816970149,
+        "micro_f1": 0.10884588804422944,
+        "micro_precision": 0.08001016002032003,
+        "micro_recall": 0.17017828200972449,
+        "macro_f1": 0.10884588804422944,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.10884588804422944,
+            "precision": 0.08001016002032003,
+            "recall": 0.17017828200972449
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9407222832412584,
+        "micro_f1": 0.10522345841976238,
+        "micro_precision": 0.07563025210084033,
+        "micro_recall": 0.17286245353159851,
+        "macro_f1": 0.10522345841976238,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.10522345841976238,
+            "precision": 0.07563025210084033,
+            "recall": 0.17286245353159851
+          }
+        ]
+      }
+    },
+    {
+      "batch": 59,
+      "num_rules": 8,
+      "dev": {
+        "exact_match": 0.9788724401277706,
+        "micro_f1": 0.2320117474302496,
+        "micro_precision": 0.3619702176403207,
+        "micro_recall": 0.17071853052404107,
+        "macro_f1": 0.2320117474302496,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.2320117474302496,
+            "precision": 0.3619702176403207,
+            "recall": 0.17071853052404107
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9817871838166587,
+        "micro_f1": 0.22970779220779222,
+        "micro_precision": 0.33294117647058824,
+        "micro_recall": 0.17534076827757125,
+        "macro_f1": 0.22970779220779222,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.22970779220779222,
+            "precision": 0.33294117647058824,
+            "recall": 0.17534076827757125
+          }
+        ]
+      }
+    },
+    {
+      "batch": 60,
+      "num_rules": 8,
+      "dev": {
+        "exact_match": 0.9788724401277706,
+        "micro_f1": 0.2320117474302496,
+        "micro_precision": 0.3619702176403207,
+        "micro_recall": 0.17071853052404107,
+        "macro_f1": 0.2320117474302496,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.2320117474302496,
+            "precision": 0.3619702176403207,
+            "recall": 0.17071853052404107
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9817871838166587,
+        "micro_f1": 0.22970779220779222,
+        "micro_precision": 0.33294117647058824,
+        "micro_recall": 0.17534076827757125,
+        "macro_f1": 0.22970779220779222,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.22970779220779222,
+            "precision": 0.33294117647058824,
+            "recall": 0.17534076827757125
+          }
+        ]
+      }
+    },
+    {
+      "batch": 61,
+      "num_rules": 10,
+      "dev": {
+        "exact_match": 0.9775104178489776,
+        "micro_f1": 0.0,
+        "micro_precision": 0.0,
+        "micro_recall": 0.0,
+        "macro_f1": 0.0,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.0,
+            "precision": 0.0,
+            "recall": 0.0
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9803937640366551,
+        "micro_f1": 0.0008100445524503847,
+        "micro_precision": 0.0011695906432748538,
+        "micro_recall": 0.0006195786864931846,
+        "macro_f1": 0.0008100445524503847,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.0008100445524503847,
+            "precision": 0.0011695906432748538,
+            "recall": 0.0006195786864931846
+          }
+        ]
+      }
+    },
+    {
+      "batch": 62,
+      "num_rules": 10,
+      "dev": {
+        "exact_match": 0.9815964846853567,
+        "micro_f1": 0.4516129032258065,
+        "micro_precision": 0.5235042735042735,
+        "micro_recall": 0.39708265802269044,
+        "macro_f1": 0.4516129032258065,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.4516129032258065,
+            "precision": 0.5235042735042735,
+            "recall": 0.39708265802269044
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9826068425107786,
+        "micro_f1": 0.4253181513730743,
+        "micro_precision": 0.46282798833819244,
+        "micro_recall": 0.39343246592317227,
+        "macro_f1": 0.4253181513730743,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.4253181513730743,
+            "precision": 0.46282798833819244,
+            "recall": 0.39343246592317227
+          }
+        ]
+      }
+    },
+    {
+      "batch": 63,
+      "num_rules": 10,
+      "dev": {
+        "exact_match": 0.9815964846853567,
+        "micro_f1": 0.4516129032258065,
+        "micro_precision": 0.5235042735042735,
+        "micro_recall": 0.39708265802269044,
+        "macro_f1": 0.4516129032258065,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.4516129032258065,
+            "precision": 0.5235042735042735,
+            "recall": 0.39708265802269044
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9826068425107786,
+        "micro_f1": 0.4253181513730743,
+        "micro_precision": 0.46282798833819244,
+        "micro_recall": 0.39343246592317227,
+        "macro_f1": 0.4253181513730743,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.4253181513730743,
+            "precision": 0.46282798833819244,
+            "recall": 0.39343246592317227
+          }
+        ]
+      }
+    },
+    {
+      "batch": 64,
+      "num_rules": 10,
+      "dev": {
+        "exact_match": 0.9814343391759766,
+        "micro_f1": 0.4198661500528355,
+        "micro_precision": 0.6032388663967612,
+        "micro_recall": 0.32198811453268505,
+        "macro_f1": 0.4198661500528355,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.4198661500528355,
+            "precision": 0.6032388663967612,
+            "recall": 0.32198811453268505
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9841805872034884,
+        "micro_f1": 0.4397705544933079,
+        "micro_precision": 0.5744255744255744,
+        "micro_recall": 0.3562577447335812,
+        "macro_f1": 0.4397705544933079,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.4397705544933079,
+            "precision": 0.5744255744255744,
+            "recall": 0.3562577447335812
+          }
+        ]
+      }
+    },
+    {
+      "batch": 65,
+      "num_rules": 11,
+      "dev": {
+        "exact_match": 0.979358876655911,
+        "micro_f1": 0.20603015075376885,
+        "micro_precision": 0.306951871657754,
+        "micro_recall": 0.15505132360886006,
+        "macro_f1": 0.20603015075376885,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.20603015075376885,
+            "precision": 0.306951871657754,
+            "recall": 0.15505132360886006
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9824593039458369,
+        "micro_f1": 0.22023346303501948,
+        "micro_precision": 0.29602510460251047,
+        "micro_recall": 0.17534076827757125,
+        "macro_f1": 0.22023346303501948,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.22023346303501948,
+            "precision": 0.29602510460251047,
+            "recall": 0.17534076827757125
+          }
+        ]
+      }
+    },
+    {
+      "batch": 66,
+      "num_rules": 13,
+      "dev": {
+        "exact_match": 0.9797966695312373,
+        "micro_f1": 0.22572347266881027,
+        "micro_precision": 0.27879269261318507,
+        "micro_recall": 0.18962722852512157,
+        "macro_f1": 0.22572347266881027,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.22572347266881027,
+            "precision": 0.27879269261318507,
+            "recall": 0.18962722852512157
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9825084834674841,
+        "micro_f1": 0.22260391618000688,
+        "micro_precision": 0.24980724749421743,
+        "micro_recall": 0.20074349442379183,
+        "macro_f1": 0.22260391618000688,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.22260391618000688,
+            "precision": 0.24980724749421743,
+            "recall": 0.20074349442379183
+          }
+        ]
+      }
+    },
+    {
+      "batch": 67,
+      "num_rules": 13,
+      "dev": {
+        "exact_match": 0.979423734859663,
+        "micro_f1": 0.1511627906976744,
+        "micro_precision": 0.18795180722891566,
+        "micro_recall": 0.12641815235008103,
+        "macro_f1": 0.1511627906976744,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.1511627906976744,
+            "precision": 0.18795180722891566,
+            "recall": 0.12641815235008103
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9818527565121883,
+        "micro_f1": 0.15703908682116913,
+        "micro_precision": 0.17776037588097102,
+        "micro_recall": 0.1406443618339529,
+        "macro_f1": 0.15703908682116913,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.15703908682116913,
+            "precision": 0.17776037588097102,
+            "recall": 0.1406443618339529
+          }
+        ]
+      }
+    },
+    {
+      "batch": 68,
+      "num_rules": 13,
+      "dev": {
+        "exact_match": 0.979423734859663,
+        "micro_f1": 0.1511627906976744,
+        "micro_precision": 0.18795180722891566,
+        "micro_recall": 0.12641815235008103,
+        "macro_f1": 0.1511627906976744,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.1511627906976744,
+            "precision": 0.18795180722891566,
+            "recall": 0.12641815235008103
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9818527565121883,
+        "micro_f1": 0.15911449325492907,
+        "micro_precision": 0.18010963194988253,
+        "micro_recall": 0.14250309789343246,
+        "macro_f1": 0.15911449325492907,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.15911449325492907,
+            "precision": 0.18010963194988253,
+            "recall": 0.14250309789343246
+          }
+        ]
+      }
+    },
+    {
+      "batch": 69,
+      "num_rules": 13,
+      "dev": {
+        "exact_match": 0.9804290370178198,
+        "micro_f1": 0.2711426726920594,
+        "micro_precision": 0.3368083400160385,
+        "micro_recall": 0.22690437601296595,
+        "macro_f1": 0.2711426726920594,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.2711426726920594,
+            "precision": 0.3368083400160385,
+            "recall": 0.22690437601296595
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.983082244553368,
+        "micro_f1": 0.2847270214236351,
+        "micro_precision": 0.321875,
+        "micro_recall": 0.2552664188351921,
+        "macro_f1": 0.2847270214236351,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.2847270214236351,
+            "precision": 0.321875,
+            "recall": 0.2552664188351921
+          }
+        ]
+      }
+    },
+    {
+      "batch": 70,
+      "num_rules": 12,
+      "dev": {
+        "exact_match": 0.7725260648906328,
+        "micro_f1": 0.08514640416327043,
+        "micro_precision": 0.04816285998013903,
+        "micro_recall": 0.36682874122096165,
+        "macro_f1": 0.08514640416327043,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.08514640416327043,
+            "precision": 0.04816285998013903,
+            "recall": 0.36682874122096165
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.7716758741659973,
+        "micro_f1": 0.08148242162711003,
+        "micro_precision": 0.04539027149321267,
+        "micro_recall": 0.39776951672862454,
+        "macro_f1": 0.08148242162711003,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.08148242162711003,
+            "precision": 0.04539027149321267,
+            "recall": 0.39776951672862454
+          }
+        ]
+      }
+    },
+    {
+      "batch": 71,
+      "num_rules": 13,
+      "dev": {
+        "exact_match": 0.9827801469038315,
+        "micro_f1": 0.4918497519489723,
+        "micro_precision": 0.7147270854788877,
+        "micro_recall": 0.3749324689357104,
+        "macro_f1": 0.4918497519489723,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.4918497519489723,
+            "precision": 0.7147270854788877,
+            "recall": 0.3749324689357104
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9857215455484336,
+        "micro_f1": 0.5230769230769231,
+        "micro_precision": 0.6896551724137931,
+        "micro_recall": 0.42131350681536556,
+        "macro_f1": 0.5230769230769231,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.5230769230769231,
+            "precision": 0.6896551724137931,
+            "recall": 0.42131350681536556
+          }
+        ]
+      }
+    },
+    {
+      "batch": 72,
+      "num_rules": 13,
+      "dev": {
+        "exact_match": 0.9802020333046876,
+        "micro_f1": 0.436980166346769,
+        "micro_precision": 0.5356862745098039,
+        "micro_recall": 0.368989735278228,
+        "macro_f1": 0.436980166346769,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.436980166346769,
+            "precision": 0.5356862745098039,
+            "recall": 0.368989735278228
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9829838855100737,
+        "micro_f1": 0.4461960246744346,
+        "micro_precision": 0.49923312883435583,
+        "micro_recall": 0.4033457249070632,
+        "macro_f1": 0.4461960246744346,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.4461960246744346,
+            "precision": 0.49923312883435583,
+            "recall": 0.4033457249070632
+          }
+        ]
+      }
+    },
+    {
+      "batch": 73,
+      "num_rules": 13,
+      "dev": {
+        "exact_match": 0.9802831060593777,
+        "micro_f1": 0.441741357234315,
+        "micro_precision": 0.5420267085624509,
+        "micro_recall": 0.3727714748784441,
+        "macro_f1": 0.441741357234315,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.441741357234315,
+            "precision": 0.5420267085624509,
+            "recall": 0.3727714748784441
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9829838855100737,
+        "micro_f1": 0.44924554183813437,
+        "micro_precision": 0.5030721966205837,
+        "micro_recall": 0.40582403965303593,
+        "macro_f1": 0.44924554183813437,
+        "per_class": [
+          {
+            "label": "person",
+            "f1": 0.44924554183813437,
+            "precision": 0.5030721966205837,
+            "recall": 0.40582403965303593
+          }
+        ]
+      }
+    }
+  ],
+  "results_test": {
+    "accuracy": 0.9857215455484336,
+    "micro_precision": 0.6896551724137931,
+    "micro_recall": 0.42131350681536556,
+    "micro_f1": 0.5230769230769231,
+    "macro_f1": 0.5230769230769231
+  },
+  "per_class_test": [
+    {
+      "label": "person",
+      "precision": 0.6896551724137931,
+      "recall": 0.42131350681536556,
+      "f1": 0.5230769230769231,
+      "tp": 680,
+      "fp": 306,
+      "fn": 934
+    }
+  ],
+  "rules": [
+    {
+      "id": "7078c2ee",
+      "name": "Names after 'Frau' or 'Herr' (Accusative/Dative)",
+      "description": "Captures full title and name following 'Herrn' or 'Frau', ensuring the name includes at least a first and last name (or title + first + last) to avoid partial matches.",
+      "format": "regex",
+      "content": "(?:Herrn|Frau)\\s+(?:(?:Dr\\.(?:\\s+Priv\\.-Doz\\.)?|Dr\\.in|Mag\\.(?:\\s+Univ\\.-Prof\\.)?|Mag\\.a|Univ\\.-Prof\\.(?:\\.in)?|Priv\\.-Doz\\.(?:\\.in)?|Hon\\.-Prof\\.(?:\\.in)?|Hon\\.-Prof\\.|MedR|KommR|Ing\\.|Bakk\\.(?:\\s+iur\\.)?|LLM|BSc|RA\\.?|StB\\.?|Gf-?|\\u00d6kR|Dipl\\.-Ing\\.|RgR|OStR|HR|Fr\\.PhD|Mag\\.|VetR|DDr\\.|LL\\.B\\.(?:\\s+LL\\.M\\.)?|B\\.iur\\.(?:\\s|\\s+r\\.\\s+nat\\.)?|i\\.iur\\.(?:\\s|\\s+r\\.\\s+nat\\.)?|Bakk\\.(?:\\s+r\\.\\s+nat\\.|\\s+art\\.)?|LL\\.M\\.(?:\\s|\\s+LL\\.B\\.)?|M\\.B\\.L\\.|LL\\.B\\.|MBA|MSc|\\u00d6kR\\s+Dipl\\.-Ing\\.|DI|Dipl\\.(?:\\s+Kff\\.)?|StR|\\u00d6kR\\s+Dipl\\.-Ing\\.)\\s+)?([A-Z][a-z\\u00df]+(?:\\s+[A-Z][a-z\\u00df]+)+)(?=\\s|,|\\.|\\n|$)",
+      "priority": 9,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "validated_precision": 0.6483516483516484,
+      "validated_support": 91,
+      "created_at": "2026-11-17T15:08:09.949520"
+    },
+    {
+      "id": "8fd8f42b",
+      "name": "Names after 'Bf,' (Comma separated)",
+      "description": "Captures full title and name immediately following 'Bf,' or 'Bf.', handling missing spaces and ensuring valid name structure.",
+      "format": "regex",
+      "content": "Bf[.,]\\s+(?:(?:Dr\\.(?:\\s+Priv\\.-Doz\\.)?|Dr\\.in|Mag\\.(?:\\s+Univ\\.-Prof\\.)?|Mag\\.a|Univ\\.-Prof\\.(?:\\.in)?|Priv\\.-Doz\\.(?:\\.in)?|Hon\\.-Prof\\.(?:\\.in)?|Hon\\.-Prof\\.|MedR|KommR|Ing\\.|Bakk\\.(?:\\s+iur\\.)?|LLM|BSc|RA\\.?|StB\\.?|Gf-?|\\u00d6kR|Dipl\\.-Ing\\.|RgR|OStR|HR|Fr\\.PhD|Mag\\.|VetR|DDr\\.|LL\\.B\\.(?:\\s+LL\\.M\\.)?|B\\.iur\\.(?:\\s+|\\s+r\\.\\s+nat\\.)?|i\\.iur\\.(?:\\s+|\\s+r\\.\\s+nat\\.)?|Bakk\\.(?:\\s+r\\.\\s+nat\\.|\\s+art\\.)?|LL\\.M\\.(?:\\s+|\\s+LL\\.B\\.)?|M\\.B\\.L\\.|LL\\.B\\.|MBA|MSc|\\u00d6kR\\s+Dipl\\.-Ing\\.|DI|Dipl\\.(?:\\s+Kff\\.)?|StR|\\u00d6kR\\s+Dipl\\.-Ing\\.)\\s+)?([A-Z][a-z\\u00df]+(?:\\s+[A-Z][a-z\\u00df]+)*(?:\\s+(?:LL\\.M\\.|LLM|BSc|B\\.iur\\.|i\\.iur\\.|Bakk\\.(?:\\s+r\\.\\s+nat\\.|\\s+art\\.)?|LL\\.M\\.|M\\.B\\.L\\.|LL\\.B\\.|MBA|MSc|PhD|MA|BSc)?)?(?=\\s|,|\\.|\\n|$))",
+      "priority": 8,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "validated_precision": 0.0,
+      "validated_support": 5,
+      "created_at": "2026-11-17T15:16:53.747430"
+    },
+    {
+      "id": "45258c48",
+      "name": "Names after 'von' (Befunden/Gutachten)",
+      "description": "Captures the name following 'von' in specific contexts using a capture group to exclude the context phrase.",
+      "format": "regex",
+      "content": "(?:Befunden|Gutachten|Stellungnahme|Aussage|Schreiben|Einspruch|Antrag|Ansuchen|E-Mail|Mail|Bescheinigung|Bescheid|Verf\\u00fcgung|Urteil|Entscheidung|Klage|Rechtsmittel|Vertretung|Anwalt|Rechtsanwalt|Notar|Gericht|Beh\\u00f6rde|Amt|Finanzamt|Magistrat|Bundesfinanzgericht|Verwaltungsgericht|Verwaltungsstrafbeh\\u00f6rde|VfGH|OGH|VwGH|BFG)\\s+(?:von\\s+)(?:(?:Dr\\.|Mag\\.|Univ\\.-?Prof\\.|Hon\\.-?Prof\\.|Priv\\.-?Doz\\.|Ing\\.|Bakk\\.|LL\\.M\\.|LLM|BSc|B\\.iur\\.|i\\.iur\\.|M\\.B\\.L\\.|LL\\.B\\.|MBA|MSc|PhD|MA|StR|RA\\.|StB\\.|MedR|KommR|VetR|DDr\\.|RgR|OStR|HR|Fr\\.PhD|\\u00d6kR|DI|Dipl\\.|Techn R|KommR|KzlR)\\s+)?([A-Z][a-z\\u00df]+(?:\\s+[A-Z][a-z\\u00df]+)+)(?=\\s|,|\\.|\\n|$)",
+      "priority": 8,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "validated_precision": 0.0,
+      "validated_support": 10,
+      "created_at": "2026-11-17T15:16:53.747453"
+    },
+    {
+      "id": "284fd772",
+      "name": "Names after 'Beschwerde des' (Genitive)",
+      "description": "Captures the name following 'Beschwerde des/der', excluding common non-person nouns, and handling split titles.",
+      "format": "regex",
+      "content": "(?:Beschwerde\\s+(?:des|der)\\s+)(?:(?:Dr\\.|Mag\\.|Univ\\.-?Prof\\.|Hon\\.-?Prof\\.|Priv\\.-?Doz\\.|Ing\\.|Bakk\\.|LL\\.M\\.|LLM|BSc|B\\.iur\\.|i\\.iur\\.|M\\.B\\.L\\.|LL\\.B\\.|MBA|MSc|PhD|MA|StR|RA\\.|StB\\.|MedR|KommR|VetR|DDr\\.|RgR|OStR|HR|Fr\\.PhD|\\u00d6kR|DI|Dipl\\.|Techn R|KommR|KzlR)\\s+)?([A-Z][a-z\\u00df]+(?:\\s+[A-Z][a-z\\u00df]+)+)(?!\\s+(?:Abgabepflichtigen|Verein|Gesellschaft|AG|mbH|GmbH|KG|UG|Stiftung|Beh\\u00f6rde|Amt|Finanzamt|Gericht|Kommission|Ausschuss|Komitee|Firma|Unternehmen|Organisation|Institution|Partei|Bewegung|Bund|Land|Stadt|Gemeinde|Bezirk|Kreis|Region|Kanton|Kommune|Verband|Kammer|Institute|Institut|Forschung|Lehrstuhl|Klinik|Krankenhaus|Hochschule|Universit\\u00e4t|Schule|Akademie|Zentrum|Institut|B\\u00fcro|Praxis|Wohnung|Haus|Geb\\u00e4ude|Grundst\\u00fcck|Fl\\u00e4che|Land|Gebiet|Territorium|Staat|Reich|Kaiserreich|Republik|Monarchie|Demokratie|Diktatur|Faschismus|Kommunismus|Sozialismus|Kapitalismus|Liberalismus|Konservatismus|Nationalismus|Internationalismus|Globalismus|Regionalismus|F\\u00f6deralismus|Zentralismus|Autokratie|Oligarchie|Anarchie|Totalitarismus|Demokratie|Rechtsstaat|Verfassungsstaat|Sozialstaat|Wohlfahrtsstaat|Marktwirtschaft|Planwirtschaft|Mischwirtschaft|Sozialmarktwirtschaft|Freie Marktwirtschaft|Sozialistische Marktwirtschaft|Kapitalistische Marktwirtschaft|Neoliberale Marktwirtschaft|Sozialdemokratische Marktwirtschaft|Konservative Marktwirtschaft|Libert\\u00e4re Marktwirtschaft|Anarchistische Marktwirtschaft|Faschistische Marktwirtschaft|Kommunistische Marktwirtschaft|Sozialistische Planwirtschaft|Kapitalistische Planwirtschaft|Neoliberale Planwirtschaft|Sozialdemokratische Planwirtschaft|Konservative Planwirtschaft|Libert\\u00e4re Planwirtschaft|Anarchistische Planwirtschaft|Faschistische Planwirtschaft|Kommunistische Planwirtschaft|Sozialistische Mischwirtschaft|Kapitalistische Mischwirtschaft|Neoliberale Mischwirtschaft|Sozialdemokratische Mischwirtschaft|Konservative Mischwirtschaft|Libert\\u00e4re Mischwirtschaft|Anarchistische Mischwirtschaft|Faschistische Mischwirtschaft|Kommunistische Mischwirtschaft|Sozialistische Marktwirtschaft|Kapitalistische Marktwirtschaft|Neoliberale Marktwirtschaft|Sozialdemokratische Marktwirtschaft|Konservative Marktwirtschaft|Libert\\u00e4re Marktwirtschaft|Anarchistische Marktwirtschaft|Faschistische Marktwirtschaft|Kommunistische Marktwirtschaft|Sozialistische Planwirtschaft|Kapitalistische Planwirtschaft|Neoliberale Planwirtschaft|Sozialdemokratische Planwirtschaft|Konservative Planwirtschaft|Libert\\u00e4re Planwirtschaft|Anarchistische Planwirtschaft|Faschistische Planwirtschaft|Kommunistische Planwirtschaft|Sozialistische Mischwirtschaft|Kapitalistische Mischwirtschaft|Neoliberale Mischwirtschaft|Sozialdemokratische Mischwirtschaft|Konservative Mischwirtschaft|Libert\\u00e4re Mischwirtschaft|Anarchistische Mischwirtschaft|Faschistische Mischwirtschaft|Kommunistische Mischwirtschaft)(?=\\s|,|\\.|\\n|$))",
+      "priority": 8,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "validated_precision": 0.8225806451612904,
+      "validated_support": 62,
+      "created_at": "2026-11-17T15:16:53.747479"
+    },
+    {
+      "id": "494f2df2",
+      "name": "Names after 'Arbeitsplatz des' (Contextual)",
+      "description": "Captures full title and name following 'Arbeitsplatz des' or 'Arbeitsplatz der', ensuring valid name structure.",
+      "format": "regex",
+      "content": "(?:Arbeitsplatz\\s+(?:des|der)\\s+)(?:(?:Dr\\.(?:\\s+Priv\\.-Doz\\.)?|Dr\\.in|Mag\\.(?:\\s+Univ\\.-Prof\\.)?|Mag\\.a|Univ\\.-Prof\\.(?:\\.in)?|Priv\\.-Doz\\.(?:\\.in)?|Hon\\.-Prof\\.(?:\\.in)?|Hon\\.-Prof\\.|MedR|KommR|Ing\\.|Bakk\\.(?:\\s+iur\\.)?|LLM|BSc|RA\\.?|StB\\.?|Gf-?|\\u00d6kR|Dipl\\.-Ing\\.|RgR|OStR|HR|Fr\\.PhD|Mag\\.|VetR|DDr\\.|LL\\.B\\.(?:\\s+LL\\.M\\.)?|B\\.iur\\.(?:\\s|\\s+r\\.\\s+nat\\.)?|i\\.iur\\.(?:\\s|\\s+r\\.\\s+nat\\.)?|Bakk\\.(?:\\s+r\\.\\s+nat\\.|\\s+art\\.)?|LL\\.M\\.(?:\\s|\\s+LL\\.B\\.)?|M\\.B\\.L\\.|LL\\.B\\.|MBA|MSc|\\u00d6kR\\s+Dipl\\.-Ing\\.|DI|Dipl\\.(?:\\s+Kff\\.)?|StR|\\u00d6kR\\s+Dipl\\.-Ing\\.)\\s+)?([A-Z][a-z\\u00df]+(?:\\s+[A-Z][a-z\\u00df]+)*(?:\\s+(?:LL\\.M\\.|LLM|BSc|B\\.iur\\.|i\\.iur\\.|Bakk\\.(?:\\s+r\\.\\s+nat\\.|\\s+art\\.)?|LL\\.M\\.|M\\.B\\.L\\.|LL\\.B\\.|MBA|MSc|PhD|MA|BSc)?)?(?=\\s|,|\\.|\\n|$))",
+      "priority": 7,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "validated_precision": 0.0,
+      "validated_support": 0,
+      "created_at": "2026-11-17T15:16:53.747501"
+    },
+    {
+      "id": "c40bbb94",
+      "name": "Names after 'Herrn' or 'Frau' (Accusative/Dative)",
+      "description": "Captures full title and name following 'Herrn' or 'Frau', ensuring the name includes at least a first and last name (or title + first + last) to avoid partial matches.",
+      "format": "regex",
+      "content": "(?:Herrn|Frau)\\s+(?:(?:Dr\\.(?:\\s+Priv\\.-Doz\\.)?|Dr\\.in|Mag\\.(?:\\s+Univ\\.-Prof\\.)?|Mag\\.a|Univ\\.-Prof\\.(?:\\.in)?|Priv\\.-Doz\\.(?:\\.in)?|Hon\\.-Prof\\.(?:\\.in)?|Hon\\.-Prof\\.|MedR|KommR|Ing\\.|Bakk\\.(?:\\s+iur\\.)?|LLM|BSc|RA\\.?|StB\\.?|Gf-?|\\u00d6kR|Dipl\\.-Ing\\.|RgR|OStR|HR|Fr\\.PhD|Mag\\.|VetR|DDr\\.|LL\\.B\\.(?:\\s+LL\\.M\\.)?|B\\.iur\\.(?:\\s|\\s+r\\.\\s+nat\\.)?|i\\.iur\\.(?:\\s|\\s+r\\.\\s+nat\\.)?|Bakk\\.(?:\\s+r\\.\\s+nat\\.|\\s+art\\.)?|LL\\.M\\.(?:\\s|\\s+LL\\.B\\.)?|M\\.B\\.L\\.|LL\\.B\\.|MBA|MSc|\\u00d6kR\\s+Dipl\\.-Ing\\.|DI|Dipl\\.(?:\\s+Kff\\.)?|StR|\\u00d6kR\\s+Dipl\\.-Ing\\.)\\s+)?([A-Z][a-z\\u00df]+(?:\\s+[A-Z][a-z\\u00df]+)+)(?=\\s|,|\\.|\\n|$)",
+      "priority": 9,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "validated_precision": 0.6483516483516484,
+      "validated_support": 91,
+      "created_at": "2026-11-17T15:16:53.747404"
+    },
+    {
+      "id": "19a6a077",
+      "name": "Single Word Names after 'Herrn' or 'Frau'",
+      "description": "Captures single-word names following 'Herrn' or 'Frau' in contexts where the name is a surname only (e.g., 'Herrn Hus').",
+      "format": "regex",
+      "content": "(?:Herrn|Frau)\\s+([A-Z][a-z\\u00df]+)(?=\\s|,|\\.|\\n|$)",
+      "priority": 6,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "validated_precision": 0.2727272727272727,
+      "validated_support": 165,
+      "created_at": "2026-11-17T15:10:03.442591"
+    },
+    {
+      "id": "de0eb9fb",
+      "name": "Names with Split Titles (e.g. Univ- Prof.)",
+      "description": "Captures full title and name following legal titles including complex multi-word titles like 'Techn R', 'Univ.-Prof.in', 'Priv.-Doz.in', ensuring the full name is captured even with spaces in titles.",
+      "format": "regex",
+      "content": "(?:Techn\\s+R\\s+|Techn\\.\\s*R\\s+|Techn\\.R\\s+|Univ\\.-?Prof\\.(?:\\.in)?\\s+|Priv\\.-?Doz\\.(?:\\.in)?\\s+|Hon\\.-?Prof\\.(?:\\.in)?\\s+|Hon\\.-?Prof\\.|Dr\\.(?:\\s+Priv\\.-Doz\\.)?\\s+|Dr\\.in\\s+|Mag\\.(?:\\s+Univ\\.-Prof\\.)?\\s+|Mag\\.a\\s+|Ing\\.|Bakk\\.(?:\\s+iur\\.)?\\s+|LLM\\s+|BSc\\s+|RA\\.?\\s+|StB\\.?\\s+|Gf-?\\s+|\\u00d6kR\\s+|Dipl\\.-Ing\\.|RgR\\s+|OStR\\s+|HR\\s+|Fr\\.PhD\\s+|VetR\\s+|DDr\\.|LL\\.B\\.(?:\\s+LL\\.M\\.)?\\s+|B\\.iur\\.(?:\\s+r\\.\\s+nat\\.)?\\s+|i\\.iur\\.(?:\\s+r\\.\\s+nat\\.)?\\s+|Bakk\\.(?:\\s+r\\.\\s+nat\\.|\\s+art\\.)?\\s+|LL\\.M\\.(?:\\s+LL\\.B\\.)?\\s+|M\\.B\\.L\\.|LL\\.B\\.|MBA\\s+|MSc\\s+|DI\\s+|Dipl\\.(?:\\s+Kff\\.)?\\s+|StR\\s+|KommR\\s+|KzlR\\s+)([A-Z][a-z\\u00df]+(?:\\s+[A-Z][a-z\\u00df]+)+)(?=\\s|,|\\.|\\n|$)",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "validated_precision": 0.7550744248985115,
+      "validated_support": 739,
+      "created_at": "2026-11-17T15:16:53.747521"
+    },
+    {
+      "id": "48220079",
+      "name": "Names after 'von' (General Context)",
+      "description": "Captures the name following 'von' in broader legal contexts, handling split titles and ensuring full name capture.",
+      "format": "regex",
+      "content": "(?:Befunden|Gutachten|Stellungnahme|Aussage|Schreiben|Einspruch|Antrag|Ansuchen|E-Mail|Mail|Bescheinigung|Bescheid|Verf\\u00fcgung|Urteil|Entscheidung|Klage|Rechtsmittel|Vertretung|Anwalt|Rechtsanwalt|Notar|Gericht|Beh\\u00f6rde|Amt|Finanzamt|Magistrat|Bundesfinanzgericht|Verwaltungsgericht|Verwaltungsstrafbeh\\u00f6rde|VfGH|OGH|VwGH|BFG|Online\\s+Wettprodukt|Liegenschaft|Zeitraum|Angaben|des|der)\\s+(?:von\\s+)(?:(?:Dr\\.|Mag\\.|Univ\\.-?Prof\\.|Hon\\.-?Prof\\.|Priv\\.-?Doz\\.|Ing\\.|Bakk\\.|LL\\.M\\.|LLM|BSc|B\\.iur\\.|i\\.iur\\.|M\\.B\\.L\\.|LL\\.B\\.|MBA|MSc|PhD|MA|StR|RA\\.|StB\\.|MedR|KommR|VetR|DDr\\.|RgR|OStR|HR|Fr\\.PhD|\\u00d6kR|DI|Dipl\\.|Techn\\s+R|KommR|KzlR)\\s+)?([A-Z][a-z\\u00df]+(?:\\s+[A-Z][a-z\\u00df]+)+)(?=\\s|,|\\.|\\n|$)",
+      "priority": 8,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "validated_precision": 0.25,
+      "validated_support": 16,
+      "created_at": "2026-11-17T15:16:53.747543"
+    },
+    {
+      "id": "d7c5313e",
+      "name": "Names after 'durch' (Judge/Representative)",
+      "description": "Captures the name following 'durch den Richter' or 'durch die Richterin', handling split titles and ensuring full name capture.",
+      "format": "regex",
+      "content": "(?:durch\\s+(?:den\\s+)?(?:Richter|Richterin)\\s+)(?:(?:Dr\\.|Mag\\.|Univ\\.-?Prof\\.|Hon\\.-?Prof\\.|Priv\\.-?Doz\\.|Ing\\.|Bakk\\.|LL\\.M\\.|LLM|BSc|B\\.iur\\.|i\\.iur\\.|M\\.B\\.L\\.|LL\\.B\\.|MBA|MSc|PhD|MA|StR|RA\\.|StB\\.|MedR|KommR|VetR|DDr\\.|RgR|OStR|HR|Fr\\.PhD|\\u00d6kR|DI|Dipl\\.|Techn\\s+R|KommR|KzlR)\\s+)?([A-Z][a-z\\u00df]+(?:\\s+[A-Z][a-z\\u00df]+)+)(?=\\s|,|\\.|\\n|$)",
+      "priority": 9,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "validated_precision": 0.0,
+      "validated_support": 243,
+      "created_at": "2026-11-17T15:16:53.747564"
+    },
+    {
+      "id": "8ee5a0d4",
+      "name": "Names after 'in der Beschwerdesache' context",
+      "description": "Captures the name following 'in der Beschwerdesache' with titles, using a capture group to exclude the context phrase.",
+      "format": "regex",
+      "content": "(?:in\\s+der\\s+Beschwerdesache|in\\s+der\\s+Sache|in\\s+der\\s+Revisionssache|in\\s+der\\s+Verwaltungsstrafsache)\\s+(?:(?:Dr\\.(?:\\s+Priv\\.-Doz\\.)?|Dr\\.in|Mag\\.(?:\\s+Univ\\.-Prof\\.)?|Mag\\.a|Univ\\.-Prof\\.(?:\\.in)?|Priv\\.-Doz\\.(?:\\.in)?|Hon\\.-Prof\\.(?:\\.in)?|Hon\\.-Prof\\.|MedR|KommR|Ing\\.|Bakk\\.(?:\\s+iur\\.)?|LLM|BSc|RA\\.?|StB\\.?|Gf-?|\\u00d6kR|Dipl\\.-Ing\\.|RgR|OStR|HR|Fr\\.PhD|Mag\\.|VetR|DDr\\.|LL\\.B\\.(?:\\s+LL\\.M\\.)?|B\\.iur\\.(?:\\s|\\s+r\\.\\s+nat\\.)?|i\\.iur\\.(?:\\s|\\s+r\\.\\s+nat\\.)?|Bakk\\.(?:\\s+r\\.\\s+r\\.\\s+nat\\.|\\s+art\\.|\\s+techn\\.)?|LL\\.M\\.(?:\\s|\\s+LL\\.B\\.)?|M\\.B\\.L\\.|LL\\.B\\.|MBA|MSc|\\u00d6kR\\s+Dipl\\.-Ing\\.|DI|Dipl\\.(?:\\s+Kff\\.)?|StR|\\u00d6kR\\s+Dipl\\.-Ing\\.|Techn\\s+R|KommR|KzlR)\\s+)?([A-Z][a-z\\u00df]+(?:\\s+[A-Z][a-z\\u00df]+)+)(?=\\s|,|\\.|\\n|$)",
+      "priority": 9,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "validated_precision": 0.7762237762237763,
+      "validated_support": 429,
+      "created_at": "2026-11-17T15:15:26.146697"
+    },
+    {
+      "id": "bb3830e3",
+      "name": "Names after 'von' (Family/Relation Context)",
+      "description": "Captures names following 'von' in contexts like 'Kindesmutter von', 'Vater von', etc., ensuring the name is a person.",
+      "format": "regex",
+      "content": "(?:Kindesmutter|Vater|Mutter|Sohn|Tochter|Ehefrau|Ehemann|Elternteil|Angeh\u00f6rige|Angeh\u00f6riger)\\s+(?:von\\s+)?([A-Z][a-z\\u00df]+(?:\\s+[A-Z][a-z\\u00df]+)+)(?=\\s|,|\\.|\\n|$)",
+      "priority": 8,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "validated_precision": 0.5,
+      "validated_support": 4,
+      "created_at": "2026-11-17T15:16:53.746691"
+    },
+    {
+      "id": "e1aefbb2",
+      "name": "Names with 'VetR' and similar standalone titles",
+      "description": "Captures names immediately following specific standalone titles like 'VetR', 'Ing.', 'Bakk.' without requiring 'Herrn/Frau' prefix.",
+      "format": "regex",
+      "content": "(?:VetR|Ing\\.|Bakk\\.|Dipl\\.-Ing\\.|RA\\.|StB\\.|MedR|KommR|OStR|HR|Fr\\.PhD|KzlR|Techn\\s+R)\\s+([A-Z][a-z\\u00df]+(?:\\s+[A-Z][a-z\\u00df]+)+)(?=\\s|,|\\.|\\n|$)",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "person"
+      },
+      "output_key": "entities",
+      "validated_precision": 0.49038461538461536,
+      "validated_support": 104,
+      "created_at": "2026-11-17T15:16:53.747092"
+    }
+  ],
+  "best_rules": {
+    "batch": 71,
+    "micro_f1": 0.4918497519489723,
+    "rules": [
+      {
+        "id": "7078c2ee",
+        "name": "Names after 'Frau' or 'Herr' (Accusative/Dative)",
+        "description": "Captures full title and name following 'Herrn' or 'Frau', ensuring the name includes at least a first and last name (or title + first + last) to avoid partial matches.",
+        "format": "regex",
+        "content": "(?:Herrn|Frau)\\s+(?:(?:Dr\\.(?:\\s+Priv\\.-Doz\\.)?|Dr\\.in|Mag\\.(?:\\s+Univ\\.-Prof\\.)?|Mag\\.a|Univ\\.-Prof\\.(?:\\.in)?|Priv\\.-Doz\\.(?:\\.in)?|Hon\\.-Prof\\.(?:\\.in)?|Hon\\.-Prof\\.|MedR|KommR|Ing\\.|Bakk\\.(?:\\s+iur\\.)?|LLM|BSc|RA\\.?|StB\\.?|Gf-?|\\u00d6kR|Dipl\\.-Ing\\.|RgR|OStR|HR|Fr\\.PhD|Mag\\.|VetR|DDr\\.|LL\\.B\\.(?:\\s+LL\\.M\\.)?|B\\.iur\\.(?:\\s|\\s+r\\.\\s+nat\\.)?|i\\.iur\\.(?:\\s|\\s+r\\.\\s+nat\\.)?|Bakk\\.(?:\\s+r\\.\\s+nat\\.|\\s+art\\.)?|LL\\.M\\.(?:\\s|\\s+LL\\.B\\.)?|M\\.B\\.L\\.|LL\\.B\\.|MBA|MSc|\\u00d6kR\\s+Dipl\\.-Ing\\.|DI|Dipl\\.(?:\\s+Kff\\.)?|StR|\\u00d6kR\\s+Dipl\\.-Ing\\.)\\s+)?([A-Z][a-z\\u00df]+(?:\\s+[A-Z][a-z\\u00df]+)+)(?=\\s|,|\\.|\\n|$)",
+        "priority": 9,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities",
+        "validated_precision": 0.6483516483516484,
+        "validated_support": 91,
+        "created_at": "2026-11-17T15:08:09.949520"
+      },
+      {
+        "id": "8fd8f42b",
+        "name": "Names after 'Bf,' (Comma separated)",
+        "description": "Captures full title and name immediately following 'Bf,' or 'Bf.', handling missing spaces and ensuring valid name structure.",
+        "format": "regex",
+        "content": "Bf[.,]\\s+(?:(?:Dr\\.(?:\\s+Priv\\.-Doz\\.)?|Dr\\.in|Mag\\.(?:\\s+Univ\\.-Prof\\.)?|Mag\\.a|Univ\\.-Prof\\.(?:\\.in)?|Priv\\.-Doz\\.(?:\\.in)?|Hon\\.-Prof\\.(?:\\.in)?|Hon\\.-Prof\\.|MedR|KommR|Ing\\.|Bakk\\.(?:\\s+iur\\.)?|LLM|BSc|RA\\.?|StB\\.?|Gf-?|\\u00d6kR|Dipl\\.-Ing\\.|RgR|OStR|HR|Fr\\.PhD|Mag\\.|VetR|DDr\\.|LL\\.B\\.(?:\\s+LL\\.M\\.)?|B\\.iur\\.(?:\\s+|\\s+r\\.\\s+nat\\.)?|i\\.iur\\.(?:\\s+|\\s+r\\.\\s+nat\\.)?|Bakk\\.(?:\\s+r\\.\\s+nat\\.|\\s+art\\.)?|LL\\.M\\.(?:\\s+|\\s+LL\\.B\\.)?|M\\.B\\.L\\.|LL\\.B\\.|MBA|MSc|\\u00d6kR\\s+Dipl\\.-Ing\\.|DI|Dipl\\.(?:\\s+Kff\\.)?|StR|\\u00d6kR\\s+Dipl\\.-Ing\\.)\\s+)?([A-Z][a-z\\u00df]+(?:\\s+[A-Z][a-z\\u00df]+)*(?:\\s+(?:LL\\.M\\.|LLM|BSc|B\\.iur\\.|i\\.iur\\.|Bakk\\.(?:\\s+r\\.\\s+nat\\.|\\s+art\\.)?|LL\\.M\\.|M\\.B\\.L\\.|LL\\.B\\.|MBA|MSc|PhD|MA|BSc)?)?(?=\\s|,|\\.|\\n|$))",
+        "priority": 8,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities",
+        "validated_precision": 0.0,
+        "validated_support": 5,
+        "created_at": "2026-11-17T15:16:53.747430"
+      },
+      {
+        "id": "45258c48",
+        "name": "Names after 'von' (Befunden/Gutachten)",
+        "description": "Captures the name following 'von' in specific contexts using a capture group to exclude the context phrase.",
+        "format": "regex",
+        "content": "(?:Befunden|Gutachten|Stellungnahme|Aussage|Schreiben|Einspruch|Antrag|Ansuchen|E-Mail|Mail|Bescheinigung|Bescheid|Verf\\u00fcgung|Urteil|Entscheidung|Klage|Rechtsmittel|Vertretung|Anwalt|Rechtsanwalt|Notar|Gericht|Beh\\u00f6rde|Amt|Finanzamt|Magistrat|Bundesfinanzgericht|Verwaltungsgericht|Verwaltungsstrafbeh\\u00f6rde|VfGH|OGH|VwGH|BFG)\\s+(?:von\\s+)(?:(?:Dr\\.|Mag\\.|Univ\\.-?Prof\\.|Hon\\.-?Prof\\.|Priv\\.-?Doz\\.|Ing\\.|Bakk\\.|LL\\.M\\.|LLM|BSc|B\\.iur\\.|i\\.iur\\.|M\\.B\\.L\\.|LL\\.B\\.|MBA|MSc|PhD|MA|StR|RA\\.|StB\\.|MedR|KommR|VetR|DDr\\.|RgR|OStR|HR|Fr\\.PhD|\\u00d6kR|DI|Dipl\\.|Techn R|KommR|KzlR)\\s+)?([A-Z][a-z\\u00df]+(?:\\s+[A-Z][a-z\\u00df]+)+)(?=\\s|,|\\.|\\n|$)",
+        "priority": 8,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities",
+        "validated_precision": 0.0,
+        "validated_support": 10,
+        "created_at": "2026-11-17T15:16:53.747453"
+      },
+      {
+        "id": "284fd772",
+        "name": "Names after 'Beschwerde des' (Genitive)",
+        "description": "Captures the name following 'Beschwerde des/der', excluding common non-person nouns, and handling split titles.",
+        "format": "regex",
+        "content": "(?:Beschwerde\\s+(?:des|der)\\s+)(?:(?:Dr\\.|Mag\\.|Univ\\.-?Prof\\.|Hon\\.-?Prof\\.|Priv\\.-?Doz\\.|Ing\\.|Bakk\\.|LL\\.M\\.|LLM|BSc|B\\.iur\\.|i\\.iur\\.|M\\.B\\.L\\.|LL\\.B\\.|MBA|MSc|PhD|MA|StR|RA\\.|StB\\.|MedR|KommR|VetR|DDr\\.|RgR|OStR|HR|Fr\\.PhD|\\u00d6kR|DI|Dipl\\.|Techn R|KommR|KzlR)\\s+)?([A-Z][a-z\\u00df]+(?:\\s+[A-Z][a-z\\u00df]+)+)(?!\\s+(?:Abgabepflichtigen|Verein|Gesellschaft|AG|mbH|GmbH|KG|UG|Stiftung|Beh\\u00f6rde|Amt|Finanzamt|Gericht|Kommission|Ausschuss|Komitee|Firma|Unternehmen|Organisation|Institution|Partei|Bewegung|Bund|Land|Stadt|Gemeinde|Bezirk|Kreis|Region|Kanton|Kommune|Verband|Kammer|Institute|Institut|Forschung|Lehrstuhl|Klinik|Krankenhaus|Hochschule|Universit\\u00e4t|Schule|Akademie|Zentrum|Institut|B\\u00fcro|Praxis|Wohnung|Haus|Geb\\u00e4ude|Grundst\\u00fcck|Fl\\u00e4che|Land|Gebiet|Territorium|Staat|Reich|Kaiserreich|Republik|Monarchie|Demokratie|Diktatur|Faschismus|Kommunismus|Sozialismus|Kapitalismus|Liberalismus|Konservatismus|Nationalismus|Internationalismus|Globalismus|Regionalismus|F\\u00f6deralismus|Zentralismus|Autokratie|Oligarchie|Anarchie|Totalitarismus|Demokratie|Rechtsstaat|Verfassungsstaat|Sozialstaat|Wohlfahrtsstaat|Marktwirtschaft|Planwirtschaft|Mischwirtschaft|Sozialmarktwirtschaft|Freie Marktwirtschaft|Sozialistische Marktwirtschaft|Kapitalistische Marktwirtschaft|Neoliberale Marktwirtschaft|Sozialdemokratische Marktwirtschaft|Konservative Marktwirtschaft|Libert\\u00e4re Marktwirtschaft|Anarchistische Marktwirtschaft|Faschistische Marktwirtschaft|Kommunistische Marktwirtschaft|Sozialistische Planwirtschaft|Kapitalistische Planwirtschaft|Neoliberale Planwirtschaft|Sozialdemokratische Planwirtschaft|Konservative Planwirtschaft|Libert\\u00e4re Planwirtschaft|Anarchistische Planwirtschaft|Faschistische Planwirtschaft|Kommunistische Planwirtschaft|Sozialistische Mischwirtschaft|Kapitalistische Mischwirtschaft|Neoliberale Mischwirtschaft|Sozialdemokratische Mischwirtschaft|Konservative Mischwirtschaft|Libert\\u00e4re Mischwirtschaft|Anarchistische Mischwirtschaft|Faschistische Mischwirtschaft|Kommunistische Mischwirtschaft|Sozialistische Marktwirtschaft|Kapitalistische Marktwirtschaft|Neoliberale Marktwirtschaft|Sozialdemokratische Marktwirtschaft|Konservative Marktwirtschaft|Libert\\u00e4re Marktwirtschaft|Anarchistische Marktwirtschaft|Faschistische Marktwirtschaft|Kommunistische Marktwirtschaft|Sozialistische Planwirtschaft|Kapitalistische Planwirtschaft|Neoliberale Planwirtschaft|Sozialdemokratische Planwirtschaft|Konservative Planwirtschaft|Libert\\u00e4re Planwirtschaft|Anarchistische Planwirtschaft|Faschistische Planwirtschaft|Kommunistische Planwirtschaft|Sozialistische Mischwirtschaft|Kapitalistische Mischwirtschaft|Neoliberale Mischwirtschaft|Sozialdemokratische Mischwirtschaft|Konservative Mischwirtschaft|Libert\\u00e4re Mischwirtschaft|Anarchistische Mischwirtschaft|Faschistische Mischwirtschaft|Kommunistische Mischwirtschaft)(?=\\s|,|\\.|\\n|$))",
+        "priority": 8,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities",
+        "validated_precision": 0.8225806451612904,
+        "validated_support": 62,
+        "created_at": "2026-11-17T15:16:53.747479"
+      },
+      {
+        "id": "494f2df2",
+        "name": "Names after 'Arbeitsplatz des' (Contextual)",
+        "description": "Captures full title and name following 'Arbeitsplatz des' or 'Arbeitsplatz der', ensuring valid name structure.",
+        "format": "regex",
+        "content": "(?:Arbeitsplatz\\s+(?:des|der)\\s+)(?:(?:Dr\\.(?:\\s+Priv\\.-Doz\\.)?|Dr\\.in|Mag\\.(?:\\s+Univ\\.-Prof\\.)?|Mag\\.a|Univ\\.-Prof\\.(?:\\.in)?|Priv\\.-Doz\\.(?:\\.in)?|Hon\\.-Prof\\.(?:\\.in)?|Hon\\.-Prof\\.|MedR|KommR|Ing\\.|Bakk\\.(?:\\s+iur\\.)?|LLM|BSc|RA\\.?|StB\\.?|Gf-?|\\u00d6kR|Dipl\\.-Ing\\.|RgR|OStR|HR|Fr\\.PhD|Mag\\.|VetR|DDr\\.|LL\\.B\\.(?:\\s+LL\\.M\\.)?|B\\.iur\\.(?:\\s|\\s+r\\.\\s+nat\\.)?|i\\.iur\\.(?:\\s|\\s+r\\.\\s+nat\\.)?|Bakk\\.(?:\\s+r\\.\\s+nat\\.|\\s+art\\.)?|LL\\.M\\.(?:\\s|\\s+LL\\.B\\.)?|M\\.B\\.L\\.|LL\\.B\\.|MBA|MSc|\\u00d6kR\\s+Dipl\\.-Ing\\.|DI|Dipl\\.(?:\\s+Kff\\.)?|StR|\\u00d6kR\\s+Dipl\\.-Ing\\.)\\s+)?([A-Z][a-z\\u00df]+(?:\\s+[A-Z][a-z\\u00df]+)*(?:\\s+(?:LL\\.M\\.|LLM|BSc|B\\.iur\\.|i\\.iur\\.|Bakk\\.(?:\\s+r\\.\\s+nat\\.|\\s+art\\.)?|LL\\.M\\.|M\\.B\\.L\\.|LL\\.B\\.|MBA|MSc|PhD|MA|BSc)?)?(?=\\s|,|\\.|\\n|$))",
+        "priority": 7,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities",
+        "validated_precision": 0.0,
+        "validated_support": 0,
+        "created_at": "2026-11-17T15:16:53.747501"
+      },
+      {
+        "id": "c40bbb94",
+        "name": "Names after 'Herrn' or 'Frau' (Accusative/Dative)",
+        "description": "Captures full title and name following 'Herrn' or 'Frau', ensuring the name includes at least a first and last name (or title + first + last) to avoid partial matches.",
+        "format": "regex",
+        "content": "(?:Herrn|Frau)\\s+(?:(?:Dr\\.(?:\\s+Priv\\.-Doz\\.)?|Dr\\.in|Mag\\.(?:\\s+Univ\\.-Prof\\.)?|Mag\\.a|Univ\\.-Prof\\.(?:\\.in)?|Priv\\.-Doz\\.(?:\\.in)?|Hon\\.-Prof\\.(?:\\.in)?|Hon\\.-Prof\\.|MedR|KommR|Ing\\.|Bakk\\.(?:\\s+iur\\.)?|LLM|BSc|RA\\.?|StB\\.?|Gf-?|\\u00d6kR|Dipl\\.-Ing\\.|RgR|OStR|HR|Fr\\.PhD|Mag\\.|VetR|DDr\\.|LL\\.B\\.(?:\\s+LL\\.M\\.)?|B\\.iur\\.(?:\\s|\\s+r\\.\\s+nat\\.)?|i\\.iur\\.(?:\\s|\\s+r\\.\\s+nat\\.)?|Bakk\\.(?:\\s+r\\.\\s+nat\\.|\\s+art\\.)?|LL\\.M\\.(?:\\s|\\s+LL\\.B\\.)?|M\\.B\\.L\\.|LL\\.B\\.|MBA|MSc|\\u00d6kR\\s+Dipl\\.-Ing\\.|DI|Dipl\\.(?:\\s+Kff\\.)?|StR|\\u00d6kR\\s+Dipl\\.-Ing\\.)\\s+)?([A-Z][a-z\\u00df]+(?:\\s+[A-Z][a-z\\u00df]+)+)(?=\\s|,|\\.|\\n|$)",
+        "priority": 9,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities",
+        "validated_precision": 0.6483516483516484,
+        "validated_support": 91,
+        "created_at": "2026-11-17T15:16:53.747404"
+      },
+      {
+        "id": "19a6a077",
+        "name": "Single Word Names after 'Herrn' or 'Frau'",
+        "description": "Captures single-word names following 'Herrn' or 'Frau' in contexts where the name is a surname only (e.g., 'Herrn Hus').",
+        "format": "regex",
+        "content": "(?:Herrn|Frau)\\s+([A-Z][a-z\\u00df]+)(?=\\s|,|\\.|\\n|$)",
+        "priority": 6,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities",
+        "validated_precision": 0.2727272727272727,
+        "validated_support": 165,
+        "created_at": "2026-11-17T15:10:03.442591"
+      },
+      {
+        "id": "de0eb9fb",
+        "name": "Names with Split Titles (e.g. Univ- Prof.)",
+        "description": "Captures full title and name following legal titles including complex multi-word titles like 'Techn R', 'Univ.-Prof.in', 'Priv.-Doz.in', ensuring the full name is captured even with spaces in titles.",
+        "format": "regex",
+        "content": "(?:Techn\\s+R\\s+|Techn\\.\\s*R\\s+|Techn\\.R\\s+|Univ\\.-?Prof\\.(?:\\.in)?\\s+|Priv\\.-?Doz\\.(?:\\.in)?\\s+|Hon\\.-?Prof\\.(?:\\.in)?\\s+|Hon\\.-?Prof\\.|Dr\\.(?:\\s+Priv\\.-Doz\\.)?\\s+|Dr\\.in\\s+|Mag\\.(?:\\s+Univ\\.-Prof\\.)?\\s+|Mag\\.a\\s+|Ing\\.|Bakk\\.(?:\\s+iur\\.)?\\s+|LLM\\s+|BSc\\s+|RA\\.?\\s+|StB\\.?\\s+|Gf-?\\s+|\\u00d6kR\\s+|Dipl\\.-Ing\\.|RgR\\s+|OStR\\s+|HR\\s+|Fr\\.PhD\\s+|VetR\\s+|DDr\\.|LL\\.B\\.(?:\\s+LL\\.M\\.)?\\s+|B\\.iur\\.(?:\\s+r\\.\\s+nat\\.)?\\s+|i\\.iur\\.(?:\\s+r\\.\\s+nat\\.)?\\s+|Bakk\\.(?:\\s+r\\.\\s+nat\\.|\\s+art\\.)?\\s+|LL\\.M\\.(?:\\s+LL\\.B\\.)?\\s+|M\\.B\\.L\\.|LL\\.B\\.|MBA\\s+|MSc\\s+|DI\\s+|Dipl\\.(?:\\s+Kff\\.)?\\s+|StR\\s+|KommR\\s+|KzlR\\s+)([A-Z][a-z\\u00df]+(?:\\s+[A-Z][a-z\\u00df]+)+)(?=\\s|,|\\.|\\n|$)",
+        "priority": 9,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities",
+        "validated_precision": 0.7550744248985115,
+        "validated_support": 739,
+        "created_at": "2026-11-17T15:16:53.747521"
+      },
+      {
+        "id": "48220079",
+        "name": "Names after 'von' (General Context)",
+        "description": "Captures the name following 'von' in broader legal contexts, handling split titles and ensuring full name capture.",
+        "format": "regex",
+        "content": "(?:Befunden|Gutachten|Stellungnahme|Aussage|Schreiben|Einspruch|Antrag|Ansuchen|E-Mail|Mail|Bescheinigung|Bescheid|Verf\\u00fcgung|Urteil|Entscheidung|Klage|Rechtsmittel|Vertretung|Anwalt|Rechtsanwalt|Notar|Gericht|Beh\\u00f6rde|Amt|Finanzamt|Magistrat|Bundesfinanzgericht|Verwaltungsgericht|Verwaltungsstrafbeh\\u00f6rde|VfGH|OGH|VwGH|BFG|Online\\s+Wettprodukt|Liegenschaft|Zeitraum|Angaben|des|der)\\s+(?:von\\s+)(?:(?:Dr\\.|Mag\\.|Univ\\.-?Prof\\.|Hon\\.-?Prof\\.|Priv\\.-?Doz\\.|Ing\\.|Bakk\\.|LL\\.M\\.|LLM|BSc|B\\.iur\\.|i\\.iur\\.|M\\.B\\.L\\.|LL\\.B\\.|MBA|MSc|PhD|MA|StR|RA\\.|StB\\.|MedR|KommR|VetR|DDr\\.|RgR|OStR|HR|Fr\\.PhD|\\u00d6kR|DI|Dipl\\.|Techn\\s+R|KommR|KzlR)\\s+)?([A-Z][a-z\\u00df]+(?:\\s+[A-Z][a-z\\u00df]+)+)(?=\\s|,|\\.|\\n|$)",
+        "priority": 8,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities",
+        "validated_precision": 0.25,
+        "validated_support": 16,
+        "created_at": "2026-11-17T15:16:53.747543"
+      },
+      {
+        "id": "d7c5313e",
+        "name": "Names after 'durch' (Judge/Representative)",
+        "description": "Captures the name following 'durch den Richter' or 'durch die Richterin', handling split titles and ensuring full name capture.",
+        "format": "regex",
+        "content": "(?:durch\\s+(?:den\\s+)?(?:Richter|Richterin)\\s+)(?:(?:Dr\\.|Mag\\.|Univ\\.-?Prof\\.|Hon\\.-?Prof\\.|Priv\\.-?Doz\\.|Ing\\.|Bakk\\.|LL\\.M\\.|LLM|BSc|B\\.iur\\.|i\\.iur\\.|M\\.B\\.L\\.|LL\\.B\\.|MBA|MSc|PhD|MA|StR|RA\\.|StB\\.|MedR|KommR|VetR|DDr\\.|RgR|OStR|HR|Fr\\.PhD|\\u00d6kR|DI|Dipl\\.|Techn\\s+R|KommR|KzlR)\\s+)?([A-Z][a-z\\u00df]+(?:\\s+[A-Z][a-z\\u00df]+)+)(?=\\s|,|\\.|\\n|$)",
+        "priority": 9,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities",
+        "validated_precision": 0.0,
+        "validated_support": 243,
+        "created_at": "2026-11-17T15:16:53.747564"
+      },
+      {
+        "id": "8ee5a0d4",
+        "name": "Names after 'in der Beschwerdesache' context",
+        "description": "Captures the name following 'in der Beschwerdesache' with titles, using a capture group to exclude the context phrase.",
+        "format": "regex",
+        "content": "(?:in\\s+der\\s+Beschwerdesache|in\\s+der\\s+Sache|in\\s+der\\s+Revisionssache|in\\s+der\\s+Verwaltungsstrafsache)\\s+(?:(?:Dr\\.(?:\\s+Priv\\.-Doz\\.)?|Dr\\.in|Mag\\.(?:\\s+Univ\\.-Prof\\.)?|Mag\\.a|Univ\\.-Prof\\.(?:\\.in)?|Priv\\.-Doz\\.(?:\\.in)?|Hon\\.-Prof\\.(?:\\.in)?|Hon\\.-Prof\\.|MedR|KommR|Ing\\.|Bakk\\.(?:\\s+iur\\.)?|LLM|BSc|RA\\.?|StB\\.?|Gf-?|\\u00d6kR|Dipl\\.-Ing\\.|RgR|OStR|HR|Fr\\.PhD|Mag\\.|VetR|DDr\\.|LL\\.B\\.(?:\\s+LL\\.M\\.)?|B\\.iur\\.(?:\\s|\\s+r\\.\\s+nat\\.)?|i\\.iur\\.(?:\\s|\\s+r\\.\\s+nat\\.)?|Bakk\\.(?:\\s+r\\.\\s+r\\.\\s+nat\\.|\\s+art\\.|\\s+techn\\.)?|LL\\.M\\.(?:\\s|\\s+LL\\.B\\.)?|M\\.B\\.L\\.|LL\\.B\\.|MBA|MSc|\\u00d6kR\\s+Dipl\\.-Ing\\.|DI|Dipl\\.(?:\\s+Kff\\.)?|StR|\\u00d6kR\\s+Dipl\\.-Ing\\.|Techn\\s+R|KommR|KzlR)\\s+)?([A-Z][a-z\\u00df]+(?:\\s+[A-Z][a-z\\u00df]+)+)(?=\\s|,|\\.|\\n|$)",
+        "priority": 9,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities",
+        "validated_precision": 0.7762237762237763,
+        "validated_support": 429,
+        "created_at": "2026-11-17T15:15:26.146697"
+      },
+      {
+        "id": "bb3830e3",
+        "name": "Names after 'von' (Family/Relation Context)",
+        "description": "Captures names following 'von' in contexts like 'Kindesmutter von', 'Vater von', etc., ensuring the name is a person.",
+        "format": "regex",
+        "content": "(?:Kindesmutter|Vater|Mutter|Sohn|Tochter|Ehefrau|Ehemann|Elternteil|Angeh\u00f6rige|Angeh\u00f6riger)\\s+(?:von\\s+)?([A-Z][a-z\\u00df]+(?:\\s+[A-Z][a-z\\u00df]+)+)(?=\\s|,|\\.|\\n|$)",
+        "priority": 8,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities",
+        "validated_precision": 0.5,
+        "validated_support": 4,
+        "created_at": "2026-11-17T15:16:53.746691"
+      },
+      {
+        "id": "e1aefbb2",
+        "name": "Names with 'VetR' and similar standalone titles",
+        "description": "Captures names immediately following specific standalone titles like 'VetR', 'Ing.', 'Bakk.' without requiring 'Herrn/Frau' prefix.",
+        "format": "regex",
+        "content": "(?:VetR|Ing\\.|Bakk\\.|Dipl\\.-Ing\\.|RA\\.|StB\\.|MedR|KommR|OStR|HR|Fr\\.PhD|KzlR|Techn\\s+R)\\s+([A-Z][a-z\\u00df]+(?:\\s+[A-Z][a-z\\u00df]+)+)(?=\\s|,|\\.|\\n|$)",
+        "priority": 9,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "person"
+        },
+        "output_key": "entities",
+        "validated_precision": 0.49038461538461536,
+        "validated_support": 104,
+        "created_at": "2026-11-17T15:16:53.747092"
+      }
+    ]
+  }
+}
