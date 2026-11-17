@@ -60,6 +60,7 @@ class NERLearner(RuleChef):
         overlap_strategy: str | None = "longest",
         cross_type_overlaps: bool = True,
         scope_to_rule_labels=True,
+        frequency_penalty: float | None = 0.1,
     ):
 
         task = Task(
@@ -110,6 +111,7 @@ class NERLearner(RuleChef):
             overlap_strategy=overlap_strategy,
             cross_type_overlaps=cross_type_overlaps,
             scope_to_rule_labels=scope_to_rule_labels,
+            frequency_penalty=frequency_penalty,
         )
         self._max_counter_examples = max_counter_examples
 
@@ -128,6 +130,7 @@ class NERLearner(RuleChef):
         start_batch=0,
         holdout_fraction=0.0,
         split_seed=42,
+        max_patch_f1_drop=None,
     ):
         if seed_rules is not None:
             self.dataset.rules = seed_rules
@@ -142,10 +145,27 @@ class NERLearner(RuleChef):
                 continue
             for ex in batch:
                 self.add_example({"text": ex["text"]}, {"entities": ex["entities"]})
+            prev_rules = list(self.dataset.rules)
+            guard = max_patch_f1_drop is not None and batch_idx > 0 and prev_rules
+            if guard:
+                prev_f1 = self.learner._evaluate_rules(
+                    prev_rules, eval_dataset
+                ).micro_f1
+
             batch_result = self.learn_rules(
                 run_evaluation=False,
                 incremental_only=(batch_idx > 0 or seed_rules is not None),
             )
+            if guard and batch_result:
+                new_rules, _ = batch_result
+                new_f1 = self.learner._evaluate_rules(new_rules, eval_dataset).micro_f1
+                if prev_f1 - new_f1 > max_patch_f1_drop:
+                    print(f"  ⛔ Batch patch rejected: F1 {prev_f1:.1%} → {new_f1:.1%}, keeping previous rules")
+                    self.dataset.rules = prev_rules
+                    batch_result = (prev_rules, None)
+                else:
+                    print(f"  ✓ Batch patch accepted: F1 {prev_f1:.1%} → {new_f1:.1%}")
+
             # current batch should see its own examples but also some previous ones for the full picture
             if past_batches >= 0:
                 keep = batch_size * past_batches
