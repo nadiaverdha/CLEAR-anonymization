@@ -54,6 +54,7 @@ def _synthesis_step(args, phase, start_batch=0):
         seed=args.seed,
         holdout_fraction=args.holdout_fraction,
         split_seed=args.seed,
+        max_patch_f1_drop=args.max_patch_f1_drop,
     )
 
 
@@ -479,6 +480,7 @@ def main():
     )
     parser.add_argument("--refine-per-batch", type=int, default=0)
     parser.add_argument("--refine-every", type=int, default=5)
+    parser.add_argument("--max-patch-f1-drop", type=float, default=None)
     parser.add_argument("--holdout-fraction", type=float, default=0.0)
     parser.add_argument("--synthesis-strategy", type=str, default="bulk")
     parser.add_argument("--sampling-strategy", default="balanced")

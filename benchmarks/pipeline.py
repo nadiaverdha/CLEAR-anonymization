@@ -77,6 +77,7 @@ class SynthesisStep(Step):
         seed=42,
         holdout_fraction=0.0,
         split_seed=42,
+        max_patch_f1_drop=None,
     ):
         self.batch_size = batch_size
         self.past_batches = past_batches
@@ -89,6 +90,7 @@ class SynthesisStep(Step):
         self.synthesis_strategy = synthesis_strategy
         self.holdout_fraction = holdout_fraction
         self.split_seed = split_seed
+        self.max_patch_f1_drop = max_patch_f1_drop
 
     def run(self, ctx: StepContext) -> StepContext:
         if self.synthesis_strategy != "bulk":
@@ -162,6 +164,7 @@ class SynthesisStep(Step):
             start_batch=self.start_batch,
             holdout_fraction=self.holdout_fraction,
             split_seed=self.split_seed,
+            max_patch_f1_drop=self.max_patch_f1_drop,
         )
         if fit_result is None:
             return replace(

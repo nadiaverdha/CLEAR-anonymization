@@ -145,6 +145,7 @@ def save_results(output_path: Path, run: BenchmarkRun):
             "refine_every": args.refine_every,
             "overlap_strategy": getattr(args, "overlap_strategy", "longest"),
             "cross_type_overlaps": getattr(args, "cross_type_overlaps", None),
+            "max_patch_f1_drop": getattr(args, "max_patch_f1_drop", None),
         },
         "metadata": run.metadata,
         "results_dev": {
