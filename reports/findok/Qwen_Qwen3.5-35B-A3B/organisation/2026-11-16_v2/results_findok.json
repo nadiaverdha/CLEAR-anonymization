@@ -1,0 +1,677 @@
+{
+  "config": {
+    "shots": null,
+    "model": "Qwen/Qwen3.5-35B-A3B",
+    "format": "regex",
+    "max_rules": 10,
+    "max_samples": 150,
+    "max_iterations": 6,
+    "seed": 42,
+    "dev_dir": "/share/nverdha/data/findok/findok_val_corrected.conllu",
+    "test_dir": "/share/nverdha/data/findok/findok_test_corrected.conllu",
+    "train_size": 5,
+    "eval_size": 790,
+    "dev_size": 492,
+    "test_size": 495,
+    "train_sentences": 124,
+    "eval_sentences": 20833,
+    "dev_sentences": 61673,
+    "test_sentences": 61001,
+    "use_grex": true,
+    "agentic": false,
+    "enable_critic": true,
+    "enable_prune": false,
+    "critic_interval": 20,
+    "audit_interval": 0,
+    "sampling_strategy": "balanced",
+    "train_ratio": 0.8,
+    "neg_ratio": 0.5,
+    "eval_neg_ratio": null,
+    "pool_size": 5,
+    "batch_size": 100,
+    "past_batches": 2,
+    "refine_per_batch": 1,
+    "synthesis_strategy": "bulk",
+    "selected_classes": [
+      "organisation"
+    ],
+    "train_name": "findok",
+    "test_name": "findok",
+    "transfer_name": null,
+    "transfer_test_name": null,
+    "max_counter_examples": 10,
+    "interleave_failures": false,
+    "refine_every": 2,
+    "overlap_strategy": "longest",
+    "cross_type_overlaps": null
+  },
+  "metadata": {
+    "best_batch_idx": 0,
+    "best_batch_f1": 0.8400651896225169,
+    "best_rules_serialized": [
+      {
+        "id": "00cd2bf9",
+        "name": "Courts - Bundesfinanzgericht",
+        "description": "Matches the Federal Tax Court, handling genitive case endings and parenthetical abbreviations.",
+        "format": "regex",
+        "content": "\\b(Bundesfinanzgericht(?:es)?(?:\\s*\\(BFG\\))?|BFG\\s*\\(Bundesfinanzgericht\\))\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities",
+        "validated_precision": 0.9765625,
+        "validated_support": 896,
+        "created_at": "2026-11-16T12:07:47.388200"
+      },
+      {
+        "id": "45be7cd0",
+        "name": "Courts - Verwaltungsgerichtshof",
+        "description": "Matches the Administrative Court, handling genitive case endings.",
+        "format": "regex",
+        "content": "\\b(Verwaltungsgerichtshof(?:es)?)\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities",
+        "validated_precision": 1.0,
+        "validated_support": 681,
+        "created_at": "2026-11-16T12:07:47.388578"
+      },
+      {
+        "id": "d9cb4770",
+        "name": "Courts - BFG Abbreviation",
+        "description": "Matches the abbreviation for Bundesfinanzgericht, ensuring capture.",
+        "format": "regex",
+        "content": "\\b(BFG)\\b",
+        "priority": 9,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities",
+        "validated_precision": 0.9509345794392523,
+        "validated_support": 428,
+        "created_at": "2026-11-16T12:07:47.388492"
+      },
+      {
+        "id": "fc0dac07",
+        "name": "Courts - Verfassungsgerichtshof",
+        "description": "Matches the Constitutional Court, handling genitive case endings.",
+        "format": "regex",
+        "content": "\\b(Verfassungsgerichtshof(?:es)?)\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities",
+        "validated_precision": 1.0,
+        "validated_support": 60,
+        "created_at": "2026-11-16T12:07:47.388606"
+      },
+      {
+        "id": "dcffdace",
+        "name": "City Authority - Magistrat",
+        "description": "Matches the City Administration (Magistrat), handling genitive.",
+        "format": "regex",
+        "content": "\\b(Magistrat(?:s)?(?: der Stadt Wien)?)\\b",
+        "priority": 9,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities",
+        "validated_precision": 0.7395833333333334,
+        "validated_support": 96,
+        "created_at": "2026-11-16T12:07:47.388724"
+      },
+      {
+        "id": "1ae8b141",
+        "name": "Tax Authority - Finanzamt Specific Locations",
+        "description": "Matches Finanzamt with specific known locations (Wien districts, \u00d6sterreich, Gro\u00dfbetriebe).",
+        "format": "regex",
+        "content": "\\b(Finanzamt(?:es)?(?:\\s+(?:Wien\\s+(?:8/16/17|9/18/19/Klosterneuburg)|\u00d6sterreich|f\u00fcr\\s+Gro\u00dfbetriebe)))\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities",
+        "validated_precision": 0.9655172413793104,
+        "validated_support": 116,
+        "created_at": "2026-11-16T12:07:47.388842"
+      },
+      {
+        "id": "eaf112e8",
+        "name": "Tax Authority - Generic Finanzamt",
+        "description": "Matches generic Finanzamt, ensuring capture and excluding specific locations handled above.",
+        "format": "regex",
+        "content": "\\b(Finanzamt(?:es)?)\\b(?!\\s+(?:Wien\\s+(?:8/16/17|9/18/19/Klosterneuburg)|\u00d6sterreich|f\u00fcr\\s+Gro\u00dfbetriebe|Vorarlberg|Braunau\\s+Ried))",
+        "priority": 7,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities",
+        "validated_precision": 0.8349397590361446,
+        "validated_support": 830,
+        "created_at": "2026-11-16T12:07:47.389078"
+      },
+      {
+        "id": "1eeac4f2",
+        "name": "Law Firm - Glatzhofer & Matschek",
+        "description": "Matches the specific law firm entity.",
+        "format": "regex",
+        "content": "\\b(Glatzhofer\\s+&\\s+Matschek\\s+Steuerberatungsgesellschaft\\s+mbH)\\b",
+        "priority": 4,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities",
+        "validated_precision": 1.0,
+        "validated_support": 4,
+        "created_at": "2026-11-16T12:07:47.389311"
+      }
+    ]
+  },
+  "results_dev": {
+    "accuracy": 0.9618795907447343,
+    "micro_precision": 0.9628865979381444,
+    "micro_recall": 0.777716098334655,
+    "micro_f1": 0.8604518534766397,
+    "macro_f1": 0.8604518534766397,
+    "num_rules": 11,
+    "learning_time_s": 67.5,
+    "eval_time_s": 4.9,
+    "per_query_ms": 0.08
+  },
+  "per_class_dev": [
+    {
+      "label": "organisation",
+      "precision": 0.9628865979381444,
+      "recall": 0.777716098334655,
+      "f1": 0.8604518534766397,
+      "tp": 9807,
+      "fp": 378,
+      "fn": 2803
+    }
+  ],
+  "iteration_metrics": [
+    {
+      "iteration": 1,
+      "num_rules": 10,
+      "exact_match": 0.5721142308615311,
+      "micro_f1": 0.4717145343777198,
+      "micro_precision": 0.5250242169841782,
+      "micro_recall": 0.4282328153805636,
+      "macro_f1": 0.4717145343777198,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.4717145343777198,
+          "precision": 0.5250242169841782,
+          "recall": 0.4282328153805636
+        }
+      ]
+    }
+  ],
+  "batch_test_metrics": [
+    {
+      "batch": 0,
+      "num_rules": 8,
+      "dev": {
+        "exact_match": 0.9585718223533799,
+        "micro_f1": 0.8400651896225169,
+        "micro_precision": 0.9448132368968593,
+        "micro_recall": 0.7562252180808882,
+        "macro_f1": 0.8400651896225169,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.8400651896225169,
+            "precision": 0.9448132368968593,
+            "recall": 0.7562252180808882
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9696234487959213,
+        "micro_f1": 0.8777366424425247,
+        "micro_precision": 0.9522959436675592,
+        "micro_recall": 0.8140047473719905,
+        "macro_f1": 0.8777366424425247,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.8777366424425247,
+            "precision": 0.9522959436675592,
+            "recall": 0.8140047473719905
+          }
+        ]
+      }
+    },
+    {
+      "batch": 1,
+      "num_rules": 13,
+      "dev": {
+        "exact_match": 0.9584096768439998,
+        "micro_f1": 0.8396359780880014,
+        "micro_precision": 0.947835627368841,
+        "micro_recall": 0.7536082474226804,
+        "macro_f1": 0.8396359780880014,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.8396359780880014,
+            "precision": 0.947835627368841,
+            "recall": 0.7536082474226804
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9703611416206291,
+        "micro_f1": 0.8816565342597248,
+        "micro_precision": 0.956651125880369,
+        "micro_recall": 0.8175652763648694,
+        "macro_f1": 0.8816565342597248,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.8816565342597248,
+            "precision": 0.956651125880369,
+            "recall": 0.8175652763648694
+          }
+        ]
+      }
+    }
+  ],
+  "results_test": {
+    "accuracy": 0.9727217586596941,
+    "micro_precision": 0.9642472328337741,
+    "micro_recall": 0.8345201763309597,
+    "micro_f1": 0.8947057486934787,
+    "macro_f1": 0.8947057486934787
+  },
+  "per_class_test": [
+    {
+      "label": "organisation",
+      "precision": 0.9642472328337741,
+      "recall": 0.8345201763309597,
+      "f1": 0.8947057486934787,
+      "tp": 9844,
+      "fp": 365,
+      "fn": 1952
+    }
+  ],
+  "rules": [
+    {
+      "id": "92446db6",
+      "name": "Courts - Bundesfinanzgericht",
+      "description": "Matches Bundesfinanzgericht with optional genitive endings (es, s) and optional (BFG) abbreviation.",
+      "format": "regex",
+      "content": "\\b(Bundesfinanzgericht(?:es|s)?(?:\\s*\\(BFG\\))?|BFG\\s*\\(Bundesfinanzgericht\\)|BFG)\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "validated_precision": 0.9776805911627205,
+      "validated_support": 6631,
+      "created_at": "2026-11-16T12:09:54.431442"
+    },
+    {
+      "id": "45be7cd0",
+      "name": "Courts - Verwaltungsgerichtshof",
+      "description": "Matches the Administrative Court, handling genitive case endings.",
+      "format": "regex",
+      "content": "\\b(Verwaltungsgerichtshof(?:es)?)\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "validated_precision": 1.0,
+      "validated_support": 3466,
+      "created_at": "2026-11-16T12:09:54.431763"
+    },
+    {
+      "id": "fc0dac07",
+      "name": "Courts - Verfassungsgerichtshof",
+      "description": "Matches the Constitutional Court, handling genitive case endings.",
+      "format": "regex",
+      "content": "\\b(Verfassungsgerichtshof(?:es)?)\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "validated_precision": 1.0,
+      "validated_support": 263,
+      "created_at": "2026-11-16T12:09:54.431793"
+    },
+    {
+      "id": "1eeac4f2",
+      "name": "Law Firm - Glatzhofer & Matschek",
+      "description": "Matches the specific law firm entity.",
+      "format": "regex",
+      "content": "\\b(Glatzhofer\\s+&\\s+Matschek\\s+Steuerberatungsgesellschaft\\s+mbH)\\b",
+      "priority": 4,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "validated_precision": 1.0,
+      "validated_support": 4,
+      "created_at": "2026-11-16T12:07:47.389311"
+    },
+    {
+      "id": "4653df20",
+      "name": "Tax Authority - Finanzamt Locations",
+      "description": "Matches Finanzamt with specific locations, including complex names and genitive forms.",
+      "format": "regex",
+      "content": "\\b(Finanzamt(?:es)?(?:\\s+(?:Wien\\s+(?:8/16/17|9/18/19(?:\\s+Klosterneuburg)?|Klosterneuburg)|\u00d6sterreich|Salzburg-Land|Bruck\\s+Eisenstadt\\s+Oberwart|Hollabrunn\\s+Korneuburg\\s+Tulln|St\\.\\s+Johann\\s+Tamsweg\\s+Zell\\s+am\\s+See|Vorarlberg|Braunau\\s+Ried|Gro\u00dfbetriebe|Feldkirch|Neunkirchen\\s+Wr\\.\\s+Neustadt|f\u00fcr\\s+Geb\u00fchren\\s+Verkehrsteuern\\s+und\\s+Gl\u00fccksspiel)))\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "validated_precision": 0.9483960948396095,
+      "validated_support": 717,
+      "created_at": "2026-11-16T12:09:54.431820"
+    },
+    {
+      "id": "c6b25c8a",
+      "name": "Tax Authority - Generic Finanzamt",
+      "description": "Matches generic Finanzamt when no specific location follows, ensuring it's not a partial match of a longer entity.",
+      "format": "regex",
+      "content": "\\b(Finanzamt(?:es)?)\\b(?!\\s+(?:Wien|\u00d6sterreich|Salzburg-Land|Bruck|Hollabrunn|St\\.\\s+Johann|Vorarlberg|Braunau|Gro\u00dfbetriebe|Feldkirch|Neunkirchen|f\u00fcr))",
+      "priority": 8,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "validated_precision": 0.9274819373829275,
+      "validated_support": 3737,
+      "created_at": "2026-11-16T12:09:54.432478"
+    },
+    {
+      "id": "280e3fe9",
+      "name": "Company - GCX M\u00f6bel GmbH",
+      "description": "Matches the specific company GCX M\u00f6bel GmbH.",
+      "format": "regex",
+      "content": "\\b(GCX\\s+M\u00f6bel\\s+GmbH)\\b",
+      "priority": 5,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "validated_precision": 1.0,
+      "validated_support": 9,
+      "created_at": "2026-11-16T12:09:54.433016"
+    },
+    {
+      "id": "8800e748",
+      "name": "Company - VTX E\u2011Commerce Planung GmbH",
+      "description": "Matches the specific company VTX E\u2011Commerce Planung GmbH.",
+      "format": "regex",
+      "content": "\\b(VTX\\s+E\u2011Commerce\\s+Planung\\s+GmbH)\\b",
+      "priority": 5,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "validated_precision": 1.0,
+      "validated_support": 5,
+      "created_at": "2026-11-16T12:08:38.800963"
+    },
+    {
+      "id": "2a5fdf82",
+      "name": "Company - RheinBildung Manufaktur GmbH",
+      "description": "Matches the specific company RheinBildung Manufaktur GmbH.",
+      "format": "regex",
+      "content": "\\b(RheinBildung\\s+Manufaktur\\s+GmbH)\\b",
+      "priority": 5,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "validated_precision": 0.967741935483871,
+      "validated_support": 93,
+      "created_at": "2026-11-16T12:08:38.801091"
+    },
+    {
+      "id": "c6362907",
+      "name": "City Authority - Magistrat der Stadt Wien",
+      "description": "Matches the City Administration (Magistrat/Magistrates) with the full city name and optional extension.",
+      "format": "regex",
+      "content": "\\b(Magistrat(?:s)?(?:\\s+der\\s+Stadt\\s+Wien)(?:\\s*,\\s*Magistratsabteilung\\s+\\d+)?)\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "validated_precision": 0.9786223277909739,
+      "validated_support": 421,
+      "created_at": "2026-11-16T12:09:54.432950"
+    },
+    {
+      "id": "0d5c05ff",
+      "name": "City Authority - Stadt Wien",
+      "description": "Matches the city entity 'Stadt Wien' when not part of a Magistrat phrase.",
+      "format": "regex",
+      "content": "\\b(Stadt\\s+Wien)\\b",
+      "priority": 7,
+      "output_template": {
+        "text": "$1",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "validated_precision": 0.22446043165467625,
+      "validated_support": 695,
+      "created_at": "2026-11-16T12:09:54.432990"
+    }
+  ],
+  "best_rules": {
+    "batch": 0,
+    "micro_f1": 0.8400651896225169,
+    "rules": [
+      {
+        "id": "00cd2bf9",
+        "name": "Courts - Bundesfinanzgericht",
+        "description": "Matches the Federal Tax Court, handling genitive case endings and parenthetical abbreviations.",
+        "format": "regex",
+        "content": "\\b(Bundesfinanzgericht(?:es)?(?:\\s*\\(BFG\\))?|BFG\\s*\\(Bundesfinanzgericht\\))\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities",
+        "validated_precision": 0.9765625,
+        "validated_support": 896,
+        "created_at": "2026-11-16T12:07:47.388200"
+      },
+      {
+        "id": "45be7cd0",
+        "name": "Courts - Verwaltungsgerichtshof",
+        "description": "Matches the Administrative Court, handling genitive case endings.",
+        "format": "regex",
+        "content": "\\b(Verwaltungsgerichtshof(?:es)?)\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities",
+        "validated_precision": 1.0,
+        "validated_support": 681,
+        "created_at": "2026-11-16T12:07:47.388578"
+      },
+      {
+        "id": "d9cb4770",
+        "name": "Courts - BFG Abbreviation",
+        "description": "Matches the abbreviation for Bundesfinanzgericht, ensuring capture.",
+        "format": "regex",
+        "content": "\\b(BFG)\\b",
+        "priority": 9,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities",
+        "validated_precision": 0.9509345794392523,
+        "validated_support": 428,
+        "created_at": "2026-11-16T12:07:47.388492"
+      },
+      {
+        "id": "fc0dac07",
+        "name": "Courts - Verfassungsgerichtshof",
+        "description": "Matches the Constitutional Court, handling genitive case endings.",
+        "format": "regex",
+        "content": "\\b(Verfassungsgerichtshof(?:es)?)\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities",
+        "validated_precision": 1.0,
+        "validated_support": 60,
+        "created_at": "2026-11-16T12:07:47.388606"
+      },
+      {
+        "id": "dcffdace",
+        "name": "City Authority - Magistrat",
+        "description": "Matches the City Administration (Magistrat), handling genitive.",
+        "format": "regex",
+        "content": "\\b(Magistrat(?:s)?(?: der Stadt Wien)?)\\b",
+        "priority": 9,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities",
+        "validated_precision": 0.7395833333333334,
+        "validated_support": 96,
+        "created_at": "2026-11-16T12:07:47.388724"
+      },
+      {
+        "id": "1ae8b141",
+        "name": "Tax Authority - Finanzamt Specific Locations",
+        "description": "Matches Finanzamt with specific known locations (Wien districts, \u00d6sterreich, Gro\u00dfbetriebe).",
+        "format": "regex",
+        "content": "\\b(Finanzamt(?:es)?(?:\\s+(?:Wien\\s+(?:8/16/17|9/18/19/Klosterneuburg)|\u00d6sterreich|f\u00fcr\\s+Gro\u00dfbetriebe)))\\b",
+        "priority": 8,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities",
+        "validated_precision": 0.9655172413793104,
+        "validated_support": 116,
+        "created_at": "2026-11-16T12:07:47.388842"
+      },
+      {
+        "id": "eaf112e8",
+        "name": "Tax Authority - Generic Finanzamt",
+        "description": "Matches generic Finanzamt, ensuring capture and excluding specific locations handled above.",
+        "format": "regex",
+        "content": "\\b(Finanzamt(?:es)?)\\b(?!\\s+(?:Wien\\s+(?:8/16/17|9/18/19/Klosterneuburg)|\u00d6sterreich|f\u00fcr\\s+Gro\u00dfbetriebe|Vorarlberg|Braunau\\s+Ried))",
+        "priority": 7,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities",
+        "validated_precision": 0.8349397590361446,
+        "validated_support": 830,
+        "created_at": "2026-11-16T12:07:47.389078"
+      },
+      {
+        "id": "1eeac4f2",
+        "name": "Law Firm - Glatzhofer & Matschek",
+        "description": "Matches the specific law firm entity.",
+        "format": "regex",
+        "content": "\\b(Glatzhofer\\s+&\\s+Matschek\\s+Steuerberatungsgesellschaft\\s+mbH)\\b",
+        "priority": 4,
+        "output_template": {
+          "text": "$1",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities",
+        "validated_precision": 1.0,
+        "validated_support": 4,
+        "created_at": "2026-11-16T12:07:47.389311"
+      }
+    ]
+  }
+}
