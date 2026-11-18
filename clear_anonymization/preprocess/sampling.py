@@ -84,8 +84,8 @@ def sample_few_shot(
     train_all, eval_all = _split_docs(pos_docs, train_ratio)
     neg_train_docs, neg_eval_docs = _split_docs(neg_docs, train_ratio)
 
-    if shuffle:
-        rng.shuffle(train_all)
+    #if shuffle:
+     #   rng.shuffle(train_all)
     train_docs = train_all[:pool_size] if pool_size is not None else train_all
     n_train_docs = len(train_docs)
     eval_docs = eval_all
