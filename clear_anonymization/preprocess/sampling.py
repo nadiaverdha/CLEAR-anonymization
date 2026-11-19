@@ -44,6 +44,7 @@ def sample_few_shot(
     shuffle=True,
     neg_ratio=None,
     eval_neg_ratio=None,
+    exclude_entities=None,
 ):
     """
     train_data: list of NERSample (document level).
@@ -84,8 +85,8 @@ def sample_few_shot(
     train_all, eval_all = _split_docs(pos_docs, train_ratio)
     neg_train_docs, neg_eval_docs = _split_docs(neg_docs, train_ratio)
 
-    #if shuffle:
-     #   rng.shuffle(train_all)
+    # if shuffle:
+    #   rng.shuffle(train_all)
     train_docs = train_all[:pool_size] if pool_size is not None else train_all
     n_train_docs = len(train_docs)
     eval_docs = eval_all
@@ -93,6 +94,23 @@ def sample_few_shot(
 
     train_examples = [s for doc in train_docs for s in doc if s["entities"]]
     eval_examples = [s for doc in eval_docs for s in doc if s["entities"]]
+
+    if exclude_entities:
+
+        def _strip(s):
+            ents = [
+                e for e in s["entities"] if e["text"].strip() not in exclude_entities
+            ]
+            return {**s, "entities": ents}
+
+        n_before = sum(len(s["entities"]) for s in train_examples + eval_examples)
+        train_examples = [t for t in map(_strip, train_examples) if t["entities"]]
+        eval_examples = [t for t in map(_strip, eval_examples) if t["entities"]]
+        n_after = sum(len(s["entities"]) for s in train_examples + eval_examples)
+        print(
+            f"exclude_entities: removed {n_before - n_after} entities, "
+            f"{len(train_examples)} train / {len(eval_examples)} eval sentences kept"
+        )
 
     train_neg_pool = [
         s for doc in train_docs + neg_train_docs for s in doc if not s["entities"]

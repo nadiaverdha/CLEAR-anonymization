@@ -4,6 +4,7 @@ from collections import Counter, defaultdict
 from rulechef.evaluation import _entity_type, _get_entities, evaluate_dataset
 
 from benchmarks.data import BenchmarkRun
+import copy
 
 
 def eval_metrics(result) -> dict:
@@ -43,19 +44,53 @@ def make_oniteration_callback(iteration_metrics: list):
     return on_iteration
 
 
-def evaluate_test(test_dataset, rules, chef, mode="text", iou_threshold=1):
+def _without(entities, exclude):
+    return [e for e in entities if e.get("text", "").strip() not in exclude]
+
+
+def exclusion_view(dataset, apply_fn, exclude):
+    if not exclude:
+        return dataset, apply_fn
+    dataset = copy.deepcopy(dataset)
+    spans = {}
+    for ex in dataset.examples:
+        gold = ex.expected_output.get("entities", [])
+        spans[ex.input["text"]] = [
+            (g["start"], g["end"]) for g in gold if g["text"].strip() in exclude
+        ]
+        ex.expected_output = {"entities": _without(gold, exclude)}
+
+    def wrapped(rules_, input_data, task_type=None, text_field=None):
+        out = apply_fn(rules_, input_data, task_type, text_field)
+        s = spans.get(input_data["text"], [])
+        return {
+            **out,
+            "entities": [
+                e
+                for e in _without(out.get("entities", []), exclude)
+                if not any(e["start"] < ge and e["end"] > gs for gs, ge in s)
+            ],
+        }
+
+    return dataset, wrapped
+
+
+def evaluate_test(
+    test_dataset, rules, chef, mode="text", iou_threshold=1, exclude=None
+):
+    test_dataset, apply_fn = exclusion_view(
+        test_dataset, chef.learner._apply_rules, exclude
+    )
     t0 = time.time()
     eval_results = evaluate_dataset(
         rules,
         test_dataset,
-        chef.learner._apply_rules,
+        apply_fn,
         mode=mode,
         iou_threshold=iou_threshold,
         scope_to_rule_labels=True,
     )
-    t_eval = time.time() - t0
-
-    return eval_results, t_eval
+    return eval_results, time.time() - t0
 
 
 def evaluate_excluding_frequent_entities(

@@ -157,6 +157,7 @@ def prepare_split(
         train_ratio=args.train_ratio,
         neg_ratio=getattr(args, "neg_ratio", None),
         eval_neg_ratio=getattr(args, "eval_neg_ratio", None),
+        exclude_entities=getattr(args, "exclude_entities", None),
     )
 
     if dev_all:

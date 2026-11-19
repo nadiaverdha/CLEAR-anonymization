@@ -78,6 +78,7 @@ class SynthesisStep(Step):
         holdout_fraction=0.0,
         split_seed=42,
         max_patch_f1_drop=None,
+        exclude=None,
     ):
         self.batch_size = batch_size
         self.past_batches = past_batches
@@ -91,6 +92,7 @@ class SynthesisStep(Step):
         self.holdout_fraction = holdout_fraction
         self.split_seed = split_seed
         self.max_patch_f1_drop = max_patch_f1_drop
+        self.exclude = exclude
 
     def run(self, ctx: StepContext) -> StepContext:
         if self.synthesis_strategy != "bulk":
@@ -111,8 +113,12 @@ class SynthesisStep(Step):
 
         def on_batch(batch_idx, rules):
             rules_snapshot.append({"batch": batch_idx, "rules": serialize_rules(rules)})
-            result, _ = evaluate_test(ctx.dev_dataset, rules, ctx.learner)
-            test_result, _ = evaluate_test(ctx.test_dataset, rules, ctx.learner)
+            result, _ = evaluate_test(
+                ctx.dev_dataset, rules, ctx.learner, exclude=self.exclude
+            )
+            test_result, _ = evaluate_test(
+                ctx.test_dataset, rules, ctx.learner, exclude=self.exclude
+            )
             batch_metrics.append(
                 {
                     "batch": batch_idx,
@@ -184,6 +190,7 @@ class SynthesisStep(Step):
             "dataset": ctx.split.name,
             "num_rules": len(final_rules),
             "num_rules_last_batch": len(rules),
+            "exclude_entities": list(self.exclude or []),
             "best_batch_idx": best["batch_idx"],
             "best_dev_f1": best["f1"],
             "t_learn": round(ctx.t_learn + new_t_learn, 1),
@@ -280,17 +287,21 @@ class FeedbackStep(Step):
 
 
 class EvaluationStep(Step):
+    def __init__(self, exclude=None):
+        self.exclude = exclude
+
     def run(self, ctx: StepContext) -> StepContext:
         dev_eval_results, t_eval_dev = evaluate_test(
-            ctx.dev_dataset, ctx.rules, ctx.learner
+            ctx.dev_dataset, ctx.rules, ctx.learner, exclude=self.exclude
         )
         test_eval_results, t_eval_test = evaluate_test(
-            ctx.test_dataset, ctx.rules, ctx.learner
+            ctx.test_dataset, ctx.rules, ctx.learner, exclude=self.exclude
         )
         history_entry = {
             "phase": "evaluate",
             "dataset": ctx.split.name,
             "num_rules": len(ctx.rules),
+            "exclude_entities": list(self.exclude or []),
             "dev": eval_metrics(dev_eval_results),
             "test": eval_metrics(test_eval_results),
             "t_eval_dev": round(t_eval_dev, 3),
