@@ -1,0 +1,1845 @@
+{
+  "config": {
+    "shots": null,
+    "model": "Qwen/Qwen3.5-35B-A3B",
+    "format": "regex",
+    "max_rules": 10,
+    "max_samples": 150,
+    "max_iterations": 6,
+    "seed": 42,
+    "dev_dir": "/share/nverdha/data/findok/findok_val_corrected.conllu",
+    "test_dir": "/share/nverdha/data/findok/findok_test_corrected.conllu",
+    "train_size": 200,
+    "eval_size": 790,
+    "dev_size": 492,
+    "test_size": 495,
+    "train_sentences": 1567,
+    "eval_sentences": 9322,
+    "dev_sentences": 61673,
+    "test_sentences": 61001,
+    "use_grex": true,
+    "agentic": false,
+    "enable_critic": true,
+    "enable_prune": false,
+    "critic_interval": 10,
+    "audit_interval": 0,
+    "sampling_strategy": "balanced",
+    "train_ratio": 0.8,
+    "neg_ratio": null,
+    "eval_neg_ratio": 0.4,
+    "pool_size": 200,
+    "batch_size": 50,
+    "past_batches": 2,
+    "refine_per_batch": 1,
+    "synthesis_strategy": "bulk",
+    "selected_classes": [
+      "organisation"
+    ],
+    "train_name": "findok",
+    "test_name": "findok",
+    "transfer_name": null,
+    "transfer_test_name": null,
+    "max_counter_examples": 10,
+    "interleave_failures": true,
+    "refine_every": 2,
+    "overlap_strategy": "longest",
+    "cross_type_overlaps": null,
+    "max_patch_f1_drop": null
+  },
+  "metadata": {
+    "best_batch_idx": 30,
+    "best_batch_f1": 0.7100566420861387,
+    "best_rules_serialized": [
+      {
+        "id": "e6a387e2",
+        "name": "german_tax_authorities",
+        "description": "Matches Finanzamt variations including genitive endings, specific locations, and 'f\u00fcr' constructions.",
+        "format": "regex",
+        "content": "\\b(Finanzamt(?:es)?(?:\\s+(?:Wien\\s+3/6/7/11/15\\s+Schwechat\\s+Gerasdorf|\u00d6sterreich|Baden\\s+M\u00f6dling|Linz|Bruck\\s+Eisenstadt\\s+Oberwart|Gro\u00dfbetriebe|f\u00fcr\\s+Geb\u00fchren|Innsbruck))?|Zollamt(?:es)?(?:\\s+Klagenfurt)?|Finanzpolizei)\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities",
+        "validated_precision": 0.8790186125211505,
+        "validated_support": 4728,
+        "created_at": "2026-11-19T13:14:33.327946"
+      },
+      {
+        "id": "8abcded5",
+        "name": "german_courts",
+        "description": "Matches specific German courts and administrative bodies including genitive forms (-s, -es) and specific names.",
+        "format": "regex",
+        "content": "\\b(Bundesfinanzgericht(?:s)?|Verwaltungsgerichtshof(?:s)?|Verfassungsgerichtshof(?:s)?|Pensionsversicherungsanstalt(?:s)?|AMS(?:\\s+[A-Z])?|Landesgericht(?:s)?|Bezirksgericht\\s+[A-Z]+)\\b",
+        "priority": 9,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities",
+        "validated_precision": 0.2954838709677419,
+        "validated_support": 1550,
+        "created_at": "2026-11-19T13:14:33.328357"
+      },
+      {
+        "id": "8f8e291f",
+        "name": "german_company_gmbh",
+        "description": "Matches GmbH companies, requiring a valid name start (letter or 'Fa.') and excluding common articles like 'Die' or 'Der'.",
+        "format": "regex",
+        "content": "\\b(?<!\\w)(?:(?:Fa\\.|[A-Z][a-zA-Z0-9\\-+&]*(?:\\s+[A-Z][a-zA-Z0-9\\-+&]*)*)\\s+GmbH(?:\\s+&\\s+CO\\s+KG)?)(?!\\w)",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities",
+        "validated_precision": 0.497196261682243,
+        "validated_support": 1070,
+        "created_at": "2026-11-19T13:14:33.327391"
+      },
+      {
+        "id": "9a8e6f9f",
+        "name": "german_company_ag",
+        "description": "Matches AG companies, requiring a valid name start and excluding common articles.",
+        "format": "regex",
+        "content": "\\b(?<!\\w)(?:(?:Fa\\.|[A-Z][a-zA-Z0-9\\-+&]*(?:\\s+[A-Z][a-zA-Z0-9\\-+&]*)*)\\s+AG)(?!\\w)",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities",
+        "validated_precision": 0.6956521739130435,
+        "validated_support": 92,
+        "created_at": "2026-11-19T13:14:33.327739"
+      },
+      {
+        "id": "9e06e6f3",
+        "name": "german_police_admin",
+        "description": "Matches police and administrative bodies with location suffixes, including genitive forms.",
+        "format": "regex",
+        "content": "\\b(Landespolizeidirektion\\s+Wien|Magistrat(?:s)?\\s+der\\s+Stadt\\s+Wien(?:\\s+Magistratsabteilung\\s+\\d+)?|Wiener\\s+Gemeinderat(?:s)?)\\b",
+        "priority": 7,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities",
+        "validated_precision": 0.6448979591836734,
+        "validated_support": 245,
+        "created_at": "2026-11-19T13:14:33.328876"
+      },
+      {
+        "id": "e91d48ca",
+        "name": "german_company_e_commerce",
+        "description": "Matches specific E-Commerce company patterns.",
+        "format": "regex",
+        "content": "\\b([A-Z][a-zA-Z0-9\\-]+\\s+u\\.\\s+[A-Z][a-zA-Z0-9\\-]+\\s+E\u2011?Commerce)\\b",
+        "priority": 6,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities",
+        "validated_precision": 1.0,
+        "validated_support": 1,
+        "created_at": "2026-11-19T13:14:33.329120"
+      },
+      {
+        "id": "9bbf5818",
+        "name": "german_specific_orgs",
+        "description": "Matches specific known organizations including ministries, federal offices, and universities.",
+        "format": "regex",
+        "content": "\\b(\u00d6GK|Wirtschaftsuniversit\u00e4t\\s+Wien|Bundesministerium\\s+f\u00fcr\\s+Finanzen|Bundesamt(?:s)?\\s+f\u00fcr\\s+Soziales\\s+und\\s+Behindertenwesen|Deutschen\\s+Rentenversicherung\\s+Bund|Magistrat(?:s)?\\s+der\\s+Stadt\\s+Wien|Wiener\\s+Gemeinderat(?:s)?|Bundesministers\\s+f\u00fcr\\s+Arbeit,\\s+Soziales\\s+und\\s+Konsumentenschutz)\\b",
+        "priority": 7,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities",
+        "validated_precision": 0.7192429022082019,
+        "validated_support": 317,
+        "created_at": "2026-11-19T13:14:33.328384"
+      }
+    ]
+  },
+  "results_dev": {
+    "accuracy": 0.9743810095179414,
+    "micro_precision": 0.770050996754752,
+    "micro_recall": 0.6587348800317272,
+    "micro_f1": 0.7100566420861387,
+    "macro_f1": 0.7100566420861387,
+    "num_rules": 7,
+    "learning_time_s": 1262.7,
+    "eval_time_s": 3.452,
+    "per_query_ms": 0.06
+  },
+  "per_class_dev": [
+    {
+      "label": "organisation",
+      "precision": 0.770050996754752,
+      "recall": 0.6587348800317272,
+      "f1": 0.7100566420861387,
+      "tp": 3322,
+      "fp": 992,
+      "fn": 1721
+    }
+  ],
+  "iteration_metrics": [
+    {
+      "iteration": 1,
+      "num_rules": 7,
+      "exact_match": 0.3517426273458445,
+      "micro_f1": 0.14998152936830436,
+      "micro_precision": 0.1735042735042735,
+      "micro_recall": 0.1320754716981132,
+      "macro_f1": 0.14998152936830436,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.14998152936830436,
+          "precision": 0.1735042735042735,
+          "recall": 0.1320754716981132
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 11,
+      "exact_match": 0.5640750670241287,
+      "micro_f1": 0.5116959064327485,
+      "micro_precision": 0.5838198498748958,
+      "micro_recall": 0.4554326610279766,
+      "macro_f1": 0.5116959064327485,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.5116959064327485,
+          "precision": 0.5838198498748958,
+          "recall": 0.4554326610279766
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 15,
+      "exact_match": 0.6949061662198391,
+      "micro_f1": 0.6666666666666667,
+      "micro_precision": 0.6751167444963309,
+      "micro_recall": 0.6584255042290176,
+      "macro_f1": 0.6666666666666667,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.6666666666666667,
+          "precision": 0.6751167444963309,
+          "recall": 0.6584255042290176
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 16,
+      "exact_match": 0.49651474530831097,
+      "micro_f1": 0.3725112395632627,
+      "micro_precision": 0.3677869372225745,
+      "micro_recall": 0.37735849056603776,
+      "macro_f1": 0.3725112395632627,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.3725112395632627,
+          "precision": 0.3677869372225745,
+          "recall": 0.37735849056603776
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 17,
+      "exact_match": 0.7195710455764075,
+      "micro_f1": 0.7055805003207185,
+      "micro_precision": 0.6957621758380772,
+      "micro_recall": 0.715679895901106,
+      "macro_f1": 0.7055805003207185,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.7055805003207185,
+          "precision": 0.6957621758380772,
+          "recall": 0.715679895901106
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 13,
+      "exact_match": 0.5823056300268097,
+      "micro_f1": 0.5491395793499044,
+      "micro_precision": 0.6660482374768089,
+      "micro_recall": 0.4671437865972674,
+      "macro_f1": 0.5491395793499044,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.5491395793499044,
+          "precision": 0.6660482374768089,
+          "recall": 0.4671437865972674
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 16,
+      "exact_match": 0.6455764075067024,
+      "micro_f1": 0.6330434782608696,
+      "micro_precision": 0.680119581464873,
+      "micro_recall": 0.5920624593363696,
+      "macro_f1": 0.6330434782608696,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.6330434782608696,
+          "precision": 0.680119581464873,
+          "recall": 0.5920624593363696
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 17,
+      "exact_match": 0.3705093833780161,
+      "micro_f1": 0.19943422913719944,
+      "micro_precision": 0.21843532145623548,
+      "micro_recall": 0.18347430058555628,
+      "macro_f1": 0.19943422913719944,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.19943422913719944,
+          "precision": 0.21843532145623548,
+          "recall": 0.18347430058555628
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 20,
+      "exact_match": 0.6820375335120643,
+      "micro_f1": 0.6639057024530105,
+      "micro_precision": 0.6504369538077404,
+      "micro_recall": 0.6779440468445023,
+      "macro_f1": 0.6639057024530105,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.6639057024530105,
+          "precision": 0.6504369538077404,
+          "recall": 0.6779440468445023
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 26,
+      "exact_match": 0.7249329758713137,
+      "micro_f1": 0.6980367715799315,
+      "micro_precision": 0.6698564593301436,
+      "micro_recall": 0.7286922576447625,
+      "macro_f1": 0.6980367715799315,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.6980367715799315,
+          "precision": 0.6698564593301436,
+          "recall": 0.7286922576447625
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 21,
+      "exact_match": 0.37158176943699733,
+      "micro_f1": 0.20962888665997992,
+      "micro_precision": 0.4573304157549234,
+      "micro_recall": 0.13597918022121014,
+      "macro_f1": 0.20962888665997992,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.20962888665997992,
+          "precision": 0.4573304157549234,
+          "recall": 0.13597918022121014
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 28,
+      "exact_match": 0.3796246648793566,
+      "micro_f1": 0.22244589833920483,
+      "micro_precision": 0.4911111111111111,
+      "micro_recall": 0.14378659726740403,
+      "macro_f1": 0.22244589833920483,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.22244589833920483,
+          "precision": 0.4911111111111111,
+          "recall": 0.14378659726740403
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 28,
+      "exact_match": 0.3796246648793566,
+      "micro_f1": 0.22244589833920483,
+      "micro_precision": 0.4911111111111111,
+      "micro_recall": 0.14378659726740403,
+      "macro_f1": 0.22244589833920483,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.22244589833920483,
+          "precision": 0.4911111111111111,
+          "recall": 0.14378659726740403
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 26,
+      "exact_match": 0.37158176943699733,
+      "micro_f1": 0.20295767465578785,
+      "micro_precision": 0.4693396226415094,
+      "micro_recall": 0.12947299934938192,
+      "macro_f1": 0.20295767465578785,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.20295767465578785,
+          "precision": 0.4693396226415094,
+          "recall": 0.12947299934938192
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 0,
+      "exact_match": 0.2857908847184987,
+      "micro_f1": 0.0,
+      "micro_precision": 0.0,
+      "micro_recall": 0.0,
+      "macro_f1": 0.0,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0
+        }
+      ]
+    },
+    {
+      "iteration": 1,
+      "num_rules": 7,
+      "exact_match": 0.7120643431635388,
+      "micro_f1": 0.6781758957654723,
+      "micro_precision": 0.6790606653620352,
+      "micro_recall": 0.6772934287573195,
+      "macro_f1": 0.6781758957654723,
+      "per_class": [
+        {
+          "label": "organisation",
+          "f1": 0.6781758957654723,
+          "precision": 0.6790606653620352,
+          "recall": 0.6772934287573195
+        }
+      ]
+    }
+  ],
+  "batch_test_metrics": [
+    {
+      "batch": 0,
+      "num_rules": 7,
+      "dev": {
+        "exact_match": 0.9313962349812722,
+        "micro_f1": 0.20253164556962025,
+        "micro_precision": 0.23274974253347064,
+        "micro_recall": 0.17925837794963315,
+        "macro_f1": 0.20253164556962025,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.20253164556962025,
+            "precision": 0.23274974253347064,
+            "recall": 0.17925837794963315
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9316732512581761,
+        "micro_f1": 0.13679012345679012,
+        "micro_precision": 0.15824050271351042,
+        "micro_recall": 0.12046096977603826,
+        "macro_f1": 0.13679012345679012,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.13679012345679012,
+            "precision": 0.15824050271351042,
+            "recall": 0.12046096977603826
+          }
+        ]
+      }
+    },
+    {
+      "batch": 1,
+      "num_rules": 7,
+      "dev": {
+        "exact_match": 0.9313962349812722,
+        "micro_f1": 0.20253164556962025,
+        "micro_precision": 0.23274974253347064,
+        "micro_recall": 0.17925837794963315,
+        "macro_f1": 0.20253164556962025,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.20253164556962025,
+            "precision": 0.23274974253347064,
+            "recall": 0.17925837794963315
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9316732512581761,
+        "micro_f1": 0.13679012345679012,
+        "micro_precision": 0.15824050271351042,
+        "micro_recall": 0.12046096977603826,
+        "macro_f1": 0.13679012345679012,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.13679012345679012,
+            "precision": 0.15824050271351042,
+            "recall": 0.12046096977603826
+          }
+        ]
+      }
+    },
+    {
+      "batch": 2,
+      "num_rules": 11,
+      "dev": {
+        "exact_match": 0.9511617725747086,
+        "micro_f1": 0.5101385041551246,
+        "micro_precision": 0.5781014565544952,
+        "micro_recall": 0.4564743208407694,
+        "macro_f1": 0.5101385041551246,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.5101385041551246,
+            "precision": 0.5781014565544952,
+            "recall": 0.4564743208407694
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.957377747905772,
+        "micro_f1": 0.5614077966515948,
+        "micro_precision": 0.6409040178571429,
+        "micro_recall": 0.4994564035659926,
+        "macro_f1": 0.5614077966515948,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.5614077966515948,
+            "precision": 0.6409040178571429,
+            "recall": 0.4994564035659926
+          }
+        ]
+      }
+    },
+    {
+      "batch": 3,
+      "num_rules": 13,
+      "dev": {
+        "exact_match": 0.9626254600878829,
+        "micro_f1": 0.6228437276717361,
+        "micro_precision": 0.6417753470761464,
+        "micro_recall": 0.6049970255800119,
+        "macro_f1": 0.6228437276717361,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.6228437276717361,
+            "precision": 0.6417753470761464,
+            "recall": 0.6049970255800119
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9704595006639235,
+        "micro_f1": 0.6995456056743877,
+        "micro_precision": 0.713381555153707,
+        "micro_recall": 0.6862361382909328,
+        "macro_f1": 0.6995456056743877,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.6995456056743877,
+            "precision": 0.713381555153707,
+            "recall": 0.6862361382909328
+          }
+        ]
+      }
+    },
+    {
+      "batch": 4,
+      "num_rules": 15,
+      "dev": {
+        "exact_match": 0.9657710829698571,
+        "micro_f1": 0.6666666666666666,
+        "micro_precision": 0.6612053832650673,
+        "micro_recall": 0.6722189173111244,
+        "macro_f1": 0.6666666666666666,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.6666666666666666,
+            "precision": 0.6612053832650673,
+            "recall": 0.6722189173111244
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9736889559187555,
+        "micro_f1": 0.7452037076956242,
+        "micro_precision": 0.7388330839923061,
+        "micro_recall": 0.7516851489454229,
+        "macro_f1": 0.7452037076956242,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.7452037076956242,
+            "precision": 0.7388330839923061,
+            "recall": 0.7516851489454229
+          }
+        ]
+      }
+    },
+    {
+      "batch": 5,
+      "num_rules": 16,
+      "dev": {
+        "exact_match": 0.9322880352828629,
+        "micro_f1": 0.194620253164557,
+        "micro_precision": 0.19412112842769777,
+        "micro_recall": 0.1951219512195122,
+        "macro_f1": 0.194620253164557,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.194620253164557,
+            "precision": 0.19412112842769777,
+            "recall": 0.1951219512195122
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9346895952525368,
+        "micro_f1": 0.15257910706545297,
+        "micro_precision": 0.1520846835169583,
+        "micro_recall": 0.15307675581648184,
+        "macro_f1": 0.15257910706545297,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.15257910706545297,
+            "precision": 0.1520846835169583,
+            "recall": 0.15307675581648184
+          }
+        ]
+      }
+    },
+    {
+      "batch": 6,
+      "num_rules": 17,
+      "dev": {
+        "exact_match": 0.9685275566293191,
+        "micro_f1": 0.6765578635014836,
+        "micro_precision": 0.6749555950266429,
+        "micro_recall": 0.6781677572873289,
+        "macro_f1": 0.6765578635014836,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.6765578635014836,
+            "precision": 0.6749555950266429,
+            "recall": 0.6781677572873289
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9761971115227619,
+        "micro_f1": 0.7592251920787793,
+        "micro_precision": 0.7557087462300732,
+        "micro_recall": 0.7627745161991737,
+        "macro_f1": 0.7592251920787793,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.7592251920787793,
+            "precision": 0.7557087462300732,
+            "recall": 0.7627745161991737
+          }
+        ]
+      }
+    },
+    {
+      "batch": 7,
+      "num_rules": 17,
+      "dev": {
+        "exact_match": 0.9686086293840092,
+        "micro_f1": 0.6775469831849653,
+        "micro_precision": 0.6759423722123544,
+        "micro_recall": 0.6791592306166964,
+        "macro_f1": 0.6775469831849653,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.6775469831849653,
+            "precision": 0.6759423722123544,
+            "recall": 0.6791592306166964
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9762462910444091,
+        "micro_f1": 0.7605237528406016,
+        "micro_precision": 0.7570012925463162,
+        "micro_recall": 0.7640791476407914,
+        "macro_f1": 0.7605237528406016,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.7605237528406016,
+            "precision": 0.7570012925463162,
+            "recall": 0.7640791476407914
+          }
+        ]
+      }
+    },
+    {
+      "batch": 8,
+      "num_rules": 17,
+      "dev": {
+        "exact_match": 0.9698085061534221,
+        "micro_f1": 0.6901284187824723,
+        "micro_precision": 0.6824350523458705,
+        "micro_recall": 0.6979972238746778,
+        "macro_f1": 0.6901284187824723,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.6901284187824723,
+            "precision": 0.6824350523458705,
+            "recall": 0.6979972238746778
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9770659497385289,
+        "micro_f1": 0.773928995359879,
+        "micro_precision": 0.7682090831191088,
+        "micro_recall": 0.7797347249402043,
+        "macro_f1": 0.773928995359879,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.773928995359879,
+            "precision": 0.7682090831191088,
+            "recall": 0.7797347249402043
+          }
+        ]
+      }
+    },
+    {
+      "batch": 9,
+      "num_rules": 14,
+      "dev": {
+        "exact_match": 0.9532372350947741,
+        "micro_f1": 0.5016856036958423,
+        "micro_precision": 0.6773432231962239,
+        "micro_recall": 0.3983739837398374,
+        "macro_f1": 0.5016856036958423,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.5016856036958423,
+            "precision": 0.6773432231962239,
+            "recall": 0.3983739837398374
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9633284700250816,
+        "micro_f1": 0.5998681608437705,
+        "micro_precision": 0.7618888144675151,
+        "micro_recall": 0.4946727549467275,
+        "macro_f1": 0.5998681608437705,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.5998681608437705,
+            "precision": 0.7618888144675151,
+            "recall": 0.4946727549467275
+          }
+        ]
+      }
+    },
+    {
+      "batch": 10,
+      "num_rules": 14,
+      "dev": {
+        "exact_match": 0.9596744118171647,
+        "micro_f1": 0.5712309820193638,
+        "micro_precision": 0.6820809248554913,
+        "micro_recall": 0.4913741820345033,
+        "macro_f1": 0.5712309820193638,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.5712309820193638,
+            "precision": 0.6820809248554913,
+            "recall": 0.4913741820345033
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9709512958803954,
+        "micro_f1": 0.6729287090558768,
+        "micro_precision": 0.7541160593792173,
+        "micro_recall": 0.6075233746466623,
+        "macro_f1": 0.6729287090558768,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.6729287090558768,
+            "precision": 0.7541160593792173,
+            "recall": 0.6075233746466623
+          }
+        ]
+      }
+    },
+    {
+      "batch": 11,
+      "num_rules": 15,
+      "dev": {
+        "exact_match": 0.9623822418238127,
+        "micro_f1": 0.6244507042253521,
+        "micro_precision": 0.7231210855949896,
+        "micro_recall": 0.5494745191354352,
+        "macro_f1": 0.6244507042253521,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.6244507042253521,
+            "precision": 0.7231210855949896,
+            "recall": 0.5494745191354352
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9726397927902821,
+        "micro_f1": 0.7202557120871315,
+        "micro_precision": 0.7905405405405406,
+        "micro_recall": 0.6614481409001957,
+        "macro_f1": 0.7202557120871315,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.7202557120871315,
+            "precision": 0.7905405405405406,
+            "recall": 0.6614481409001957
+          }
+        ]
+      }
+    },
+    {
+      "batch": 12,
+      "num_rules": 16,
+      "dev": {
+        "exact_match": 0.9645874207513823,
+        "micro_f1": 0.6627579208478971,
+        "micro_precision": 0.7681651855723993,
+        "micro_recall": 0.5827880230021812,
+        "macro_f1": 0.6627579208478971,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.6627579208478971,
+            "precision": 0.7681651855723993,
+            "recall": 0.5827880230021812
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9742627170046393,
+        "micro_f1": 0.7498518781846191,
+        "micro_precision": 0.8239583333333333,
+        "micro_recall": 0.6879756468797564,
+        "macro_f1": 0.7498518781846191,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.7498518781846191,
+            "precision": 0.8239583333333333,
+            "recall": 0.6879756468797564
+          }
+        ]
+      }
+    },
+    {
+      "batch": 13,
+      "num_rules": 18,
+      "dev": {
+        "exact_match": 0.9325798971997471,
+        "micro_f1": 0.24965517241379312,
+        "micro_precision": 0.248090855688271,
+        "micro_recall": 0.2512393416617093,
+        "macro_f1": 0.24965517241379312,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.24965517241379312,
+            "precision": 0.248090855688271,
+            "recall": 0.2512393416617093
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9335092867330044,
+        "micro_f1": 0.19086956521739132,
+        "micro_precision": 0.19082808085198869,
+        "micro_recall": 0.19091106762339638,
+        "macro_f1": 0.19086956521739132,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.19086956521739132,
+            "precision": 0.19082808085198869,
+            "recall": 0.19091106762339638
+          }
+        ]
+      }
+    },
+    {
+      "batch": 14,
+      "num_rules": 15,
+      "dev": {
+        "exact_match": 0.9331149773807015,
+        "micro_f1": 0.259523072158563,
+        "micro_precision": 0.592226148409894,
+        "micro_recall": 0.16617093000198294,
+        "macro_f1": 0.259523072158563,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.259523072158563,
+            "precision": 0.592226148409894,
+            "recall": 0.16617093000198294
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9361649809019524,
+        "micro_f1": 0.223463687150838,
+        "micro_precision": 0.566873339238264,
+        "micro_recall": 0.13916068710589258,
+        "macro_f1": 0.223463687150838,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.223463687150838,
+            "precision": 0.566873339238264,
+            "recall": 0.13916068710589258
+          }
+        ]
+      }
+    },
+    {
+      "batch": 15,
+      "num_rules": 16,
+      "dev": {
+        "exact_match": 0.9561882833654922,
+        "micro_f1": 0.5926847950976638,
+        "micro_precision": 0.5730420292538418,
+        "micro_recall": 0.6137219908784454,
+        "macro_f1": 0.5926847950976638,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.5926847950976638,
+            "precision": 0.5730420292538418,
+            "recall": 0.6137219908784454
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9667218570187374,
+        "micro_f1": 0.6780590717299578,
+        "micro_precision": 0.6584716246670764,
+        "micro_recall": 0.6988475755599043,
+        "macro_f1": 0.6780590717299578,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.6780590717299578,
+            "precision": 0.6584716246670764,
+            "recall": 0.6988475755599043
+          }
+        ]
+      }
+    },
+    {
+      "batch": 16,
+      "num_rules": 20,
+      "dev": {
+        "exact_match": 0.9595284808587227,
+        "micro_f1": 0.6357553482235416,
+        "micro_precision": 0.6057830459770115,
+        "micro_recall": 0.668847907991275,
+        "macro_f1": 0.6357553482235416,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.6357553482235416,
+            "precision": 0.6057830459770115,
+            "recall": 0.668847907991275
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9682628153636825,
+        "micro_f1": 0.6980342952739439,
+        "micro_precision": 0.672306143001007,
+        "micro_recall": 0.725809958686671,
+        "macro_f1": 0.6980342952739439,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.6980342952739439,
+            "precision": 0.672306143001007,
+            "recall": 0.725809958686671
+          }
+        ]
+      }
+    },
+    {
+      "batch": 17,
+      "num_rules": 25,
+      "dev": {
+        "exact_match": 0.9695004296855999,
+        "micro_f1": 0.6967955585857601,
+        "micro_precision": 0.6847243491577335,
+        "micro_recall": 0.7093000198294666,
+        "macro_f1": 0.6967955585857601,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.6967955585857601,
+            "precision": 0.6847243491577335,
+            "recall": 0.7093000198294666
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9768528384780577,
+        "micro_f1": 0.7587021916630856,
+        "micro_precision": 0.7498407305160332,
+        "micro_recall": 0.7677756033920418,
+        "macro_f1": 0.7587021916630856,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.7587021916630856,
+            "precision": 0.7498407305160332,
+            "recall": 0.7677756033920418
+          }
+        ]
+      }
+    },
+    {
+      "batch": 18,
+      "num_rules": 26,
+      "dev": {
+        "exact_match": 0.9677330436333565,
+        "micro_f1": 0.683457355466514,
+        "micro_precision": 0.65857694429123,
+        "micro_recall": 0.710291493158834,
+        "macro_f1": 0.683457355466514,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.683457355466514,
+            "precision": 0.65857694429123,
+            "recall": 0.710291493158834
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9752135210898182,
+        "micro_f1": 0.7454888795635752,
+        "micro_precision": 0.7202513683356984,
+        "micro_recall": 0.7725592520113068,
+        "macro_f1": 0.7454888795635752,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.7454888795635752,
+            "precision": 0.7202513683356984,
+            "recall": 0.7725592520113068
+          }
+        ]
+      }
+    },
+    {
+      "batch": 19,
+      "num_rules": 21,
+      "dev": {
+        "exact_match": 0.9307314383928137,
+        "micro_f1": 0.19645732689210949,
+        "micro_precision": 0.5227077977720651,
+        "micro_recall": 0.12095974618282768,
+        "macro_f1": 0.19645732689210949,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.19645732689210949,
+            "precision": 0.5227077977720651,
+            "recall": 0.12095974618282768
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9348699201652432,
+        "micro_f1": 0.17234468937875752,
+        "micro_precision": 0.5314606741573034,
+        "micro_recall": 0.10284844531419873,
+        "macro_f1": 0.17234468937875752,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.17234468937875752,
+            "precision": 0.5314606741573034,
+            "recall": 0.10284844531419873
+          }
+        ]
+      }
+    },
+    {
+      "batch": 20,
+      "num_rules": 20,
+      "dev": {
+        "exact_match": 0.9356768764289073,
+        "micro_f1": 0.20780105603815363,
+        "micro_precision": 0.7367149758454107,
+        "micro_recall": 0.12095974618282768,
+        "macro_f1": 0.20780105603815363,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.20780105603815363,
+            "precision": 0.7367149758454107,
+            "recall": 0.12095974618282768
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9389190341141949,
+        "micro_f1": 0.18143459915611812,
+        "micro_precision": 0.7691056910569106,
+        "micro_recall": 0.10284844531419873,
+        "macro_f1": 0.18143459915611812,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.18143459915611812,
+            "precision": 0.7691056910569106,
+            "recall": 0.10284844531419873
+          }
+        ]
+      }
+    },
+    {
+      "batch": 21,
+      "num_rules": 28,
+      "dev": {
+        "exact_match": 0.9368767531983202,
+        "micro_f1": 0.23224503534163582,
+        "micro_precision": 0.7675194660734149,
+        "micro_recall": 0.13682331945270673,
+        "macro_f1": 0.23224503534163582,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.23224503534163582,
+            "precision": 0.7675194660734149,
+            "recall": 0.13682331945270673
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9396895132866674,
+        "micro_f1": 0.19844136095799278,
+        "micro_precision": 0.7885196374622356,
+        "micro_recall": 0.11350293542074363,
+        "macro_f1": 0.19844136095799278,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.19844136095799278,
+            "precision": 0.7885196374622356,
+            "recall": 0.11350293542074363
+          }
+        ]
+      }
+    },
+    {
+      "batch": 22,
+      "num_rules": 28,
+      "dev": {
+        "exact_match": 0.9368767531983202,
+        "micro_f1": 0.23224503534163582,
+        "micro_precision": 0.7675194660734149,
+        "micro_recall": 0.13682331945270673,
+        "macro_f1": 0.23224503534163582,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.23224503534163582,
+            "precision": 0.7675194660734149,
+            "recall": 0.13682331945270673
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9396895132866674,
+        "micro_f1": 0.19844136095799278,
+        "micro_precision": 0.7885196374622356,
+        "micro_recall": 0.11350293542074363,
+        "macro_f1": 0.19844136095799278,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.19844136095799278,
+            "precision": 0.7885196374622356,
+            "recall": 0.11350293542074363
+          }
+        ]
+      }
+    },
+    {
+      "batch": 23,
+      "num_rules": 28,
+      "dev": {
+        "exact_match": 0.9368767531983202,
+        "micro_f1": 0.23224503534163582,
+        "micro_precision": 0.7675194660734149,
+        "micro_recall": 0.13682331945270673,
+        "macro_f1": 0.23224503534163582,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.23224503534163582,
+            "precision": 0.7675194660734149,
+            "recall": 0.13682331945270673
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9396895132866674,
+        "micro_f1": 0.19844136095799278,
+        "micro_precision": 0.7885196374622356,
+        "micro_recall": 0.11350293542074363,
+        "macro_f1": 0.19844136095799278,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.19844136095799278,
+            "precision": 0.7885196374622356,
+            "recall": 0.11350293542074363
+          }
+        ]
+      }
+    },
+    {
+      "batch": 24,
+      "num_rules": 28,
+      "dev": {
+        "exact_match": 0.9368767531983202,
+        "micro_f1": 0.23224503534163582,
+        "micro_precision": 0.7675194660734149,
+        "micro_recall": 0.13682331945270673,
+        "macro_f1": 0.23224503534163582,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.23224503534163582,
+            "precision": 0.7675194660734149,
+            "recall": 0.13682331945270673
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9396895132866674,
+        "micro_f1": 0.19844136095799278,
+        "micro_precision": 0.7885196374622356,
+        "micro_recall": 0.11350293542074363,
+        "macro_f1": 0.19844136095799278,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.19844136095799278,
+            "precision": 0.7885196374622356,
+            "recall": 0.11350293542074363
+          }
+        ]
+      }
+    },
+    {
+      "batch": 25,
+      "num_rules": 27,
+      "dev": {
+        "exact_match": 0.9368767531983202,
+        "micro_f1": 0.23224503534163582,
+        "micro_precision": 0.7675194660734149,
+        "micro_recall": 0.13682331945270673,
+        "macro_f1": 0.23224503534163582,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.23224503534163582,
+            "precision": 0.7675194660734149,
+            "recall": 0.13682331945270673
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9396895132866674,
+        "micro_f1": 0.19844136095799278,
+        "micro_precision": 0.7885196374622356,
+        "micro_recall": 0.11350293542074363,
+        "macro_f1": 0.19844136095799278,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.19844136095799278,
+            "precision": 0.7885196374622356,
+            "recall": 0.11350293542074363
+          }
+        ]
+      }
+    },
+    {
+      "batch": 26,
+      "num_rules": 25,
+      "dev": {
+        "exact_match": 0.938027986314919,
+        "micro_f1": 0.22245394508168234,
+        "micro_precision": 0.90014064697609,
+        "micro_recall": 0.12690858615903233,
+        "macro_f1": 0.22245394508168234,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.22245394508168234,
+            "precision": 0.90014064697609,
+            "recall": 0.12690858615903233
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9408534286323175,
+        "micro_f1": 0.19293106815075178,
+        "micro_precision": 0.946360153256705,
+        "micro_recall": 0.10741465535986083,
+        "macro_f1": 0.19293106815075178,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.19293106815075178,
+            "precision": 0.946360153256705,
+            "recall": 0.10741465535986083
+          }
+        ]
+      }
+    },
+    {
+      "batch": 27,
+      "num_rules": 23,
+      "dev": {
+        "exact_match": 0.936730822239878,
+        "micro_f1": 0.19238975817923182,
+        "micro_precision": 0.9311531841652324,
+        "micro_recall": 0.107277414237557,
+        "macro_f1": 0.19238975817923182,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.19238975817923182,
+            "precision": 0.9311531841652324,
+            "recall": 0.107277414237557
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9392632907657251,
+        "micro_f1": 0.15329197518511106,
+        "micro_precision": 0.9623115577889447,
+        "micro_recall": 0.08327897368993259,
+        "macro_f1": 0.15329197518511106,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.15329197518511106,
+            "precision": 0.9623115577889447,
+            "recall": 0.08327897368993259
+          }
+        ]
+      }
+    },
+    {
+      "batch": 28,
+      "num_rules": 6,
+      "dev": {
+        "exact_match": 0.9616363724806641,
+        "micro_f1": 0.5286609941782356,
+        "micro_precision": 0.6070969400874261,
+        "micro_recall": 0.4681737061273052,
+        "macro_f1": 0.5286609941782356,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.5286609941782356,
+            "precision": 0.6070969400874261,
+            "recall": 0.4681737061273052
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9668693955836789,
+        "micro_f1": 0.5780167264038232,
+        "micro_precision": 0.64147440997083,
+        "micro_recall": 0.5259839095455534,
+        "macro_f1": 0.5780167264038232,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.5780167264038232,
+            "precision": 0.64147440997083,
+            "recall": 0.5259839095455534
+          }
+        ]
+      }
+    },
+    {
+      "batch": 29,
+      "num_rules": 7,
+      "dev": {
+        "exact_match": 0.9672303925542782,
+        "micro_f1": 0.6541301338255652,
+        "micro_precision": 0.7820689655172414,
+        "micro_recall": 0.5621653777513385,
+        "macro_f1": 0.6541301338255652,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.6541301338255652,
+            "precision": 0.7820689655172414,
+            "recall": 0.5621653777513385
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9722463566171047,
+        "micro_f1": 0.7176879186306128,
+        "micro_precision": 0.8354028299162576,
+        "micro_recall": 0.6290497934333551,
+        "macro_f1": 0.7176879186306128,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.7176879186306128,
+            "precision": 0.8354028299162576,
+            "recall": 0.6290497934333551
+          }
+        ]
+      }
+    },
+    {
+      "batch": 30,
+      "num_rules": 7,
+      "dev": {
+        "exact_match": 0.9743810095179414,
+        "micro_f1": 0.7100566420861387,
+        "micro_precision": 0.770050996754752,
+        "micro_recall": 0.6587348800317272,
+        "macro_f1": 0.7100566420861387,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.7100566420861387,
+            "precision": 0.770050996754752,
+            "recall": 0.6587348800317272
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9807380206881854,
+        "micro_f1": 0.786550039759173,
+        "micro_precision": 0.8235014272121789,
+        "micro_recall": 0.7527723418134377,
+        "macro_f1": 0.786550039759173,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.786550039759173,
+            "precision": 0.8235014272121789,
+            "recall": 0.7527723418134377
+          }
+        ]
+      }
+    },
+    {
+      "batch": 31,
+      "num_rules": 7,
+      "dev": {
+        "exact_match": 0.9740729330501192,
+        "micro_f1": 0.7093310426285836,
+        "micro_precision": 0.773536299765808,
+        "micro_recall": 0.6549672813801308,
+        "macro_f1": 0.7093310426285836,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.7093310426285836,
+            "precision": 0.773536299765808,
+            "recall": 0.6549672813801308
+          }
+        ]
+      },
+      "test": {
+        "exact_match": 0.9799839346895952,
+        "micro_f1": 0.781275037198123,
+        "micro_precision": 0.8247945867568874,
+        "micro_recall": 0.7421178517068928,
+        "macro_f1": 0.781275037198123,
+        "per_class": [
+          {
+            "label": "organisation",
+            "f1": 0.781275037198123,
+            "precision": 0.8247945867568874,
+            "recall": 0.7421178517068928
+          }
+        ]
+      }
+    }
+  ],
+  "results_test": {
+    "accuracy": 0.9807380206881854,
+    "micro_precision": 0.8235014272121789,
+    "micro_recall": 0.7527723418134377,
+    "micro_f1": 0.786550039759173,
+    "macro_f1": 0.786550039759173
+  },
+  "per_class_test": [
+    {
+      "label": "organisation",
+      "precision": 0.8235014272121789,
+      "recall": 0.7527723418134377,
+      "f1": 0.786550039759173,
+      "tp": 3462,
+      "fp": 742,
+      "fn": 1137
+    }
+  ],
+  "rules": [
+    {
+      "id": "e6a387e2",
+      "name": "german_tax_authorities",
+      "description": "Matches Finanzamt variations including genitive endings, specific locations, and 'f\u00fcr' constructions.",
+      "format": "regex",
+      "content": "\\b(Finanzamt(?:es)?(?:\\s+(?:Wien\\s+3/6/7/11/15\\s+Schwechat\\s+Gerasdorf|\u00d6sterreich|Baden\\s+M\u00f6dling|Linz|Bruck\\s+Eisenstadt\\s+Oberwart|Gro\u00dfbetriebe|f\u00fcr\\s+Geb\u00fchren|Innsbruck))?|Zollamt(?:es)?(?:\\s+Klagenfurt)?|Finanzpolizei)\\b",
+      "priority": 10,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "validated_precision": 0.8790186125211505,
+      "validated_support": 4728,
+      "created_at": "2026-11-19T13:14:33.327946"
+    },
+    {
+      "id": "8abcded5",
+      "name": "german_courts",
+      "description": "Matches specific German courts and administrative bodies including genitive forms (-s, -es) and specific names.",
+      "format": "regex",
+      "content": "\\b(Bundesfinanzgericht(?:s)?|Verwaltungsgerichtshof(?:s)?|Verfassungsgerichtshof(?:s)?|Pensionsversicherungsanstalt(?:s)?|AMS(?:\\s+[A-Z])?|Landesgericht(?:s)?|Bezirksgericht\\s+[A-Z]+)\\b",
+      "priority": 9,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "validated_precision": 0.2954838709677419,
+      "validated_support": 1550,
+      "created_at": "2026-11-19T13:14:33.328357"
+    },
+    {
+      "id": "8f8e291f",
+      "name": "german_company_gmbh",
+      "description": "Matches GmbH companies, requiring a valid name start (letter or 'Fa.') and excluding common articles like 'Die' or 'Der'.",
+      "format": "regex",
+      "content": "\\b(?<!\\w)(?:(?:Fa\\.|[A-Z][a-zA-Z0-9\\-+&]*(?:\\s+[A-Z][a-zA-Z0-9\\-+&]*)*)\\s+GmbH(?:\\s+&\\s+CO\\s+KG)?)(?!\\w)",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "validated_precision": 0.497196261682243,
+      "validated_support": 1070,
+      "created_at": "2026-11-19T13:14:33.327391"
+    },
+    {
+      "id": "9a8e6f9f",
+      "name": "german_company_ag",
+      "description": "Matches AG companies, requiring a valid name start and excluding common articles.",
+      "format": "regex",
+      "content": "\\b(?<!\\w)(?:(?:Fa\\.|[A-Z][a-zA-Z0-9\\-+&]*(?:\\s+[A-Z][a-zA-Z0-9\\-+&]*)*)\\s+AG)(?!\\w)",
+      "priority": 8,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "validated_precision": 0.6956521739130435,
+      "validated_support": 92,
+      "created_at": "2026-11-19T13:14:33.327739"
+    },
+    {
+      "id": "9e06e6f3",
+      "name": "german_police_admin",
+      "description": "Matches police and administrative bodies with location suffixes, including genitive forms.",
+      "format": "regex",
+      "content": "\\b(Landespolizeidirektion\\s+Wien|Magistrat(?:s)?\\s+der\\s+Stadt\\s+Wien(?:\\s+Magistratsabteilung\\s+\\d+)?|Wiener\\s+Gemeinderat(?:s)?)\\b",
+      "priority": 7,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "validated_precision": 0.6448979591836734,
+      "validated_support": 245,
+      "created_at": "2026-11-19T13:14:33.328876"
+    },
+    {
+      "id": "e91d48ca",
+      "name": "german_company_e_commerce",
+      "description": "Matches specific E-Commerce company patterns.",
+      "format": "regex",
+      "content": "\\b([A-Z][a-zA-Z0-9\\-]+\\s+u\\.\\s+[A-Z][a-zA-Z0-9\\-]+\\s+E\u2011?Commerce)\\b",
+      "priority": 6,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "validated_precision": 1.0,
+      "validated_support": 1,
+      "created_at": "2026-11-19T13:14:33.329120"
+    },
+    {
+      "id": "9bbf5818",
+      "name": "german_specific_orgs",
+      "description": "Matches specific known organizations including ministries, federal offices, and universities.",
+      "format": "regex",
+      "content": "\\b(\u00d6GK|Wirtschaftsuniversit\u00e4t\\s+Wien|Bundesministerium\\s+f\u00fcr\\s+Finanzen|Bundesamt(?:s)?\\s+f\u00fcr\\s+Soziales\\s+und\\s+Behindertenwesen|Deutschen\\s+Rentenversicherung\\s+Bund|Magistrat(?:s)?\\s+der\\s+Stadt\\s+Wien|Wiener\\s+Gemeinderat(?:s)?|Bundesministers\\s+f\u00fcr\\s+Arbeit,\\s+Soziales\\s+und\\s+Konsumentenschutz)\\b",
+      "priority": 7,
+      "output_template": {
+        "text": "$0",
+        "start": "$start",
+        "end": "$end",
+        "type": "organisation"
+      },
+      "output_key": "entities",
+      "validated_precision": 0.7192429022082019,
+      "validated_support": 317,
+      "created_at": "2026-11-19T13:14:33.328384"
+    }
+  ],
+  "best_rules": {
+    "batch": 30,
+    "micro_f1": 0.7100566420861387,
+    "rules": [
+      {
+        "id": "e6a387e2",
+        "name": "german_tax_authorities",
+        "description": "Matches Finanzamt variations including genitive endings, specific locations, and 'f\u00fcr' constructions.",
+        "format": "regex",
+        "content": "\\b(Finanzamt(?:es)?(?:\\s+(?:Wien\\s+3/6/7/11/15\\s+Schwechat\\s+Gerasdorf|\u00d6sterreich|Baden\\s+M\u00f6dling|Linz|Bruck\\s+Eisenstadt\\s+Oberwart|Gro\u00dfbetriebe|f\u00fcr\\s+Geb\u00fchren|Innsbruck))?|Zollamt(?:es)?(?:\\s+Klagenfurt)?|Finanzpolizei)\\b",
+        "priority": 10,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities",
+        "validated_precision": 0.8790186125211505,
+        "validated_support": 4728,
+        "created_at": "2026-11-19T13:14:33.327946"
+      },
+      {
+        "id": "8abcded5",
+        "name": "german_courts",
+        "description": "Matches specific German courts and administrative bodies including genitive forms (-s, -es) and specific names.",
+        "format": "regex",
+        "content": "\\b(Bundesfinanzgericht(?:s)?|Verwaltungsgerichtshof(?:s)?|Verfassungsgerichtshof(?:s)?|Pensionsversicherungsanstalt(?:s)?|AMS(?:\\s+[A-Z])?|Landesgericht(?:s)?|Bezirksgericht\\s+[A-Z]+)\\b",
+        "priority": 9,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities",
+        "validated_precision": 0.2954838709677419,
+        "validated_support": 1550,
+        "created_at": "2026-11-19T13:14:33.328357"
+      },
+      {
+        "id": "8f8e291f",
+        "name": "german_company_gmbh",
+        "description": "Matches GmbH companies, requiring a valid name start (letter or 'Fa.') and excluding common articles like 'Die' or 'Der'.",
+        "format": "regex",
+        "content": "\\b(?<!\\w)(?:(?:Fa\\.|[A-Z][a-zA-Z0-9\\-+&]*(?:\\s+[A-Z][a-zA-Z0-9\\-+&]*)*)\\s+GmbH(?:\\s+&\\s+CO\\s+KG)?)(?!\\w)",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities",
+        "validated_precision": 0.497196261682243,
+        "validated_support": 1070,
+        "created_at": "2026-11-19T13:14:33.327391"
+      },
+      {
+        "id": "9a8e6f9f",
+        "name": "german_company_ag",
+        "description": "Matches AG companies, requiring a valid name start and excluding common articles.",
+        "format": "regex",
+        "content": "\\b(?<!\\w)(?:(?:Fa\\.|[A-Z][a-zA-Z0-9\\-+&]*(?:\\s+[A-Z][a-zA-Z0-9\\-+&]*)*)\\s+AG)(?!\\w)",
+        "priority": 8,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities",
+        "validated_precision": 0.6956521739130435,
+        "validated_support": 92,
+        "created_at": "2026-11-19T13:14:33.327739"
+      },
+      {
+        "id": "9e06e6f3",
+        "name": "german_police_admin",
+        "description": "Matches police and administrative bodies with location suffixes, including genitive forms.",
+        "format": "regex",
+        "content": "\\b(Landespolizeidirektion\\s+Wien|Magistrat(?:s)?\\s+der\\s+Stadt\\s+Wien(?:\\s+Magistratsabteilung\\s+\\d+)?|Wiener\\s+Gemeinderat(?:s)?)\\b",
+        "priority": 7,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities",
+        "validated_precision": 0.6448979591836734,
+        "validated_support": 245,
+        "created_at": "2026-11-19T13:14:33.328876"
+      },
+      {
+        "id": "e91d48ca",
+        "name": "german_company_e_commerce",
+        "description": "Matches specific E-Commerce company patterns.",
+        "format": "regex",
+        "content": "\\b([A-Z][a-zA-Z0-9\\-]+\\s+u\\.\\s+[A-Z][a-zA-Z0-9\\-]+\\s+E\u2011?Commerce)\\b",
+        "priority": 6,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities",
+        "validated_precision": 1.0,
+        "validated_support": 1,
+        "created_at": "2026-11-19T13:14:33.329120"
+      },
+      {
+        "id": "9bbf5818",
+        "name": "german_specific_orgs",
+        "description": "Matches specific known organizations including ministries, federal offices, and universities.",
+        "format": "regex",
+        "content": "\\b(\u00d6GK|Wirtschaftsuniversit\u00e4t\\s+Wien|Bundesministerium\\s+f\u00fcr\\s+Finanzen|Bundesamt(?:s)?\\s+f\u00fcr\\s+Soziales\\s+und\\s+Behindertenwesen|Deutschen\\s+Rentenversicherung\\s+Bund|Magistrat(?:s)?\\s+der\\s+Stadt\\s+Wien|Wiener\\s+Gemeinderat(?:s)?|Bundesministers\\s+f\u00fcr\\s+Arbeit,\\s+Soziales\\s+und\\s+Konsumentenschutz)\\b",
+        "priority": 7,
+        "output_template": {
+          "text": "$0",
+          "start": "$start",
+          "end": "$end",
+          "type": "organisation"
+        },
+        "output_key": "entities",
+        "validated_precision": 0.7192429022082019,
+        "validated_support": 317,
+        "created_at": "2026-11-19T13:14:33.328384"
+      }
+    ]
+  }
+}
