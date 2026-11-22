@@ -12,7 +12,11 @@ from rulechef.evaluation import evaluate_dataset, evaluate_rules_individually
 from rulechef.executor import RuleExecutor
 
 from benchmarks.data import BenchmarkRun, make_dataset
-from benchmarks.io import collect_false_negatives, deserialize_rules
+from benchmarks.io import (
+    collect_false_negatives,
+    deserialize_rules,
+    effective_agentic_settings,
+)
 from clear_anonymization.evaluation.evaluator import classify_fp
 from clear_anonymization.models.nerlearner import NEROutput
 from clear_anonymization.ner_datasets import (
@@ -51,35 +55,37 @@ def _fn_span(r):
 
 
 def _write_relation_header(f, sample):
-    inp = sample.input
+    inp = sample["input"]
     f.write(
         f"(doc_id: `{inp.get('doc_id', '')}`) (gov_sent: `{inp.get('gov_sent_id', '')}`, dep_sent: `{inp.get('dep_sent_id', '')}`)\n\n"
     )
     f.write(f"\n{inp.get('display_text', inp.get('text', ''))}\n\n")
-    pred_label = sample.rule_output[0]["label"] if sample.rule_output else ""
-    gold_label = sample.expected[0]["label"] if sample.expected else ""
+    pred_label = sample["rule_output"][0]["label"] if sample["rule_output"] else ""
+    gold_label = sample["expected"][0]["label"] if sample["expected"] else ""
     f.write(f"\n{inp.get('text', inp.get('text', ''))}\n\n")
     f.write(f"**Predicted:** `{pred_label}`  **Gold:** `{gold_label}`\n\n")
 
 
 def append_false_negatives(file_path: Path, records, top_n: int = 50, seed: int = 42):
     sample = random.Random(seed).sample(records, min(top_n, len(records)))
-    with file_path.open("a", encoding="utf-8") as f:
-        with _details_block(
+    with (
+        file_path.open("a", encoding="utf-8") as f,
+        _details_block(
             f, f"❌ False Negatives ({len(records)}, showing {len(sample)})"
-        ):
-            for i, r in enumerate(sample):
-                start, end = _fn_span(r)
-                s = r["sentence"]
-                if start is not None:
-                    s = f"{s[:start]}**{s[start:end]}**{s[end:]}"
-                f.write(
-                    f"**Example {i}** (doc_id: `{r['doc_id']}`) "
-                    f"(sent_id: `{r['sent_id']}`)\n\n{s}\n\n"
-                )
-                f.write(f"- missed: `{r['missed']}` ({r['type']})\n")
-                preds = ", ".join(f"`{p}`" for p in r["predicted_in_sentence"]) or "—"
-                f.write(f"- predicted in sentence: {preds}\n\n")
+        ),
+    ):
+        for i, r in enumerate(sample):
+            start, end = _fn_span(r)
+            s = r["sentence"]
+            if start is not None:
+                s = f"{s[:start]}**{s[start:end]}**{s[end:]}"
+            f.write(
+                f"**Example {i}** (doc_id: `{r['doc_id']}`) "
+                f"(sent_id: `{r['sent_id']}`)\n\n{s}\n\n"
+            )
+            f.write(f"- missed: `{r['missed']}` ({r['type']})\n")
+            preds = ", ".join(f"`{p}`" for p in r["predicted_in_sentence"]) or "—"
+            f.write(f"- predicted in sentence: {preds}\n\n")
 
 
 def write_summary_table(file_path: Path, metrics_list):
@@ -132,6 +138,7 @@ def append_overall_metrics(
         apply_rules_fn,
         mode="exact",
         scope_to_rule_labels=True,
+        target_labels=set(run.selected_classes),
     )
     with md_path.open("a", encoding="utf-8") as f:
         with _details_block(f, "Configuration"):
@@ -140,6 +147,7 @@ def append_overall_metrics(
                 f"```\n python benchmark.py --config {results_folder}/config.yaml \n```\n"
             )
             train_ratio = getattr(config, "train_ratio", None)
+            agentic_cfg = effective_agentic_settings(config)
             _write_table(
                 f,
                 ["Parameter", "Value"],
@@ -155,7 +163,6 @@ def append_overall_metrics(
                         if train_ratio is not None
                         else "N/A",
                     ],
-                    ["Shots per class", getattr(config, "shots", "N/A")],
                     ["Training documents", run.train_size],
                     ["Validation documents", run.eval_size],
                     ["Dev documents", run.dev_size],
@@ -172,11 +179,11 @@ def append_overall_metrics(
                         getattr(config, "max_iterations", "N/A"),
                     ],
                     ["Seed", getattr(config, "seed", "N/A")],
-                    ["Agentic", getattr(config, "agentic", "N/A")],
-                    ["Enable Critic", getattr(config, "enable_critic", "N/A")],
-                    ["Enable Prune", getattr(config, "enable_prune", "N/A")],
-                    ["Critic Interval", getattr(config, "critic_interval", "N/A")],
-                    ["Audit Interval", getattr(config, "audit_interval", "N/A")],
+                    ["Agentic", agentic_cfg["agentic"]],
+                    ["Enable Critic", agentic_cfg["enable_critic"]],
+                    ["Enable Prune", agentic_cfg["enable_prune"]],
+                    ["Critic Interval", agentic_cfg["critic_interval"]],
+                    ["Audit Interval", agentic_cfg["audit_interval"]],
                     ["Use GREX", not getattr(config, "no_grex", False)],
                     ["Format", getattr(config, "format", "N/A")],
                     [
@@ -216,7 +223,6 @@ def append_overall_metrics(
                 f,
                 ["Metric", "Value"],
                 [
-                    ["Accuracy (exact match)", f"{test_eval.exact_match:.1%}"],
                     ["True Positives", test_eval.total_tp],
                     ["False Positives", test_eval.total_fp],
                     ["False Negatives", test_eval.total_fn],
@@ -332,7 +338,7 @@ def _dedup_samples(samples):
     seen = set()
     result = []
     for s in samples:
-        key = s.input.get("sent_id") or s.input.get("text", "")
+        key = s["input"].get("sent_id") or s["input"].get("text", "")
         if key not in seen:
             seen.add(key)
             result.append(s)
@@ -340,8 +346,8 @@ def _dedup_samples(samples):
 
 
 def _write_sample_blocks(f, metric, top_n: int, is_relation: bool = False):
-    hits = _dedup_samples([s for s in metric.sample_matches if s.tp > 0])[:top_n]
-    fps = _dedup_samples([s for s in metric.sample_matches if s.fp > 0])[:top_n]
+    hits = _dedup_samples([s for s in metric.sample_matches if s["tp"] > 0])[:top_n]
+    fps = _dedup_samples([s for s in metric.sample_matches if s["fp"] > 0])[:top_n]
 
     def _block(title, samples, render_fn):
         if not samples:
@@ -355,22 +361,24 @@ def _write_sample_blocks(f, metric, top_n: int, is_relation: bool = False):
         _write_relation_header(f, sample)
 
     def render_hit(i, sample):
-        doc_id = sample.input.get("doc_id", "")
-        sent_id = sample.input.get("sent_id", "")
+        doc_id = sample["input"].get("doc_id", "")
+        sent_id = sample["input"].get("sent_id", "")
 
         f.write(f"**Example {i}** (doc_id: `{doc_id}`) (sent_id: `{sent_id}`)\n\n")
-        f.write(f"\n{sample.input['text']}\n\n")
-        matched_gold_texts = {gold["text"] for _, gold in (sample.matched_pairs or [])}
+        f.write(f"\n{sample['input']['text']}\n\n")
+        matched_gold_texts = {
+            gold["text"] for _, gold in (sample["matched_pairs"] or [])
+        }
         _write_table(
             f,
             ["Predicted", "Gold"],
             [
                 [f"`{pred['text']}`", f"`{gold['text']}`"]
-                for pred, gold in sample.matched_pairs
+                for pred, gold in sample["matched_pairs"]
             ],
         )
         missed = [
-            g for g in (sample.expected or []) if g["text"] not in matched_gold_texts
+            g for g in (sample["expected"] or []) if g["text"] not in matched_gold_texts
         ]
         if missed:
             f.write("**Missed by this rule (FN):**\n\n")
@@ -379,15 +387,15 @@ def _write_sample_blocks(f, metric, top_n: int, is_relation: bool = False):
             f.write("\n")
 
     def render_fp(i, sample):
-        doc_id = sample.input.get("doc_id", "")
-        sent_id = sample.input.get("sent_id", "")
+        doc_id = sample["input"].get("doc_id", "")
+        sent_id = sample["input"].get("sent_id", "")
         f.write(f"**Example {i}** (doc_id: `{doc_id}`) (sent_id: `{sent_id}`)\n\n")
-        f.write(f"\n{sample.input['text']}\n\n")
+        f.write(f"\n{sample['input']['text']}\n\n")
 
         counts = {"overlap": 0, "missing annotation": 0}
         f.write("**False Positives:**\n\n")
-        for e in sample.false_positives:
-            reason = classify_fp(e, sample.expected)
+        for e in sample["false_positives"]:
+            reason = classify_fp(e, sample["expected"])
             if reason.startswith("no gold match"):
                 counts["missing annotation"] += 1
             else:
@@ -398,11 +406,9 @@ def _write_sample_blocks(f, metric, top_n: int, is_relation: bool = False):
             f"\n> overlaps gold: {counts['overlap']}  |  "
             f"likely missing annotation: {counts['missing annotation']}\n\n"
         )
-
-        matched_gold_texts = {gold["text"] for _, gold in (sample.matched_pairs or [])}
-        if sample.expected:
+        if sample["expected"]:
             f.write("**Gold Entities:**\n\n")
-            for g in sample.expected:
+            for g in sample["expected"]:
                 f.write(f"- `{g['text']}`({g.get('type', '')})\n")
             f.write("\n")
 
@@ -493,7 +499,7 @@ def create_md_report(
 
     if not is_relation:
         false_negatives = collect_false_negatives(
-            test_eval, test_dataset.task.type, rules
+            test_eval, test_dataset.task.type, set(run.selected_classes)
         )
         append_false_negatives(file_path, false_negatives, top_n=50)
 

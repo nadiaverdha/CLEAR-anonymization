@@ -8,11 +8,11 @@ from pathlib import Path
 
 import yaml
 from rulechef.training_logger import TrainingDataLogger
-from benchmarks.reporting import exclusion_view
+
 from benchmarks.create_md_report_rules import create_md_report
 from benchmarks.data import (
     BenchmarkRun,
-    load_human_feedback,
+    add_guidance,
     prepare_relation_split,
     prepare_split,
 )
@@ -55,7 +55,6 @@ def _synthesis_step(args, phase, start_batch=0):
         holdout_fraction=args.holdout_fraction,
         split_seed=args.seed,
         max_patch_f1_drop=args.max_patch_f1_drop,
-        exclude=getattr(args, "exclude_entities", None),
     )
 
 
@@ -79,31 +78,28 @@ def _run_phase(
     print_per_class_breakdown(ctx.eval_results)
     run = make_run(ctx)
     print_results(run)
-    results = save_results(output_path, run)
-    exclude = getattr(args, "exclude_entities", None)
+    results = save_results(output_path, run, ctx.learner)
     if not args.no_mdreport:
         apply_fn = ctx.learner.learner._apply_rules
-        dev_ds, apply_dev = exclusion_view(ctx.dev_dataset, apply_fn, exclude)
-        test_ds, apply_test = exclusion_view(ctx.test_dataset, apply_fn, exclude)
         md_path = output_path.with_suffix(".rules_report_dev.md")
-        dev_eval = create_md_report(
+        create_md_report(
             md_path,
-            apply_rules_fn=apply_dev,
+            apply_rules_fn=apply_fn,
             run=run,
-            test_dataset=dev_ds,
+            test_dataset=ctx.dev_dataset,
             results_folder=output_dir,
             title=report_title,
         )
         md_path_test = output_path.with_suffix(".rules_report_test.md")
-        test_eval = create_md_report(
+        create_md_report(
             md_path_test,
-            apply_rules_fn=apply_test,
+            apply_rules_fn=apply_fn,
             run=replace(
                 run,
                 test_size=ctx.split.n_test_docs,
                 test_sentences=len(ctx.split.test),
             ),
-            test_dataset=test_ds,
+            test_dataset=ctx.test_dataset,
             results_folder=output_dir,
             title=f"{report_title} (TEST)",
         )
@@ -168,7 +164,7 @@ def run_benchmark(args):
         )
 
     checkpoint_path = output_dir / CHECKPOINT_FILE
-    run_suffix = "_refined" if args.rules_json else ""
+    run_suffix = out_name.stem.removeprefix(Path(args.output).stem)
 
     # 3. Phase 1
     phase1_history = []
@@ -202,20 +198,7 @@ def run_benchmark(args):
             args, split, storage_dir, checkpoint_path, logger, rules=seed_rules
         )
         if args.guidance:
-            print(f"Adding upfront guidance from {args.guidance}")
-            load_human_feedback(args.guidance, ctx.eval_dataset, ctx.learner)
-            guidance_items = json.loads(Path(args.guidance).read_text())
-            ctx = replace(
-                ctx,
-                history=ctx.history
-                + [
-                    {
-                        "phase": "guidance",
-                        "guidance_path": str(args.guidance),
-                        "guidance_items": guidance_items,
-                    }
-                ],
-            )
+            ctx = add_guidance(ctx, args.guidance)
 
         if resume_from and cp_phase == "phase1":
             ctx = replace(
@@ -249,7 +232,7 @@ def run_benchmark(args):
             steps.append(_refinement_step(args, use_feedback=bool(args.feedback)))
 
         # steps.append(EvaluationStep())
-        steps.append(EvaluationStep(exclude=args.exclude_entities))
+        steps.append(EvaluationStep())
 
         ctx, results = _run_phase(
             ctx,
@@ -319,7 +302,8 @@ def run_benchmark(args):
         transfer_ctx = build_context(
             args, transfer, storage_dir, checkpoint_path, logger, rules=phase1_rules
         )
-
+        if args.guidance:
+            transfer_ctx = add_guidance(transfer_ctx, args.guidance)
         if resume_from and cp_phase == "transfer":
             t_start_batch = cp.get("completed_batches", 0)
             transfer_rules = deserialize_rules(cp.get("rules", []))
@@ -343,12 +327,9 @@ def run_benchmark(args):
         t_steps = []
         if not skip_synth:
             t_steps.append(_synthesis_step(args, "transfer", t_start_batch))
-        if args.feedback:
-            t_steps.append(FeedbackStep(feedback_path=args.feedback))
-
         if args.max_iterations > 0:
             t_steps.append(_refinement_step(args, use_feedback=False))
-        t_steps.append(EvaluationStep(exclude=args.exclude_entities))
+        t_steps.append(EvaluationStep())
 
         transfer_args = copy.copy(args)
         transfer_args.dataset_name = args.transfer_name
@@ -464,11 +445,6 @@ def main():
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--neg-ratio", type=float, default=None)
     parser.add_argument("--eval-neg-ratio", type=float, default=None)
-    parser.add_argument(
-        "--exclude-entities",
-        type=lambda s: [w.strip() for w in s.split(",") if w.strip()],
-        default=None,
-    )
 
     # ── Learner ───────────────────────────────────────────────
     parser.add_argument("--model", type=str, default="google/gemma-3-27b-it")
@@ -561,6 +537,8 @@ def main():
             )
         if not args.skip_synthesis:
             parser.error("--feedback requires --skip-synthesis.")
+        if args.transfer_train_dir:
+            parser.error("--feedback cannot be combined with --transfer-train-dir.")
         if args.max_iterations > 0:
             print(
                 f"--feedback: setting max-iterations {args.max_iterations} → 0 (feedback only, no refinement)"

@@ -1,13 +1,10 @@
 import json
 import uuid
-from dataclasses import dataclass, field
-from datetime import datetime
+from dataclasses import dataclass, field, replace
 from pathlib import Path
 from typing import Any
 
-import yaml
-from rulechef.core import Correction, Dataset, Example, Feedback, Rule, RuleFormat
-from rulechef.training_logger import TrainingDataLogger
+from rulechef.core import Correction, Dataset, Example, Feedback
 
 from clear_anonymization.ner_datasets import load_ner_dataset_from_conll
 from clear_anonymization.ner_datasets.util import build_relation_examples
@@ -16,8 +13,8 @@ from clear_anonymization.preprocess.create_train_dev_split import (
     print_distribution,
 )
 from clear_anonymization.preprocess.sampling import (
-    sample_few_shot,
     sample_relation_stratified,
+    sample_train_eval,
 )
 
 
@@ -148,7 +145,7 @@ def prepare_split(
         selected_classes,
         n_train_docs,
         n_eval_docs,
-    ) = sample_few_shot(
+    ) = sample_train_eval(
         train_data=train_all.samples,
         seed=args.seed,
         num_classes=args.num_classes,
@@ -157,7 +154,6 @@ def prepare_split(
         train_ratio=args.train_ratio,
         neg_ratio=getattr(args, "neg_ratio", None),
         eval_neg_ratio=getattr(args, "eval_neg_ratio", None),
-        exclude_entities=getattr(args, "exclude_entities", None),
     )
 
     if dev_all:
@@ -287,7 +283,7 @@ def load_human_feedback(feedback_path, eval_dataset, learner, rules=None):
     feedback_items = json.loads(Path(feedback_path).read_text())
     print(f"  Loading {len(feedback_items)} human feedback items")
 
-    for fb in feedback_items:
+    for i, fb in enumerate(feedback_items):
         level = fb.get("level", "task")
         if level not in ("task", "rule", "correction"):
             raise ValueError(f"Feedback item {i}: unknown level '{level}'")
@@ -299,9 +295,8 @@ def load_human_feedback(feedback_path, eval_dataset, learner, rules=None):
                 expected_output=fb["expected_output"],
                 feedback=fb.get("text"),
             )
-            eval_dataset.corrections.append(correction)
-            print(f"✓ Added correction to eval dataset")
-            applied.append({"level": "correction", "text": fb.get("text")})
+            learner.dataset.corrections.append(correction)
+            print("✓ Added correction to dataset")
             continue
         text = fb["text"]
         target_id = ""
@@ -309,7 +304,7 @@ def load_human_feedback(feedback_path, eval_dataset, learner, rules=None):
             rule_name = fb.get("rule_name", "")
             rule_id = fb.get("rule_id", "")
             if not rules:
-                print(f"No rules provided -> treating as task-level feedback")
+                print("No rules provided -> treating as task-level feedback")
                 level = "task"
             else:
                 matched = next((r for r in rules if r.id == rule_id), None)
@@ -318,12 +313,31 @@ def load_human_feedback(feedback_path, eval_dataset, learner, rules=None):
                 else:
                     print(f"Rule not found: {rule_name} — treating as task-level")
                     level = "task"
-        eval_dataset.structured_feedback.append(
-            Feedback(
-                id=str(uuid.uuid4())[:8],
-                text=text,
-                level=level,
-                target_id=target_id,
-            )
-        )
         learner.add_feedback(text, level, target_id)
+        if eval_dataset is not None:
+            eval_dataset.structured_feedback.append(
+                Feedback(
+                    id=str(uuid.uuid4())[:8],
+                    text=text,
+                    level=level,
+                    target_id=target_id,
+                )
+            )
+
+
+def add_guidance(ctx, guidance_path):
+    """Load upfront guidance into learner + eval set and record it in history."""
+    print(f"Adding upfront guidance from {guidance_path}")
+    load_human_feedback(guidance_path, ctx.eval_dataset, ctx.learner)
+    guidance_items = json.loads(Path(guidance_path).read_text())
+    return replace(
+        ctx,
+        history=ctx.history
+        + [
+            {
+                "phase": "guidance",
+                "guidance_path": str(guidance_path),
+                "guidance_items": guidance_items,
+            }
+        ],
+    )

@@ -1,6 +1,4 @@
-from typing import List, Literal
-
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, Field
 
 
 class Entity(BaseModel):
@@ -11,7 +9,7 @@ class Entity(BaseModel):
 
 
 class NEROutput(BaseModel):
-    entities: List[Entity]
+    entities: list[Entity]
 
 
 class RelationOutput(BaseModel):

@@ -1,10 +1,22 @@
-import time
-from collections import Counter, defaultdict
-
-from rulechef.evaluation import _entity_type, _get_entities, evaluate_dataset
-
 from benchmarks.data import BenchmarkRun
-import copy
+
+
+def make_oniteration_callback(iteration_metrics: list):
+    """
+    Returns a callback function suitable for RuleChef's iteration_callback.
+    Logs per-iteration metrics into the provided iteration_metrics list.
+    """
+
+    def on_iteration(iteration, iter_rules, eval_result):
+        iteration_metrics.append(
+            {
+                "iteration": iteration,
+                "num_rules": len(iter_rules),
+                **eval_metrics(eval_result),
+            }
+        )
+
+    return on_iteration
 
 
 def eval_metrics(result) -> dict:
@@ -26,104 +38,6 @@ def eval_metrics(result) -> dict:
     }
 
 
-def make_oniteration_callback(iteration_metrics: list):
-    """
-    Returns a callback function suitable for RuleChef's iteration_callback.
-    Logs per-iteration metrics into the provided iteration_metrics list.
-    """
-
-    def on_iteration(iteration, iter_rules, eval_result):
-        iteration_metrics.append(
-            {
-                "iteration": iteration,
-                "num_rules": len(iter_rules),
-                **eval_metrics(eval_result),
-            }
-        )
-
-    return on_iteration
-
-
-def _without(entities, exclude):
-    return [e for e in entities if e.get("text", "").strip() not in exclude]
-
-
-def exclusion_view(dataset, apply_fn, exclude):
-    if not exclude:
-        return dataset, apply_fn
-    dataset = copy.deepcopy(dataset)
-    spans = {}
-    for ex in dataset.examples:
-        gold = ex.expected_output.get("entities", [])
-        spans[ex.input["text"]] = [
-            (g["start"], g["end"]) for g in gold if g["text"].strip() in exclude
-        ]
-        ex.expected_output = {"entities": _without(gold, exclude)}
-
-    def wrapped(rules_, input_data, task_type=None, text_field=None):
-        out = apply_fn(rules_, input_data, task_type, text_field)
-        s = spans.get(input_data["text"], [])
-        return {
-            **out,
-            "entities": [
-                e
-                for e in _without(out.get("entities", []), exclude)
-                if not any(e["start"] < ge and e["end"] > gs for gs, ge in s)
-            ],
-        }
-
-    return dataset, wrapped
-
-
-def evaluate_test(
-    test_dataset, rules, chef, mode="text", iou_threshold=1, exclude=None
-):
-    test_dataset, apply_fn = exclusion_view(
-        test_dataset, chef.learner._apply_rules, exclude
-    )
-    t0 = time.time()
-    eval_results = evaluate_dataset(
-        rules,
-        test_dataset,
-        apply_fn,
-        mode=mode,
-        iou_threshold=iou_threshold,
-        scope_to_rule_labels=True,
-    )
-    return eval_results, time.time() - t0
-
-
-def evaluate_excluding_frequent_entities(
-    rules,
-    dataset,
-    apply_rules_fn,
-    top_n=100,
-    target_class="organisation",
-    mode="text",
-    iou_threshold=1,
-):
-    task_type = dataset.task.type
-    all_data = dataset.get_all_training_data()
-    counts = defaultdict(int)
-    for item in all_data:
-        for e in _get_entities(item.expected_output, task_type):
-            if _entity_type(e) == target_class:
-                counts[e.get("text", "")] += 1
-    # excluded = {text for text, _ in Counter(counts).most_common(top_n)}
-    excluded = {"Bezirksgericht", "Verfassungsgerichtshofes", "Verfassungsgerichtshof"}
-    print(f"Excluded texts (top-{top_n}): {excluded}")
-
-    return evaluate_dataset(
-        rules,
-        dataset,
-        apply_rules_fn,
-        mode=mode,
-        iou_threshold=iou_threshold,
-        exclude_texts=excluded,
-        scope_to_rule_labels=True,
-    )
-
-
 # added helper function
 def _print_scores(title, r):
     print(f"{title}:")
@@ -142,26 +56,27 @@ def print_results(run: BenchmarkRun):
     print(f"German {args.dataset_name} Results")
     print(f"{'=' * 70}")
     print("Configuration:")
-    print(f"Shots per class:          {args.shots}")
-    print(f"Training examples:        {len(run.train_data)} ")
-    print(f"Dev examples:            {len(run.test_data)}")
+
+    print(f"Classes:                  {', '.join(sorted(run.selected_classes))}")
+    print(f"Train docs:               {run.train_size}")
+    print(f"Train sentences:          {run.train_sentences}")
+    print(f"Eval docs:                {run.eval_size}")
+    print(f"Eval sentences:           {run.eval_sentences}")
+    print(f"Dev docs:                 {run.dev_size}")
+    print(f"Dev sentences:            {run.dev_sentences}")
+    print(f"Test docs:                {run.test_size}")
+    print(f"Test sentences:           {run.test_sentences}")
     print(f"Model:                    {args.model}")
-    print(f"Max rules:                {args.max_rules}")
-    print(f"Max samples in prompt:    {args.max_samples}")
-    print(f"Refinement iterations:    {args.max_iterations}")
-    print(f"Seed:                     {args.seed}")
+
     print()
 
     print("Dev Results:")
-    print(f"Accuracy (exact match):   {run.eval_results.exact_match:.1%}")
-
     print(f"Micro Precision:          {run.eval_results.micro_precision:.1%}")
     print(f"Micro Recall:             {run.eval_results.micro_recall:.1%}")
     print(f"Micro F1:                 {run.eval_results.micro_f1:.1%}")
     print(f"Macro F1:                 {run.eval_results.macro_f1:.1%}")
     print()
     print("Test results:")
-    print(f"Accuracy (exact match):   {run.test_eval_results.exact_match:.1%}")
     print(f"Micro Precision:          {run.test_eval_results.micro_precision:.1%}")
     print(f"Micro Recall:             {run.test_eval_results.micro_recall:.1%}")
     print(f"Micro F1:                 {run.test_eval_results.micro_f1:.1%}")

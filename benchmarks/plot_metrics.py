@@ -251,8 +251,7 @@ def main():
     args = parser.parse_args()
 
     phase1_data = _load(Path(args.results))
-    prefix = Path(args.output) if args.output else None
-    parent = Path(args.results).parent
+    parent = Path(args.output) if args.output else Path(args.results).parent
     plot_single(
         phase1_data,
         label=f"phase1 ({phase1_data.get('config', {}).get('dataset_name', '')})",

@@ -9,20 +9,18 @@ from rulechef.evaluation import (
     _get_entities,
     _in_scope,
     _match_entities,
-    _target_labels,
 )
 from rulechef.training_logger import TrainingDataLogger
 
 from benchmarks.data import BenchmarkRun
 
 
-def collect_false_negatives(test_eval, task_type, rules):
-    targets = _target_labels(rules)
+def collect_false_negatives(test_eval, task_type, targets):
     records = []
     for item in test_eval.failures:
         pred = _get_entities(item["got"], task_type)
         gold = _get_entities(item["expected"], task_type)
-        _, _, fn_list = _match_entities(pred, gold, task_type, mode="text")
+        _, _, fn_list = _match_entities(pred, gold, task_type, mode="exact")
         fn_list = [g for g in fn_list if _in_scope(g, targets)]
 
         for g in fn_list:
@@ -39,6 +37,18 @@ def collect_false_negatives(test_eval, task_type, rules):
                 }
             )
     return records
+
+
+def effective_agentic_settings(cfg) -> dict:
+    """Agentic-only options have no effect without agentic=True; report what actually ran."""
+    agentic = bool(getattr(cfg, "agentic", False))
+    return {
+        "agentic": agentic,
+        "enable_critic": agentic and bool(getattr(cfg, "enable_critic", False)),
+        "enable_prune": agentic and bool(getattr(cfg, "enable_prune", False)),
+        "critic_interval": getattr(cfg, "critic_interval", 0) if agentic else 0,
+        "audit_interval": getattr(cfg, "audit_interval", 0) if agentic else 0,
+    }
 
 
 def serialize_rules(rules) -> list:
@@ -99,7 +109,7 @@ def load_rules_from_json(path: str | Path) -> list:
 
 
 # ── Save results ─────────────────────────────────────────
-def save_results(output_path: Path, run: BenchmarkRun):
+def save_results(output_path: Path, run: BenchmarkRun, learner):
     args = run.args
     results = {
         "config": {
@@ -121,11 +131,7 @@ def save_results(output_path: Path, run: BenchmarkRun):
             "dev_sentences": run.dev_sentences,
             "test_sentences": run.test_sentences,
             "use_grex": not args.no_grex,
-            "agentic": args.agentic,
-            "enable_critic": args.enable_critic,
-            "enable_prune": args.enable_prune,
-            "critic_interval": args.critic_interval,
-            "audit_interval": args.audit_interval,
+            **effective_agentic_settings(args),
             "sampling_strategy": args.sampling_strategy,
             "train_ratio": args.train_ratio,
             "neg_ratio": getattr(args, "neg_ratio", None),
@@ -141,10 +147,15 @@ def save_results(output_path: Path, run: BenchmarkRun):
             "transfer_name": args.transfer_name,
             "transfer_test_name": args.transfer_test_name,
             "max_counter_examples": args.max_counter_examples,
+            "llm_seed": learner.seed,
+            "use_spacy_ner": learner.use_spacy_ner,
+            "cross_type_overlaps": learner.cross_type_overlaps,
+            "scope_to_rule_labels": learner.scope_to_rule_labels,
+            "frequency_penalty": learner.frequency_penalty,
+            "temperature": learner.temperature,
+            "overlap_strategy": learner.overlap_strategy,
             "interleave_failures": args.interleave_failures,
             "refine_every": args.refine_every,
-            "overlap_strategy": getattr(args, "overlap_strategy", "longest"),
-            "cross_type_overlaps": getattr(args, "cross_type_overlaps", None),
             "max_patch_f1_drop": getattr(args, "max_patch_f1_drop", None),
         },
         "metadata": run.metadata,
@@ -231,8 +242,14 @@ def setup_output_paths(args, selected_classes):
         output_dir.mkdir(parents=True, exist_ok=True)
 
     out_name = Path(args.output)
+    suffix = ""
     if args.rules_json:
-        out_name = out_name.with_stem(out_name.stem + "_refined")
+        stem = out_name.stem + "_refined"
+        version = 0
+        while any(output_dir.glob(f"{stem}{suffix}.*")):
+            version += 1
+            suffix = f"_v{version}"
+        out_name = out_name.with_stem(stem + suffix)
 
     log_path = (output_dir / out_name).with_suffix(".training.jsonl")
     logger = TrainingDataLogger(
@@ -246,7 +263,7 @@ def setup_output_paths(args, selected_classes):
     )
     print(f"Training log: {log_path}")
 
-    config_name = "config_refined.yaml" if (args.rules_json) else "config.yaml"
+    config_name = f"config_refined{suffix}.yaml" if args.rules_json else "config.yaml"
     config_path = output_dir / config_name
     config_dict = {
         k.replace("_", "-"): v for k, v in vars(args).items() if k not in ("config",)
