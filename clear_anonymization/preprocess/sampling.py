@@ -1,150 +1,47 @@
 import random
-import re
 from collections import defaultdict
 
 from clear_anonymization.ner_datasets.util import (
     build_relation_examples,
-    recreate_sent_relations,
 )
 
 
-def _doc_sentences(doc, classes=None):
-    for sent in doc.sentences:
-        labels = (
-            sent.labels
-            if classes is None
-            else [l for l in sent.labels if l["type"] in classes]
-        )
-        yield {
+def _doc_sentences(doc, classes):
+    """Turn one document into a list of sentence dicts.
+    Only labels of the target classes are kept, sorted by position."""
+    return [
+        {
             "doc_id": doc.doc_id,
             "sent_id": sent.sent_id,
             "text": sent.text,
-            "entities": sorted(labels, key=lambda x: x["start"]),
+            "entities": sorted(
+                [l for l in sent.labels if l["type"] in classes],
+                key=lambda l: l["start"],
+            ),
         }
+        for sent in doc.sentences
+    ]
 
 
 def _split_docs(docs, ratio):
+    """First `ratio` of the docs -> train, rest -> eval."""
     idx = int(len(docs) * ratio)
     return docs[:idx], docs[idx:]
 
 
-def _cap(sents, n, rng):
-    if n is None or len(sents) <= n:
-        return sents
-    return rng.sample(sents, n)
+def _sentences_with_entities(docs):
+    return [s for doc in docs for s in doc if s["entities"]]
 
 
-def sample_few_shot(
-    train_data,
-    seed=42,
-    num_classes=None,
-    classes=None,
-    pool_size=None,
-    train_ratio=0.7,
-    shuffle=True,
-    neg_ratio=None,
-    eval_neg_ratio=None,
-    exclude_entities=None,
-):
-    """
-    train_data: list of NERSample (document level).
-    Shuffle and train/eval split are at document level so sentences
-    from the same document are never split across sets.
-    Returns (train, eval, counter_examples, selected_classes, n_train_docs, n_eval_docs).
-    """
-    rng = random.Random(seed)
-    if not classes:
-        all_labels = sorted(
-            {
-                l["type"]
-                for doc in train_data
-                for sent in doc.sentences
-                for l in sent.labels
-            }
-        )
-        if num_classes and num_classes < len(all_labels):
-            rng.shuffle(all_labels)
-            classes = set(all_labels[:num_classes])
-        else:
-            classes = set(all_labels)
+def _sentences_without_entities(docs):
+    return [s for doc in docs for s in doc if not s["entities"]]
 
-    classes = set(classes)
-    pos_docs = []
-    neg_docs = []
-    for doc in train_data:
-        sents = list(_doc_sentences(doc, classes))
-        if any(s["entities"] for s in sents):
-            pos_docs.append(sents)
-        else:
-            neg_docs.append(sents)
 
-    if shuffle:
-        rng.shuffle(pos_docs)
-        rng.shuffle(neg_docs)
-
-    train_all, eval_all = _split_docs(pos_docs, train_ratio)
-    neg_train_docs, neg_eval_docs = _split_docs(neg_docs, train_ratio)
-
-    # if shuffle:
-    #   rng.shuffle(train_all)
-    train_docs = train_all[:pool_size] if pool_size is not None else train_all
-    n_train_docs = len(train_docs)
-    eval_docs = eval_all
-    n_eval_docs = len(eval_docs)
-
-    train_examples = [s for doc in train_docs for s in doc if s["entities"]]
-    eval_examples = [s for doc in eval_docs for s in doc if s["entities"]]
-
-    if exclude_entities:
-
-        def _strip(s):
-            ents = [
-                e for e in s["entities"] if e["text"].strip() not in exclude_entities
-            ]
-            return {**s, "entities": ents}
-
-        n_before = sum(len(s["entities"]) for s in train_examples + eval_examples)
-        train_examples = [t for t in map(_strip, train_examples) if t["entities"]]
-        eval_examples = [t for t in map(_strip, eval_examples) if t["entities"]]
-        n_after = sum(len(s["entities"]) for s in train_examples + eval_examples)
-        print(
-            f"exclude_entities: removed {n_before - n_after} entities, "
-            f"{len(train_examples)} train / {len(eval_examples)} eval sentences kept"
-        )
-
-    train_neg_pool = [
-        s for doc in train_docs + neg_train_docs for s in doc if not s["entities"]
-    ]
-    eval_neg_pool = [
-        s for doc in eval_docs + neg_eval_docs for s in doc if not s["entities"]
-    ]
-    if eval_neg_ratio is None:
-        eval_neg_ratio = neg_ratio
-
-    train_negatives = (
-        _cap(train_neg_pool, int(neg_ratio * len(train_examples)), rng)
-        if neg_ratio is not None
-        else []
-    )
-    eval_negatives = (
-        _cap(eval_neg_pool, int(eval_neg_ratio * len(eval_examples)), rng)
-        if eval_neg_ratio is not None
-        else []
-    )
-    if train_negatives:
-        train_examples = train_examples + train_negatives
-        rng.shuffle(train_examples)
-    if eval_negatives:
-        eval_examples = eval_examples + eval_negatives
-        rng.shuffle(eval_examples)
-    return (
-        train_examples,
-        eval_examples,
-        [],
-        classes,
-        n_train_docs,
-        n_eval_docs,
-    )
+def _take_random(sentences, n, rng):
+    """Random subset of size n, or all sentences if there are not more than n."""
+    if len(sentences) <= n:
+        return sentences
+    return rng.sample(sentences, n)
 
 
 def _doc_examples(doc, relation_labels, other_label="no_relation"):
@@ -154,6 +51,91 @@ def _doc_examples(doc, relation_labels, other_label="no_relation"):
             ex = {**ex, "label": other_label}
         examples.append(ex)
     return examples
+
+
+def sample_train_eval(
+    train_data,
+    seed=42,
+    num_classes=None,
+    classes=None,
+    pool_size=None,
+    train_ratio=0.7,
+    shuffle=True,
+    neg_ratio=None,
+    eval_neg_ratio=None,
+):
+    """
+    Split the training documents into a train set and an internal eval set.
+
+    train_data: list of NERSample (documents).
+    The split is done per document, so sentences of one document never
+    end up in both train and eval.
+
+    Returns (train, eval, counter_examples, classes, n_train_docs, n_eval_docs).
+    """
+    rng = random.Random(seed)
+
+    # 1. Decide which entity classes to learn. If none are given, use all classes (or a random subset of num_classes).
+    if classes is None:
+        all_classes = sorted(
+            {
+                l["type"]
+                for doc in train_data
+                for sent in doc.sentences
+                for l in sent.labels
+            }
+        )
+        if num_classes is not None and num_classes < len(all_classes):
+            rng.shuffle(all_classes)
+            all_classes = all_classes[:num_classes]
+        classes = all_classes
+    classes = set(classes)
+
+    # 2. Group documents: with at least one target entity (positive) or without (negative).
+    docs = [_doc_sentences(doc, classes) for doc in train_data]
+    pos_docs = [doc for doc in docs if any(s["entities"] for s in doc)]
+    neg_docs = [doc for doc in docs if not any(s["entities"] for s in doc)]
+
+    # 3. Shuffle documents, then split each group into train and eval.
+    if shuffle:
+        rng.shuffle(pos_docs)
+        rng.shuffle(neg_docs)
+    pos_train_docs, pos_eval_docs = _split_docs(pos_docs, train_ratio)
+    neg_train_docs, neg_eval_docs = _split_docs(neg_docs, train_ratio)
+
+    if pool_size is not None:
+        pos_train_docs = pos_train_docs[:pool_size]
+
+    # 5. Positive examples = sentences that contain a target entity.
+    train = _sentences_with_entities(pos_train_docs)
+    eval_ = _sentences_with_entities(pos_eval_docs)
+
+    # 6. Negative examples = sentences without a target entity,
+    #    neg_ratio negatives per positive (None = no negatives).
+    #    eval uses neg_ratio too, unless eval_neg_ratio is set.
+    if eval_neg_ratio is None:
+        eval_neg_ratio = neg_ratio
+
+    train_negatives = []
+    if neg_ratio is not None:
+        pool = _sentences_without_entities(pos_train_docs + neg_train_docs)
+        train_negatives = _take_random(pool, int(neg_ratio * len(train)), rng)
+
+    eval_negatives = []
+    if eval_neg_ratio is not None:
+        pool = _sentences_without_entities(pos_eval_docs + neg_eval_docs)
+        eval_negatives = _take_random(pool, int(eval_neg_ratio * len(eval_)), rng)
+
+    # 7. Add the negatives and shuffle, so they are spread over the batches.
+    #    (Keep this after step 6: changing the order of rng calls changes the split.)
+    if train_negatives:
+        train = train + train_negatives
+        rng.shuffle(train)
+    if eval_negatives:
+        eval_ = eval_ + eval_negatives
+        rng.shuffle(eval_)
+
+    return train, eval_, [], classes, len(pos_train_docs), len(pos_eval_docs)
 
 
 def sample_relation_stratified(
