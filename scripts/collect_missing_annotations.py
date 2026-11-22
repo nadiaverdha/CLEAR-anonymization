@@ -4,12 +4,12 @@ from asyncio.log import logger
 from collections import defaultdict
 from pathlib import Path
 
-from benchmarks.util import make_dataset
 from rulechef.core import Rule, RuleFormat
 from rulechef.evaluation import evaluate_rules_individually
 
+from benchmarks.data import make_dataset
 from clear_anonymization.models.nerlearner import NERLearner
-from clear_anonymization.ner_datasets import load_ner_dataset
+from clear_anonymization.ner_datasets import load_ner_dataset_from_conll
 from clear_anonymization.ner_datasets.ner_dataset import NERData, NERSample
 
 
@@ -21,16 +21,16 @@ def collect_missing_annotation_samples(
 
     for metric in metrics_list:
         for sample in metric.sample_matches or []:
-            text = sample.input["text"]
+            text = sample["input"]["text"]
             doc_id = text_to_doc_id.get(text)
             key = (doc_id, text)
             if key not in doc_meta:
                 doc_meta[key] = {
                     "text": text,
                     "doc_id": doc_id,
-                    "gold_labels": sample.expected,
+                    "gold_labels": sample["expected"],
                 }
-            for e in sample.false_positives:
+            for e in sample["false_positives"]:
                 doc_fps[key].add((e["start"], e["end"], e["text"], e.get("type", "")))
 
     samples = []
@@ -123,7 +123,7 @@ def main():
         selected_classes=config.get("selected_classes", "organisation"),
     )
 
-    data = load_ner_dataset(
+    data = load_ner_dataset_from_conll(
         args.data_dir,
     )
 

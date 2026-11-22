@@ -9,11 +9,11 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 from rulechef.core import Rule
 from rulechef.evaluation import evaluate_rules_individually
 
-from benchmarks.data import BenchmarkRun, make_dataset
+from benchmarks.data import make_dataset
 from benchmarks.io import load_rules_from_json
 from clear_anonymization.models.nerlearner import NERLearner
 from clear_anonymization.ner_datasets import load_ner_dataset_from_conll
-from clear_anonymization.preprocess.sampling import sample_few_shot
+from clear_anonymization.preprocess.sampling import sample_train_eval
 
 
 def classify_fp(pred: dict, gold_entities: list[dict]) -> str:
@@ -43,7 +43,7 @@ def _print_metrics(m) -> None:
         f"Precision: {m.precision:.1%}  "
         f"Recall: {m.recall:.1%}  "
         f"F1: {m.f1:.1%}  "
-        f"| Predicted: {m.matches}  TP: {m.true_positives}  FP: {m.false_positives}\n"
+        f"| Predicted: {m.matches}  TP: {m.true_positives}   FP: {m.false_positives}\n"
     )
 
 
@@ -94,20 +94,11 @@ def _print_fp_classified(rows: list[tuple]) -> None:
         else:
             missing.append((pred_dict["text"], etype))
 
-    print(
-        f"── FP partial ({len(partial)}): "
-        f"{chr(10).join(f'"{t}":{typ}:{g} \\' for t, typ, g in sorted(partial))}"
-    )
+    partial_lines = "\n".join(f'"{t}":{typ}:{g}' for t, typ, g in sorted(partial))
+    print(f"── FP partial ({len(partial)}): {partial_lines}")
     print()
-    print(
-        f"── FP missing annotation ({len(missing)}): "
-        f"{chr(10).join(f'"{t}:{typ}",' for t, typ in sorted(missing))}"
-    )
-    # print(
-    #   f"── FP missing annotation ({len(missing)}): "
-    #  f"{chr(10).join(f'{t}' for t, typ in sorted(missing))}"
-    # )
-    print()
+    missing_lines = "\n".join(f'"{t}:{typ}"' for t, typ in sorted(missing))
+    print(f"── FP missing annotation ({len(missing)}): {missing_lines}")
 
 
 def main() -> None:
@@ -178,7 +169,7 @@ def main() -> None:
     )
     test_raw = load_ner_dataset_from_conll(args.test_dir)
     if args.test_name == "eval":
-        test_data = sample_few_shot(
+        test_data = sample_train_eval(
             train_data=test_raw.samples,
             seed=config["seed"],
             num_classes=1,
@@ -223,33 +214,33 @@ def main() -> None:
     seen_fp: set[str] = set()
 
     for sample in m.sample_matches:
-        sent_id = sample.input.get("sent_id", "")
-        for pred, gold in sample.matched_pairs:
+        sent_id = sample["input"].get("sent_id", "")
+        for pred, gold in sample["matched_pairs"]:
             key = (sent_id, pred["text"], pred.get("start"), gold["text"])
             if key not in seen_tp:
                 seen_tp.add(key)
                 tp_rows.append(key)
-        for e in sample.false_positives:
+        for e in sample["false_positives"]:
             fp_key = e["text"].lower()
             if fp_key not in seen_fp:
                 seen_fp.add(fp_key)
-                fp_rows.append((sent_id, e, sample.expected))
+                fp_rows.append((sent_id, e, sample["expected"]))
 
     _print_per_sentence("True Positives  (pred → gold)", (tp_rows))
     _print_fp_classified(fp_rows)
     corrections = []
     seen_texts = set()
     for sample in m.sample_matches:
-        for e in sample.false_positives:
-            if classify_fp(e, sample.expected) != "truefp":
+        for e in sample["false_positives"]:
+            if classify_fp(e, sample["expected"]) != "truefp":
                 continue
-            gold_text = _extract_gold_from_reason(e, sample.expected)
+            gold_text = _extract_gold_from_reason(e, sample["expected"])
             gold_entity = next(
-                (g for g in sample.expected if g["text"] == gold_text), None
+                (g for g in sample["expected"] if g["text"] == gold_text), None
             )
             if not gold_entity or "-" not in gold_entity["text"]:
                 continue
-            text = sample.input["text"]
+            text = sample["input"]["text"]
             if text in seen_texts:
                 continue
             seen_texts.add(text)
@@ -257,7 +248,7 @@ def main() -> None:
                 {
                     "level": "correction",
                     "input": {"text": text},
-                    "expected_output": {"entities": sample.expected},
+                    "expected_output": {"entities": sample["expected"]},
                     "text": f"Rule stops before hyphenated part of '{gold_entity['text']}'.",
                 }
             )
