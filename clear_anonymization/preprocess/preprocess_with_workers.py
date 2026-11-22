@@ -122,8 +122,6 @@ def annotate_sentence(full_text, labels, doc_id, split):
             )
         )
 
-    from clear_anonymization.ner_datasets import NERSample
-
     return NERSample(
         doc_id=doc_id,
         split=split,
@@ -249,8 +247,7 @@ def main():
                 out_f.flush()
                 if errors:
                     with open(error_path, "a", encoding="utf-8") as err_f:
-                        for e in errors:
-                            err_f.write(e + "\n")
+                        err_f.writelines(e + "\n" for e in errors)
             except Exception as e:
                 print(f"❌ Failed on {folder}: {e}")
 

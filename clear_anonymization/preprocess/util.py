@@ -1,11 +1,6 @@
-import random
-from collections import Counter, defaultdict
-
-import numpy as np
 from tuw_nlp.text.patterns.de import ABBREV
 from tuw_nlp.text.segmentation import SsplitFixer
 
-from clear_anonymization.ner_datasets.ner_dataset import NERData
 from clear_anonymization.ner_datasets.util import recreate_sent_labels_from_tokens
 
 
@@ -59,8 +54,7 @@ def validate_sentence_annotations(sample, error_file, verbose=False):
 
     if error_file and errors:
         with open(error_file, "a") as f:
-            for e in errors:
-                f.write(e + "\n")
+            f.writelines(e + "\n" for e in errors)
 
 
 def assign_bio_tag(token, labels, offset=0) -> str:
@@ -158,7 +152,6 @@ TITLES = {
     "GmbH.",
     "Reihe.",
     "Comp.",
-    "Vert.i.Strafs.",
     "Dr. Med. Univ.",
     "Univ.",
     "Med.",
@@ -217,7 +210,6 @@ MISC = {
     "BGBl.",
     "geb.",
     "Geb.",
-    "Pos.",
     "Pos.Nr.",
     "Kto-Nr.",
     "Art.-nr.",

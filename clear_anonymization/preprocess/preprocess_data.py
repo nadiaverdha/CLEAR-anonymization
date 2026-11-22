@@ -1,20 +1,16 @@
 import argparse
 import json
-import time
 import zipfile
 from dataclasses import dataclass
 from os.path import commonprefix
 from pathlib import Path
-from typing import List
 
 import spacy
-from stanza.models.common.doc import Document
-from stanza.utils.conll import CoNLL
 from tuw_nlp.text.patterns.de import ABBREV
-from tuw_nlp.text.pipeline import CachedStanzaPipeline, CustomStanzaPipeline
+from tuw_nlp.text.pipeline import CustomStanzaPipeline
 from tuw_nlp.text.segmentation import SsplitFixer
 
-from clear_anonymization.ner_datasets import NERData, NERSample, NERSentence
+from clear_anonymization.ner_datasets import NERSample, NERSentence
 from clear_anonymization.preprocess.util import (
     MISC,
     ROMAN_NUMBERING,
@@ -23,7 +19,6 @@ from clear_anonymization.preprocess.util import (
     _is_err_patch,
     assign_bio_tag,
     preprocess_text,
-    validate_docu_annotations,
     validate_sentence_annotations,
 )
 
@@ -133,17 +128,6 @@ def annotate_sentence(full_text: str, labels: list, doc_id: str, split: str):
         labels=labels,
         sentences=ner_sentences,
     )
-
-
-def assign_bio_tag(token, labels, offset=0) -> str:
-    start = token.start_char - offset
-    end = token.end_char - offset
-    for label in labels:
-        if start < label["end"] and end > label["start"]:
-            if start <= label["start"]:
-                return f"B-{label['type']}"
-            return f"I-{label['type']}"
-    return "O"
 
 
 def iter_sentences_spacy(full_text: str):

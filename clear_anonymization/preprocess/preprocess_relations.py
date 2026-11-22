@@ -11,8 +11,6 @@ import zipfile
 from os.path import commonprefix
 from pathlib import Path
 
-from stanza.utils.conll import CoNLL
-
 from clear_anonymization.ner_datasets import NERData
 
 rellabel_corrections = {

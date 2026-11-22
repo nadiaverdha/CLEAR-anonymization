@@ -1,14 +1,9 @@
 import argparse
-import json
 import re
 from collections import defaultdict
-from dataclasses import dataclass
 from pathlib import Path
 
-from torch.utils.data import Dataset
-
-from clear_anonymization.ner_datasets import NERData, NERSample, NERSentence
-from clear_anonymization.ner_datasets.ner_dataset import NERData, NERDataset, NERSample
+from clear_anonymization.ner_datasets.ner_dataset import NERData, NERSample, NERSentence
 from scripts.download_dataset import download_dataset
 
 
@@ -75,8 +70,6 @@ def create_sample(sample, idx: int) -> NERSample:
     return NERSample(
         doc_id=str(idx), split=split, text=text, sentences=[sentence], labels=labels
     )
-
-    return data
 
 
 def main():
