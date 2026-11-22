@@ -17,8 +17,6 @@ from concurrent.futures import ProcessPoolExecutor
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
 
-from rulechef.executor import RuleExecutor
-
 from clear_anonymization.ner_datasets import load_ner_dataset_from_conll
 from data_quality.worker import init_worker, process_sentence
 
