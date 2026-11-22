@@ -6,82 +6,42 @@ import latextable
 from texttable import Texttable
 
 
-def load_results(results_path: Path) -> dict:
+def load_results(results_path: Path, label: str | None = None) -> dict:
     data = json.loads(results_path.read_text())
-    results = data["results_test"]
+    results = data["results_dev"]
     config = data["config"]
     best_rules = data["best_rules"]
+
+    def pct(x):
+        return f"{100 * x:.1f}"
+
     return {
-        "train_data": config["train_name"],
-        "test_data": config["test_name"],
-        "transfer_data": config.get("transfer_name", "null"),
-        "f1": f"{results.get('micro_f1', 0):.1%}".replace("%", r"\%"),
-        "precision": f"{results.get('micro_precision', 0):.1%}".replace("%", r"\%"),
-        "recall": f"{results.get('micro_recall', 0):.1%}".replace("%", r"\%"),
-        "num_rules": len(best_rules["rules"]),
-        "max_rules": config.get("max_rules", 0),
-        "iterations": config.get("max_iterations", 0),
-        "model": config.get("model", "Unknown"),
+        "setting": "",
+        "class": ", ".join(config.get("selected_classes", [])),
+        "f1": pct(results.get("micro_f1", 0)),
+        "precision": pct(results.get("micro_precision", 0)),
+        "recall": pct(results.get("micro_recall", 0)),
+        "num_rules": len(data["rules"]),
     }
 
 
 def build_table(rows: list[dict]) -> Texttable:
-    has_transfer = any(r["transfer_data"] not in (None, "null", "") for r in rows)
-
     table = Texttable()
     table.set_deco(Texttable.HEADER)
-
-    if has_transfer:
-        table.set_cols_align(["l", "l", "l", "l", "r", "r", "r", "r"])
-        table.set_cols_dtype(["t", "t", "t", "t", "i", "t", "t", "t"])
-        header = [
-            "Train Data",
-            "Additional Train Data",
-            "Test Data",
-            "Model",
-            r"\# Rules",
-            "F1",
-            "Precision",
-            "Recall",
+    table.set_cols_align(["l", "l", "r", "r", "r", "r"])
+    table.set_cols_dtype(["t"] * 6)
+    header = ["Setting", "Class", r"\# Rules", "P", "R", "F1"]
+    data_rows = [
+        [
+            r["setting"],
+            r["class"],
+            str(r["num_rules"]),
+            r["precision"],
+            r["recall"],
+            r["f1"],
         ]
-        data_rows = [
-            [
-                r["train_data"],
-                r["transfer_data"],
-                r["test_data"],
-                r["model"],
-                r["num_rules"],
-                r["f1"],
-                r["precision"],
-                r["recall"],
-            ]
-            for r in rows
-        ]
-    else:
-        table.set_cols_align(["l", "l", "l", "r", "r", "r", "r"])
-        table.set_cols_dtype(["t", "t", "t", "i", "t", "t", "t"])
-        header = [
-            "Train Data",
-            "Test Data",
-            "Model",
-            r"\# Rules",
-            "F1",
-            "Precision",
-            "Recall",
-        ]
-        data_rows = [
-            [
-                r["train_data"],
-                r["test_data"],
-                r["model"],
-                r["num_rules"],
-                r["f1"],
-                r["precision"],
-                r["recall"],
-            ]
-            for r in rows
-        ]
-
+        for r in rows
+    ]
     table.add_rows([header] + data_rows)
     return table
 
