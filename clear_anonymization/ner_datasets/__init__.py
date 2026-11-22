@@ -76,6 +76,10 @@ def load_ner_dataset_from_conll(
 
 __all__ = [
     "DATASET_CLASS_DEFINITIONS",
+    "NERData",
+    "NERSample",
+    "NERSentence",
     "get_dataset_class_definitions",
-    "load_ner_dataset",
+    "load_ner_dataset_from_conll",
+    "load_ner_dataset_from_json",
 ]

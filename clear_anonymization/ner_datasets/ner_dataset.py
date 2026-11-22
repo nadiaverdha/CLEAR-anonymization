@@ -1,13 +1,11 @@
 from dataclasses import dataclass, field
 
-import conllu
 from stanza.models.common.doc import Document
 from stanza.utils.conll import CoNLL
 from torch.utils.data import Dataset
 
 from clear_anonymization.ner_datasets.util import (
     recreate_sent_labels_from_tokens,
-    recreate_sent_relations,
 )
 
 
