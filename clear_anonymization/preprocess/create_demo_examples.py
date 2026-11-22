@@ -1,14 +1,8 @@
 import argparse
 import json
-import logging
-import random
-import re
-import string
-import unicodedata
-import zipfile
 from pathlib import Path
 
-from clear_anonymization.ner_datasets.ner_dataset import NERData, NERDataset, NERSample
+from clear_anonymization.ner_datasets.ner_dataset import NERData, NERSample
 
 
 def sample_data(samples, split, window_size=100, allowed_classes=None):
