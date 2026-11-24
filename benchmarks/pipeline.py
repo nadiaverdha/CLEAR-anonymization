@@ -383,6 +383,8 @@ def build_context(
             synthesis_strategy=args.synthesis_strategy,
             selected_classes=list(split.selected_classes),
             rule_format=args.format,
+            concise_reasoning=args.concise_reasoning,
+            context_window=args.context_window,
         )
         eval_dataset = make_dataset(f"{split.name}_eval", split.eval, learner.task)
         dev_dataset = make_dataset(f"{split.name}_dev", split.dev, learner.task)

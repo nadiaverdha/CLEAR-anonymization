@@ -457,6 +457,18 @@ def main():
     parser.add_argument("--max-samples", type=int, default=50)
     parser.add_argument("--max-counter-examples", type=int, default=10)
     parser.add_argument("--max-rules-per-class", type=int, default=5)
+    parser.add_argument(
+        "--concise-reasoning",
+        action=argparse.BooleanOptionalAction,
+        default=True,
+        help="Ask the LLM for 1-2 sentence analysis/strategy (use --no-concise-reasoning to disable)",
+    )
+    parser.add_argument(
+        "--context-window",
+        type=int,
+        default=64000,
+        help="LLM context size (vLLM --max-model-len); rulechef shrinks prompts to fit",
+    )
     parser.add_argument("--interleave-failures", action="store_true")
     parser.add_argument("--max-iterations", type=int, default=3)
     parser.add_argument("--batch-size", type=int, default=20)

@@ -148,6 +148,8 @@ def save_results(output_path: Path, run: BenchmarkRun, learner):
             "transfer_test_name": args.transfer_test_name,
             "max_counter_examples": args.max_counter_examples,
             "max_rules_per_class": getattr(args, "max_rules_per_class", None),
+            "concise_reasoning": getattr(args, "concise_reasoning", None),
+            "context_window": getattr(args, "context_window", None),
             "llm_seed": learner.seed,
             "use_spacy_ner": learner.use_spacy_ner,
             "cross_type_overlaps": learner.cross_type_overlaps,
