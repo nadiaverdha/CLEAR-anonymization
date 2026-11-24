@@ -1,4 +1,5 @@
 import json
+import time
 import random
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field, replace
@@ -102,7 +103,7 @@ class SynthesisStep(Step):
         iteration_metrics = list(ctx.iteration_metrics)
         rules_snapshot = list(ctx.rules_snapshot)
         on_iteration = make_oniteration_callback(iteration_metrics)
-
+        t_step0 = time.time()
         best = {
             "f1": ctx.best_f1,
             "rules": list(ctx.best_rules) if ctx.best_rules else [],
@@ -156,6 +157,7 @@ class SynthesisStep(Step):
                         "batch_metrics": batch_metrics,
                         "iteration_metrics": iteration_metrics,
                         "rules_snapshot": rules_snapshot,
+                        "t_learn": ctx.t_learn + (time.time() - t_step0),
                         "timestamp": datetime.now().isoformat(),
                     },
                 )

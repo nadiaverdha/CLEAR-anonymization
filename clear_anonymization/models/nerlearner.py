@@ -170,6 +170,13 @@ class NERLearner(RuleChef):
             raise ValueError(
                 f"start_batch must be in [0, {len(batches)}], got {start_batch}"
             )
+        # on resume, restore the examples the skipped batches would have left
+        # (same window as step 3 below: last `past_batches` batches, all if < 0)
+        if start_batch > 0 and past_batches != 0:
+            first = 0 if past_batches < 0 else max(0, start_batch - past_batches)
+            for prev in batches[first:start_batch]:
+                for ex in prev:
+                    self.add_example({"text": ex["text"]}, {"entities": ex["entities"]})
 
         rules = list(seed_rules) if seed_rules is not None else None
         t0 = time.time()
