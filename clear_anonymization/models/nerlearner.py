@@ -46,7 +46,8 @@ class NERLearner(RuleChef):
         overlap_strategy: str | None = "longest",
         cross_type_overlaps: bool = True,
         scope_to_rule_labels: bool = True,
-        frequency_penalty: float | None = 0.1,
+        #frequency_penalty: float | None = 0.1,
+        max_rules_per_class: int = 5,
     ):
 
         task = Task(
@@ -103,7 +104,9 @@ class NERLearner(RuleChef):
             overlap_strategy=overlap_strategy,
             cross_type_overlaps=cross_type_overlaps,
             scope_to_rule_labels=scope_to_rule_labels,
-            target_labels=list(selected_classes),
+            target_labels=sorted(selected_classes),
+            max_rules_per_class=max_rules_per_class,
+            #frequency_penalty=frequency_penalty,
         )
 
     def _learn_batch(self, eval_dataset, incremental, guard_drop=None):

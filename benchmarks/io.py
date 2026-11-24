@@ -147,11 +147,12 @@ def save_results(output_path: Path, run: BenchmarkRun, learner):
             "transfer_name": args.transfer_name,
             "transfer_test_name": args.transfer_test_name,
             "max_counter_examples": args.max_counter_examples,
+            "max_rules_per_class": getattr(args, "max_rules_per_class", None),
             "llm_seed": learner.seed,
             "use_spacy_ner": learner.use_spacy_ner,
             "cross_type_overlaps": learner.cross_type_overlaps,
             "scope_to_rule_labels": learner.scope_to_rule_labels,
-            "frequency_penalty": learner.frequency_penalty,
+            "frequency_penalty": getattr(learner, "frequency_penalty", None),
             "temperature": learner.temperature,
             "overlap_strategy": learner.overlap_strategy,
             "interleave_failures": args.interleave_failures,
@@ -221,7 +222,7 @@ def setup_output_paths(args, selected_classes):
     model_name = args.model.replace("/", "_")
     date_str = datetime.now().strftime("%Y-%m-%d")
     selected_classes_str = "_".join(
-        c.replace(" ", "") for c in selected_classes
+        sorted(c.replace(" ", "") for c in selected_classes)
     ).strip()
     num_classes = len(selected_classes)
 

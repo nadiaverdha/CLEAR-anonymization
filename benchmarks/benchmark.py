@@ -456,6 +456,7 @@ def main():
     parser.add_argument("--max-rules", type=int, default=10)
     parser.add_argument("--max-samples", type=int, default=50)
     parser.add_argument("--max-counter-examples", type=int, default=10)
+    parser.add_argument("--max-rules-per-class", type=int, default=5)
     parser.add_argument("--interleave-failures", action="store_true")
     parser.add_argument("--max-iterations", type=int, default=3)
     parser.add_argument("--batch-size", type=int, default=20)
