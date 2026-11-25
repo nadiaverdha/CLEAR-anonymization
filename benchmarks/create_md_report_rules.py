@@ -483,7 +483,7 @@ def create_md_report(
         test_dataset,
         apply_rules_fn,
         mode="exact",
-        max_samples=100,
+        max_samples=10000,
         in_context=True,
         scope_to_rule_labels=True,
     )

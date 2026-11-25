@@ -469,6 +469,12 @@ def main():
         default=64000,
         help="LLM context size (vLLM --max-model-len); rulechef shrinks prompts to fit",
     )
+    parser.add_argument(
+        "--frequency-penalty",
+        type=float,
+        default=None,
+        help="Opt-in frequency_penalty for every LLM call (discourages repetition loops); default: not sent",
+    )
     parser.add_argument("--interleave-failures", action="store_true")
     parser.add_argument("--max-iterations", type=int, default=3)
     parser.add_argument("--batch-size", type=int, default=20)

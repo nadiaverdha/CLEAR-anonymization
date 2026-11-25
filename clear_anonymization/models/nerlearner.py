@@ -1,3 +1,4 @@
+import inspect
 import os
 import tempfile
 import time
@@ -46,10 +47,10 @@ class NERLearner(RuleChef):
         overlap_strategy: str | None = "longest",
         cross_type_overlaps: bool = True,
         scope_to_rule_labels: bool = True,
-        # frequency_penalty: float | None = 0.1,
         max_rules_per_class: int = 5,
         concise_reasoning: bool = True,
         context_window: int | None = 64000,
+        frequency_penalty: float | None = None,
     ):
 
         task = Task(
@@ -82,7 +83,14 @@ class NERLearner(RuleChef):
                 "⚠ enable_prune / audit_interval / enable_critic / critic_interval "
                 "have no effect without agentic=True"
             )
-
+        extra_kwargs = {}
+        if frequency_penalty is not None:
+            if "frequency_penalty" in inspect.signature(RuleChef.__init__).parameters:
+                extra_kwargs["frequency_penalty"] = frequency_penalty
+            else:
+                raise ValueError(
+                    "frequency_penalty is set, but the installed rulechef does not support it"
+                )
         super().__init__(
             task=task,
             client=client,
@@ -113,6 +121,7 @@ class NERLearner(RuleChef):
             # vLLM --max-model-len; lets rulechef pick a smaller patch prompt
             # variant instead of sending one the server rejects (HTTP 400).
             context_window=context_window,
+            **extra_kwargs,
         )
 
     def _learn_batch(self, eval_dataset, incremental, guard_drop=None):

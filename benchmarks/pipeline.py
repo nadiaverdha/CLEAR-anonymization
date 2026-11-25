@@ -387,6 +387,7 @@ def build_context(
             rule_format=args.format,
             concise_reasoning=args.concise_reasoning,
             context_window=args.context_window,
+            frequency_penalty=args.frequency_penalty,
         )
         eval_dataset = make_dataset(f"{split.name}_eval", split.eval, learner.task)
         dev_dataset = make_dataset(f"{split.name}_dev", split.dev, learner.task)
