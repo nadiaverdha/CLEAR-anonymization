@@ -1,3 +1,4 @@
+import copy
 import json
 import time
 import random
@@ -134,7 +135,7 @@ class SynthesisStep(Step):
             )
             if result.micro_f1 > best["f1"]:
                 best["f1"] = result.micro_f1
-                best["rules"] = list(rules)
+                best["rules"] = copy.deepcopy(list(rules))
                 best["batch_idx"] = batch_idx
             print(
                 f"  [batch {batch_idx}] dev micro_f1={result.micro_f1:.3f}"
@@ -231,30 +232,53 @@ class RefinementStep(Step):
         self.use_feedback = use_feedback
 
     def run(self, ctx: StepContext) -> StepContext:
-        rules_to_refine = ctx.best_rules or ctx.rules
+        # frozen copy: refine() stamps validated_precision in place
+        rules_to_refine = copy.deepcopy(ctx.best_rules or ctx.rules)
         print(
             f"\nRefining best {len(rules_to_refine)} rules"
             f" ({len(ctx.split.eval)} eval examples,"
             f" max {self.max_iterations} iterations)..."
         )
+        start_dev, _ = evaluate_test(
+            ctx.dev_dataset,
+            rules_to_refine,
+            ctx.learner,
+            target_labels=ctx.split.selected_classes,
+        )
         iteration_metrics = []
         on_iteration = make_oniteration_callback(iteration_metrics)
         dataset = ctx.dev_dataset if self.use_feedback else ctx.eval_dataset
         rules, refine_eval = ctx.learner.refine(
-            rules_to_refine,
+            copy.deepcopy(rules_to_refine),
             dataset,
             max_iterations=self.max_iterations,
             iteration_callback=on_iteration,
         )
         if refine_eval:
             print(f"  Eval micro F1: {refine_eval.micro_f1:.1%}")
-
+        refined_dev, _ = evaluate_test(
+            ctx.dev_dataset,
+            rules,
+            ctx.learner,
+            target_labels=ctx.split.selected_classes,
+        )
+        kept_refined = refined_dev.micro_f1 >= start_dev.micro_f1
+        print(
+            f"  Dev F1 before refine {start_dev.micro_f1:.3f}"
+            f" → after {refined_dev.micro_f1:.3f}"
+            f" → keeping {'refined' if kept_refined else 'pre-refine'} rules"
+        )
+        if not kept_refined:
+            rules = rules_to_refine
         history_entry = {
             "phase": "refine",
             "dataset": ctx.split.name,
             "num_rules": len(rules),
             "best_batch_idx": ctx.best_batch_idx,
             "best_dev_f1": ctx.best_f1,
+            "dev_f1_before_refine": start_dev.micro_f1,
+            "dev_f1_after_refine": refined_dev.micro_f1,
+            "kept_refined": kept_refined,
             "micro_f1": refine_eval.micro_f1 if refine_eval else None,
             "micro_precision": refine_eval.micro_precision if refine_eval else None,
             "micro_recall": refine_eval.micro_recall if refine_eval else None,
